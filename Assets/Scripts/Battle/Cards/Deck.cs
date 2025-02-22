@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class Deck : MonoBehaviour
 {
+    public Hand hand;
     public GameObject deck;
     public GameObject text;
     int deckSize = 50;
@@ -13,9 +11,10 @@ public class Deck : MonoBehaviour
     public void DrawCard() {
         deckSize--;
         UpdateDeckUi();
+        hand.AddCardToHand();
     }
 
     void UpdateDeckUi() {
-        text.GetComponent<TMPro.TextMeshPro>().text = $"{deckSize}";
+        text.GetComponent<TMP_Text>().text = $"{deckSize}";
     }
 }
