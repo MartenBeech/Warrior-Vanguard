@@ -1,4 +1,0 @@
-repository "Roguelike tutorial/Warrior Vanguard@5772611941426@cloud"
-  path "/"
-    br "/main"
-    co "/main"
