@@ -16,6 +16,6 @@ public class Deck : MonoBehaviour
     }
 
     void UpdateDeckUi() {
-        text.GetComponent<TMPro.TextMeshProUGUI>().text = $"{deckSize}";
+        text.GetComponent<TMPro.TextMeshPro>().text = $"{deckSize}";
     }
 }
