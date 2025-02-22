@@ -4,7 +4,8 @@ public class GridManager : MonoBehaviour
 {
     public int rows = 2;
     public int columns = 8;
-    public GameObject cellPrefab; // Assign a simple button prefab in the Inspector
+    public GameObject cellPrefab;
+    public CharacterSpawner characterSpawner;
 
     private GridCell[,] grid;
 
@@ -30,7 +31,8 @@ public class GridManager : MonoBehaviour
 
     public void SelectCell(int x, int y)
     {
-        SelectedCell = new Vector2Int(x, y);
+        Vector2Int selectedCell = new Vector2Int(x * 100, y * 100);
+        characterSpawner.TrySpawnCharacter(selectedCell);
     }
 
     public Vector2Int? SelectedCell { get; private set; }

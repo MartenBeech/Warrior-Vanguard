@@ -2,22 +2,24 @@ using UnityEngine;
 
 public class CharacterSpawner : MonoBehaviour
 {
-    public GameObject characterPrefab;
-    public GridManager gridManager;
+    public GameObject characterPrefab; // Assign in Inspector
+    public GridManager gridManager;   // Assign in Inspector
 
-    public void SpawnCharacter()
+    private bool isSpawnMode = false; // Flag to track if we are in spawn mode
+
+    public void ActivateSpawnMode()
     {
-        if (gridManager.SelectedCell.HasValue)
-        {
-            Vector2Int cell = gridManager.SelectedCell.Value;
-            Vector3 spawnPosition = new Vector3(cell.x * 100, cell.y * 100);
+        isSpawnMode = true;
+        Debug.Log("Spawn mode activated! Click a grid cell to place a character.");
+    }
 
-            GameObject newCharacter = Instantiate(characterPrefab, spawnPosition, Quaternion.identity);
-            newCharacter.GetComponent<Character>().SetPosition(spawnPosition);
-        }
-        else
-        {
-            Debug.Log("No cell selected!");
-        }
+    public void TrySpawnCharacter(Vector2Int cell)
+    {
+        if (!isSpawnMode) return;
+
+        Vector3 spawnPosition = new Vector3(cell.x, cell.y);
+        GameObject newCharacter = Instantiate(characterPrefab, spawnPosition, Quaternion.identity);
+
+        isSpawnMode = false;
     }
 }

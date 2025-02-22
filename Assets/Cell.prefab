@@ -133,3 +133,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a6acc052af8ff48ab643f6281d541e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnModeColor: {r: 0, g: 1, b: 0, a: 1}
