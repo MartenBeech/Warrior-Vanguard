@@ -1,26 +1,25 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public List<Character> players = new List<Character>();
+    public List<Character> friends = new List<Character>();
     public List<Character> enemies = new List<Character>();
     public GridManager gridManager;
 
     public void EndTurn()
     {
-        Debug.Log("🔄 Player Turn: Moving all characters to the right!");
-
-        foreach (Character character in players)
+        friends = friends.OrderByDescending(c => c.gridPosition.x).ToList();
+        foreach (Character friend in friends)
         {
-            character.MoveRight();
+            friend.MoveRight();
         }
     }
 
     public void EndEnemyTurn()
     {
-        Debug.Log("🔄 Enemy Turn: Moving all enemies to the left!");
-
+        enemies = enemies.OrderBy(c => c.gridPosition.x).ToList();
         foreach (Character enemy in enemies)
         {
             enemy.MoveLeft();
@@ -36,8 +35,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if (!players.Contains(character))
-                players.Add(character);
+            if (!friends.Contains(character))
+                friends.Add(character);
         }
         gridManager.RegisterCharacter(character);
     }

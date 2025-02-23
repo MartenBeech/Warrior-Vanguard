@@ -18,24 +18,11 @@ public class Character : MonoBehaviour
 
     public void MoveRight()
     {
-        if (gridManager == null)
-        {
-            Debug.LogError("❌ GridManager is NULL in MoveRight()!");
-            return;
-        }
-
-        int maxX = (gridManager.columns - 1) * 100;
+        int rightMostColumn = (gridManager.columns - 1) * 100;
         Vector2 newPosition = new Vector2(gridPosition.x + 100, gridPosition.y);
 
-        if (gridPosition.x >= maxX)
+        if (gridPosition.x >= rightMostColumn || gridManager.IsCellOccupied(newPosition))
         {
-            Debug.Log($"🚧 {gameObject.name} is at the rightmost cell ({gridPosition.x}), staying still.");
-            return;
-        }
-
-        if (gridManager.IsCellOccupied(newPosition))
-        {
-            Debug.Log($"🚧 {gameObject.name} is blocked at {gridPosition}, staying still.");
             return;
         }
 
@@ -45,24 +32,11 @@ public class Character : MonoBehaviour
 
     public void MoveLeft()
     {
-        if (gridManager == null)
-        {
-            Debug.LogError("❌ GridManager is NULL in MoveLeft()!");
-            return;
-        }
-
-        int minX = 0; // Leftmost column
+        int leftMostColumn = 0;
         Vector2 newPosition = new Vector2(gridPosition.x - 100, gridPosition.y);
 
-        if (gridPosition.x <= minX)
+        if (gridPosition.x <= leftMostColumn || gridManager.IsCellOccupied(newPosition))
         {
-            Debug.Log($"🚧 {gameObject.name} is at the leftmost cell ({gridPosition.x}), staying still.");
-            return;
-        }
-
-        if (gridManager.IsCellOccupied(newPosition))
-        {
-            Debug.Log($"🚧 {gameObject.name} is blocked at {gridPosition}, staying still.");
             return;
         }
 

@@ -9,6 +9,8 @@ public class GridManager : MonoBehaviour
     public CharacterSpawner characterSpawner;
     private GridCell[,] grid;
     private List<Character> allCharacters = new List<Character>();
+    public Vector2Int? SelectedCell { get; private set; }
+
 
     void Start()
     {
@@ -38,7 +40,7 @@ public class GridManager : MonoBehaviour
     public void SelectCell(int x, int y)
     {
         Vector2 selectedCell = new Vector2(x * 100, y * 100);
-        characterSpawner.TrySpawnCharacter(selectedCell);
+        characterSpawner.SpawnCharacter(selectedCell);
     }
 
     public void RegisterCharacter(Character character)
@@ -55,11 +57,10 @@ public class GridManager : MonoBehaviour
         {
             if (character.gridPosition == position)
             {
-                return true; // Cell is occupied
+                return true;
             }
         }
-        return false; // Cell is free
+        return false;
     }
 
-    public Vector2Int? SelectedCell { get; private set; }
 }
