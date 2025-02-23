@@ -385,8 +385,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 179982829}
-  deck: {fileID: 233183269}
-  text: {fileID: 96899266}
+  cardAnimation: {fileID: -1415149236313032920, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
+  deckObject: {fileID: 233183269}
+  textObject: {fileID: 96899266}
+  handObject: {fileID: 179982827}
+  cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
 --- !u!114 &233183272
 MonoBehaviour:
   m_ObjectHideFlags: 0
