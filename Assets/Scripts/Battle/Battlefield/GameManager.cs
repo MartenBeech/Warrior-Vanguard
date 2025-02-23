@@ -3,25 +3,42 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public List<Character> characters = new List<Character>();
+    public List<Character> players = new List<Character>();
+    public List<Character> enemies = new List<Character>();
     public GridManager gridManager;
 
     public void EndTurn()
     {
-        Debug.Log("🔄 End Turn: Moving all characters to the right!");
+        Debug.Log("🔄 Player Turn: Moving all characters to the right!");
 
-        foreach (Character character in characters)
+        foreach (Character character in players)
         {
             character.MoveRight();
         }
     }
 
-    public void RegisterCharacter(Character character)
+    public void EndEnemyTurn()
     {
-        if (!characters.Contains(character))
+        Debug.Log("🔄 Enemy Turn: Moving all enemies to the left!");
+
+        foreach (Character enemy in enemies)
         {
-            characters.Add(character);
-            gridManager.RegisterCharacter(character); // Register in GridManager too
+            enemy.MoveLeft();
         }
+    }
+
+    public void RegisterCharacter(Character character, bool isEnemy)
+    {
+        if (isEnemy)
+        {
+            if (!enemies.Contains(character))
+                enemies.Add(character);
+        }
+        else
+        {
+            if (!players.Contains(character))
+                players.Add(character);
+        }
+        gridManager.RegisterCharacter(character);
     }
 }

@@ -22,7 +22,12 @@ public class GridManager : MonoBehaviour
         {
             for (int y = 0; y < rows; y++)
             {
-                GameObject cell = Instantiate(cellPrefab, new Vector2(x * 100, y * 100), Quaternion.identity, transform);
+                GameObject cell = Instantiate(
+                    cellPrefab,
+                    new Vector2(x * 100, y * 100),
+                    Quaternion.identity,
+                    transform
+                );
                 GridCell gridCell = cell.GetComponent<GridCell>();
                 gridCell.Setup(x, y, this);
                 grid[x, y] = gridCell;
@@ -32,7 +37,7 @@ public class GridManager : MonoBehaviour
 
     public void SelectCell(int x, int y)
     {
-        Vector2Int selectedCell = new Vector2Int(x * 100, y * 100);
+        Vector2 selectedCell = new Vector2(x * 100, y * 100);
         characterSpawner.TrySpawnCharacter(selectedCell);
     }
 
@@ -44,7 +49,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public bool IsCellOccupied(Vector2Int position)
+    public bool IsCellOccupied(Vector2 position)
     {
         foreach (Character character in allCharacters)
         {

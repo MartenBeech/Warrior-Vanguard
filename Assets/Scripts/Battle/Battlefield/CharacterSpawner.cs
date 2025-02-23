@@ -2,30 +2,63 @@ using UnityEngine;
 
 public class CharacterSpawner : MonoBehaviour
 {
-    public GameObject characterPrefab;
+    public GameObject characterPrefab; // Player character prefab
+    public GameObject enemyPrefab; // Enemy character prefab
+    private bool spawningCharacter = false;
+    private bool spawningEnemy = false;
     public GridManager gridManager;
-    public GameManager gameManager; // Reference to the GameManager
-    private bool isSpawnMode = false;
+    public GameManager gameManager;
 
-    public void ActivateSpawnMode()
+    public void ActivateSpawnCharacter()
     {
-        isSpawnMode = true;
+        spawningCharacter = true;
     }
 
-    public void TrySpawnCharacter(Vector2Int cell)
+    public void ActivateSpawnEnemy()
     {
-        if (!isSpawnMode) return;
+        spawningEnemy = true;
+    }
 
+    public void TrySpawnCharacter(Vector2 cell)
+    {
+        if (spawningCharacter) {
+            spawningCharacter = false;
+            TrySpawn(cell, characterPrefab, false);
+        };
+        if (spawningEnemy) {
+            spawningEnemy = false;
+            TrySpawn(cell, enemyPrefab, true);
+        }
+    }
+
+    private void TrySpawn(Vector2 cell, GameObject prefab, bool isEnemy)
+    {
+        if (prefab == null)
+        {
+            Debug.LogError("❌ Prefab is NOT assigned!");
+            return;
+        }
+
+        if (gridManager.IsCellOccupied(cell))
+        {
+            Debug.Log($"🚧 Can't spawn at {cell}, already occupied.");
+            return;
+        }
+
+        // Convert Vector2Int to Vector2 for 2D game
         Vector2 spawnPosition = new Vector2(cell.x, cell.y);
-        GameObject newCharacter = Instantiate(characterPrefab, spawnPosition, Quaternion.identity);
 
-        Character characterScript = newCharacter.GetComponent<Character>();
+        // Corrected instantiation (for 2D)
+        GameObject newUnit = Instantiate(prefab, spawnPosition, Quaternion.identity);
+
+        Character characterScript = newUnit.GetComponent<Character>();
+
         if (characterScript != null)
         {
             characterScript.SetPosition(cell);
-            gameManager.RegisterCharacter(characterScript); // Register character in GameManager
+            characterScript.SetGridManager(gridManager);
+            gameManager.RegisterCharacter(characterScript, isEnemy);
         }
-
-        isSpawnMode = false;
     }
+
 }
