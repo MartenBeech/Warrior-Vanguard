@@ -290,7 +290,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -417}
-  m_SizeDelta: {x: 1000, y: 150}
+  m_SizeDelta: {x: 1250, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &179982829
 MonoBehaviour:
@@ -304,8 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7ca3ffb230b4b4eaa0e6f62085e3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
-  parent: {fileID: 179982828}
+  handObject: {fileID: 179982828}
 --- !u!114 &179982830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,7 +369,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -858, y: -417}
-  m_SizeDelta: {x: 100, y: 150}
+  m_SizeDelta: {x: 120, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &233183271
 MonoBehaviour:
@@ -385,7 +384,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 179982829}
-  cardAnimation: {fileID: -1415149236313032920, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
   deckObject: {fileID: 233183269}
   textObject: {fileID: 96899266}
   handObject: {fileID: 179982827}
@@ -1471,8 +1469,8 @@ RectTransform:
   - {fileID: 509353787}
   - {fileID: 477378437}
   - {fileID: 1038024896}
-  - {fileID: 233183270}
   - {fileID: 179982828}
+  - {fileID: 233183270}
   - {fileID: 1891804512}
   - {fileID: 1100467560}
   m_Father: {fileID: 0}
