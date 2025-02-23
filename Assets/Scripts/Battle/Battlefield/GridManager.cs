@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -6,8 +7,8 @@ public class GridManager : MonoBehaviour
     public int columns = 8;
     public GameObject cellPrefab;
     public CharacterSpawner characterSpawner;
-
     private GridCell[,] grid;
+    private List<Character> allCharacters = new List<Character>();
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class GridManager : MonoBehaviour
         {
             for (int y = 0; y < rows; y++)
             {
-                GameObject cell = Instantiate(cellPrefab, new Vector3(x * 100, y * 100, 0), Quaternion.identity, transform);
+                GameObject cell = Instantiate(cellPrefab, new Vector2(x * 100, y * 100), Quaternion.identity, transform);
                 GridCell gridCell = cell.GetComponent<GridCell>();
                 gridCell.Setup(x, y, this);
                 grid[x, y] = gridCell;
@@ -33,6 +34,26 @@ public class GridManager : MonoBehaviour
     {
         Vector2Int selectedCell = new Vector2Int(x * 100, y * 100);
         characterSpawner.TrySpawnCharacter(selectedCell);
+    }
+
+    public void RegisterCharacter(Character character)
+    {
+        if (!allCharacters.Contains(character))
+        {
+            allCharacters.Add(character);
+        }
+    }
+
+    public bool IsCellOccupied(Vector2Int position)
+    {
+        foreach (Character character in allCharacters)
+        {
+            if (character.gridPosition == position)
+            {
+                return true; // Cell is occupied
+            }
+        }
+        return false; // Cell is free
     }
 
     public Vector2Int? SelectedCell { get; private set; }

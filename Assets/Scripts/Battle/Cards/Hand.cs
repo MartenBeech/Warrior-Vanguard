@@ -10,7 +10,7 @@ public class Hand : MonoBehaviour
     public void AddCardToHand() {
         if (handSize >= 10) return;
         
-        Vector3 pos = new Vector3(0,0);
+        Vector2 pos = new Vector2(0,0);
         Quaternion rot = Quaternion.identity;
 
         Instantiate(prefab, pos, rot, parent);
