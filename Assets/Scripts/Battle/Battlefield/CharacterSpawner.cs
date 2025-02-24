@@ -6,12 +6,16 @@ public class CharacterSpawner : MonoBehaviour
     {
         Null, Enemy, Friend
     };
-    public GameObject friendPrefab;
-    public GameObject enemyPrefab;
+    public GameObject warriorPrefab;
     private Alignment spawningAlignment;
     public GridManager gridManager;
+    public Transform gridManagerObject;
     public GameManager gameManager;
 
+    public void ActivateSpawnEnemy()
+    {
+        spawningAlignment = Alignment.Enemy;
+    }
     public void ActivateSpawn(Alignment alignment)
     {
         spawningAlignment = alignment;
@@ -26,9 +30,10 @@ public class CharacterSpawner : MonoBehaviour
     {
         if (spawningAlignment == Alignment.Null) return false;
 
-
+        bool isSpawing = Spawn(cell, warriorPrefab, spawningAlignment);
         spawningAlignment = Alignment.Null;
-        return Spawn(cell, friendPrefab, spawningAlignment);
+
+        return isSpawing;
     }
 
     private bool Spawn(Vector2 cell, GameObject prefab, Alignment alignment)
@@ -39,18 +44,27 @@ public class CharacterSpawner : MonoBehaviour
         }
 
         Vector2 spawnPosition = new Vector2(cell.x, cell.y);
-        GameObject newUnit = Instantiate(prefab, spawnPosition, Quaternion.identity);
+        GameObject newUnit = Instantiate(prefab, spawnPosition, Quaternion.identity, gridManagerObject);
         Character characterScript = newUnit.GetComponent<Character>();
 
-        if (characterScript != null)
+        Card card = newUnit.GetComponent<Card>();
+        Hand hand = FindFirstObjectByType<Hand>();
+        if (alignment == Alignment.Friend)
         {
-            characterScript.SetPosition(cell);
-            characterScript.SetGridManager(gridManager);
-            gameManager.RegisterCharacter(characterScript, alignment);
-            return true;
+            card.CopyCardValues(hand.selectedCard);
         }
+        else
+        {
+            card.title = "Luigi";
+        }
+        card.DisplayCardUi();
 
-        return false;
+        if (!characterScript) return false;
+
+        characterScript.SetPosition(cell);
+        characterScript.SetGridManager(gridManager);
+        gameManager.RegisterCharacter(characterScript, alignment);
+        return true;
     }
 
 }

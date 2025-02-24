@@ -88,4 +88,26 @@ public class GridManager : MonoBehaviour
     {
         grid[x, y].GetComponent<Outline>().enabled = false;
     }
+
+    public void HighlightDeployableCells()
+    {
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < rows; y++)
+            {
+                HighlightCell(x, y);
+            }
+        }
+    }
+
+    public void ClearHighlightedDeployableCells()
+    {
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < rows; y++)
+            {
+                ClearHighlightedCell(x, y);
+            }
+        }
+    }
 }

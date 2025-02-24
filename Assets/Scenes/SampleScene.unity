@@ -1392,9 +1392,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb33c5d172fb2a43b60cbe0f17d0b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendPrefab: {fileID: 8872451790266694393, guid: 984a38855706191468f892dfaaf74959, type: 3}
-  enemyPrefab: {fileID: 8872451790266694393, guid: 0f7aef3f062978f4ba4731ba95889332, type: 3}
+  warriorPrefab: {fileID: 6368626171914487445, guid: 999e48af28db63949b2afa51811a0bdf, type: 3}
   gridManager: {fileID: 509353786}
+  gridManagerObject: {fileID: 509353787}
   gameManager: {fileID: 2106477979}
 --- !u!1 &1038024895
 GameObject:
@@ -1890,9 +1890,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb33c5d172fb2a43b60cbe0f17d0b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendPrefab: {fileID: 8872451790266694393, guid: 984a38855706191468f892dfaaf74959, type: 3}
-  enemyPrefab: {fileID: 8872451790266694393, guid: 0f7aef3f062978f4ba4731ba95889332, type: 3}
+  warriorPrefab: {fileID: 0}
   gridManager: {fileID: 509353786}
+  gridManagerObject: {fileID: 0}
   gameManager: {fileID: 2106477979}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

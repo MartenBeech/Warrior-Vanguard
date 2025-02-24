@@ -10,7 +10,8 @@ public class Deck : MonoBehaviour
     public GameObject cardPrefab;
     int deckSize = 50;
 
-    public async void DrawCard() {
+    public async void DrawCard()
+    {
         deckSize--;
         UpdateDeckUi();
         Vector2 deckPos = new Vector2(deckObject.transform.position.x, deckObject.transform.position.y);
@@ -23,8 +24,9 @@ public class Deck : MonoBehaviour
         card.attack = deckSize;
         card.health = deckSize;
         card.cost = 1;
+        card.title = "Mario";
         card.DisplayCardUi();
-        
+
         await cardAnimation.MoveCard(cardInstance, deckPos, centerPos);
         cardInstance.transform.localScale = new Vector2(2, 2);
         await cardAnimation.MoveCard(cardInstance, centerPos, centerPos);
@@ -35,7 +37,8 @@ public class Deck : MonoBehaviour
         hand.AddCardToHand(card);
     }
 
-    void UpdateDeckUi() {
+    void UpdateDeckUi()
+    {
         textObject.GetComponent<TMP_Text>().text = $"{deckSize}";
     }
 }

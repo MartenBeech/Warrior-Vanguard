@@ -29,8 +29,8 @@ public class Hand : MonoBehaviour
         CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
         characterSpawner.ActivateSpawn(CharacterSpawner.Alignment.Friend);
 
-        GridCell gridCell = FindFirstObjectByType<GridCell>();
-        gridCell.HighlightDeployableCells();
+        GridManager gridManager = FindFirstObjectByType<GridManager>();
+        gridManager.HighlightDeployableCells();
 
         card.GetComponent<Outline>().enabled = true;
 
@@ -40,8 +40,8 @@ public class Hand : MonoBehaviour
     {
         if (!card) return;
 
-        GridCell gridCell = FindFirstObjectByType<GridCell>();
-        gridCell.ClearHighlightedDeployableCells();
+        GridManager gridManager = FindFirstObjectByType<GridManager>();
+        gridManager.ClearHighlightedDeployableCells();
 
         selectedCard = null;
         card.GetComponent<Outline>().enabled = false;
