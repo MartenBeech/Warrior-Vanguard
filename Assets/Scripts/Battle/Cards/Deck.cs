@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class Deck : MonoBehaviour
 {
@@ -8,30 +9,70 @@ public class Deck : MonoBehaviour
     public GameObject textObject;
     public GameObject handObject;
     public GameObject cardPrefab;
-    int deckSize = 50;
+    public List<CardData> deck = new List<CardData>();
 
+    private void Start()
+    {
+        FillDeckWithRandomCards();
+        UpdateDeckUi();
+    }
+
+    void FillDeckWithRandomCards()
+    {
+        if (CardDatabase.Instance == null)
+        {
+            Debug.LogError("CardDatabase Instance not found!");
+
+            // Just for tests, since I didn't have any cards in my deck
+            CardData cardData = new();
+            cardData.attack = 6;
+            cardData.health = 9;
+            cardData.title = "Mario";
+            for (int i = 0; i < 10; i++)
+            {
+                deck.Add(cardData);
+            }
+            return;
+        }
+
+        // Fill the deck with all cards from the database
+        for (int i = 0; i < CardDatabase.Instance.allCards.Count; i++)
+        {
+            deck.Add(CardDatabase.Instance.allCards[i]);
+        }
+    }
     public async void DrawCard()
     {
-        deckSize--;
+        if (deck.Count == 0) return;
+
+        CardData drawnCard = deck[0];
+        deck.RemoveAt(0);
+
         UpdateDeckUi();
+
         Vector2 deckPos = new Vector2(deckObject.transform.position.x, deckObject.transform.position.y);
         Vector2 handPos = new Vector2(handObject.transform.position.x, handObject.transform.position.y);
         Vector2 centerPos = new Vector2(0, 0);
-        GameObject cardInstance = Instantiate(cardPrefab, deckPos, Quaternion.identity, deckObject.transform);
 
+        GameObject cardInstance = Instantiate(cardPrefab, deckPos, Quaternion.identity, deckObject.transform);
         CardAnimation cardAnimation = cardInstance.GetComponentInChildren<CardAnimation>();
         Card card = cardInstance.GetComponentInChildren<Card>();
-        card.attack = deckSize;
-        card.health = deckSize;
-        card.cost = 1;
-        card.title = "Mario";
+
+        card.attack = drawnCard.attack;
+        card.health = drawnCard.health;
+        card.cost = drawnCard.cost;
+        card.title = drawnCard.title;
+        card.cardSprite = drawnCard.cardImage;
+
         card.DisplayCardUi();
 
+        // Animate card movement
         await cardAnimation.MoveCard(cardInstance, deckPos, centerPos);
         cardInstance.transform.localScale = new Vector2(2, 2);
         await cardAnimation.MoveCard(cardInstance, centerPos, centerPos);
         cardInstance.transform.localScale = new Vector2(1, 1);
         await cardAnimation.MoveCard(cardInstance, centerPos, handPos);
+
         Destroy(cardInstance);
 
         hand.AddCardToHand(card);
@@ -39,6 +80,6 @@ public class Deck : MonoBehaviour
 
     void UpdateDeckUi()
     {
-        textObject.GetComponent<TMP_Text>().text = $"{deckSize}";
+        textObject.GetComponent<TMP_Text>().text = $"{deck.Count}";
     }
 }

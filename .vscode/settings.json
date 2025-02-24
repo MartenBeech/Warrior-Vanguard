@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Warrior Vanguard.sln"
+    "dotnet.defaultSolution": "Warrior-Vanguard.sln"
 }
