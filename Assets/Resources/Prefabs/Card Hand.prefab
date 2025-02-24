@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2095878809433904459}
   - component: {fileID: -1415149236313032920}
   - component: {fileID: 3458915321434544214}
+  - component: {fileID: 2486830084215396383}
   m_Layer: 5
   m_Name: Card Hand
   m_TagString: Untagged
@@ -124,7 +125,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1159820094333872920}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3458915321434544214}
+        m_TargetAssemblyTypeName: Card, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-1415149236313032920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,9 +168,24 @@ MonoBehaviour:
   attackText: {fileID: 6078548802183046128}
   healthText: {fileID: 8236561529615939768}
   costText: {fileID: 1224694477224384778}
-  attack: 1
-  health: 2
+  attack: 0
+  health: 0
   cost: 0
+--- !u!114 &2486830084215396383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60891471826456955}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 3, y: 3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1224694477224384778
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hand : MonoBehaviour
 {
@@ -27,5 +28,22 @@ public class Hand : MonoBehaviour
         selectedCard = card;
         CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
         characterSpawner.ActivateSpawnFriend();
+
+        GridCell gridCell = FindFirstObjectByType<GridCell>();
+        gridCell.HighlightDeployableCells();
+
+        card.GetComponent<Outline>().enabled = true;
+
+    }
+
+    public void DeselectCard(Card card)
+    {
+        if (!card) return;
+
+        GridCell gridCell = FindFirstObjectByType<GridCell>();
+        gridCell.ClearHighlightedDeployableCells();
+
+        selectedCard = null;
+        card.GetComponent<Outline>().enabled = false;
     }
 }

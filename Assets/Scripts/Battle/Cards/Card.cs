@@ -1,8 +1,7 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using TMPro;
 
-public class Card : MonoBehaviour, IPointerClickHandler
+public class Card : MonoBehaviour
 {
     public GameObject attackText;
     public GameObject healthText;
@@ -11,27 +10,32 @@ public class Card : MonoBehaviour, IPointerClickHandler
     public int attack = 0;
     public int health = 0;
     public int cost = 0;
-    private Hand hand;
 
-    private void Start()
+    public void DisplayCardUi()
     {
-        hand = FindFirstObjectByType<Hand>();
-    }
-
-    public void DisplayCardUi() {
         attackText.GetComponent<TMP_Text>().text = $"{attack}";
         healthText.GetComponent<TMP_Text>().text = $"{health}";
         costText.GetComponent<TMP_Text>().text = $"{cost}";
     }
 
-    public void CopyCardValues(Card from) {
+    public void CopyCardValues(Card from)
+    {
         attack = from.attack;
         health = from.health;
         cost = from.cost;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnClick()
     {
-        hand.SelectCard(this);
+        Hand hand = FindFirstObjectByType<Hand>();
+        if (this == hand.selectedCard)
+        {
+            hand.DeselectCard(hand.selectedCard);
+        }
+        else
+        {
+            hand.DeselectCard(hand.selectedCard);
+            hand.SelectCard(this);
+        }
     }
 }

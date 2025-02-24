@@ -20,4 +20,26 @@ public class GridCell : MonoBehaviour
     {
         gridManager.SelectCell(x, y);
     }
+
+    public void HighlightDeployableCells()
+    {
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < gridManager.rows; y++)
+            {
+                gridManager.HighlightCell(x, y);
+            }
+        }
+    }
+
+    public void ClearHighlightedDeployableCells()
+    {
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < gridManager.rows; y++)
+            {
+                gridManager.ClearHighlightedCell(x, y);
+            }
+        }
+    }
 }

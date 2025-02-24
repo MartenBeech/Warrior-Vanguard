@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class GridManager : MonoBehaviour
         if (cardUsedSuccessfully)
         {
             Destroy(hand.selectedCard.gameObject);
-            hand.selectedCard = null;
+            hand.DeselectCard(hand.selectedCard);
         }
 
     }
@@ -79,4 +80,13 @@ public class GridManager : MonoBehaviour
         return false;
     }
 
+    public void HighlightCell(int x, int y)
+    {
+        grid[x, y].GetComponent<Outline>().enabled = true;
+    }
+
+    public void ClearHighlightedCell(int x, int y)
+    {
+        grid[x, y].GetComponent<Outline>().enabled = false;
+    }
 }
