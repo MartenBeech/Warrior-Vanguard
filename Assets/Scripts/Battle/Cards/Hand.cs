@@ -27,7 +27,7 @@ public class Hand : MonoBehaviour
     {
         selectedCard = card;
         CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
-        characterSpawner.ActivateSpawnFriend();
+        characterSpawner.ActivateSpawn(CharacterSpawner.Alignment.Friend);
 
         GridCell gridCell = FindFirstObjectByType<GridCell>();
         gridCell.HighlightDeployableCells();

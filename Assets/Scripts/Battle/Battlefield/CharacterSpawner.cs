@@ -2,46 +2,36 @@ using UnityEngine;
 
 public class CharacterSpawner : MonoBehaviour
 {
+    public enum Alignment
+    {
+        Null, Enemy, Friend
+    };
     public GameObject friendPrefab;
     public GameObject enemyPrefab;
-    private bool spawningFriend = false;
-    private bool spawningEnemy = false;
+    private Alignment spawningAlignment;
     public GridManager gridManager;
     public GameManager gameManager;
 
-    public void ActivateSpawnFriend()
+    public void ActivateSpawn(Alignment alignment)
     {
-        spawningFriend = true;
+        spawningAlignment = alignment;
     }
 
-    public void ActivateSpawnEnemy()
+    public bool getIsSpawning(Alignment alignment)
     {
-        spawningEnemy = true;
-    }
-
-    public bool getSpawningEnemy()
-    {
-        return spawningEnemy;
+        return spawningAlignment == alignment;
     }
 
     public bool SpawnCharacter(Vector2 cell)
     {
-        if (spawningFriend)
-        {
-            spawningFriend = false;
-            return Spawn(cell, friendPrefab, false);
-        }
+        if (spawningAlignment == Alignment.Null) return false;
 
-        if (spawningEnemy)
-        {
-            spawningEnemy = false;
-            return Spawn(cell, enemyPrefab, true);
-        }
-        
-        return false;
+
+        spawningAlignment = Alignment.Null;
+        return Spawn(cell, friendPrefab, spawningAlignment);
     }
 
-    private bool Spawn(Vector2 cell, GameObject prefab, bool isEnemy)
+    private bool Spawn(Vector2 cell, GameObject prefab, Alignment alignment)
     {
         if (gridManager.IsCellOccupied(cell))
         {
@@ -56,7 +46,7 @@ public class CharacterSpawner : MonoBehaviour
         {
             characterScript.SetPosition(cell);
             characterScript.SetGridManager(gridManager);
-            gameManager.RegisterCharacter(characterScript, isEnemy);
+            gameManager.RegisterCharacter(characterScript, alignment);
             return true;
         }
 

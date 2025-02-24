@@ -41,7 +41,7 @@ public class GridManager : MonoBehaviour
     public void SelectCell(int x, int y)
     {
         Vector2 selectedCell = new Vector2(x * 100, y * 100);
-        if (characterSpawner.getSpawningEnemy())
+        if (characterSpawner.getIsSpawning(CharacterSpawner.Alignment.Enemy))
         {
             characterSpawner.SpawnCharacter(selectedCell);
             return;
@@ -51,7 +51,6 @@ public class GridManager : MonoBehaviour
 
         cardUsedSuccessfully = characterSpawner.SpawnCharacter(selectedCell);
 
-        // Remove the used card from hand if used successfully
         if (cardUsedSuccessfully)
         {
             Destroy(hand.selectedCard.gameObject);

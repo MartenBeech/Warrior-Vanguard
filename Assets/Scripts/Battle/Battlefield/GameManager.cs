@@ -26,14 +26,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RegisterCharacter(Character character, bool isEnemy)
+    public void RegisterCharacter(Character character, CharacterSpawner.Alignment alignment)
     {
-        if (isEnemy)
+        if (alignment == CharacterSpawner.Alignment.Enemy)
         {
             if (!enemies.Contains(character))
                 enemies.Add(character);
         }
-        else
+        else if (alignment == CharacterSpawner.Alignment.Friend)
         {
             if (!friends.Contains(character))
                 friends.Add(character);
