@@ -5,15 +5,15 @@ public class Character : MonoBehaviour
     public Vector2 gridPosition;
     private GridManager gridManager;
 
-    public void SetGridManager(GridManager gm)
+    public void SetGridManager(GridManager gridManager)
     {
-        gridManager = gm;
+        this.gridManager = gridManager;
     }
 
-    public void SetPosition(Vector2 newPos)
+    public void SetPosition(Vector2 position)
     {
-        gridPosition = newPos;
-        transform.position = new Vector2(newPos.x, newPos.y);
+        gridPosition = position;
+        transform.position = new Vector2(position.x, position.y);
     }
 
     public void MoveRight()

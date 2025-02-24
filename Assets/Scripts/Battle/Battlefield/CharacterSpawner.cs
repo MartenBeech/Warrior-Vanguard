@@ -19,6 +19,11 @@ public class CharacterSpawner : MonoBehaviour
         spawningEnemy = true;
     }
 
+    public bool getSpawningEnemy()
+    {
+        return spawningEnemy;
+    }
+
     public void SpawnCharacter(Vector2 cell)
     {
         if (spawningFriend)

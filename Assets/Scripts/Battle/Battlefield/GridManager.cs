@@ -40,7 +40,19 @@ public class GridManager : MonoBehaviour
     public void SelectCell(int x, int y)
     {
         Vector2 selectedCell = new Vector2(x * 100, y * 100);
+        if (characterSpawner.getSpawningEnemy())
+        {
+            characterSpawner.SpawnCharacter(selectedCell);
+            return;
+        }
+        Hand hand = FindFirstObjectByType<Hand>();
+        if (hand == null || hand.selectedCard == null) return;
+
         characterSpawner.SpawnCharacter(selectedCell);
+
+        // Remove the used card from hand
+        Destroy(hand.selectedCard.gameObject);
+        hand.selectedCard = null;
     }
 
     public void RegisterCharacter(Character character)
