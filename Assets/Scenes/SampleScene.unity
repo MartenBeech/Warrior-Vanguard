@@ -390,6 +390,7 @@ MonoBehaviour:
   textObject: {fileID: 96899266}
   handObject: {fileID: 179982827}
   cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
+  deck: []
 --- !u!114 &233183272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1830,6 +1831,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891804511}
   m_CullTransparentMesh: 1
+--- !u!1 &1947056715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1947056717}
+  - component: {fileID: 1947056716}
+  m_Layer: 0
+  m_Name: CardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1947056716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947056715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7986ae624cd0baa40887e91bc3b56910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allCards:
+  - title: Mortana
+    attack: 2
+    health: 4
+    cost: 2
+    cardImage: {fileID: -5375145386258696347, guid: ab6a8cf0269f6fe4bad4c7b504984b3b, type: 3}
+  - title: Duck
+    attack: 1
+    health: 3
+    cost: 1
+    cardImage: {fileID: 8957324059118975939, guid: abf0393d5cb4d774885aa62b886fd636, type: 3}
+--- !u!4 &1947056717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947056715}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2106477978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,3 +1960,4 @@ SceneRoots:
   - {fileID: 593669623}
   - {fileID: 945783958}
   - {fileID: 2106477980}
+  - {fileID: 1947056717}
