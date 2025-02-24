@@ -24,26 +24,28 @@ public class CharacterSpawner : MonoBehaviour
         return spawningEnemy;
     }
 
-    public void SpawnCharacter(Vector2 cell)
+    public bool SpawnCharacter(Vector2 cell)
     {
         if (spawningFriend)
         {
             spawningFriend = false;
-            Spawn(cell, friendPrefab, false);
+            return Spawn(cell, friendPrefab, false);
         }
 
         if (spawningEnemy)
         {
             spawningEnemy = false;
-            Spawn(cell, enemyPrefab, true);
+            return Spawn(cell, enemyPrefab, true);
         }
+        
+        return false;
     }
 
-    private void Spawn(Vector2 cell, GameObject prefab, bool isEnemy)
+    private bool Spawn(Vector2 cell, GameObject prefab, bool isEnemy)
     {
         if (gridManager.IsCellOccupied(cell))
         {
-            return;
+            return false;
         }
 
         Vector2 spawnPosition = new Vector2(cell.x, cell.y);
@@ -55,7 +57,10 @@ public class CharacterSpawner : MonoBehaviour
             characterScript.SetPosition(cell);
             characterScript.SetGridManager(gridManager);
             gameManager.RegisterCharacter(characterScript, isEnemy);
+            return true;
         }
+
+        return false;
     }
 
 }

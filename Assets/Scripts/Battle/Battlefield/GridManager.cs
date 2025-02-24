@@ -10,7 +10,7 @@ public class GridManager : MonoBehaviour
     private GridCell[,] grid;
     private List<Character> allCharacters = new List<Character>();
     public Vector2Int? SelectedCell { get; private set; }
-
+    private bool cardUsedSuccessfully;
 
     void Start()
     {
@@ -48,11 +48,15 @@ public class GridManager : MonoBehaviour
         Hand hand = FindFirstObjectByType<Hand>();
         if (hand == null || hand.selectedCard == null) return;
 
-        characterSpawner.SpawnCharacter(selectedCell);
+        cardUsedSuccessfully = characterSpawner.SpawnCharacter(selectedCell);
 
-        // Remove the used card from hand
-        Destroy(hand.selectedCard.gameObject);
-        hand.selectedCard = null;
+        // Remove the used card from hand if used successfully
+        if (cardUsedSuccessfully)
+        {
+            Destroy(hand.selectedCard.gameObject);
+            hand.selectedCard = null;
+        }
+
     }
 
     public void RegisterCharacter(Character character)
