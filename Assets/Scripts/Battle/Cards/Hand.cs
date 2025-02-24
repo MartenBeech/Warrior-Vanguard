@@ -3,16 +3,24 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     public Transform handObject;
+    public GameObject cardPrefab;
 
     int handSize = 0;
 
-    public void AddCardToHand(GameObject cardObject) {
+    public void AddCardToHand(Card card) {
         if (handSize >= 10) return;
         
         Vector2 pos = new Vector2(0,0);
-        Quaternion rot = Quaternion.identity;
 
-        Instantiate(cardObject, pos, rot, handObject);
+        GameObject cardInstance = Instantiate(cardPrefab, pos, Quaternion.identity, handObject);
+        Card cardHand = cardInstance.GetComponentInChildren<Card>();
+        cardHand.CopyCardValues(card);
+        cardHand.DisplayCardUi();
+
         handSize++;
+    }
+
+    public void SelectCard() {
+        
     }
 }

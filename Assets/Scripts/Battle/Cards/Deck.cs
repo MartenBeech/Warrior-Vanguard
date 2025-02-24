@@ -20,17 +20,19 @@ public class Deck : MonoBehaviour
 
         CardAnimation cardAnimation = cardInstance.GetComponentInChildren<CardAnimation>();
         Card card = cardInstance.GetComponentInChildren<Card>();
-        card.attackText.GetComponent<TMP_Text>().text = $"{deckSize}";
-        card.healthText.GetComponent<TMP_Text>().text = $"{deckSize}";
+        card.attack = deckSize;
+        card.health = deckSize;
+        card.cost = 1;
+        card.DisplayCardUi();
         
         await cardAnimation.MoveCard(cardInstance, deckPos, centerPos);
         cardInstance.transform.localScale = new Vector2(2, 2);
         await cardAnimation.MoveCard(cardInstance, centerPos, centerPos);
         cardInstance.transform.localScale = new Vector2(1, 1);
         await cardAnimation.MoveCard(cardInstance, centerPos, handPos);
-
-        hand.AddCardToHand(cardInstance);
         Destroy(cardInstance);
+
+        hand.AddCardToHand(card);
     }
 
     void UpdateDeckUi() {

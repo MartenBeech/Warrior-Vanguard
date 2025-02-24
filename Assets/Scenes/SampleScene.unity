@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handObject: {fileID: 179982828}
+  cardPrefab: {fileID: 60891471826456955, guid: ca001b8888247834a941894ced1d4c55, type: 3}
 --- !u!114 &179982830
 MonoBehaviour:
   m_ObjectHideFlags: 0
