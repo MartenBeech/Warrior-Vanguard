@@ -51,11 +51,11 @@ public class CharacterSpawner : MonoBehaviour
         Hand hand = FindFirstObjectByType<Hand>();
         if (alignment == Alignment.Friend)
         {
-            card.CopyCardValues(hand.selectedCard);
+            card.stats.CopyCardValues(hand.selectedCard.stats);
         }
         else
         {
-            card.title = "Luigi";
+            card.stats.title = "Green Mario";
         }
         card.DisplayCardUi();
 

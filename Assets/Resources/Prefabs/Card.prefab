@@ -114,12 +114,6 @@ MonoBehaviour:
   costText: {fileID: 987569473307417543}
   image: {fileID: 7848206802544682554}
   titleText: {fileID: 7452888824024538408}
-  cardImage: {fileID: 8869029153756877259}
-  cardSprite: {fileID: 8957324059118975939, guid: abf0393d5cb4d774885aa62b886fd636, type: 3}
-  title: 
-  attack: 0
-  health: 0
-  cost: 0
 --- !u!1 &563982525613453467
 GameObject:
   m_ObjectHideFlags: 0

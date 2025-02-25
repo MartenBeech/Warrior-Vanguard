@@ -17,7 +17,7 @@ public class Hand : MonoBehaviour
 
         GameObject cardInstance = Instantiate(cardPrefab, pos, Quaternion.identity, handObject);
         Card cardHand = cardInstance.GetComponentInChildren<Card>();
-        cardHand.CopyCardValues(card);
+        cardHand.stats.CopyCardValues(card.stats);
         cardHand.DisplayCardUi();
 
         handSize++;

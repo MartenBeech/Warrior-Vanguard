@@ -9,7 +9,7 @@ public class Deck : MonoBehaviour
     public GameObject textObject;
     public GameObject handObject;
     public GameObject cardPrefab;
-    public List<CardData> deck = new List<CardData>();
+    public List<CardStats> deck = new List<CardStats>();
 
     private void Start()
     {
@@ -22,20 +22,9 @@ public class Deck : MonoBehaviour
         if (CardDatabase.Instance == null)
         {
             Debug.LogError("CardDatabase Instance not found!");
-
-            // Just for tests, since I didn't have any cards in my deck
-            CardData cardData = new();
-            cardData.attack = 6;
-            cardData.health = 9;
-            cardData.title = "Mario";
-            for (int i = 0; i < 10; i++)
-            {
-                deck.Add(cardData);
-            }
             return;
         }
 
-        // Fill the deck with all cards from the database
         for (int i = 0; i < CardDatabase.Instance.allCards.Count; i++)
         {
             deck.Add(CardDatabase.Instance.allCards[i]);
@@ -45,7 +34,7 @@ public class Deck : MonoBehaviour
     {
         if (deck.Count == 0) return;
 
-        CardData drawnCard = deck[0];
+        CardStats drawnCard = deck[0];
         deck.RemoveAt(0);
 
         UpdateDeckUi();
@@ -58,11 +47,10 @@ public class Deck : MonoBehaviour
         CardAnimation cardAnimation = cardInstance.GetComponentInChildren<CardAnimation>();
         Card card = cardInstance.GetComponentInChildren<Card>();
 
-        card.attack = drawnCard.attack;
-        card.health = drawnCard.health;
-        card.cost = drawnCard.cost;
-        card.title = drawnCard.title;
-        card.cardSprite = drawnCard.cardImage;
+        card.stats.attack = drawnCard.attack;
+        card.stats.health = drawnCard.health;
+        card.stats.cost = drawnCard.cost;
+        card.stats.title = drawnCard.title;
 
         card.DisplayCardUi();
 
