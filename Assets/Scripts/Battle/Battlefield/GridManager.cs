@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
-    public int rows = 2;
-    public int columns = 8;
+    public static int rows = 3;
+    public static int columns = 10;
     public GameObject cellPrefab;
     public CharacterSpawner characterSpawner;
     private GridCell[,] grid;
@@ -21,26 +21,39 @@ public class GridManager : MonoBehaviour
 
     void GenerateGrid()
     {
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        GridLayoutGroup gridLayoutGroup = GetComponent<GridLayoutGroup>();
+        float cellSpacing = 250 / columns;
+
+        float cellWidth = (rectTransform.rect.width / columns) - cellSpacing;
+        float cellHeight = (rectTransform.rect.height / rows) - cellSpacing;
+
+        float lowestCellDimension = cellWidth < cellHeight ? cellWidth : cellHeight;
+        gridLayoutGroup.cellSize = new Vector2(lowestCellDimension, lowestCellDimension);
+        gridLayoutGroup.spacing = new Vector2(cellSpacing, cellSpacing);
+        gridLayoutGroup.constraintCount = rows;
+
         for (int x = 0; x < columns; x++)
         {
             for (int y = 0; y < rows; y++)
             {
                 GameObject cell = Instantiate(
                     cellPrefab,
-                    new Vector2(x * 100, y * 100),
+                    new Vector2(0, 0),
                     Quaternion.identity,
                     transform
                 );
+                cell.name = $"Cell[{x},{y}]";
                 GridCell gridCell = cell.GetComponent<GridCell>();
-                gridCell.Setup(x, y, this);
+                gridCell.Setup(this);
                 grid[x, y] = gridCell;
             }
         }
     }
 
-    public void SelectCell(int x, int y)
+    public void SelectCell(Vector2 pos)
     {
-        Vector2 selectedCell = new Vector2(x * 100, y * 100);
+        Vector2 selectedCell = pos;
         if (characterSpawner.getIsSpawning(CharacterSpawner.Alignment.Enemy))
         {
             characterSpawner.SpawnCharacter(selectedCell);
@@ -56,7 +69,6 @@ public class GridManager : MonoBehaviour
             Destroy(hand.selectedCard.gameObject);
             hand.DeselectCard(hand.selectedCard);
         }
-
     }
 
     public void RegisterCharacter(Character character)

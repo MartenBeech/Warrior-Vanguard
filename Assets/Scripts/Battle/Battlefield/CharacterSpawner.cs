@@ -9,7 +9,7 @@ public class CharacterSpawner : MonoBehaviour
     public GameObject warriorPrefab;
     private Alignment spawningAlignment;
     public GridManager gridManager;
-    public Transform gridManagerObject;
+    public Transform warriorsObject;
     public GameManager gameManager;
 
     public void ActivateSpawnEnemy()
@@ -43,8 +43,8 @@ public class CharacterSpawner : MonoBehaviour
             return false;
         }
 
-        Vector2 spawnPosition = new Vector2(cell.x, cell.y);
-        GameObject newUnit = Instantiate(prefab, spawnPosition, Quaternion.identity, gridManagerObject);
+        Vector2 spawnPosition = cell;
+        GameObject newUnit = Instantiate(prefab, spawnPosition, Quaternion.identity, warriorsObject);
         Character characterScript = newUnit.GetComponent<Character>();
 
         Card card = newUnit.GetComponent<Card>();

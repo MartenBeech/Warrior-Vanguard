@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class CardStats
 {
     // Title should be the same as the image name

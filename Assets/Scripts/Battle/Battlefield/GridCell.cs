@@ -3,14 +3,11 @@ using UnityEngine.UI;
 
 public class GridCell : MonoBehaviour
 {
-    private int x, y;
     private GridManager gridManager;
     private Button button;
 
-    public void Setup(int x, int y, GridManager manager)
+    public void Setup(GridManager manager)
     {
-        this.x = x;
-        this.y = y;
         gridManager = manager;
         button = GetComponent<Button>();
         button.onClick.AddListener(OnClick);
@@ -18,6 +15,7 @@ public class GridCell : MonoBehaviour
 
     void OnClick()
     {
-        gridManager.SelectCell(x, y);
+        Vector2 pos = transform.position;
+        gridManager.SelectCell(pos);
     }
 }

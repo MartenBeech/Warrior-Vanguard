@@ -13,12 +13,12 @@ public class Character : MonoBehaviour
     public void SetPosition(Vector2 position)
     {
         gridPosition = position;
-        transform.position = new Vector2(position.x, position.y);
+        transform.position = position;
     }
 
     public void MoveRight()
     {
-        int rightMostColumn = (gridManager.columns - 1) * 100;
+        int rightMostColumn = (GridManager.columns - 1) * 100;
         Vector2 newPosition = new Vector2(gridPosition.x + 100, gridPosition.y);
 
         if (gridPosition.x >= rightMostColumn || gridManager.IsCellOccupied(newPosition))

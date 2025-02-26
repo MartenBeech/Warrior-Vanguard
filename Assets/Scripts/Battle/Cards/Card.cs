@@ -16,7 +16,7 @@ public class Card : MonoBehaviour
         if (attackText) attackText.GetComponent<TMP_Text>().text = $"{stats.attack}";
         if (healthText) healthText.GetComponent<TMP_Text>().text = $"{stats.health}";
         if (costText) costText.GetComponent<TMP_Text>().text = $"{stats.cost}";
-        if (image) image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/{stats.title}");
+        if (image) image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
         if (titleText) titleText.GetComponent<TMP_Text>().text = $"{stats.title}";
     }
 
