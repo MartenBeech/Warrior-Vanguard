@@ -1,9 +1,22 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Vector2 gridPosition;
     private GridManager gridManager;
+    private CardStats cardStats;
+    private HoverWarrior hoverWarrior;
+
+    public void SetStats(CardStats cardStats)
+    {
+        this.cardStats = cardStats;
+    }
+
+    public void SetHoverWarrior(HoverWarrior hoverWarrior)
+    {
+        this.hoverWarrior = hoverWarrior;
+    }
 
     public void SetGridManager(GridManager gridManager)
     {
@@ -43,4 +56,22 @@ public class Character : MonoBehaviour
         gridPosition = newPosition;
         transform.position = new Vector2(gridPosition.x, gridPosition.y);
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (hoverWarrior != null)
+        {
+            hoverWarrior.DisplayCardUI(cardStats);
+            hoverWarrior.ShowCard(gridPosition);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (hoverWarrior != null)
+        {
+            hoverWarrior.HideCard();
+        }
+    }
+
 }

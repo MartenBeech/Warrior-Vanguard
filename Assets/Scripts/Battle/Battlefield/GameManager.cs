@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public List<Character> friends = new List<Character>();
-    public List<Character> enemies = new List<Character>();
+    public List<Character> friends = new();
+    public List<Character> enemies = new();
     public GridManager gridManager;
 
     public void EndTurn()

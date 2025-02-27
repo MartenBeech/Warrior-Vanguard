@@ -9,7 +9,7 @@ public class Deck : MonoBehaviour
     public GameObject textObject;
     public GameObject handObject;
     public GameObject cardPrefab;
-    public List<CardStats> deck = new List<CardStats>();
+    public List<CardStats> deck = new();
 
     private void Start()
     {
@@ -47,11 +47,7 @@ public class Deck : MonoBehaviour
         CardAnimation cardAnimation = cardInstance.GetComponentInChildren<CardAnimation>();
         Card card = cardInstance.GetComponentInChildren<Card>();
 
-        card.stats.attack = drawnCard.attack;
-        card.stats.health = drawnCard.health;
-        card.stats.cost = drawnCard.cost;
-        card.stats.title = drawnCard.title;
-
+        card.SetStats(drawnCard);
         card.DisplayCardUi();
 
         // Animate card movement

@@ -11,6 +11,7 @@ public class CharacterSpawner : MonoBehaviour
     public GridManager gridManager;
     public Transform warriorsObject;
     public GameManager gameManager;
+    public HoverWarrior hoverWarrior;
 
     public void ActivateSpawnEnemy()
     {
@@ -45,13 +46,15 @@ public class CharacterSpawner : MonoBehaviour
 
         Vector2 spawnPosition = cell;
         GameObject newUnit = Instantiate(prefab, spawnPosition, Quaternion.identity, warriorsObject);
-        Character characterScript = newUnit.GetComponent<Character>();
+        Character character = newUnit.GetComponent<Character>();
 
         Card card = newUnit.GetComponent<Card>();
         Hand hand = FindFirstObjectByType<Hand>();
         if (alignment == Alignment.Friend)
         {
-            card.stats.CopyCardValues(hand.selectedCard.stats);
+            character.SetHoverWarrior(hoverWarrior);
+            character.SetStats(hand.selectedCard.stats);
+            card.stats.SetStats(hand.selectedCard.stats);
         }
         else
         {
@@ -59,11 +62,11 @@ public class CharacterSpawner : MonoBehaviour
         }
         card.DisplayCardUi();
 
-        if (!characterScript) return false;
+        if (!character) return false;
 
-        characterScript.SetPosition(cell);
-        characterScript.SetGridManager(gridManager);
-        gameManager.RegisterCharacter(characterScript, alignment);
+        character.SetPosition(cell);
+        character.SetGridManager(gridManager);
+        gameManager.RegisterCharacter(character, alignment);
         return true;
     }
 

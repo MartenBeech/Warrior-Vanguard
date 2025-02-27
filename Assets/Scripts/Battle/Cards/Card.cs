@@ -20,6 +20,11 @@ public class Card : MonoBehaviour
         if (titleText) titleText.GetComponent<TMP_Text>().text = $"{stats.title}";
     }
 
+    public void SetStats(CardStats stats)
+    {
+        this.stats.SetStats(stats);
+    }
+
     public void OnClick()
     {
         Hand hand = FindFirstObjectByType<Hand>();
