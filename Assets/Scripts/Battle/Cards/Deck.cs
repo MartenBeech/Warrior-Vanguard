@@ -21,7 +21,7 @@ public class Deck : MonoBehaviour
     {
         if (CardDatabase.Instance == null)
         {
-            Debug.LogError("CardDatabase Instance not found!");
+            Debug.LogError("CardDatabase Instance not found");
             return;
         }
 

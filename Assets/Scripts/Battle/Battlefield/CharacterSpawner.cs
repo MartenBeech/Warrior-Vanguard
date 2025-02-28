@@ -39,7 +39,7 @@ public class CharacterSpawner : MonoBehaviour
 
     private bool Spawn(Vector2 cell, GameObject prefab, Alignment alignment)
     {
-        if (gridManager.IsCellOccupied(cell))
+        if (gridManager.GetCellCharacter(cell) != null)
         {
             return false;
         }
@@ -47,23 +47,29 @@ public class CharacterSpawner : MonoBehaviour
         Vector2 spawnPosition = cell;
         GameObject newUnit = Instantiate(prefab, spawnPosition, Quaternion.identity, warriorsObject);
         Character character = newUnit.GetComponent<Character>();
+        if (!character) return false;
 
-        Card card = newUnit.GetComponent<Card>();
+        character.SetAlignment(alignment);
+
         Hand hand = FindFirstObjectByType<Hand>();
         if (alignment == Alignment.Friend)
         {
             character.SetHoverWarrior(hoverWarrior);
             character.SetStats(hand.selectedCard.stats);
-            card.stats.SetStats(hand.selectedCard.stats);
         }
         else
         {
-            card.stats.title = "Green Mario";
+            CardStats stats = CardDatabase.Instance.allCards[1];
+            character.SetStats(new CardStats
+            {
+                attack = stats.attack,
+                health = stats.health,
+                title = stats.title,
+                cost = stats.cost
+            });
         }
-        card.DisplayCardUi();
 
-        if (!character) return false;
-
+        character.UpdateWarriorUI();
         character.SetPosition(cell);
         character.SetGridManager(gridManager);
         gameManager.RegisterCharacter(character, alignment);

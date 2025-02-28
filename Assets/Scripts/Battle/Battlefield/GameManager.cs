@@ -40,4 +40,12 @@ public class GameManager : MonoBehaviour
         }
         gridManager.RegisterCharacter(character);
     }
+
+    public void RemoveCharacter(Character character)
+    {
+        if (friends.Contains(character))
+            friends.Remove(character);
+        else if (enemies.Contains(character))
+            enemies.Remove(character);
+    }
 }

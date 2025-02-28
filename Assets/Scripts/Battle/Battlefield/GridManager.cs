@@ -95,16 +95,16 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public bool IsCellOccupied(Vector2 position)
+    public Character GetCellCharacter(Vector2 position)
     {
         foreach (Character character in allCharacters)
         {
             if (character.gridPosition == position)
             {
-                return true;
+                return character;
             }
         }
-        return false;
+        return null;
     }
 
     public void HighlightCell(int x, int y)

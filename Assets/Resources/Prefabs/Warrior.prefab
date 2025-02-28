@@ -360,7 +360,6 @@ GameObject:
   - component: {fileID: 3150771050845676141}
   - component: {fileID: 4108451644496460222}
   - component: {fileID: 3063578725342901609}
-  - component: {fileID: 1824954245669797507}
   - component: {fileID: 7828224047692611934}
   m_Layer: 5
   m_Name: Warrior
@@ -485,26 +484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a6acc052af8ff48ab643f6281d541e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1824954245669797507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6368626171914487445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc93ee176b2a5fb4a9ef5e0910b4a474, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackText: {fileID: 5600323217385863825}
-  healthText: {fileID: 3777039968467009887}
-  costText: {fileID: 0}
-  image: {fileID: 2619659621084207209}
-  attack: 0
-  health: 0
-  cost: 0
-  title: 
 --- !u!114 &7828224047692611934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,3 +497,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 1400, y: 0}
+  attackText: {fileID: 5600323217385863825}
+  healthText: {fileID: 3777039968467009887}
+  image: {fileID: 2619659621084207209}
