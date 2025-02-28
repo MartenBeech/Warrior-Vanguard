@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
         friends = friends.OrderByDescending(c => c.gridPosition.x).ToList();
         foreach (Character friend in friends)
         {
-            friend.MoveRight();
+            friend.MoveWarrior(Character.Direction.Right);
         }
     }
 
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         enemies = enemies.OrderBy(c => c.gridPosition.x).ToList();
         foreach (Character enemy in enemies)
         {
-            enemy.MoveLeft();
+            enemy.MoveWarrior(Character.Direction.Left);
         }
     }
 

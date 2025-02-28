@@ -7,6 +7,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private GridManager gridManager;
     private CardStats cardStats;
     private HoverWarrior hoverWarrior;
+    public enum Direction
+    {
+        Left, Right
+    };
 
     public void SetStats(CardStats cardStats)
     {
@@ -29,28 +33,24 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         transform.position = position;
     }
 
-    public void MoveRight()
+    public void MoveWarrior(Direction direction)
     {
-        int rightMostColumn = (GridManager.columns - 1) * 100;
-        Vector2 newPosition = new Vector2(gridPosition.x + 100, gridPosition.y);
+        Vector2 newPosition = new();
+        float gridSpacingX = gridManager.GetGridSpacingX();
 
-        if (gridPosition.x >= rightMostColumn || gridManager.IsCellOccupied(newPosition))
+        if (direction == Direction.Left)
         {
-            return;
+            newPosition = new(gridPosition.x - gridSpacingX, gridPosition.y);
+            float leftMostColumnPosition = gridManager.getLeftMostGridPositionX();
+
+            if (gridPosition.x <= leftMostColumnPosition || gridManager.IsCellOccupied(newPosition)) return;
         }
-
-        gridPosition = newPosition;
-        transform.position = new Vector2(gridPosition.x, gridPosition.y);
-    }
-
-    public void MoveLeft()
-    {
-        int leftMostColumn = 0;
-        Vector2 newPosition = new Vector2(gridPosition.x - 100, gridPosition.y);
-
-        if (gridPosition.x <= leftMostColumn || gridManager.IsCellOccupied(newPosition))
+        else if (direction == Direction.Right)
         {
-            return;
+            newPosition = new(gridPosition.x + gridSpacingX, gridPosition.y);
+            float rightMostColumnPosition = gridManager.getRightMostGridPositionX();
+
+            if (gridPosition.x >= rightMostColumnPosition || gridManager.IsCellOccupied(newPosition)) return;
         }
 
         gridPosition = newPosition;

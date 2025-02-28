@@ -4,14 +4,15 @@ using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
-    public static int rows = 3;
-    public static int columns = 10;
+    public int rows;
+    public int columns;
     public GameObject cellPrefab;
     public CharacterSpawner characterSpawner;
     private GridCell[,] grid;
-    private List<Character> allCharacters = new List<Character>();
+    private List<Character> allCharacters = new();
     public Vector2Int? SelectedCell { get; private set; }
     private bool cardUsedSuccessfully;
+    private GridLayoutGroup gridLayoutGroup;
 
     void Start()
     {
@@ -19,10 +20,25 @@ public class GridManager : MonoBehaviour
         GenerateGrid();
     }
 
+    public float GetGridSpacingX()
+    {
+        return gridLayoutGroup.cellSize.x + gridLayoutGroup.spacing.x;
+    }
+
+    public float getLeftMostGridPositionX()
+    {
+        return grid[0, 0].transform.position.x;
+    }
+
+    public float getRightMostGridPositionX()
+    {
+        return grid[columns - 1, 0].transform.position.x;
+    }
+
     void GenerateGrid()
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
-        GridLayoutGroup gridLayoutGroup = GetComponent<GridLayoutGroup>();
+        gridLayoutGroup = GetComponent<GridLayoutGroup>();
         float cellSpacing = 250 / columns;
 
         float cellWidth = (rectTransform.rect.width / columns) - cellSpacing;
