@@ -29,6 +29,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void SetStats(CardStats cardStats)
     {
         this.cardStats = cardStats;
+        UpdateWarriorUI();
     }
 
     public void SetAlignment(CharacterSpawner.Alignment alignment)

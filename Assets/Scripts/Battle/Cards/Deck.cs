@@ -50,13 +50,11 @@ public class Deck : MonoBehaviour
         card.SetStats(drawnCard);
         card.DisplayCardUi();
 
-        // Animate card movement
         await cardAnimation.MoveCard(cardInstance, deckPos, centerPos);
         cardInstance.transform.localScale = new Vector2(2, 2);
         await cardAnimation.MoveCard(cardInstance, centerPos, centerPos);
         cardInstance.transform.localScale = new Vector2(1, 1);
         await cardAnimation.MoveCard(cardInstance, centerPos, handPos);
-
         Destroy(cardInstance);
 
         hand.AddCardToHand(card);

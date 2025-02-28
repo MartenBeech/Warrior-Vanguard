@@ -8,10 +8,10 @@ public class GridManager : MonoBehaviour
     public int columns;
     public GameObject cellPrefab;
     public CharacterSpawner characterSpawner;
+    public Hand hand;
     private GridCell[,] grid;
     private List<Character> allCharacters = new();
     public Vector2Int? SelectedCell { get; private set; }
-    private bool cardUsedSuccessfully;
     private GridLayoutGroup gridLayoutGroup;
 
     void Start()
@@ -72,24 +72,21 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public void SelectCell(Vector2 pos)
+    public void SelectCell(Vector2 selectedCellPos)
     {
-        Vector2 selectedCell = pos;
+        if (GetCellCharacter(selectedCellPos)) return;
+
         if (characterSpawner.getIsSpawning(CharacterSpawner.Alignment.Enemy))
         {
-            characterSpawner.SpawnCharacter(selectedCell);
+            characterSpawner.SpawnCharacter(selectedCellPos);
             return;
         }
-        Hand hand = FindFirstObjectByType<Hand>();
         if (hand == null || hand.selectedCard == null) return;
 
-        cardUsedSuccessfully = characterSpawner.SpawnCharacter(selectedCell);
+        characterSpawner.SpawnCharacter(selectedCellPos);
 
-        if (cardUsedSuccessfully)
-        {
-            Destroy(hand.selectedCard.gameObject);
-            hand.DeselectCard(hand.selectedCard);
-        }
+        Destroy(hand.selectedCard.gameObject);
+        hand.DeselectCard(hand.selectedCard);
     }
 
     public void RegisterCharacter(Character character)
@@ -128,7 +125,10 @@ public class GridManager : MonoBehaviour
         {
             for (int y = 0; y < rows; y++)
             {
-                HighlightCell(x, y);
+                if (!GetCellCharacter(grid[x, y].transform.position))
+                {
+                    HighlightCell(x, y);
+                }
             }
         }
     }

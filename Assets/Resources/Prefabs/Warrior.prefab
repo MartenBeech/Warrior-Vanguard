@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 4108451644496460222}
   - component: {fileID: 3063578725342901609}
   - component: {fileID: 7828224047692611934}
+  - component: {fileID: 1496594542848040516}
   m_Layer: 5
   m_Name: Warrior
   m_TagString: Untagged
@@ -500,3 +501,18 @@ MonoBehaviour:
   attackText: {fileID: 5600323217385863825}
   healthText: {fileID: 3777039968467009887}
   image: {fileID: 2619659621084207209}
+--- !u!114 &1496594542848040516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6368626171914487445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa7a8437e5b6d24f80d3474492f91d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fromVector: {x: 0, y: 0}
+  toVector: {x: 0, y: 0}
+  counter: 0

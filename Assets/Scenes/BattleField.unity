@@ -782,6 +782,7 @@ MonoBehaviour:
   columns: 10
   cellPrefab: {fileID: 6368626171914487445, guid: c3d4d9d377f063f4e9967e3d8363a23a, type: 3}
   characterSpawner: {fileID: 945783959}
+  hand: {fileID: 179982829}
 --- !u!224 &509353787
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1742,9 +1743,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa7a8437e5b6d24f80d3474492f91d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromVector: {x: 0, y: 0}
-  toVector: {x: 0, y: 0}
-  counter: 0
 --- !u!114 &914574182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1943,6 +1941,8 @@ MonoBehaviour:
   warriorsObject: {fileID: 41112488}
   gameManager: {fileID: 2106477979}
   hoverWarrior: {fileID: 1326509022}
+  hand: {fileID: 179982829}
+  EnemySummonerObject: {fileID: 2005133033}
 --- !u!1 &1038024895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3048,7 +3048,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Tooltip
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3184,7 +3184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: I start invisible
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3779,6 +3779,8 @@ MonoBehaviour:
   warriorsObject: {fileID: 41112488}
   gameManager: {fileID: 2106477979}
   hoverWarrior: {fileID: 1326509022}
+  hand: {fileID: 0}
+  EnemySummonerObject: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

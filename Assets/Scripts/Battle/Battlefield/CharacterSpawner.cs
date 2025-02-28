@@ -12,6 +12,8 @@ public class CharacterSpawner : MonoBehaviour
     public Transform warriorsObject;
     public GameManager gameManager;
     public HoverWarrior hoverWarrior;
+    public Hand hand;
+    public Transform EnemySummonerObject;
 
     public void ActivateSpawnEnemy()
     {
@@ -27,54 +29,48 @@ public class CharacterSpawner : MonoBehaviour
         return spawningAlignment == alignment;
     }
 
-    public bool SpawnCharacter(Vector2 cell)
+    public void SpawnCharacter(Vector2 cell)
     {
-        if (spawningAlignment == Alignment.Null) return false;
+        if (spawningAlignment == Alignment.Null) return;
 
-        bool isSpawing = Spawn(cell, warriorPrefab, spawningAlignment);
+        Spawn(cell, warriorPrefab, spawningAlignment);
         spawningAlignment = Alignment.Null;
-
-        return isSpawing;
     }
 
-    private bool Spawn(Vector2 cell, GameObject prefab, Alignment alignment)
+    private async void Spawn(Vector2 cell, GameObject prefab, Alignment alignment)
     {
-        if (gridManager.GetCellCharacter(cell) != null)
-        {
-            return false;
-        }
+        Card selectedCard = hand.selectedCard;
+        CardStats stats = alignment == Alignment.Friend ? selectedCard.stats : CardDatabase.Instance.allCards[1];
+
+        Vector2 playedCardPos = alignment == Alignment.Friend ? selectedCard.GetComponent<RectTransform>().position : EnemySummonerObject.position;
+        CardAnimation cardAnimation = prefab.GetComponentInChildren<CardAnimation>();
+
+        GameObject warriorAnimation = Instantiate(prefab, playedCardPos, Quaternion.identity, warriorsObject);
+        Character characterAnimation = warriorAnimation.GetComponent<Character>();
+        characterAnimation.SetStats(stats);
+        await cardAnimation.MoveCard(warriorAnimation, playedCardPos, cell);
+        Destroy(warriorAnimation);
 
         Vector2 spawnPosition = cell;
         GameObject warrior = Instantiate(prefab, spawnPosition, Quaternion.identity, warriorsObject);
         warrior.GetComponent<RectTransform>().localScale = gridManager.getCellDimension() / warrior.GetComponent<RectTransform>().rect.width;
         Character character = warrior.GetComponent<Character>();
-        if (!character) return false;
 
         character.SetAlignment(alignment);
 
-        Hand hand = FindFirstObjectByType<Hand>();
         if (alignment == Alignment.Friend)
         {
             character.SetHoverWarrior(hoverWarrior);
-            character.SetStats(hand.selectedCard.stats);
+            character.SetStats(stats);
         }
         else
         {
-            CardStats stats = CardDatabase.Instance.allCards[1];
-            character.SetStats(new CardStats
-            {
-                attack = stats.attack,
-                health = stats.health,
-                title = stats.title,
-                cost = stats.cost
-            });
+            character.SetStats(stats);
         }
 
-        character.UpdateWarriorUI();
         character.SetPosition(cell);
         character.SetGridManager(gridManager);
         gameManager.RegisterCharacter(character, alignment);
-        return true;
     }
 
 }
