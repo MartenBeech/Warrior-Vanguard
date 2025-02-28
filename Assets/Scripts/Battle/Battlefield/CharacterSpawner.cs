@@ -45,8 +45,9 @@ public class CharacterSpawner : MonoBehaviour
         }
 
         Vector2 spawnPosition = cell;
-        GameObject newUnit = Instantiate(prefab, spawnPosition, Quaternion.identity, warriorsObject);
-        Character character = newUnit.GetComponent<Character>();
+        GameObject warrior = Instantiate(prefab, spawnPosition, Quaternion.identity, warriorsObject);
+        warrior.GetComponent<RectTransform>().localScale = gridManager.getCellDimension() / warrior.GetComponent<RectTransform>().rect.width;
+        Character character = warrior.GetComponent<Character>();
         if (!character) return false;
 
         character.SetAlignment(alignment);

@@ -35,6 +35,11 @@ public class GridManager : MonoBehaviour
         return grid[columns - 1, 0].transform.position.x;
     }
 
+    public Vector2 getCellDimension()
+    {
+        return new Vector2(gridLayoutGroup.cellSize.x, gridLayoutGroup.cellSize.y);
+    }
+
     void GenerateGrid()
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
