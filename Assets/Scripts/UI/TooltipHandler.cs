@@ -7,18 +7,11 @@ public class TooltipHandler : MonoBehaviour
     public TextMeshProUGUI titleObject;
     public TextMeshProUGUI descriptionObject;
 
-    private void Start()
-    {
-        HideTooltip();
-    }
-
     public void ShowTooltip(string title, string description)
     {
-
         tooltipObject.SetActive(true);
         titleObject.text = title;
         descriptionObject.text = description;
-
     }
 
     public void HideTooltip()

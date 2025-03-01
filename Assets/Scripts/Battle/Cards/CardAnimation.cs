@@ -5,6 +5,7 @@ public class CardAnimation : MonoBehaviour
 {
     Vector2 fromVector;
     Vector2 toVector;
+    float duration;
     float counter = 0;
 
     private void Update()
@@ -15,8 +16,8 @@ public class CardAnimation : MonoBehaviour
             float dist = Mathf.Sqrt(
                 Mathf.Pow(toVector.x - fromVector.x, 2) +
                 Mathf.Pow(toVector.y - fromVector.y, 2));
-            transform.Translate(dir.normalized * dist * Time.deltaTime);
-            counter -= Time.deltaTime;
+            transform.Translate(dir.normalized * dist * Time.deltaTime / duration * Settings.gameSpeed);
+            counter -= Time.deltaTime * Settings.gameSpeed;
 
             if (counter <= 0)
             {
@@ -30,6 +31,7 @@ public class CardAnimation : MonoBehaviour
         var card = gameObject.GetComponentInChildren<CardAnimation>();
         card.fromVector = from;
         card.toVector = to;
+        card.duration = durationInSec;
         card.counter = durationInSec;
 
         await Task.Run(async () =>
