@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GridManager : MonoBehaviour
-{
+public class GridManager : MonoBehaviour {
     public int rows;
     public int columns;
     public GameObject cellPrefab;
@@ -14,34 +13,28 @@ public class GridManager : MonoBehaviour
     public Vector2Int? SelectedCell { get; private set; }
     private GridLayoutGroup gridLayoutGroup;
 
-    void Start()
-    {
+    void Start() {
         grid = new GridCell[columns, rows];
         GenerateGrid();
     }
 
-    public float GetGridSpacingX()
-    {
+    public float GetGridSpacingX() {
         return gridLayoutGroup.cellSize.x + gridLayoutGroup.spacing.x;
     }
 
-    public float getLeftMostGridPositionX()
-    {
+    public float getLeftMostGridPositionX() {
         return grid[0, 0].transform.position.x;
     }
 
-    public float getRightMostGridPositionX()
-    {
+    public float getRightMostGridPositionX() {
         return grid[columns - 1, 0].transform.position.x;
     }
 
-    public Vector2 getCellDimension()
-    {
+    public Vector2 getCellDimension() {
         return new Vector2(gridLayoutGroup.cellSize.x, gridLayoutGroup.cellSize.y);
     }
 
-    void GenerateGrid()
-    {
+    void GenerateGrid() {
         RectTransform rectTransform = GetComponent<RectTransform>();
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
         float cellSpacing = 250 / columns;
@@ -54,10 +47,8 @@ public class GridManager : MonoBehaviour
         gridLayoutGroup.spacing = new Vector2(cellSpacing, cellSpacing);
         gridLayoutGroup.constraintCount = rows;
 
-        for (int x = 0; x < columns; x++)
-        {
-            for (int y = 0; y < rows; y++)
-            {
+        for (int x = 0; x < columns; x++) {
+            for (int y = 0; y < rows; y++) {
                 GameObject cell = Instantiate(
                     cellPrefab,
                     new Vector2(0, 0),
@@ -72,12 +63,10 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public void SelectCell(Vector2 selectedCellPos)
-    {
+    public void SelectCell(Vector2 selectedCellPos) {
         if (GetCellCharacter(selectedCellPos)) return;
 
-        if (characterSpawner.getIsSpawning(CharacterSpawner.Alignment.Enemy))
-        {
+        if (characterSpawner.getIsSpawning(CharacterSpawner.Alignment.Enemy)) {
             characterSpawner.SpawnCharacter(selectedCellPos);
             return;
         }
@@ -89,56 +78,42 @@ public class GridManager : MonoBehaviour
         hand.DeselectCard(hand.selectedCard);
     }
 
-    public void RegisterCharacter(Character character)
-    {
-        if (!allCharacters.Contains(character))
-        {
+    public void RegisterCharacter(Character character) {
+        if (!allCharacters.Contains(character)) {
             allCharacters.Add(character);
         }
     }
 
-    public Character GetCellCharacter(Vector2 position)
-    {
-        foreach (Character character in allCharacters)
-        {
-            if (character.gridPosition == position)
-            {
+    public Character GetCellCharacter(Vector2 position) {
+        foreach (Character character in allCharacters) {
+            if (character.gridPosition == position) {
                 return character;
             }
         }
         return null;
     }
 
-    public void HighlightCell(int x, int y)
-    {
+    public void HighlightCell(int x, int y) {
         grid[x, y].GetComponent<Outline>().enabled = true;
     }
 
-    public void ClearHighlightedCell(int x, int y)
-    {
+    public void ClearHighlightedCell(int x, int y) {
         grid[x, y].GetComponent<Outline>().enabled = false;
     }
 
-    public void HighlightDeployableCells()
-    {
-        for (int x = 0; x < 3; x++)
-        {
-            for (int y = 0; y < rows; y++)
-            {
-                if (!GetCellCharacter(grid[x, y].transform.position))
-                {
+    public void HighlightDeployableCells() {
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < rows; y++) {
+                if (!GetCellCharacter(grid[x, y].transform.position)) {
                     HighlightCell(x, y);
                 }
             }
         }
     }
 
-    public void ClearHighlightedDeployableCells()
-    {
-        for (int x = 0; x < 3; x++)
-        {
-            for (int y = 0; y < rows; y++)
-            {
+    public void ClearHighlightedDeployableCells() {
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < rows; y++) {
                 ClearHighlightedCell(x, y);
             }
         }

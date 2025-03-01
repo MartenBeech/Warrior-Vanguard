@@ -1,16 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Hand : MonoBehaviour
-{
+public class Hand : MonoBehaviour {
     public Transform handObject;
     public GameObject cardPrefab;
     public Card selectedCard;
 
     int handSize = 0;
 
-    public void AddCardToHand(Card card)
-    {
+    public void AddCardToHand(Card card) {
         if (handSize >= 10) return;
 
         Vector2 pos = new Vector2(0, 0);
@@ -23,8 +21,7 @@ public class Hand : MonoBehaviour
         handSize++;
     }
 
-    public void SelectCard(Card card)
-    {
+    public void SelectCard(Card card) {
         selectedCard = card;
         CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
         characterSpawner.ActivateSpawn(CharacterSpawner.Alignment.Friend);
@@ -36,8 +33,7 @@ public class Hand : MonoBehaviour
 
     }
 
-    public void DeselectCard(Card card)
-    {
+    public void DeselectCard(Card card) {
         if (!card) return;
 
         GridManager gridManager = FindFirstObjectByType<GridManager>();

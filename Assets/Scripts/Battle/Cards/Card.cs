@@ -2,8 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class Card : MonoBehaviour
-{
+public class Card : MonoBehaviour {
     public GameObject attackText;
     public GameObject healthText;
     public GameObject costText;
@@ -11,8 +10,7 @@ public class Card : MonoBehaviour
     public GameObject titleText;
     public CardStats stats = new();
 
-    public void DisplayCardUi()
-    {
+    public void DisplayCardUi() {
         if (attackText) attackText.GetComponent<TMP_Text>().text = $"{stats.attack}";
         if (healthText) healthText.GetComponent<TMP_Text>().text = $"{stats.health}";
         if (costText) costText.GetComponent<TMP_Text>().text = $"{stats.cost}";
@@ -20,20 +18,15 @@ public class Card : MonoBehaviour
         if (titleText) titleText.GetComponent<TMP_Text>().text = $"{stats.title}";
     }
 
-    public void SetStats(CardStats stats)
-    {
+    public void SetStats(CardStats stats) {
         this.stats.SetStats(stats);
     }
 
-    public void OnClick()
-    {
+    public void OnClick() {
         Hand hand = FindFirstObjectByType<Hand>();
-        if (this == hand.selectedCard)
-        {
+        if (this == hand.selectedCard) {
             hand.DeselectCard(hand.selectedCard);
-        }
-        else
-        {
+        } else {
             hand.DeselectCard(hand.selectedCard);
             hand.SelectCard(this);
         }

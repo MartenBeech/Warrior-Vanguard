@@ -2,8 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 
-public class Deck : MonoBehaviour
-{
+public class Deck : MonoBehaviour {
     public Hand hand;
     public GameObject deckObject;
     public GameObject textObject;
@@ -11,27 +10,22 @@ public class Deck : MonoBehaviour
     public GameObject cardPrefab;
     public List<CardStats> deck = new();
 
-    private void Start()
-    {
+    private void Start() {
         FillDeckWithRandomCards();
         UpdateDeckUi();
     }
 
-    void FillDeckWithRandomCards()
-    {
-        if (CardDatabase.Instance == null)
-        {
+    void FillDeckWithRandomCards() {
+        if (CardDatabase.Instance == null) {
             Debug.LogError("CardDatabase Instance not found");
             return;
         }
 
-        for (int i = 0; i < CardDatabase.Instance.allCards.Count; i++)
-        {
+        for (int i = 0; i < CardDatabase.Instance.allCards.Count; i++) {
             deck.Add(CardDatabase.Instance.allCards[i]);
         }
     }
-    public async void DrawCard()
-    {
+    public async void DrawCard() {
         if (deck.Count == 0) return;
 
         CardStats drawnCard = deck[0];
@@ -60,8 +54,7 @@ public class Deck : MonoBehaviour
         hand.AddCardToHand(card);
     }
 
-    void UpdateDeckUi()
-    {
+    void UpdateDeckUi() {
         textObject.GetComponent<TMP_Text>().text = $"{deck.Count}";
     }
 }

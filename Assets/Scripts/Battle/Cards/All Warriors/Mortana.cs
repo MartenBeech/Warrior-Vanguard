@@ -1,9 +1,6 @@
-public class Mortana : CardStats
-{
-    public static CardStats GetCard()
-    {
-        CardStats stats = new()
-        {
+public class Mortana : CardStats {
+    public static CardStats GetCard() {
+        CardStats stats = new() {
             title = "Mortana",
             attack = 11,
             health = 11,

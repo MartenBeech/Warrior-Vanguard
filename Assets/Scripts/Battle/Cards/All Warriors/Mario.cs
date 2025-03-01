@@ -1,9 +1,6 @@
-public class Mario : CardStats
-{
-    public static CardStats GetCard()
-    {
-        CardStats stats = new()
-        {
+public class Mario : CardStats {
+    public static CardStats GetCard() {
+        CardStats stats = new() {
             title = "Mario",
             attack = 2,
             health = 10,

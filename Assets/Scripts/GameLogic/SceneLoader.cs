@@ -1,20 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
-{
-    public void LoadMainMenu()
-    {
+public class MainMenu : MonoBehaviour {
+    public void LoadMainMenu() {
         SceneManager.LoadScene("MainMenu");
     }
-    
-    public void LoadBattlefield()
-    {
+
+    public void LoadBattlefield() {
         SceneManager.LoadScene("Battlefield");
     }
 
-    public void ExitGame()
-    {
+    public void ExitGame() {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false; // Stops play mode in Unity
 #endif
@@ -22,8 +18,7 @@ public class MainMenu : MonoBehaviour
         Application.Quit(); //Only works when the game is live
     }
 
-    public void LoadCredits()
-    {
+    public void LoadCredits() {
         SceneManager.LoadScene("Credits");
     }
 }
