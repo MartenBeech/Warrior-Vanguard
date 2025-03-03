@@ -10,9 +10,14 @@ public class GameManager : MonoBehaviour {
     public void EndTurn() {
         friends = friends.OrderByDescending(c => c.gridPosition.x).ToList();
         foreach (Character friend in friends) {
-            friend.SetRemainingAttacks(friend.cardStats.numberOfAttacks);
-            for (int i = 0; i < friend.cardStats.movementSpeed; i++) {
+            friend.SetRemainingActions(friend.cardStats.numberOfAttacks, friend.cardStats.movementSpeed);
+            int maxActions = friend.cardStats.numberOfAttacks + friend.cardStats.movementSpeed;
+            for (int i = 0; i < maxActions; i++){
                 friend.MoveWarrior(Character.Direction.Right);
+            }
+
+            if (friend.remainingAttacks > 0) {
+                friend.StandAndAttack(Character.Direction.Right);
             }
         }
     }
@@ -20,9 +25,14 @@ public class GameManager : MonoBehaviour {
     public void EndEnemyTurn() {
         enemies = enemies.OrderBy(c => c.gridPosition.x).ToList();
         foreach (Character enemy in enemies) {
-            enemy.SetRemainingAttacks(enemy.cardStats.numberOfAttacks);
-            for (int i = 0; i < enemy.cardStats.movementSpeed; i++) {
+            enemy.SetRemainingActions(enemy.cardStats.numberOfAttacks, enemy.cardStats.movementSpeed);
+            int maxActions = enemy.cardStats.numberOfAttacks + enemy.cardStats.movementSpeed;
+            for (int i = 0; i < maxActions; i++) {
                 enemy.MoveWarrior(Character.Direction.Left);
+            }
+
+            if (enemy.remainingAttacks > 0) {
+                enemy.StandAndAttack(Character.Direction.Left);
             }
         }
     }
