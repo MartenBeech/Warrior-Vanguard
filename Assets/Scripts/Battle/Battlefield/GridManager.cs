@@ -84,6 +84,12 @@ public class GridManager : MonoBehaviour {
         }
     }
 
+    public void RemoveCharacter(Character character) {
+        if (allCharacters.Contains(character)) {
+            allCharacters.Remove(character);
+        }
+    }
+
     public Character GetCellCharacter(Vector2 position) {
         foreach (Character character in allCharacters) {
             if (character.gridPosition == position) {

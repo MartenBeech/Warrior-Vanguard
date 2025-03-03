@@ -48,6 +48,7 @@ public class CharacterSpawner : MonoBehaviour {
         GameObject warrior = Instantiate(prefab, spawnPosition, Quaternion.identity, warriorsObject);
         warrior.GetComponent<RectTransform>().localScale = gridManager.getCellDimension() / warrior.GetComponent<RectTransform>().rect.width;
         Character character = warrior.GetComponent<Character>();
+        character.Initiate(gameManager, gridManager);
 
         character.SetAlignment(alignment);
 
@@ -55,11 +56,17 @@ public class CharacterSpawner : MonoBehaviour {
             character.SetHoverWarrior(hoverWarrior);
             character.SetStats(stats);
         } else {
-            character.SetStats(stats);
+            //Creates new instance of the card stats to avoid modifying the original card stats
+            character.SetStats(new CardStats
+            {
+                attack = stats.attack,
+                health = stats.health,
+                title = stats.title,
+                cost = stats.cost
+            });
         }
 
         character.SetPosition(cell);
-        character.SetGridManager(gridManager);
         gameManager.RegisterCharacter(character, alignment);
     }
 

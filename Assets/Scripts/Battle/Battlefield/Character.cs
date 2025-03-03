@@ -16,6 +16,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public GameObject attackText;
     public GameObject healthText;
     public GameObject image;
+    private GameManager gameManager;
+    
+    public void Initiate(GameManager gameManager, GridManager gridManager) {
+        this.gameManager = gameManager;
+        this.gridManager = gridManager;
+    }
 
     public void UpdateWarriorUI() {
         if (attackText) attackText.GetComponent<TMP_Text>().text = $"{cardStats.attack}";
@@ -36,27 +42,17 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         this.hoverWarrior = hoverWarrior;
     }
 
-    public void SetGridManager(GridManager gridManager) {
-        this.gridManager = gridManager;
-    }
-
     public void SetPosition(Vector2 position) {
         gridPosition = position;
         transform.position = position;
     }
 
     public void MoveWarrior(Direction direction) {
-        bool isEndOfBoard = false;
         Vector2 newPosition = GetFrontCellPosition(gridPosition, direction);
 
-        if (direction == Direction.Left) {
-            float endOfBoardPosition = gridManager.getLeftMostGridPositionX();
-            isEndOfBoard = gridPosition.x <= endOfBoardPosition;
-        } else if (direction == Direction.Right) {
-            float endOfBoardPosition = gridManager.getRightMostGridPositionX();
-            isEndOfBoard = gridPosition.x >= endOfBoardPosition;
-        }
-
+        if (direction == Direction.Left && gridPosition.x <= gridManager.getLeftMostGridPositionX()) return;
+        if (direction == Direction.Right && gridPosition.x >= gridManager.getRightMostGridPositionX()) return;
+        
         Character frontCellCharacter = gridManager.GetCellCharacter(newPosition);
 
         // If no character in front, move
@@ -67,7 +63,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
 
         // If character in front is a friend or end of the board, do nothing
-        if (isEndOfBoard || frontCellCharacter.alignment == alignment) return;
+        if (frontCellCharacter.alignment == alignment) return;
 
         // If character in front is an enemy, attack
         if (frontCellCharacter.alignment != alignment) {
@@ -90,8 +86,14 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         character.cardStats.health -= damage;
         character.UpdateWarriorUI();
         if (character.cardStats.health <= 0) {
-            Destroy(character.gameObject);
+            KillCharacter(character);
         }
+    }
+
+    private void KillCharacter(Character character) {
+        gameManager.RemoveCharacter(character);
+        gridManager.RemoveCharacter(character);
+        Destroy(character.gameObject);
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
