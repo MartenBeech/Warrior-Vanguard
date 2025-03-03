@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
         foreach (Character friend in friends) {
             friend.SetRemainingActions(friend.cardStats.numberOfAttacks, friend.cardStats.movementSpeed);
             int maxActions = friend.cardStats.numberOfAttacks + friend.cardStats.movementSpeed;
-            for (int i = 0; i < maxActions; i++){
+            for (int i = 0; i < maxActions; i++) {
                 friend.MoveWarrior(Character.Direction.Right);
             }
 
@@ -39,11 +39,13 @@ public class GameManager : MonoBehaviour {
 
     public void RegisterCharacter(Character character, CharacterSpawner.Alignment alignment) {
         if (alignment == CharacterSpawner.Alignment.Enemy) {
-            if (!enemies.Contains(character))
+            if (!enemies.Contains(character)) {
                 enemies.Add(character);
+            }
         } else if (alignment == CharacterSpawner.Alignment.Friend) {
-            if (!friends.Contains(character))
+            if (!friends.Contains(character)) {
                 friends.Add(character);
+            }
         }
         gridManager.RegisterCharacter(character);
     }

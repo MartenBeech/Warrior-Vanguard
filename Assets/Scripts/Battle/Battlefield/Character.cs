@@ -19,7 +19,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private GameManager gameManager;
     public int remainingAttacks = 1;
     public int remainingSteps = 0;
-    
+
     public void Initiate(GameManager gameManager, GridManager gridManager) {
         this.gameManager = gameManager;
         this.gridManager = gridManager;
@@ -57,9 +57,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void MoveWarrior(Direction direction) {
         Vector2 newPosition = GetFrontCellPosition(gridPosition, direction);
 
-        if (direction == Direction.Left && gridPosition.x <= gridManager.getLeftMostGridPositionX()) return;
-        if (direction == Direction.Right && gridPosition.x >= gridManager.getRightMostGridPositionX()) return;
-        
+        if (IsOutOfField(newPosition, direction)) return;
+
         Character frontCellCharacter = gridManager.GetCellCharacter(newPosition);
 
         // If no character in front, move
@@ -70,17 +69,35 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             return;
         }
 
-        // If character in front is a friend or end of the board, do nothing
-        if (frontCellCharacter && frontCellCharacter.alignment == alignment || remainingAttacks < 1) return;
+        // If character in front is a friend try to go past them
+        if (frontCellCharacter && frontCellCharacter.alignment == alignment && remainingSteps > 1) {
+            for (int i = 2; i <= remainingSteps; i++) {
+                Vector2 position = GetFrontCellPosition(gridPosition, direction, i);
+                Character characterOnCell = gridManager.GetCellCharacter(position);
 
-        // If character in front is an enemy, attack
-        if (frontCellCharacter && frontCellCharacter.alignment != alignment) {
-            AttackCharacter(cardStats.attack, frontCellCharacter);
-            remainingAttacks--;
+                if (!characterOnCell && !IsOutOfField(position, direction)) {
+                    gridPosition = position;
+                    transform.position = new Vector2(gridPosition.x, gridPosition.y);
+                    remainingSteps -= i;
+                    return;
+                }
+
+                if (characterOnCell && characterOnCell.alignment != alignment) break;
+            }
         }
+
+        if (remainingAttacks < 1) return;
+
+        // If character in within range is an enemy, attack
+        StandAndAttack(direction);
+    }
+
+    public bool IsOutOfField(Vector2 position, Direction direction) {
+        return direction == Direction.Left ? position.x < gridManager.getLeftMostGridPositionX() : position.x > gridManager.getRightMostGridPositionX();
     }
 
     public void StandAndAttack(Direction direction) {
+        remainingAttacks--;
         for (int i = 1; i <= cardStats.range; i++) {
             Vector2 position = GetFrontCellPosition(gridPosition, direction, i);
             Character characterOnCell = gridManager.GetCellCharacter(position);
@@ -117,7 +134,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         return currentPosition;
     }
 
-    
+
 
     public void OnPointerEnter(PointerEventData eventData) {
         if (hoverWarrior != null) {
