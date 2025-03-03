@@ -44,11 +44,11 @@ public class Deck : MonoBehaviour {
         card.SetStats(drawnCard);
         card.DisplayCardUi();
 
-        await objectAnimation.MoveObject(cardInstance, deckPos, centerPos);
+        await objectAnimation.MoveObject(deckPos, centerPos);
         cardInstance.transform.localScale = new Vector2(2, 2);
-        await objectAnimation.MoveObject(cardInstance, centerPos, centerPos);
+        await objectAnimation.MoveObject(centerPos, centerPos);
         cardInstance.transform.localScale = new Vector2(1, 1);
-        await objectAnimation.MoveObject(cardInstance, centerPos, handPos);
+        await objectAnimation.MoveObject(centerPos, handPos);
         Destroy(cardInstance);
 
         hand.AddCardToHand(card);

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class ObjectAnimation : MonoBehaviour {
+public class TextAnimation : MonoBehaviour {
     Vector2 fromVector;
     Vector2 toVector;
     float duration;
@@ -17,14 +17,14 @@ public class ObjectAnimation : MonoBehaviour {
             counter -= Time.deltaTime * Settings.gameSpeed;
 
             if (counter <= 0) {
-                transform.position = toVector;
+                Destroy(gameObject);
             }
         }
     }
 
-    public async Task MoveObject(Vector2 from, Vector2 to, float durationInSec = 1) {
-        fromVector = from;
-        toVector = to;
+    public async Task SetupFloatingText(Vector2 pos, float durationInSec = 1) {
+        fromVector = pos;
+        toVector = new Vector2(pos.x, pos.y + 100);
         duration = durationInSec;
         counter = durationInSec;
 

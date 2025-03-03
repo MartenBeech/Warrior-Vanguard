@@ -36,12 +36,12 @@ public class CharacterSpawner : MonoBehaviour {
         CardStats stats = alignment == Alignment.Friend ? selectedCard.stats : CardDatabase.Instance.allCards[1];
 
         Vector2 playedCardPos = alignment == Alignment.Friend ? selectedCard.GetComponent<RectTransform>().position : EnemySummonerObject.position;
-        ObjectAnimation objectAnimation = prefab.GetComponentInChildren<ObjectAnimation>();
 
         GameObject warriorAnimation = Instantiate(prefab, playedCardPos, Quaternion.identity, warriorsObject);
         Character characterAnimation = warriorAnimation.GetComponent<Character>();
+        ObjectAnimation objectAnimation = warriorAnimation.GetComponentInChildren<ObjectAnimation>();
         characterAnimation.SetStats(stats);
-        await objectAnimation.MoveObject(warriorAnimation, playedCardPos, cell);
+        await objectAnimation.MoveObject(playedCardPos, cell);
         Destroy(warriorAnimation);
 
         Vector2 spawnPosition = cell;

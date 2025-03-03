@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Threading.Tasks;
 
 public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public Vector2 gridPosition;
@@ -54,7 +55,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         this.remainingSteps = remainingSteps;
     }
 
-    public void MoveWarrior(Direction direction) {
+    public async Task MoveWarrior(Direction direction) {
         Vector2 newPosition = GetFrontCellPosition(gridPosition, direction);
 
         if (IsOutOfField(newPosition, direction)) return;
@@ -63,8 +64,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         // If no character in front, move
         if (!frontCellCharacter && remainingSteps > 0) {
+            ObjectAnimation objectAnimation = GetComponentInChildren<ObjectAnimation>();
+            await objectAnimation.MoveObject(transform.position, newPosition);
             gridPosition = newPosition;
-            transform.position = new Vector2(gridPosition.x, gridPosition.y);
             remainingSteps--;
             return;
         }
@@ -89,14 +91,14 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (remainingAttacks < 1) return;
 
         // If character in within range is an enemy, attack
-        StandAndAttack(direction);
+        await StandAndAttack(direction);
     }
 
     public bool IsOutOfField(Vector2 position, Direction direction) {
         return direction == Direction.Left ? position.x < gridManager.getLeftMostGridPositionX() : position.x > gridManager.getRightMostGridPositionX();
     }
 
-    public void StandAndAttack(Direction direction) {
+    public async Task StandAndAttack(Direction direction) {
         remainingAttacks--;
         for (int i = 1; i <= cardStats.range; i++) {
             Vector2 position = GetFrontCellPosition(gridPosition, direction, i);
@@ -104,6 +106,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
             if (characterOnCell && characterOnCell.alignment != alignment) {
                 AttackCharacter(cardStats.attack, characterOnCell);
+                FloatingText floatingText = FindFirstObjectByType<FloatingText>();
+                await floatingText.CreateFloatingText(position, cardStats.attack.ToString());
                 return;
             }
         }
@@ -133,8 +137,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
         return currentPosition;
     }
-
-
 
     public void OnPointerEnter(PointerEventData eventData) {
         if (hoverWarrior != null) {
