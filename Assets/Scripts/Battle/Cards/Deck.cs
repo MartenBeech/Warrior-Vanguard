@@ -38,17 +38,17 @@ public class Deck : MonoBehaviour {
         Vector2 centerPos = new Vector2(0, 0);
 
         GameObject cardInstance = Instantiate(cardPrefab, deckPos, Quaternion.identity, deckObject.transform);
-        CardAnimation cardAnimation = cardInstance.GetComponentInChildren<CardAnimation>();
+        ObjectAnimation objectAnimation = cardInstance.GetComponentInChildren<ObjectAnimation>();
         Card card = cardInstance.GetComponentInChildren<Card>();
 
         card.SetStats(drawnCard);
         card.DisplayCardUi();
 
-        await cardAnimation.MoveCard(cardInstance, deckPos, centerPos);
+        await objectAnimation.MoveObject(cardInstance, deckPos, centerPos);
         cardInstance.transform.localScale = new Vector2(2, 2);
-        await cardAnimation.MoveCard(cardInstance, centerPos, centerPos);
+        await objectAnimation.MoveObject(cardInstance, centerPos, centerPos);
         cardInstance.transform.localScale = new Vector2(1, 1);
-        await cardAnimation.MoveCard(cardInstance, centerPos, handPos);
+        await objectAnimation.MoveObject(cardInstance, centerPos, handPos);
         Destroy(cardInstance);
 
         hand.AddCardToHand(card);

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class CardAnimation : MonoBehaviour {
+public class ObjectAnimation : MonoBehaviour {
     Vector2 fromVector;
     Vector2 toVector;
     float duration;
@@ -22,8 +22,8 @@ public class CardAnimation : MonoBehaviour {
         }
     }
 
-    public async Task MoveCard(GameObject gameObject, Vector2 from, Vector2 to, float durationInSec = 1) {
-        var card = gameObject.GetComponentInChildren<CardAnimation>();
+    public async Task MoveObject(GameObject gameObject, Vector2 from, Vector2 to, float durationInSec = 1) {
+        var card = gameObject.GetComponentInChildren<ObjectAnimation>();
         card.fromVector = from;
         card.toVector = to;
         card.duration = durationInSec;

@@ -36,12 +36,12 @@ public class CharacterSpawner : MonoBehaviour {
         CardStats stats = alignment == Alignment.Friend ? selectedCard.stats : CardDatabase.Instance.allCards[1];
 
         Vector2 playedCardPos = alignment == Alignment.Friend ? selectedCard.GetComponent<RectTransform>().position : EnemySummonerObject.position;
-        CardAnimation cardAnimation = prefab.GetComponentInChildren<CardAnimation>();
+        ObjectAnimation objectAnimation = prefab.GetComponentInChildren<ObjectAnimation>();
 
         GameObject warriorAnimation = Instantiate(prefab, playedCardPos, Quaternion.identity, warriorsObject);
         Character characterAnimation = warriorAnimation.GetComponent<Character>();
         characterAnimation.SetStats(stats);
-        await cardAnimation.MoveCard(warriorAnimation, playedCardPos, cell);
+        await objectAnimation.MoveObject(warriorAnimation, playedCardPos, cell);
         Destroy(warriorAnimation);
 
         Vector2 spawnPosition = cell;
@@ -57,8 +57,7 @@ public class CharacterSpawner : MonoBehaviour {
             character.SetStats(stats);
         } else {
             //Creates new instance of the card stats to avoid modifying the original card stats
-            character.SetStats(new CardStats
-            {
+            character.SetStats(new CardStats {
                 attack = stats.attack,
                 health = stats.health,
                 title = stats.title,
