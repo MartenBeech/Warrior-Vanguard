@@ -10,14 +10,20 @@ public class GameManager : MonoBehaviour {
     public void EndTurn() {
         friends = friends.OrderByDescending(c => c.gridPosition.x).ToList();
         foreach (Character friend in friends) {
-            friend.MoveWarrior(Character.Direction.Right);
+            friend.SetRemainingAttacks(friend.cardStats.numberOfAttacks);
+            for (int i = 0; i < friend.cardStats.movementSpeed; i++) {
+                friend.MoveWarrior(Character.Direction.Right);
+            }
         }
     }
 
     public void EndEnemyTurn() {
         enemies = enemies.OrderBy(c => c.gridPosition.x).ToList();
         foreach (Character enemy in enemies) {
-            enemy.MoveWarrior(Character.Direction.Left);
+            enemy.SetRemainingAttacks(enemy.cardStats.numberOfAttacks);
+            for (int i = 0; i < enemy.cardStats.movementSpeed; i++) {
+                enemy.MoveWarrior(Character.Direction.Left);
+            }
         }
     }
 

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public Vector2 gridPosition;
     private GridManager gridManager;
-    private CardStats cardStats;
+    public CardStats cardStats;
     private HoverWarrior hoverWarrior;
     public enum Direction {
         Left, Right
@@ -17,6 +17,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public GameObject healthText;
     public GameObject image;
     private GameManager gameManager;
+    private int remainingAttacks = 1;
     
     public void Initiate(GameManager gameManager, GridManager gridManager) {
         this.gameManager = gameManager;
@@ -47,6 +48,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         transform.position = position;
     }
 
+    public void SetRemainingAttacks(int remainingAttacks) {
+        this.remainingAttacks = remainingAttacks;
+    }
+
     public void MoveWarrior(Direction direction) {
         Vector2 newPosition = GetFrontCellPosition(gridPosition, direction);
 
@@ -63,23 +68,13 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
 
         // If character in front is a friend or end of the board, do nothing
-        if (frontCellCharacter.alignment == alignment) return;
+        if (frontCellCharacter.alignment == alignment || remainingAttacks < 1) return;
 
         // If character in front is an enemy, attack
         if (frontCellCharacter.alignment != alignment) {
             AttackCharacter(cardStats.attack, frontCellCharacter);
+            remainingAttacks--;
         }
-    }
-
-    private Vector2 GetFrontCellPosition(Vector2 currentPosition, Direction direction) {
-        float gridSpacingX = gridManager.GetGridSpacingX();
-
-        if (direction == Direction.Left) {
-            return new(currentPosition.x - gridSpacingX, currentPosition.y);
-        } else if (direction == Direction.Right) {
-            return new(currentPosition.x + gridSpacingX, currentPosition.y);
-        }
-        return new(currentPosition.x, currentPosition.y);
     }
 
     private void AttackCharacter(int damage, Character character) {
@@ -95,6 +90,19 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         gridManager.RemoveCharacter(character);
         Destroy(character.gameObject);
     }
+
+    private Vector2 GetFrontCellPosition(Vector2 currentPosition, Direction direction) {
+        float gridSpacingX = gridManager.GetGridSpacingX();
+
+        if (direction == Direction.Left) {
+            return new(currentPosition.x - gridSpacingX, currentPosition.y);
+        } else if (direction == Direction.Right) {
+            return new(currentPosition.x + gridSpacingX, currentPosition.y);
+        }
+        return new(currentPosition.x, currentPosition.y);
+    }
+
+    
 
     public void OnPointerEnter(PointerEventData eventData) {
         if (hoverWarrior != null) {
