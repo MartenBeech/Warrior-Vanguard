@@ -98,6 +98,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         return direction == Direction.Left ? position.x < gridManager.getLeftMostGridPositionX() : position.x > gridManager.getRightMostGridPositionX();
     }
 
+    public bool IsOutOfField(Vector2 position) {
+        return position.x < gridManager.getLeftMostGridPositionX() || position.x > gridManager.getRightMostGridPositionX();
+    }
+
     public async Task StandAndAttack(Direction direction) {
         remainingAttacks--;
         for (int i = 1; i <= cardStats.range; i++) {
@@ -105,10 +109,24 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             Character characterOnCell = gridManager.GetCellCharacter(position);
 
             if (characterOnCell && characterOnCell.alignment != alignment) {
+                Transform enemyTransform = characterOnCell.transform;
                 AttackCharacter(cardStats.attack, characterOnCell);
                 FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-                await floatingText.CreateFloatingText(position, cardStats.attack.ToString());
+                await floatingText.CreateFloatingText(enemyTransform, cardStats.attack.ToString());
                 return;
+            }
+
+            if (IsOutOfField(position)) {
+                if (alignment == CharacterSpawner.Alignment.Enemy) {
+                    Summoner friendSummoner = gameManager.friendSummonerObject.GetComponent<Summoner>();
+                    await friendSummoner.Damage(cardStats.attack);
+                    return;
+                }
+                if (alignment == CharacterSpawner.Alignment.Friend) {
+                    Summoner enemySummoner = gameManager.enemySummonerObject.GetComponent<Summoner>();
+                    await enemySummoner.Damage(cardStats.attack);
+                    return;
+                }
             }
         }
     }
