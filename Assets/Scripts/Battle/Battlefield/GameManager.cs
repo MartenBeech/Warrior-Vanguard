@@ -6,6 +6,15 @@ public class GameManager : MonoBehaviour {
     public List<Character> friends = new();
     public List<Character> enemies = new();
     public GridManager gridManager;
+    public GameObject friendSummonerObject;
+    public GameObject enemySummonerObject;
+
+    void Awake() {
+        Summoner friendSummoner = friendSummonerObject.GetComponent<Summoner>();
+        friendSummoner.SetStats(Angel.GetSummoner());
+        Summoner enemySummoner = enemySummonerObject.GetComponent<Summoner>();
+        enemySummoner.SetStats(Devil.GetSummoner());
+    }
 
     public async void EndTurn() {
         friends = friends.OrderByDescending(c => c.gridPosition.x).ToList();

@@ -42,7 +42,7 @@ public class Deck : MonoBehaviour {
         Card card = cardInstance.GetComponentInChildren<Card>();
 
         card.SetStats(drawnCard);
-        card.DisplayCardUi();
+        card.UpdateCardUi();
 
         await objectAnimation.MoveObject(deckPos, centerPos);
         cardInstance.transform.localScale = new Vector2(2, 2);

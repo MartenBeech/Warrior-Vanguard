@@ -10,7 +10,7 @@ public class Card : MonoBehaviour {
     public GameObject titleText;
     public CardStats stats = new();
 
-    public void DisplayCardUi() {
+    public void UpdateCardUi() {
         if (attackText) attackText.GetComponent<TMP_Text>().text = $"{stats.attack}";
         if (healthText) healthText.GetComponent<TMP_Text>().text = $"{stats.health}";
         if (costText) costText.GetComponent<TMP_Text>().text = $"{stats.cost}";
