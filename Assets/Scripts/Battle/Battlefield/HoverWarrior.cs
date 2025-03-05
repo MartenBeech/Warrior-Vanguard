@@ -10,7 +10,7 @@ public class HoverWarrior : MonoBehaviour {
     public TMP_Text titleText;
     public GameObject image;
 
-    public void DisplayCardUI(CardStats stats) {
+    public void DisplayCardUI(WarriorStats stats) {
         attackText.text = $"{stats.attack}";
         healthText.text = $"{stats.health}";
         costText.text = $"{stats.cost}";

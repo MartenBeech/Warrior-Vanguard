@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class CardDatabase : MonoBehaviour {
-    public List<CardStats> allCards = new List<CardStats>();
+    public List<WarriorStats> allCards = new List<WarriorStats>();
 
     public static CardDatabase Instance;
 

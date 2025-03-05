@@ -1,6 +1,6 @@
-public class Duck : CardStats {
-    public static CardStats GetCard() {
-        CardStats stats = new() {
+public class Duck : WarriorStats {
+    public static WarriorStats GetCard() {
+        WarriorStats stats = new() {
             title = "Duck",
             attack = 9001,
             health = 9001,

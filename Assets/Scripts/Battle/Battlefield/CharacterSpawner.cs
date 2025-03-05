@@ -33,7 +33,7 @@ public class CharacterSpawner : MonoBehaviour {
 
     private async void Spawn(Vector2 cell, GameObject prefab, Alignment alignment) {
         Card selectedCard = hand.selectedCard;
-        CardStats stats = alignment == Alignment.Friend ? selectedCard.stats : CardDatabase.Instance.allCards[1];
+        WarriorStats stats = alignment == Alignment.Friend ? selectedCard.stats : CardDatabase.Instance.allCards[1];
 
         Vector2 playedCardPos = alignment == Alignment.Friend ? selectedCard.GetComponent<RectTransform>().position : EnemySummonerObject.position;
 
@@ -57,7 +57,7 @@ public class CharacterSpawner : MonoBehaviour {
             character.SetStats(stats);
         } else {
             //Creates new instance of the card stats to avoid modifying the original card stats
-            character.SetStats(new CardStats {
+            character.SetStats(new WarriorStats {
                 attack = stats.attack,
                 health = stats.health,
                 title = stats.title,

@@ -8,7 +8,7 @@ public class Card : MonoBehaviour {
     public GameObject costText;
     public GameObject image;
     public GameObject titleText;
-    public CardStats stats = new();
+    public WarriorStats stats = new();
 
     public void UpdateCardUi() {
         if (attackText) attackText.GetComponent<TMP_Text>().text = $"{stats.attack}";
@@ -18,7 +18,7 @@ public class Card : MonoBehaviour {
         if (titleText) titleText.GetComponent<TMP_Text>().text = $"{stats.title}";
     }
 
-    public void SetStats(CardStats stats) {
+    public void SetStats(WarriorStats stats) {
         this.stats.SetStats(stats);
     }
 

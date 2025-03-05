@@ -8,7 +8,7 @@ public class Deck : MonoBehaviour {
     public GameObject textObject;
     public GameObject handObject;
     public GameObject cardPrefab;
-    public List<CardStats> deck = new();
+    public List<WarriorStats> deck = new();
 
     private void Start() {
         FillDeckWithRandomCards();
@@ -28,7 +28,7 @@ public class Deck : MonoBehaviour {
     public async void DrawCard() {
         if (deck.Count == 0) return;
 
-        CardStats drawnCard = deck[0];
+        WarriorStats drawnCard = deck[0];
         deck.RemoveAt(0);
 
         UpdateDeckUi();

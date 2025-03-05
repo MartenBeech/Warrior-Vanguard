@@ -1,4 +1,4 @@
-public class CardStats {
+public class WarriorStats {
     public string title = "";
     public int attack = 0;
     public int health = 1;
@@ -7,7 +7,7 @@ public class CardStats {
     public int range = 1;
     public int numberOfAttacks = 1;
 
-    public void SetStats(CardStats stats) {
+    public void SetStats(WarriorStats stats) {
         title = stats.title;
         attack = stats.attack;
         health = stats.health;
