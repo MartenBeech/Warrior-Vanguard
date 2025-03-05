@@ -9,7 +9,7 @@ public class DeckBuilder : MonoBehaviour {
     public GameObject deckViewPanel;
     private bool isDeckViewOpen = false;
     public GameObject cardPrefab;
-    private GameObject cardInstance;
+    public Transform deckListContainer;
 
     private void Start() {
         deckViewPanel.SetActive(false);
@@ -28,12 +28,17 @@ public class DeckBuilder : MonoBehaviour {
         UpdateDeckUI();
     }
 
-    private void UpdateDeckUI() {        
+    private void UpdateDeckUI() {
         if (textObject) textObject.GetComponent<TMP_Text>().text = $"{deck.Count}";
-        for (int i = 0; i < deck.Count; i++) {
-            cardInstance = Instantiate(cardPrefab, new Vector2(800 + (100 * i), 600), Quaternion.identity, deckViewPanel.transform);
-            Card cardComponent = cardInstance.GetComponentInChildren<Card>();
-            cardComponent.SetStats(deck[i].stats);
+
+        foreach (Transform child in deckListContainer) {
+            Destroy(child.gameObject);
+        }
+
+        foreach (Card card in deck) {
+            GameObject cardItem = Instantiate(cardPrefab, deckListContainer);
+            Card cardComponent = cardItem.GetComponent<Card>();
+            cardComponent.SetStats(card.stats);
             cardComponent.UpdateCardUi();
         }
     }
@@ -41,5 +46,9 @@ public class DeckBuilder : MonoBehaviour {
     public void ToggleDeckView() {
         isDeckViewOpen = !isDeckViewOpen;
         deckViewPanel.SetActive(isDeckViewOpen);
+
+        if (isDeckViewOpen) {
+            UpdateDeckUI();
+        }
     }
 }
