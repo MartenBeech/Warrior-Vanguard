@@ -3,19 +3,22 @@ using TMPro;
 using UnityEngine.UI;
 
 public class Card : MonoBehaviour {
-    public GameObject attackText;
-    public GameObject healthText;
-    public GameObject costText;
+    public TMP_Text attackText;
+    public TMP_Text healthText;
+    public TMP_Text costText;
     public GameObject image;
-    public GameObject titleText;
+    public TMP_Text titleText;
+    public TMP_Text abilityText;
     public WarriorStats stats = new();
 
     public void UpdateCardUi() {
-        if (attackText) attackText.GetComponent<TMP_Text>().text = $"{stats.attack}";
-        if (healthText) healthText.GetComponent<TMP_Text>().text = $"{stats.health}";
-        if (costText) costText.GetComponent<TMP_Text>().text = $"{stats.cost}";
-        if (image) image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
-        if (titleText) titleText.GetComponent<TMP_Text>().text = $"{stats.title}";
+        attackText.text = $"{stats.attack}";
+        healthText.text = $"{stats.health}";
+        costText.text = $"{stats.cost}";
+        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
+        titleText.text = $"{stats.title}";
+        WarriorAbility ability = new();
+        abilityText.text = ability.GetAbilityText(this);
     }
 
     public void SetStats(WarriorStats stats) {

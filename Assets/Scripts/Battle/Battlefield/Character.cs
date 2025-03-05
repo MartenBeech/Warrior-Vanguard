@@ -14,8 +14,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     };
     private CharacterSpawner.Alignment alignment;
 
-    public GameObject attackText;
-    public GameObject healthText;
+    public TMP_Text attackText;
+    public TMP_Text healthText;
     public GameObject image;
     private GameManager gameManager;
     public int remainingAttacks = 1;
@@ -27,8 +27,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public void UpdateWarriorUI() {
-        if (attackText) attackText.GetComponent<TMP_Text>().text = $"{stats.attack}";
-        if (healthText) healthText.GetComponent<TMP_Text>().text = $"{stats.health}";
+        if (attackText) attackText.text = $"{stats.attack}";
+        if (healthText) healthText.text = $"{stats.health}";
         if (image) image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
     }
 
@@ -162,7 +162,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerEnter(PointerEventData eventData) {
         if (hoverWarrior != null) {
-            hoverWarrior.DisplayCardUI(stats);
+            hoverWarrior.UpdateCardUI(stats);
             hoverWarrior.ShowCard(gridPosition);
         }
     }

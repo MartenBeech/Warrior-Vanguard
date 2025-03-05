@@ -498,9 +498,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 1400, y: 0}
-  attackText: {fileID: 5600323217385863825}
-  healthText: {fileID: 3777039968467009887}
+  attackText: {fileID: 1224358540268641666}
+  healthText: {fileID: 8699503686999248439}
   image: {fileID: 2619659621084207209}
+  remainingAttacks: 1
+  remainingSteps: 0
 --- !u!114 &1496594542848040516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +515,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa7a8437e5b6d24f80d3474492f91d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromVector: {x: 0, y: 0}
-  toVector: {x: 0, y: 0}
-  counter: 0

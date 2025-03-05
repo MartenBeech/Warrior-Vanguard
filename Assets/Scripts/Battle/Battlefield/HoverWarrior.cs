@@ -1,21 +1,13 @@
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
 public class HoverWarrior : MonoBehaviour {
     public GameObject hoverPanel;
-    public TMP_Text attackText;
-    public TMP_Text healthText;
-    public TMP_Text costText;
-    public TMP_Text titleText;
-    public GameObject image;
+    public GameObject cardObject;
 
-    public void DisplayCardUI(WarriorStats stats) {
-        attackText.text = $"{stats.attack}";
-        healthText.text = $"{stats.health}";
-        costText.text = $"{stats.cost}";
-        titleText.text = $"{stats.title}";
-        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
+    public void UpdateCardUI(WarriorStats stats) {
+        Card card = cardObject.GetComponent<Card>();
+        card.stats = stats;
+        card.UpdateCardUi();
     }
 
     public void ShowCard(Vector2 position) {
