@@ -27,10 +27,13 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdateSummonerUI();
     }
 
-    public async Task Damage(int amount) {
-        stats.health -= amount;
+    public async Task Damage(Character dealer, int amount) {
+        if (amount > 0) {
+            stats.health -= amount;
+            UpdateSummonerUI();
+            Bloodlust.Trigger(dealer);
+        }
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-        UpdateSummonerUI();
         await floatingText.CreateFloatingText(transform, amount.ToString());
     }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public Vector2 gridPosition;
     private GridManager gridManager;
-    public WarriorStats warriorStats;
+    public WarriorStats stats;
     private HoverWarrior hoverWarrior;
     public enum Direction {
         Left, Right
@@ -27,13 +27,13 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public void UpdateWarriorUI() {
-        if (attackText) attackText.GetComponent<TMP_Text>().text = $"{warriorStats.attack}";
-        if (healthText) healthText.GetComponent<TMP_Text>().text = $"{warriorStats.health}";
-        if (image) image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{warriorStats.title}");
+        if (attackText) attackText.GetComponent<TMP_Text>().text = $"{stats.attack}";
+        if (healthText) healthText.GetComponent<TMP_Text>().text = $"{stats.health}";
+        if (image) image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
     }
 
     public void SetStats(WarriorStats warriorStats) {
-        this.warriorStats = warriorStats;
+        this.stats = warriorStats;
         UpdateWarriorUI();
     }
 
@@ -104,39 +104,43 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public async Task StandAndAttack(Direction direction) {
         remainingAttacks--;
-        for (int i = 1; i <= warriorStats.range; i++) {
+        for (int i = 1; i <= stats.range; i++) {
             Vector2 position = GetFrontCellPosition(gridPosition, direction, i);
             Character characterOnCell = gridManager.GetCellCharacter(position);
 
             if (characterOnCell && characterOnCell.alignment != alignment) {
                 Transform enemyTransform = characterOnCell.transform;
-                AttackCharacter(warriorStats.attack, characterOnCell);
+                int damage = stats.attack;
+                AttackCharacter(damage, characterOnCell);
                 FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-                await floatingText.CreateFloatingText(enemyTransform, warriorStats.attack.ToString());
+                await floatingText.CreateFloatingText(enemyTransform, damage.ToString());
                 return;
             }
 
             if (IsOutOfField(position)) {
                 if (alignment == CharacterSpawner.Alignment.Enemy) {
                     Summoner friendSummoner = gameManager.friendSummonerObject.GetComponent<Summoner>();
-                    await friendSummoner.Damage(warriorStats.attack);
+                    await friendSummoner.Damage(this, stats.attack);
                     return;
                 }
                 if (alignment == CharacterSpawner.Alignment.Friend) {
                     Summoner enemySummoner = gameManager.enemySummonerObject.GetComponent<Summoner>();
-                    await enemySummoner.Damage(warriorStats.attack);
+                    await enemySummoner.Damage(this, stats.attack);
                     return;
                 }
             }
         }
     }
 
-    private void AttackCharacter(int damage, Character character) {
-        character.warriorStats.health -= damage;
-        character.UpdateWarriorUI();
-        if (character.warriorStats.health <= 0) {
-            KillCharacter(character);
+    private void AttackCharacter(int damage, Character target) {
+        if (damage == 0) return;
+
+        target.stats.health -= damage;
+        target.UpdateWarriorUI();
+        if (target.stats.health <= 0) {
+            KillCharacter(target);
         }
+        Bloodlust.Trigger(this);
     }
 
     private void KillCharacter(Character character) {
@@ -158,7 +162,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerEnter(PointerEventData eventData) {
         if (hoverWarrior != null) {
-            hoverWarrior.DisplayCardUI(warriorStats);
+            hoverWarrior.DisplayCardUI(stats);
             hoverWarrior.ShowCard(gridPosition);
         }
     }

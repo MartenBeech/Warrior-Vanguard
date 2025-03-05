@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class WarriorStats {
     public string title = "";
     public int attack = 0;
@@ -6,6 +8,7 @@ public class WarriorStats {
     public int movementSpeed = 1;
     public int range = 1;
     public int numberOfAttacks = 1;
+    public Dictionary<WarriorAbility.Ability, int> abilities = new();
 
     public void SetStats(WarriorStats stats) {
         title = stats.title;
@@ -15,5 +18,6 @@ public class WarriorStats {
         movementSpeed = stats.movementSpeed;
         range = stats.range;
         numberOfAttacks = stats.numberOfAttacks;
+        abilities = stats.abilities;
     }
 }
