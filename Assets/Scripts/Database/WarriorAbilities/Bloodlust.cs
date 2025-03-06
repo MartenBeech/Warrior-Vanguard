@@ -1,5 +1,5 @@
 public class Bloodlust : WarriorAbility {
-    public static void Increase(WarriorStats stats, int amount) {
+    public static void Add(WarriorStats stats, int amount) {
         if (stats.abilities.ContainsKey(Ability.Bloodlust)) {
             stats.abilities[Ability.Bloodlust] += amount;
         } else {
@@ -7,8 +7,12 @@ public class Bloodlust : WarriorAbility {
         }
     }
 
-    public static void Trigger(Character character) {
-        character.stats.attack += character.stats.abilities[Ability.Bloodlust];
-        character.UpdateWarriorUI();
+    public static bool Trigger(Character character) {
+        if (character.stats.abilities.ContainsKey(Ability.Bloodlust)) {
+            character.stats.attack += character.stats.abilities[Ability.Bloodlust];
+            character.UpdateWarriorUI();
+            return true;
+        }
+        return false;
     }
 }

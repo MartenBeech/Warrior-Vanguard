@@ -10,6 +10,8 @@ public class Mortana : WarriorStats {
             numberOfAttacks = 1,
         };
 
+        stats.healthMax = stats.health;
+
         return stats;
     }
 }

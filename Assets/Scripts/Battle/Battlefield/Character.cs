@@ -144,6 +144,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     private void KillCharacter(Character character) {
+        if (Revive.Trigger(character)) {
+            return;
+        }
+
         gameManager.RemoveCharacter(character);
         gridManager.RemoveCharacter(character);
         Destroy(character.gameObject);
