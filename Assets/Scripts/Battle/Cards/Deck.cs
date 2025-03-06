@@ -11,7 +11,12 @@ public class Deck : MonoBehaviour {
     public List<WarriorStats> deck = new();
 
     private void Start() {
-        FillDeckWithRandomCards();
+        //If accessing this page from the Map, convert the Deck.
+        deck = DeckManager.GetDeck();
+        if (deck.Count == 0) {
+            FillDeckWithRandomCards();
+        }
+
         UpdateDeckUi();
     }
 

@@ -46,6 +46,8 @@ public class DeckBuilder : MonoBehaviour {
             cardComponent.SetStats(card.stats);
             cardComponent.UpdateCardUi();
         }
+
+        DeckManager.SetDeck(deck);
     }
 
     public void ToggleDeckView() {
