@@ -13,10 +13,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public WarriorStats stats = new();
     HoverWarrior hoverWarrior;
 
-    void Awake() {
-        hoverWarrior = FindFirstObjectByType<HoverWarrior>();
-    }
-
     public void UpdateCardUi() {
         attackText.text = $"{stats.attack}";
         healthText.text = $"{stats.health}";
@@ -31,6 +27,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         this.stats.SetStats(stats);
     }
 
+    public void SetHoverWarrior() {
+        hoverWarrior = FindFirstObjectByType<HoverWarrior>();
+    }
+
     public void OnClick() {
         Hand hand = FindFirstObjectByType<Hand>();
         if (this == hand.selectedCard) {
@@ -42,10 +42,14 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
-        hoverWarrior.ShowCardFromHand(stats);
+        if (hoverWarrior) {
+            hoverWarrior.ShowCardFromHand(stats);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData) {
-        hoverWarrior.HideCard();
+        if (hoverWarrior) {
+            hoverWarrior.HideCard();
+        }
     }
 }

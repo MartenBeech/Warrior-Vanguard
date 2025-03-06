@@ -161,10 +161,14 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
-        hoverWarrior.ShowCardFromBattlefield(stats, gridPosition);
+        if (hoverWarrior) {
+            hoverWarrior.ShowCardFromBattlefield(stats, gridPosition);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData) {
-        hoverWarrior.HideCard();
+        if (hoverWarrior) {
+            hoverWarrior.HideCard();
+        }
     }
 }

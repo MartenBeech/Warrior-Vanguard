@@ -14,9 +14,14 @@ public class Hand : MonoBehaviour {
         Vector2 pos = new Vector2(0, 0);
 
         GameObject cardInstance = Instantiate(cardPrefab, pos, Quaternion.identity, handObject);
+
         Card cardHand = cardInstance.GetComponentInChildren<Card>();
         cardHand.stats.SetStats(card.stats);
         cardHand.UpdateCardUi();
+        cardHand.SetHoverWarrior();
+
+        Button cardButton = cardInstance.GetComponent<Button>();
+        cardButton.onClick.AddListener(() => { cardHand.OnClick(); });
 
         handSize++;
     }

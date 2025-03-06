@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handObject: {fileID: 179982828}
-  cardPrefab: {fileID: 60891471826456955, guid: ca001b8888247834a941894ced1d4c55, type: 3}
+  cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
   selectedCard: {fileID: 0}
 --- !u!114 &179982830
 MonoBehaviour:
@@ -2666,11 +2666,11 @@ RectTransform:
   - {fileID: 1891804512}
   - {fileID: 1100467560}
   - {fileID: 41112488}
+  - {fileID: 189192888}
   - {fileID: 1266967319}
   - {fileID: 76679751}
   - {fileID: 194370921}
   - {fileID: 341304396}
-  - {fileID: 189192888}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3145,7 +3145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1266967319
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3163,7 +3163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -835, y: -2571}
+  m_AnchoredPosition: {x: 7, y: 35}
   m_SizeDelta: {x: -1802.8059, y: -876.7042}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1266967321
