@@ -1,8 +1,9 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class Card : MonoBehaviour {
+public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text attackText;
     public TMP_Text healthText;
     public TMP_Text costText;
@@ -10,6 +11,11 @@ public class Card : MonoBehaviour {
     public TMP_Text titleText;
     public TMP_Text abilityText;
     public WarriorStats stats = new();
+    HoverWarrior hoverWarrior;
+
+    void Awake() {
+        hoverWarrior = FindFirstObjectByType<HoverWarrior>();
+    }
 
     public void UpdateCardUi() {
         attackText.text = $"{stats.attack}";
@@ -33,5 +39,13 @@ public class Card : MonoBehaviour {
             hand.DeselectCard(hand.selectedCard);
             hand.SelectCard(this);
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData) {
+        hoverWarrior.ShowCardFromHand(stats);
+    }
+
+    public void OnPointerExit(PointerEventData eventData) {
+        hoverWarrior.HideCard();
     }
 }

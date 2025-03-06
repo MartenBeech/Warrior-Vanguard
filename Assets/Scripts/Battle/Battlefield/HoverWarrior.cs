@@ -10,9 +10,15 @@ public class HoverWarrior : MonoBehaviour {
         card.UpdateCardUi();
     }
 
-    public void ShowCard(Vector2 position) {
-        // Show the card on the right side of the warrior
+    public void ShowCardFromBattlefield(WarriorStats stats, Vector2 position) {
+        UpdateCardUI(stats);
         hoverPanel.transform.position = new Vector2(position.x + 200, position.y);
+        hoverPanel.SetActive(true);
+    }
+
+    public void ShowCardFromHand(WarriorStats stats) {
+        UpdateCardUI(stats);
+        hoverPanel.transform.position = new Vector2(0, 0);
         hoverPanel.SetActive(true);
     }
 
