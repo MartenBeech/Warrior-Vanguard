@@ -13,18 +13,23 @@ public class DeckBuilder : MonoBehaviour {
 
     private void Start() {
         deckViewPanel.SetActive(false);
+        //Start with 20 random cards
+        for (int i = 0; i < 20; i++) {
+            Card card = new();
+            card.SetStats(CardDatabase.Instance.GetRandomWarriorStats());
+            AddCardToDeck(card);
+        }
     }
 
-    public void AddCardToDeck() {
-        Card card = new();
-        card.SetStats(CardDatabase.Instance.allCards[1]);
+    public void AddCardToDeck(Card card) {
         deck.Add(card);
         UpdateDeckUI();
     }
 
-    public void RemoveCardFromDeck() {
-        if (deck.Count == 0) return;
-        deck.Remove(deck[0]);
+    public void RemoveCardFromDeck(Card card) {
+        if (!deck.Contains(card)) return;
+
+        deck.Remove(card);
         UpdateDeckUI();
     }
 
@@ -50,5 +55,10 @@ public class DeckBuilder : MonoBehaviour {
         if (isDeckViewOpen) {
             UpdateDeckUI();
         }
+    }
+
+    public void HideDeckView() {
+        isDeckViewOpen = false;
+        deckViewPanel.SetActive(false);
     }
 }

@@ -10,6 +10,10 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene("Battlefield");
     }
 
+    public void LoadMap() {
+        SceneManager.LoadScene("Map");
+    }
+
     public void ExitGame() {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false; // Stops play mode in Unity

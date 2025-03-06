@@ -13,4 +13,8 @@ public class CardDatabase : MonoBehaviour {
         allCards.Add(Mortana.GetCard());
         Instance = this;
     }
+
+    public WarriorStats GetRandomWarriorStats() {
+        return allCards[Random.Range(0, allCards.Count)];
+    }
 }
