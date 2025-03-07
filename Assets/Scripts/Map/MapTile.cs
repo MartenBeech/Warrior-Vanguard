@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class BattleTile : MonoBehaviour {
+public class MapTile : MonoBehaviour {
     private bool isInteractable = false;
     public Button battleButton;
     public GameObject checkmark;
