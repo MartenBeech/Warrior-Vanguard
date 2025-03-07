@@ -24,6 +24,8 @@ public class MapTile : MonoBehaviour {
 
     public void GoToBattlefield() {
         if (isInteractable) {
+            TileManager tileManager = FindFirstObjectByType<TileManager>();
+            tileManager.MarkTileAsCompleted(this);
             LevelManager.SetCurrentTile(this);
             SceneManager.LoadScene("Battlefield");
         }
