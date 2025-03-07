@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public SummonerStats stats = new();
@@ -35,6 +36,11 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         await floatingText.CreateFloatingText(transform, amount.ToString());
+
+        if (stats.health <= 0) {
+            LevelManager.CompleteLevel();
+            SceneManager.LoadScene("Map");
+        }
     }
 
     public void Heal(int amount) {
