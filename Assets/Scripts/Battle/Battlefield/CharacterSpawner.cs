@@ -11,7 +11,6 @@ public class CharacterSpawner : MonoBehaviour {
     public GameManager gameManager;
     public HoverWarrior hoverWarrior;
     public Hand hand;
-    public Transform EnemySummonerObject;
 
     public void ActivateSpawnEnemy() {
         spawningAlignment = Alignment.Enemy;
@@ -24,28 +23,17 @@ public class CharacterSpawner : MonoBehaviour {
         return spawningAlignment == alignment;
     }
 
-    public void SpawnCharacter(Vector2 cell) {
-        if (spawningAlignment == Alignment.Null) return;
+    public async void Spawn(Vector2 cell, WarriorStats stats, Alignment alignment, Vector2 from) {
 
-        Spawn(cell, warriorPrefab, spawningAlignment);
-        spawningAlignment = Alignment.Null;
-    }
-
-    private async void Spawn(Vector2 cell, GameObject prefab, Alignment alignment) {
-        Card selectedCard = hand.selectedCard;
-        WarriorStats stats = alignment == Alignment.Friend ? selectedCard.stats : CardDatabase.Instance.allCards[1];
-
-        Vector2 playedCardPos = alignment == Alignment.Friend ? selectedCard.GetComponent<RectTransform>().position : EnemySummonerObject.position;
-
-        GameObject warriorAnimation = Instantiate(prefab, playedCardPos, Quaternion.identity, warriorsObject);
+        GameObject warriorAnimation = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
         Character characterAnimation = warriorAnimation.GetComponent<Character>();
         ObjectAnimation objectAnimation = warriorAnimation.GetComponentInChildren<ObjectAnimation>();
         characterAnimation.SetStats(stats);
-        await objectAnimation.MoveObject(playedCardPos, cell);
+        await objectAnimation.MoveObject(from, cell);
         Destroy(warriorAnimation);
 
         Vector2 spawnPosition = cell;
-        GameObject warrior = Instantiate(prefab, spawnPosition, Quaternion.identity, warriorsObject);
+        GameObject warrior = Instantiate(warriorPrefab, spawnPosition, Quaternion.identity, warriorsObject);
         warrior.GetComponent<RectTransform>().localScale = gridManager.getCellDimension() / warrior.GetComponent<RectTransform>().rect.width;
         Character character = warrior.GetComponent<Character>();
         character.Initiate(gameManager, gridManager);
@@ -71,5 +59,4 @@ public class CharacterSpawner : MonoBehaviour {
         character.SetPosition(cell);
         gameManager.RegisterCharacter(character, alignment);
     }
-
 }

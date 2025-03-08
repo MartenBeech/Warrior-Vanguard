@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 public class WarriorStats {
     public string title = "";
     public int attack = 0;

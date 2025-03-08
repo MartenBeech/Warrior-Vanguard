@@ -15,6 +15,6 @@ public class CardDatabase : MonoBehaviour {
     }
 
     public WarriorStats GetRandomWarriorStats() {
-        return allCards[Random.Range(0, allCards.Count)];
+        return allCards[Rng.Range(0, allCards.Count)];
     }
 }

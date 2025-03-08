@@ -10,11 +10,13 @@ public class Revive {
         value = false;
     }
 
-    public bool Trigger(Character character) {
+    public bool Trigger(Character character, GridManager gridManager, CharacterSpawner characterSpawner) {
         if (value) {
-            character.stats.health = character.stats.healthMax;
-            Remove();
-            character.UpdateWarriorUI();
+            GridCell randomCell = gridManager.GetRandomEmptyDeploy();
+            WarriorStats stats = Mario.GetCard();
+            stats.ability.revive.Remove();
+
+            characterSpawner.Spawn(randomCell.transform.position, stats, character.alignment, character.gridPosition);
             return true;
         }
         return false;

@@ -12,7 +12,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public enum Direction {
         Left, Right
     };
-    private CharacterSpawner.Alignment alignment;
+    public CharacterSpawner.Alignment alignment;
 
     public TMP_Text attackText;
     public TMP_Text healthText;
@@ -144,9 +144,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     private void KillCharacter(Character character) {
-        if (character.stats.ability.revive.Trigger(character)) {
-            return;
-        }
+        character.stats.ability.revive.Trigger(character, gridManager, FindFirstObjectByType<CharacterSpawner>());
 
         gameManager.RemoveCharacter(character);
         gridManager.RemoveCharacter(character);

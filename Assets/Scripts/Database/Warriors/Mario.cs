@@ -3,7 +3,7 @@ public class Mario : WarriorStats {
         WarriorStats stats = new() {
             title = "Mario",
             attack = 2,
-            health = 10,
+            health = 4,
             cost = 1,
             movementSpeed = 2,
             range = 2,
