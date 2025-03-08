@@ -9,11 +9,10 @@ public class Mario : WarriorStats {
             range = 2,
             numberOfAttacks = 1,
         };
-
-        Bloodlust.Add(stats, 1);
-        Revive.Add(stats);
-
         stats.healthMax = stats.health;
+
+        stats.ability.bloodlust.Add(1);
+        stats.ability.revive.Add();
 
         return stats;
     }

@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class Revive {
+public class CLASSNAMEBOOL {    // Update class name
     bool value = false;
 
     public void Add() {
@@ -12,8 +12,7 @@ public class Revive {
 
     public bool Trigger(Character character) {
         if (value) {
-            character.stats.health = character.stats.healthMax;
-            Remove();
+            // Add trigger event here
             character.UpdateWarriorUI();
             return true;
         }
@@ -27,7 +26,7 @@ public class Revive {
 
     public string GetDescription() {
         if (!value) return "";
-        return $"{GetTitle()}On death: resummon this minion without {GetAbilityName()}";
+        return $"{GetTitle()}DESCRIPTION";  // Update description here
     }
 
     string GetAbilityName() {

@@ -140,11 +140,11 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (target.stats.health <= 0) {
             KillCharacter(target);
         }
-        Bloodlust.Trigger(this);
+        stats.ability.bloodlust.Trigger(this);
     }
 
     private void KillCharacter(Character character) {
-        if (Revive.Trigger(character)) {
+        if (character.stats.ability.revive.Trigger(character)) {
             return;
         }
 
