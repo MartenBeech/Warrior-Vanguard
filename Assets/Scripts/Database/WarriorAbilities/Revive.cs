@@ -13,6 +13,8 @@ public class Revive {
     public bool Trigger(Character character, GridManager gridManager, CharacterSpawner characterSpawner) {
         if (value) {
             GridCell randomCell = gridManager.GetRandomEmptyDeploy();
+            if (!randomCell) return true;
+
             character.stats.ResetStats();
             character.stats.ability.revive.Remove();
 

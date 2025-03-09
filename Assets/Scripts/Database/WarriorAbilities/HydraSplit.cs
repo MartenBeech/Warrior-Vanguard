@@ -14,6 +14,8 @@ public class HydraSplit {
         if (value) {
             for (int i = 0; i < 4; i++) {
                 GridCell randomCell = gridManager.GetRandomEmptyDeploy();
+                if (!randomCell) break;
+
                 WarriorStats stats = HydraSerpent.GetStats();
 
                 characterSpawner.Spawn(randomCell.transform.position, stats, character.alignment, character.gridPosition);

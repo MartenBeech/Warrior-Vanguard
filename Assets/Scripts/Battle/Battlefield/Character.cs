@@ -126,7 +126,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 }
             }
         }
-        EndTurn(this);
+        await EndTurn(this);
     }
 
     private async Task Attack(Character dealer, Character target) {

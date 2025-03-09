@@ -25,17 +25,15 @@ public class CharacterSpawner : MonoBehaviour {
 
     public async void Spawn(Vector2 cell, WarriorStats stats, Alignment alignment, Vector2 from) {
 
-        GameObject warriorAnimation = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
-        Character characterAnimation = warriorAnimation.GetComponent<Character>();
-        ObjectAnimation objectAnimation = warriorAnimation.GetComponentInChildren<ObjectAnimation>();
-        characterAnimation.SetStats(stats);
-        await objectAnimation.MoveObject(from, cell);
-        Destroy(warriorAnimation);
-
-        Vector2 spawnPosition = cell;
-        GameObject warrior = Instantiate(warriorPrefab, spawnPosition, Quaternion.identity, warriorsObject);
-        warrior.GetComponent<RectTransform>().localScale = gridManager.getCellDimension() / warrior.GetComponent<RectTransform>().rect.width;
+        GameObject warrior = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
         Character character = warrior.GetComponent<Character>();
+        ObjectAnimation objectAnimation = warrior.GetComponentInChildren<ObjectAnimation>();
+        character.SetStats(stats);
+        character.gridPosition = cell;
+        gameManager.RegisterCharacter(character, alignment);
+        await objectAnimation.MoveObject(from, cell);
+
+        warrior.GetComponent<RectTransform>().localScale = gridManager.getCellDimension() / warrior.GetComponent<RectTransform>().rect.width;
         character.Initiate(gameManager, gridManager);
 
         character.SetAlignment(alignment);
@@ -57,6 +55,5 @@ public class CharacterSpawner : MonoBehaviour {
         }
 
         character.SetPosition(cell);
-        gameManager.RegisterCharacter(character, alignment);
     }
 }

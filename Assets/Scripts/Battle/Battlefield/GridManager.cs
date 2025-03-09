@@ -114,6 +114,8 @@ public class GridManager : MonoBehaviour {
 
     public GridCell GetRandomEmptyDeploy() {
         List<GridCell> cells = GetEmptyDeploys();
+        if (cells.Count == 0) return null;
+
         int randomIndex = Rng.Range(0, cells.Count);
         return cells[randomIndex];
     }
