@@ -8,6 +8,7 @@ public class Deck : MonoBehaviour {
     public GameObject textObject;
     public GameObject handObject;
     public GameObject cardPrefab;
+    public GameObject hoverWarriorObject;
     public List<WarriorStats> deck = new();
 
     private void Start() {
@@ -38,21 +39,22 @@ public class Deck : MonoBehaviour {
 
         UpdateDeckUi();
 
-        Vector2 deckPos = new Vector2(deckObject.transform.position.x, deckObject.transform.position.y);
-        Vector2 handPos = new Vector2(handObject.transform.position.x, handObject.transform.position.y);
-        Vector2 centerPos = new Vector2(0, 0);
+        Vector2 deckPos = deckObject.transform.position;
+        Vector2 handPos = handObject.transform.position;
+        Vector2 centerPos = new(0, 0);
 
-        GameObject cardInstance = Instantiate(cardPrefab, deckPos, Quaternion.identity, deckObject.transform);
+        GameObject cardInstance = Instantiate(cardPrefab, deckPos, Quaternion.identity, hoverWarriorObject.transform);
         ObjectAnimation objectAnimation = cardInstance.GetComponentInChildren<ObjectAnimation>();
         Card card = cardInstance.GetComponentInChildren<Card>();
 
         card.SetStats(drawnCard);
         card.UpdateCardUi();
 
+        cardInstance.transform.localScale = new Vector2(0.5f, 0.5f);
         await objectAnimation.MoveObject(deckPos, centerPos);
-        cardInstance.transform.localScale = new Vector2(2, 2);
-        await objectAnimation.MoveObject(centerPos, centerPos);
         cardInstance.transform.localScale = new Vector2(1, 1);
+        await objectAnimation.MoveObject(centerPos, centerPos);
+        cardInstance.transform.localScale = new Vector2(0.5f, 0.5f);
         await objectAnimation.MoveObject(centerPos, handPos);
         Destroy(cardInstance);
 

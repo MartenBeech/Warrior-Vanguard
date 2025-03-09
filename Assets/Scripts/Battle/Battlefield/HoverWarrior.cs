@@ -13,16 +13,16 @@ public class HoverWarrior : MonoBehaviour {
     public void ShowCardFromBattlefield(WarriorStats stats, Vector2 position) {
         UpdateCardUI(stats);
         hoverPanel.transform.position = new Vector2(position.x + 200, position.y);
-        hoverPanel.SetActive(true);
+        cardObject.SetActive(true);
     }
 
     public void ShowCardFromHand(WarriorStats stats) {
         UpdateCardUI(stats);
         hoverPanel.transform.position = new Vector2(0, 0);
-        hoverPanel.SetActive(true);
+        cardObject.SetActive(true);
     }
 
     public void HideCard() {
-        hoverPanel.SetActive(false);
+        cardObject.SetActive(false);
     }
 }

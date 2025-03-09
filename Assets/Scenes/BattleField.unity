@@ -661,6 +661,7 @@ MonoBehaviour:
   textObject: {fileID: 96899266}
   handObject: {fileID: 179982827}
   cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
+  hoverWarriorObject: {fileID: 1266967318}
 --- !u!114 &233183272
 MonoBehaviour:
   m_ObjectHideFlags: 0
