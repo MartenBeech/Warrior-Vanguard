@@ -1,10 +1,10 @@
-public class Mortana : WarriorStats {
+public class ZombieHydra : WarriorStats {
     public static WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Mortana",
-            attack = 11,
-            health = 11,
-            cost = 11,
+            title = "Zombie Hydra",
+            attack = 12,
+            health = 8,
+            cost = 9,
             speed = 2,
             range = 2,
             numberOfAttacks = 1,
@@ -15,6 +15,9 @@ public class Mortana : WarriorStats {
         stats.defaultSpeed = stats.speed;
         stats.defaultRange = stats.range;
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
+
+        WarriorAbility ability = stats.ability;
+        ability.hydraSplit.Add();
 
         return stats;
     }

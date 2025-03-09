@@ -27,13 +27,13 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public void UpdateWarriorUI() {
-        if (attackText) attackText.text = $"{stats.attack}";
-        if (healthText) healthText.text = $"{stats.health}";
-        if (image) image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
+        attackText.text = $"{stats.attack}";
+        healthText.text = $"{stats.health}";
+        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
     }
 
     public void SetStats(WarriorStats warriorStats) {
-        this.stats = warriorStats;
+        stats = warriorStats;
         UpdateWarriorUI();
     }
 
@@ -109,46 +109,62 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             Character characterOnCell = gridManager.GetCellCharacter(position);
 
             if (characterOnCell && characterOnCell.alignment != alignment) {
-                Transform enemyTransform = characterOnCell.transform;
-                int damage = stats.attack;
-                AttackCharacter(damage, characterOnCell);
-                FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-                await floatingText.CreateFloatingText(enemyTransform, damage.ToString());
-                return;
+                await Attack(this, characterOnCell);
+                break;
             }
 
             if (IsOutOfField(position)) {
                 if (alignment == CharacterSpawner.Alignment.Enemy) {
                     Summoner friendSummoner = gameManager.friendSummonerObject.GetComponent<Summoner>();
                     await friendSummoner.Damage(this, stats.attack);
-                    return;
+                    break;
                 }
                 if (alignment == CharacterSpawner.Alignment.Friend) {
                     Summoner enemySummoner = gameManager.enemySummonerObject.GetComponent<Summoner>();
                     await enemySummoner.Damage(this, stats.attack);
-                    return;
+                    break;
                 }
             }
         }
+        EndTurn(this);
     }
 
-    private void AttackCharacter(int damage, Character target) {
-        if (damage == 0) return;
+    private async Task Attack(Character dealer, Character target) {
+        int damageDealt = await TakeDamage(target, dealer.stats.attack);
 
-        target.stats.health -= damage;
-        target.UpdateWarriorUI();
-        if (target.stats.health <= 0) {
-            KillCharacter(target);
+        if (damageDealt > 0) {
+            stats.ability.bloodlust.Trigger(this);
         }
-        stats.ability.bloodlust.Trigger(this);
+
+        dealer.stats.ability.poison.Trigger(target);
     }
 
-    private void KillCharacter(Character character) {
+    public async Task<int> TakeDamage(Character target, int damage) {
+        if (damage > 0) {
+            target.stats.health -= damage;
+            target.UpdateWarriorUI();
+            if (target.stats.health <= 0) {
+                Kill(target);
+            }
+        }
+
+        FloatingText floatingText = FindFirstObjectByType<FloatingText>();
+        await floatingText.CreateFloatingText(target.transform, damage.ToString());
+
+        return damage;
+    }
+
+    private void Kill(Character character) {
         character.stats.ability.revive.Trigger(character, gridManager, FindFirstObjectByType<CharacterSpawner>());
+        character.stats.ability.hydraSplit.Trigger(character, gridManager, FindFirstObjectByType<CharacterSpawner>());
 
         gameManager.RemoveCharacter(character);
         gridManager.RemoveCharacter(character);
         Destroy(character.gameObject);
+    }
+
+    private async Task EndTurn(Character character) {
+        await character.stats.ability.poisoned.Trigger(character);
     }
 
     private Vector2 GetFrontCellPosition(Vector2 currentPosition, Direction direction, int range = 1) {

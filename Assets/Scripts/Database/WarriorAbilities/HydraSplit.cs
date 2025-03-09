@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class Revive {
+public class HydraSplit {
     bool value = false;
 
     public void Add() {
@@ -12,11 +12,12 @@ public class Revive {
 
     public bool Trigger(Character character, GridManager gridManager, CharacterSpawner characterSpawner) {
         if (value) {
-            GridCell randomCell = gridManager.GetRandomEmptyDeploy();
-            character.stats.ResetStats();
-            character.stats.ability.revive.Remove();
+            for (int i = 0; i < 4; i++) {
+                GridCell randomCell = gridManager.GetRandomEmptyDeploy();
+                WarriorStats stats = HydraSerpent.GetStats();
 
-            characterSpawner.Spawn(randomCell.transform.position, character.stats, character.alignment, character.gridPosition);
+                characterSpawner.Spawn(randomCell.transform.position, stats, character.alignment, character.gridPosition);
+            }
             return true;
         }
         return false;
@@ -29,7 +30,7 @@ public class Revive {
 
     public string GetDescription() {
         if (!value) return "";
-        return $"{GetTitle()}On death: resummon this minion without {GetAbilityName()}";
+        return $"{GetTitle()}On death: Summon 4 3/2 Hydra Snakes";
     }
 
     string GetAbilityName() {

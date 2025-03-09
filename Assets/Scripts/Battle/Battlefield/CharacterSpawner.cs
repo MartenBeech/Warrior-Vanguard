@@ -50,7 +50,7 @@ public class CharacterSpawner : MonoBehaviour {
                 health = stats.health,
                 title = stats.title,
                 cost = stats.cost,
-                movementSpeed = stats.movementSpeed,
+                speed = stats.speed,
                 range = stats.range,
                 numberOfAttacks = stats.numberOfAttacks
             });
