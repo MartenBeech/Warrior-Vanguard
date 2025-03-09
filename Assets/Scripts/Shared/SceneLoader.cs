@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void LoadMap() {
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadScene("Map");
     }
 
