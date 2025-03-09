@@ -32,7 +32,7 @@ public class Hand : MonoBehaviour {
         characterSpawner.ActivateSpawn(CharacterSpawner.Alignment.Friend);
 
         GridManager gridManager = FindFirstObjectByType<GridManager>();
-        gridManager.HighlightDeployableCells();
+        gridManager.HighlightDeploys();
 
         card.GetComponent<Outline>().enabled = true;
 
@@ -42,7 +42,7 @@ public class Hand : MonoBehaviour {
         if (!card) return;
 
         GridManager gridManager = FindFirstObjectByType<GridManager>();
-        gridManager.ClearHighlightedDeployableCells();
+        gridManager.ClearHighlightedDeploys();
 
         selectedCard = null;
         card.GetComponent<Outline>().enabled = false;

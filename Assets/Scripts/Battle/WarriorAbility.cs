@@ -1,18 +1,15 @@
 public class WarriorAbility {
-    public enum Ability {
-        Bloodlust,  //Bloodlust X: After attacking, gain X strength
-        Revive,     //Revive: First time this dies, summon a copy
-    }
 
-    public string GetAbilityText(Card card) {
+    public Bloodlust bloodlust = new(); //Bloodlust X: After attacking, gain X strength
+    public Revive revive = new(); //Revive: First time this dies, summon a copy
+
+    public string GetAbilityText() {
         string returnValue = "";
 
-        if (card.stats.abilities.ContainsKey(Ability.Bloodlust)) {
-            returnValue += $"Bloodlust {card.stats.abilities[Ability.Bloodlust]}\n";
-        }
-        if (card.stats.abilities.ContainsKey(Ability.Revive)) {
-            returnValue += $"Revive\n";
-        }
+
+        returnValue += bloodlust.GetTitle();
+        returnValue += revive.GetTitle();
+
 
         return returnValue;
     }

@@ -3,17 +3,16 @@ public class Mario : WarriorStats {
         WarriorStats stats = new() {
             title = "Mario",
             attack = 2,
-            health = 10,
+            health = 4,
             cost = 1,
             movementSpeed = 2,
             range = 2,
             numberOfAttacks = 1,
         };
-
-        Bloodlust.Add(stats, 1);
-        Revive.Add(stats);
-
         stats.healthMax = stats.health;
+
+        stats.ability.bloodlust.Add(1);
+        stats.ability.revive.Add();
 
         return stats;
     }

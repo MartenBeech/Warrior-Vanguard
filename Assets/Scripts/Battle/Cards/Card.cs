@@ -19,8 +19,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         costText.text = $"{stats.cost}";
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
         titleText.text = $"{stats.title}";
-        WarriorAbility ability = new();
-        abilityText.text = ability.GetAbilityText(this);
+        abilityText.text = stats.ability.GetAbilityText();
     }
 
     public void SetStats(WarriorStats stats) {

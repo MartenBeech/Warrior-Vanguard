@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class Revive {
+public class CLASSNAMEBOOL {    // Update class name
     bool value = false;
 
     public void Add() {
@@ -10,13 +10,10 @@ public class Revive {
         value = false;
     }
 
-    public bool Trigger(Character character, GridManager gridManager, CharacterSpawner characterSpawner) {
+    public bool Trigger(Character character) {
         if (value) {
-            GridCell randomCell = gridManager.GetRandomEmptyDeploy();
-            WarriorStats stats = Mario.GetCard();
-            stats.ability.revive.Remove();
-
-            characterSpawner.Spawn(randomCell.transform.position, stats, character.alignment, character.gridPosition);
+            // Add trigger event here
+            character.UpdateWarriorUI();
             return true;
         }
         return false;
@@ -29,7 +26,7 @@ public class Revive {
 
     public string GetDescription() {
         if (!value) return "";
-        return $"{GetTitle()}On death: resummon this minion without {GetAbilityName()}";
+        return $"{GetTitle()}DESCRIPTION";  // Update description here
     }
 
     string GetAbilityName() {

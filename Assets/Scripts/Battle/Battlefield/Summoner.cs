@@ -32,7 +32,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (amount > 0) {
             stats.health -= amount;
             UpdateSummonerUI();
-            Bloodlust.Trigger(dealer);
+            dealer.stats.ability.bloodlust.Trigger(dealer);
         }
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         await floatingText.CreateFloatingText(transform, amount.ToString());

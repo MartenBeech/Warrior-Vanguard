@@ -12,6 +12,7 @@ public class GridManager : MonoBehaviour {
     private List<Character> allCharacters = new();
     public Vector2Int? SelectedCell { get; private set; }
     private GridLayoutGroup gridLayoutGroup;
+    public Transform EnemySummonerObject;
 
     void Start() {
         grid = new GridCell[columns, rows];
@@ -67,12 +68,12 @@ public class GridManager : MonoBehaviour {
         if (GetCellCharacter(selectedCellPos)) return;
 
         if (characterSpawner.getIsSpawning(CharacterSpawner.Alignment.Enemy)) {
-            characterSpawner.SpawnCharacter(selectedCellPos);
+            characterSpawner.Spawn(selectedCellPos, CardDatabase.Instance.allCards[1], CharacterSpawner.Alignment.Enemy, EnemySummonerObject.position);
             return;
         }
         if (hand == null || hand.selectedCard == null) return;
 
-        characterSpawner.SpawnCharacter(selectedCellPos);
+        characterSpawner.Spawn(selectedCellPos, hand.selectedCard.stats, CharacterSpawner.Alignment.Friend, hand.selectedCard.GetComponent<RectTransform>().position);
 
         Destroy(hand.selectedCard.gameObject);
         hand.DeselectCard(hand.selectedCard);
@@ -99,28 +100,43 @@ public class GridManager : MonoBehaviour {
         return null;
     }
 
-    public void HighlightCell(int x, int y) {
-        grid[x, y].GetComponent<Outline>().enabled = true;
-    }
-
-    public void ClearHighlightedCell(int x, int y) {
-        grid[x, y].GetComponent<Outline>().enabled = false;
-    }
-
-    public void HighlightDeployableCells() {
+    public List<GridCell> GetEmptyDeploys() {
+        List<GridCell> cells = new();
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < rows; y++) {
                 if (!GetCellCharacter(grid[x, y].transform.position)) {
-                    HighlightCell(x, y);
+                    cells.Add(grid[x, y]);
                 }
             }
         }
+        return cells;
     }
 
-    public void ClearHighlightedDeployableCells() {
+    public GridCell GetRandomEmptyDeploy() {
+        List<GridCell> cells = GetEmptyDeploys();
+        int randomIndex = Rng.Range(0, cells.Count);
+        return cells[randomIndex];
+    }
+
+    public void HighlightCell(GridCell cell) {
+        cell.GetComponent<Outline>().enabled = true;
+    }
+
+    public void ClearHighlightedCell(GridCell cell) {
+        cell.GetComponent<Outline>().enabled = false;
+    }
+
+    public void HighlightDeploys() {
+        List<GridCell> cells = GetEmptyDeploys();
+        for (int i = 0; i < cells.Count; i++) {
+            HighlightCell(cells[i]);
+        }
+    }
+
+    public void ClearHighlightedDeploys() {
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < rows; y++) {
-                ClearHighlightedCell(x, y);
+                ClearHighlightedCell(grid[x, y]);
             }
         }
     }

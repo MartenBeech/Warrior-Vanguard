@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class Bloodlust {
+public class CLASSNAMEINT {     // Update class name
     int value = 0;
 
     public void Add(int amount) {
@@ -19,7 +19,7 @@ public class Bloodlust {
 
     public bool Trigger(Character character) {
         if (value > 0) {
-            character.stats.attack += value;
+            // Add trigger event here
             character.UpdateWarriorUI();
             return true;
         }
@@ -33,7 +33,7 @@ public class Bloodlust {
 
     public string GetDescription() {
         if (value == 0) return "";
-        return $"{GetTitle()}After attacking, gain +{value} Strength";
+        return $"{GetTitle()}DESCRIPTION";  // Update description here
     }
 
     string GetAbilityName() {

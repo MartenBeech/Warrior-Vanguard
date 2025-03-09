@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class CardDatabase : MonoBehaviour {
-    public List<WarriorStats> allCards = new List<WarriorStats>();
+    public List<WarriorStats> allCards = new();
 
     public static CardDatabase Instance;
 
@@ -15,6 +15,6 @@ public class CardDatabase : MonoBehaviour {
     }
 
     public WarriorStats GetRandomWarriorStats() {
-        return allCards[Random.Range(0, allCards.Count)];
+        return allCards[Rng.Range(0, allCards.Count)];
     }
 }

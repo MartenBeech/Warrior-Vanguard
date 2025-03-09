@@ -9,7 +9,6 @@ public class Luigi : WarriorStats {
             range = 2,
             numberOfAttacks = 1,
         };
-
         stats.healthMax = stats.health;
 
         return stats;
