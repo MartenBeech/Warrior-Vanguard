@@ -12,7 +12,7 @@ public class HydraSplit {
 
     public bool Trigger(Character character, GridManager gridManager, CharacterSpawner characterSpawner) {
         if (value) {
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 3; i++) {
                 GridCell randomCell = gridManager.GetRandomEmptyDeploy();
                 if (!randomCell) break;
 
@@ -32,7 +32,7 @@ public class HydraSplit {
 
     public string GetDescription() {
         if (!value) return "";
-        return $"{GetTitle()}On death: Summon 4 3/2 Hydra Snakes";
+        return $"{GetTitle()}On death: Summon 3 2/2 Hydra Serpents";
     }
 
     string GetAbilityName() {

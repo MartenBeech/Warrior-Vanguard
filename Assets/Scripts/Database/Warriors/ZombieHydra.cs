@@ -2,8 +2,8 @@ public class ZombieHydra : WarriorStats {
     public static WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = "Zombie Hydra",
-            attack = 12,
-            health = 8,
+            attack = 6,
+            health = 6,
             cost = 9,
             speed = 2,
             range = 2,
@@ -18,6 +18,7 @@ public class ZombieHydra : WarriorStats {
 
         WarriorAbility ability = stats.ability;
         ability.hydraSplit.Add();
+        ability.revive.Add();
 
         return stats;
     }

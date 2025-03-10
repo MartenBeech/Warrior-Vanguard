@@ -155,11 +155,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     private void Kill(Character character) {
+        gameManager.RemoveCharacter(character);
+        gridManager.RemoveCharacter(character);
+
         character.stats.ability.revive.Trigger(character, gridManager, FindFirstObjectByType<CharacterSpawner>());
         character.stats.ability.hydraSplit.Trigger(character, gridManager, FindFirstObjectByType<CharacterSpawner>());
 
-        gameManager.RemoveCharacter(character);
-        gridManager.RemoveCharacter(character);
         Destroy(character.gameObject);
     }
 

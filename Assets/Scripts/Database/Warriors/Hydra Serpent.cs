@@ -2,7 +2,7 @@ public class HydraSerpent : WarriorStats {
     public static WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = "Hydra Serpent",
-            attack = 3,
+            attack = 2,
             health = 2,
             cost = 1,
             speed = 2,
@@ -15,8 +15,6 @@ public class HydraSerpent : WarriorStats {
         stats.defaultSpeed = stats.speed;
         stats.defaultRange = stats.range;
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
-
-        WarriorAbility ability = stats.ability;
 
         return stats;
     }
