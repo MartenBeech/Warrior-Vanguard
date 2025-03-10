@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CreditsScroll : MonoBehaviour {
+public class CreditsManager : MonoBehaviour {
     public RectTransform creditsText;
     public float scrollSpeed = 50f;
 
@@ -16,5 +16,9 @@ public class CreditsScroll : MonoBehaviour {
         if (creditsText.anchoredPosition.y < endY) {
             creditsText.anchoredPosition += new Vector2(0, scrollSpeed * Time.deltaTime);
         }
+    }
+
+    public void LoadMainMenu() {
+        SceneLoader.LoadMainMenu();
     }
 }

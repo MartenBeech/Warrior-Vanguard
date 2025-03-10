@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 101458986}
   - component: {fileID: 101458985}
   m_Layer: 5
-  m_Name: Image
+  m_Name: TileConnecterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 454935290}
   - component: {fileID: 454935289}
   m_Layer: 5
-  m_Name: Image (6)
+  m_Name: TileConnecterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -741,7 +741,7 @@ GameObject:
   - component: {fileID: 525421258}
   - component: {fileID: 525421257}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: TileConnecterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1045,6 +1045,7 @@ MonoBehaviour:
   - {fileID: 1892796518}
   tileButton: {fileID: 746864884}
   checkmark: {fileID: 779700524}
+  tileType: 0
 --- !u!114 &746864884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1240,6 +1241,7 @@ MonoBehaviour:
   - {fileID: 1923965228}
   tileButton: {fileID: 788252602}
   checkmark: {fileID: 1843863737}
+  tileType: 0
 --- !u!224 &788252601
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1506,7 +1508,7 @@ GameObject:
   - component: {fileID: 821702796}
   - component: {fileID: 821702795}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: TileConnecterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2087,6 +2089,7 @@ MonoBehaviour:
   nextTiles: []
   tileButton: {fileID: 1162429641}
   checkmark: {fileID: 1068383063}
+  tileType: 0
 --- !u!224 &1162429640
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2201,7 +2204,7 @@ GameObject:
   - component: {fileID: 1280037843}
   - component: {fileID: 1280037842}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: TileConnecterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2405,6 +2408,7 @@ MonoBehaviour:
   - {fileID: 788252600}
   tileButton: {fileID: 1309670868}
   checkmark: {fileID: 2060305087}
+  tileType: 0
 --- !u!1 &1369216139
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,7 +2513,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7277215093650894194, guid: 66cce1b49abdff24fa814894bfe95b71, type: 3}
+  m_Sprite: {fileID: 7886631795410796208, guid: 5a57040966c7a6f4a8e4b3f2f0f6bec0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2545,6 +2549,7 @@ MonoBehaviour:
   - {fileID: 746864883}
   tileButton: {fileID: 1369216141}
   checkmark: {fileID: 436561163}
+  tileType: 1
 --- !u!1 &1419161682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,6 +2689,7 @@ MonoBehaviour:
   nextTiles: []
   tileButton: {fileID: 1419161684}
   checkmark: {fileID: 447501523}
+  tileType: 0
 --- !u!1 &1540581548
 GameObject:
   m_ObjectHideFlags: 0
@@ -3085,7 +3091,7 @@ GameObject:
   - component: {fileID: 1863363971}
   - component: {fileID: 1863363970}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: TileConnecterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3287,6 +3293,7 @@ MonoBehaviour:
   nextTiles: []
   tileButton: {fileID: 1892796515}
   checkmark: {fileID: 1766789158}
+  tileType: 0
 --- !u!1 &1923965223
 GameObject:
   m_ObjectHideFlags: 0
@@ -3427,6 +3434,7 @@ MonoBehaviour:
   - {fileID: 1162429639}
   tileButton: {fileID: 1923965225}
   checkmark: {fileID: 64910777}
+  tileType: 0
 --- !u!1 &2011865115
 GameObject:
   m_ObjectHideFlags: 0
@@ -3576,7 +3584,7 @@ GameObject:
   - component: {fileID: 2055395176}
   - component: {fileID: 2055395175}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: TileConnecterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

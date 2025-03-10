@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Threading.Tasks;
-using UnityEngine.SceneManagement;
 
 public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public SummonerStats stats = new();
@@ -39,7 +38,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (stats.health <= 0) {
             LevelManager.CompleteLevel();
-            SceneManager.LoadScene("Map");
+            SceneLoader.LoadMap();
         }
     }
 
