@@ -13,10 +13,11 @@ public class DeckBuilder : MonoBehaviour {
 
     private void Start() {
         deckViewPanel.SetActive(false);
-        //Start with 20 random cards
-        for (int i = 0; i < 20; i++) {
+        List<WarriorStats> deckStats = DeckManager.GetDeck();
+
+        foreach (WarriorStats stat in deckStats) {
             Card card = new();
-            card.SetStats(CardDatabase.Instance.GetRandomWarriorStats());
+            card.SetStats(stat);
             AddCardToDeck(card);
         }
     }

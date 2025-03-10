@@ -9,14 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: c18ef7f896e8bdc40b347c069d5267a7
   - enabled: 1
-    path: Assets/Scenes/Battlefield.unity
+    path: Assets/Scenes/Map.unity
+    guid: d305444c90bc4bd4684c81bf1906c865
+  - enabled: 1
+    path: Assets/Scenes/BattleField.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 99919760f1ddca94d999f10cf837b7e1
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 7198c6cf769220d4c8a0d5d7ffe65bc7
-  - enabled: 1
-    path: Assets/Scenes/Map.unity
-    guid: d305444c90bc4bd4684c81bf1906c865
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

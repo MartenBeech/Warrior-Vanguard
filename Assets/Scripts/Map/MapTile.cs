@@ -1,23 +1,27 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MapTile : MonoBehaviour {
-    public bool isUnlocked  = false;
+    public bool isUnlocked = false;
     public bool isCompleted = false;
     public MapTile[] nextTiles;
     public Button tileButton;
     public GameObject checkmark;
+    public TileType tileType;
 
+    public enum TileType {
+        Battlefield,
+        Shop
+    }
 
     private void Start() {
         tileButton = GetComponent<Button>();
         UpdateTileAccess();
-        tileButton.onClick.AddListener(GoToBattlefield);
+        tileButton.onClick.AddListener(TileClicked);
     }
 
     public void SetUnlocked(bool state) {
-        isUnlocked  = state;
+        isUnlocked = state;
         tileButton.interactable = state;
     }
 
@@ -31,30 +35,33 @@ public class MapTile : MonoBehaviour {
         checkmark.SetActive(false);
     }
 
-    public void GoToBattlefield() {
-        if (isUnlocked ) {
-            TileManager tileManager = FindFirstObjectByType<TileManager>();
-            tileManager.ClearLastCompleted();
-            tileManager.MarkTileAsCompleted(this);
-            LevelManager.SetCurrentTile(this);
-            SceneManager.LoadScene("Battlefield");
-        }
-    }
-
-    public void UnlockNextTiles()
-    {
-        foreach (MapTile tile in nextTiles)
-        {
+    public void UnlockNextTiles() {
+        foreach (MapTile tile in nextTiles) {
             tile.isUnlocked = true;
             tile.UpdateTileAccess();
         }
     }
 
-    public void UpdateTileAccess()
-    {
+    public void UpdateTileAccess() {
         if (isUnlocked)
             tileButton.interactable = true;
         else
             tileButton.interactable = false;
+    }
+
+    private void TileClicked() {
+        TileManager tileManager = FindFirstObjectByType<TileManager>();
+        tileManager.ClearLastCompleted();
+        tileManager.MarkTileAsCompleted(this);
+        LevelManager.SetCurrentTile(this);
+
+        switch (tileType) {
+            case TileType.Battlefield:
+                SceneLoader.LoadBattlefield();
+                break;
+            case TileType.Shop:
+                SceneLoader.LoadShop();
+                break;
+        }
     }
 }
