@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class CLASSNAMEBOOL {    // Update class name
+public class CLASSNAMEBOOL {
     bool value = false;
 
     public void Add() {
@@ -26,7 +26,7 @@ public class CLASSNAMEBOOL {    // Update class name
 
     public string GetDescription() {
         if (!value) return "";
-        return $"{GetTitle()}DESCRIPTION";  // Update description here
+        return $"DESCRIPTION";
     }
 
     string GetAbilityName() {

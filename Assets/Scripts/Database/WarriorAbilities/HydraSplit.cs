@@ -32,7 +32,7 @@ public class HydraSplit {
 
     public string GetDescription() {
         if (!value) return "";
-        return $"{GetTitle()}On death: Summon 3 2/2 Hydra Serpents";
+        return $"{WarriorAbility.Keywords.Death}: Summon 3 2/2 Hydra Serpents";
     }
 
     string GetAbilityName() {

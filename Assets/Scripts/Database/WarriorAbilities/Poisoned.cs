@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class Poisoned {     // Update class name
+public class Poisoned {
     int value = 0;
 
     public void Add(int amount) {
@@ -35,7 +35,7 @@ public class Poisoned {     // Update class name
 
     public string GetDescription() {
         if (value == 0) return "";
-        return $"{GetTitle()}End turn: Take {value} magic damage";  // Update description here
+        return $"{WarriorAbility.Keywords.Overturn}: Take {value} magic damage";
     }
 
     string GetAbilityName() {

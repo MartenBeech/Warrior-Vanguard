@@ -31,7 +31,7 @@ public class Revive {
 
     public string GetDescription() {
         if (!value) return "";
-        return $"{GetTitle()}On death: resummon this minion without {GetAbilityName()}";
+        return $"{WarriorAbility.Keywords.Death}: Resummon this without {GetAbilityName()}";
     }
 
     string GetAbilityName() {

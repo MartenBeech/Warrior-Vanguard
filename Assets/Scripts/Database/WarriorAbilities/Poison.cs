@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class Poison {     // Update class name
+public class Poison {
     int value = 0;
 
     public void Add(int amount) {
@@ -33,7 +33,7 @@ public class Poison {     // Update class name
 
     public string GetDescription() {
         if (value == 0) return "";
-        return $"{GetTitle()}On attack: Apply {value} Poison";  // Update description here
+        return $"{WarriorAbility.Keywords.Attack}: Apply {value} Poison";
     }
 
     string GetAbilityName() {

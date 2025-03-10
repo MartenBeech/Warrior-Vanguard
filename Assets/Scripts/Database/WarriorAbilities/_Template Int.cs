@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class CLASSNAMEINT {     // Update class name
+public class CLASSNAMEINT {
     int value = 0;
 
     public void Add(int amount) {
@@ -33,7 +33,7 @@ public class CLASSNAMEINT {     // Update class name
 
     public string GetDescription() {
         if (value == 0) return "";
-        return $"{GetTitle()}DESCRIPTION";  // Update description here
+        return $"DESCRIPTION";
     }
 
     string GetAbilityName() {

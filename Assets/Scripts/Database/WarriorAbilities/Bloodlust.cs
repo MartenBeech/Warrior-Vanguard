@@ -33,7 +33,7 @@ public class Bloodlust {
 
     public string GetDescription() {
         if (value == 0) return "";
-        return $"{GetTitle()}After attacking, gain +{value} Strength";
+        return $"{WarriorAbility.Keywords.Attack}: Gain +{value} Strength";
     }
 
     string GetAbilityName() {
