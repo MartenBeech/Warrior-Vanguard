@@ -8,13 +8,13 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public SummonerStats stats = new();
     public GameObject healthText;
     public GameObject image;
-    public TooltipHandler tooltipHandler;
+    public TooltipManager tooltipManager;
     public void OnPointerEnter(PointerEventData eventData) {
-        tooltipHandler.ShowTooltip(stats.title, stats.description);
+        tooltipManager.AddTooltip(stats.title, stats.description);
     }
 
     public void OnPointerExit(PointerEventData eventData) {
-        tooltipHandler.HideTooltip();
+        tooltipManager.RemoveTooltips();
     }
 
     public void UpdateSummonerUI() {
