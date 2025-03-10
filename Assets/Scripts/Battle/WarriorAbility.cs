@@ -36,7 +36,7 @@ public class WarriorAbility {
             MethodInfo descriptionMethod = abilityInstance.GetType().GetMethod("GetDescription");
             string description = (string)descriptionMethod.Invoke(abilityInstance, null);
 
-            tooltipManager.AddTooltip(title, description);
+            tooltipManager.AddTooltip(title, description, 0.5f);
         }
     }
 }

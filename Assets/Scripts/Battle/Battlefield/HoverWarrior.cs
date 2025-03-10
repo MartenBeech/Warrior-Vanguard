@@ -5,8 +5,8 @@ public class HoverWarrior : MonoBehaviour {
     public GameObject cardObject;
     public TooltipManager tooltipManager;
 
-    float battlefieldCardOffset = 200;
-    float cardTooltipOffset = 300;
+    const float battlefieldCardOffset = 200;
+    const float cardTooltipOffset = 300;
 
     public void UpdateCardUI(WarriorStats stats) {
         Card card = cardObject.GetComponent<Card>();
@@ -16,8 +16,14 @@ public class HoverWarrior : MonoBehaviour {
 
     public void ShowCardFromBattlefield(WarriorStats stats, Vector2 position) {
         UpdateCardUI(stats);
-        hoverPanel.transform.position = new Vector2(position.x + battlefieldCardOffset, position.y);
-        tooltipManager.transform.position = new Vector2(position.x + battlefieldCardOffset + cardTooltipOffset, position.y);
+        float battlefieldCardOffsetCopy = battlefieldCardOffset;
+        float cardTooltipOffsetCopy = cardTooltipOffset;
+        if (position.x > 0) {
+            battlefieldCardOffsetCopy *= -1;
+            cardTooltipOffsetCopy *= -1;
+        }
+        hoverPanel.transform.position = new Vector2(position.x + battlefieldCardOffsetCopy, position.y);
+        tooltipManager.transform.position = new Vector2(position.x + battlefieldCardOffsetCopy + cardTooltipOffsetCopy, position.y);
         cardObject.SetActive(true);
         DisplayTooltips(stats);
     }
