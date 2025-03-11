@@ -39,7 +39,6 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (stats.health <= 0) {
             LevelManager.CompleteLevel();
-            SceneLoader.LoadMap();
         }
     }
 
