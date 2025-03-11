@@ -1,8 +1,9 @@
 public class WarriorStats {
     public string title = "";
 
-    public int attack = 0;
+    public int strength = 0;
     public int health = 0;
+    public int healthMax = 0;
     public int cost = 0;
     public int speed = 2;
     public int range = 2;
@@ -20,8 +21,9 @@ public class WarriorStats {
     public void SetStats(WarriorStats stats) {
         title = stats.title;
 
-        attack = stats.attack;
+        strength = stats.strength;
         health = stats.health;
+        healthMax = stats.healthMax;
         cost = stats.cost;
         speed = stats.speed;
         range = stats.range;
@@ -38,8 +40,9 @@ public class WarriorStats {
     }
 
     public WarriorStats ResetStats() {
-        attack = defaultAttack;
+        strength = defaultAttack;
         health = defaultHealth;
+        healthMax = defaultHealth;
         cost = defaultCost;
         speed = defaultSpeed;
         range = defaultRange;

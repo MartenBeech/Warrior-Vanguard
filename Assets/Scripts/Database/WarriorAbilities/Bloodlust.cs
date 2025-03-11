@@ -19,7 +19,7 @@ public class Bloodlust {
 
     public bool Trigger(Character character) {
         if (value > 0) {
-            character.stats.attack += value;
+            character.stats.strength += value;
             character.UpdateWarriorUI();
             return true;
         }
@@ -28,7 +28,7 @@ public class Bloodlust {
 
     public string GetTitle() {
         if (value == 0) return "";
-        return $"{GetAbilityName()} {value}\n";
+        return $"{GetAbilityName()}: {value}\n";
     }
 
     public string GetDescription() {

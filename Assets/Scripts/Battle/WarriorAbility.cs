@@ -1,7 +1,7 @@
 using System.Reflection;
 public class WarriorAbility {
     public enum Keywords {
-        Attack, Death, Overturn,
+        Attack, Death, Overturn, Strike, Summon
     }
 
     public Bloodlust bloodlust = new();
@@ -9,6 +9,9 @@ public class WarriorAbility {
     public HydraSplit hydraSplit = new();
     public Poison poison = new();
     public Poisoned poisoned = new();
+    public LifeSteal lifeSteal = new();
+    public Weaken weaken = new();
+    public Retaliate retaliate = new();
 
     public string GetAbilityText() {
         string returnValue = "";

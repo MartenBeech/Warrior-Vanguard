@@ -1,15 +1,17 @@
-public class ZombieMinion : WarriorStats {
-    public static WarriorStats GetStats() {
+using System.Text.RegularExpressions;
+public class TheOriginal {
+    public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Zombie Minion",
-            attack = 2,
-            health = 1,
-            cost = 1,
+            title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
+            cost = 8,
+            strength = 3,
+            health = 15,
             speed = 2,
             range = 2,
             numberOfAttacks = 1,
         };
-        stats.defaultAttack = stats.attack;
+        stats.healthMax = stats.health;
+        stats.defaultAttack = stats.strength;
         stats.defaultHealth = stats.health;
         stats.defaultCost = stats.cost;
         stats.defaultSpeed = stats.speed;
@@ -17,7 +19,8 @@ public class ZombieMinion : WarriorStats {
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
         WarriorAbility ability = stats.ability;
-        ability.revive.Add();
+        ability.lifeSteal.Add();
+        ability.retaliate.Add();
 
         return stats;
     }

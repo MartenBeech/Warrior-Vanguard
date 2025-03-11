@@ -2,14 +2,14 @@ public class Luigi : WarriorStats {
     public static WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = "Green Mario",
-            attack = 2,
+            strength = 2,
             health = 10,
             cost = 1,
             speed = 2,
             range = 2,
             numberOfAttacks = 1,
         };
-        stats.defaultAttack = stats.attack;
+        stats.defaultAttack = stats.strength;
         stats.defaultHealth = stats.health;
         stats.defaultCost = stats.cost;
         stats.defaultSpeed = stats.speed;

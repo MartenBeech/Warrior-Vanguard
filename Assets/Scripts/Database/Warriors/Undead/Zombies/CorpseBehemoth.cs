@@ -1,15 +1,17 @@
-public class CorpseBehemoth : WarriorStats {
-    public static WarriorStats GetStats() {
+using System.Text.RegularExpressions;
+public class CorpseBehemoth {
+    public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Corpse Behemoth",
-            attack = 5,
-            health = 7,
+            title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 7,
+            strength = 5,
+            health = 7,
             speed = 2,
             range = 2,
             numberOfAttacks = 1,
         };
-        stats.defaultAttack = stats.attack;
+        stats.healthMax = stats.health;
+        stats.defaultAttack = stats.strength;
         stats.defaultHealth = stats.health;
         stats.defaultCost = stats.cost;
         stats.defaultSpeed = stats.speed;

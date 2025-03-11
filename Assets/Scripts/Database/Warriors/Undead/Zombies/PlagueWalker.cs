@@ -1,15 +1,17 @@
-public class ZombieHydra : WarriorStats {
-    public static WarriorStats GetStats() {
+using System.Text.RegularExpressions;
+public class PlagueWalker {
+    public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Zombie Hydra",
-            attack = 6,
-            health = 6,
-            cost = 9,
+            title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
+            cost = 4,
+            strength = 2,
+            health = 5,
             speed = 2,
             range = 2,
             numberOfAttacks = 1,
         };
-        stats.defaultAttack = stats.attack;
+        stats.healthMax = stats.health;
+        stats.defaultAttack = stats.strength;
         stats.defaultHealth = stats.health;
         stats.defaultCost = stats.cost;
         stats.defaultSpeed = stats.speed;
@@ -17,8 +19,8 @@ public class ZombieHydra : WarriorStats {
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
         WarriorAbility ability = stats.ability;
-        ability.hydraSplit.Add();
         ability.revive.Add();
+        ability.poison.Add(2);
 
         return stats;
     }

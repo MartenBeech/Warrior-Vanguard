@@ -6,13 +6,10 @@ public class ColorPalette {
     }
 
     public Color GetColor(ColorEnum color) {
-        switch (color) {
-            case ColorEnum.red:
-                return Color.HSVToRGB(0 / 360, 1f, 1f);
-            case ColorEnum.green:
-                return Color.HSVToRGB(120 / 360, 1f, 1f);
-            default:
-                return Color.white;
-        }
+        return color switch {
+            ColorEnum.red => Color.HSVToRGB(0 / 360f, 1f, 1f),
+            ColorEnum.green => Color.HSVToRGB(120 / 360f, 1f, 1f),
+            _ => Color.white,
+        };
     }
 }

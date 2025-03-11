@@ -14,12 +14,21 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     HoverWarrior hoverWarrior;
 
     public void UpdateCardUi() {
-        attackText.text = $"{stats.attack}";
+        attackText.text = $"{stats.strength}";
         healthText.text = $"{stats.health}";
         costText.text = $"{stats.cost}";
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
         titleText.text = $"{stats.title}";
-        abilityText.text = stats.ability.GetAbilityText();
+
+        string abilities = "";
+        if (stats.range != 2) {
+            abilities += $"Range: {stats.range}\n";
+        }
+        if (stats.speed != 2) {
+            abilities += $"Speed: {stats.speed}\n";
+        }
+        abilities += stats.ability.GetAbilityText();
+        abilityText.text = abilities;
     }
 
     public void SetStats(WarriorStats stats) {

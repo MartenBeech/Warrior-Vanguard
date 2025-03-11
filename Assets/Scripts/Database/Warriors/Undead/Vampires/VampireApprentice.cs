@@ -1,13 +1,13 @@
 using System.Text.RegularExpressions;
-public class CLASSNAMEWARRIOR {
+public class VampireApprentice {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
-            cost = 0,
-            strength = 0,
-            health = 0,
+            cost = 2,
+            strength = 1,
+            health = 5,
             speed = 2,
-            range = 2,
+            range = 4,
             numberOfAttacks = 1,
         };
         stats.healthMax = stats.health;
@@ -19,6 +19,8 @@ public class CLASSNAMEWARRIOR {
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
         WarriorAbility ability = stats.ability;
+        ability.lifeSteal.Add();
+        ability.weaken.Add(1);
 
         return stats;
     }

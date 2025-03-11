@@ -1,20 +1,25 @@
-public class HydraSerpent : WarriorStats {
-    public static WarriorStats GetStats() {
+using System.Text.RegularExpressions;
+public class ZombieMinion {
+    public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Hydra Serpent",
-            attack = 2,
-            health = 2,
+            title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 1,
+            strength = 2,
+            health = 1,
             speed = 2,
             range = 2,
             numberOfAttacks = 1,
         };
-        stats.defaultAttack = stats.attack;
+        stats.healthMax = stats.health;
+        stats.defaultAttack = stats.strength;
         stats.defaultHealth = stats.health;
         stats.defaultCost = stats.cost;
         stats.defaultSpeed = stats.speed;
         stats.defaultRange = stats.range;
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
+
+        WarriorAbility ability = stats.ability;
+        ability.revive.Add();
 
         return stats;
     }

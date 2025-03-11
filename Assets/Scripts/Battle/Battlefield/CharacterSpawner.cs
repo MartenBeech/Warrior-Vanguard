@@ -44,7 +44,7 @@ public class CharacterSpawner : MonoBehaviour {
         } else {
             //Creates new instance of the card stats to avoid modifying the original card stats
             character.SetStats(new WarriorStats {
-                attack = stats.attack,
+                strength = stats.strength,
                 health = stats.health,
                 title = stats.title,
                 cost = stats.cost,

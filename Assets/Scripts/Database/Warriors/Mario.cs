@@ -2,22 +2,23 @@ public class Mario : WarriorStats {
     public static WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = "Mario",
-            attack = 2,
+            strength = 2,
             health = 4,
             cost = 1,
-            speed = 2,
-            range = 2,
+            speed = 3,
+            range = 3,
             numberOfAttacks = 1,
         };
-        stats.defaultAttack = stats.attack;
+        stats.healthMax = stats.health;
+        stats.defaultAttack = stats.strength;
         stats.defaultHealth = stats.health;
         stats.defaultCost = stats.cost;
         stats.defaultSpeed = stats.speed;
         stats.defaultRange = stats.range;
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
-        stats.ability.bloodlust.Add(1);
-        stats.ability.revive.Add();
+        stats.ability.lifeSteal.Add();
+        stats.ability.retaliate.Add();
 
         return stats;
     }

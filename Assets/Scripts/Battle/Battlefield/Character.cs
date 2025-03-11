@@ -27,7 +27,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public void UpdateWarriorUI() {
-        attackText.text = $"{stats.attack}";
+        attackText.text = $"{stats.strength}";
         healthText.text = $"{stats.health}";
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
     }
@@ -109,19 +109,19 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             Character characterOnCell = gridManager.GetCellCharacter(position);
 
             if (characterOnCell && characterOnCell.alignment != alignment) {
-                await Attack(this, characterOnCell);
+                await Attack(characterOnCell);
                 break;
             }
 
             if (IsOutOfField(position)) {
                 if (alignment == CharacterSpawner.Alignment.Enemy) {
                     Summoner friendSummoner = gameManager.friendSummonerObject.GetComponent<Summoner>();
-                    await friendSummoner.Damage(this, stats.attack);
+                    await friendSummoner.Damage(this, stats.strength);
                     break;
                 }
                 if (alignment == CharacterSpawner.Alignment.Friend) {
                     Summoner enemySummoner = gameManager.enemySummonerObject.GetComponent<Summoner>();
-                    await enemySummoner.Damage(this, stats.attack);
+                    await enemySummoner.Damage(this, stats.strength);
                     break;
                 }
             }
@@ -129,14 +129,25 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await EndTurn(this);
     }
 
-    private async Task Attack(Character dealer, Character target) {
-        int damageDealt = await TakeDamage(target, dealer.stats.attack);
+    public async Task Attack(Character target) {
+        stats.ability.weaken.Trigger(target);
+        stats.ability.bloodlust.Trigger(this);
 
-        if (damageDealt > 0) {
-            stats.ability.bloodlust.Trigger(this);
+        await Strike(target);
+
+        await target.stats.ability.retaliate.Trigger(target, this);
+    }
+
+    public async Task Strike(Character target) {
+        stats.ability.poison.Trigger(target);
+
+        int damage = stats.strength;
+
+        await TakeDamage(target, damage);
+
+        if (damage > 0) {
+            await stats.ability.lifeSteal.Trigger(this, damage);
         }
-
-        dealer.stats.ability.poison.Trigger(target);
     }
 
     public async Task<int> TakeDamage(Character target, int damage) {
@@ -152,6 +163,17 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await floatingText.CreateFloatingText(target.transform, damage.ToString());
 
         return damage;
+    }
+
+    public async Task Heal(Character target, int amount) {
+        target.stats.health += amount;
+        if (target.stats.health > target.stats.healthMax) {
+            target.stats.health = target.stats.healthMax;
+        }
+        target.UpdateWarriorUI();
+
+        FloatingText floatingText = FindFirstObjectByType<FloatingText>();
+        await floatingText.CreateFloatingText(target.transform, amount.ToString(), ColorPalette.ColorEnum.green);
     }
 
     private void Kill(Character character) {

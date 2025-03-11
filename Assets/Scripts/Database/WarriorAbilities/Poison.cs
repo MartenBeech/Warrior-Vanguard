@@ -28,12 +28,12 @@ public class Poison {
 
     public string GetTitle() {
         if (value == 0) return "";
-        return $"{GetAbilityName()} {value}\n";
+        return $"{GetAbilityName()}: {value}\n";
     }
 
     public string GetDescription() {
         if (value == 0) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Apply {value} Poison";
+        return $"{WarriorAbility.Keywords.Strike}: Apply {value} Poison";
     }
 
     string GetAbilityName() {

@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class CLASSNAMEINT {
+public class Weaken {
     int value = 0;
 
     public void Add(int amount) {
@@ -17,10 +17,10 @@ public class CLASSNAMEINT {
         }
     }
 
-    public bool Trigger(Character character) {
+    public bool Trigger(Character target) {
         if (value > 0) {
-            // Add trigger event here
-            character.UpdateWarriorUI();
+            target.stats.strength -= value;
+            target.UpdateWarriorUI();
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ public class CLASSNAMEINT {
 
     public string GetDescription() {
         if (value == 0) return "";
-        return $"DESCRIPTION";
+        return $"{WarriorAbility.Keywords.Attack}: Reduce the target's strength by {value}";
     }
 
     string GetAbilityName() {

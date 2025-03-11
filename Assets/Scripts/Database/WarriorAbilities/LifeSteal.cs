@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
-public class HydraSplit {
+using System.Threading.Tasks;
+public class LifeSteal {
     bool value = false;
 
     public void Add() {
@@ -10,16 +11,9 @@ public class HydraSplit {
         value = false;
     }
 
-    public bool Trigger(Character character, GridManager gridManager, CharacterSpawner characterSpawner) {
+    public async Task<bool> Trigger(Character character, int damage) {
         if (value) {
-            for (int i = 0; i < 3; i++) {
-                GridCell randomCell = gridManager.GetRandomEmptyDeploy();
-                if (!randomCell) break;
-
-                WarriorStats stats = new HydraSerpent().GetStats();
-
-                characterSpawner.Spawn(randomCell.transform.position, stats, character.alignment, character.gridPosition);
-            }
+            await character.Heal(character, damage);
             return true;
         }
         return false;
@@ -32,7 +26,7 @@ public class HydraSplit {
 
     public string GetDescription() {
         if (!value) return "";
-        return $"{WarriorAbility.Keywords.Death}: Summon 3 2/2 Hydra Serpents";
+        return $"{WarriorAbility.Keywords.Strike}: Heal equal to damage dealt";
     }
 
     string GetAbilityName() {

@@ -30,7 +30,7 @@ public class Poisoned {
 
     public string GetTitle() {
         if (value == 0) return "";
-        return $"{GetAbilityName()} {value}\n";
+        return $"{GetAbilityName()}: {value}\n";
     }
 
     public string GetDescription() {
