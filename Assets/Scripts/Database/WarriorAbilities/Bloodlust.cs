@@ -19,7 +19,7 @@ public class Bloodlust {
 
     public bool Trigger(Character character) {
         if (value > 0) {
-            character.stats.strength += value;
+            character.stats.AddStrength(value);
             character.UpdateWarriorUI();
             return true;
         }

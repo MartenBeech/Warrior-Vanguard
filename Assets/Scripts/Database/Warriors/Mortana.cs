@@ -2,15 +2,17 @@ public class Mortana : WarriorStats {
     public static WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = "Mortana",
-            strength = 11,
-            health = 11,
+            strength = new int[] { 11, 11 },
+            health = new int[] { 11, 11 },
             cost = 11,
             speed = 2,
             range = 2,
-            numberOfAttacks = 1,
         };
-        stats.defaultAttack = stats.strength;
-        stats.defaultHealth = stats.health;
+        for (int i = 0; i < 2; i++) {
+            stats.healthMax[i] = stats.health[i];
+            stats.defaultStrength[i] = stats.strength[i];
+            stats.defaultHealth[i] = stats.health[i];
+        }
         stats.defaultCost = stats.cost;
         stats.defaultSpeed = stats.speed;
         stats.defaultRange = stats.range;

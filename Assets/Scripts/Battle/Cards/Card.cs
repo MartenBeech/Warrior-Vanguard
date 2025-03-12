@@ -14,8 +14,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     HoverWarrior hoverWarrior;
 
     public void UpdateCardUi() {
-        attackText.text = $"{stats.strength}";
-        healthText.text = $"{stats.health}";
+        attackText.text = $"{stats.GetStrength()}";
+        healthText.text = $"{stats.GetHealth()}";
         costText.text = $"{stats.cost}";
         string cleanTitle = stats.title.Replace("+", string.Empty);
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{cleanTitle}");

@@ -27,8 +27,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public void UpdateWarriorUI() {
-        attackText.text = $"{stats.strength}";
-        healthText.text = $"{stats.health}";
+        attackText.text = $"{stats.GetStrength()}";
+        healthText.text = $"{stats.GetHealth()}";
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
     }
 
@@ -116,12 +116,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             if (IsOutOfField(position)) {
                 if (alignment == CharacterSpawner.Alignment.Enemy) {
                     Summoner friendSummoner = gameManager.friendSummonerObject.GetComponent<Summoner>();
-                    await friendSummoner.Damage(this, stats.strength);
+                    await friendSummoner.Damage(this, stats.GetStrength());
                     break;
                 }
                 if (alignment == CharacterSpawner.Alignment.Friend) {
                     Summoner enemySummoner = gameManager.enemySummonerObject.GetComponent<Summoner>();
-                    await enemySummoner.Damage(this, stats.strength);
+                    await enemySummoner.Damage(this, stats.GetStrength());
                     break;
                 }
             }
@@ -141,7 +141,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public async Task Strike(Character target) {
         stats.ability.poison.Trigger(target);
 
-        int damage = stats.strength;
+        int damage = stats.GetStrength();
 
         await TakeDamage(target, damage);
 
@@ -152,9 +152,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public async Task<int> TakeDamage(Character target, int damage) {
         if (damage > 0) {
-            target.stats.health -= damage;
+            target.stats.AddHealth(-damage);
             target.UpdateWarriorUI();
-            if (target.stats.health <= 0) {
+            if (target.stats.GetHealth() <= 0) {
                 Kill(target);
             }
         }
@@ -166,10 +166,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Heal(Character target, int amount) {
-        target.stats.health += amount;
-        if (target.stats.health > target.stats.healthMax) {
-            target.stats.health = target.stats.healthMax;
-        }
+        target.stats.AddHealth(amount);
         target.UpdateWarriorUI();
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();

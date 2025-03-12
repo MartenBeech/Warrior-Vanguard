@@ -37,22 +37,7 @@ public class CharacterSpawner : MonoBehaviour {
         character.Initiate(gameManager, gridManager);
 
         character.SetAlignment(alignment);
-
-        if (alignment == Alignment.Friend) {
-            character.SetHoverWarrior(hoverWarrior);
-            character.SetStats(stats);
-        } else {
-            //Creates new instance of the card stats to avoid modifying the original card stats
-            character.SetStats(new WarriorStats {
-                strength = stats.strength,
-                health = stats.health,
-                title = stats.title,
-                cost = stats.cost,
-                speed = stats.speed,
-                range = stats.range,
-                numberOfAttacks = stats.numberOfAttacks
-            });
-        }
+        character.SetHoverWarrior(hoverWarrior);
 
         character.SetPosition(cell);
     }

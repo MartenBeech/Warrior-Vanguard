@@ -19,7 +19,7 @@ public class Weaken {
 
     public bool Trigger(Character target) {
         if (value > 0) {
-            target.stats.strength -= value;
+            target.stats.AddStrength(-value);
             target.UpdateWarriorUI();
             return true;
         }

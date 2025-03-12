@@ -52,12 +52,12 @@ public class EventManager : MonoBehaviour {
         if (DeckManager.GetDeck().Count <= 0) {
             eventText.text = $"A magical force strengthened one of your cards! You have no cards to upgrade sorry";
             return;
-        };
-        
+        }
+        ;
+
         int randomIndex = Random.Range(0, DeckManager.GetDeck().Count);
         Card card = DeckManager.GetCard(randomIndex);
-        card.stats.strength += 1;
-        card.stats.health += 1;
+        card.stats.level += 1;
         card.stats.title += "+";
         eventText.text = $"A magical force strengthened one of your cards! {card.stats.title}";
     }

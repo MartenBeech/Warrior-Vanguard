@@ -4,15 +4,16 @@ public class VampireApprentice {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 2,
-            strength = 1,
-            health = 5,
+            strength = new int[] { 1, 1 },
+            health = new int[] { 5, 5 },
             speed = 2,
             range = 4,
-            numberOfAttacks = 1,
         };
-        stats.healthMax = stats.health;
-        stats.defaultAttack = stats.strength;
-        stats.defaultHealth = stats.health;
+        for (int i = 0; i < 2; i++) {
+            stats.healthMax[i] = stats.health[i];
+            stats.defaultStrength[i] = stats.strength[i];
+            stats.defaultHealth[i] = stats.health[i];
+        }
         stats.defaultCost = stats.cost;
         stats.defaultSpeed = stats.speed;
         stats.defaultRange = stats.range;

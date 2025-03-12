@@ -3,16 +3,17 @@ public class BloodMerchant {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
-            cost = 5,
-            strength = 3,
-            health = 8,
+            cost = 4,
+            strength = new int[] { 3, 3 },
+            health = new int[] { 8, 8 },
             speed = 2,
             range = 4,
-            numberOfAttacks = 1,
         };
-        stats.healthMax = stats.health;
-        stats.defaultAttack = stats.strength;
-        stats.defaultHealth = stats.health;
+        for (int i = 0; i < 2; i++) {
+            stats.healthMax[i] = stats.health[i];
+            stats.defaultStrength[i] = stats.strength[i];
+            stats.defaultHealth[i] = stats.health[i];
+        }
         stats.defaultCost = stats.cost;
         stats.defaultSpeed = stats.speed;
         stats.defaultRange = stats.range;
@@ -20,7 +21,7 @@ public class BloodMerchant {
 
         WarriorAbility ability = stats.ability;
         ability.lifeSteal.Add();
-        ability.weaken.Add(2);
+        ability.weaken.Add(1);
 
         return stats;
     }

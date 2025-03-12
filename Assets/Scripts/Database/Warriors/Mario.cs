@@ -2,16 +2,17 @@ public class Mario : WarriorStats {
     public static WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = "Mario",
-            strength = 2,
-            health = 4,
+            strength = new int[] { 2, 2 },
+            health = new int[] { 4, 4 },
             cost = 1,
             speed = 3,
             range = 3,
-            numberOfAttacks = 1,
         };
-        stats.healthMax = stats.health;
-        stats.defaultAttack = stats.strength;
-        stats.defaultHealth = stats.health;
+        for (int i = 0; i < 2; i++) {
+            stats.healthMax[i] = stats.health[i];
+            stats.defaultStrength[i] = stats.strength[i];
+            stats.defaultHealth[i] = stats.health[i];
+        }
         stats.defaultCost = stats.cost;
         stats.defaultSpeed = stats.speed;
         stats.defaultRange = stats.range;
