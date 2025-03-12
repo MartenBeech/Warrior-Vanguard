@@ -22,6 +22,10 @@ public static class SceneLoader {
         SceneManager.LoadScene("Credits");
     }
 
+    public static void LoadEvent() {
+        SceneManager.LoadScene("Event");
+    }
+
     public static void ExitGame() {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false; // Stops play mode in Unity

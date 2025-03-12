@@ -11,7 +11,9 @@ public class MapTile : MonoBehaviour {
 
     public enum TileType {
         Battlefield,
-        Shop
+        Shop,
+
+        Event
     }
 
     private void Start() {
@@ -61,6 +63,9 @@ public class MapTile : MonoBehaviour {
                 break;
             case TileType.Shop:
                 SceneLoader.LoadShop();
+                break;
+            case TileType.Event:
+                SceneLoader.LoadEvent();
                 break;
         }
     }
