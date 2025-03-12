@@ -21,12 +21,8 @@ public class Deck : MonoBehaviour {
     }
 
     void FillDeckWithRandomCards() {
-        if (CardDatabase.Instance == null) {
-            return;
-        }
-
-        for (int i = 0; i < CardDatabase.Instance.allCards.Count; i++) {
-            deck.Add(CardDatabase.Instance.allCards[i]);
+        for (int i = 0; i < CardDatabase.allCards.Count; i++) {
+            deck.Add(CardDatabase.allCards[i]);
         }
     }
     public async void DrawCard() {

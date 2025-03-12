@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour {
     public List<Card> cardsForSale = new List<Card>();
-    public CardDatabase cardDatabase;
     public TMP_Text actionInfoText;
 
     private void Start() {
@@ -13,8 +12,8 @@ public class ShopManager : MonoBehaviour {
 
     void PopulateShop() {
         foreach (Card card in cardsForSale) {
-            int randomIndex = Random.Range(0, CardDatabase.Instance.allCards.Count);
-            WarriorStats stats = CardDatabase.Instance.allCards[randomIndex];
+            int randomIndex = Random.Range(0, CardDatabase.allCards.Count);
+            WarriorStats stats = CardDatabase.allCards[randomIndex];
             card.SetStats(stats);
             card.UpdateCardUi();
         }

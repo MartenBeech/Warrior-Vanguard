@@ -2,19 +2,29 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public static class DeckManager {
-    public static List<Card> selectedDeck = new();
+    public static List<Card> deck = new();
 
     public static void AddCard(Card card) {
-        selectedDeck.Add(card);
+        deck.Add(card);
     }
 
-    public static void SetDeck(List<Card> deck) {
-        selectedDeck = new List<Card>(deck);
+    public static void RemoveCard(Card card) {
+        if (deck.Contains(card)) {
+            deck.Remove(card);
+        }
+    }
+
+    public static Card GetCard(int index) {
+        return deck[index];
+    }
+
+    public static void SetDeck(List<Card> newDeck) {
+        deck = new List<Card>(newDeck);
     }
 
     public static List<WarriorStats> GetDeck() {
         List<WarriorStats> warriorStatsDeck = new();
-        foreach (Card card in selectedDeck) {
+        foreach (Card card in deck) {
             warriorStatsDeck.Add(card.stats);
         }
         return warriorStatsDeck;

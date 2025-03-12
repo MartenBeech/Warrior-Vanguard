@@ -15,6 +15,10 @@ public static class GoldManager {
         Gold += amount;
     }
 
+    public static void RemoveGold(int amount) {
+        Gold -= amount;
+    }
+
     public static bool SpendGold(int amount) {
         if (Gold >= amount) {
             Gold -= amount;

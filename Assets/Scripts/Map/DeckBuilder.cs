@@ -4,7 +4,6 @@ using TMPro;
 
 public class DeckBuilder : MonoBehaviour {
     public List<Card> deck = new();
-    public CardDatabase cardDatabase;
     public GameObject textObject;
     public GameObject deckViewPanel;
     private bool isDeckViewOpen = false;

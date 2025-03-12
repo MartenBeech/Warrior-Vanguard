@@ -17,7 +17,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         attackText.text = $"{stats.strength}";
         healthText.text = $"{stats.health}";
         costText.text = $"{stats.cost}";
-        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
+        string cleanTitle = stats.title.Replace("+", string.Empty);
+        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{cleanTitle}");
         titleText.text = $"{stats.title}";
 
         string abilities = "";

@@ -1,28 +1,23 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class CardDatabase : MonoBehaviour {
-    public List<WarriorStats> allCards = new();
+public static class CardDatabase {
+    public static List<WarriorStats> allCards = new() {
+        Duck.GetStats(),
+        new BloodMerchant().GetStats(),
+        new TheOriginal().GetStats(),
+        new VampireApprentice().GetStats(),
+        new VampireElder().GetStats(),
+        new ZombieMinion().GetStats(),
+        new PlagueWalker().GetStats(),
+        new CorpseBehemoth().GetStats(),
+        new ZombieHydra().GetStats(),
+        Mario.GetStats(),
+        Luigi.GetStats(),
+        Mortana.GetStats()
+    };
 
-    public static CardDatabase Instance;
-
-    private void Awake() {
-        allCards.Add(Duck.GetStats());
-        allCards.Add(new BloodMerchant().GetStats());
-        allCards.Add(new TheOriginal().GetStats());
-        allCards.Add(new VampireApprentice().GetStats());
-        allCards.Add(new VampireElder().GetStats());
-        allCards.Add(new ZombieMinion().GetStats());
-        allCards.Add(new PlagueWalker().GetStats());
-        allCards.Add(new CorpseBehemoth().GetStats());
-        allCards.Add(new ZombieHydra().GetStats());
-        allCards.Add(Mario.GetStats());
-        allCards.Add(Luigi.GetStats());
-        allCards.Add(Mortana.GetStats());
-        Instance = this;
-    }
-
-    public WarriorStats GetRandomWarriorStats() {
+    public static WarriorStats GetRandomWarriorStats() {
         return allCards[Rng.Range(0, allCards.Count)];
     }
 }
