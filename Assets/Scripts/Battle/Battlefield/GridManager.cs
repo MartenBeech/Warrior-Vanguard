@@ -73,10 +73,7 @@ public class GridManager : MonoBehaviour {
         }
         if (hand == null || hand.selectedCard == null) return;
 
-        characterSpawner.Spawn(selectedCellPos, hand.selectedCard.stats, CharacterSpawner.Alignment.Friend, hand.selectedCard.GetComponent<RectTransform>().position);
-
-        Destroy(hand.selectedCard.gameObject);
-        hand.DeselectCard(hand.selectedCard);
+        hand.PlayCardFromHand(characterSpawner, selectedCellPos);
     }
 
     public void RegisterCharacter(Character character) {
