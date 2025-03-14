@@ -4,8 +4,8 @@ public class TheOriginal {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 8,
-            strength = new int[] { 3, 3 },
-            health = new int[] { 15, 15 },
+            strength = new int[] { 3, 4 },
+            health = new int[] { 15, 19 },
             speed = 2,
             range = 2,
         };

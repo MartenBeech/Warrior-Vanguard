@@ -4,8 +4,8 @@ public class BloodMerchant {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 4,
-            strength = new int[] { 3, 3 },
-            health = new int[] { 8, 8 },
+            strength = new int[] { 3, 4 },
+            health = new int[] { 8, 10 },
             speed = 2,
             range = 4,
         };

@@ -5,7 +5,7 @@ public class VampireApprentice {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 2,
             strength = new int[] { 1, 1 },
-            health = new int[] { 5, 5 },
+            health = new int[] { 5, 7 },
             speed = 2,
             range = 4,
         };
@@ -21,7 +21,7 @@ public class VampireApprentice {
 
         WarriorAbility ability = stats.ability;
         ability.lifeSteal.Add();
-        ability.weaken.Add(1, 1);
+        ability.weaken.Add(1, 2);
 
         return stats;
     }

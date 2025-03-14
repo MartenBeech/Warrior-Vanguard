@@ -4,7 +4,7 @@ public class VampireElder {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 6,
-            strength = new int[] { 5, 5 },
+            strength = new int[] { 5, 7 },
             health = new int[] { 9, 9 },
             speed = 2,
             range = 2,

@@ -24,6 +24,7 @@ public class HydraSplit {
                 if (!randomCell) break;
 
                 WarriorStats stats = new HydraSerpent().GetStats();
+                stats.level = target.stats.level;
 
                 characterSpawner.Spawn(randomCell.transform.position, stats, target.alignment, target.gridPosition);
             }
@@ -39,7 +40,7 @@ public class HydraSplit {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Summon 3 2/2 Hydra Serpents";
+        return $"{WarriorAbility.Keywords.Death}: Summon 3 {new HydraSerpent().GetStats().strength[stats.level]}/{new HydraSerpent().GetStats().health[stats.level]} Hydra Serpents";
     }
 
     string GetAbilityName() {

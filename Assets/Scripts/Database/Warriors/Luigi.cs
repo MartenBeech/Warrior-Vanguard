@@ -2,8 +2,8 @@ public class Luigi : WarriorStats {
     public static WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = "Green Mario",
-            strength = new int[] { 2, 2 },
-            health = new int[] { 10, 10 },
+            strength = new int[] { 2, 3 },
+            health = new int[] { 10, 12 },
             cost = 1,
             speed = 2,
             range = 2,

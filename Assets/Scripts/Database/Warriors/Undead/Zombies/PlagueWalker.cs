@@ -4,8 +4,8 @@ public class PlagueWalker {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 4,
-            strength = new int[] { 2, 2 },
-            health = new int[] { 5, 5 },
+            strength = new int[] { 2, 3 },
+            health = new int[] { 5, 6 },
             speed = 2,
             range = 2,
         };
@@ -21,7 +21,7 @@ public class PlagueWalker {
 
         WarriorAbility ability = stats.ability;
         ability.revive.Add();
-        ability.poison.Add(2, 2);
+        ability.poison.Add(2, 3);
 
         return stats;
     }

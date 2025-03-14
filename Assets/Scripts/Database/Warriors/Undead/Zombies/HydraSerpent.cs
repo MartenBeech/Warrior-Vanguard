@@ -4,8 +4,8 @@ public class HydraSerpent {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 1,
-            strength = new int[] { 2, 2 },
-            health = new int[] { 2, 2 },
+            strength = new int[] { 2, 3 },
+            health = new int[] { 2, 3 },
             speed = 2,
             range = 2,
         };

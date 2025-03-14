@@ -4,7 +4,7 @@ public class CorpseBehemoth {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 7,
-            strength = new int[] { 5, 5 },
+            strength = new int[] { 5, 7 },
             health = new int[] { 7, 7 },
             speed = 2,
             range = 2,
@@ -21,7 +21,7 @@ public class CorpseBehemoth {
 
         WarriorAbility ability = stats.ability;
         ability.revive.Add();
-        ability.poison.Add(5, 5);
+        ability.poison.Add(5, 7);
 
         return stats;
     }
