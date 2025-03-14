@@ -2,7 +2,12 @@ using System.Collections.Generic;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
-        Duck.GetStats(),
+        new Duck().GetStats(),
+        new Mario().GetStats(),
+        new BoneGnawer().GetStats(),
+        new FrenziedGhoul().GetStats(),
+        new SinisterHowler().GetStats(),
+        new ShadowyEntity().GetStats(),
         new BloodMerchant().GetStats(),
         new TheOriginal().GetStats(),
         new VampireApprentice().GetStats(),
@@ -11,9 +16,8 @@ public static class CardDatabase {
         new PlagueWalker().GetStats(),
         new CorpseBehemoth().GetStats(),
         new ZombieHydra().GetStats(),
-        Mario.GetStats(),
-        Luigi.GetStats(),
-        Mortana.GetStats()
+        new Luigi().GetStats(),
+        new Mortana().GetStats(),
     };
 
     public static WarriorStats GetRandomWarriorStats() {

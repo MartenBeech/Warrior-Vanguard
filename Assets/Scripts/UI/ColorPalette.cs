@@ -12,4 +12,9 @@ public class ColorPalette {
             _ => Color.white,
         };
     }
+
+    public Color AddTransparency(Color imgColor, int percentageVisible) {
+        imgColor.a = percentageVisible / 100f;
+        return imgColor;
+    }
 }

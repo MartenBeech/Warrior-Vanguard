@@ -28,14 +28,23 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdateSummonerUI();
     }
 
-    public async Task Damage(Character dealer, int amount) {
-        if (amount > 0) {
-            stats.health -= amount;
+    public async Task Damage(Character dealer, int damage) {
+        if (dealer.stats.ability.stealth.TriggerAttack(dealer)) {
+            damage *= 2;
+        }
+
+        if (damage > 0) {
+            stats.health -= damage;
             UpdateSummonerUI();
             dealer.stats.ability.bloodlust.Trigger(dealer);
         }
+
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-        await floatingText.CreateFloatingText(transform, amount.ToString());
+        await floatingText.CreateFloatingText(transform, damage.ToString());
+
+        if (damage > 0) {
+            await dealer.stats.ability.lifeSteal.Trigger(dealer, damage);
+        }
 
         if (stats.health <= 0) {
             LevelManager.CompleteLevel();

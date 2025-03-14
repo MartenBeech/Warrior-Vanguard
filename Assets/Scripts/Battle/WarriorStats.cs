@@ -86,4 +86,11 @@ public class WarriorStats {
     public int GetHealthMax() {
         return healthMax[level];
     }
+
+    public void AddHealthMax(int amount) {
+        for (int i = 0; i < 2; i++) {
+            healthMax[i] += amount;
+            health[i] += amount;
+        }
+    }
 }

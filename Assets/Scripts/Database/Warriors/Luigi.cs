@@ -1,5 +1,5 @@
 public class Luigi : WarriorStats {
-    public static WarriorStats GetStats() {
+    public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = "Green Mario",
             strength = new int[] { 2, 3 },
@@ -17,6 +17,8 @@ public class Luigi : WarriorStats {
         stats.defaultSpeed = stats.speed;
         stats.defaultRange = stats.range;
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
+
+        WarriorAbility ability = stats.ability;
 
         return stats;
     }

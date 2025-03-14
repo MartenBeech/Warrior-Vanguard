@@ -1,6 +1,5 @@
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-public class Poisoned {
+public class Cannibalism {
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -10,15 +9,9 @@ public class Poisoned {
     public void Add(int unupgradedValue, int upgradedValue) {
         int[] newValues = new int[] { unupgradedValue, upgradedValue };
         for (int i = 0; i < 2; i++) {
-            if (newValues[i] > 0) {
-                if (value[i] < newValues[i]) {
-                    value[i] = newValues[i];
-                }
-            } else if (newValues[i] < 0) {
-                value[i] += newValues[i];
-                if (value[i] < 0) {
-                    value[i] = 0;
-                }
+            value[i] += newValues[i];
+            if (value[i] < 0) {
+                value[i] = 0;
             }
         }
     }
@@ -29,9 +22,11 @@ public class Poisoned {
         }
     }
 
-    public async Task<bool> Trigger(Character target) {
-        if (GetValue(target.stats) > 0) {
-            await target.TakeDamage(target, GetValue(target.stats));
+    public bool Trigger(Character dealer) {
+        if (GetValue(dealer.stats) > 0) {
+            dealer.stats.AddStrength(GetValue(dealer.stats));
+            dealer.stats.AddHealthMax(GetValue(dealer.stats));
+            dealer.UpdateWarriorUI();
             return true;
         }
         return false;
@@ -44,7 +39,7 @@ public class Poisoned {
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Take {GetValue(stats)} magic damage";
+        return $"{WarriorAbility.Keywords.Kill}: Gain +{GetValue(stats)}/+{GetValue(stats)}";
     }
 
     string GetAbilityName() {

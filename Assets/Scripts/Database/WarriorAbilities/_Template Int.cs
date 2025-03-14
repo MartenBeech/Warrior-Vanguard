@@ -33,7 +33,7 @@ public class CLASSNAMEINT {
 
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{GetAbilityName()}: {value}\n";
+        return $"{GetAbilityName()}: {GetValue(stats)}\n";
     }
 
     public string GetDescription(WarriorStats stats) {

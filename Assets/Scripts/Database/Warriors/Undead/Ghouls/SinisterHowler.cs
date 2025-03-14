@@ -1,11 +1,12 @@
-public class Duck : WarriorStats {
+using System.Text.RegularExpressions;
+public class SinisterHowler {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Duck",
-            strength = new int[] { 9001, 9999 },
-            health = new int[] { 9001, 9999 },
-            cost = 1,
-            speed = 2,
+            title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
+            cost = 5,
+            strength = new int[] { 5, 6 },
+            health = new int[] { 3, 3 },
+            speed = 3,
             range = 2,
         };
         for (int i = 0; i < 2; i++) {
@@ -17,6 +18,10 @@ public class Duck : WarriorStats {
         stats.defaultSpeed = stats.speed;
         stats.defaultRange = stats.range;
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
+
+        WarriorAbility ability = stats.ability;
+        ability.cannibalism.Add(2, 3);
+        ability.stealth.Add();
 
         return stats;
     }

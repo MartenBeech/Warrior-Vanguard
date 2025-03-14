@@ -1,5 +1,5 @@
 public class Mortana : WarriorStats {
-    public static WarriorStats GetStats() {
+    public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = "Mortana",
             strength = new int[] { 11, 12 },

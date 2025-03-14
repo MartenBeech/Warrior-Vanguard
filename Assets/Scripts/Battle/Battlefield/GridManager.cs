@@ -68,7 +68,7 @@ public class GridManager : MonoBehaviour {
         if (GetCellCharacter(selectedCellPos)) return;
 
         if (characterSpawner.getIsSpawning(CharacterSpawner.Alignment.Enemy)) {
-            characterSpawner.Spawn(selectedCellPos, Luigi.GetStats(), CharacterSpawner.Alignment.Enemy, EnemySummonerObject.position);
+            characterSpawner.Spawn(selectedCellPos, new Luigi().GetStats(), CharacterSpawner.Alignment.Enemy, EnemySummonerObject.position);
             return;
         }
         if (hand == null || hand.selectedCard == null) return;

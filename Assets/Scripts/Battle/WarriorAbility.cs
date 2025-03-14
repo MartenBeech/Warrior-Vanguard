@@ -1,7 +1,7 @@
 using System.Reflection;
 public class WarriorAbility {
     public enum Keywords {
-        Attack, Death, Overturn, Strike, Summon
+        Attack, Death, Overturn, Strike, Summon, Kill
     }
 
     public Weaken weaken = new();
@@ -12,6 +12,9 @@ public class WarriorAbility {
     public Poisoned poisoned = new();
     public LifeSteal lifeSteal = new();
     public Retaliate retaliate = new();
+    public Cannibalism cannibalism = new();
+    public Stealth stealth = new();
+    public PermaStealth permaStealth = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

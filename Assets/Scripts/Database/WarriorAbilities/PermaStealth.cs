@@ -1,9 +1,8 @@
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-public class Retaliate {
+public class PermaStealth {
     bool[] value = new bool[] { false, false };
 
-    bool GetValue(WarriorStats stats) {
+    public bool GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 
@@ -18,14 +17,6 @@ public class Retaliate {
         Add(true, true);
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target) {
-        if (GetValue(target.stats)) {
-            await target.Strike(dealer, target.stats.GetStrength());
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
@@ -33,7 +24,7 @@ public class Retaliate {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"When attacked, strike the attacker";
+        return $"This is always Stealthed";
     }
 
     string GetAbilityName() {

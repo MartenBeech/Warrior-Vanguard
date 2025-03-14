@@ -30,6 +30,13 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         attackText.text = $"{stats.GetStrength()}";
         healthText.text = $"{stats.GetHealth()}";
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
+
+        ColorPalette colorPalette = new();
+        if (stats.ability.stealth.GetValue(stats)) {
+            image.GetComponent<Image>().color = colorPalette.AddTransparency(image.GetComponent<Image>().color, 70);
+        } else {
+            image.GetComponent<Image>().color = colorPalette.AddTransparency(image.GetComponent<Image>().color, 100);
+        }
     }
 
     public void SetStats(WarriorStats warriorStats) {
@@ -130,32 +137,40 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Attack(Character target) {
+        int damage = stats.GetStrength();
+        if (stats.ability.stealth.TriggerAttack(this)) {
+            damage *= 2;
+        }
+
+        await Strike(target, damage);
+
         stats.ability.weaken.Trigger(this, target);
         stats.ability.bloodlust.Trigger(this);
-
-        await Strike(target);
-
         await target.stats.ability.retaliate.Trigger(this, target);
     }
 
-    public async Task Strike(Character target) {
+    public async Task Strike(Character target, int damage) {
         stats.ability.poison.Trigger(this, target);
 
-        int damage = stats.GetStrength();
-
-        await target.TakeDamage(damage);
+        damage = await target.TakeDamage(this, damage);
 
         if (damage > 0) {
             await stats.ability.lifeSteal.Trigger(this, damage);
         }
     }
 
-    public async Task<int> TakeDamage(int damage) {
+    public async Task<int> TakeDamage(Character dealer, int damage) {
+        if (stats.ability.stealth.TriggerTakeDamage(this)) {
+            damage = (int)Mathf.Ceil(damage / 2f);
+        }
+
         if (damage > 0) {
             stats.AddHealth(-damage);
-            UpdateWarriorUI();
+
             if (stats.GetHealth() <= 0) {
-                Kill();
+                Kill(dealer);
+            } else {
+                UpdateWarriorUI();
             }
         }
 
@@ -173,12 +188,17 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green);
     }
 
-    private void Kill() {
+    private void Kill(Character dealer) {
         gameManager.RemoveCharacter(this);
         gridManager.RemoveCharacter(this);
 
+        if (dealer != this) {
+            dealer.stats.ability.cannibalism.Trigger(dealer);
+        }
+
         stats.ability.revive.Trigger(this, gridManager, FindFirstObjectByType<CharacterSpawner>());
         stats.ability.hydraSplit.Trigger(this, gridManager, FindFirstObjectByType<CharacterSpawner>());
+
 
         Destroy(gameObject);
     }
