@@ -21,7 +21,7 @@ public class CorpseBehemoth {
 
         WarriorAbility ability = stats.ability;
         ability.revive.Add();
-        ability.poison.Add(5);
+        ability.poison.Add(5, 5);
 
         return stats;
     }

@@ -1,31 +1,38 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 public class LifeSteal {
-    bool value = false;
+    bool[] value = new bool[] { false, false };
+
+    bool GetValue(WarriorStats stats) {
+        return value[stats.level];
+    }
+
+    public void Add(bool unupgradedValue, bool upgradedValue) {
+        bool[] newValues = new bool[] { unupgradedValue, upgradedValue };
+        for (int i = 0; i < 2; i++) {
+            value[i] = newValues[i];
+        }
+    }
 
     public void Add() {
-        value = true;
+        Add(true, true);
     }
 
-    public void Remove() {
-        value = false;
-    }
-
-    public async Task<bool> Trigger(Character character, int damage) {
-        if (value) {
-            await character.Heal(character, damage);
+    public async Task<bool> Trigger(Character dealer, int damage) {
+        if (GetValue(dealer.stats)) {
+            await dealer.Heal(damage);
             return true;
         }
         return false;
     }
 
-    public string GetTitle() {
-        if (!value) return "";
+    public string GetTitle(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
     }
 
-    public string GetDescription() {
-        if (!value) return "";
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
         return $"{WarriorAbility.Keywords.Strike}: Heal equal to damage dealt";
     }
 

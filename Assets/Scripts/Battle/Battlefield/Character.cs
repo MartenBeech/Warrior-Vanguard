@@ -130,57 +130,57 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Attack(Character target) {
-        stats.ability.weaken.Trigger(target);
+        stats.ability.weaken.Trigger(this, target);
         stats.ability.bloodlust.Trigger(this);
 
         await Strike(target);
 
-        await target.stats.ability.retaliate.Trigger(target, this);
+        await target.stats.ability.retaliate.Trigger(this, target);
     }
 
     public async Task Strike(Character target) {
-        stats.ability.poison.Trigger(target);
+        stats.ability.poison.Trigger(this, target);
 
         int damage = stats.GetStrength();
 
-        await TakeDamage(target, damage);
+        await target.TakeDamage(damage);
 
         if (damage > 0) {
             await stats.ability.lifeSteal.Trigger(this, damage);
         }
     }
 
-    public async Task<int> TakeDamage(Character target, int damage) {
+    public async Task<int> TakeDamage(int damage) {
         if (damage > 0) {
-            target.stats.AddHealth(-damage);
-            target.UpdateWarriorUI();
-            if (target.stats.GetHealth() <= 0) {
-                Kill(target);
+            stats.AddHealth(-damage);
+            UpdateWarriorUI();
+            if (stats.GetHealth() <= 0) {
+                Kill();
             }
         }
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-        await floatingText.CreateFloatingText(target.transform, damage.ToString());
+        await floatingText.CreateFloatingText(transform, damage.ToString());
 
         return damage;
     }
 
-    public async Task Heal(Character target, int amount) {
-        target.stats.AddHealth(amount);
-        target.UpdateWarriorUI();
+    public async Task Heal(int amount) {
+        stats.AddHealth(amount);
+        UpdateWarriorUI();
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-        await floatingText.CreateFloatingText(target.transform, amount.ToString(), ColorPalette.ColorEnum.green);
+        await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green);
     }
 
-    private void Kill(Character character) {
-        gameManager.RemoveCharacter(character);
-        gridManager.RemoveCharacter(character);
+    private void Kill() {
+        gameManager.RemoveCharacter(this);
+        gridManager.RemoveCharacter(this);
 
-        character.stats.ability.revive.Trigger(character, gridManager, FindFirstObjectByType<CharacterSpawner>());
-        character.stats.ability.hydraSplit.Trigger(character, gridManager, FindFirstObjectByType<CharacterSpawner>());
+        stats.ability.revive.Trigger(this, gridManager, FindFirstObjectByType<CharacterSpawner>());
+        stats.ability.hydraSplit.Trigger(this, gridManager, FindFirstObjectByType<CharacterSpawner>());
 
-        Destroy(character.gameObject);
+        Destroy(gameObject);
     }
 
     private async Task EndTurn(Character character) {

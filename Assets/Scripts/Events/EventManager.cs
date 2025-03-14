@@ -57,7 +57,8 @@ public class EventManager : MonoBehaviour {
 
         int randomIndex = Random.Range(0, DeckManager.GetDeck().Count);
         Card card = DeckManager.GetCard(randomIndex);
-        card.stats.level += 1;
+        card.stats.AddStrength(1);
+        card.stats.AddHealth(1);
         card.stats.title += "+";
         eventText.text = $"A magical force strengthened one of your cards! {card.stats.title}";
     }

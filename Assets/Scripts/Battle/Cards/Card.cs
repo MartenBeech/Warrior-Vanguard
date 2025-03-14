@@ -28,7 +28,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         if (stats.speed != 2) {
             abilities += $"Speed: {stats.speed}\n";
         }
-        abilities += stats.ability.GetAbilityText();
+        abilities += stats.ability.GetAbilityText(stats);
         abilityText.text = abilities;
     }
 

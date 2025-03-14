@@ -1,31 +1,38 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 public class Retaliate {
-    bool value = false;
+    bool[] value = new bool[] { false, false };
 
-    public void Add() {
-        value = true;
+    bool GetValue(WarriorStats stats) {
+        return value[stats.level];
     }
 
-    public void Remove() {
-        value = false;
+    public void Add(bool unupgradedValue, bool upgradedValue) {
+        bool[] newValues = new bool[] { unupgradedValue, upgradedValue };
+        for (int i = 0; i < 2; i++) {
+            value[i] = newValues[i];
+        }
+    }
+
+    public void Add() {
+        Add(true, true);
     }
 
     public async Task<bool> Trigger(Character dealer, Character target) {
-        if (value) {
-            await dealer.Strike(target);
+        if (GetValue(target.stats)) {
+            await target.Strike(dealer);
             return true;
         }
         return false;
     }
 
-    public string GetTitle() {
-        if (!value) return "";
+    public string GetTitle(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
     }
 
-    public string GetDescription() {
-        if (!value) return "";
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
         return $"When attacked, strike the attacker";
     }
 

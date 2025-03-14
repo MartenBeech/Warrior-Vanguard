@@ -21,7 +21,7 @@ public class BloodMerchant {
 
         WarriorAbility ability = stats.ability;
         ability.lifeSteal.Add();
-        ability.weaken.Add(1);
+        ability.weaken.Add(1, 1);
 
         return stats;
     }

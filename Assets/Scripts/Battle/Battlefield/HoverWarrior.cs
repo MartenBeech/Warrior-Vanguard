@@ -42,6 +42,6 @@ public class HoverWarrior : MonoBehaviour {
     }
 
     public void DisplayTooltips(WarriorStats stats) {
-        stats.ability.DisplayAbilityTooltip(tooltipManager);
+        stats.ability.DisplayAbilityTooltip(tooltipManager, stats);
     }
 }

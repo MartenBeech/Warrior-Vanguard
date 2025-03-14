@@ -18,9 +18,6 @@ public class Mario : WarriorStats {
         stats.defaultRange = stats.range;
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
-        stats.ability.lifeSteal.Add();
-        stats.ability.retaliate.Add();
-
         return stats;
     }
 }

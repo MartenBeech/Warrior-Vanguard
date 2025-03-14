@@ -1,24 +1,29 @@
 using System.Text.RegularExpressions;
 public class CLASSNAMEINT {
-    int value = 0;
+    int[] value = new int[] { 0, 0 };
 
-    public void Add(int amount) {
-        value += amount;
+    int GetValue(WarriorStats stats) {
+        return value[stats.level];
+    }
+
+    public void Add(int unupgradedValue, int upgradedValue) {
+        int[] newValues = new int[] { unupgradedValue, upgradedValue };
+        for (int i = 0; i < 2; i++) {
+            value[i] += newValues[i];
+            if (value[i] < 0) {
+                value[i] = 0;
+            }
+        }
     }
 
     public void Remove() {
-        value = 0;
-    }
-
-    public void Remove(int amount) {
-        value -= amount;
-        if (value < 0) {
-            Remove();
+        for (int i = 0; i < 2; i++) {
+            value[i] = 0;
         }
     }
 
     public bool Trigger(Character character) {
-        if (value > 0) {
+        if (GetValue(character.stats) > 0) {
             // Add trigger event here
             character.UpdateWarriorUI();
             return true;
@@ -26,13 +31,13 @@ public class CLASSNAMEINT {
         return false;
     }
 
-    public string GetTitle() {
-        if (value == 0) return "";
+    public string GetTitle(WarriorStats stats) {
+        if (GetValue(stats) == 0) return "";
         return $"{GetAbilityName()}: {value}\n";
     }
 
-    public string GetDescription() {
-        if (value == 0) return "";
+    public string GetDescription(WarriorStats stats) {
+        if (GetValue(stats) == 0) return "";
         return $"DESCRIPTION";
     }
 
