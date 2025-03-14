@@ -42,7 +42,7 @@ public class EventManager : MonoBehaviour {
 
     void GainCardEvent() {
         int randomIndex = Random.Range(0, CardDatabase.allCards.Count);
-        Card card = new Card();
+        Card card = new();
         card.SetStats(CardDatabase.allCards[randomIndex]);
         DeckManager.AddCard(card);
         eventText.text = $"You found a mysterious card and added it to your deck! {card.stats.title}";
@@ -57,8 +57,7 @@ public class EventManager : MonoBehaviour {
 
         int randomIndex = Random.Range(0, DeckManager.GetDeck().Count);
         Card card = DeckManager.GetCard(randomIndex);
-        card.stats.AddStrength(1);
-        card.stats.AddHealth(1);
+        card.stats.level += 1;
         card.stats.title += "+";
         eventText.text = $"A magical force strengthened one of your cards! {card.stats.title}";
     }

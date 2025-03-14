@@ -33,12 +33,12 @@ public class Bloodlust {
 
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{GetAbilityName()}: {value}\n";
+        return $"{GetAbilityName()}: {GetValue(stats)}\n";
     }
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Gain +{value} Strength";
+        return $"{WarriorAbility.Keywords.Attack}: Gain +{GetValue(stats)} Strength";
     }
 
     string GetAbilityName() {

@@ -33,12 +33,12 @@ public class Poisoned {
 
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{GetAbilityName()}: {value}\n";
+        return $"{GetAbilityName()}: {GetValue(stats)}\n";
     }
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Take {value} magic damage";
+        return $"{WarriorAbility.Keywords.Overturn}: Take {GetValue(stats)} magic damage";
     }
 
     string GetAbilityName() {

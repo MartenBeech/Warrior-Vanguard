@@ -33,12 +33,12 @@ public class Weaken {
 
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{GetAbilityName()}: {value[stats.level]}\n";
+        return $"{GetAbilityName()}: {GetValue(stats)}\n";
     }
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Reduce the target's strength by {value[stats.level]}";
+        return $"{WarriorAbility.Keywords.Attack}: Reduce the target's strength by {GetValue(stats)}";
     }
 
     string GetAbilityName() {

@@ -33,12 +33,12 @@ public class Poison {
 
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{GetAbilityName()}: {value}\n";
+        return $"{GetAbilityName()}: {GetValue(stats)}\n";
     }
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Apply {value} Poison";
+        return $"{WarriorAbility.Keywords.Strike}: Apply {GetValue(stats)} Poison";
     }
 
     string GetAbilityName() {
