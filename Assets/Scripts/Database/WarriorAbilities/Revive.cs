@@ -25,7 +25,7 @@ public class Revive {
             target.stats.ResetStats();
             target.stats.ability.revive.Add(false, false);
 
-            characterSpawner.Spawn(randomCell.transform.position, target.stats, target.alignment, target.gridPosition);
+            characterSpawner.Spawn(randomCell.gridIndex, target.stats, target.alignment, target.gridIndex);
             return true;
         }
         return false;

@@ -26,9 +26,9 @@ public class Hand : MonoBehaviour {
         handSize++;
     }
 
-    public void PlayCardFromHand(CharacterSpawner characterSpawner, Vector2 selectedCellPos) {
+    public void PlayCardFromHand(CharacterSpawner characterSpawner, Vector2 selectedGridIndex) {
 
-        characterSpawner.Spawn(selectedCellPos, selectedCard.stats, CharacterSpawner.Alignment.Friend, selectedCard.GetComponent<RectTransform>().position);
+        characterSpawner.Spawn(selectedGridIndex, selectedCard.stats, CharacterSpawner.Alignment.Friend, selectedCard.GetComponent<RectTransform>().position);
 
         Destroy(selectedCard.gameObject);
         DeselectCard(selectedCard);

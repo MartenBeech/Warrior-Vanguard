@@ -26,7 +26,7 @@ public class HydraSplit {
                 WarriorStats stats = new HydraSerpent().GetStats();
                 stats.level = target.stats.level;
 
-                characterSpawner.Spawn(randomCell.transform.position, stats, target.alignment, target.gridPosition);
+                characterSpawner.Spawn(randomCell.gridIndex, stats, target.alignment, target.gridIndex);
             }
             return true;
         }

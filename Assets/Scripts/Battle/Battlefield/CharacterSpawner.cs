@@ -23,22 +23,22 @@ public class CharacterSpawner : MonoBehaviour {
         return spawningAlignment == alignment;
     }
 
-    public async void Spawn(Vector2 cell, WarriorStats stats, Alignment alignment, Vector2 from) {
+    public async void Spawn(Vector2 gridIndex, WarriorStats stats, Alignment alignment, Vector2 from) {
 
         GameObject warrior = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
         Character character = warrior.GetComponent<Character>();
         ObjectAnimation objectAnimation = warrior.GetComponentInChildren<ObjectAnimation>();
         character.SetStats(stats);
-        character.gridPosition = cell;
+        character.gridIndex = gridIndex;
         gameManager.RegisterCharacter(character, alignment);
-        await objectAnimation.MoveObject(from, cell);
+        await objectAnimation.MoveObject(from, gridManager.GetCellPosition(gridIndex));
 
-        warrior.GetComponent<RectTransform>().localScale = gridManager.getCellDimension() / warrior.GetComponent<RectTransform>().rect.width;
+        warrior.GetComponent<RectTransform>().localScale = gridManager.GetCellDimension() / warrior.GetComponent<RectTransform>().rect.width;
         character.Initiate(gameManager, gridManager);
 
         character.SetAlignment(alignment);
         character.SetHoverWarrior(hoverWarrior);
 
-        character.SetPosition(cell);
+        character.SetPosition(gridIndex);
     }
 }

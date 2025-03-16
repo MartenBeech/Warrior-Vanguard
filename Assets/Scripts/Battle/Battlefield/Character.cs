@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using System.Threading.Tasks;
 
 public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
-    public Vector2 gridPosition;
+    public Vector2 gridIndex;
     private GridManager gridManager;
     public WarriorStats stats;
     private HoverWarrior hoverWarrior;
@@ -53,8 +53,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public void SetPosition(Vector2 position) {
-        gridPosition = position;
-        transform.position = position;
+        gridIndex = position;
+        transform.position = gridManager.GetCellPosition(position);
     }
 
     public void SetRemainingActions(int remainingAttacks, int remainingSteps) {
@@ -63,17 +63,17 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task MoveWarrior(Direction direction) {
-        Vector2 newPosition = GetFrontCellPosition(gridPosition, direction);
+        Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction);
 
-        if (IsOutOfField(newPosition, direction)) return;
+        if (IsOutOfField(newGridIndex)) return;
 
-        Character frontCellCharacter = gridManager.GetCellCharacter(newPosition);
+        Character frontCellCharacter = gridManager.GetCellCharacter(newGridIndex);
 
         // If no character in front, move
         if (!frontCellCharacter && remainingSteps > 0) {
             ObjectAnimation objectAnimation = GetComponentInChildren<ObjectAnimation>();
-            await objectAnimation.MoveObject(transform.position, newPosition);
-            gridPosition = newPosition;
+            await objectAnimation.MoveObject(transform.position, gridManager.GetCellPosition(newGridIndex));
+            gridIndex = newGridIndex;
             remainingSteps--;
             return;
         }
@@ -81,12 +81,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         // If character in front is a friend try to go past them
         if (frontCellCharacter && frontCellCharacter.alignment == alignment && remainingSteps > 1) {
             for (int i = 2; i <= remainingSteps; i++) {
-                Vector2 position = GetFrontCellPosition(gridPosition, direction, i);
+                Vector2 position = GetFrontCellIndex(gridIndex, direction, i);
                 Character characterOnCell = gridManager.GetCellCharacter(position);
 
-                if (!characterOnCell && !IsOutOfField(position, direction)) {
-                    gridPosition = position;
-                    transform.position = new Vector2(gridPosition.x, gridPosition.y);
+                if (!characterOnCell && !IsOutOfField(position)) {
+                    gridIndex = position;
+                    transform.position = gridManager.GetCellPosition(gridIndex);
                     remainingSteps -= i;
                     return;
                 }
@@ -101,18 +101,14 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await StandAndAttack(direction);
     }
 
-    public bool IsOutOfField(Vector2 position, Direction direction) {
-        return direction == Direction.Left ? position.x < gridManager.getLeftMostGridPositionX() : position.x > gridManager.getRightMostGridPositionX();
-    }
-
-    public bool IsOutOfField(Vector2 position) {
-        return position.x < gridManager.getLeftMostGridPositionX() || position.x > gridManager.getRightMostGridPositionX();
+    public bool IsOutOfField(Vector2 gridIndex) {
+        return gridIndex.x < 0 || gridIndex.x >= gridManager.columns;
     }
 
     public async Task StandAndAttack(Direction direction) {
         remainingAttacks--;
         for (int i = 1; i <= stats.range; i++) {
-            Vector2 position = GetFrontCellPosition(gridPosition, direction, i);
+            Vector2 position = GetFrontCellIndex(gridIndex, direction, i);
             Character characterOnCell = gridManager.GetCellCharacter(position);
 
             if (characterOnCell && characterOnCell.alignment != alignment) {
@@ -207,20 +203,18 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await character.stats.ability.poisoned.Trigger(character);
     }
 
-    private Vector2 GetFrontCellPosition(Vector2 currentPosition, Direction direction, int range = 1) {
-        float gridSpacingX = gridManager.GetGridSpacingX();
-
+    private Vector2 GetFrontCellIndex(Vector2 gridIndex, Direction direction, int range = 1) {
         if (direction == Direction.Left) {
-            return new(currentPosition.x - (gridSpacingX * range), currentPosition.y);
+            return new(gridIndex.x - (1 * range), gridIndex.y);
         } else if (direction == Direction.Right) {
-            return new(currentPosition.x + (gridSpacingX * range), currentPosition.y);
+            return new(gridIndex.x + (1 * range), gridIndex.y);
         }
-        return currentPosition;
+        return gridIndex;
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
         if (hoverWarrior) {
-            hoverWarrior.ShowCardFromBattlefield(stats, gridPosition);
+            hoverWarrior.ShowCardFromBattlefield(stats, gridManager.GetCellPosition(gridIndex));
         }
     }
 

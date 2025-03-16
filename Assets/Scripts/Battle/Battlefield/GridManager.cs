@@ -23,16 +23,23 @@ public class GridManager : MonoBehaviour {
         return gridLayoutGroup.cellSize.x + gridLayoutGroup.spacing.x;
     }
 
-    public float getLeftMostGridPositionX() {
+    public float GetLeftMostGridPositionX() {
         return grid[0, 0].transform.position.x;
     }
 
-    public float getRightMostGridPositionX() {
+    public float GetRightMostGridPositionX() {
         return grid[columns - 1, 0].transform.position.x;
     }
 
-    public Vector2 getCellDimension() {
+    public Vector2 GetCellDimension() {
         return new Vector2(gridLayoutGroup.cellSize.x, gridLayoutGroup.cellSize.y);
+    }
+
+    public Vector2 GetCellPosition(Vector2 gridIndex) {
+
+        GridCell cell = grid[(int)gridIndex.x, (int)gridIndex.y];
+        Vector2 pos = cell.transform.position;
+        return pos;
     }
 
     void GenerateGrid() {
@@ -58,22 +65,22 @@ public class GridManager : MonoBehaviour {
                 );
                 cell.name = $"Cell[{x},{y}]";
                 GridCell gridCell = cell.GetComponent<GridCell>();
-                gridCell.Setup(this);
+                gridCell.Setup(this, new Vector2(x, y));
                 grid[x, y] = gridCell;
             }
         }
     }
 
-    public void SelectCell(Vector2 selectedCellPos) {
-        if (GetCellCharacter(selectedCellPos)) return;
+    public void SelectCell(Vector2 selectedGridIndex) {
+        if (GetCellCharacter(selectedGridIndex)) return;
 
         if (characterSpawner.getIsSpawning(CharacterSpawner.Alignment.Enemy)) {
-            characterSpawner.Spawn(selectedCellPos, new Luigi().GetStats(), CharacterSpawner.Alignment.Enemy, EnemySummonerObject.position);
+            characterSpawner.Spawn(selectedGridIndex, new Luigi().GetStats(), CharacterSpawner.Alignment.Enemy, EnemySummonerObject.position);
             return;
         }
         if (hand == null || hand.selectedCard == null) return;
 
-        hand.PlayCardFromHand(characterSpawner, selectedCellPos);
+        hand.PlayCardFromHand(characterSpawner, selectedGridIndex);
     }
 
     public void RegisterCharacter(Character character) {
@@ -88,9 +95,9 @@ public class GridManager : MonoBehaviour {
         }
     }
 
-    public Character GetCellCharacter(Vector2 position) {
+    public Character GetCellCharacter(Vector2 gridIndex) {
         foreach (Character character in allCharacters) {
-            if (character.gridPosition == position) {
+            if (character.gridIndex == gridIndex) {
                 return character;
             }
         }
@@ -101,7 +108,7 @@ public class GridManager : MonoBehaviour {
         List<GridCell> cells = new();
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < rows; y++) {
-                if (!GetCellCharacter(grid[x, y].transform.position)) {
+                if (!GetCellCharacter(new Vector2(x, y))) {
                     cells.Add(grid[x, y]);
                 }
             }
@@ -138,5 +145,9 @@ public class GridManager : MonoBehaviour {
                 ClearHighlightedCell(grid[x, y]);
             }
         }
+    }
+
+    public void GetCellsAroundCell(GridCell cell) {
+
     }
 }

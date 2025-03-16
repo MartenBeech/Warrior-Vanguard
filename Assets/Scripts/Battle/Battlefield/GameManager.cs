@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public async void EndTurn() {
-        friends = friends.OrderByDescending(c => c.gridPosition.x).ToList();
+        friends = friends.OrderByDescending(c => c.gridIndex.x).ToList();
         foreach (Character friend in friends) {
             friend.SetRemainingActions(friend.stats.numberOfAttacks, friend.stats.speed);
             int maxActions = friend.stats.numberOfAttacks + friend.stats.speed;
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public async void EndEnemyTurn() {
-        enemies = enemies.OrderBy(c => c.gridPosition.x).ToList();
+        enemies = enemies.OrderBy(c => c.gridIndex.x).ToList();
         foreach (Character enemy in enemies) {
             enemy.SetRemainingActions(enemy.stats.numberOfAttacks, enemy.stats.speed);
             int maxActions = enemy.stats.numberOfAttacks + enemy.stats.speed;
