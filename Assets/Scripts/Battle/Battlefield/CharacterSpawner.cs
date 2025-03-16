@@ -24,8 +24,8 @@ public class CharacterSpawner : MonoBehaviour {
     }
 
     public async void Spawn(Vector2 gridIndex, WarriorStats stats, Alignment alignment, Vector2 from) {
-
         GameObject warrior = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
+        warrior.name = $"{stats.title}[{gridIndex.x},{gridIndex.y}]";
         Character character = warrior.GetComponent<Character>();
         ObjectAnimation objectAnimation = warrior.GetComponentInChildren<ObjectAnimation>();
         character.SetStats(stats);
@@ -40,5 +40,12 @@ public class CharacterSpawner : MonoBehaviour {
         character.SetHoverWarrior(hoverWarrior);
 
         character.SetPosition(gridIndex);
+    }
+
+    public void SpawnRandomly(WarriorStats stats, Alignment alignment, Vector2 from) {
+        GridCell randomCell = gridManager.GetRandomEmptyDeploy();
+        if (!randomCell) return;
+
+        Spawn(randomCell.gridIndex, stats, alignment, from);
     }
 }

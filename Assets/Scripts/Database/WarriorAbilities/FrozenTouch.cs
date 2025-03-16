@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class HydraSplit {
+public class FrozenTouch {
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -17,15 +17,13 @@ public class HydraSplit {
         Add(true, true);
     }
 
-    public bool Trigger(Character target, CharacterSpawner characterSpawner) {
-        if (GetValue(target.stats)) {
-            for (int i = 0; i < 3; i++) {
-
-                WarriorStats stats = new HydraSerpent().GetStats();
-                stats.level = target.stats.level;
-
-                characterSpawner.SpawnRandomly(stats, target.alignment, target.transform.position);
+    public bool Trigger(Character dealer, Character target) {
+        if (GetValue(dealer.stats)) {
+            target.stats.speed--;
+            if (target.stats.speed < 1) {
+                target.stats.speed = 1;
             }
+            target.UpdateWarriorUI();
             return true;
         }
         return false;
@@ -38,7 +36,7 @@ public class HydraSplit {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Summon 3 {new HydraSerpent().GetStats().strength[stats.level]}/{new HydraSerpent().GetStats().health[stats.level]} Hydra Serpents";
+        return $"{WarriorAbility.Keywords.Strike}: Reduce target's speed by 1 (minimum 1)";
     }
 
     string GetAbilityName() {

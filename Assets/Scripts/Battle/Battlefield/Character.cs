@@ -138,6 +138,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             damage *= 2;
         }
 
+        stats.ability.splash.Trigger(this, target, gridManager);
         await Strike(target, damage);
 
         stats.ability.weaken.Trigger(this, target);
@@ -147,6 +148,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public async Task Strike(Character target, int damage) {
         stats.ability.poison.Trigger(this, target);
+        stats.ability.frozenTouch.Trigger(this, target);
 
         damage = await target.TakeDamage(this, damage);
 
@@ -164,7 +166,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             stats.AddHealth(-damage);
 
             if (stats.GetHealth() <= 0) {
-                Kill(dealer);
+                Die(dealer);
             } else {
                 UpdateWarriorUI();
             }
@@ -184,16 +186,19 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green);
     }
 
-    private void Kill(Character dealer) {
+    private void Die(Character dealer) {
         gameManager.RemoveCharacter(this);
         gridManager.RemoveCharacter(this);
 
+        CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
+
         if (dealer != this) {
             dealer.stats.ability.cannibalism.Trigger(dealer);
+            dealer.stats.ability.raiseDead.Trigger(dealer, this, characterSpawner);
         }
 
-        stats.ability.revive.Trigger(this, gridManager, FindFirstObjectByType<CharacterSpawner>());
-        stats.ability.hydraSplit.Trigger(this, gridManager, FindFirstObjectByType<CharacterSpawner>());
+        stats.ability.revive.Trigger(this, characterSpawner);
+        stats.ability.hydraSplit.Trigger(this, characterSpawner);
 
 
         Destroy(gameObject);

@@ -17,15 +17,12 @@ public class Revive {
         Add(true, true);
     }
 
-    public bool Trigger(Character target, GridManager gridManager, CharacterSpawner characterSpawner) {
+    public bool Trigger(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
-            GridCell randomCell = gridManager.GetRandomEmptyDeploy();
-            if (!randomCell) return true;
-
             target.stats.ResetStats();
             target.stats.ability.revive.Add(false, false);
 
-            characterSpawner.Spawn(randomCell.gridIndex, target.stats, target.alignment, target.gridIndex);
+            characterSpawner.SpawnRandomly(target.stats, target.alignment, target.transform.position);
             return true;
         }
         return false;

@@ -147,7 +147,21 @@ public class GridManager : MonoBehaviour {
         }
     }
 
-    public void GetCellsAroundCell(GridCell cell) {
+    public List<Character> GetWarriorsAroundCell(Vector2 gridIndex) {
+        List<Character> warriors = new();
+        for (int x = (int)gridIndex.x - 1; x <= (int)gridIndex.x + 1; x++) {
+            if (x < 0 || x >= columns) continue;
 
+            for (int y = (int)gridIndex.y - 1; y <= (int)gridIndex.y + 1; y++) {
+                if (y < 0 || y >= rows) continue;
+                if (gridIndex == new Vector2(x, y)) continue;
+
+                Character character = GetCellCharacter(new Vector2(x, y));
+                if (character != null) {
+                    warriors.Add(character);
+                }
+            }
+        }
+        return warriors;
     }
 }

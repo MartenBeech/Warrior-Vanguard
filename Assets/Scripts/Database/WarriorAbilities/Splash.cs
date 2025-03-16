@@ -1,5 +1,6 @@
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
-public class HydraSplit {
+public class Splash {
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -17,14 +18,13 @@ public class HydraSplit {
         Add(true, true);
     }
 
-    public bool Trigger(Character target, CharacterSpawner characterSpawner) {
-        if (GetValue(target.stats)) {
-            for (int i = 0; i < 3; i++) {
-
-                WarriorStats stats = new HydraSerpent().GetStats();
-                stats.level = target.stats.level;
-
-                characterSpawner.SpawnRandomly(stats, target.alignment, target.transform.position);
+    public bool Trigger(Character dealer, Character target, GridManager gridManager) {
+        if (GetValue(dealer.stats)) {
+            List<Character> characters = gridManager.GetWarriorsAroundCell(target.gridIndex);
+            foreach (Character character in characters) {
+                if (character.alignment != dealer.alignment) {
+                    dealer.Strike(character, dealer.stats.GetStrength());
+                }
             }
             return true;
         }
@@ -38,7 +38,7 @@ public class HydraSplit {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Summon 3 {new HydraSerpent().GetStats().strength[stats.level]}/{new HydraSerpent().GetStats().health[stats.level]} Hydra Serpents";
+        return $"{WarriorAbility.Keywords.Attack}: Also {WarriorAbility.Keywords.Strike} all enemies around your target";
     }
 
     string GetAbilityName() {

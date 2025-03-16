@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public async void EndTurn() {
-        friends = friends.OrderByDescending(c => c.gridIndex.x).ToList();
-        foreach (Character friend in friends) {
+        List<Character> sortedFriends = friends.OrderByDescending(c => c.gridIndex.x).ToList();
+        foreach (Character friend in sortedFriends) {
             friend.SetRemainingActions(friend.stats.numberOfAttacks, friend.stats.speed);
             int maxActions = friend.stats.numberOfAttacks + friend.stats.speed;
             for (int i = 0; i < maxActions; i++) {

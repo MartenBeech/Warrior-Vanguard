@@ -15,6 +15,9 @@ public class WarriorAbility {
     public Cannibalism cannibalism = new();
     public Stealth stealth = new();
     public PermaStealth permaStealth = new();
+    public Splash splash = new();
+    public RaiseDead raiseDead = new();
+    public FrozenTouch frozenTouch = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";
