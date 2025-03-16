@@ -3935,14 +3935,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1526969322}
+  - {fileID: 265204593}
+  - {fileID: 1110218259}
+  - {fileID: 1219923189}
+  - {fileID: 310092535}
+  - {fileID: 661658465}
+  - {fileID: 2036875940}
+  - {fileID: 1309014124}
+  - {fileID: 1838563997}
+  - {fileID: 1932275976}
+  - {fileID: 2020234552}
 --- !u!4 &1791771067
 Transform:
   m_ObjectHideFlags: 0
