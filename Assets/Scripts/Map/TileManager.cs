@@ -3,11 +3,9 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour {
     public List<MapTile> battleTiles;
+    public RectTransform scrollViewPanel;
 
     private void Start() {
-        //If you want to remove all the checkmarks, the following line will clear the cache
-        // PlayerPrefs.DeleteAll();
-
         UpdateTileAccess();
     }
 
@@ -26,6 +24,8 @@ public class TileManager : MonoBehaviour {
 
             if (isLastCompleted) {
                 battleTiles[i].UnlockNextTiles();
+                Vector2 targetPosition = battleTiles[i].transform.position;
+                scrollViewPanel.localPosition = new Vector2(scrollViewPanel.localPosition.x, -targetPosition.y);
             }
         }
     }
@@ -48,7 +48,7 @@ public class TileManager : MonoBehaviour {
     private void LockAllTiles() {
         for (int i = 0; i < battleTiles.Count; i++) {
             bool isCompleted = PlayerPrefs.GetInt($"TileCompleted_{i}", 0) == 1;
-            
+
             //Set the first tile default unlocked if it haven't been completed yet
             if (i == 0 && !isCompleted) {
                 battleTiles[0].SetUnlocked(true);
