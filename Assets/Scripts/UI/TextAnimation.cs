@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using System.Threading.Tasks;
 
 public class TextAnimation : MonoBehaviour {
@@ -6,6 +7,11 @@ public class TextAnimation : MonoBehaviour {
     Vector2 toVector;
     float duration;
     float counter = 0;
+    TMP_Text text;
+
+    void Awake() {
+        text = GetComponent<TMP_Text>();
+    }
 
     private void Update() {
         if (counter > 0) {
@@ -13,8 +19,12 @@ public class TextAnimation : MonoBehaviour {
             float dist = Mathf.Sqrt(
                 Mathf.Pow(toVector.x - fromVector.x, 2) +
                 Mathf.Pow(toVector.y - fromVector.y, 2));
-            transform.Translate(dir.normalized * dist * Time.deltaTime / duration * Settings.gameSpeed);
+            transform.Translate(dist * Time.deltaTime * dir.normalized / duration * Settings.gameSpeed);
             counter -= Time.deltaTime * Settings.gameSpeed;
+
+            var tempColor = text.color;
+            tempColor.a = counter * 1.5f;
+            text.color = tempColor;
 
             if (counter <= 0) {
                 Destroy(gameObject);

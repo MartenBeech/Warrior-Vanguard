@@ -13,7 +13,7 @@ public class ObjectAnimation : MonoBehaviour {
             float dist = Mathf.Sqrt(
                 Mathf.Pow(toVector.x - fromVector.x, 2) +
                 Mathf.Pow(toVector.y - fromVector.y, 2));
-            transform.Translate(dir.normalized * dist * Time.deltaTime / duration * Settings.gameSpeed);
+            transform.Translate(dist * Time.deltaTime * dir.normalized / duration * Settings.gameSpeed);
             counter -= Time.deltaTime * Settings.gameSpeed;
 
             if (counter <= 0) {

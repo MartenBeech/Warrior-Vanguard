@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 public class Splash {
     bool[] value = new bool[] { false, false };
 
@@ -18,14 +19,17 @@ public class Splash {
         Add(true, true);
     }
 
-    public bool Trigger(Character dealer, Character target, GridManager gridManager) {
+    public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
             List<Character> characters = gridManager.GetWarriorsAroundCell(target.gridIndex);
+            List<Task> asyncFunctions = new();
             foreach (Character character in characters) {
                 if (character.alignment != dealer.alignment) {
-                    dealer.Strike(character, dealer.stats.GetStrength());
+                    asyncFunctions.Add(dealer.Strike(character, dealer.stats.GetStrength()));
                 }
             }
+
+            await Task.WhenAll(asyncFunctions);
             return true;
         }
         return false;

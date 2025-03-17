@@ -139,8 +139,11 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             damage *= 2;
         }
 
-        stats.ability.splash.Trigger(this, target, gridManager);
-        await Strike(target, damage);
+        List<Task> asyncFunctions = new() {
+            stats.ability.splash.Trigger(this, target, gridManager),
+            Strike(target, damage)
+        };
+        await Task.WhenAll(asyncFunctions);
 
         stats.ability.weaken.Trigger(this, target);
         stats.ability.bloodlust.Trigger(this);
