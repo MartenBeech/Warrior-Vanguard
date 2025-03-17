@@ -18,6 +18,10 @@ public class Retaliate {
         Add(true, true);
     }
 
+    public void Remove() {
+        Add(false, false);
+    }
+
     public async Task<bool> Trigger(Character dealer, Character target) {
         if (GetValue(target.stats)) {
             await target.Strike(dealer, target.stats.GetStrength());
@@ -33,7 +37,7 @@ public class Retaliate {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"When attacked, strike the attacker";
+        return $"After I get attacked, I strike the attacker";
     }
 
     string GetAbilityName() {

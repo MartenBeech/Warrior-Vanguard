@@ -17,6 +17,10 @@ public class RaiseDead {
         Add(true, true);
     }
 
+    public void Remove() {
+        Add(false, false);
+    }
+
     public bool Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats)) {
             WarriorStats stats = new SkeletonWarrior().GetStats();

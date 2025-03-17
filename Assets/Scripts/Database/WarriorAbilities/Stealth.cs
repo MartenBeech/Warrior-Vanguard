@@ -17,6 +17,10 @@ public class Stealth {
         Add(true, true);
     }
 
+    public void Remove() {
+        Add(false, false);
+    }
+
     public bool TriggerAttack(Character dealer) {
         if (GetValue(dealer.stats)) {
             if (!dealer.stats.ability.permaStealth.GetValue(dealer.stats)) {
@@ -42,7 +46,7 @@ public class Stealth {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"This takes half damage. {WarriorAbility.Keywords.Attack}: Deal double damage and break {GetAbilityName()}";
+        return $"Take half damage. {WarriorAbility.Keywords.Attack}: Deal double damage and break stealth";
     }
 
     string GetAbilityName() {

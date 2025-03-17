@@ -17,6 +17,10 @@ public class FrozenTouch {
         Add(true, true);
     }
 
+    public void Remove() {
+        Add(false, false);
+    }
+
     public bool Trigger(Character dealer, Character target) {
         if (GetValue(dealer.stats)) {
             target.stats.speed--;

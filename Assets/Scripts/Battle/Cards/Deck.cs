@@ -33,9 +33,9 @@ public class Deck : MonoBehaviour {
 
         UpdateDeckUi();
 
-        Vector2 deckPos = new Vector2(deckObject.transform.position.x, deckObject.transform.position.y);
-        Vector2 handPos = new Vector2(handObject.transform.position.x, handObject.transform.position.y);
-        Vector2 centerPos = new Vector2(0, 0);
+        Vector2 deckPos = new(deckObject.transform.position.x, deckObject.transform.position.y);
+        Vector2 handPos = new(handObject.transform.position.x, handObject.transform.position.y);
+        Vector2 centerPos = new(0, 0);
 
         GameObject cardInstance = Instantiate(cardPrefab, deckPos, Quaternion.identity, deckObject.transform);
         ObjectAnimation objectAnimation = cardInstance.GetComponentInChildren<ObjectAnimation>();
@@ -51,7 +51,7 @@ public class Deck : MonoBehaviour {
         await objectAnimation.MoveObject(centerPos, handPos);
         Destroy(cardInstance);
 
-        hand.AddCardToHand(card);
+        hand.AddCardToHand(card.stats);
     }
 
     void UpdateDeckUi() {

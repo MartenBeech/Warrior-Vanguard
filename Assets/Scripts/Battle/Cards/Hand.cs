@@ -8,15 +8,15 @@ public class Hand : MonoBehaviour {
 
     int handSize = 0;
 
-    public void AddCardToHand(Card card) {
+    public void AddCardToHand(WarriorStats stats) {
         if (handSize >= 10) return;
 
         Vector2 pos = new(0, 0);
 
         GameObject cardInstance = Instantiate(cardPrefab, pos, Quaternion.identity, handObject);
 
-        Card cardHand = cardInstance.GetComponentInChildren<Card>();
-        cardHand.stats.SetStats(card.stats);
+        Card cardHand = cardInstance.GetComponent<Card>();
+        cardHand.stats.SetStats(stats);
         cardHand.UpdateCardUi();
         cardHand.SetHoverWarrior();
 

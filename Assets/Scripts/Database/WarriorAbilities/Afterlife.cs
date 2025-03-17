@@ -1,5 +1,8 @@
 using System.Text.RegularExpressions;
-public class DeathCall {
+using System.Threading.Tasks;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using UnityEngine;
+public class Afterlife {
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -21,12 +24,12 @@ public class DeathCall {
         Add(false, false);
     }
 
-    public bool Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
-        if (GetValue(dealer.stats)) {
-            WarriorStats stats = new SkeletonWarrior().GetStats();
-            stats.level = dealer.stats.level;
-
-            characterSpawner.SpawnRandomly(stats, dealer.alignment, target.transform.position);
+    public async Task<bool> Trigger(Character target, ObjectAnimation objectAnimation, GridManager gridManager, Hand hand) {
+        if (GetValue(target.stats)) {
+            await objectAnimation.MoveObject(gridManager.GetCellPosition(target.gridIndex), hand.handObject.position);
+            target.stats.ResetStats();
+            target.stats.ability.afterlife.Remove();
+            hand.AddCardToHand(target.stats);
             return true;
         }
         return false;
@@ -39,7 +42,7 @@ public class DeathCall {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"When an enemy dies, Summon a {new SkeletonWarrior().GetStats().strength[stats.level]}/{new SkeletonWarrior().GetStats().health[stats.level]} Skeleton Warrior";
+        return $"{WarriorAbility.Keywords.Death}: Return to your hand without this ability";
     }
 
     string GetAbilityName() {

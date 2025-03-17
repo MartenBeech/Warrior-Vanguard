@@ -1,6 +1,7 @@
 public class WarriorStats {
     public string title;
     public int level = 0;
+    public Character.DamageType damageType = Character.DamageType.Physical;
 
     public int cost;
     public int[] strength = new int[2];
@@ -22,6 +23,7 @@ public class WarriorStats {
     public void SetStats(WarriorStats stats) {
         title = stats.title;
         level = stats.level;
+        damageType = stats.damageType;
 
         for (int i = 0; i < 2; i++) {
             strength[i] = stats.strength[i];
@@ -43,7 +45,7 @@ public class WarriorStats {
         ability = stats.ability;
     }
 
-    public WarriorStats ResetStats() {
+    public void ResetStats() {
         strength = defaultStrength;
         for (int i = 0; i < 2; i++) {
             health[i] = defaultHealth[i];
@@ -53,8 +55,6 @@ public class WarriorStats {
         speed = defaultSpeed;
         range = defaultRange;
         numberOfAttacks = defaultNumberOfAttacks;
-
-        return this;
     }
 
     public int GetStrength() {

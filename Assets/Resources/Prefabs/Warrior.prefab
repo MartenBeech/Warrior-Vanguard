@@ -409,6 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a6acc052af8ff48ab643f6281d541e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridIndex: {x: 0, y: 0}
 --- !u!114 &7828224047692611934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,13 +422,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0b35d208a8d5347b1e90e78d2b3fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridPosition: {x: 1400, y: 0}
+  gridIndex: {x: 0, y: 0}
   alignment: 0
   attackText: {fileID: 1224358540268641666}
   healthText: {fileID: 8699503686999248439}
   image: {fileID: 2619659621084207209}
   remainingAttacks: 1
   remainingSteps: 0
+  cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
 --- !u!114 &1496594542848040516
 MonoBehaviour:
   m_ObjectHideFlags: 0

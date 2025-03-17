@@ -17,6 +17,10 @@ public class HydraSplit {
         Add(true, true);
     }
 
+    public void Remove() {
+        Add(false, false);
+    }
+
     public bool Trigger(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
             for (int i = 0; i < 3; i++) {

@@ -17,6 +17,10 @@ public class Skeletal {
         Add(true, true);
     }
 
+    public void Remove() {
+        Add(false, false);
+    }
+
     public bool Trigger(Character dealer, Character target) {
         if (GetValue(target.stats)) {
             if (dealer.stats.range >= 4) {
@@ -33,7 +37,7 @@ public class Skeletal {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"This takes half damage from attackers with 4+ range";
+        return $"Take half damage from attackers with 4+ range";
     }
 
     string GetAbilityName() {

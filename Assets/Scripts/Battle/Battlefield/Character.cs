@@ -21,6 +21,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private GameManager gameManager;
     public int remainingAttacks = 1;
     public int remainingSteps = 0;
+    public enum DamageType {
+        Physical, Magical
+    };
 
     public void Initiate(GameManager gameManager, GridManager gridManager) {
         this.gameManager = gameManager;
@@ -72,7 +75,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         // If no character in front, move
         if (!frontCellCharacter && remainingSteps > 0) {
-            ObjectAnimation objectAnimation = GetComponentInChildren<ObjectAnimation>();
+            ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
             await objectAnimation.MoveObject(transform.position, gridManager.GetCellPosition(newGridIndex));
             gridIndex = newGridIndex;
             remainingSteps--;
@@ -145,6 +148,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         };
         await Task.WhenAll(asyncFunctions);
 
+        if (stats.ability.darkTouch.Trigger(this, target)) {
+            await target.Die(this);
+        }
         stats.ability.weaken.Trigger(this, target);
         stats.ability.bloodlust.Trigger(this);
         await target.stats.ability.retaliate.Trigger(this, target);
@@ -154,33 +160,43 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         stats.ability.poison.Trigger(this, target);
         stats.ability.frozenTouch.Trigger(this, target);
 
-        damage = await target.TakeDamage(this, damage);
+        damage = await target.TakeDamage(this, damage, stats.damageType);
 
         if (damage > 0) {
             await stats.ability.lifeSteal.Trigger(this, damage);
         }
     }
 
-    public async Task<int> TakeDamage(Character dealer, int damage) {
+    public async Task<int> TakeDamage(Character dealer, int damage, DamageType damageType) {
         if (stats.ability.stealth.TriggerTakeDamage(this)) {
             damage = (int)Mathf.Ceil(damage / 2f);
         }
         if (stats.ability.skeletal.Trigger(dealer, this)) {
             damage = (int)Mathf.Ceil(damage / 2f);
         }
+        if (damageType == DamageType.Physical) {
+            if (stats.ability.incorporeal.Trigger(this)) {
+                if (damage > 1) {
+                    damage = 1;
+                }
+            }
+        }
+
+        List<Task> asyncFunctions = new();
 
         if (damage > 0) {
             stats.AddHealth(-damage);
+            UpdateWarriorUI();
 
             if (stats.GetHealth() <= 0) {
-                Die(dealer);
-            } else {
-                UpdateWarriorUI();
+                asyncFunctions.Add(Die(dealer));
             }
         }
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-        await floatingText.CreateFloatingText(transform, damage.ToString());
+        asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString()));
+
+        await Task.WhenAll(asyncFunctions);
 
         return damage;
     }
@@ -193,7 +209,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green);
     }
 
-    private void Die(Character dealer) {
+    private async Task Die(Character dealer) {
         gameManager.RemoveCharacter(this);
         gridManager.RemoveCharacter(this);
 
@@ -211,6 +227,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         stats.ability.revive.Trigger(this, characterSpawner);
         stats.ability.hydraSplit.Trigger(this, characterSpawner);
 
+        ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
+        Hand hand = FindFirstObjectByType<Hand>();
+        await stats.ability.afterlife.Trigger(this, objectAnimation, gridManager, hand);
 
         Destroy(gameObject);
     }

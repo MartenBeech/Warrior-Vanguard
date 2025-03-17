@@ -1,7 +1,12 @@
 using System.Reflection;
 public class WarriorAbility {
     public enum Keywords {
-        Attack, Death, Overturn, Strike, Summon, Kill
+        Attack,     //After it makes an attack move
+        Death,      //After it dies
+        Overturn,   //At the end of its turns
+        Strike,     //After it strikes a warrior
+        Summon,     //after it is summoned
+        Kill,       //After it kills a warrior
     }
 
     public Weaken weaken = new();
@@ -21,6 +26,9 @@ public class WarriorAbility {
     public Skeletal skeletal = new();
     public DeathCall deathCall = new();
     public BoneToughener boneToughener = new();
+    public Incorporeal incorporeal = new();
+    public Afterlife afterlife = new();
+    public DarkTouch darkTouch = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

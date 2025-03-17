@@ -19,6 +19,7 @@ public class Mario : WarriorStats {
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
         WarriorAbility ability = stats.ability;
+        ability.darkTouch.Add(6, 6);
 
         return stats;
     }

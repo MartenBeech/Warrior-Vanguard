@@ -17,10 +17,14 @@ public class Revive {
         Add(true, true);
     }
 
+    public void Remove() {
+        Add(false, false);
+    }
+
     public bool Trigger(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
             target.stats.ResetStats();
-            target.stats.ability.revive.Add(false, false);
+            target.stats.ability.revive.Remove();
 
             characterSpawner.SpawnRandomly(target.stats, target.alignment, target.transform.position);
             return true;
@@ -35,7 +39,7 @@ public class Revive {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Resummon this without {GetAbilityName()}";
+        return $"{WarriorAbility.Keywords.Death}: Resummon me without this ability";
     }
 
     string GetAbilityName() {

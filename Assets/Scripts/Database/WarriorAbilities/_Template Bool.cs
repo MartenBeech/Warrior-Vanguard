@@ -17,6 +17,10 @@ public class CLASSNAMEBOOL {
         Add(true, true);
     }
 
+    public void Remove() {
+        Add(false, false);
+    }
+
     public bool Trigger(Character character) {
         if (GetValue(character.stats)) {
             // Add trigger event here

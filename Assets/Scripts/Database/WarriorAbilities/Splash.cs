@@ -19,6 +19,10 @@ public class Splash {
         Add(true, true);
     }
 
+    public void Remove() {
+        Add(false, false);
+    }
+
     public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
             List<Character> characters = gridManager.GetWarriorsAroundCell(target.gridIndex);

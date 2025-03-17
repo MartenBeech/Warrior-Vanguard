@@ -18,6 +18,10 @@ public class LifeSteal {
         Add(true, true);
     }
 
+    public void Remove() {
+        Add(false, false);
+    }
+
     public async Task<bool> Trigger(Character dealer, int damage) {
         if (GetValue(dealer.stats)) {
             await dealer.Heal(damage);
