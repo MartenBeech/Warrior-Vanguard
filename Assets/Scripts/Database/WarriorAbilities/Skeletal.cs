@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
-public class RaiseDead {
+public class Skeletal {
     bool[] value = new bool[] { false, false };
 
-    bool GetValue(WarriorStats stats) {
+    public bool GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 
@@ -17,13 +17,11 @@ public class RaiseDead {
         Add(true, true);
     }
 
-    public bool Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
-        if (GetValue(dealer.stats)) {
-            WarriorStats stats = new SkeletonWarrior().GetStats();
-            stats.level = dealer.stats.level;
-
-            characterSpawner.SpawnRandomly(stats, dealer.alignment, target.transform.position);
-            return true;
+    public bool Trigger(Character dealer, Character target) {
+        if (GetValue(target.stats)) {
+            if (dealer.stats.range >= 4) {
+                return true;
+            }
         }
         return false;
     }
@@ -35,7 +33,7 @@ public class RaiseDead {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Summon a {new SkeletonWarrior().GetStats().strength[stats.level]}/{new SkeletonWarrior().GetStats().health[stats.level]} Skeleton Warrior";
+        return $"This takes half damage from attackers with 4+ range";
     }
 
     string GetAbilityName() {

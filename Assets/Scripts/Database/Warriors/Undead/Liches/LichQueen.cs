@@ -3,11 +3,11 @@ public class LichQueen {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
-            cost = 0,
-            strength = new int[] { 0, 0 },
-            health = new int[] { 0, 0 },
+            cost = 9,
+            strength = new int[] { 3, 4 },
+            health = new int[] { 14, 16 },
             speed = 2,
-            range = 2,
+            range = 4,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
@@ -20,6 +20,8 @@ public class LichQueen {
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
         WarriorAbility ability = stats.ability;
+        ability.splash.Add();
+        ability.deathCall.Add();
 
         return stats;
     }

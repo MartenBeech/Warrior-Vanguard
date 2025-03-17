@@ -164,4 +164,28 @@ public class GridManager : MonoBehaviour {
         }
         return warriors;
     }
+
+    public List<Character> GetCharacters() {
+        return allCharacters;
+    }
+
+    public List<Character> GetFriends(CharacterSpawner.Alignment alignment) {
+        List<Character> friends = new();
+        foreach (Character character in allCharacters) {
+            if (character.alignment == alignment) {
+                friends.Add(character);
+            }
+        }
+        return friends;
+    }
+
+    public List<Character> GetEnemies(CharacterSpawner.Alignment alignment) {
+        List<Character> enemies = new();
+        foreach (Character character in allCharacters) {
+            if (character.alignment != alignment) {
+                enemies.Add(character);
+            }
+        }
+        return enemies;
+    }
 }

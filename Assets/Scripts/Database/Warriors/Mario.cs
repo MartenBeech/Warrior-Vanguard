@@ -19,9 +19,6 @@ public class Mario : WarriorStats {
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
         WarriorAbility ability = stats.ability;
-        ability.splash.Add();
-        ability.raiseDead.Add();
-        ability.frozenTouch.Add();
 
         return stats;
     }

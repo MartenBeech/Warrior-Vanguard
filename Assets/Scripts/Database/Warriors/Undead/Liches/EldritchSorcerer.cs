@@ -3,11 +3,11 @@ public class EldritchSorcerer {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
-            cost = 0,
-            strength = new int[] { 0, 0 },
-            health = new int[] { 0, 0 },
+            cost = 2,
+            strength = new int[] { 2, 3 },
+            health = new int[] { 4, 5 },
             speed = 2,
-            range = 2,
+            range = 4,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
@@ -20,6 +20,8 @@ public class EldritchSorcerer {
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
         WarriorAbility ability = stats.ability;
+        ability.splash.Add();
+        ability.raiseDead.Add();
 
         return stats;
     }

@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class RaiseDead {
+public class DeathCall {
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -35,7 +35,7 @@ public class RaiseDead {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Summon a {new SkeletonWarrior().GetStats().strength[stats.level]}/{new SkeletonWarrior().GetStats().health[stats.level]} Skeleton Warrior";
+        return $"When an enemy dies, Summon a {new SkeletonWarrior().GetStats().strength[stats.level]}/{new SkeletonWarrior().GetStats().health[stats.level]} Skeleton Warrior";
     }
 
     string GetAbilityName() {

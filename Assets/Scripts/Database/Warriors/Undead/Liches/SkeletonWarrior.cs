@@ -1,13 +1,13 @@
 using System.Text.RegularExpressions;
-public class BoneConjurer {
+public class SkeletonWarrior {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
-            cost = 5,
-            strength = new int[] { 3, 5 },
-            health = new int[] { 5, 5 },
+            cost = 1,
+            strength = new int[] { 1, 2 },
+            health = new int[] { 4, 5 },
             speed = 2,
-            range = 4,
+            range = 2,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
@@ -20,9 +20,7 @@ public class BoneConjurer {
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
         WarriorAbility ability = stats.ability;
-        ability.splash.Add();
-        ability.raiseDead.Add();
-        ability.boneToughener.Add(3, 5);
+        ability.skeletal.Add();
 
         return stats;
     }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CharacterSpawner : MonoBehaviour {
     public enum Alignment {
@@ -28,6 +29,12 @@ public class CharacterSpawner : MonoBehaviour {
         warrior.name = $"{stats.title}[{gridIndex.x},{gridIndex.y}]";
         Character character = warrior.GetComponent<Character>();
         ObjectAnimation objectAnimation = warrior.GetComponentInChildren<ObjectAnimation>();
+
+        List<Character> friends = gridManager.GetFriends(alignment);
+        foreach (Character friend in friends) {
+            friend.stats.ability.boneToughener.Trigger(friend, stats);
+        }
+
         character.SetStats(stats);
         character.gridIndex = gridIndex;
         gameManager.RegisterCharacter(character, alignment);

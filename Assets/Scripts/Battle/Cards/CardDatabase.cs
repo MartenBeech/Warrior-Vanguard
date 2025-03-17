@@ -4,6 +4,10 @@ public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
         new Duck().GetStats(),
         new Mario().GetStats(),
+        new BoneConjurer().GetStats(),
+        new EldritchSorcerer().GetStats(),
+        new FrozenTombcarver().GetStats(),
+        new LichQueen().GetStats(),
         new BoneGnawer().GetStats(),
         new FrenziedGhoul().GetStats(),
         new SinisterHowler().GetStats(),

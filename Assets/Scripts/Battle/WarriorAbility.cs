@@ -18,6 +18,9 @@ public class WarriorAbility {
     public Splash splash = new();
     public RaiseDead raiseDead = new();
     public FrozenTouch frozenTouch = new();
+    public Skeletal skeletal = new();
+    public DeathCall deathCall = new();
+    public BoneToughener boneToughener = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

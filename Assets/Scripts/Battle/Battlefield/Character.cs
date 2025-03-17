@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public Vector2 gridIndex;
@@ -108,15 +109,15 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public async Task StandAndAttack(Direction direction) {
         remainingAttacks--;
         for (int i = 1; i <= stats.range; i++) {
-            Vector2 position = GetFrontCellIndex(gridIndex, direction, i);
-            Character characterOnCell = gridManager.GetCellCharacter(position);
+            Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
+            Character characterOnCell = gridManager.GetCellCharacter(newGridIndex);
 
             if (characterOnCell && characterOnCell.alignment != alignment) {
                 await Attack(characterOnCell);
                 break;
             }
 
-            if (IsOutOfField(position)) {
+            if (IsOutOfField(newGridIndex)) {
                 if (alignment == CharacterSpawner.Alignment.Enemy) {
                     Summoner friendSummoner = gameManager.friendSummonerObject.GetComponent<Summoner>();
                     await friendSummoner.Damage(this, stats.GetStrength());
@@ -161,6 +162,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (stats.ability.stealth.TriggerTakeDamage(this)) {
             damage = (int)Mathf.Ceil(damage / 2f);
         }
+        if (stats.ability.skeletal.Trigger(dealer, this)) {
+            damage = (int)Mathf.Ceil(damage / 2f);
+        }
 
         if (damage > 0) {
             stats.AddHealth(-damage);
@@ -195,6 +199,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (dealer != this) {
             dealer.stats.ability.cannibalism.Trigger(dealer);
             dealer.stats.ability.raiseDead.Trigger(dealer, this, characterSpawner);
+            List<Character> friends = gridManager.GetFriends(dealer.alignment);
+            foreach (Character friend in friends) {
+                friend.stats.ability.deathCall.Trigger(friend, this, characterSpawner);
+            }
         }
 
         stats.ability.revive.Trigger(this, characterSpawner);

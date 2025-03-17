@@ -3,11 +3,11 @@ public class FrozenTombcarver {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
-            cost = 0,
-            strength = new int[] { 0, 0 },
-            health = new int[] { 0, 0 },
+            cost = 6,
+            strength = new int[] { 1, 3 },
+            health = new int[] { 9, 9 },
             speed = 2,
-            range = 2,
+            range = 4,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
@@ -20,6 +20,9 @@ public class FrozenTombcarver {
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
         WarriorAbility ability = stats.ability;
+        ability.splash.Add();
+        ability.raiseDead.Add();
+        ability.frozenTouch.Add();
 
         return stats;
     }
