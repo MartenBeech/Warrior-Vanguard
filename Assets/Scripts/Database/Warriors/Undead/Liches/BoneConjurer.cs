@@ -4,8 +4,8 @@ public class BoneConjurer {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 5,
-            strength = new int[] { 3, 5 },
-            health = new int[] { 5, 5 },
+            strength = new int[] { 3, 4 },
+            health = new int[] { 5, 6 },
             speed = 2,
             range = 4,
             damageType = Character.DamageType.Magical,
@@ -23,7 +23,7 @@ public class BoneConjurer {
         WarriorAbility ability = stats.ability;
         ability.splash.Add();
         ability.raiseDead.Add();
-        ability.boneToughener.Add(3, 5);
+        ability.boneToughener.Add(3, 4);
 
         return stats;
     }

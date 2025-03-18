@@ -29,6 +29,7 @@ public class WarriorAbility {
     public Incorporeal incorporeal = new();
     public Afterlife afterlife = new();
     public DarkTouch darkTouch = new();
+    public Possess possess = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

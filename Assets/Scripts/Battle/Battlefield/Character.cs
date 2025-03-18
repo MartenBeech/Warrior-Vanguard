@@ -222,6 +222,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             foreach (Character friend in friends) {
                 friend.stats.ability.deathCall.Trigger(friend, this, characterSpawner);
             }
+            dealer.stats.ability.possess.Trigger(dealer, this);
         }
 
         stats.ability.revive.Trigger(this, characterSpawner);

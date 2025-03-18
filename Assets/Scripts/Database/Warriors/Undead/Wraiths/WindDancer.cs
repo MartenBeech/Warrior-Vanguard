@@ -1,10 +1,11 @@
-public class Mario : WarriorStats {
+using System.Text.RegularExpressions;
+public class WindDancer {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Mario",
-            strength = new int[] { 2, 4 },
-            health = new int[] { 4, 4 },
+            title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 1,
+            strength = new int[] { 2, 3 },
+            health = new int[] { 2, 3 },
             speed = 2,
             range = 2,
         };
@@ -19,8 +20,7 @@ public class Mario : WarriorStats {
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
         WarriorAbility ability = stats.ability;
-        ability.darkTouch.Add(6, 6);
-        ability.possess.Add();
+        ability.afterlife.Add();
 
         return stats;
     }
