@@ -3,11 +3,12 @@ using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
-    public List<Character> friends = new();
-    public List<Character> enemies = new();
+    List<Character> friends = new();
+    List<Character> enemies = new();
     public GridManager gridManager;
     public GameObject friendSummonerObject;
     public GameObject enemySummonerObject;
+    public Coin coin;
 
     void Awake() {
         Summoner friendSummoner = friendSummonerObject.GetComponent<Summoner>();
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour {
                 await friend.StandAndAttack(Character.Direction.Right);
             }
         }
+        coin.GainCoins();
+        coin.RefreshCoins();
     }
 
     public async void EndEnemyTurn() {

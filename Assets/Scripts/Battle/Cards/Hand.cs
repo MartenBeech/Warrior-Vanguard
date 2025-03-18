@@ -27,6 +27,8 @@ public class Hand : MonoBehaviour {
     }
 
     public void PlayCardFromHand(CharacterSpawner characterSpawner, Vector2 selectedGridIndex) {
+        Coin coin = FindFirstObjectByType<Coin>();
+        coin.SpendCoins(selectedCard.stats.cost);
 
         characterSpawner.Spawn(selectedGridIndex, selectedCard.stats, CharacterSpawner.Alignment.Friend, selectedCard.GetComponent<RectTransform>().position);
 
