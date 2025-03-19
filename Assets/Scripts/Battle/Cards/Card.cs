@@ -12,6 +12,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text abilityText;
     public WarriorStats stats = new();
     HoverWarrior hoverWarrior;
+    Hand hand;
 
     public void UpdateCardUi() {
         attackText.text = $"{stats.GetStrength()}";
@@ -41,7 +42,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     }
 
     public void OnClick() {
-        Hand hand = FindFirstObjectByType<Hand>();
         if (this == hand.selectedCard) {
             hand.DeselectCard(hand.selectedCard);
         } else {
@@ -60,5 +60,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         if (hoverWarrior) {
             hoverWarrior.HideCard();
         }
+    }
+
+    public void SetHand(Hand hand) {
+        this.hand = hand;
     }
 }

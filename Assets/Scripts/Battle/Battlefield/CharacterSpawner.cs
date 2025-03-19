@@ -11,7 +11,8 @@ public class CharacterSpawner : MonoBehaviour {
     public Transform warriorsObject;
     public GameManager gameManager;
     public HoverWarrior hoverWarrior;
-    public Hand hand;
+    public Hand friendHand;
+    public Hand enemyHand;
 
     public void ActivateSpawnEnemy() {
         spawningAlignment = Alignment.Enemy;
@@ -41,7 +42,15 @@ public class CharacterSpawner : MonoBehaviour {
         await objectAnimation.MoveObject(from, gridManager.GetCellPosition(gridIndex));
 
         warrior.GetComponent<RectTransform>().localScale = gridManager.GetCellDimension() / warrior.GetComponent<RectTransform>().rect.width;
-        character.Initiate(gameManager, gridManager);
+
+
+        Hand hand = null;
+        if (stats.alignment == Alignment.Friend) {
+            hand = friendHand;
+        } else if (stats.alignment == Alignment.Enemy) {
+            hand = enemyHand;
+        }
+        character.Initiate(gameManager, gridManager, hand);
 
         character.SetAlignment(alignment);
         character.SetHoverWarrior(hoverWarrior);

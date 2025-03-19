@@ -2,6 +2,7 @@ public class WarriorStats {
     public string title;
     public int level = 0;
     public Character.DamageType damageType = Character.DamageType.Physical;
+    public CharacterSpawner.Alignment alignment;
 
     public int cost;
     public int[] strength = new int[2];
@@ -24,6 +25,7 @@ public class WarriorStats {
         title = stats.title;
         level = stats.level;
         damageType = stats.damageType;
+        alignment = stats.alignment;
 
         for (int i = 0; i < 2; i++) {
             strength[i] = stats.strength[i];

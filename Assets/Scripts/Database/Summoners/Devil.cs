@@ -1,5 +1,5 @@
 public class Devil : SummonerStats {
-    public static SummonerStats GetSummoner() {
+    public SummonerStats GetSummoner() {
         SummonerStats stats = new() {
             title = "Devil",
             description = "He's a baaaaaad guy, duh!",

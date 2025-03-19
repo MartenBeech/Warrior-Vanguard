@@ -21,10 +21,10 @@ public class Possess {
         Add(false, false);
     }
 
-    public bool Trigger(Character dealer, Character target) {
+    public bool Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats)) {
             target.stats.ResetStats();
-            dealer.SetStats(target.stats);
+            characterSpawner.SpawnRandomly(target.stats, dealer.alignment, target.transform.position);
             return true;
         }
         return false;
@@ -37,7 +37,7 @@ public class Possess {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Turn into a new copy of the target";
+        return $"{WarriorAbility.Keywords.Kill}: Resummon the target, then I die";
     }
 
     string GetAbilityName() {

@@ -13,7 +13,13 @@ public class Coin : MonoBehaviour {
             Instantiate(coinPrefab, transform);
         }
         coinsTotal += amount;
+        if (coinsTotal > 10) {
+            coinsTotal = 10;
+        }
         coins += amount;
+        if (coinsTotal > 10) {
+            coins = 10;
+        }
     }
 
     public bool SpendCoins(int amount) {

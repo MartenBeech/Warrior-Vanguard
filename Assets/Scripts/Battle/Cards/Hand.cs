@@ -15,22 +15,29 @@ public class Hand : MonoBehaviour {
 
         GameObject cardInstance = Instantiate(cardPrefab, pos, Quaternion.identity, handObject);
 
-        Card cardHand = cardInstance.GetComponent<Card>();
-        cardHand.stats.SetStats(stats);
-        cardHand.UpdateCardUi();
-        cardHand.SetHoverWarrior();
+        Card card = cardInstance.GetComponent<Card>();
+        card.SetHand(this);
+        card.stats.SetStats(stats);
+        card.UpdateCardUi();
+        card.SetHoverWarrior();
 
         Button cardButton = cardInstance.GetComponent<Button>();
-        cardButton.onClick.AddListener(() => { cardHand.OnClick(); });
+        cardButton.onClick.AddListener(() => { card.OnClick(); });
 
         handSize++;
     }
 
-    public void PlayCardFromHand(CharacterSpawner characterSpawner, Vector2 selectedGridIndex) {
-        Coin coin = FindFirstObjectByType<Coin>();
+    public void PlayCardFromHand(CharacterSpawner characterSpawner, Vector2 selectedGridIndex, CharacterSpawner.Alignment alignment) {
+        GameManager gameManager = FindFirstObjectByType<GameManager>();
+        Coin coin = null;
+        if (alignment == CharacterSpawner.Alignment.Friend) {
+            coin = gameManager.friendCoin;
+        } else if (alignment == CharacterSpawner.Alignment.Enemy) {
+            coin = gameManager.enemyCoin;
+        }
         coin.SpendCoins(selectedCard.stats.cost);
 
-        characterSpawner.Spawn(selectedGridIndex, selectedCard.stats, CharacterSpawner.Alignment.Friend, selectedCard.GetComponent<RectTransform>().position);
+        characterSpawner.Spawn(selectedGridIndex, selectedCard.stats, alignment, selectedCard.GetComponent<RectTransform>().position);
 
         Destroy(selectedCard.gameObject);
         DeselectCard(selectedCard);

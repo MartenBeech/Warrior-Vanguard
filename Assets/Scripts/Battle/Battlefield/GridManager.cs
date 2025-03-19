@@ -7,7 +7,8 @@ public class GridManager : MonoBehaviour {
     public int columns;
     public GameObject cellPrefab;
     public CharacterSpawner characterSpawner;
-    public Hand hand;
+    public Hand friendHand;
+    public Hand enemyHand;
     private GridCell[,] grid;
     private List<Character> allCharacters = new();
     public Vector2Int? SelectedCell { get; private set; }
@@ -78,9 +79,14 @@ public class GridManager : MonoBehaviour {
             characterSpawner.Spawn(selectedGridIndex, new Luigi().GetStats(), CharacterSpawner.Alignment.Enemy, EnemySummonerObject.position);
             return;
         }
-        if (hand == null || hand.selectedCard == null) return;
 
-        hand.PlayCardFromHand(characterSpawner, selectedGridIndex);
+        if (GameManager.turn == GameManager.Players.friend) {
+            if (friendHand.selectedCard == null) return;
+            friendHand.PlayCardFromHand(characterSpawner, selectedGridIndex, CharacterSpawner.Alignment.Friend);
+        } else if (GameManager.turn == GameManager.Players.enemy) {
+            if (enemyHand.selectedCard == null) return;
+            enemyHand.PlayCardFromHand(characterSpawner, selectedGridIndex, CharacterSpawner.Alignment.Enemy);
+        }
     }
 
     public void RegisterCharacter(Character character) {

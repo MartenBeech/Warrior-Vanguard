@@ -8,13 +8,34 @@ public class GameManager : MonoBehaviour {
     public GridManager gridManager;
     public GameObject friendSummonerObject;
     public GameObject enemySummonerObject;
-    public Coin coin;
+    public Coin friendCoin;
+    public Coin enemyCoin;
+    public Deck friendDeck;
+    public Deck enemyDeck;
+    public enum Players {
+        friend, enemy
+    }
+    public static Players turn;
 
     void Awake() {
         Summoner friendSummoner = friendSummonerObject.GetComponent<Summoner>();
-        friendSummoner.SetStats(Angel.GetSummoner());
+        friendSummoner.SetStats(new Angel().GetSummoner());
         Summoner enemySummoner = enemySummonerObject.GetComponent<Summoner>();
-        enemySummoner.SetStats(Devil.GetSummoner());
+        enemySummoner.SetStats(new Devil().GetSummoner());
+        friendDeck.GetDeck();
+        enemyDeck.GetDeck();
+        for (int i = 0; i < 3; i++) {
+            friendDeck.DrawCard(CharacterSpawner.Alignment.Friend, false);
+            enemyDeck.DrawCard(CharacterSpawner.Alignment.Enemy, false);
+        }
+        StartTurn();
+    }
+
+    public void StartTurn() {
+        turn = Players.friend;
+        friendCoin.GainCoins();
+        friendCoin.RefreshCoins();
+        friendDeck.DrawCard(CharacterSpawner.Alignment.Friend);
     }
 
     public async void EndTurn() {
@@ -30,13 +51,19 @@ public class GameManager : MonoBehaviour {
                 await friend.StandAndAttack(Character.Direction.Right);
             }
         }
-        coin.GainCoins();
-        coin.RefreshCoins();
+        StartEnemyTurn();
+    }
+
+    public void StartEnemyTurn() {
+        turn = Players.enemy;
+        enemyCoin.GainCoins();
+        enemyCoin.RefreshCoins();
+        enemyDeck.DrawCard(CharacterSpawner.Alignment.Enemy, false);
     }
 
     public async void EndEnemyTurn() {
-        enemies = enemies.OrderBy(c => c.gridIndex.x).ToList();
-        foreach (Character enemy in enemies) {
+        List<Character> sortedEnemies = enemies.OrderBy(c => c.gridIndex.x).ToList();
+        foreach (Character enemy in sortedEnemies) {
             enemy.SetRemainingActions(enemy.stats.numberOfAttacks, enemy.stats.speed);
             int maxActions = enemy.stats.numberOfAttacks + enemy.stats.speed;
             for (int i = 0; i < maxActions; i++) {
@@ -47,6 +74,7 @@ public class GameManager : MonoBehaviour {
                 await enemy.StandAndAttack(Character.Direction.Left);
             }
         }
+        StartTurn();
     }
 
     public void RegisterCharacter(Character character, CharacterSpawner.Alignment alignment) {

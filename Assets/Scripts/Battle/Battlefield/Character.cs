@@ -24,10 +24,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public enum DamageType {
         Physical, Magical
     };
+    Hand hand;
 
-    public void Initiate(GameManager gameManager, GridManager gridManager) {
+    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand) {
         this.gameManager = gameManager;
         this.gridManager = gridManager;
+        this.hand = hand;
     }
 
     public void UpdateWarriorUI() {
@@ -222,14 +224,15 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             foreach (Character friend in friends) {
                 friend.stats.ability.deathCall.Trigger(friend, this, characterSpawner);
             }
-            dealer.stats.ability.possess.Trigger(dealer, this);
+            if (dealer.stats.ability.possess.Trigger(dealer, this, characterSpawner)) {
+                await dealer.Die(dealer);
+            }
         }
 
         stats.ability.revive.Trigger(this, characterSpawner);
         stats.ability.hydraSplit.Trigger(this, characterSpawner);
 
         ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
-        Hand hand = FindFirstObjectByType<Hand>();
         await stats.ability.afterlife.Trigger(this, objectAnimation, gridManager, hand);
 
         Destroy(gameObject);
