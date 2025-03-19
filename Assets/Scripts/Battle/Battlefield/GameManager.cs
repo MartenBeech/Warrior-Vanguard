@@ -12,10 +12,7 @@ public class GameManager : MonoBehaviour {
     public Coin enemyCoin;
     public Deck friendDeck;
     public Deck enemyDeck;
-    public enum Players {
-        friend, enemy
-    }
-    public static Players turn;
+    public static CharacterSpawner.Alignment turn;
 
     void Awake() {
         Summoner friendSummoner = friendSummonerObject.GetComponent<Summoner>();
@@ -32,7 +29,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartTurn() {
-        turn = Players.friend;
+        turn = CharacterSpawner.Alignment.Friend;
         friendCoin.GainCoins();
         friendCoin.RefreshCoins();
         friendDeck.DrawCard(CharacterSpawner.Alignment.Friend);
@@ -55,7 +52,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartEnemyTurn() {
-        turn = Players.enemy;
+        turn = CharacterSpawner.Alignment.Enemy;
         enemyCoin.GainCoins();
         enemyCoin.RefreshCoins();
         enemyDeck.DrawCard(CharacterSpawner.Alignment.Enemy, false);

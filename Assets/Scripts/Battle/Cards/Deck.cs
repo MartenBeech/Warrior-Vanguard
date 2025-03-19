@@ -63,4 +63,8 @@ public class Deck : MonoBehaviour {
     void UpdateDeckUi() {
         textObject.GetComponent<TMP_Text>().text = $"{deck.Count}";
     }
+
+    public void onClick() {
+        DrawCard(GameManager.turn);
+    }
 }

@@ -80,10 +80,10 @@ public class GridManager : MonoBehaviour {
             return;
         }
 
-        if (GameManager.turn == GameManager.Players.friend) {
+        if (GameManager.turn == CharacterSpawner.Alignment.Friend) {
             if (friendHand.selectedCard == null) return;
             friendHand.PlayCardFromHand(characterSpawner, selectedGridIndex, CharacterSpawner.Alignment.Friend);
-        } else if (GameManager.turn == GameManager.Players.enemy) {
+        } else if (GameManager.turn == CharacterSpawner.Alignment.Enemy) {
             if (enemyHand.selectedCard == null) return;
             enemyHand.PlayCardFromHand(characterSpawner, selectedGridIndex, CharacterSpawner.Alignment.Enemy);
         }
