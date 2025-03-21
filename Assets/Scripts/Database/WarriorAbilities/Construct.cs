@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
-public class FrozenTouch {
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+public class Construct {
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -21,15 +22,8 @@ public class FrozenTouch {
         Add(false, false);
     }
 
-    public bool Trigger(Character dealer, Character target) {
-        if (GetValue(dealer.stats)) {
-            if (target.stats.speed > 0) {
-                target.stats.speed--;
-                if (target.stats.speed < 1) {
-                    target.stats.speed = 1;
-                }
-                target.UpdateWarriorUI();
-            }
+    public bool Trigger(WarriorStats stats) {
+        if (GetValue(stats)) {
             return true;
         }
         return false;
@@ -42,7 +36,7 @@ public class FrozenTouch {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Reduce target's speed by 1 (minimum 1)";
+        return $"Has a bigger deployment area";
     }
 
     string GetAbilityName() {

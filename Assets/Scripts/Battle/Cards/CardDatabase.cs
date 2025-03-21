@@ -4,6 +4,8 @@ public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
         new Duck().GetStats(),
         new Mario().GetStats(),
+        new PileOfBones().GetStats(),
+        new WailingWall().GetStats(),
         new SoulStealer().GetStats(),
         new VoidBeing().GetStats(),
         new SuddenBreeze().GetStats(),

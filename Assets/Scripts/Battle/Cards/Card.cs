@@ -10,6 +10,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public GameObject image;
     public TMP_Text titleText;
     public TMP_Text abilityText;
+    public GameObject rangeImage;
+    public GameObject speedImage;
     public WarriorStats stats = new();
     HoverWarrior hoverWarrior;
     Hand hand;
@@ -22,15 +24,20 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{cleanTitle}");
         titleText.text = $"{stats.title}";
 
-        string abilities = "";
-        if (stats.range != 2) {
-            abilities += $"Range: {stats.range}\n";
+        if (stats.range == 2) {
+            rangeImage.SetActive(false);
+        } else {
+            rangeImage.SetActive(true);
+            rangeImage.GetComponentInChildren<TMP_Text>().text = stats.range.ToString();
         }
-        if (stats.speed != 2) {
-            abilities += $"Speed: {stats.speed}\n";
+        if (stats.speed == 2) {
+            speedImage.SetActive(false);
+        } else {
+            speedImage.SetActive(true);
+            speedImage.GetComponentInChildren<TMP_Text>().text = stats.speed.ToString();
         }
-        abilities += stats.ability.GetAbilityText(stats);
-        abilityText.text = abilities;
+
+        abilityText.text = stats.ability.GetAbilityText(stats);
     }
 
     public void SetStats(WarriorStats stats) {

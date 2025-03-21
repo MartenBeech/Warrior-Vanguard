@@ -110,9 +110,9 @@ public class GridManager : MonoBehaviour {
         return null;
     }
 
-    public List<GridCell> GetEmptyDeploys() {
+    public List<GridCell> GetEmptyDeploys(bool largeDeployArea) {
         List<GridCell> cells = new();
-        for (int x = 0; x < 3; x++) {
+        for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) : 3); x++) {
             for (int y = 0; y < rows; y++) {
                 if (!GetCellCharacter(new Vector2(x, y))) {
                     cells.Add(grid[x, y]);
@@ -122,8 +122,8 @@ public class GridManager : MonoBehaviour {
         return cells;
     }
 
-    public GridCell GetRandomEmptyDeploy() {
-        List<GridCell> cells = GetEmptyDeploys();
+    public GridCell GetRandomEmptyDeploy(bool largeDeployArea) {
+        List<GridCell> cells = GetEmptyDeploys(largeDeployArea);
         if (cells.Count == 0) return null;
 
         int randomIndex = Rng.Range(0, cells.Count);
@@ -138,15 +138,15 @@ public class GridManager : MonoBehaviour {
         cell.GetComponent<Outline>().enabled = false;
     }
 
-    public void HighlightDeploys() {
-        List<GridCell> cells = GetEmptyDeploys();
+    public void HighlightDeploys(bool largeDeployArea) {
+        List<GridCell> cells = GetEmptyDeploys(largeDeployArea);
         for (int i = 0; i < cells.Count; i++) {
             HighlightCell(cells[i]);
         }
     }
 
-    public void ClearHighlightedDeploys() {
-        for (int x = 0; x < 3; x++) {
+    public void ClearHighlightedDeploys(bool largeDeployArea) {
+        for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) : 3); x++) {
             for (int y = 0; y < rows; y++) {
                 ClearHighlightedCell(grid[x, y]);
             }

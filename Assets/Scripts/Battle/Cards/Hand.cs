@@ -50,7 +50,7 @@ public class Hand : MonoBehaviour {
         characterSpawner.ActivateSpawn(CharacterSpawner.Alignment.Friend);
 
         GridManager gridManager = FindFirstObjectByType<GridManager>();
-        gridManager.HighlightDeploys();
+        gridManager.HighlightDeploys(card.stats.ability.construct.Trigger(card.stats));
 
         card.GetComponent<Outline>().enabled = true;
 
@@ -60,7 +60,7 @@ public class Hand : MonoBehaviour {
         if (!card) return;
 
         GridManager gridManager = FindFirstObjectByType<GridManager>();
-        gridManager.ClearHighlightedDeploys();
+        gridManager.ClearHighlightedDeploys(card.stats.ability.construct.Trigger(card.stats));
 
         selectedCard = null;
         card.GetComponent<Outline>().enabled = false;

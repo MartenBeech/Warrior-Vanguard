@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class FrozenTouch {
+public class BoneSpread {
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -21,14 +21,12 @@ public class FrozenTouch {
         Add(false, false);
     }
 
-    public bool Trigger(Character dealer, Character target) {
-        if (GetValue(dealer.stats)) {
-            if (target.stats.speed > 0) {
-                target.stats.speed--;
-                if (target.stats.speed < 1) {
-                    target.stats.speed = 1;
-                }
-                target.UpdateWarriorUI();
+    public bool Trigger(Character target, CharacterSpawner characterSpawner) {
+        if (GetValue(target.stats)) {
+            WarriorStats stats = new SkeletonWarrior().GetStats();
+            stats.level = target.stats.level;
+            for (int i = 0; i < 3; i++) {
+                characterSpawner.SpawnRandomly(stats, target.alignment, target.transform.position);
             }
             return true;
         }
@@ -42,7 +40,7 @@ public class FrozenTouch {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Reduce target's speed by 1 (minimum 1)";
+        return $"{WarriorAbility.Keywords.Death}: Summon 3 {new SkeletonWarrior().GetStats().strength[stats.level]}/{new SkeletonWarrior().GetStats().health[stats.level]} Skeleton Warriors";
     }
 
     string GetAbilityName() {

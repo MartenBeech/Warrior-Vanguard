@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class Weaken {
+public class WeakeningAura {
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -23,13 +23,13 @@ public class Weaken {
     }
 
     public bool Trigger(Character dealer, Character target) {
-        if (GetValue(dealer.stats) > 0) {
-            if (target.stats.GetStrength() > 0) {
-                target.stats.AddStrength(-GetValue(dealer.stats));
-                if (target.stats.GetStrength() < 1) {
-                    target.stats.AddStrength(1 - target.stats.GetStrength());
+        if (GetValue(target.stats) > 0) {
+            if (dealer.stats.GetStrength() > 0) {
+                dealer.stats.AddStrength(-GetValue(target.stats));
+                if (dealer.stats.GetStrength() < 1) {
+                    dealer.stats.AddStrength(1 - dealer.stats.GetStrength());
                 }
-                target.UpdateWarriorUI();
+                dealer.UpdateWarriorUI();
             }
             return true;
         }
@@ -43,7 +43,7 @@ public class Weaken {
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Reduce the target's strength by {GetValue(stats)} (minimum 1)";
+        return $"When attacked: Reduce the attacker's strength by {GetValue(stats)} (minimum 1)";
     }
 
     string GetAbilityName() {

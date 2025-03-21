@@ -59,7 +59,7 @@ public class CharacterSpawner : MonoBehaviour {
     }
 
     public void SpawnRandomly(WarriorStats stats, Alignment alignment, Vector2 from) {
-        GridCell randomCell = gridManager.GetRandomEmptyDeploy();
+        GridCell randomCell = gridManager.GetRandomEmptyDeploy(stats.ability.construct.Trigger(stats));
         if (!randomCell) return;
 
         Spawn(randomCell.gridIndex, stats, alignment, from);

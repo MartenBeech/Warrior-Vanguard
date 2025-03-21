@@ -148,13 +148,17 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             stats.ability.splash.Trigger(this, target, gridManager),
             Strike(target, damage)
         };
+
+        stats.ability.weaken.Trigger(this, target);
+        target.stats.ability.weakeningAura.Trigger(this, target);
+        stats.ability.bloodlust.Trigger(this);
+
         await Task.WhenAll(asyncFunctions);
 
         if (stats.ability.darkTouch.Trigger(this, target)) {
             await target.Die(this);
         }
-        stats.ability.weaken.Trigger(this, target);
-        stats.ability.bloodlust.Trigger(this);
+
         await target.stats.ability.retaliate.Trigger(this, target);
     }
 
@@ -231,6 +235,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         stats.ability.revive.Trigger(this, characterSpawner);
         stats.ability.hydraSplit.Trigger(this, characterSpawner);
+        stats.ability.boneSpread.Trigger(this, characterSpawner);
 
         ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
         await stats.ability.afterlife.Trigger(this, objectAnimation, gridManager, hand);

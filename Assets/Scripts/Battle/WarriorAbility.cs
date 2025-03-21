@@ -9,6 +9,7 @@ public class WarriorAbility {
         Kill,       //After it kills a warrior
     }
 
+    public Construct construct = new();
     public Weaken weaken = new();
     public Bloodlust bloodlust = new();
     public Revive revive = new();
@@ -30,6 +31,8 @@ public class WarriorAbility {
     public Afterlife afterlife = new();
     public DarkTouch darkTouch = new();
     public Possess possess = new();
+    public BoneSpread boneSpread = new();
+    public WeakeningAura weakeningAura = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

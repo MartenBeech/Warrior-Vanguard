@@ -6,7 +6,7 @@ public class HoverWarrior : MonoBehaviour {
     public TooltipManager tooltipManager;
 
     const float battlefieldCardOffset = 200;
-    const float cardTooltipOffset = 300;
+    const float cardTooltipOffset = 325;
 
     public void UpdateCardUI(WarriorStats stats) {
         Card card = cardObject.GetComponent<Card>();
