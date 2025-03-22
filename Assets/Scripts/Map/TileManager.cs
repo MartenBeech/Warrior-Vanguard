@@ -4,6 +4,9 @@ using UnityEngine;
 public class TileManager : MonoBehaviour {
     public List<MapTile> battleTiles;
     public RectTransform scrollViewPanel;
+    public RewardManager rewardManager;
+    public GameObject rewardPanel;
+
 
     private void Start() {
         UpdateTileAccess();
@@ -24,8 +27,14 @@ public class TileManager : MonoBehaviour {
 
             if (isLastCompleted) {
                 battleTiles[i].UnlockNextTiles();
+
                 Vector2 targetPosition = battleTiles[i].transform.position;
                 scrollViewPanel.localPosition = new Vector2(scrollViewPanel.localPosition.x, -targetPosition.y);
+
+                if (battleTiles[i].tileType == MapTile.TileType.Battlefield) {
+                    rewardManager.ShowReward(battleTiles[i].enemyType);
+                }
+
             }
         }
     }

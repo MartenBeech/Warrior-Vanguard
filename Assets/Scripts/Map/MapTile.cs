@@ -8,12 +8,19 @@ public class MapTile : MonoBehaviour {
     public Button tileButton;
     public GameObject checkmark;
     public TileType tileType;
+    public EnemyType enemyType;
 
     public enum TileType {
         Battlefield,
         Shop,
 
         Event
+    }
+
+    public enum EnemyType {
+        Normal,
+        Miniboss,
+        Boss
     }
 
     private void Start() {

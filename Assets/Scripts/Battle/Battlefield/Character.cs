@@ -35,7 +35,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void UpdateWarriorUI() {
         attackText.text = $"{stats.GetStrength()}";
         healthText.text = $"{stats.GetHealth()}";
-        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
+        string cleanTitle = stats.title.Replace("+", string.Empty);
+        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{cleanTitle}");
 
         ColorPalette colorPalette = new();
         if (stats.ability.stealth.GetValue(stats)) {

@@ -30,7 +30,12 @@ public static class CardDatabase {
         new Mortana().GetStats(),
     };
 
-    public static WarriorStats GetRandomWarriorStats() {
-        return allCards[Rng.Range(0, allCards.Count)];
+    public static WarriorStats GetRandomWarriorStats(CardRarity rarity = CardRarity.None) {
+        if (rarity == CardRarity.None) {
+            return allCards[Rng.Range(0, allCards.Count)];
+        }
+        
+        List<WarriorStats> filteredCards = allCards.FindAll(card => card.rarity == rarity);
+        return filteredCards[Rng.Range(0, filteredCards.Count)];
     }
 }

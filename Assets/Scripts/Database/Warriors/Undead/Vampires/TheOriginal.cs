@@ -18,6 +18,7 @@ public class TheOriginal {
         stats.defaultSpeed = stats.speed;
         stats.defaultRange = stats.range;
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
+        stats.rarity = CardRarity.Rare;
 
         WarriorAbility ability = stats.ability;
         ability.lifeSteal.Add();

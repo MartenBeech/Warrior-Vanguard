@@ -18,6 +18,7 @@ public class SuddenBreeze {
         stats.defaultSpeed = stats.speed;
         stats.defaultRange = stats.range;
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
+        stats.rarity = CardRarity.Legendary;
 
         WarriorAbility ability = stats.ability;
         ability.afterlife.Add();

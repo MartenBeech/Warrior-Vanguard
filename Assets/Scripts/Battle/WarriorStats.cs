@@ -1,5 +1,13 @@
+public enum CardRarity {
+    None,
+    Common,
+    Rare,
+    Legendary
+}
+
 public class WarriorStats {
     public string title;
+    public CardRarity rarity = CardRarity.Common;
     public int level = 0;
     public Character.DamageType damageType = Character.DamageType.Physical;
     public CharacterSpawner.Alignment alignment;
