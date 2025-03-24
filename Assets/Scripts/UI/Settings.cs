@@ -1,13 +1,21 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Settings : MonoBehaviour {
     public GameObject settingsObject;
     public TextMeshProUGUI gameSpeedText;
     public static int gameSpeed = 4;
+    int musicVolumePercentage = 0;
+    public MusicPlayer musicPlayer;
+    public GameObject musicPlayerMute;
+    public GameObject[] musicPlayerBars;
+    public Sprite audioIcon;
+    public Sprite audioIconMute;
 
     void Start() {
         gameSpeedText.text = $"{gameSpeed}";
+        UpdateMusicVolume(musicVolumePercentage);
     }
 
     public void ToggleSettingsEnabled() {
@@ -28,5 +36,24 @@ public class Settings : MonoBehaviour {
         if (gameSpeed <= 1) return;
         gameSpeed /= 2;
         gameSpeedText.text = $"{gameSpeed}";
+    }
+
+    public void UpdateMusicVolume(int volumePercentage) {
+        musicPlayer.UpdateVolume(volumePercentage);
+
+        if (volumePercentage > 0) {
+            musicPlayerMute.GetComponent<Image>().sprite = audioIcon;
+        } else {
+            musicPlayerMute.GetComponent<Image>().sprite = audioIconMute;
+        }
+
+        ColorPalette colorPalette = new();
+        for (int i = 0; i < 5; i++) {
+            if (volumePercentage >= (i * 20) + 20) {
+                musicPlayerBars[i].GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.black);
+            } else {
+                musicPlayerBars[i].GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.gray);
+            }
+        }
     }
 }
