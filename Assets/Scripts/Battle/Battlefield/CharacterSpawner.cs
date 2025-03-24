@@ -33,7 +33,7 @@ public class CharacterSpawner : MonoBehaviour {
 
         List<Character> friends = gridManager.GetFriends(alignment);
         foreach (Character friend in friends) {
-            friend.stats.ability.boneToughener.Trigger(friend, stats);
+            friend.stats.ability.boneSculptor.Trigger(friend, stats);
         }
 
         character.SetStats(stats);

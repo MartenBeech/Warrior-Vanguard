@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour {
             if (enemy.remainingAttacks > 0) {
                 await enemy.StandAndAttack(Character.Direction.Left);
             }
+            await enemy.EndTurn();
         }
         StartTurn();
     }

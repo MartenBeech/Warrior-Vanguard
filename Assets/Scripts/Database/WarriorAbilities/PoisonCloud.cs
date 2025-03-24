@@ -1,6 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-public class Poisoned {
+public class PoisonCloud {
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -10,8 +11,9 @@ public class Poisoned {
     public void Add(int unupgradedValue, int upgradedValue) {
         int[] newValues = new int[] { unupgradedValue, upgradedValue };
         for (int i = 0; i < 2; i++) {
-            if (value[i] < newValues[i]) {
-                value[i] = newValues[i];
+            value[i] += newValues[i];
+            if (value[i] < 0) {
+                value[i] = 0;
             }
         }
     }
@@ -22,9 +24,15 @@ public class Poisoned {
         }
     }
 
-    public async Task<bool> Trigger(Character target) {
-        if (GetValue(target.stats) > 0) {
-            await target.TakeDamage(target, GetValue(target.stats), Character.DamageType.Magical);
+    public bool Trigger(Character dealer, GridManager gridManager) {
+        if (GetValue(dealer.stats) > 0) {
+            List<Character> nearbyWarriors = gridManager.GetWarriorsAroundCell(dealer.gridIndex);
+            List<Character> nearbyEnemies = nearbyWarriors.Where(warrior => warrior.alignment != dealer.alignment).ToList();
+            foreach (Character enemy in nearbyEnemies) {
+                enemy.stats.ability.poisoned.Add(GetValue(dealer.stats), GetValue(dealer.stats));
+                enemy.UpdateWarriorUI();
+            }
+
             return true;
         }
         return false;
@@ -37,7 +45,7 @@ public class Poisoned {
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Take {GetValue(stats)} magical damage";
+        return $"{WarriorAbility.Keywords.Overturn}: Apply {GetValue(stats)} Poison to nearby enemies";
     }
 
     string GetAbilityName() {

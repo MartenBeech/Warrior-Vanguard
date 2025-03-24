@@ -28,7 +28,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdateSummonerUI();
     }
 
-    public async Task Damage(Character dealer, int damage) {
+    public async Task Damage(Character dealer, int damage, GridManager gridManager) {
         if (dealer.stats.ability.stealth.TriggerAttack(dealer)) {
             damage *= 2;
         }
@@ -44,11 +44,11 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (damage > 0) {
             await dealer.stats.ability.lifeSteal.Trigger(dealer, damage);
+            await dealer.stats.ability.lifeTransfer.Trigger(dealer, damage, gridManager);
         }
 
         if (stats.health <= 0) {
-            switch (stats.title)
-            {
+            switch (stats.title) {
                 case "Angel":
                     LevelManager.LoseLevel();
                     return;

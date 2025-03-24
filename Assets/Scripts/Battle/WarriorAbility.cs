@@ -15,8 +15,10 @@ public class WarriorAbility {
     public Revive revive = new();
     public HydraSplit hydraSplit = new();
     public Poison poison = new();
+    public PoisonCloud poisonCloud = new();
     public Poisoned poisoned = new();
     public LifeSteal lifeSteal = new();
+    public LifeTransfer lifeTransfer = new();
     public Retaliate retaliate = new();
     public Cannibalism cannibalism = new();
     public Stealth stealth = new();
@@ -26,7 +28,7 @@ public class WarriorAbility {
     public FrozenTouch frozenTouch = new();
     public Skeletal skeletal = new();
     public DeathCall deathCall = new();
-    public BoneToughener boneToughener = new();
+    public BoneSculptor boneSculptor = new();
     public Incorporeal incorporeal = new();
     public Afterlife afterlife = new();
     public DarkTouch darkTouch = new();

@@ -23,10 +23,8 @@ public class DeathCall {
 
     public bool Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats)) {
-            WarriorStats stats = new SkeletonWarrior().GetStats();
-            stats.level = dealer.stats.level;
-
-            characterSpawner.SpawnRandomly(stats, dealer.alignment, target.transform.position);
+            RaiseDead raiseDead = new();
+            raiseDead.SummonSkeleton(dealer, target, characterSpawner);
             return true;
         }
         return false;
@@ -39,7 +37,7 @@ public class DeathCall {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"When an enemy dies, Summon a {new SkeletonWarrior().GetStats().strength[stats.level]}/{new SkeletonWarrior().GetStats().health[stats.level]} Skeleton Warrior";
+        return $"When an enemy dies, Summon a random{(stats.level == 1 ? " upgraded" : "")} Skeleton";
     }
 
     string GetAbilityName() {

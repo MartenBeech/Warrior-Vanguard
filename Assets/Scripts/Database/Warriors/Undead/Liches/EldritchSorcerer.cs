@@ -4,8 +4,8 @@ public class EldritchSorcerer {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 2,
-            strength = new int[] { 2, 3 },
-            health = new int[] { 4, 5 },
+            strength = new int[] { 3, 5 },
+            health = new int[] { 2, 2 },
             speed = 2,
             range = 4,
             damageType = Character.DamageType.Magical,
@@ -21,7 +21,6 @@ public class EldritchSorcerer {
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
         WarriorAbility ability = stats.ability;
-        ability.splash.Add();
         ability.raiseDead.Add();
 
         return stats;

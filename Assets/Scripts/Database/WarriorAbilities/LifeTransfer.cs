@@ -1,5 +1,8 @@
 using System.Text.RegularExpressions;
-public class BoneSpread {
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+public class LifeTransfer {
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -21,12 +24,15 @@ public class BoneSpread {
         Add(false, false);
     }
 
-    public bool Trigger(Character target, CharacterSpawner characterSpawner) {
-        if (GetValue(target.stats)) {
-            RaiseDead raiseDead = new();
-            for (int i = 0; i < 3; i++) {
-                raiseDead.SummonSkeleton(target, target, characterSpawner);
-            }
+    public async Task<bool> Trigger(Character dealer, int damage, GridManager gridManager) {
+        if (GetValue(dealer.stats)) {
+            List<Character> friends = gridManager.GetFriends(dealer.alignment);
+            friends.Remove(dealer);
+            List<Character> damagedfriends = friends.Where(friend => friend.stats.GetHealth() < friend.stats.GetHealthMax()).ToList();
+            if (damagedfriends.Count == 0) return false;
+
+            Character randomDamagedFriend = damagedfriends[Rng.Range(0, damagedfriends.Count)];
+            await randomDamagedFriend.Heal(damage);
             return true;
         }
         return false;
@@ -39,7 +45,7 @@ public class BoneSpread {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Summon 3 random{(stats.level == 1 ? " upgraded" : "")} Skeletons";
+        return $"{WarriorAbility.Keywords.Strike}: Heal another damaged friend equal to damage dealt";
     }
 
     string GetAbilityName() {

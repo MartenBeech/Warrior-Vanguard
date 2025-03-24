@@ -21,7 +21,7 @@ public class PlagueWalker {
 
         WarriorAbility ability = stats.ability;
         ability.revive.Add();
-        ability.poison.Add(2, 3);
+        ability.poisonCloud.Add(1, 2);
 
         return stats;
     }

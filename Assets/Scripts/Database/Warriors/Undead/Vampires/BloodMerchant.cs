@@ -4,8 +4,8 @@ public class BloodMerchant {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 4,
-            strength = new int[] { 3, 4 },
-            health = new int[] { 8, 10 },
+            strength = new int[] { 4, 5 },
+            health = new int[] { 6, 8 },
             speed = 2,
             range = 4,
         };
@@ -21,8 +21,7 @@ public class BloodMerchant {
         stats.rarity = CardRarity.Rare;
 
         WarriorAbility ability = stats.ability;
-        ability.lifeSteal.Add();
-        ability.weaken.Add(1, 1);
+        ability.lifeTransfer.Add();
 
         return stats;
     }

@@ -126,17 +126,16 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             if (IsOutOfField(newGridIndex)) {
                 if (alignment == CharacterSpawner.Alignment.Enemy) {
                     Summoner friendSummoner = gameManager.friendSummonerObject.GetComponent<Summoner>();
-                    await friendSummoner.Damage(this, stats.GetStrength());
+                    await friendSummoner.Damage(this, stats.GetStrength(), gridManager);
                     break;
                 }
                 if (alignment == CharacterSpawner.Alignment.Friend) {
                     Summoner enemySummoner = gameManager.enemySummonerObject.GetComponent<Summoner>();
-                    await enemySummoner.Damage(this, stats.GetStrength());
+                    await enemySummoner.Damage(this, stats.GetStrength(), gridManager);
                     break;
                 }
             }
         }
-        await EndTurn(this);
     }
 
     public async Task Attack(Character target) {
@@ -171,6 +170,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         if (damage > 0) {
             await stats.ability.lifeSteal.Trigger(this, damage);
+            await stats.ability.lifeTransfer.Trigger(this, damage, gridManager);
         }
     }
 
@@ -244,8 +244,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Destroy(gameObject);
     }
 
-    private async Task EndTurn(Character character) {
-        await character.stats.ability.poisoned.Trigger(character);
+    public async Task EndTurn() {
+        stats.ability.poisonCloud.Trigger(this, gridManager);
+        await stats.ability.poisoned.Trigger(this);
+
     }
 
     private Vector2 GetFrontCellIndex(Vector2 gridIndex, Direction direction, int range = 1) {

@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class BoneToughener {
+public class BoneSculptor {
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
