@@ -26,6 +26,10 @@ public static class SceneLoader {
         SceneManager.LoadScene("Event");
     }
 
+    public static void LoadGameOver() {
+        SceneManager.LoadScene("GameOver");
+    }
+
     public static void ExitGame() {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false; // Stops play mode in Unity

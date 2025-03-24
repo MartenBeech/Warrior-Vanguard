@@ -93,4 +93,12 @@ public class GameManager : MonoBehaviour {
         else if (enemies.Contains(character))
             enemies.Remove(character);
     }
+
+    public void WinFight() {
+        LevelManager.CompleteLevel();
+    }
+
+    public void LoseFight() {
+        LevelManager.LoseLevel();
+    }
 }

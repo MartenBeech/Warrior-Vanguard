@@ -14,6 +14,12 @@ public class RewardManager : MonoBehaviour {
     }
 
     public void ShowReward(MapTile.EnemyType enemyType) {
+        if (!LevelManager.isAlive || enemyType == MapTile.EnemyType.Boss) {
+            SceneLoader.LoadGameOver();
+            return;
+
+        }
+
         rewardPanel.SetActive(true);
 
         CardRarity rarity = enemyType == MapTile.EnemyType.Miniboss ? CardRarity.Legendary :

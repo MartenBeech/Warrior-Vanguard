@@ -5662,7 +5662,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7617589860119240997, guid: 11aa1509caaba2342b52d63fa23424e1, type: 3}
+  m_Sprite: {fileID: 1362917667055565020, guid: 7bd924cd11e1b90448aecf68cebf136d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9408,7 +9408,7 @@ MonoBehaviour:
   tileButton: {fileID: 2020234553}
   checkmark: {fileID: 298099808}
   tileType: 0
-  enemyType: 0
+  enemyType: 2
 --- !u!114 &2020234553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9473,7 +9473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7277215093650894194, guid: 66cce1b49abdff24fa814894bfe95b71, type: 3}
+  m_Sprite: {fileID: -8894606299300663880, guid: d41fa809436bc184d83556a70ee5fd8a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

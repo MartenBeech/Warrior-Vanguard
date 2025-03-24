@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections.Generic;
 
 public class EventManager : MonoBehaviour {
     public TMP_Text eventText;
+    public List<Card> cards;
+    public GameObject upgradePanel;
+    public List<int> cardIndexes = new();
 
     void Start() {
+        upgradePanel.SetActive(false);
         TriggerRandomEvent();
     }
 
@@ -49,17 +54,28 @@ public class EventManager : MonoBehaviour {
     }
 
     void UpgradeCardEvent() {
+        upgradePanel.SetActive(true);
+        eventText.text = "You visited the friendly neighborhood smith.. He will upgrade one of your cards for free";
         if (DeckManager.GetDeck().Count <= 0) {
-            eventText.text = $"A magical force strengthened one of your cards! You have no cards to upgrade sorry";
+            eventText.text += ", but you have any cards to upgrade sorry";
             return;
         }
         ;
 
-        int randomIndex = Random.Range(0, DeckManager.GetDeck().Count);
-        Card card = DeckManager.GetCard(randomIndex);
+        foreach (Card card in cards) {
+            int randomIndex = Random.Range(0, DeckManager.GetDeck().Count);
+            card.SetStats(DeckManager.GetCard(randomIndex).stats);
+            card.UpdateCardUi();
+            cardIndexes.Add(randomIndex);
+        }
+    }
+
+    public void UpgradeCard(int index) {
+        upgradePanel.SetActive(false);
+        Card card = DeckManager.GetCard(cardIndexes[index]);
         card.stats.level += 1;
         card.stats.title += "+";
-        eventText.text = $"A magical force strengthened one of your cards! {card.stats.title}";
+        eventText.text = $"You upgraded {card.stats.title}!";
     }
 
     public void ReturnToMap() {
