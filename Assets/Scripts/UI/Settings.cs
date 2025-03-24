@@ -39,7 +39,7 @@ public class Settings : MonoBehaviour {
     }
 
     public void UpdateMusicVolume(int volumePercentage) {
-        musicPlayer.UpdateVolume(volumePercentage);
+        if (musicPlayer) musicPlayer.UpdateVolume(volumePercentage);
 
         if (volumePercentage > 0) {
             musicPlayerMute.GetComponent<Image>().sprite = audioIcon;
