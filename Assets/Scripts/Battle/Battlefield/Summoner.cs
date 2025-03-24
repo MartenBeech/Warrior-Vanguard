@@ -47,7 +47,18 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
 
         if (stats.health <= 0) {
-            LevelManager.CompleteLevel();
+            switch (stats.title)
+            {
+                case "Angel":
+                    LevelManager.LoseLevel();
+                    return;
+                case "Devil":
+                    LevelManager.CompleteLevel();
+                    return;
+                default:
+                    LevelManager.CompleteLevel();
+                    return;
+            }
         }
     }
 
