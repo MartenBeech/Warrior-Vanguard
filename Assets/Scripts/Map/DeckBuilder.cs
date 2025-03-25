@@ -3,57 +3,49 @@ using UnityEngine;
 using TMPro;
 
 public class DeckBuilder : MonoBehaviour {
-    public List<Card> deck = new();
     public GameObject textObject;
     public GameObject deckViewPanel;
+    public GameObject hideDeckViewButton;
     private bool isDeckViewOpen = false;
     public GameObject cardPrefab;
     public Transform deckListContainer;
 
     private void Start() {
         deckViewPanel.SetActive(false);
-        List<WarriorStats> deckStats = DeckManager.GetDeck();
-
-        foreach (WarriorStats stat in deckStats) {
-            Card card = new();
-            card.SetStats(stat);
-            AddCardToDeck(card);
-        }
-    }
-
-    public void AddCardToDeck(Card card) {
-        deck.Add(card);
+        hideDeckViewButton.SetActive(false);
         UpdateDeckUI();
     }
 
-    public void RemoveCardFromDeck(Card card) {
-        if (!deck.Contains(card)) return;
+    public void AddCardToDeck(Card card) {
+        DeckManager.AddCard(card);
+        UpdateDeckUI();
+    }
 
-        deck.Remove(card);
+    public void RemoveCardFromDeck(int index) {
+        DeckManager.RemoveCard(index);
         UpdateDeckUI();
     }
 
     private void UpdateDeckUI() {
-        if (textObject) textObject.GetComponent<TMP_Text>().text = $"{deck.Count}";
+        if (textObject) textObject.GetComponent<TMP_Text>().text = $"{DeckManager.GetDeck().Count}";
 
         foreach (Transform child in deckListContainer) {
             Destroy(child.gameObject);
         }
 
-        foreach (Card card in deck) {
+        foreach (WarriorStats stats in DeckManager.GetDeck()) {
             GameObject cardItem = Instantiate(cardPrefab, deckListContainer);
             cardItem.transform.localScale = new Vector2(1.5f, 1.5f);
             Card cardComponent = cardItem.GetComponent<Card>();
-            cardComponent.SetStats(card.stats);
+            cardComponent.SetStats(stats);
             cardComponent.UpdateCardUi();
         }
-
-        DeckManager.SetDeck(deck);
     }
 
     public void ToggleDeckView() {
         isDeckViewOpen = !isDeckViewOpen;
         deckViewPanel.SetActive(isDeckViewOpen);
+        hideDeckViewButton.SetActive(isDeckViewOpen);
 
         if (isDeckViewOpen) {
             UpdateDeckUI();
@@ -63,5 +55,6 @@ public class DeckBuilder : MonoBehaviour {
     public void HideDeckView() {
         isDeckViewOpen = false;
         deckViewPanel.SetActive(false);
+        hideDeckViewButton.SetActive(false);
     }
 }

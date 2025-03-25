@@ -8,9 +8,9 @@ public static class DeckManager {
         deck.Add(card);
     }
 
-    public static void RemoveCard(Card card) {
-        if (deck.Contains(card)) {
-            deck.Remove(card);
+    public static void RemoveCard(int index) {
+        if (deck.Count > index) {
+            deck.RemoveAt(index);
         }
     }
 
