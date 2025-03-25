@@ -25,28 +25,22 @@ public class GameManager : MonoBehaviour {
             friendDeck.DrawCard(CharacterSpawner.Alignment.Friend, false);
             enemyDeck.DrawCard(CharacterSpawner.Alignment.Enemy, false);
         }
-        StartTurn();
+        StartPlayerTurn();
     }
 
-    public void StartTurn() {
+    public void StartPlayerTurn() {
         turn = CharacterSpawner.Alignment.Friend;
         friendCoin.GainCoins();
         friendCoin.RefreshCoins();
         friendDeck.DrawCard(CharacterSpawner.Alignment.Friend);
     }
 
-    public async void EndTurn() {
+    public async void EndPlayerTurn() {
         List<Character> sortedFriends = friends.OrderByDescending(c => c.gridIndex.x).ToList();
         foreach (Character friend in sortedFriends) {
-            friend.SetRemainingActions(friend.stats.numberOfAttacks, friend.stats.speed);
-            int maxActions = friend.stats.numberOfAttacks + friend.stats.speed;
-            for (int i = 0; i < maxActions; i++) {
-                await friend.MoveWarrior(Character.Direction.Right);
-            }
-
-            if (friend.remainingAttacks > 0) {
-                await friend.StandAndAttack(Character.Direction.Right);
-            }
+            await friend.MoveWarrior(Character.Direction.Right);
+            await friend.StandAndAttack(Character.Direction.Right);
+            await friend.EndTurn();
         }
         StartEnemyTurn();
     }
@@ -61,18 +55,11 @@ public class GameManager : MonoBehaviour {
     public async void EndEnemyTurn() {
         List<Character> sortedEnemies = enemies.OrderBy(c => c.gridIndex.x).ToList();
         foreach (Character enemy in sortedEnemies) {
-            enemy.SetRemainingActions(enemy.stats.numberOfAttacks, enemy.stats.speed);
-            int maxActions = enemy.stats.numberOfAttacks + enemy.stats.speed;
-            for (int i = 0; i < maxActions; i++) {
-                await enemy.MoveWarrior(Character.Direction.Left);
-            }
-
-            if (enemy.remainingAttacks > 0) {
-                await enemy.StandAndAttack(Character.Direction.Left);
-            }
+            await enemy.MoveWarrior(Character.Direction.Left);
+            await enemy.StandAndAttack(Character.Direction.Left);
             await enemy.EndTurn();
         }
-        StartTurn();
+        StartPlayerTurn();
     }
 
     public void RegisterCharacter(Character character, CharacterSpawner.Alignment alignment) {

@@ -19,8 +19,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public TMP_Text healthText;
     public GameObject image;
     private GameManager gameManager;
-    public int remainingAttacks = 1;
-    public int remainingSteps = 0;
     public enum DamageType {
         Physical, Magical
     };
@@ -64,48 +62,27 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         transform.position = gridManager.GetCellPosition(position);
     }
 
-    public void SetRemainingActions(int remainingAttacks, int remainingSteps) {
-        this.remainingAttacks = remainingAttacks;
-        this.remainingSteps = remainingSteps;
-    }
-
     public async Task MoveWarrior(Direction direction) {
-        Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction);
+        int stepsToMove = 0;
+        for (int i = 1; i <= stats.speed; i++) {
+            Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
 
-        if (IsOutOfField(newGridIndex)) return;
+            if (IsOutOfField(newGridIndex)) break;
 
-        Character frontCellCharacter = gridManager.GetCellCharacter(newGridIndex);
-
-        // If no character in front, move
-        if (!frontCellCharacter && remainingSteps > 0) {
-            ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
-            await objectAnimation.MoveObject(transform.position, gridManager.GetCellPosition(newGridIndex));
-            gridIndex = newGridIndex;
-            remainingSteps--;
-            return;
-        }
-
-        // If character in front is a friend try to go past them
-        if (frontCellCharacter && frontCellCharacter.alignment == alignment && remainingSteps > 1) {
-            for (int i = 2; i <= remainingSteps; i++) {
-                Vector2 position = GetFrontCellIndex(gridIndex, direction, i);
-                Character characterOnCell = gridManager.GetCellCharacter(position);
-
-                if (!characterOnCell && !IsOutOfField(position)) {
-                    gridIndex = position;
-                    transform.position = gridManager.GetCellPosition(gridIndex);
-                    remainingSteps -= i;
-                    return;
-                }
-
-                if (characterOnCell && characterOnCell.alignment != alignment) break;
+            Character frontCellCharacter = gridManager.GetCellCharacter(newGridIndex);
+            if (!frontCellCharacter) {
+                stepsToMove = i;
+            } else if (frontCellCharacter && frontCellCharacter.alignment != alignment) {
+                break;
             }
         }
 
-        if (remainingAttacks < 1) return;
-
-        // If character in within range is an enemy, attack
-        await StandAndAttack(direction);
+        if (stepsToMove > 0) {
+            Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, stepsToMove);
+            ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
+            await objectAnimation.MoveObject(transform.position, gridManager.GetCellPosition(newGridIndex), 2);
+            gridIndex = newGridIndex;
+        }
     }
 
     public bool IsOutOfField(Vector2 gridIndex) {
@@ -113,7 +90,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task StandAndAttack(Direction direction) {
-        remainingAttacks--;
         for (int i = 1; i <= stats.range; i++) {
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
             Character characterOnCell = gridManager.GetCellCharacter(newGridIndex);
@@ -124,16 +100,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
 
             if (IsOutOfField(newGridIndex)) {
-                if (alignment == CharacterSpawner.Alignment.Enemy) {
-                    Summoner friendSummoner = gameManager.friendSummonerObject.GetComponent<Summoner>();
-                    await friendSummoner.Damage(this, stats.GetStrength(), gridManager);
-                    break;
-                }
-                if (alignment == CharacterSpawner.Alignment.Friend) {
-                    Summoner enemySummoner = gameManager.enemySummonerObject.GetComponent<Summoner>();
-                    await enemySummoner.Damage(this, stats.GetStrength(), gridManager);
-                    break;
-                }
+                Summoner summoner = alignment == CharacterSpawner.Alignment.Enemy ?
+                    gameManager.friendSummonerObject.GetComponent<Summoner>() :
+                    gameManager.enemySummonerObject.GetComponent<Summoner>();
+
+                await summoner.Damage(this, stats.GetStrength(), gridManager);
+                break;
             }
         }
     }
