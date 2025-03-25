@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using UnityEngine;
 public class Stealth {
     bool[] value = new bool[] { false, false };
 
@@ -21,22 +22,22 @@ public class Stealth {
         Add(false, false);
     }
 
-    public bool TriggerAttack(Character dealer) {
+    public int TriggerAttack(Character dealer, int damage) {
         if (GetValue(dealer.stats)) {
+            damage *= 2;
             if (!dealer.stats.ability.permaStealth.GetValue(dealer.stats)) {
                 dealer.stats.ability.stealth.Add(false, false);
             }
             dealer.UpdateWarriorUI();
-            return true;
         }
-        return false;
+        return damage;
     }
 
-    public bool TriggerTakeDamage(Character target) {
+    public int TriggerTakeDamage(Character target, int damage) {
         if (GetValue(target.stats)) {
-            return true;
+            damage = (int)Mathf.Ceil(damage / 2f);
         }
-        return false;
+        return damage;
     }
 
     public string GetTitle(WarriorStats stats) {

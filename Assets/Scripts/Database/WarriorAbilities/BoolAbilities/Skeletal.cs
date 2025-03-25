@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using UnityEngine;
 public class Skeletal {
     bool[] value = new bool[] { false, false };
 
@@ -21,13 +22,13 @@ public class Skeletal {
         Add(false, false);
     }
 
-    public bool Trigger(Character dealer, Character target) {
+    public int Trigger(Character dealer, Character target, int damage) {
         if (GetValue(target.stats)) {
             if (dealer.stats.range >= 4) {
-                return true;
+                damage = (int)Mathf.Ceil(damage / 2f);
             }
         }
-        return false;
+        return damage;
     }
 
     public string GetTitle(WarriorStats stats) {

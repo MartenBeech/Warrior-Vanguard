@@ -427,9 +427,6 @@ MonoBehaviour:
   attackText: {fileID: 1224358540268641666}
   healthText: {fileID: 8699503686999248439}
   image: {fileID: 2619659621084207209}
-  remainingAttacks: 1
-  remainingSteps: 0
-  cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
 --- !u!114 &1496594542848040516
 MonoBehaviour:
   m_ObjectHideFlags: 0

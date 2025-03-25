@@ -21,11 +21,15 @@ public class Incorporeal {
         Add(false, false);
     }
 
-    public bool Trigger(Character character) {
-        if (GetValue(character.stats)) {
-            return true;
+    public int Trigger(Character target, int damage, Character.DamageType damageType) {
+        if (GetValue(target.stats)) {
+            if (damageType == Character.DamageType.Physical) {
+                if (damage > 1) {
+                    damage = 1;
+                }
+            }
         }
-        return false;
+        return damage;
     }
 
     public string GetTitle(WarriorStats stats) {

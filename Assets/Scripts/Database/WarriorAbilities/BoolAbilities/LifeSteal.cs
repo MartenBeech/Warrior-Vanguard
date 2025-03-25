@@ -24,7 +24,7 @@ public class LifeSteal {
 
     public async Task<bool> Trigger(Character dealer, int damage) {
         if (GetValue(dealer.stats)) {
-            await dealer.Heal(damage);
+            await dealer.Heal(dealer, damage);
             return true;
         }
         return false;

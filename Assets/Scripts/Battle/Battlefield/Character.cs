@@ -116,9 +116,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public async Task Attack(Character target) {
         int damage = stats.GetStrength();
-        if (stats.ability.stealth.TriggerAttack(this)) {
-            damage *= 2;
-        }
+
+        damage = stats.ability.stealth.TriggerAttack(this, damage);
 
         List<Task> asyncFunctions = new() {
             stats.ability.splash.Trigger(this, target, gridManager),
@@ -159,19 +158,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task<int> TakeDamage(Character dealer, int damage, DamageType damageType) {
-        if (stats.ability.stealth.TriggerTakeDamage(this)) {
-            damage = (int)Mathf.Ceil(damage / 2f);
-        }
-        if (stats.ability.skeletal.Trigger(dealer, this)) {
-            damage = (int)Mathf.Ceil(damage / 2f);
-        }
-        if (damageType == DamageType.Physical) {
-            if (stats.ability.incorporeal.Trigger(this)) {
-                if (damage > 1) {
-                    damage = 1;
-                }
-            }
-        }
+        damage = stats.ability.stealth.TriggerTakeDamage(this, damage);
+        damage = stats.ability.skeletal.Trigger(dealer, this, damage);
+
+        damage = stats.ability.incorporeal.Trigger(this, damage, damageType);
 
         List<Task> asyncFunctions = new();
 
@@ -187,17 +177,29 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString()));
 
+        ColorPalette colorPalette = new();
+        Color currentColor = dealer.image.GetComponent<Image>().color;
+        dealer.image.GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.red);
+
         await Task.WhenAll(asyncFunctions);
+
+        dealer.image.GetComponent<Image>().color = currentColor;
 
         return damage;
     }
 
-    public async Task Heal(int amount) {
+    public async Task Heal(Character dealer, int amount) {
         stats.AddHealth(amount);
         UpdateWarriorUI();
 
+        ColorPalette colorPalette = new();
+        Color currentColor = dealer.image.GetComponent<Image>().color;
+        dealer.image.GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.green);
+
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green);
+
+        dealer.image.GetComponent<Image>().color = currentColor;
     }
 
     private async Task Die(Character dealer) {

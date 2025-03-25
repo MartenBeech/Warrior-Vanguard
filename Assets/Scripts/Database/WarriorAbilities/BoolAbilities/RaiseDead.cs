@@ -46,12 +46,13 @@ public class RaiseDead {
     }
 
     public void SummonSkeleton(Character dealer, Character target, CharacterSpawner characterSpawner) {
-        int skeletonType = Rng.Range(0, 3);
+        int skeletonType = Rng.Range(0, 4);
 
         WarriorStats stats =
             skeletonType == 1 ? new SkeletonWarrior().GetStats() :
             skeletonType == 2 ? new SkeletonArcher().GetStats() :
-            new SkeletonMage().GetStats();
+            skeletonType == 3 ? new SkeletonMage().GetStats() :
+            new SkeletonRider().GetStats();
         stats.level = dealer.stats.level;
 
         characterSpawner.SpawnRandomly(stats, dealer.alignment, target.transform.position);

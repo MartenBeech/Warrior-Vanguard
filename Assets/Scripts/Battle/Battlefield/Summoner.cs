@@ -29,9 +29,8 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public async Task Damage(Character dealer, int damage, GridManager gridManager) {
-        if (dealer.stats.ability.stealth.TriggerAttack(dealer)) {
-            damage *= 2;
-        }
+
+        damage = dealer.stats.ability.stealth.TriggerAttack(dealer, damage);
 
         if (damage > 0) {
             stats.health -= damage;
@@ -39,8 +38,15 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             dealer.stats.ability.bloodlust.Trigger(dealer);
         }
 
+        ColorPalette colorPalette = new();
+        Color currentColor = dealer.image.GetComponent<Image>().color;
+        dealer.image.GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.red);
+
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         await floatingText.CreateFloatingText(transform, damage.ToString());
+
+        dealer.image.GetComponent<Image>().color = currentColor;
+
 
         if (damage > 0) {
             await dealer.stats.ability.lifeSteal.Trigger(dealer, damage);
