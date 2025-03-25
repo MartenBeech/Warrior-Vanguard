@@ -128,6 +128,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             stats.ability.weaken.Trigger(this, target);
         }
         target.stats.ability.weakeningAura.Trigger(this, target);
+        target.stats.ability.poisoningAura.Trigger(this, target);
         stats.ability.bloodlust.Trigger(this);
 
         await Task.WhenAll(asyncFunctions);

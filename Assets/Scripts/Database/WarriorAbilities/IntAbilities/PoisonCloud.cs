@@ -33,7 +33,7 @@ public class PoisonCloud {
             List<Character> nearbyWarriors = gridManager.GetWarriorsAroundCell(dealer.gridIndex);
             List<Character> nearbyEnemies = nearbyWarriors.Where(warrior => warrior.alignment != dealer.alignment).ToList();
             foreach (Character enemy in nearbyEnemies) {
-                enemy.stats.ability.poisoned.Add(GetValue(dealer.stats), GetValue(dealer.stats));
+                enemy.stats.ability.poisoned.Add(GetValue(dealer.stats));
                 enemy.UpdateWarriorUI();
             }
 
