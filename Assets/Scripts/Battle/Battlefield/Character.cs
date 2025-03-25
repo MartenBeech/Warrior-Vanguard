@@ -63,6 +63,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task MoveWarrior(Direction direction) {
+        if (stats.GetHealth() <= 0) return;
+
         int stepsToMove = 0;
         for (int i = 1; i <= stats.speed; i++) {
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
@@ -90,6 +92,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task StandAndAttack(Direction direction) {
+        if (stats.GetHealth() <= 0) return;
+
         for (int i = 1; i <= stats.range; i++) {
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
             Character characterOnCell = gridManager.GetCellCharacter(newGridIndex);
@@ -121,17 +125,25 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             Strike(target, damage)
         };
 
-        stats.ability.weaken.Trigger(this, target);
+        if (target.stats.GetHealth() > 0) {
+            stats.ability.weaken.Trigger(this, target);
+        }
         target.stats.ability.weakeningAura.Trigger(this, target);
         stats.ability.bloodlust.Trigger(this);
 
         await Task.WhenAll(asyncFunctions);
 
-        if (stats.ability.darkTouch.Trigger(this, target)) {
-            await target.Die(this);
+        if (target.stats.GetHealth() > 0) {
+            if (stats.ability.darkTouch.Trigger(this, target)) {
+                await target.Die(this);
+            }
         }
 
-        await target.stats.ability.retaliate.Trigger(this, target);
+        if (target.stats.GetHealth() > 0) {
+            await target.stats.ability.retaliate.Trigger(this, target, gridManager);
+        }
+
+        await stats.ability.hitAndRun.Trigger(this);
     }
 
     public async Task Strike(Character target, int damage) {

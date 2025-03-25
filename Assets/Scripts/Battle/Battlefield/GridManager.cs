@@ -194,4 +194,11 @@ public class GridManager : MonoBehaviour {
         }
         return enemies;
     }
+
+    public int GetDistanceBetweenCharacters(Character character1, Character character2) {
+        if (character1.gridIndex.y != character2.gridIndex.y) return -1;
+
+        float dist = Mathf.Abs(character1.gridIndex.x - character2.gridIndex.x);
+        return (int)dist;
+    }
 }

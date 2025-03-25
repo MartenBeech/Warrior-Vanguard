@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class Retaliate {
+public class HitAndRun {
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -22,13 +22,10 @@ public class Retaliate {
         Add(false, false);
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
-        if (GetValue(target.stats)) {
-            int dist = gridManager.GetDistanceBetweenCharacters(dealer, target);
-            if (dist > 0 && dist <= target.stats.range) {
-                await target.Strike(dealer, target.stats.GetStrength());
-                return true;
-            }
+    public async Task<bool> Trigger(Character dealer) {
+        if (GetValue(dealer.stats)) {
+            await dealer.MoveWarrior(dealer.alignment == CharacterSpawner.Alignment.Enemy ? Character.Direction.Right : Character.Direction.Left);
+            return true;
         }
         return false;
     }
@@ -40,7 +37,7 @@ public class Retaliate {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"After I get attacked, I strike the attacker";
+        return $"{WarriorAbility.Keywords.Attack}: Run backwards";
     }
 
     string GetAbilityName() {

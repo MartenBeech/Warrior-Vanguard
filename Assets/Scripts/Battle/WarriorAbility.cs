@@ -35,6 +35,7 @@ public class WarriorAbility {
     public Possess possess = new();
     public BoneSpread boneSpread = new();
     public WeakeningAura weakeningAura = new();
+    public HitAndRun hitAndRun = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";
