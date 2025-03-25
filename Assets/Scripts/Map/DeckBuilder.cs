@@ -13,21 +13,21 @@ public class DeckBuilder : MonoBehaviour {
     private void Start() {
         deckViewPanel.SetActive(false);
         hideDeckViewButton.SetActive(false);
-        UpdateDeckUI();
+        UpdateDeckText();
     }
 
     public void AddCardToDeck(Card card) {
         DeckManager.AddCard(card);
-        UpdateDeckUI();
+        UpdateDeckText();
     }
 
     public void RemoveCardFromDeck(int index) {
         DeckManager.RemoveCard(index);
-        UpdateDeckUI();
+        UpdateDeckText();
     }
 
     private void UpdateDeckUI() {
-        if (textObject) textObject.GetComponent<TMP_Text>().text = $"{DeckManager.GetDeck().Count}";
+        UpdateDeckText();
 
         foreach (Transform child in deckListContainer) {
             Destroy(child.gameObject);
@@ -40,6 +40,10 @@ public class DeckBuilder : MonoBehaviour {
             cardComponent.SetStats(stats);
             cardComponent.UpdateCardUi();
         }
+    }
+
+    private void UpdateDeckText() {
+        if (textObject) textObject.GetComponent<TMP_Text>().text = $"{DeckManager.GetDeck().Count}";
     }
 
     public void ToggleDeckView() {
