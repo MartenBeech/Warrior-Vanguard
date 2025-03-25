@@ -22,7 +22,7 @@ public class SkeletonMage {
 
         WarriorAbility ability = stats.ability;
         ability.skeletal.Add();
-        ability.weaken.Add(1, 1);
+        ability.weaken.Add(1);
 
         return stats;
     }

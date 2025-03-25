@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class Weaken {
+public class DarkTouch {
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -16,6 +16,10 @@ public class Weaken {
         }
     }
 
+    public void Add(int value) {
+        Add(value, value);
+    }
+
     public void Remove() {
         for (int i = 0; i < 2; i++) {
             value[i] = 0;
@@ -24,14 +28,9 @@ public class Weaken {
 
     public bool Trigger(Character dealer, Character target) {
         if (GetValue(dealer.stats) > 0) {
-            if (target.stats.GetStrength() > 0) {
-                target.stats.AddStrength(-GetValue(dealer.stats));
-                if (target.stats.GetStrength() < 1) {
-                    target.stats.AddStrength(1 - target.stats.GetStrength());
-                }
-                target.UpdateWarriorUI();
+            if (target.stats.GetHealth() <= GetValue(dealer.stats)) {
+                return true;
             }
-            return true;
         }
         return false;
     }
@@ -43,7 +42,7 @@ public class Weaken {
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Reduce the target's strength by {GetValue(stats)} (minimum 1)";
+        return $"{WarriorAbility.Keywords.Attack}: Instantly kill targets with no more than {GetValue(stats)} health";
     }
 
     string GetAbilityName() {

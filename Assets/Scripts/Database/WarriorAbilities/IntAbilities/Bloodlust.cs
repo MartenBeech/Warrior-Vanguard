@@ -16,6 +16,10 @@ public class Bloodlust {
         }
     }
 
+    public void Add(int value) {
+        Add(value, value);
+    }
+
     public void Remove() {
         for (int i = 0; i < 2; i++) {
             value[i] = 0;

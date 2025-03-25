@@ -1,7 +1,5 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEngine;
 public class Afterlife {
     bool[] value = new bool[] { false, false };
 

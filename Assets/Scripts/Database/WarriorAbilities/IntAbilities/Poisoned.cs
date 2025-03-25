@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
-public class BoneSculptor {
+using System.Threading.Tasks;
+public class Poisoned {
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -9,11 +10,14 @@ public class BoneSculptor {
     public void Add(int unupgradedValue, int upgradedValue) {
         int[] newValues = new int[] { unupgradedValue, upgradedValue };
         for (int i = 0; i < 2; i++) {
-            value[i] += newValues[i];
-            if (value[i] < 0) {
-                value[i] = 0;
+            if (value[i] < newValues[i]) {
+                value[i] = newValues[i];
             }
         }
+    }
+
+    public void Add(int value) {
+        Add(value, value);
     }
 
     public void Remove() {
@@ -22,12 +26,9 @@ public class BoneSculptor {
         }
     }
 
-    public bool Trigger(Character dealer, WarriorStats targetStats) {
-        if (GetValue(dealer.stats) > 0) {
-            if (targetStats.ability.skeletal.GetValue(targetStats)) {
-                targetStats.AddStrength(GetValue(dealer.stats));
-                targetStats.AddHealthMax(GetValue(dealer.stats));
-            }
+    public async Task<bool> Trigger(Character target) {
+        if (GetValue(target.stats) > 0) {
+            await target.TakeDamage(target, GetValue(target.stats), Character.DamageType.Magical);
             return true;
         }
         return false;
@@ -40,7 +41,7 @@ public class BoneSculptor {
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"When you summon a Skeleton, give it +{GetValue(stats)}/+{GetValue(stats)}";
+        return $"{WarriorAbility.Keywords.Overturn}: Take {GetValue(stats)} magical damage";
     }
 
     string GetAbilityName() {

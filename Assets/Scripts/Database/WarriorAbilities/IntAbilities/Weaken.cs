@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class Poison {
+public class Weaken {
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -16,6 +16,10 @@ public class Poison {
         }
     }
 
+    public void Add(int value) {
+        Add(value, value);
+    }
+
     public void Remove() {
         for (int i = 0; i < 2; i++) {
             value[i] = 0;
@@ -24,8 +28,13 @@ public class Poison {
 
     public bool Trigger(Character dealer, Character target) {
         if (GetValue(dealer.stats) > 0) {
-            target.stats.ability.poisoned.Add(GetValue(dealer.stats), GetValue(dealer.stats));
-            target.UpdateWarriorUI();
+            if (target.stats.GetStrength() > 0) {
+                target.stats.AddStrength(-GetValue(dealer.stats));
+                if (target.stats.GetStrength() < 1) {
+                    target.stats.AddStrength(1 - target.stats.GetStrength());
+                }
+                target.UpdateWarriorUI();
+            }
             return true;
         }
         return false;
@@ -38,7 +47,7 @@ public class Poison {
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Apply {GetValue(stats)} Poison";
+        return $"{WarriorAbility.Keywords.Attack}: Reduce the target's strength by {GetValue(stats)} (minimum 1)";
     }
 
     string GetAbilityName() {

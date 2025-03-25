@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class CLASSNAMEINT {
+public class Poison {
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -16,16 +16,20 @@ public class CLASSNAMEINT {
         }
     }
 
+    public void Add(int value) {
+        Add(value, value);
+    }
+
     public void Remove() {
         for (int i = 0; i < 2; i++) {
             value[i] = 0;
         }
     }
 
-    public bool Trigger(Character character) {
-        if (GetValue(character.stats) > 0) {
-            // Add trigger event here
-            character.UpdateWarriorUI();
+    public bool Trigger(Character dealer, Character target) {
+        if (GetValue(dealer.stats) > 0) {
+            target.stats.ability.poisoned.Add(GetValue(dealer.stats), GetValue(dealer.stats));
+            target.UpdateWarriorUI();
             return true;
         }
         return false;
@@ -38,7 +42,7 @@ public class CLASSNAMEINT {
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"DESCRIPTION";
+        return $"{WarriorAbility.Keywords.Strike}: Apply {GetValue(stats)} Poison";
     }
 
     string GetAbilityName() {

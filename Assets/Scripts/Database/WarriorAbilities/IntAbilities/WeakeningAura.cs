@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-public class PoisonCloud {
+public class WeakeningAura {
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -18,21 +16,25 @@ public class PoisonCloud {
         }
     }
 
+    public void Add(int value) {
+        Add(value, value);
+    }
+
     public void Remove() {
         for (int i = 0; i < 2; i++) {
             value[i] = 0;
         }
     }
 
-    public bool Trigger(Character dealer, GridManager gridManager) {
-        if (GetValue(dealer.stats) > 0) {
-            List<Character> nearbyWarriors = gridManager.GetWarriorsAroundCell(dealer.gridIndex);
-            List<Character> nearbyEnemies = nearbyWarriors.Where(warrior => warrior.alignment != dealer.alignment).ToList();
-            foreach (Character enemy in nearbyEnemies) {
-                enemy.stats.ability.poisoned.Add(GetValue(dealer.stats), GetValue(dealer.stats));
-                enemy.UpdateWarriorUI();
+    public bool Trigger(Character dealer, Character target) {
+        if (GetValue(target.stats) > 0) {
+            if (dealer.stats.GetStrength() > 0) {
+                dealer.stats.AddStrength(-GetValue(target.stats));
+                if (dealer.stats.GetStrength() < 1) {
+                    dealer.stats.AddStrength(1 - dealer.stats.GetStrength());
+                }
+                dealer.UpdateWarriorUI();
             }
-
             return true;
         }
         return false;
@@ -45,7 +47,7 @@ public class PoisonCloud {
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Apply {GetValue(stats)} Poison to nearby enemies";
+        return $"When attacked: Reduce the attacker's strength by {GetValue(stats)} (minimum 1)";
     }
 
     string GetAbilityName() {

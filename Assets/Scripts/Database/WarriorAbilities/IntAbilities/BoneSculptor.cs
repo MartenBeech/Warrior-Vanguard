@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class WeakeningAura {
+public class BoneSculptor {
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -16,20 +16,21 @@ public class WeakeningAura {
         }
     }
 
+    public void Add(int value) {
+        Add(value, value);
+    }
+
     public void Remove() {
         for (int i = 0; i < 2; i++) {
             value[i] = 0;
         }
     }
 
-    public bool Trigger(Character dealer, Character target) {
-        if (GetValue(target.stats) > 0) {
-            if (dealer.stats.GetStrength() > 0) {
-                dealer.stats.AddStrength(-GetValue(target.stats));
-                if (dealer.stats.GetStrength() < 1) {
-                    dealer.stats.AddStrength(1 - dealer.stats.GetStrength());
-                }
-                dealer.UpdateWarriorUI();
+    public bool Trigger(Character dealer, WarriorStats targetStats) {
+        if (GetValue(dealer.stats) > 0) {
+            if (targetStats.ability.skeletal.GetValue(targetStats)) {
+                targetStats.AddStrength(GetValue(dealer.stats));
+                targetStats.AddHealthMax(GetValue(dealer.stats));
             }
             return true;
         }
@@ -43,7 +44,7 @@ public class WeakeningAura {
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"When attacked: Reduce the attacker's strength by {GetValue(stats)} (minimum 1)";
+        return $"When you summon a Skeleton, give it +{GetValue(stats)}/+{GetValue(stats)}";
     }
 
     string GetAbilityName() {

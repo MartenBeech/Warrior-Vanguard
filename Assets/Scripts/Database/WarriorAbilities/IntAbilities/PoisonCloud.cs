@@ -1,5 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
-public class DarkTouch {
+public class PoisonCloud {
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -16,17 +18,26 @@ public class DarkTouch {
         }
     }
 
+    public void Add(int value) {
+        Add(value, value);
+    }
+
     public void Remove() {
         for (int i = 0; i < 2; i++) {
             value[i] = 0;
         }
     }
 
-    public bool Trigger(Character dealer, Character target) {
+    public bool Trigger(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            if (target.stats.GetHealth() <= GetValue(dealer.stats)) {
-                return true;
+            List<Character> nearbyWarriors = gridManager.GetWarriorsAroundCell(dealer.gridIndex);
+            List<Character> nearbyEnemies = nearbyWarriors.Where(warrior => warrior.alignment != dealer.alignment).ToList();
+            foreach (Character enemy in nearbyEnemies) {
+                enemy.stats.ability.poisoned.Add(GetValue(dealer.stats), GetValue(dealer.stats));
+                enemy.UpdateWarriorUI();
             }
+
+            return true;
         }
         return false;
     }
@@ -38,7 +49,7 @@ public class DarkTouch {
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Instantly kill targets with no more than {GetValue(stats)} health";
+        return $"{WarriorAbility.Keywords.Overturn}: Apply {GetValue(stats)} Poison to nearby enemies";
     }
 
     string GetAbilityName() {
