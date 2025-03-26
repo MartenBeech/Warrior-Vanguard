@@ -13,16 +13,20 @@ public class EventManager : MonoBehaviour {
     public GameObject gainCardPanel;
     public GameObject acceptButton;
     public DeckBuilder deckBuilder;
-    enum eventIndex {
+    public SummonerManager summonerManager;
+    enum events {
         GainGoldEvent,
         LoseGoldEvent,
         GainCardEvent,
         UpgradeCardEvent,
-        RemoveCardEvent
+        RemoveCardEvent,
+        LoseHealthEvent,
+        GainMaxHealthEvent
     }
-    eventIndex currentEvent;
+    events currentEvent;
     List<int> cardIndexes = new();
     int goldAmount = 0;
+    int healthDifference = 0;
 
     void Start() {
         upgradeCardPanel.SetActive(false);
@@ -33,25 +37,31 @@ public class EventManager : MonoBehaviour {
     }
 
     public void TriggerRandomEvent() {
-        int randomIndex = Random.Range(0, 5);
-        currentEvent = (eventIndex)randomIndex;
+        int randomIndex = Random.Range(0, System.Enum.GetValues(typeof(events)).Length);
+        currentEvent = (events)randomIndex;
 
-        currentEvent = eventIndex.GainGoldEvent;
+        currentEvent = events.GainMaxHealthEvent; // Hardcoded for testing
         switch (currentEvent) {
-            case eventIndex.GainGoldEvent:
+            case events.GainGoldEvent:
                 GainGoldEvent();
                 break;
-            case eventIndex.LoseGoldEvent:
+            case events.LoseGoldEvent:
                 LoseGoldEvent();
                 break;
-            case eventIndex.GainCardEvent:
+            case events.GainCardEvent:
                 GainCardEvent();
                 break;
-            case eventIndex.UpgradeCardEvent:
+            case events.UpgradeCardEvent:
                 UpgradeCardEvent();
                 break;
-            case eventIndex.RemoveCardEvent:
+            case events.RemoveCardEvent:
                 RemoveCardEvent();
+                break;
+            case events.LoseHealthEvent:
+                LoseHealthEvent();
+                break;
+            case events.GainMaxHealthEvent:
+                GainMaxHealthEvent();
                 break;
         }
     }
@@ -63,13 +73,13 @@ public class EventManager : MonoBehaviour {
     }
 
     void LoseGoldEvent() {
-        int goldLost = 25;
-        GoldManager.RemoveGold(goldLost);
-        eventText.text = $"A thief stole {goldLost} gold from you!";
+        int goldAmount = 25;
+        GoldManager.RemoveGold(goldAmount);
+        eventText.text = $"A thief stole {goldAmount} gold from you! You cry for a bit but then realise your time is better spent moving on.";
     }
 
     void GainCardEvent() {
-        eventText.text = "You visited the friendly neighborhood papermaker.. He will give you one of his legendary cards for free";
+        eventText.text = "You visited the friendly neighborhood papermaker.. He will give you one of his legendary cards for free.";
         gainCardPanel.SetActive(true);
 
         foreach (Card card in gainCardsOptions) {
@@ -81,9 +91,9 @@ public class EventManager : MonoBehaviour {
     }
 
     void UpgradeCardEvent() {
-        eventText.text = "You visited the friendly neighborhood smith.. He will upgrade one of your cards for free";
+        eventText.text = "You visited the friendly neighborhood smith.. He will upgrade one of your cards for free.";
         if (DeckManager.GetDeck().Count <= 0) {
-            eventText.text += ", but you have any cards to upgrade sorry";
+            eventText.text += " However it seems like you don't have any cards to upgrade sorry";
             return;
         }
         ;
@@ -98,10 +108,22 @@ public class EventManager : MonoBehaviour {
         }
     }
 
+    void LoseHealthEvent() {
+        healthDifference = 5;
+        summonerManager.LoseHealth(healthDifference);
+        eventText.text = $"An unfriendly skeleton walks up to you and hit you in the face. You leave with {healthDifference} less health and a lot of questions.";
+    }
+
+    void GainMaxHealthEvent() {
+        healthDifference = 5;
+        summonerManager.GainMaxHealth(healthDifference);
+        eventText.text = $"A stranger walks up to you and gives you a potion. Without hesitation, you drink it and gains {healthDifference} max health. You are happy about your life choices.";
+    }
+
     void RemoveCardEvent() {
-        eventText.text = "You visited the friendly neighborhood barber.. He will cut one of your cards for free";
+        eventText.text = "You visited the friendly neighborhood barber.. He will cut one of your cards for free.";
         if (DeckManager.GetDeck().Count <= 0) {
-            eventText.text += ", but you have any cards to cut sorry";
+            eventText.text += " However it seems like you don't have any cards to cut sorry. You should probably get some cards..";
             return;
         }
         ;
@@ -118,22 +140,13 @@ public class EventManager : MonoBehaviour {
 
     public void AcceptEvent() {
         switch (currentEvent) {
-            case eventIndex.GainGoldEvent:
+            case events.GainGoldEvent:
                 GoldManager.AddGold(goldAmount);
-                eventText.text = $"Congratulations! You are now a bit richer than before";
+                eventText.text = $"Congratulations! You are now a bit richer than before.";
                 acceptButton.SetActive(false);
                 break;
-            case eventIndex.LoseGoldEvent:
-                LoseGoldEvent();
-                break;
-            case eventIndex.GainCardEvent:
-                GainCardEvent();
-                break;
-            case eventIndex.UpgradeCardEvent:
-                UpgradeCardEvent();
-                break;
-            case eventIndex.RemoveCardEvent:
-                RemoveCardEvent();
+            default:
+                eventText.text = "This unfortunately doesn't seem to do anything.";
                 break;
         }
     }
@@ -150,7 +163,7 @@ public class EventManager : MonoBehaviour {
         removeCardPanel.SetActive(false);
         Card card = DeckManager.GetCard(cardIndexes[index]);
         deckBuilder.RemoveCardFromDeck(cardIndexes[index]);
-        eventText.text = $"You removed {card.stats.title} from your deck! We will not be seeing much more of them";
+        eventText.text = $"You removed {card.stats.title} from your deck! We will not be seeing much more of them.";
     }
 
     public void GainCard(Card card) {

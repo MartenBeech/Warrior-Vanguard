@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 
     void Awake() {
         Summoner friendSummoner = friendSummonerObject.GetComponent<Summoner>();
-        friendSummoner.SetStats(new Angel().GetSummoner());
+        friendSummoner.SetStats(new SummonerStats(Angel.title, Angel.description, Angel.currentHealth, Angel.maxHealth));
         Summoner enemySummoner = enemySummonerObject.GetComponent<Summoner>();
         enemySummoner.SetStats(new Devil().GetSummoner());
         friendDeck.GetDeck();

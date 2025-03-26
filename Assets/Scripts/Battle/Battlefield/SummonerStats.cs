@@ -4,6 +4,16 @@ public class SummonerStats {
     public int health;
     public int healthMax;
 
+    public SummonerStats(string title, string description, int health, int healthMax) {
+        this.title = title;
+        this.description = description;
+        this.health = health;
+        this.healthMax = healthMax;
+    }
+
+    public SummonerStats() {
+    }
+    
     public void SetStats(SummonerStats stats) {
         title = stats.title;
         description = stats.description;

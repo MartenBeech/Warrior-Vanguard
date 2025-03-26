@@ -10,8 +10,10 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject image;
     public TooltipManager tooltipManager;
     public void OnPointerEnter(PointerEventData eventData) {
-        tooltipManager.transform.position = new Vector2(transform.position.x, transform.position.y + 200);
-        tooltipManager.AddTooltip(stats.title, stats.description);
+        if (tooltipManager) {
+            tooltipManager.transform.position = new Vector2(transform.position.x, transform.position.y + 200);
+            tooltipManager.AddTooltip(stats.title, stats.description);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData) {
@@ -36,6 +38,10 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             stats.health -= damage;
             UpdateSummonerUI();
             dealer.stats.ability.bloodlust.Trigger(dealer);
+
+            if (stats.title == "Angel") {
+                Angel.LoseHealth(damage);
+            }
         }
 
         ColorPalette colorPalette = new();
@@ -69,6 +75,10 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public void Heal(int amount) {
+        if (stats.title == "Angel") {
+            Angel.GainHealth(amount);
+        }
+
         stats.health += amount;
         if (stats.health > stats.healthMax) {
             stats.health = stats.healthMax;
