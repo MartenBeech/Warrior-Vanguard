@@ -23,7 +23,7 @@ public class Coin : MonoBehaviour {
     }
 
     public bool SpendCoins(int amount) {
-        if (amount <= coins) {
+        if (CanAfford(amount)) {
             for (int i = coins - amount; i < coins; i++) {
                 GameObject child = transform.GetChild(i).gameObject;
                 child.GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.gray);
@@ -40,5 +40,12 @@ public class Coin : MonoBehaviour {
             child.GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.yellow);
         }
         coins = coinsTotal;
+    }
+
+    public bool CanAfford(int cost) {
+        if (cost <= coins) {
+            return true;
+        }
+        return false;
     }
 }

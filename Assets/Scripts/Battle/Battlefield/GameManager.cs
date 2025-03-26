@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour {
         List<Card> cardsInHand = new(enemyHand.GetCardsInHand());
         cardsInHand.Sort((a, b) => b.stats.cost - a.stats.cost);
         foreach (Card card in cardsInHand) {
-            if (enemyCoin.SpendCoins(card.stats.cost)) {
+            if (enemyCoin.CanAfford(card.stats.cost)) {
                 enemyHand.SelectCard(card);
                 GridCell randomCell = gridManager.GetRandomEmptyDeploy(card.stats.ability.construct.Trigger(card.stats), card.stats.alignment);
                 await enemyHand.PlayCardFromHand(characterSpawner, randomCell.gridIndex);
