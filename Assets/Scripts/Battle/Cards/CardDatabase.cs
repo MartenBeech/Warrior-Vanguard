@@ -4,13 +4,14 @@ public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
         new Duck().GetStats(),
         new Mario().GetStats(),
+        new ZombieHydra().GetStats(),
+        new SoulStealer().GetStats(),
         new VileMutation().GetStats(),
         new CorpseBehemoth().GetStats(),
         new LichQueen().GetStats(),
         new BloodMerchant().GetStats(),
         new PileOfBones().GetStats(),
         new WailingWall().GetStats(),
-        new SoulStealer().GetStats(),
         new VoidBeing().GetStats(),
         new SuddenBreeze().GetStats(),
         new WindDancer().GetStats(),
@@ -26,7 +27,6 @@ public static class CardDatabase {
         new VampireElder().GetStats(),
         new ZombieMinion().GetStats(),
         new PlagueWalker().GetStats(),
-        new ZombieHydra().GetStats(),
         new Luigi().GetStats(),
         new Mortana().GetStats(),
     };

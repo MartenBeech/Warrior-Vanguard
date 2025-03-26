@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 public class HydraSplit {
     bool[] value = new bool[] { false, false };
 
@@ -21,15 +23,16 @@ public class HydraSplit {
         Add(false, false);
     }
 
-    public bool Trigger(Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
+            List<Task> asyncFunctions = new();
             for (int i = 0; i < 3; i++) {
-
                 WarriorStats stats = new HydraSerpent().GetStats();
                 stats.level = target.stats.level;
 
-                characterSpawner.SpawnRandomly(stats, target.alignment, target.transform.position);
+                asyncFunctions.Add(characterSpawner.SpawnRandomly(stats, target.transform.position));
             }
+            await Task.WhenAll(asyncFunctions);
             return true;
         }
         return false;

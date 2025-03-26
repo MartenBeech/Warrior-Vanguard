@@ -5,7 +5,7 @@ public class SoulStealer {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),
             cost = 7,
             strength = new int[] { 0, 0 },
-            health = new int[] { 6, 10 },
+            health = new int[] { 5, 7 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,
@@ -23,7 +23,7 @@ public class SoulStealer {
 
         WarriorAbility ability = stats.ability;
         ability.afterlife.Add();
-        ability.darkTouch.Add(6, 10);
+        ability.darkTouch.Add(5, 7);
         ability.possess.Add();
 
         return stats;

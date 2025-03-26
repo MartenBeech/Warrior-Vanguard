@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -72,20 +73,23 @@ public class GridManager : MonoBehaviour {
         }
     }
 
-    public void SelectCell(Vector2 selectedGridIndex) {
+    public async Task SelectCell(Vector2 selectedGridIndex) {
         if (GetCellCharacter(selectedGridIndex)) return;
 
         if (characterSpawner.getIsSpawning(CharacterSpawner.Alignment.Enemy)) {
-            characterSpawner.Spawn(selectedGridIndex, new Luigi().GetStats(), CharacterSpawner.Alignment.Enemy, EnemySummonerObject.position);
+            WarriorStats luigiStats = new Luigi().GetStats();
+            luigiStats.alignment = CharacterSpawner.Alignment.Enemy;
+
+            await characterSpawner.Spawn(selectedGridIndex, luigiStats, EnemySummonerObject.position);
             return;
         }
 
         if (GameManager.turn == CharacterSpawner.Alignment.Friend) {
             if (friendHand.selectedCard == null) return;
-            friendHand.PlayCardFromHand(characterSpawner, selectedGridIndex, CharacterSpawner.Alignment.Friend);
+            await friendHand.PlayCardFromHand(characterSpawner, selectedGridIndex);
         } else if (GameManager.turn == CharacterSpawner.Alignment.Enemy) {
             if (enemyHand.selectedCard == null) return;
-            enemyHand.PlayCardFromHand(characterSpawner, selectedGridIndex, CharacterSpawner.Alignment.Enemy);
+            await enemyHand.PlayCardFromHand(characterSpawner, selectedGridIndex);
         }
     }
 
@@ -110,20 +114,30 @@ public class GridManager : MonoBehaviour {
         return null;
     }
 
-    public List<GridCell> GetEmptyDeploys(bool largeDeployArea) {
+    public List<GridCell> GetEmptyDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment) {
         List<GridCell> cells = new();
-        for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) : 3); x++) {
-            for (int y = 0; y < rows; y++) {
-                if (!GetCellCharacter(new Vector2(x, y))) {
-                    cells.Add(grid[x, y]);
+        if (alignment == CharacterSpawner.Alignment.Friend) {
+            for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) : 3); x++) {
+                for (int y = 0; y < rows; y++) {
+                    if (!GetCellCharacter(new Vector2(x, y))) {
+                        cells.Add(grid[x, y]);
+                    }
+                }
+            }
+        } else {
+            for (int x = columns - 1; x >= (largeDeployArea ? columns - Mathf.Floor(columns / 2) : columns - 3); x--) {
+                for (int y = 0; y < rows; y++) {
+                    if (!GetCellCharacter(new Vector2(x, y))) {
+                        cells.Add(grid[x, y]);
+                    }
                 }
             }
         }
         return cells;
     }
 
-    public GridCell GetRandomEmptyDeploy(bool largeDeployArea) {
-        List<GridCell> cells = GetEmptyDeploys(largeDeployArea);
+    public GridCell GetRandomEmptyDeploy(bool largeDeployArea, CharacterSpawner.Alignment alignment) {
+        List<GridCell> cells = GetEmptyDeploys(largeDeployArea, alignment);
         if (cells.Count == 0) return null;
 
         int randomIndex = Rng.Range(0, cells.Count);
@@ -138,15 +152,15 @@ public class GridManager : MonoBehaviour {
         cell.GetComponent<Outline>().enabled = false;
     }
 
-    public void HighlightDeploys(bool largeDeployArea) {
-        List<GridCell> cells = GetEmptyDeploys(largeDeployArea);
+    public void HighlightDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment) {
+        List<GridCell> cells = GetEmptyDeploys(largeDeployArea, alignment);
         for (int i = 0; i < cells.Count; i++) {
             HighlightCell(cells[i]);
         }
     }
 
-    public void ClearHighlightedDeploys(bool largeDeployArea) {
-        for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) : 3); x++) {
+    public void ClearHighlightedDeploys() {
+        for (int x = 0; x < columns; x++) {
             for (int y = 0; y < rows; y++) {
                 ClearHighlightedCell(grid[x, y]);
             }

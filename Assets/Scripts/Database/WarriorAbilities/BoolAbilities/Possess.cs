@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 public class Possess {
     bool[] value = new bool[] { false, false };
 
@@ -21,10 +23,13 @@ public class Possess {
         Add(false, false);
     }
 
-    public bool Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats)) {
             target.stats.ResetStats();
-            characterSpawner.SpawnRandomly(target.stats, dealer.alignment, target.transform.position);
+            target.stats.alignment = dealer.alignment;
+
+            await characterSpawner.SpawnRandomly(target.stats, target.transform.position);
+
             return true;
         }
         return false;
@@ -37,7 +42,7 @@ public class Possess {
 
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Resummon the target, then I die";
+        return $"{WarriorAbility.Keywords.Kill}: Resummon the target on your side";
     }
 
     string GetAbilityName() {

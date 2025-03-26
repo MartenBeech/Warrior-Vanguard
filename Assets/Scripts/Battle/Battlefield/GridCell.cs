@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +10,11 @@ public class GridCell : MonoBehaviour {
     public void Setup(GridManager manager, Vector2 gridIndex) {
         gridManager = manager;
         button = GetComponent<Button>();
-        button.onClick.AddListener(() => OnClick(gridIndex));
+        button.onClick.AddListener(async () => await OnClick(gridIndex));
         this.gridIndex = gridIndex;
     }
 
-    void OnClick(Vector2 gridIndex) {
-        gridManager.SelectCell(gridIndex);
+    async Task OnClick(Vector2 gridIndex) {
+        await gridManager.SelectCell(gridIndex);
     }
 }

@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 public class DeathCall {
     bool[] value = new bool[] { false, false };
 
@@ -21,10 +22,10 @@ public class DeathCall {
         Add(false, false);
     }
 
-    public bool Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats)) {
             RaiseDead raiseDead = new();
-            raiseDead.SummonSkeleton(dealer, target, characterSpawner);
+            await raiseDead.SummonSkeleton(dealer, target, characterSpawner);
             return true;
         }
         return false;

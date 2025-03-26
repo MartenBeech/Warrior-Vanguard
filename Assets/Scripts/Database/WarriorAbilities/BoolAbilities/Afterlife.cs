@@ -1,5 +1,7 @@
+
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using UnityEngine;
 public class Afterlife {
     bool[] value = new bool[] { false, false };
 
@@ -22,8 +24,9 @@ public class Afterlife {
         Add(false, false);
     }
 
-    public async Task<bool> Trigger(Character target, ObjectAnimation objectAnimation, GridManager gridManager, Hand hand) {
+    public async Task<bool> Trigger(Character target, GridManager gridManager, Hand hand, GameObject clone) {
         if (GetValue(target.stats)) {
+            ObjectAnimation objectAnimation = clone.GetComponent<ObjectAnimation>();
             await objectAnimation.MoveObject(gridManager.GetCellPosition(target.gridIndex), hand.handObject.position);
             target.stats.ResetStats();
             target.stats.ability.afterlife.Remove();

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -12,27 +13,30 @@ public class GameManager : MonoBehaviour {
     public Coin enemyCoin;
     public Deck friendDeck;
     public Deck enemyDeck;
+    public Hand enemyHand;
     public static CharacterSpawner.Alignment turn;
 
-    void Awake() {
+    async void Awake() {
         Summoner friendSummoner = friendSummonerObject.GetComponent<Summoner>();
         friendSummoner.SetStats(new SummonerStats(Angel.title, Angel.description, Angel.currentHealth, Angel.maxHealth));
         Summoner enemySummoner = enemySummonerObject.GetComponent<Summoner>();
         enemySummoner.SetStats(new Devil().GetSummoner());
         friendDeck.GetDeck();
         enemyDeck.GetDeck();
+        List<Task> asyncFunctions = new();
         for (int i = 0; i < 3; i++) {
-            friendDeck.DrawCard(CharacterSpawner.Alignment.Friend, false);
-            enemyDeck.DrawCard(CharacterSpawner.Alignment.Enemy, false);
+            asyncFunctions.Add(friendDeck.DrawCard(CharacterSpawner.Alignment.Friend, false));
+            asyncFunctions.Add(enemyDeck.DrawCard(CharacterSpawner.Alignment.Enemy, false));
         }
-        StartPlayerTurn();
+        await Task.WhenAll(asyncFunctions);
+        await StartPlayerTurn();
     }
 
-    public void StartPlayerTurn() {
+    public async Task StartPlayerTurn() {
         turn = CharacterSpawner.Alignment.Friend;
         friendCoin.GainCoins();
         friendCoin.RefreshCoins();
-        friendDeck.DrawCard(CharacterSpawner.Alignment.Friend);
+        await friendDeck.DrawCard(CharacterSpawner.Alignment.Friend);
     }
 
     public async void EndPlayerTurn() {
@@ -42,14 +46,15 @@ public class GameManager : MonoBehaviour {
             await friend.StandAndAttack(Character.Direction.Right);
             await friend.EndTurn();
         }
-        StartEnemyTurn();
+        await StartEnemyTurn();
     }
 
-    public void StartEnemyTurn() {
+    public async Task StartEnemyTurn() {
         turn = CharacterSpawner.Alignment.Enemy;
         enemyCoin.GainCoins();
         enemyCoin.RefreshCoins();
-        enemyDeck.DrawCard(CharacterSpawner.Alignment.Enemy, false);
+        await enemyDeck.DrawCard(CharacterSpawner.Alignment.Enemy, false);
+        await TakeEnemyTurn();
     }
 
     public async void EndEnemyTurn() {
@@ -59,7 +64,7 @@ public class GameManager : MonoBehaviour {
             await enemy.StandAndAttack(Character.Direction.Left);
             await enemy.EndTurn();
         }
-        StartPlayerTurn();
+        await StartPlayerTurn();
     }
 
     public void RegisterCharacter(Character character, CharacterSpawner.Alignment alignment) {
@@ -88,5 +93,19 @@ public class GameManager : MonoBehaviour {
 
     public void LoseFight() {
         LevelManager.LoseLevel();
+    }
+
+    async Task TakeEnemyTurn() {
+        CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
+        List<Card> cardsInHand = new(enemyHand.GetCardsInHand());
+        cardsInHand.Sort((a, b) => b.stats.cost - a.stats.cost);
+        foreach (Card card in cardsInHand) {
+            if (enemyCoin.SpendCoins(card.stats.cost)) {
+                enemyHand.SelectCard(card);
+                GridCell randomCell = gridManager.GetRandomEmptyDeploy(card.stats.ability.construct.Trigger(card.stats), card.stats.alignment);
+                await enemyHand.PlayCardFromHand(characterSpawner, randomCell.gridIndex);
+            }
+        }
+        EndEnemyTurn();
     }
 }

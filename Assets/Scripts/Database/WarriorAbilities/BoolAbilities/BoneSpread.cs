@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 public class BoneSpread {
     bool[] value = new bool[] { false, false };
 
@@ -21,12 +23,14 @@ public class BoneSpread {
         Add(false, false);
     }
 
-    public bool Trigger(Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
             RaiseDead raiseDead = new();
+            List<Task> asyncFunctions = new();
             for (int i = 0; i < 3; i++) {
-                raiseDead.SummonSkeleton(target, target, characterSpawner);
+                asyncFunctions.Add(raiseDead.SummonSkeleton(target, target, characterSpawner));
             }
+            await Task.WhenAll(asyncFunctions);
             return true;
         }
         return false;

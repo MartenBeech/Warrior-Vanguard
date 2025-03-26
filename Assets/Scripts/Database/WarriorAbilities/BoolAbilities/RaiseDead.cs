@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 public class RaiseDead {
     bool[] value = new bool[] { false, false };
 
@@ -21,9 +22,9 @@ public class RaiseDead {
         Add(false, false);
     }
 
-    public bool Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats)) {
-            SummonSkeleton(dealer, target, characterSpawner);
+            await SummonSkeleton(dealer, target, characterSpawner);
             return true;
         }
         return false;
@@ -45,7 +46,7 @@ public class RaiseDead {
         return abilityName;
     }
 
-    public void SummonSkeleton(Character dealer, Character target, CharacterSpawner characterSpawner) {
+    public async Task SummonSkeleton(Character dealer, Character target, CharacterSpawner characterSpawner) {
         int skeletonType = Rng.Range(0, 4);
 
         WarriorStats stats =
@@ -55,6 +56,6 @@ public class RaiseDead {
             new SkeletonRider().GetStats();
         stats.level = dealer.stats.level;
 
-        characterSpawner.SpawnRandomly(stats, dealer.alignment, target.transform.position);
+        await characterSpawner.SpawnRandomly(stats, target.transform.position);
     }
 }

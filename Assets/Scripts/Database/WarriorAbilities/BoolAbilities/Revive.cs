@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 public class Revive {
     bool[] value = new bool[] { false, false };
 
@@ -21,12 +22,12 @@ public class Revive {
         Add(false, false);
     }
 
-    public bool Trigger(Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
             target.stats.ResetStats();
             target.stats.ability.revive.Remove();
 
-            characterSpawner.SpawnRandomly(target.stats, target.alignment, target.transform.position);
+            await characterSpawner.SpawnRandomly(target.stats, target.transform.position);
             return true;
         }
         return false;

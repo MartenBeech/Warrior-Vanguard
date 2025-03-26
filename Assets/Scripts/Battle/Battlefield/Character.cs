@@ -203,32 +203,29 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         dealer.image.GetComponent<Image>().color = currentColor;
     }
 
-    private async Task Die(Character dealer) {
+    public async Task Die(Character dealer) {
         gameManager.RemoveCharacter(this);
         gridManager.RemoveCharacter(this);
 
         CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
-
+        List<Task> asyncFunctions = new();
         if (dealer != this) {
             dealer.stats.ability.cannibalism.Trigger(dealer);
-            dealer.stats.ability.raiseDead.Trigger(dealer, this, characterSpawner);
+            asyncFunctions.Add(dealer.stats.ability.raiseDead.Trigger(dealer, this, characterSpawner));
             List<Character> friends = gridManager.GetFriends(dealer.alignment);
             foreach (Character friend in friends) {
-                friend.stats.ability.deathCall.Trigger(friend, this, characterSpawner);
+                asyncFunctions.Add(friend.stats.ability.deathCall.Trigger(friend, this, characterSpawner));
             }
-            if (dealer.stats.ability.possess.Trigger(dealer, this, characterSpawner)) {
-                await dealer.Die(dealer);
-            }
+            asyncFunctions.Add(dealer.stats.ability.possess.Trigger(dealer, this, characterSpawner));
         }
 
-        stats.ability.revive.Trigger(this, characterSpawner);
-        stats.ability.hydraSplit.Trigger(this, characterSpawner);
-        stats.ability.boneSpread.Trigger(this, characterSpawner);
-
-        ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
-        await stats.ability.afterlife.Trigger(this, objectAnimation, gridManager, hand);
+        asyncFunctions.Add(stats.ability.revive.Trigger(this, characterSpawner));
+        asyncFunctions.Add(stats.ability.hydraSplit.Trigger(this, characterSpawner));
+        asyncFunctions.Add(stats.ability.boneSpread.Trigger(this, characterSpawner));
+        asyncFunctions.Add(stats.ability.afterlife.Trigger(this, gridManager, hand, Instantiate(gameObject, transform.position, Quaternion.identity, transform.parent)));
 
         Destroy(gameObject);
+        await Task.WhenAll(asyncFunctions);
     }
 
     public async Task EndTurn() {

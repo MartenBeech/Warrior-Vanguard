@@ -4193,6 +4193,7 @@ MonoBehaviour:
   enemyCoin: {fileID: 114908479}
   friendDeck: {fileID: 233183271}
   enemyDeck: {fileID: 1651248352}
+  enemyHand: {fileID: 799138551}
 --- !u!4 &2106477980
 Transform:
   m_ObjectHideFlags: 0

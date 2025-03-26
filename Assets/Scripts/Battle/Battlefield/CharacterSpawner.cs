@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class CharacterSpawner : MonoBehaviour {
     public enum Alignment {
@@ -25,20 +26,20 @@ public class CharacterSpawner : MonoBehaviour {
         return spawningAlignment == alignment;
     }
 
-    public async void Spawn(Vector2 gridIndex, WarriorStats stats, Alignment alignment, Vector2 from) {
+    public async Task Spawn(Vector2 gridIndex, WarriorStats stats, Vector2 from) {
         GameObject warrior = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
         warrior.name = $"{stats.title}[{gridIndex.x},{gridIndex.y}]";
         Character character = warrior.GetComponent<Character>();
         ObjectAnimation objectAnimation = warrior.GetComponentInChildren<ObjectAnimation>();
 
-        List<Character> friends = gridManager.GetFriends(alignment);
+        List<Character> friends = gridManager.GetFriends(stats.alignment);
         foreach (Character friend in friends) {
             friend.stats.ability.boneSculptor.Trigger(friend, stats);
         }
 
         character.SetStats(stats);
         character.gridIndex = gridIndex;
-        gameManager.RegisterCharacter(character, alignment);
+        gameManager.RegisterCharacter(character, stats.alignment);
         await objectAnimation.MoveObject(from, gridManager.GetCellPosition(gridIndex));
 
         warrior.GetComponent<RectTransform>().localScale = gridManager.GetCellDimension() / warrior.GetComponent<RectTransform>().rect.width;
@@ -52,16 +53,16 @@ public class CharacterSpawner : MonoBehaviour {
         }
         character.Initiate(gameManager, gridManager, hand);
 
-        character.SetAlignment(alignment);
+        character.SetAlignment(stats.alignment);
         character.SetHoverWarrior(hoverWarrior);
 
         character.SetPosition(gridIndex);
     }
 
-    public void SpawnRandomly(WarriorStats stats, Alignment alignment, Vector2 from) {
-        GridCell randomCell = gridManager.GetRandomEmptyDeploy(stats.ability.construct.Trigger(stats));
+    public async Task SpawnRandomly(WarriorStats stats, Vector2 from) {
+        GridCell randomCell = gridManager.GetRandomEmptyDeploy(stats.ability.construct.Trigger(stats), stats.alignment);
         if (!randomCell) return;
 
-        Spawn(randomCell.gridIndex, stats, alignment, from);
+        await Spawn(randomCell.gridIndex, stats, from);
     }
 }

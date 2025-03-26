@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class Deck : MonoBehaviour {
     public Hand hand;
@@ -24,7 +25,7 @@ public class Deck : MonoBehaviour {
             deck.Add(CardDatabase.allCards[i]);
         }
     }
-    public async void DrawCard(CharacterSpawner.Alignment alignment, bool highlightCard = true) {
+    public async Task DrawCard(CharacterSpawner.Alignment alignment, bool highlightCard = true) {
         if (deck.Count == 0) return;
 
         WarriorStats drawnCard = deck[0];
@@ -64,7 +65,7 @@ public class Deck : MonoBehaviour {
         textObject.GetComponent<TMP_Text>().text = $"{deck.Count}";
     }
 
-    public void OnClick() {
-        DrawCard(GameManager.turn);
+    public async Task OnClick() {
+        await DrawCard(GameManager.turn);
     }
 }

@@ -42,7 +42,7 @@ public class DarkTouch {
 
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Instantly kill targets with no more than {GetValue(stats)} health";
+        return $"{WarriorAbility.Keywords.Attack}: Instantly kill targets left with max {GetValue(stats)} health";
     }
 
     string GetAbilityName() {
