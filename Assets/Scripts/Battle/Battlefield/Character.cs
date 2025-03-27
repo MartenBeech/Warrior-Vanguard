@@ -23,11 +23,13 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Physical, Magical
     };
     Hand hand;
+    CharacterSpawner characterSpawner;
 
-    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand) {
+    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner) {
         this.gameManager = gameManager;
         this.gridManager = gridManager;
         this.hand = hand;
+        this.characterSpawner = characterSpawner;
     }
 
     public void UpdateWarriorUI() {
@@ -207,7 +209,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         gameManager.RemoveCharacter(this);
         gridManager.RemoveCharacter(this);
 
-        CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
         List<Task> asyncFunctions = new();
         if (dealer != this) {
             dealer.stats.ability.cannibalism.Trigger(dealer);
@@ -230,7 +231,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public async Task EndTurn() {
         stats.ability.poisonCloud.Trigger(this, gridManager);
-        await stats.ability.poisoned.Trigger(this);
+
+        List<Task> asyncFunctions = new() {
+            stats.ability.poisoned.Trigger(this),
+            stats.ability.cemeteryGates.Trigger(this, characterSpawner)
+        };
+        await Task.WhenAll(asyncFunctions);
 
     }
 

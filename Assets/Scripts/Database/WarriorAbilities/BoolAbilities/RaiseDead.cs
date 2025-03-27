@@ -55,6 +55,7 @@ public class RaiseDead {
             skeletonType == 3 ? new SkeletonMage().GetStats() :
             new SkeletonRider().GetStats();
         stats.level = dealer.stats.level;
+        stats.alignment = dealer.stats.alignment;
 
         await characterSpawner.SpawnRandomly(stats, target.transform.position);
     }

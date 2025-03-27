@@ -37,6 +37,7 @@ public class WarriorAbility {
     public WeakeningAura weakeningAura = new();
     public HitAndRun hitAndRun = new();
     public PoisoningAura poisoningAura = new();
+    public CemeteryGates cemeteryGates = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-public class SuddenBreeze {
+public class ChillingWraith {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = Regex.Replace(GetType().Name, "(?<!^)([A-Z])", " $1"),

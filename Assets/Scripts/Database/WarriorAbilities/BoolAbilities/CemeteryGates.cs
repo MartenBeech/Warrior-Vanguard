@@ -1,23 +1,15 @@
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class HydraSplit {
+public class CemeteryGates {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Summon 3 {new HydraSerpent().GetStats().strength[stats.level]}/{new HydraSerpent().GetStats().health[stats.level]} Hydra Serpents";
+        return $"{WarriorAbility.Keywords.Overturn}: Summon a random{(stats.level == 1 ? " upgraded" : "")} Skeleton";
     }
 
-    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
-        if (GetValue(target.stats)) {
-            List<Task> asyncFunctions = new();
-            for (int i = 0; i < 3; i++) {
-                WarriorStats stats = new HydraSerpent().GetStats();
-                stats.level = target.stats.level;
-                stats.alignment = target.stats.alignment;
-
-                asyncFunctions.Add(characterSpawner.SpawnRandomly(stats, target.transform.position));
-            }
-            await Task.WhenAll(asyncFunctions);
+    public async Task<bool> Trigger(Character dealer, CharacterSpawner characterSpawner) {
+        if (GetValue(dealer.stats)) {
+            RaiseDead raiseDead = new();
+            await raiseDead.SummonSkeleton(dealer, dealer, characterSpawner);
             return true;
         }
         return false;

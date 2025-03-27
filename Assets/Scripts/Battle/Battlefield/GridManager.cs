@@ -124,7 +124,7 @@ public class GridManager : MonoBehaviour {
                     }
                 }
             }
-        } else {
+        } else if (alignment == CharacterSpawner.Alignment.Enemy) {
             for (int x = columns - 1; x >= (largeDeployArea ? columns - Mathf.Floor(columns / 2) : columns - 3); x--) {
                 for (int y = 0; y < rows; y++) {
                     if (!GetCellCharacter(new Vector2(x, y))) {

@@ -51,7 +51,7 @@ public class CharacterSpawner : MonoBehaviour {
         } else if (stats.alignment == Alignment.Enemy) {
             hand = enemyHand;
         }
-        character.Initiate(gameManager, gridManager, hand);
+        character.Initiate(gameManager, gridManager, hand, this);
 
         character.SetAlignment(stats.alignment);
         character.SetHoverWarrior(hoverWarrior);
