@@ -2,6 +2,23 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 public class Possess {
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"{WarriorAbility.Keywords.Kill}: Resummon the target on your side";
+    }
+
+    public async Task<bool> Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
+        if (GetValue(dealer.stats)) {
+            target.stats.ResetStats();
+            target.stats.alignment = dealer.alignment;
+
+            await characterSpawner.SpawnRandomly(target.stats, target.transform.position);
+
+            return true;
+        }
+        return false;
+    }
+
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -23,26 +40,9 @@ public class Possess {
         Add(false, false);
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
-        if (GetValue(dealer.stats)) {
-            target.stats.ResetStats();
-            target.stats.alignment = dealer.alignment;
-
-            await characterSpawner.SpawnRandomly(target.stats, target.transform.position);
-
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Resummon the target on your side";
     }
 
     string GetAbilityName() {

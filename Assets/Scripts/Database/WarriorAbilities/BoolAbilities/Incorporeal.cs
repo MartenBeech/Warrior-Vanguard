@@ -1,5 +1,21 @@
 using System.Text.RegularExpressions;
 public class Incorporeal {
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"Can only take 1 Physical damage at a time";
+    }
+
+    public int Trigger(Character target, int damage, Character.DamageType damageType) {
+        if (GetValue(target.stats)) {
+            if (damageType == Character.DamageType.Physical) {
+                if (damage > 1) {
+                    damage = 1;
+                }
+            }
+        }
+        return damage;
+    }
+
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -21,25 +37,9 @@ public class Incorporeal {
         Add(false, false);
     }
 
-    public int Trigger(Character target, int damage, Character.DamageType damageType) {
-        if (GetValue(target.stats)) {
-            if (damageType == Character.DamageType.Physical) {
-                if (damage > 1) {
-                    damage = 1;
-                }
-            }
-        }
-        return damage;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"Can only take 1 Physical damage at a time";
     }
 
     string GetAbilityName() {

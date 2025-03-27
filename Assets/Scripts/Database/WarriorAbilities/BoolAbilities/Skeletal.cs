@@ -1,6 +1,20 @@
 using System.Text.RegularExpressions;
 using UnityEngine;
 public class Skeletal {
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"Take half damage from attackers with 4+ range";
+    }
+
+    public int Trigger(Character dealer, Character target, int damage) {
+        if (GetValue(target.stats)) {
+            if (dealer.stats.range >= 4) {
+                damage = (int)Mathf.Ceil(damage / 2f);
+            }
+        }
+        return damage;
+    }
+
     bool[] value = new bool[] { false, false };
 
     public bool GetValue(WarriorStats stats) {
@@ -22,23 +36,9 @@ public class Skeletal {
         Add(false, false);
     }
 
-    public int Trigger(Character dealer, Character target, int damage) {
-        if (GetValue(target.stats)) {
-            if (dealer.stats.range >= 4) {
-                damage = (int)Mathf.Ceil(damage / 2f);
-            }
-        }
-        return damage;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"Take half damage from attackers with 4+ range";
     }
 
     string GetAbilityName() {

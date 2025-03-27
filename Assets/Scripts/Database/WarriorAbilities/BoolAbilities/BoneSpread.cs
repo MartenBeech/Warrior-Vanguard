@@ -2,6 +2,23 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 public class BoneSpread {
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"{WarriorAbility.Keywords.Death}: Summon 3 random{(stats.level == 1 ? " upgraded" : "")} Skeletons";
+    }
+    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
+        if (GetValue(target.stats)) {
+            RaiseDead raiseDead = new();
+            List<Task> asyncFunctions = new();
+            for (int i = 0; i < 3; i++) {
+                asyncFunctions.Add(raiseDead.SummonSkeleton(target, target, characterSpawner));
+            }
+            await Task.WhenAll(asyncFunctions);
+            return true;
+        }
+        return false;
+    }
+
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -23,27 +40,9 @@ public class BoneSpread {
         Add(false, false);
     }
 
-    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
-        if (GetValue(target.stats)) {
-            RaiseDead raiseDead = new();
-            List<Task> asyncFunctions = new();
-            for (int i = 0; i < 3; i++) {
-                asyncFunctions.Add(raiseDead.SummonSkeleton(target, target, characterSpawner));
-            }
-            await Task.WhenAll(asyncFunctions);
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Summon 3 random{(stats.level == 1 ? " upgraded" : "")} Skeletons";
     }
 
     string GetAbilityName() {

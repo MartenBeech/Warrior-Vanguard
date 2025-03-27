@@ -1,5 +1,21 @@
 using System.Text.RegularExpressions;
 public class BoneSculptor {
+    public string GetDescription(WarriorStats stats) {
+        if (GetValue(stats) == 0) return "";
+        return $"When you summon a Skeleton, give it +{GetValue(stats)}/+{GetValue(stats)}";
+    }
+
+    public bool Trigger(Character dealer, WarriorStats targetStats) {
+        if (GetValue(dealer.stats) > 0) {
+            if (targetStats.ability.skeletal.GetValue(targetStats)) {
+                targetStats.AddStrength(GetValue(dealer.stats));
+                targetStats.AddHealthMax(GetValue(dealer.stats));
+            }
+            return true;
+        }
+        return false;
+    }
+
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -26,25 +42,9 @@ public class BoneSculptor {
         }
     }
 
-    public bool Trigger(Character dealer, WarriorStats targetStats) {
-        if (GetValue(dealer.stats) > 0) {
-            if (targetStats.ability.skeletal.GetValue(targetStats)) {
-                targetStats.AddStrength(GetValue(dealer.stats));
-                targetStats.AddHealthMax(GetValue(dealer.stats));
-            }
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         return $"{GetAbilityName()}: {GetValue(stats)}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (GetValue(stats) == 0) return "";
-        return $"When you summon a Skeleton, give it +{GetValue(stats)}/+{GetValue(stats)}";
     }
 
     string GetAbilityName() {

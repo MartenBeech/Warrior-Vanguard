@@ -1,5 +1,19 @@
 using System.Text.RegularExpressions;
 public class CLASSNAMEINT {
+    public string GetDescription(WarriorStats stats) {
+        if (GetValue(stats) == 0) return "";
+        return $"DESCRIPTION";
+    }
+
+    public bool Trigger(Character character) {
+        if (GetValue(character.stats) > 0) {
+            // Add trigger event here
+            character.UpdateWarriorUI();
+            return true;
+        }
+        return false;
+    }
+
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -26,23 +40,9 @@ public class CLASSNAMEINT {
         }
     }
 
-    public bool Trigger(Character character) {
-        if (GetValue(character.stats) > 0) {
-            // Add trigger event here
-            character.UpdateWarriorUI();
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         return $"{GetAbilityName()}: {GetValue(stats)}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (GetValue(stats) == 0) return "";
-        return $"DESCRIPTION";
     }
 
     string GetAbilityName() {

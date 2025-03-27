@@ -1,5 +1,10 @@
 using System.Text.RegularExpressions;
 public class PermaStealth {
+
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"This is always Stealthed";
+    }
     bool[] value = new bool[] { false, false };
 
     public bool GetValue(WarriorStats stats) {
@@ -20,11 +25,6 @@ public class PermaStealth {
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"This is always Stealthed";
     }
 
     string GetAbilityName() {

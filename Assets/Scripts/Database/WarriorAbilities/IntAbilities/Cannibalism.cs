@@ -1,5 +1,20 @@
 using System.Text.RegularExpressions;
 public class Cannibalism {
+    public string GetDescription(WarriorStats stats) {
+        if (GetValue(stats) == 0) return "";
+        return $"{WarriorAbility.Keywords.Kill}: Gain +{GetValue(stats)}/+{GetValue(stats)}";
+    }
+
+    public bool Trigger(Character dealer) {
+        if (GetValue(dealer.stats) > 0) {
+            dealer.stats.AddStrength(GetValue(dealer.stats));
+            dealer.stats.AddHealthMax(GetValue(dealer.stats));
+            dealer.UpdateWarriorUI();
+            return true;
+        }
+        return false;
+    }
+
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -26,24 +41,9 @@ public class Cannibalism {
         }
     }
 
-    public bool Trigger(Character dealer) {
-        if (GetValue(dealer.stats) > 0) {
-            dealer.stats.AddStrength(GetValue(dealer.stats));
-            dealer.stats.AddHealthMax(GetValue(dealer.stats));
-            dealer.UpdateWarriorUI();
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         return $"{GetAbilityName()}: {GetValue(stats)}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Gain +{GetValue(stats)}/+{GetValue(stats)}";
     }
 
     string GetAbilityName() {

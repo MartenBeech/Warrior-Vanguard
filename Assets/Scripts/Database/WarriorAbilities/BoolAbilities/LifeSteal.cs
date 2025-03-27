@@ -1,6 +1,19 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 public class LifeSteal {
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"{WarriorAbility.Keywords.Strike}: Heal equal to damage dealt";
+    }
+
+    public async Task<bool> Trigger(Character dealer, int damage) {
+        if (GetValue(dealer.stats)) {
+            await dealer.Heal(dealer, damage);
+            return true;
+        }
+        return false;
+    }
+
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -22,22 +35,9 @@ public class LifeSteal {
         Add(false, false);
     }
 
-    public async Task<bool> Trigger(Character dealer, int damage) {
-        if (GetValue(dealer.stats)) {
-            await dealer.Heal(dealer, damage);
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Heal equal to damage dealt";
     }
 
     string GetAbilityName() {

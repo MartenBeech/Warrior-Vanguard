@@ -1,6 +1,29 @@
 using System.Text.RegularExpressions;
 using UnityEngine;
 public class Stealth {
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"Take half damage. {WarriorAbility.Keywords.Attack}: Deal double damage and break stealth";
+    }
+
+    public int TriggerAttack(Character dealer, int damage) {
+        if (GetValue(dealer.stats)) {
+            damage *= 2;
+            if (!dealer.stats.ability.permaStealth.GetValue(dealer.stats)) {
+                dealer.stats.ability.stealth.Add(false, false);
+            }
+            dealer.UpdateWarriorUI();
+        }
+        return damage;
+    }
+
+    public int TriggerTakeDamage(Character target, int damage) {
+        if (GetValue(target.stats)) {
+            damage = (int)Mathf.Ceil(damage / 2f);
+        }
+        return damage;
+    }
+
     bool[] value = new bool[] { false, false };
 
     public bool GetValue(WarriorStats stats) {
@@ -22,32 +45,9 @@ public class Stealth {
         Add(false, false);
     }
 
-    public int TriggerAttack(Character dealer, int damage) {
-        if (GetValue(dealer.stats)) {
-            damage *= 2;
-            if (!dealer.stats.ability.permaStealth.GetValue(dealer.stats)) {
-                dealer.stats.ability.stealth.Add(false, false);
-            }
-            dealer.UpdateWarriorUI();
-        }
-        return damage;
-    }
-
-    public int TriggerTakeDamage(Character target, int damage) {
-        if (GetValue(target.stats)) {
-            damage = (int)Mathf.Ceil(damage / 2f);
-        }
-        return damage;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"Take half damage. {WarriorAbility.Keywords.Attack}: Deal double damage and break stealth";
     }
 
     string GetAbilityName() {

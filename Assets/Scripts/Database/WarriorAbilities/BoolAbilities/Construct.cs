@@ -1,6 +1,17 @@
 using System.Text.RegularExpressions;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 public class Construct {
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"Has a bigger deployment area";
+    }
+
+    public bool Trigger(WarriorStats stats) {
+        if (GetValue(stats)) {
+            return true;
+        }
+        return false;
+    }
+
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -22,21 +33,9 @@ public class Construct {
         Add(false, false);
     }
 
-    public bool Trigger(WarriorStats stats) {
-        if (GetValue(stats)) {
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"Has a bigger deployment area";
     }
 
     string GetAbilityName() {

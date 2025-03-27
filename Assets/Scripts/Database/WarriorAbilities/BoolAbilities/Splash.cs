@@ -2,6 +2,27 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 public class Splash {
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"{WarriorAbility.Keywords.Attack}: Also {WarriorAbility.Keywords.Strike} all enemies around your target";
+    }
+
+    public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
+        if (GetValue(dealer.stats)) {
+            List<Character> characters = gridManager.GetWarriorsAroundCell(target.gridIndex);
+            List<Task> asyncFunctions = new();
+            foreach (Character character in characters) {
+                if (character.alignment != dealer.alignment) {
+                    asyncFunctions.Add(dealer.Strike(character, dealer.stats.GetStrength()));
+                }
+            }
+
+            await Task.WhenAll(asyncFunctions);
+            return true;
+        }
+        return false;
+    }
+
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -23,30 +44,9 @@ public class Splash {
         Add(false, false);
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
-        if (GetValue(dealer.stats)) {
-            List<Character> characters = gridManager.GetWarriorsAroundCell(target.gridIndex);
-            List<Task> asyncFunctions = new();
-            foreach (Character character in characters) {
-                if (character.alignment != dealer.alignment) {
-                    asyncFunctions.Add(dealer.Strike(character, dealer.stats.GetStrength()));
-                }
-            }
-
-            await Task.WhenAll(asyncFunctions);
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Also {WarriorAbility.Keywords.Strike} all enemies around your target";
     }
 
     string GetAbilityName() {

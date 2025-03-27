@@ -1,5 +1,24 @@
 using System.Text.RegularExpressions;
 public class WeakeningAura {
+    public string GetDescription(WarriorStats stats) {
+        if (GetValue(stats) == 0) return "";
+        return $"When attacked: Reduce the attacker's strength by {GetValue(stats)} (minimum 1)";
+    }
+
+    public bool Trigger(Character dealer, Character target) {
+        if (GetValue(target.stats) > 0) {
+            if (dealer.stats.GetStrength() > 0) {
+                dealer.stats.AddStrength(-GetValue(target.stats));
+                if (dealer.stats.GetStrength() < 1) {
+                    dealer.stats.AddStrength(1 - dealer.stats.GetStrength());
+                }
+                dealer.UpdateWarriorUI();
+            }
+            return true;
+        }
+        return false;
+    }
+
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -26,28 +45,9 @@ public class WeakeningAura {
         }
     }
 
-    public bool Trigger(Character dealer, Character target) {
-        if (GetValue(target.stats) > 0) {
-            if (dealer.stats.GetStrength() > 0) {
-                dealer.stats.AddStrength(-GetValue(target.stats));
-                if (dealer.stats.GetStrength() < 1) {
-                    dealer.stats.AddStrength(1 - dealer.stats.GetStrength());
-                }
-                dealer.UpdateWarriorUI();
-            }
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         return $"{GetAbilityName()}: {GetValue(stats)}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (GetValue(stats) == 0) return "";
-        return $"When attacked: Reduce the attacker's strength by {GetValue(stats)} (minimum 1)";
     }
 
     string GetAbilityName() {

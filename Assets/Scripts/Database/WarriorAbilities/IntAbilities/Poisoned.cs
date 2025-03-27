@@ -1,6 +1,19 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 public class Poisoned {
+    public string GetDescription(WarriorStats stats) {
+        if (GetValue(stats) == 0) return "";
+        return $"{WarriorAbility.Keywords.Overturn}: Take {GetValue(stats)} magical damage";
+    }
+
+    public async Task<bool> Trigger(Character target) {
+        if (GetValue(target.stats) > 0) {
+            await target.TakeDamage(target, GetValue(target.stats), Character.DamageType.Magical);
+            return true;
+        }
+        return false;
+    }
+
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -26,22 +39,9 @@ public class Poisoned {
         }
     }
 
-    public async Task<bool> Trigger(Character target) {
-        if (GetValue(target.stats) > 0) {
-            await target.TakeDamage(target, GetValue(target.stats), Character.DamageType.Magical);
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         return $"{GetAbilityName()}: {GetValue(stats)}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Take {GetValue(stats)} magical damage";
     }
 
     string GetAbilityName() {

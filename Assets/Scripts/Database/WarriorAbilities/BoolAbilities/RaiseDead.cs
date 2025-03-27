@@ -1,6 +1,19 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 public class RaiseDead {
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"{WarriorAbility.Keywords.Kill}: Summon a random{(stats.level == 1 ? " upgraded" : "")} Skeleton";
+    }
+
+    public async Task<bool> Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
+        if (GetValue(dealer.stats)) {
+            await SummonSkeleton(dealer, target, characterSpawner);
+            return true;
+        }
+        return false;
+    }
+
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -22,22 +35,9 @@ public class RaiseDead {
         Add(false, false);
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
-        if (GetValue(dealer.stats)) {
-            await SummonSkeleton(dealer, target, characterSpawner);
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Summon a random{(stats.level == 1 ? " upgraded" : "")} Skeleton";
     }
 
     string GetAbilityName() {

@@ -1,6 +1,22 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 public class Revive {
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"{WarriorAbility.Keywords.Death}: Resummon me without this ability";
+    }
+
+    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
+        if (GetValue(target.stats)) {
+            target.stats.ResetStats();
+            target.stats.ability.revive.Remove();
+
+            await characterSpawner.SpawnRandomly(target.stats, target.transform.position);
+            return true;
+        }
+        return false;
+    }
+
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -22,25 +38,9 @@ public class Revive {
         Add(false, false);
     }
 
-    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
-        if (GetValue(target.stats)) {
-            target.stats.ResetStats();
-            target.stats.ability.revive.Remove();
-
-            await characterSpawner.SpawnRandomly(target.stats, target.transform.position);
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Resummon me without this ability";
     }
 
     string GetAbilityName() {

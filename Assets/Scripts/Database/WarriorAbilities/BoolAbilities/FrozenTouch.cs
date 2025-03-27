@@ -1,5 +1,24 @@
 using System.Text.RegularExpressions;
 public class FrozenTouch {
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"{WarriorAbility.Keywords.Strike}: Reduce target's speed by 1 (minimum 1)";
+    }
+
+    public bool Trigger(Character dealer, Character target) {
+        if (GetValue(dealer.stats)) {
+            if (target.stats.speed > 0) {
+                target.stats.speed--;
+                if (target.stats.speed < 1) {
+                    target.stats.speed = 1;
+                }
+                target.UpdateWarriorUI();
+            }
+            return true;
+        }
+        return false;
+    }
+
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -21,28 +40,9 @@ public class FrozenTouch {
         Add(false, false);
     }
 
-    public bool Trigger(Character dealer, Character target) {
-        if (GetValue(dealer.stats)) {
-            if (target.stats.speed > 0) {
-                target.stats.speed--;
-                if (target.stats.speed < 1) {
-                    target.stats.speed = 1;
-                }
-                target.UpdateWarriorUI();
-            }
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Reduce target's speed by 1 (minimum 1)";
     }
 
     string GetAbilityName() {

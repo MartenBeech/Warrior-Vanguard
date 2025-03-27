@@ -1,6 +1,19 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 public class HitAndRun {
+    public string GetDescription(WarriorStats stats) {
+        if (!GetValue(stats)) return "";
+        return $"{WarriorAbility.Keywords.Attack}: Run backwards";
+    }
+
+    public async Task<bool> Trigger(Character dealer) {
+        if (GetValue(dealer.stats)) {
+            await dealer.MoveWarrior(dealer.alignment == CharacterSpawner.Alignment.Enemy ? Character.Direction.Right : Character.Direction.Left);
+            return true;
+        }
+        return false;
+    }
+
     bool[] value = new bool[] { false, false };
 
     bool GetValue(WarriorStats stats) {
@@ -22,22 +35,9 @@ public class HitAndRun {
         Add(false, false);
     }
 
-    public async Task<bool> Trigger(Character dealer) {
-        if (GetValue(dealer.stats)) {
-            await dealer.MoveWarrior(dealer.alignment == CharacterSpawner.Alignment.Enemy ? Character.Direction.Right : Character.Direction.Left);
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (!GetValue(stats)) return "";
         return $"{GetAbilityName()}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Run backwards";
     }
 
     string GetAbilityName() {

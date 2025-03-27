@@ -2,6 +2,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 public class PoisonCloud {
+    public string GetDescription(WarriorStats stats) {
+        if (GetValue(stats) == 0) return "";
+        return $"{WarriorAbility.Keywords.Overturn}: Apply {GetValue(stats)} Poison to nearby enemies";
+    }
+
+    public bool Trigger(Character dealer, GridManager gridManager) {
+        if (GetValue(dealer.stats) > 0) {
+            List<Character> nearbyWarriors = gridManager.GetWarriorsAroundCell(dealer.gridIndex);
+            List<Character> nearbyEnemies = nearbyWarriors.Where(warrior => warrior.alignment != dealer.alignment).ToList();
+            foreach (Character enemy in nearbyEnemies) {
+                enemy.stats.ability.poisoned.Add(GetValue(dealer.stats));
+                enemy.UpdateWarriorUI();
+            }
+
+            return true;
+        }
+        return false;
+    }
+
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -28,28 +47,9 @@ public class PoisonCloud {
         }
     }
 
-    public bool Trigger(Character dealer, GridManager gridManager) {
-        if (GetValue(dealer.stats) > 0) {
-            List<Character> nearbyWarriors = gridManager.GetWarriorsAroundCell(dealer.gridIndex);
-            List<Character> nearbyEnemies = nearbyWarriors.Where(warrior => warrior.alignment != dealer.alignment).ToList();
-            foreach (Character enemy in nearbyEnemies) {
-                enemy.stats.ability.poisoned.Add(GetValue(dealer.stats));
-                enemy.UpdateWarriorUI();
-            }
-
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         return $"{GetAbilityName()}: {GetValue(stats)}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Apply {GetValue(stats)} Poison to nearby enemies";
     }
 
     string GetAbilityName() {

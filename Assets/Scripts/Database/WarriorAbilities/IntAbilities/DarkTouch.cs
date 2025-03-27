@@ -1,5 +1,19 @@
 using System.Text.RegularExpressions;
 public class DarkTouch {
+    public string GetDescription(WarriorStats stats) {
+        if (GetValue(stats) == 0) return "";
+        return $"{WarriorAbility.Keywords.Attack}: Instantly kill targets left with max {GetValue(stats)} health";
+    }
+
+    public bool Trigger(Character dealer, Character target) {
+        if (GetValue(dealer.stats) > 0) {
+            if (target.stats.GetHealth() <= GetValue(dealer.stats)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -26,23 +40,9 @@ public class DarkTouch {
         }
     }
 
-    public bool Trigger(Character dealer, Character target) {
-        if (GetValue(dealer.stats) > 0) {
-            if (target.stats.GetHealth() <= GetValue(dealer.stats)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         return $"{GetAbilityName()}: {GetValue(stats)}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Instantly kill targets left with max {GetValue(stats)} health";
     }
 
     string GetAbilityName() {

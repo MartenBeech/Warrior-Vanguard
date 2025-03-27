@@ -1,5 +1,19 @@
 using System.Text.RegularExpressions;
 public class PoisoningAura {
+    public string GetDescription(WarriorStats stats) {
+        if (GetValue(stats) == 0) return "";
+        return $"When attacked: Apply {GetValue(stats)} Poison to the attacker";
+    }
+
+    public bool Trigger(Character dealer, Character target) {
+        if (GetValue(target.stats) > 0) {
+            dealer.stats.ability.poisoned.Add(GetValue(target.stats));
+            dealer.UpdateWarriorUI();
+            return true;
+        }
+        return false;
+    }
+
     int[] value = new int[] { 0, 0 };
 
     int GetValue(WarriorStats stats) {
@@ -26,23 +40,9 @@ public class PoisoningAura {
         }
     }
 
-    public bool Trigger(Character dealer, Character target) {
-        if (GetValue(target.stats) > 0) {
-            dealer.stats.ability.poisoned.Add(GetValue(target.stats));
-            dealer.UpdateWarriorUI();
-            return true;
-        }
-        return false;
-    }
-
     public string GetTitle(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         return $"{GetAbilityName()}: {GetValue(stats)}\n";
-    }
-
-    public string GetDescription(WarriorStats stats) {
-        if (GetValue(stats) == 0) return "";
-        return $"When attacked: Apply {GetValue(stats)} Poison to the attacker";
     }
 
     string GetAbilityName() {
