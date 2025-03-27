@@ -8,10 +8,12 @@ public class Revive {
 
     public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
-            target.stats.ResetStats();
-            target.stats.ability.revive.Remove();
+            WarriorStats targetStats = new();
+            targetStats.SetStats(target.stats);
+            targetStats.ResetStats();
+            targetStats.ability.revive.Remove();
 
-            await characterSpawner.SpawnRandomly(target.stats, target.transform.position);
+            await characterSpawner.SpawnRandomly(targetStats, target.transform.position);
             return true;
         }
         return false;

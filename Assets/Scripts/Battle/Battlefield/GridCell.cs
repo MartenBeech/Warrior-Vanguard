@@ -10,11 +10,11 @@ public class GridCell : MonoBehaviour {
     public void Setup(GridManager manager, Vector2 gridIndex) {
         gridManager = manager;
         button = GetComponent<Button>();
-        button.onClick.AddListener(async () => await OnClick(gridIndex));
         this.gridIndex = gridIndex;
+        button.onClick.AddListener(async () => await OnClick());
     }
 
-    async Task OnClick(Vector2 gridIndex) {
+    public async Task OnClick() {
         await gridManager.SelectCell(gridIndex);
     }
 }

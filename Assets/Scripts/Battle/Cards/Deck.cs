@@ -8,6 +8,7 @@ public class Deck : MonoBehaviour {
     public GameObject textObject;
     public GameObject handObject;
     public GameObject cardPrefab;
+    public CharacterSpawner.Alignment alignment;
     public List<WarriorStats> deck = new();
 
     public void GetDeck() {
@@ -25,7 +26,8 @@ public class Deck : MonoBehaviour {
             deck.Add(CardDatabase.allCards[i]);
         }
     }
-    public async Task DrawCard(CharacterSpawner.Alignment alignment, bool highlightCard = true) {
+
+    public async Task DrawCard(bool highlightCard = true) {
         if (deck.Count == 0) return;
 
         WarriorStats drawnCard = deck[0];
@@ -55,7 +57,6 @@ public class Deck : MonoBehaviour {
             await objectAnimation.MoveObject(deckPos, handPos);
         }
 
-
         Destroy(cardInstance);
 
         hand.AddCardToHand(card.stats);
@@ -65,7 +66,7 @@ public class Deck : MonoBehaviour {
         textObject.GetComponent<TMP_Text>().text = $"{deck.Count}";
     }
 
-    public async Task OnClick() {
-        await DrawCard(GameManager.turn);
+    public async void OnClick() {
+        await DrawCard();
     }
 }

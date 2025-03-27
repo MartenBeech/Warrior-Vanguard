@@ -22,14 +22,16 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public enum DamageType {
         Physical, Magical
     };
-    Hand hand;
-    CharacterSpawner characterSpawner;
+    private Hand hand;
+    private CharacterSpawner characterSpawner;
+    private Transform summonerObject;
 
-    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner) {
+    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner, Transform summonerObject) {
         this.gameManager = gameManager;
         this.gridManager = gridManager;
         this.hand = hand;
         this.characterSpawner = characterSpawner;
+        this.summonerObject = summonerObject;
     }
 
     public void UpdateWarriorUI() {
@@ -221,7 +223,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         asyncFunctions.Add(stats.ability.revive.Trigger(this, characterSpawner));
         asyncFunctions.Add(stats.ability.hydraSplit.Trigger(this, characterSpawner));
         asyncFunctions.Add(stats.ability.boneSpread.Trigger(this, characterSpawner));
-        asyncFunctions.Add(stats.ability.afterlife.Trigger(this, gridManager, hand, Instantiate(gameObject, transform.position, Quaternion.identity, transform.parent)));
+        if (stats.ability.afterlife.GetValue(stats)) {
+            GameObject clone = Instantiate(gameObject, transform.position, Quaternion.identity, transform.parent);
+            asyncFunctions.Add(stats.ability.afterlife.Trigger(this, gridManager, hand, summonerObject, clone));
+        }
 
         Destroy(gameObject);
         await Task.WhenAll(asyncFunctions);
@@ -235,7 +240,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             stats.ability.cemeteryGates.Trigger(this, characterSpawner)
         };
         await Task.WhenAll(asyncFunctions);
-
     }
 
     private Vector2 GetFrontCellIndex(Vector2 gridIndex, Direction direction, int range = 1) {

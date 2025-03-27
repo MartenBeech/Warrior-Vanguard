@@ -539,6 +539,7 @@ MonoBehaviour:
   textObject: {fileID: 96899266}
   handObject: {fileID: 179982827}
   cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
+  alignment: 2
 --- !u!114 &233183273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,7 +624,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 233183271}
         m_TargetAssemblyTypeName: Deck, Assembly-CSharp
-        m_MethodName: onClick
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2534,10 +2535,10 @@ RectTransform:
   - {fileID: 189192888}
   - {fileID: 1266967319}
   - {fileID: 598212540}
-  - {fileID: 1510986158}
-  - {fileID: 609015380}
   - {fileID: 1988954592}
   - {fileID: 411730128}
+  - {fileID: 1510986158}
+  - {fileID: 609015380}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2596,6 +2597,8 @@ MonoBehaviour:
   hoverWarrior: {fileID: 1326509022}
   friendHand: {fileID: 179982829}
   enemyHand: {fileID: 799138551}
+  friendSummonerObject: {fileID: 2039605223}
+  enemySummonerObject: {fileID: 2005133033}
 --- !u!1 &1038024895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3490,6 +3493,7 @@ MonoBehaviour:
   textObject: {fileID: 622572490}
   handObject: {fileID: 799138549}
   cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
+  alignment: 1
 --- !u!114 &1651248354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3574,7 +3578,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1651248352}
         m_TargetAssemblyTypeName: Deck, Assembly-CSharp
-        m_MethodName: onClick
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

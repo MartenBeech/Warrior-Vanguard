@@ -8,13 +8,15 @@ public class Afterlife {
         return $"{WarriorAbility.Keywords.Death}: Return to your hand without this ability";
     }
 
-    public async Task<bool> Trigger(Character target, GridManager gridManager, Hand hand, GameObject clone) {
+    public async Task<bool> Trigger(Character target, GridManager gridManager, Hand hand, Transform summonerObject, GameObject clone) {
         if (GetValue(target.stats)) {
             ObjectAnimation objectAnimation = clone.GetComponent<ObjectAnimation>();
-            await objectAnimation.MoveObject(gridManager.GetCellPosition(target.gridIndex), hand.handObject.position);
-            target.stats.ResetStats();
-            target.stats.ability.afterlife.Remove();
-            hand.AddCardToHand(target.stats);
+            await objectAnimation.MoveObject(gridManager.GetCellPosition(target.gridIndex), summonerObject.position, 1, true);
+            WarriorStats targetStats = new();
+            targetStats.SetStats(target.stats);
+            targetStats.ResetStats();
+            targetStats.ability.afterlife.Remove();
+            hand.AddCardToHand(targetStats);
             return true;
         }
         return false;
@@ -22,7 +24,7 @@ public class Afterlife {
 
     bool[] value = new bool[] { false, false };
 
-    bool GetValue(WarriorStats stats) {
+    public bool GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 

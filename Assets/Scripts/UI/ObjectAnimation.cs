@@ -6,6 +6,7 @@ public class ObjectAnimation : MonoBehaviour {
     Vector2 toVector;
     float duration;
     float counter = 0;
+    bool destroyAfterMoving;
 
     private void Update() {
         if (counter > 0) {
@@ -18,15 +19,19 @@ public class ObjectAnimation : MonoBehaviour {
 
             if (counter <= 0) {
                 transform.position = toVector;
+                if (destroyAfterMoving) {
+                    Destroy(gameObject);
+                }
             }
         }
     }
 
-    public async Task MoveObject(Vector2 from, Vector2 to, float durationInSec = 1) {
+    public async Task MoveObject(Vector2 from, Vector2 to, float durationInSec = 1, bool destroyAfterMoving = false) {
         fromVector = from;
         toVector = to;
         duration = durationInSec;
         counter = durationInSec;
+        this.destroyAfterMoving = destroyAfterMoving;
 
         await Task.Run(async () => {
             while (counter > 0) {

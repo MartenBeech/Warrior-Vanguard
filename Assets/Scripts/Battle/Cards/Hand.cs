@@ -33,15 +33,18 @@ public class Hand : MonoBehaviour {
     public async Task PlayCardFromHand(CharacterSpawner characterSpawner, Vector2 selectedGridIndex) {
         GameManager gameManager = FindFirstObjectByType<GameManager>();
         Coin coin = null;
+        GameObject summonerObject = null;
         if (selectedCard.stats.alignment == CharacterSpawner.Alignment.Friend) {
             coin = gameManager.friendCoin;
+            summonerObject = gameManager.friendSummonerObject;
         } else if (selectedCard.stats.alignment == CharacterSpawner.Alignment.Enemy) {
             coin = gameManager.enemyCoin;
+            summonerObject = gameManager.enemySummonerObject;
         }
         coin.SpendCoins(selectedCard.stats.cost);
 
         List<Task> asyncFunctions = new() {
-            characterSpawner.Spawn(selectedGridIndex, selectedCard.stats, selectedCard.GetComponent<RectTransform>().position)
+            characterSpawner.Spawn(selectedGridIndex, selectedCard.stats, summonerObject.transform.position)
         };
 
         cardsInHand.Remove(selectedCard);

@@ -20,6 +20,7 @@ public class Mario : WarriorStats {
         stats.defaultNumberOfAttacks = stats.numberOfAttacks;
 
         WarriorAbility ability = stats.ability;
+        ability.afterlife.Add();
 
         return stats;
     }

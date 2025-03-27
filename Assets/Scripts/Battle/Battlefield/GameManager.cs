@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour {
         enemyDeck.GetDeck();
         List<Task> asyncFunctions = new();
         for (int i = 0; i < 3; i++) {
-            asyncFunctions.Add(friendDeck.DrawCard(CharacterSpawner.Alignment.Friend, false));
-            asyncFunctions.Add(enemyDeck.DrawCard(CharacterSpawner.Alignment.Enemy, false));
+            asyncFunctions.Add(friendDeck.DrawCard(false));
+            asyncFunctions.Add(enemyDeck.DrawCard(false));
         }
         await Task.WhenAll(asyncFunctions);
         await StartPlayerTurn();
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour {
         turn = CharacterSpawner.Alignment.Friend;
         friendCoin.GainCoins();
         friendCoin.RefreshCoins();
-        await friendDeck.DrawCard(CharacterSpawner.Alignment.Friend);
+        await friendDeck.DrawCard();
     }
 
     public async void EndPlayerTurn() {
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour {
         turn = CharacterSpawner.Alignment.Enemy;
         enemyCoin.GainCoins();
         enemyCoin.RefreshCoins();
-        await enemyDeck.DrawCard(CharacterSpawner.Alignment.Enemy, false);
+        await enemyDeck.DrawCard(false);
         await TakeEnemyTurn();
     }
 
@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour {
     }
 
     async Task TakeEnemyTurn() {
+        await Task.Delay(1000 / Settings.gameSpeed);
         CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
         List<Card> cardsInHand = new(enemyHand.GetCardsInHand());
         cardsInHand.Sort((a, b) => b.stats.cost - a.stats.cost);
@@ -104,6 +105,7 @@ public class GameManager : MonoBehaviour {
                 enemyHand.SelectCard(card);
                 GridCell randomCell = gridManager.GetRandomEmptyDeploy(card.stats.ability.construct.Trigger(card.stats), card.stats.alignment);
                 await enemyHand.PlayCardFromHand(characterSpawner, randomCell.gridIndex);
+                await Task.Delay(1000 / Settings.gameSpeed);
             }
         }
         EndEnemyTurn();

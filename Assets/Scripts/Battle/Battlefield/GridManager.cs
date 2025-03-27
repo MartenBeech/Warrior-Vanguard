@@ -38,7 +38,6 @@ public class GridManager : MonoBehaviour {
     }
 
     public Vector2 GetCellPosition(Vector2 gridIndex) {
-
         GridCell cell = grid[(int)gridIndex.x, (int)gridIndex.y];
         Vector2 pos = cell.transform.position;
         return pos;
