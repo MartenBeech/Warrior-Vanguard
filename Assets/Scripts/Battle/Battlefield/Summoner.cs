@@ -44,9 +44,8 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         }
 
-        ColorPalette colorPalette = new();
         Color currentColor = dealer.image.GetComponent<Image>().color;
-        dealer.image.GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.red);
+        dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         await floatingText.CreateFloatingText(transform, damage.ToString());

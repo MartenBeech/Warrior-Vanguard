@@ -60,7 +60,7 @@ public class Hand : MonoBehaviour {
         gridManager.HighlightDeploys(card.stats.ability.construct.Trigger(card.stats), card.stats.alignment);
 
         card.GetComponent<Outline>().enabled = true;
-
+        card.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.tealWeak);
     }
 
     public void DeselectCard(Card card) {
@@ -71,6 +71,7 @@ public class Hand : MonoBehaviour {
 
         selectedCard = null;
         card.GetComponent<Outline>().enabled = false;
+        card.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
     }
 
     public List<Card> GetCardsInHand() {

@@ -11,8 +11,7 @@ public class FloatingText : MonoBehaviour {
         var floatingText = Instantiate(floatingTextObject, pos, Quaternion.identity, this.transform);
         TextAnimation textAnimation = floatingText.GetComponentInChildren<TextAnimation>();
         textAnimation.GetComponent<TMP_Text>().text = text;
-        ColorPalette color = new();
-        textAnimation.GetComponent<TMP_Text>().color = color.GetColor(textColor);
+        textAnimation.GetComponent<TMP_Text>().color = ColorPalette.GetColor(textColor);
         textAnimation.GetComponent<RectTransform>().sizeDelta = new Vector2(rectTransform.rect.width / 2, rectTransform.rect.height / 2);
         await textAnimation.SetupFloatingText(pos, durationInSec);
     }

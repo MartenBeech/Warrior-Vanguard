@@ -47,7 +47,7 @@ public class GridManager : MonoBehaviour {
     void GenerateGrid() {
         RectTransform rectTransform = GetComponent<RectTransform>();
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
-        float cellSpacing = 250 / columns;
+        float cellSpacing = 150 / columns;
 
         float cellWidth = (rectTransform.rect.width / columns) - cellSpacing;
         float cellHeight = (rectTransform.rect.height / rows) - cellSpacing;
@@ -146,10 +146,13 @@ public class GridManager : MonoBehaviour {
 
     public void HighlightCell(GridCell cell) {
         cell.GetComponent<Outline>().enabled = true;
+        cell.GetComponent<Outline>().effectColor = ColorPalette.GetColor(ColorPalette.ColorEnum.teal);
+        cell.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.tealWeak);
     }
 
     public void ClearHighlightedCell(GridCell cell) {
         cell.GetComponent<Outline>().enabled = false;
+        cell.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
     }
 
     public void HighlightDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment) {

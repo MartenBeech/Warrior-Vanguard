@@ -47,12 +47,11 @@ public class Settings : MonoBehaviour {
             musicPlayerMute.GetComponent<Image>().sprite = audioIconMute;
         }
 
-        ColorPalette colorPalette = new();
         for (int i = 0; i < 5; i++) {
             if (volumePercentage >= (i * 20) + 20) {
-                musicPlayerBars[i].GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.black);
+                musicPlayerBars[i].GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.black);
             } else {
-                musicPlayerBars[i].GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.gray);
+                musicPlayerBars[i].GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.gray);
             }
         }
     }

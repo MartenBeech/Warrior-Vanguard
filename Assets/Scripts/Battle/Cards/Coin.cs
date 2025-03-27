@@ -5,7 +5,6 @@ public class Coin : MonoBehaviour {
     public GameObject coinPrefab;
     int coins = 0;
     int coinsTotal = 0;
-    ColorPalette colorPalette = new();
 
     public void GainCoins(int amount = 1) {
         for (int i = 0; i < amount; i++) {
@@ -26,7 +25,7 @@ public class Coin : MonoBehaviour {
         if (CanAfford(amount)) {
             for (int i = coins - amount; i < coins; i++) {
                 GameObject child = transform.GetChild(i).gameObject;
-                child.GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.gray);
+                child.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.gray);
             }
             coins -= amount;
             return true;
@@ -37,7 +36,7 @@ public class Coin : MonoBehaviour {
     public void RefreshCoins() {
         for (int i = 0; i < coinsTotal; i++) {
             GameObject child = transform.GetChild(i).gameObject;
-            child.GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.yellow);
+            child.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.yellow);
         }
         coins = coinsTotal;
     }

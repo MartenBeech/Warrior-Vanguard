@@ -180,9 +180,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString()));
 
-        ColorPalette colorPalette = new();
         Color currentColor = dealer.image.GetComponent<Image>().color;
-        dealer.image.GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.red);
+        dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
 
         await Task.WhenAll(asyncFunctions);
 
@@ -195,9 +194,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         stats.AddHealth(amount);
         UpdateWarriorUI();
 
-        ColorPalette colorPalette = new();
         Color currentColor = dealer.image.GetComponent<Image>().color;
-        dealer.image.GetComponent<Image>().color = colorPalette.GetColor(ColorPalette.ColorEnum.green);
+        dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green);
