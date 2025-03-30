@@ -4,7 +4,9 @@ public class BigHeart : Item {
         description = "All friendly warriors gain 2 health.";
     }
 
-    public void Use(WarriorStats stats) {
-        stats.AddHealth(2);
+    public override void UseOnWarriorSpawn(WarriorStats stats) {
+        for (int i = 0; i < stats.health.Length; i++) {
+            stats.health[i] += 2;
+        }
     }
 }

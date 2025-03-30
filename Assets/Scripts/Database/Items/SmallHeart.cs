@@ -4,7 +4,9 @@ public class SmallHeart : Item {
         description = "All friendly warriors gain 1 health.";
     }
 
-    public void Use(WarriorStats stats) {
-        stats.AddHealth(1);
+    public override void UseOnWarriorSpawn(WarriorStats stats) {
+        for (int i = 0; i < stats.health.Length; i++) {
+            stats.health[i] += 1;
+        }
     }
 }

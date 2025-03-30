@@ -10,4 +10,12 @@ public class Item : MonoBehaviour {
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{title}");
         Debug.Log($"Images/Items/{title}");
     }
+
+    public virtual void UseOnWarriorSpawn(WarriorStats stats) {
+        // This metod should be overridden by each item
+    }
+
+    public virtual void UseImmediately(WarriorStats stats) {
+        // This metod should be overridden by each item
+    }
 }

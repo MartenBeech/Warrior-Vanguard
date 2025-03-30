@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TileManager : MonoBehaviour {
-    public List<MapTile> battleTiles;
+    public List<MapTile> mapTiles;
     public RectTransform scrollViewPanel;
     public RewardManager rewardManager;
     public GameObject rewardPanel;
@@ -15,24 +15,23 @@ public class TileManager : MonoBehaviour {
     private void UpdateTileAccess() {
         LockAllTiles();
 
-        for (int i = 0; i < battleTiles.Count; i++) {
+        for (int i = 0; i < mapTiles.Count; i++) {
             bool isCompleted = PlayerPrefs.GetInt($"TileCompleted_{i}", 0) == 1;
             bool isLastCompleted = PlayerPrefs.GetInt($"LastCompleted_{i}", 0) == 1;
 
             if (isCompleted) {
-                battleTiles[i].MarkAsCompleted();
+                mapTiles[i].MarkAsCompleted();
             } else {
-                battleTiles[i].MarkAsIncompleted();
+                mapTiles[i].MarkAsIncompleted();
             }
 
             if (isLastCompleted) {
-                battleTiles[i].UnlockNextTiles();
+                mapTiles[i].UnlockNextTiles();
 
-                Vector2 targetPosition = battleTiles[i].transform.position;
-                scrollViewPanel.localPosition = new Vector2(scrollViewPanel.localPosition.x, -targetPosition.y);
+                //TODO: Scroll to finished tile
 
-                if (battleTiles[i].tileType == MapTile.TileType.Battlefield) {
-                    rewardManager.ShowReward(battleTiles[i].enemyType);
+                if (mapTiles[i].tileType == MapTile.TileType.Battlefield) {
+                    rewardManager.ShowReward(mapTiles[i].enemyType);
                 }
 
             }
@@ -40,8 +39,8 @@ public class TileManager : MonoBehaviour {
     }
 
     public void MarkTileAsCompleted(MapTile tile) {
-        if (battleTiles.Contains(tile)) {
-            int tileIndex = battleTiles.IndexOf(tile);
+        if (mapTiles.Contains(tile)) {
+            int tileIndex = mapTiles.IndexOf(tile);
             PlayerPrefs.SetInt($"TileCompleted_{tileIndex}", 1);
             PlayerPrefs.SetInt($"LastCompleted_{tileIndex}", 1);
             PlayerPrefs.Save();
@@ -49,20 +48,20 @@ public class TileManager : MonoBehaviour {
     }
 
     public void ClearLastCompleted() {
-        for (int i = 0; i < battleTiles.Count; i++) {
+        for (int i = 0; i < mapTiles.Count; i++) {
             PlayerPrefs.DeleteKey($"LastCompleted_{i}");
         }
     }
 
     private void LockAllTiles() {
-        for (int i = 0; i < battleTiles.Count; i++) {
+        for (int i = 0; i < mapTiles.Count; i++) {
             bool isCompleted = PlayerPrefs.GetInt($"TileCompleted_{i}", 0) == 1;
 
             //Set the first tile default unlocked if it haven't been completed yet
             if (i == 0 && !isCompleted) {
-                battleTiles[0].SetUnlocked(true);
+                mapTiles[0].SetUnlocked(true);
             } else {
-                battleTiles[i].SetUnlocked(false);
+                mapTiles[i].SetUnlocked(false);
             }
         }
     }
