@@ -21,12 +21,14 @@ public class EventManager : MonoBehaviour {
         UpgradeCardEvent,
         RemoveCardEvent,
         LoseHealthEvent,
-        GainMaxHealthEvent
+        GainMaxHealthEvent,
+        GainItemEvent,
     }
     events currentEvent;
     List<int> cardIndexes = new();
     int goldAmount = 0;
     int healthDifference = 0;
+    Item item;
 
     void Start() {
         upgradeCardPanel.SetActive(false);
@@ -40,7 +42,7 @@ public class EventManager : MonoBehaviour {
         int randomIndex = Random.Range(0, System.Enum.GetValues(typeof(events)).Length);
         currentEvent = (events)randomIndex;
 
-        currentEvent = events.GainMaxHealthEvent; // Hardcoded for testing
+        currentEvent = events.GainItemEvent; // Hardcoded for testing
         switch (currentEvent) {
             case events.GainGoldEvent:
                 GainGoldEvent();
@@ -62,6 +64,9 @@ public class EventManager : MonoBehaviour {
                 break;
             case events.GainMaxHealthEvent:
                 GainMaxHealthEvent();
+                break;
+            case events.GainItemEvent:
+                GainItemEvent();
                 break;
         }
     }
@@ -138,11 +143,28 @@ public class EventManager : MonoBehaviour {
         }
     }
 
+    void GainItemEvent() {
+        item = ItemManager.GetRandomItem();
+        
+        if (item.title == null) {
+            eventText.text = "You find a hole where an item used to be. However, it seems like you already have all the items in the world.";
+            return;
+        }
+
+        eventText.text = $"You find a mysterious item on the ground called {item.title}. Do you want to pick it up?";
+        acceptButton.SetActive(true);
+    }
+
     public void AcceptEvent() {
         switch (currentEvent) {
             case events.GainGoldEvent:
                 GoldManager.AddGold(goldAmount);
                 eventText.text = $"Congratulations! You are now a bit richer than before.";
+                acceptButton.SetActive(false);
+                break;
+            case events.GainItemEvent:
+                ItemManager.AddItem(item);
+                eventText.text = $"You picked up {item.title}!";
                 acceptButton.SetActive(false);
                 break;
             default:

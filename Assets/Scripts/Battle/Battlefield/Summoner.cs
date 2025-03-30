@@ -17,7 +17,9 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public void OnPointerExit(PointerEventData eventData) {
-        tooltipManager.RemoveTooltips();
+        if (tooltipManager) {
+            tooltipManager.RemoveTooltips();
+        }
     }
 
     public void UpdateSummonerUI() {

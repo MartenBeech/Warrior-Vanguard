@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cb4ec3029fcb2e046addeb242207f6a3
+guid: b053e1ca9a3fc9a42ade968065ef6f25
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4925763594817998160
-    second: Necropolis_0
+      213: -4713952227979500816
+    second: 8532077_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Necropolis_0
+      name: 8532077_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1024
+        x: 145
+        y: 119
+        width: 222
+        height: 274
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0b2725bbb1c24abb0800000000000000
-      internalID: -4925763594817998160
+      spriteID: 0f2ee1b9c6da49eb0800000000000000
+      internalID: -4713952227979500816
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Necropolis_0: -4925763594817998160
+      8532077_0: -4713952227979500816
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

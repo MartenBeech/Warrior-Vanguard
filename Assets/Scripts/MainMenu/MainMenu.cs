@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour {
             card.SetStats(CardDatabase.GetRandomWarriorStats());
             DeckManager.AddCard(card);
         }
+        ItemManager.InitAvailableItems();
 
         SceneLoader.LoadMap();
     }
