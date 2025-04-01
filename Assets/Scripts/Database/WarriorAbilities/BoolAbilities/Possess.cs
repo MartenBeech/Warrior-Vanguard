@@ -8,10 +8,12 @@ public class Possess {
 
     public async Task<bool> Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats)) {
-            target.stats.ResetStats();
-            target.stats.alignment = dealer.alignment;
+            WarriorStats targetStats = new();
+            targetStats.SetStats(target.stats);
+            targetStats.ResetStats();
+            targetStats.alignment = dealer.alignment;
 
-            await characterSpawner.SpawnRandomly(target.stats, target.transform.position);
+            await characterSpawner.SpawnRandomly(targetStats, target.transform.position);
 
             return true;
         }

@@ -6,7 +6,7 @@ public class Revive {
         return $"{WarriorAbility.Keywords.Death}: Resummon me without this ability";
     }
 
-    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner, Character dealer) {
+    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
             target.stats.ResetStats();
             target.stats.ability.revive.Remove();

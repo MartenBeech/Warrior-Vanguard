@@ -188,8 +188,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
 
         await Task.WhenAll(asyncFunctions);
-
-        dealer.image.GetComponent<Image>().color = currentColor;
+        if (dealer) {
+            dealer.image.GetComponent<Image>().color = currentColor;
+        }
 
         return damage;
     }
@@ -211,7 +212,16 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         gameManager.RemoveCharacter(this);
         gridManager.RemoveCharacter(this);
 
-        List<Task> asyncFunctions = new();
+        List<Task> asyncFunctions = new() {
+            stats.ability.revive.Trigger(this, characterSpawner),
+            stats.ability.hydraSplit.Trigger(this, characterSpawner),
+            stats.ability.boneSpread.Trigger(this, characterSpawner)
+        };
+        if (stats.ability.afterlife.GetValue(stats)) {
+            GameObject clone = Instantiate(gameObject, transform.position, Quaternion.identity, transform.parent);
+            asyncFunctions.Add(stats.ability.afterlife.Trigger(this, gridManager, hand, summonerObject, clone));
+        }
+
         if (dealer != this) {
             dealer.stats.ability.cannibalism.Trigger(dealer);
             asyncFunctions.Add(dealer.stats.ability.raiseDead.Trigger(dealer, this, characterSpawner));
@@ -220,14 +230,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 asyncFunctions.Add(friend.stats.ability.deathCall.Trigger(friend, this, characterSpawner));
             }
             asyncFunctions.Add(dealer.stats.ability.possess.Trigger(dealer, this, characterSpawner));
-        }
-
-        asyncFunctions.Add(stats.ability.revive.Trigger(this, characterSpawner, dealer));
-        asyncFunctions.Add(stats.ability.hydraSplit.Trigger(this, characterSpawner));
-        asyncFunctions.Add(stats.ability.boneSpread.Trigger(this, characterSpawner));
-        if (stats.ability.afterlife.GetValue(stats)) {
-            GameObject clone = Instantiate(gameObject, transform.position, Quaternion.identity, transform.parent);
-            asyncFunctions.Add(stats.ability.afterlife.Trigger(this, gridManager, hand, summonerObject, clone));
         }
 
         Destroy(gameObject);
