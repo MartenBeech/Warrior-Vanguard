@@ -1,5 +1,16 @@
 using System;
 
+public enum CardType {
+    warrior,
+    spell
+}
+
+public enum SpellTarget {
+    none,
+    friend,
+    enemy
+}
+
 public enum CardRarity {
     None,
     Common,
@@ -13,6 +24,9 @@ public class WarriorStats {
     public int level = 0;
     public Character.DamageType damageType = Character.DamageType.Physical;
     public CharacterSpawner.Alignment alignment;
+    public CardType cardType = CardType.warrior;
+    public SpellTarget spellTarget = SpellTarget.none;
+    public string[] spellDescription = new string[2];
 
     public int cost;
     public int[] strength = new int[2];
@@ -28,11 +42,14 @@ public class WarriorStats {
         level = stats.level;
         damageType = stats.damageType;
         alignment = stats.alignment;
+        cardType = stats.cardType;
+        spellTarget = stats.spellTarget;
 
         for (int i = 0; i < 2; i++) {
             strength[i] = stats.strength[i];
             health[i] = stats.health[i];
             healthMax[i] = stats.healthMax[i];
+            spellDescription[i] = stats.spellDescription[i];
         }
         cost = stats.cost;
         speed = stats.speed;

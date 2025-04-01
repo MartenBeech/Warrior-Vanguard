@@ -18,28 +18,37 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     Hand hand;
 
     public void UpdateCardUi() {
-        attackText.text = $"{stats.GetStrength()}";
-        healthText.text = $"{stats.GetHealth()}";
         costText.text = $"{stats.cost}";
         string cleanTitle = stats.title.Replace("+", string.Empty);
         cleanTitle = Regex.Replace(cleanTitle, "(?<!^)([A-Z])", " $1");
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{cleanTitle}");
         titleText.text = $"{cleanTitle}";
 
-        if (stats.range == 2) {
-            rangeImage.SetActive(false);
-        } else {
-            rangeImage.SetActive(true);
-            rangeImage.GetComponentInChildren<TMP_Text>().text = stats.range.ToString();
-        }
-        if (stats.speed == 2) {
-            speedImage.SetActive(false);
-        } else {
-            speedImage.SetActive(true);
-            speedImage.GetComponentInChildren<TMP_Text>().text = stats.speed.ToString();
-        }
+        if (stats.cardType == CardType.warrior) {
+            attackText.text = $"{stats.GetStrength()}";
+            healthText.text = $"{stats.GetHealth()}";
 
-        abilityText.text = stats.ability.GetAbilityText(stats);
+            if (stats.range == 2) {
+                rangeImage.SetActive(false);
+            } else {
+                rangeImage.SetActive(true);
+                rangeImage.GetComponentInChildren<TMP_Text>().text = stats.range.ToString();
+            }
+            if (stats.speed == 2) {
+                speedImage.SetActive(false);
+            } else {
+                speedImage.SetActive(true);
+                speedImage.GetComponentInChildren<TMP_Text>().text = stats.speed.ToString();
+            }
+
+            abilityText.text = stats.ability.GetAbilityText(stats);
+        } else if (stats.cardType == CardType.spell) {
+            abilityText.text = stats.spellDescription[stats.level];
+            rangeImage.SetActive(false);
+            speedImage.SetActive(false);
+            attackText.text = "";
+            healthText.text = "";
+        }
     }
 
     public void SetStats(WarriorStats stats) {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ColorPalette {
     public enum ColorEnum {
-        red, green, gray, yellow, black, white, teal, tealWeak
+        red, green, gray, yellow, black, white, teal, tealWeak, purple
     }
 
     public static Color GetColor(ColorEnum color) {
@@ -15,6 +15,7 @@ public class ColorPalette {
             ColorEnum.white => Color.HSVToRGB(0 / 360f, 0f, 1f),
             ColorEnum.teal => Color.HSVToRGB(180 / 360f, 1f, 1f),
             ColorEnum.tealWeak => Color.HSVToRGB(180 / 360f, 0.1f, 1f),
+            ColorEnum.purple => Color.HSVToRGB(300 / 360f, 1f, 1f),
             _ => Color.white,
         };
     }

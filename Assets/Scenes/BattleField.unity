@@ -412,6 +412,8 @@ MonoBehaviour:
   handObject: {fileID: 179982828}
   cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
   selectedCard: {fileID: 0}
+  gridManager: {fileID: 509353786}
+  floatingText: {fileID: 189192889}
 --- !u!114 &179982830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1995,6 +1997,8 @@ MonoBehaviour:
   handObject: {fileID: 799138550}
   cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
   selectedCard: {fileID: 0}
+  gridManager: {fileID: 509353786}
+  floatingText: {fileID: 189192889}
 --- !u!114 &799138552
 MonoBehaviour:
   m_ObjectHideFlags: 0

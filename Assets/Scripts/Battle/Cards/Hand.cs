@@ -2,11 +2,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Hand : MonoBehaviour {
     public Transform handObject;
     public GameObject cardPrefab;
     public Card selectedCard;
+    public GridManager gridManager;
+    public FloatingText floatingText;
     List<Card> cardsInHand = new();
 
     int handSize = 0;
@@ -43,9 +46,17 @@ public class Hand : MonoBehaviour {
         }
         coin.SpendCoins(selectedCard.stats.cost);
 
-        List<Task> asyncFunctions = new() {
-            characterSpawner.Spawn(selectedGridIndex, selectedCard.stats, summonerObject.transform.position)
-        };
+        List<Task> asyncFunctions = new();
+        if (selectedCard.stats.cardType == CardType.warrior) {
+            asyncFunctions.Add(
+                characterSpawner.Spawn(selectedGridIndex, selectedCard.stats, summonerObject.transform.position)
+            );
+        } else if (selectedCard.stats.cardType == CardType.spell) {
+            Type type = Type.GetType(selectedCard.stats.title);
+            object instance = Activator.CreateInstance(type);
+            Character target = gridManager.GetCellCharacter(selectedGridIndex);
+            asyncFunctions.Add((Task)type.GetMethod("Trigger")?.Invoke(instance, new object[] { gridManager, target, selectedCard.stats.level, floatingText }));
+        }
 
         cardsInHand.Remove(selectedCard);
         Destroy(selectedCard.gameObject);
