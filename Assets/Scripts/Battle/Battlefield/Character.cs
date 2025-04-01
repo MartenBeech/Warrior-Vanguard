@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public Vector2 gridIndex;
@@ -38,6 +39,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         attackText.text = $"{stats.GetStrength()}";
         healthText.text = $"{stats.GetHealth()}";
         string cleanTitle = stats.title.Replace("+", string.Empty);
+        cleanTitle = Regex.Replace(cleanTitle, "(?<!^)([A-Z])", " $1");
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{cleanTitle}");
 
         ColorPalette colorPalette = new();
@@ -220,7 +222,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             asyncFunctions.Add(dealer.stats.ability.possess.Trigger(dealer, this, characterSpawner));
         }
 
-        asyncFunctions.Add(stats.ability.revive.Trigger(this, characterSpawner));
+        asyncFunctions.Add(stats.ability.revive.Trigger(this, characterSpawner, dealer));
         asyncFunctions.Add(stats.ability.hydraSplit.Trigger(this, characterSpawner));
         asyncFunctions.Add(stats.ability.boneSpread.Trigger(this, characterSpawner));
         if (stats.ability.afterlife.GetValue(stats)) {

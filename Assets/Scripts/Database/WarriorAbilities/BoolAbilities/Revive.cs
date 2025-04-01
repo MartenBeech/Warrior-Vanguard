@@ -6,14 +6,12 @@ public class Revive {
         return $"{WarriorAbility.Keywords.Death}: Resummon me without this ability";
     }
 
-    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner, Character dealer) {
         if (GetValue(target.stats)) {
-            WarriorStats targetStats = new();
-            targetStats.SetStats(target.stats);
-            targetStats.ResetStats();
-            targetStats.ability.revive.Remove();
+            target.stats.ResetStats();
+            target.stats.ability.revive.Remove();
 
-            await characterSpawner.SpawnRandomly(targetStats, target.transform.position);
+            await characterSpawner.SpawnRandomly(target.stats, target.transform.position);
             return true;
         }
         return false;

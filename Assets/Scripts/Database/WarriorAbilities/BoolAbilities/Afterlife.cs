@@ -12,11 +12,10 @@ public class Afterlife {
         if (GetValue(target.stats)) {
             ObjectAnimation objectAnimation = clone.GetComponent<ObjectAnimation>();
             await objectAnimation.MoveObject(gridManager.GetCellPosition(target.gridIndex), summonerObject.position, 1, true);
-            WarriorStats targetStats = new();
-            targetStats.SetStats(target.stats);
-            targetStats.ResetStats();
-            targetStats.ability.afterlife.Remove();
-            hand.AddCardToHand(targetStats);
+
+            target.stats.ResetStats();
+            target.stats.ability.afterlife.Remove();
+            hand.AddCardToHand(target.stats);
             return true;
         }
         return false;

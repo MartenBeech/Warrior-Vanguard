@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Text.RegularExpressions;
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text attackText;
@@ -21,8 +22,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         healthText.text = $"{stats.GetHealth()}";
         costText.text = $"{stats.cost}";
         string cleanTitle = stats.title.Replace("+", string.Empty);
+        cleanTitle = Regex.Replace(cleanTitle, "(?<!^)([A-Z])", " $1");
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{cleanTitle}");
-        titleText.text = $"{stats.title}";
+        titleText.text = $"{cleanTitle}";
 
         if (stats.range == 2) {
             rangeImage.SetActive(false);

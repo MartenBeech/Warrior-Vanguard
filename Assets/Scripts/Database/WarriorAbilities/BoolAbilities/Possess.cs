@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 public class Possess {
@@ -9,12 +8,10 @@ public class Possess {
 
     public async Task<bool> Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats)) {
-            WarriorStats targetStats = new();
-            targetStats.SetStats(target.stats);
-            targetStats.ResetStats();
-            targetStats.alignment = dealer.alignment;
+            target.stats.ResetStats();
+            target.stats.alignment = dealer.alignment;
 
-            await characterSpawner.SpawnRandomly(targetStats, target.transform.position);
+            await characterSpawner.SpawnRandomly(target.stats, target.transform.position);
 
             return true;
         }
