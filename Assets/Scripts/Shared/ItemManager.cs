@@ -26,6 +26,8 @@ public static class ItemManager {
         availableItems = new List<Item> {
             new SmallHeart(),
             new BigHeart(),
+            new WoodenSword(),
+            new BigCoin(),
         };
     }
 }

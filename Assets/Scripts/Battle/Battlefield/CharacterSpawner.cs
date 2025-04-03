@@ -29,9 +29,13 @@ public class CharacterSpawner : MonoBehaviour {
     }
 
     public async Task Spawn(Vector2 gridIndex, WarriorStats stats, Vector2 from) {
-        foreach (Item item in ItemManager.items) {
-            item.UseOnWarriorSpawn(stats);
+        if (stats.alignment == Alignment.Friend) {
+            //Activate friendly items
+            foreach (Item item in ItemManager.items) {
+                item.UseOnWarriorSpawn(stats);
+            }
         }
+        
         GameObject warrior = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
         warrior.name = $"{stats.title}[{gridIndex.x},{gridIndex.y}]";
         Character character = warrior.GetComponent<Character>();

@@ -1123,6 +1123,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265204591}
   m_CullTransparentMesh: 1
+--- !u!1 &285008159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 285008161}
+  - component: {fileID: 285008160}
+  m_Layer: 0
+  m_Name: GoldManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &285008160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285008159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c86222de78b054d95adf93866d0530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldText: {fileID: 2057530899}
+--- !u!4 &285008161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285008159}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1169.287, y: 499.30927, z: -5.1577525}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &298099808
 GameObject:
   m_ObjectHideFlags: 0
@@ -7806,7 +7851,7 @@ MonoBehaviour:
   textObject: {fileID: 1790459933}
   deckViewPanel: {fileID: 181024417}
   hideDeckViewButton: {fileID: 869221428}
-  cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
+  cardPrefab: {fileID: 60891471826456955, guid: 96d1818a6635e6b4597eeb982cb1b902, type: 3}
   deckListContainer: {fileID: 835030897}
 --- !u!4 &1540581550
 Transform:
@@ -8845,12 +8890,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6d53a464869fa14e8de450d0f66c03f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollRect: {fileID: 998474682}
-  contentPanel: {fileID: 1865669852}
-  mapTiles:
-  - {fileID: 1526969322}
-  - {fileID: 265204593}
-  - {fileID: 1110218259}
 --- !u!4 &1794291855
 Transform:
   m_ObjectHideFlags: 0
@@ -10698,3 +10737,4 @@ SceneRoots:
   - {fileID: 184656664}
   - {fileID: 2097238237}
   - {fileID: 1794291855}
+  - {fileID: 285008161}

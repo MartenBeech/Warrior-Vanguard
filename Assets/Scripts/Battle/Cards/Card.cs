@@ -60,6 +60,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     }
 
     public void OnClick() {
+        if (hand == null) return;
         if (this == hand.selectedCard) {
             hand.DeselectCard(hand.selectedCard);
         } else {

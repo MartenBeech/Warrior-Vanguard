@@ -89,7 +89,6 @@ public class EventManager : MonoBehaviour {
 
         foreach (Card card in gainCardsOptions) {
             WarriorStats stats = CardDatabase.GetRandomWarriorStats(CardRarity.Legendary);
-            Debug.Log(stats.title);
             card.SetStats(stats);
             card.UpdateCardUi();
         }
@@ -163,6 +162,7 @@ public class EventManager : MonoBehaviour {
                 acceptButton.SetActive(false);
                 break;
             case events.GainItemEvent:
+                item.UseImmediately();
                 ItemManager.AddItem(item);
                 eventText.text = $"You picked up {item.title}!";
                 acceptButton.SetActive(false);
