@@ -19,6 +19,7 @@ public class CharacterSpawner : MonoBehaviour {
 
     public void ActivateSpawnEnemy() {
         spawningAlignment = Alignment.Enemy;
+        gridManager.HighlightAllCells();
     }
     public void ActivateSpawn(Alignment alignment) {
         spawningAlignment = alignment;
@@ -35,7 +36,7 @@ public class CharacterSpawner : MonoBehaviour {
                 item.UseOnWarriorSpawn(stats);
             }
         }
-        
+
         GameObject warrior = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
         warrior.name = $"{stats.title}[{gridIndex.x},{gridIndex.y}]";
         Character character = warrior.GetComponent<Character>();

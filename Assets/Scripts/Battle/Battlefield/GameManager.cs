@@ -104,6 +104,10 @@ public class GameManager : MonoBehaviour {
             if (enemyCoin.CanAfford(card.stats.cost)) {
                 enemyHand.SelectCard(card);
                 GridCell randomCell = gridManager.GetRandomEmptyDeploy(card.stats.ability.construct.Trigger(card.stats), card.stats.alignment);
+                if (!randomCell) {
+                    enemyHand.DeselectCard(card);
+                    break;
+                }
                 await enemyHand.PlayCardFromHand(characterSpawner, randomCell.gridIndex);
                 await Task.Delay(1000 / Settings.gameSpeed);
             }
