@@ -182,7 +182,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-        asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString()));
+        asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString(), ColorPalette.ColorEnum.red, true));
 
         Color currentColor = dealer.image.GetComponent<Image>().color;
         dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
@@ -203,7 +203,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-        await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green);
+        await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green, true);
 
         dealer.image.GetComponent<Image>().color = currentColor;
     }
