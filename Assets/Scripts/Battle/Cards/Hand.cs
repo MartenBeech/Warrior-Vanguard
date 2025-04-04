@@ -71,7 +71,19 @@ public class Hand : MonoBehaviour {
         characterSpawner.ActivateSpawn(CharacterSpawner.Alignment.Friend);
 
         GridManager gridManager = FindFirstObjectByType<GridManager>();
-        gridManager.HighlightDeploys(card.stats.ability.construct.Trigger(card.stats), card.stats.alignment);
+
+        if (card.stats.cardType == CardType.warrior) {
+            gridManager.HighlightDeploys(card.stats.ability.construct.Trigger(card.stats), card.stats.alignment);
+        } else if (card.stats.cardType == CardType.spell) {
+            if (card.stats.spellTarget == SpellTarget.none) {
+                gridManager.HighlightAllCells();
+            } else if (card.stats.spellTarget == SpellTarget.enemy) {
+                gridManager.HighlightEnemies(card.stats.alignment);
+            } else if (card.stats.spellTarget == SpellTarget.friend) {
+                gridManager.HighlightFriends(card.stats.alignment);
+
+            }
+        }
 
         card.GetComponent<Outline>().enabled = true;
         card.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.tealWeak);
@@ -81,7 +93,7 @@ public class Hand : MonoBehaviour {
         if (!card) return;
 
         GridManager gridManager = FindFirstObjectByType<GridManager>();
-        gridManager.ClearHighlightedDeploys();
+        gridManager.ClearHighlightedCells();
 
         selectedCard = null;
         card.GetComponent<Outline>().enabled = false;

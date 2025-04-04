@@ -20,7 +20,7 @@ public class ColorPalette {
         };
     }
 
-    public Color AddTransparency(Color imgColor, int percentageVisible) {
+    public static Color AddTransparency(Color imgColor, int percentageVisible) {
         imgColor.a = percentageVisible / 100f;
         return imgColor;
     }

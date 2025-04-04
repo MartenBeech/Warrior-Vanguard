@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new Reanimate().GetStats(),
+        new AgingCurse().GetStats(),
         new UnholyStorm().GetStats(),
         new Mario().GetStats(),
         new ZombieMinion().GetStats(),

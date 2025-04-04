@@ -72,24 +72,25 @@ public class GridManager : MonoBehaviour {
         }
     }
 
-    public async Task SelectCell(Vector2 selectedGridIndex) {
-        if (GetCellCharacter(selectedGridIndex)) return;
+    public async Task<bool> SelectCell(Vector2 selectedGridIndex) {
+        if (!grid[(int)selectedGridIndex.x, (int)selectedGridIndex.y].IsHighlighed()) return false;
 
         if (characterSpawner.getIsSpawning(CharacterSpawner.Alignment.Enemy)) {
             WarriorStats luigiStats = new Luigi().GetStats();
             luigiStats.alignment = CharacterSpawner.Alignment.Enemy;
 
             await characterSpawner.Spawn(selectedGridIndex, luigiStats, EnemySummonerObject.position);
-            return;
+            return true;
         }
 
         if (GameManager.turn == CharacterSpawner.Alignment.Friend) {
-            if (friendHand.selectedCard == null) return;
+            if (friendHand.selectedCard == null) return false;
             await friendHand.PlayCardFromHand(characterSpawner, selectedGridIndex);
         } else if (GameManager.turn == CharacterSpawner.Alignment.Enemy) {
-            if (enemyHand.selectedCard == null) return;
+            if (enemyHand.selectedCard == null) return false;
             await enemyHand.PlayCardFromHand(characterSpawner, selectedGridIndex);
         }
+        return true;
     }
 
     public void RegisterCharacter(Character character) {
@@ -143,28 +144,41 @@ public class GridManager : MonoBehaviour {
         return cells[randomIndex];
     }
 
-    public void HighlightCell(GridCell cell) {
-        cell.GetComponent<Outline>().enabled = true;
-        cell.GetComponent<Outline>().effectColor = ColorPalette.GetColor(ColorPalette.ColorEnum.teal);
-        cell.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.tealWeak);
-    }
-
-    public void ClearHighlightedCell(GridCell cell) {
-        cell.GetComponent<Outline>().enabled = false;
-        cell.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
-    }
-
     public void HighlightDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment) {
         List<GridCell> cells = GetEmptyDeploys(largeDeployArea, alignment);
         for (int i = 0; i < cells.Count; i++) {
-            HighlightCell(cells[i]);
+            cells[i].Highlight();
         }
     }
 
-    public void ClearHighlightedDeploys() {
+    public void HighlightEnemies(CharacterSpawner.Alignment alignment) {
+        List<Character> enemies = GetEnemies(alignment);
+        foreach (var enemy in enemies) {
+            GridCell cell = grid[(int)enemy.gridIndex.x, (int)enemy.gridIndex.y];
+            cell.Highlight();
+        }
+    }
+
+    public void HighlightFriends(CharacterSpawner.Alignment alignment) {
+        List<Character> friends = GetFriends(alignment);
+        foreach (var friend in friends) {
+            GridCell cell = grid[(int)friend.gridIndex.x, (int)friend.gridIndex.y];
+            cell.Highlight();
+        }
+    }
+
+    public void HighlightAllCells() {
         for (int x = 0; x < columns; x++) {
             for (int y = 0; y < rows; y++) {
-                ClearHighlightedCell(grid[x, y]);
+                grid[x, y].Highlight();
+            }
+        }
+    }
+
+    public void ClearHighlightedCells() {
+        for (int x = 0; x < columns; x++) {
+            for (int y = 0; y < rows; y++) {
+                grid[x, y].ClearHighlight();
             }
         }
     }

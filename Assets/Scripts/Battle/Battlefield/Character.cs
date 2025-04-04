@@ -42,11 +42,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         cleanTitle = Regex.Replace(cleanTitle, "(?<!^)([A-Z])", " $1");
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{cleanTitle}");
 
-        ColorPalette colorPalette = new();
         if (stats.ability.stealth.GetValue(stats)) {
-            image.GetComponent<Image>().color = colorPalette.AddTransparency(image.GetComponent<Image>().color, 70);
+            image.GetComponent<Image>().color = ColorPalette.AddTransparency(image.GetComponent<Image>().color, 70);
         } else {
-            image.GetComponent<Image>().color = colorPalette.AddTransparency(image.GetComponent<Image>().color, 100);
+            image.GetComponent<Image>().color = ColorPalette.AddTransparency(image.GetComponent<Image>().color, 100);
         }
     }
 
@@ -265,5 +264,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (hoverWarrior) {
             hoverWarrior.HideCard();
         }
+    }
+
+    public async void OnClick() {
+        await gridManager.SelectCell(gridIndex);
     }
 }

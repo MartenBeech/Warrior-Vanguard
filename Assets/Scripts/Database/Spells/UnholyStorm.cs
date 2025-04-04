@@ -8,8 +8,8 @@ public class UnholyStorm {
             cost = 4,
             spellTarget = SpellTarget.none,
             spellDescription = new string[] {
-            "Reduce all enemies' attack by 2",
-            "Reduce all enemies' attack by 3"
+            "Reduce all enemies' strength by 2",
+            "Reduce all enemies' strength by 3"
             },
             cardType = CardType.spell,
         };

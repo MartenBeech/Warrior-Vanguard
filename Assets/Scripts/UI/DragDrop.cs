@@ -36,8 +36,9 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         foreach (RaycastResult result in results) {
             GridCell gridCell = result.gameObject.GetComponent<GridCell>();
             if (gridCell) {
-                await gridCell.OnClick();
-                return;
+                if (await gridCell.OnClick()) {
+                    return;
+                }
             }
         }
         rectTransform.anchoredPosition = cardStartPosition;
