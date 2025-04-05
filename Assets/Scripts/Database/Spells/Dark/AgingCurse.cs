@@ -20,7 +20,7 @@ public class AgingCurse {
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         int division = cardLevel == 0 ? 2 : 3;
         target.stats.AddStrength(-Mathf.FloorToInt(target.stats.GetStrength() / division));
-        target.stats.AddHealth(-Mathf.FloorToInt(target.stats.GetHealth() / division));
+        target.stats.AddHealthCurrent(-Mathf.FloorToInt(target.stats.GetHealth() / division));
         target.stats.speed /= division;
         target.UpdateWarriorUI();
         await floatingText.CreateFloatingText(target.transform, "Aging", ColorPalette.ColorEnum.purple);

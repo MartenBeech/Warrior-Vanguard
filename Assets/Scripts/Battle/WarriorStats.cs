@@ -93,7 +93,7 @@ public class WarriorStats {
         return health[level];
     }
 
-    public void AddHealth(int amount) {
+    public void AddHealthCurrent(int amount) {
         for (int i = 0; i < 2; i++) {
             health[i] += amount;
             if (health[i] > healthMax[i]) {

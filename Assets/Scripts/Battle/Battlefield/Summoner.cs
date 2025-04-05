@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public SummonerStats stats = new();
@@ -49,16 +50,20 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Color currentColor = dealer.image.GetComponent<Image>().color;
         dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
 
+        List<Task> asyncFunctions = new();
+
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-        await floatingText.CreateFloatingText(transform, damage.ToString());
+        asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString()));
 
         dealer.image.GetComponent<Image>().color = currentColor;
 
 
         if (damage > 0) {
-            await dealer.stats.ability.lifeSteal.Trigger(dealer, damage);
-            await dealer.stats.ability.lifeTransfer.Trigger(dealer, damage, gridManager);
+            asyncFunctions.Add(dealer.stats.ability.lifeSteal.Trigger(dealer, damage));
+            asyncFunctions.Add(dealer.stats.ability.lifeTransfer.Trigger(dealer, damage, gridManager));
         }
+
+        await Task.WhenAll(asyncFunctions);
 
         if (stats.health <= 0) {
             switch (stats.title) {

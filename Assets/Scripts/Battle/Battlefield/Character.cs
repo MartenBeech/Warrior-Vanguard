@@ -165,14 +165,14 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public async Task<int> TakeDamage(Character dealer, int damage, DamageType damageType) {
         damage = stats.ability.stealth.TriggerTakeDamage(this, damage);
-        damage = stats.ability.skeletal.Trigger(dealer, this, damage);
+        damage = stats.ability.armor.Trigger(this, damage, damageType);
 
         damage = stats.ability.incorporeal.Trigger(this, damage, damageType);
 
         List<Task> asyncFunctions = new();
 
         if (damage > 0) {
-            stats.AddHealth(-damage);
+            stats.AddHealthCurrent(-damage);
             UpdateWarriorUI();
 
             if (stats.GetHealth() <= 0) {
@@ -195,7 +195,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Heal(Character dealer, int amount) {
-        stats.AddHealth(amount);
+        stats.AddHealthCurrent(amount);
         UpdateWarriorUI();
 
         Color currentColor = dealer.image.GetComponent<Image>().color;
@@ -214,12 +214,13 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         List<Task> asyncFunctions = new() {
             stats.ability.revive.Trigger(this, characterSpawner),
             stats.ability.hydraSplit.Trigger(this, characterSpawner),
-            stats.ability.boneSpread.Trigger(this, characterSpawner)
+            stats.ability.boneSpread.Trigger(this, characterSpawner),
         };
         if (stats.ability.afterlife.GetValue(stats)) {
             GameObject clone = Instantiate(gameObject, transform.position, Quaternion.identity, transform.parent);
             asyncFunctions.Add(stats.ability.afterlife.Trigger(this, gridManager, hand, summonerObject, clone));
         }
+        stats.ability.skeletal.TriggerDeath(this, gameManager);
 
         if (dealer != this) {
             dealer.stats.ability.cannibalism.Trigger(dealer);

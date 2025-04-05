@@ -20,7 +20,7 @@ public class LastBreath {
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         List<Task> asyncFunctions = new();
         if (cardLevel == 0) {
-            target.stats.AddHealth(-(target.stats.GetHealth() - 1));
+            target.stats.AddHealthCurrent(-(target.stats.GetHealth() - 1));
             target.UpdateWarriorUI();
         } else {
             asyncFunctions.Add(target.Die(target));

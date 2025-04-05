@@ -3,8 +3,8 @@ public class SkeletonMage {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = 2,
-            strength = new int[] { 2, 3 },
-            health = new int[] { 2, 3 },
+            strength = new int[] { 1, 2 },
+            health = new int[] { 1, 1 },
             speed = 2,
             range = 4,
             damageType = Character.DamageType.Magical
@@ -15,7 +15,7 @@ public class SkeletonMage {
 
         WarriorAbility ability = stats.ability;
         ability.skeletal.Add();
-        ability.weaken.Add(1);
+        ability.poison.Add(1, 2);
 
         return stats;
     }

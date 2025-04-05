@@ -19,7 +19,7 @@ public class Reanimate {
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         target.stats.ability.revive.Add();
         if (cardLevel == 0) {
-            target.stats.AddHealth(-(target.stats.GetHealth() - 1));
+            target.stats.AddHealthCurrent(-(target.stats.GetHealth() - 1));
         }
         target.UpdateWarriorUI();
         await floatingText.CreateFloatingText(target.transform, "Reanimate", ColorPalette.ColorEnum.teal);

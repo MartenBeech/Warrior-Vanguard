@@ -38,6 +38,7 @@ public class WarriorAbility {
     public HitAndRun hitAndRun = new();
     public PoisoningAura poisoningAura = new();
     public CemeteryGates cemeteryGates = new();
+    public Armor armor = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";
