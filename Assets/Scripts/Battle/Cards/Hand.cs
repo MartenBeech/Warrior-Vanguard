@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Diagnostics;
 
 public class Hand : MonoBehaviour {
     public Transform handObject;
@@ -75,13 +76,19 @@ public class Hand : MonoBehaviour {
         if (card.stats.cardType == CardType.warrior) {
             gridManager.HighlightDeploys(card.stats.ability.construct.Trigger(card.stats), card.stats.alignment);
         } else if (card.stats.cardType == CardType.spell) {
-            if (card.stats.spellTarget == SpellTarget.none) {
-                gridManager.HighlightAllCells();
-            } else if (card.stats.spellTarget == SpellTarget.enemy) {
-                gridManager.HighlightEnemies(card.stats.alignment);
-            } else if (card.stats.spellTarget == SpellTarget.friend) {
-                gridManager.HighlightFriends(card.stats.alignment);
-
+            switch (card.stats.spellTarget) {
+                case SpellTarget.none:
+                    gridManager.HighlightAllCells();
+                    break;
+                case SpellTarget.enemy:
+                    gridManager.HighlightEnemies(card.stats.alignment);
+                    break;
+                case SpellTarget.friend:
+                    gridManager.HighlightFriends(card.stats.alignment);
+                    break;
+                case SpellTarget.warrior:
+                    gridManager.HighlightWarriors();
+                    break;
             }
         }
 

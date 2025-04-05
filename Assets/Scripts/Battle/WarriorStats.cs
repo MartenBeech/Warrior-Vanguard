@@ -8,7 +8,8 @@ public enum CardType {
 public enum SpellTarget {
     none,
     friend,
-    enemy
+    enemy,
+    warrior,
 }
 
 public enum CardRarity {

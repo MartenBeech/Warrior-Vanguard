@@ -167,6 +167,14 @@ public class GridManager : MonoBehaviour {
         }
     }
 
+    public void HighlightWarriors() {
+        List<Character> warriors = GetCharacters();
+        foreach (var warrior in warriors) {
+            GridCell cell = grid[(int)warrior.gridIndex.x, (int)warrior.gridIndex.y];
+            cell.Highlight();
+        }
+    }
+
     public void HighlightAllCells() {
         for (int x = 0; x < columns; x++) {
             for (int y = 0; y < rows; y++) {

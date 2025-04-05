@@ -8,8 +8,8 @@ public class SkinToBones {
             cost = 6,
             spellTarget = SpellTarget.enemy,
             spellDescription = new string[] {
-            "Kill a warrior and summon a skeleton for its owner",
-            "Kill a warrior and summon a skeleton for you"
+            "Kill an enemy and summon a skeleton for its owner",
+            "Kill an enemy and summon a skeleton for you"
             },
             cardType = CardType.spell,
         };
