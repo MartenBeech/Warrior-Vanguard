@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour {
         foreach (Card card in cardsInHand) {
             if (enemyCoin.CanAfford(card.stats.cost)) {
                 enemyHand.SelectCard(card);
-                GridCell randomCell = gridManager.GetRandomEmptyDeploy(card.stats.ability.construct.Trigger(card.stats), card.stats.alignment);
+                GridCell randomCell = gridManager.GetRandomHighlighedCell();
                 if (!randomCell) {
                     enemyHand.DeselectCard(card);
                     break;

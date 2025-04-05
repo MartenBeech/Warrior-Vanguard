@@ -8,8 +8,8 @@ public class UnholyStorm {
             cost = 4,
             spellTarget = SpellTarget.none,
             spellDescription = new string[] {
-            "Reduce all enemies' strength by 2",
-            "Reduce all enemies' strength by 3"
+            "Reduce all enemies' strength by 2 (minimum 1)",
+            "Reduce all enemies' strength by 3 (minimum 1)"
             },
             cardType = CardType.spell,
         };
@@ -21,10 +21,15 @@ public class UnholyStorm {
         List<Character> enemies = gridManager.GetEnemies(GameManager.turn);
         List<Task> asyncFunctions = new();
         foreach (Character enemy in enemies) {
-            int value = cardLevel == 0 ? 2 : 3;
-            enemy.stats.AddStrength(-value);
-            enemy.UpdateWarriorUI();
-            asyncFunctions.Add(floatingText.CreateFloatingText(enemy.transform, $"-{value} Strength", ColorPalette.ColorEnum.purple));
+            if (enemy.stats.GetStrength() > 0) {
+                int value = cardLevel == 0 ? 2 : 3;
+                enemy.stats.AddStrength(-value);
+                if (enemy.stats.GetStrength() < 1) {
+                    enemy.stats.AddStrength(1 - enemy.stats.GetStrength());
+                }
+                enemy.UpdateWarriorUI();
+                asyncFunctions.Add(floatingText.CreateFloatingText(enemy.transform, $"-{value} Strength", ColorPalette.ColorEnum.purple));
+            }
         }
         await Task.WhenAll(asyncFunctions);
     }

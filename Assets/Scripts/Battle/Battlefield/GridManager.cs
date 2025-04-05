@@ -183,6 +183,26 @@ public class GridManager : MonoBehaviour {
         }
     }
 
+    public List<GridCell> GetHighlighedCells() {
+        List<GridCell> cells = new();
+        for (int x = 0; x < columns; x++) {
+            for (int y = 0; y < rows; y++) {
+                if (grid[x, y].IsHighlighed()) {
+                    cells.Add(grid[x, y]);
+                }
+            }
+        }
+        return cells;
+    }
+
+    public GridCell GetRandomHighlighedCell() {
+        List<GridCell> cells = GetHighlighedCells();
+        if (cells.Count == 0) return null;
+
+        int randomIndex = Rng.Range(0, cells.Count);
+        return cells[randomIndex];
+    }
+
     public List<Character> GetWarriorsAroundCell(Vector2 gridIndex) {
         List<Character> warriors = new();
         for (int x = (int)gridIndex.x - 1; x <= (int)gridIndex.x + 1; x++) {
