@@ -17,7 +17,7 @@ public class AgingCurse {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText) {
+    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         int division = cardLevel == 0 ? 2 : 3;
         target.stats.AddStrength(-Mathf.FloorToInt(target.stats.GetStrength() / division));
         target.stats.AddHealth(-Mathf.FloorToInt(target.stats.GetHealth() / division));

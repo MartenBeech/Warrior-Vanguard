@@ -17,7 +17,7 @@ public class UnholyStorm {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText) {
+    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         List<Character> enemies = gridManager.GetEnemies(GameManager.turn);
         List<Task> asyncFunctions = new();
         foreach (Character enemy in enemies) {

@@ -16,7 +16,7 @@ public class Reanimate {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText) {
+    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         target.stats.ability.revive.Add();
         if (cardLevel == 0) {
             target.stats.AddHealth(-(target.stats.GetHealth() - 1));

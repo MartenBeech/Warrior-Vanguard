@@ -55,7 +55,7 @@ public class Hand : MonoBehaviour {
             Type type = Type.GetType(selectedCard.stats.title);
             object instance = Activator.CreateInstance(type);
             Character target = gridManager.GetCellCharacter(selectedGridIndex);
-            asyncFunctions.Add((Task)type.GetMethod("Trigger")?.Invoke(instance, new object[] { gridManager, target, selectedCard.stats.level, floatingText }));
+            asyncFunctions.Add((Task)type.GetMethod("Trigger")?.Invoke(instance, new object[] { gridManager, target, selectedCard.stats.level, floatingText, characterSpawner }));
         }
 
         cardsInHand.Remove(selectedCard);

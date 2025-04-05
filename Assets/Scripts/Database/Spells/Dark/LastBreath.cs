@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public class CLASSNAMESPELL {
+public class LastBreath {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 0,
-            spellTarget = SpellTarget.none,
+            cost = 5,
+            spellTarget = SpellTarget.enemy,
             spellDescription = new string[] {
-            "UNUPGRADED_DESCRIPTION",
-            "UPGRADED_DESCRIPTION"
+            "Set an enemy's health to 1",
+            "Kill an enemy"
             },
             cardType = CardType.spell,
         };
@@ -19,9 +19,13 @@ public class CLASSNAMESPELL {
 
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         List<Task> asyncFunctions = new();
-
-        target.UpdateWarriorUI();
-        asyncFunctions.Add(floatingText.CreateFloatingText(target.transform, "TEXT", ColorPalette.ColorEnum.purple));
+        if (cardLevel == 0) {
+            target.stats.AddHealth(-(target.stats.GetHealth() - 1));
+            target.UpdateWarriorUI();
+        } else {
+            asyncFunctions.Add(target.Die(target));
+        }
+        asyncFunctions.Add(floatingText.CreateFloatingText(target.transform, "Last Breath", ColorPalette.ColorEnum.purple));
         await Task.WhenAll(asyncFunctions);
     }
 }

@@ -46,7 +46,7 @@ public class RaiseDead {
         return abilityName;
     }
 
-    public async Task SummonSkeleton(Character dealer, Character target, CharacterSpawner characterSpawner) {
+    public async Task SummonSkeleton(Character dealer, Character target, CharacterSpawner characterSpawner, CharacterSpawner.Alignment alignment = CharacterSpawner.Alignment.Null) {
         int skeletonType = Rng.Range(0, 4);
 
         WarriorStats stats =
@@ -55,7 +55,7 @@ public class RaiseDead {
             skeletonType == 3 ? new SkeletonMage().GetStats() :
             new SkeletonRider().GetStats();
         stats.level = dealer.stats.level;
-        stats.alignment = dealer.stats.alignment;
+        stats.alignment = alignment == CharacterSpawner.Alignment.Null ? dealer.stats.alignment : alignment;
 
         await characterSpawner.SpawnRandomly(stats, target.transform.position);
     }

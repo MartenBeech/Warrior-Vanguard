@@ -1,15 +1,14 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public class CLASSNAMESPELL {
+public class Disarm {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 0,
-            spellTarget = SpellTarget.none,
+            cost = 2,
+            spellTarget = SpellTarget.enemy,
             spellDescription = new string[] {
-            "UNUPGRADED_DESCRIPTION",
-            "UPGRADED_DESCRIPTION"
+            "Set an enemy's strength to 1",
+            "Set an enemy's strength to 0"
             },
             cardType = CardType.spell,
         };
@@ -18,10 +17,9 @@ public class CLASSNAMESPELL {
     }
 
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        List<Task> asyncFunctions = new();
-
+        int value = cardLevel == 0 ? 1 : 0;
+        target.stats.AddStrength(-(target.stats.GetStrength() - value));
         target.UpdateWarriorUI();
-        asyncFunctions.Add(floatingText.CreateFloatingText(target.transform, "TEXT", ColorPalette.ColorEnum.purple));
-        await Task.WhenAll(asyncFunctions);
+        await floatingText.CreateFloatingText(target.transform, "Disarmed", ColorPalette.ColorEnum.purple);
     }
 }

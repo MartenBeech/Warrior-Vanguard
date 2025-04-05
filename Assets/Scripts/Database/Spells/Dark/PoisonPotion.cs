@@ -1,15 +1,14 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public class CLASSNAMESPELL {
+public class PoisonPotion {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 0,
-            spellTarget = SpellTarget.none,
+            cost = 1,
+            spellTarget = SpellTarget.enemy,
             spellDescription = new string[] {
-            "UNUPGRADED_DESCRIPTION",
-            "UPGRADED_DESCRIPTION"
+            "Apply 2 poison to an enemy",
+            "Apply 3 poison to an enemy"
             },
             cardType = CardType.spell,
         };
@@ -18,10 +17,9 @@ public class CLASSNAMESPELL {
     }
 
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        List<Task> asyncFunctions = new();
-
+        int value = cardLevel == 0 ? 2 : 3;
+        target.stats.ability.poisoned.Add(value);
         target.UpdateWarriorUI();
-        asyncFunctions.Add(floatingText.CreateFloatingText(target.transform, "TEXT", ColorPalette.ColorEnum.purple));
-        await Task.WhenAll(asyncFunctions);
+        await floatingText.CreateFloatingText(target.transform, $"{value} poison", ColorPalette.ColorEnum.purple);
     }
 }
