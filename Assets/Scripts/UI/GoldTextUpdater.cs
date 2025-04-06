@@ -5,6 +5,6 @@ public class GoldTextUpdater : MonoBehaviour {
     public TMP_Text goldText;
 
     void Update() {
-        goldText.text = $"{GoldManager.Gold} gold";
+        goldText.text = $"{GoldManager.gold} gold";
     }
 }

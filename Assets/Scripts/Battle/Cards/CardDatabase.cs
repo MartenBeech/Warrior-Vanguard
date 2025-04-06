@@ -50,4 +50,20 @@ public static class CardDatabase {
         List<WarriorStats> filteredCards = allCards.FindAll(card => card.rarity == rarity);
         return filteredCards[Rng.Range(0, filteredCards.Count)];
     }
+
+    public static WarriorStats GetStatsByTitleAndLevel(string titleAndLevel) {
+        string title = titleAndLevel.Split('_')[0];
+        string level = titleAndLevel.Split('_')[1];
+
+        WarriorStats stats = allCards.Find(stats => stats.title == title);
+        if (stats == null) {
+            return null;
+        }
+
+        if (level != "0") {
+            stats.level = 1;
+        }
+
+        return stats;
+    }
 }

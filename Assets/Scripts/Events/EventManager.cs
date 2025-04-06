@@ -42,7 +42,7 @@ public class EventManager : MonoBehaviour {
         int randomIndex = Random.Range(0, System.Enum.GetValues(typeof(events)).Length);
         currentEvent = (events)randomIndex;
 
-        currentEvent = events.GainItemEvent; // Hardcoded for testing
+        currentEvent = events.UpgradeCardEvent; // Hardcoded for testing
         switch (currentEvent) {
             case events.GainGoldEvent:
                 GainGoldEvent();
@@ -105,7 +105,7 @@ public class EventManager : MonoBehaviour {
         upgradeCardPanel.SetActive(true);
 
         foreach (Card card in upgradeCardsOptions) {
-            int randomIndex = Random.Range(0, DeckManager.GetDeck().Count);
+            int randomIndex = Random.Range(0, DeckManager.GetUnUpgradedCards().Count);
             card.SetStats(DeckManager.GetCard(randomIndex).stats);
             card.UpdateCardUi();
             cardIndexes.Add(randomIndex);
@@ -176,9 +176,9 @@ public class EventManager : MonoBehaviour {
     public void UpgradeCard(int index) {
         upgradeCardPanel.SetActive(false);
         Card card = DeckManager.GetCard(cardIndexes[index]);
-        card.stats.level += 1;
-        card.stats.title += "+";
+        card.stats.level = 1;
         eventText.text = $"You upgraded {card.stats.title}!";
+        DeckManager.SaveDeck();
     }
 
     public void RemoveCard(int index) {
