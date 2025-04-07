@@ -16,6 +16,10 @@ public class MainMenu : MonoBehaviour {
         SceneLoader.LoadMap();
     }
 
+    public void ContinueGame() {    
+        SceneLoader.LoadMap();
+    }
+
     public void ExitGame() {
         SceneLoader.ExitGame();
     }

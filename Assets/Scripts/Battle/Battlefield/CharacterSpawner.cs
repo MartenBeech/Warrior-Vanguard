@@ -32,7 +32,7 @@ public class CharacterSpawner : MonoBehaviour {
     public async Task Spawn(Vector2 gridIndex, WarriorStats stats, Vector2 from) {
         if (stats.alignment == Alignment.Friend) {
             //Activate friendly items
-            foreach (Item item in ItemManager.items) {
+            foreach (Item item in ItemManager.LoadItems()) {
                 item.UseOnWarriorSpawn(stats);
             }
         }

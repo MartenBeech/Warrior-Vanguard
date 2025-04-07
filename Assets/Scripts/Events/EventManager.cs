@@ -42,7 +42,7 @@ public class EventManager : MonoBehaviour {
         int randomIndex = Random.Range(0, System.Enum.GetValues(typeof(events)).Length);
         currentEvent = (events)randomIndex;
 
-        currentEvent = events.UpgradeCardEvent; // Hardcoded for testing
+        currentEvent = events.GainItemEvent; // Hardcoded for testing
         switch (currentEvent) {
             case events.GainGoldEvent:
                 GainGoldEvent();

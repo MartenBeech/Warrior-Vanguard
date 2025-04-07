@@ -14,7 +14,7 @@ public class ItemsPanel : MonoBehaviour {
             Destroy(child.gameObject);
         }
 
-        foreach (Item item in ItemManager.items) {
+        foreach (Item item in ItemManager.LoadItems()) {
             GameObject newItem = Instantiate(itemPrefab, itemListContainer);
             Item itemComponent = newItem.GetComponent<Item>();
 

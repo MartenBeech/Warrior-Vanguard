@@ -7,11 +7,13 @@ public static class DeckManager {
 
 
     public static void AddCard(Card card) {
+        deck = LoadDeck();
         deck.Add(card);
         SaveDeck();
     }
 
     public static void RemoveCard(int index) {
+        deck = LoadDeck();
         if (deck.Count > index) {
             deck.RemoveAt(index);
         }
@@ -57,6 +59,8 @@ public static class DeckManager {
 
     static List<Card> LoadDeck() {
         List<Card> tempDeck = new();
+        if (!PlayerPrefs.HasKey(deckKey)) return tempDeck;
+
         string savedData = PlayerPrefs.GetString(deckKey, "");
 
         string[] statIds = savedData.Split(',');
