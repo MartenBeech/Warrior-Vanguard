@@ -144,13 +144,13 @@ public class EventManager : MonoBehaviour {
 
     void GainItemEvent() {
         item = ItemManager.GetRandomItem();
-        
+
         if (item.title == null) {
             eventText.text = "You find a hole where an item used to be. However, it seems like you already have all the items in the world.";
             return;
         }
 
-        eventText.text = $"You find a mysterious item on the ground called {item.title}. Do you want to pick it up?";
+        eventText.text = $"You find a mysterious item on the ground called {item.displayTitle}. Do you want to pick it up?";
         acceptButton.SetActive(true);
     }
 
@@ -164,7 +164,7 @@ public class EventManager : MonoBehaviour {
             case events.GainItemEvent:
                 item.UseImmediately();
                 ItemManager.AddItem(item);
-                eventText.text = $"You picked up {item.title}!";
+                eventText.text = $"You picked up {item.displayTitle}!";
                 acceptButton.SetActive(false);
                 break;
             default:

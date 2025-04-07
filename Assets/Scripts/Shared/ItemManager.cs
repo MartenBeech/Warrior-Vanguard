@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,11 +6,11 @@ public static class ItemManager {
     static string itemKey = "playerItems";
     static string availableItemsKey = "availableItems";
     public static List<Item> items = new();
-    private static List<Item> allItems = new List<Item> {
-            new SmallHeart(),
-            new BigHeart(),
-            new WoodenSword(),
-            new BigCoin(),
+    private static List<Item> allItems = new() {
+            new SmallHeart().GetItem(),
+            new BigHeart().GetItem(),
+            new WoodenSword().GetItem(),
+            new BigCoin().GetItem(),
         };
     private static List<Item> availableItems = new();
     public static ItemsPanel ItemsPanel;
@@ -24,7 +25,7 @@ public static class ItemManager {
     public static Item GetRandomItem() {
         availableItems = LoadAvailableItems();
 
-        int randomIndex = Random.Range(0, availableItems.Count);
+        int randomIndex = Rng.Range(0, availableItems.Count);
         Item randomItem = availableItems[randomIndex];
         availableItems.RemoveAt(randomIndex);
         SaveAvailableItems();
@@ -89,13 +90,12 @@ public static class ItemManager {
     }
 
     // Match titles to item constructors
-     private static Item CreateItemByTitle(string title) {
-        return title switch {
-            "Small Heart" => new SmallHeart(),
-            "Big Heart" => new BigHeart(),
-            "Wooden Sword" => new WoodenSword(),
-            "Big Coin" => new BigCoin(),
-            _ => new TrashItem(),
-        };
+    private static Item CreateItemByTitle(string title) {
+        if (title == "") return new TrashItem().GetItem();
+
+        Type type = Type.GetType(title);
+        object instance = Activator.CreateInstance(type);
+        Item item = (Item)type.GetMethod("GetItem")?.Invoke(instance, null);
+        return item;
     }
 }

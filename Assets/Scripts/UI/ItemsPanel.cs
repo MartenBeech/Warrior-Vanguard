@@ -5,9 +5,9 @@ public class ItemsPanel : MonoBehaviour {
     public GameObject itemPrefab;
 
     void Start() {
-    ItemManager.ItemsPanel = this;
-    UpdateUI();
-}
+        ItemManager.ItemsPanel = this;
+        UpdateUI();
+    }
 
     public void UpdateUI() {
         foreach (Transform child in itemListContainer) {
@@ -20,6 +20,7 @@ public class ItemsPanel : MonoBehaviour {
 
             if (itemComponent != null) {
                 itemComponent.title = item.title;
+                itemComponent.displayTitle = item.displayTitle;
                 itemComponent.description = item.description;
                 itemComponent.UpdateItemUI();
             }
