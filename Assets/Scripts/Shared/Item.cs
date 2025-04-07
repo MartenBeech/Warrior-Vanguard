@@ -11,7 +11,7 @@ public class Item : MonoBehaviour {
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{displayTitle}");
     }
 
-    public virtual void UseOnWarriorSpawn(WarriorStats stats) {
+    public virtual void UseOnWarriorSpawn(WarriorStats stats, Vector2 gridIndex) {
         // This metod should be overridden by each item
     }
 

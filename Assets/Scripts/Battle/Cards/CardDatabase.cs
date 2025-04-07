@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new ZombieHydra().GetStats(),
         new SkeletonMage().GetStats(),
         new SkeletonRider().GetStats(),
         new SkeletonWarrior().GetStats(),
@@ -16,7 +18,6 @@ public static class CardDatabase {
         new Mario().GetStats(),
         new ZombieMinion().GetStats(),
         new Necropolis().GetStats(),
-        new ZombieHydra().GetStats(),
         new SoulStealer().GetStats(),
         new VileMutation().GetStats(),
         new CorpseBehemoth().GetStats(),
@@ -65,5 +66,10 @@ public static class CardDatabase {
         }
 
         return stats;
+    }
+
+    public static WarriorStats GetRandomWarriorWithSpecificCost(int cost) {
+        List<WarriorStats> warriors = allCards.Where(warrior => warrior.cost == cost).ToList();
+        return warriors[Rng.Range(0, warriors.Count)];
     }
 }

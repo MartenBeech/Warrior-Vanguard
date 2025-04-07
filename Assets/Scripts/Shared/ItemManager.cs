@@ -7,6 +7,7 @@ public static class ItemManager {
     static string availableItemsKey = "availableItems";
     public static List<Item> items = new();
     private static List<Item> allItems = new() {
+            new CrackedEgg().GetItem(),
             new SmallHeart().GetItem(),
             new BigHeart().GetItem(),
             new WoodenSword().GetItem(),

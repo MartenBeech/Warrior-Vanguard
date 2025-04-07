@@ -2,12 +2,10 @@ using System.Text.RegularExpressions;
 
 public class BigCoin : Item {
     public Item GetItem() {
-        Item item = new() {
-            title = GetType().Name,
-            description = "Immediately gain 200 gold",
-        };
-        item.displayTitle = Regex.Replace(item.title, "(?<!^)([A-Z])", " $1");
-        return item;
+        title = GetType().Name;
+        description = "Immediately gain 200 gold";
+        displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");
+        return this;
     }
 
     public override void UseImmediately() {

@@ -33,7 +33,7 @@ public class CharacterSpawner : MonoBehaviour {
         if (stats.alignment == Alignment.Friend) {
             //Activate friendly items
             foreach (Item item in ItemManager.LoadItems()) {
-                item.UseOnWarriorSpawn(stats);
+                item.UseOnWarriorSpawn(stats, gridIndex);
             }
         }
 
