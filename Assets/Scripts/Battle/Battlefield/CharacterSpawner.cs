@@ -33,7 +33,7 @@ public class CharacterSpawner : MonoBehaviour {
         if (stats.alignment == Alignment.Friend) {
             //Activate friendly items
             foreach (Item item in ItemManager.LoadItems()) {
-                item.UseOnWarriorSpawn(stats, gridIndex);
+                item.UseOnWarriorSpawn(stats);
             }
         }
 
@@ -72,6 +72,10 @@ public class CharacterSpawner : MonoBehaviour {
         character.SetHoverWarrior(hoverWarrior);
 
         character.SetPosition(gridIndex);
+
+        foreach (Item item in ItemManager.LoadItems()) {
+            await item.UseAfterWarriorSpawn(stats, gridIndex);
+        }
     }
 
     public async Task SpawnRandomly(WarriorStats stats, Vector2 from) {

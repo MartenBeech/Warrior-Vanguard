@@ -9,7 +9,7 @@ public class WoodenSword : Item {
         return this;
     }
 
-    public override void UseOnWarriorSpawn(WarriorStats stats, Vector2 gridIndex) {
+    public override void UseOnWarriorSpawn(WarriorStats stats) {
         stats.AddStrength(1);
     }
 }

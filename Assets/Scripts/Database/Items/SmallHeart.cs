@@ -9,7 +9,7 @@ public class SmallHeart : Item {
         return this;
     }
 
-    public override void UseOnWarriorSpawn(WarriorStats stats, Vector2 gridIndex) {
+    public override void UseOnWarriorSpawn(WarriorStats stats) {
         stats.AddHealthMax(1);
     }
 }
