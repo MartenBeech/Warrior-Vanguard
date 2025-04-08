@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class Armor {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"Reduce physical damage taken by ${GetValue(stats)}";
+        return $"Reduce physical damage taken by {GetValue(stats)}";
     }
 
     public int Trigger(Character target, int damage, Character.DamageType damageType) {
