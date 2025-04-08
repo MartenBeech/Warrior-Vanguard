@@ -3,7 +3,7 @@ public class SummonerStats {
     public string description;
     public int health;
     public int healthMax;
-    public int armor;
+    public int shield;
     public int skeletonBones = 0;
 
     public SummonerStats(string title, string description, int health, int healthMax) {
@@ -11,7 +11,7 @@ public class SummonerStats {
         this.description = description;
         this.health = health;
         this.healthMax = healthMax;
-        armor = 0;
+        shield = 3;
     }
 
     public SummonerStats() {
@@ -22,6 +22,6 @@ public class SummonerStats {
         description = stats.description;
         health = stats.health;
         healthMax = stats.healthMax;
-        armor = stats.armor;
+        shield = stats.shield;
     }
 }

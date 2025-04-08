@@ -8,9 +8,9 @@ using System.Collections.Generic;
 public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public SummonerStats stats = new();
     public GameObject healthText;
-    public GameObject armorText;
+    public GameObject shieldText;
     public GameObject image;
-    public GameObject armorImage;
+    public GameObject shieldImage;
     public TooltipManager tooltipManager;
     public void OnPointerEnter(PointerEventData eventData) {
         if (tooltipManager) {
@@ -28,11 +28,11 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void UpdateSummonerUI() {
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Summoners/{stats.title}");
         healthText.GetComponent<TMP_Text>().text = $"{stats.health}/{stats.healthMax}";
-        if (stats.armor > 0) {
-            armorImage.SetActive(true);
-            armorText.GetComponent<TMP_Text>().text = stats.armor.ToString();
+        if (stats.shield > 0) {
+            shieldImage.SetActive(true);
+            shieldText.GetComponent<TMP_Text>().text = stats.shield.ToString();
         } else {
-            armorImage.SetActive(false);
+            shieldImage.SetActive(false);
         }
     }
 
@@ -45,16 +45,17 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         damage = dealer.stats.ability.stealth.TriggerAttack(dealer, damage);
 
-        int damageAfterArmor = damage;
+        int damageAfterShield = damage;
 
-        if (damageAfterArmor > 0) {
-            damageAfterArmor -= stats.armor;
-            stats.armor -= damage;
+        if (damageAfterShield > 0) {
+            damageAfterShield -= stats.shield;
+            stats.shield -= damage;
 
-            if (stats.armor < 0) {
-                stats.health -= damageAfterArmor;
+            if (stats.shield < 0) {
+                stats.shield = 0;
+                stats.health -= damageAfterShield;
                 if (stats.title == "Angel") {
-                    Angel.LoseHealth(damageAfterArmor);
+                    Angel.LoseHealth(damageAfterShield);
                 }
             }
 
@@ -73,9 +74,9 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         dealer.image.GetComponent<Image>().color = currentColor;
 
 
-        if (damageAfterArmor > 0) {
-            asyncFunctions.Add(dealer.stats.ability.lifeSteal.Trigger(dealer, damageAfterArmor));
-            asyncFunctions.Add(dealer.stats.ability.lifeTransfer.Trigger(dealer, damageAfterArmor, gridManager));
+        if (damageAfterShield > 0) {
+            asyncFunctions.Add(dealer.stats.ability.lifeSteal.Trigger(dealer, damageAfterShield));
+            asyncFunctions.Add(dealer.stats.ability.lifeTransfer.Trigger(dealer, damageAfterShield, gridManager));
         }
 
         await Task.WhenAll(asyncFunctions);
@@ -107,8 +108,8 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdateSummonerUI();
     }
 
-    public void AddArmor(int amount) {
-        stats.armor += amount;
+    public void AddShield(int amount) {
+        stats.shield += amount;
         UpdateSummonerUI();
     }
 }

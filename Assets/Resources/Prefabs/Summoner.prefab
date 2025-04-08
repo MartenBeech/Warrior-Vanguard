@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4629904731734787304}
   - component: {fileID: 7156091418098559627}
   m_Layer: 5
-  m_Name: ArmorText
+  m_Name: ShieldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 8963284234149479179}
   - component: {fileID: 7818641041793133215}
   m_Layer: 5
-  m_Name: ArmorImage
+  m_Name: ShieldImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthText: {fileID: 3581712586863337559}
-  armorText: {fileID: 757708263026157578}
+  shieldText: {fileID: 757708263026157578}
   image: {fileID: 4669683662829854637}
-  armorImage: {fileID: 1835635778213387153}
+  shieldImage: {fileID: 1835635778213387153}
   tooltipManager: {fileID: 0}
