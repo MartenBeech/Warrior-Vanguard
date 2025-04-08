@@ -37,10 +37,11 @@ public class CharacterSpawner : MonoBehaviour {
             }
         }
 
-        GameObject warrior = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
-        warrior.name = $"{stats.title}[{gridIndex.x},{gridIndex.y}]";
-        Character character = warrior.GetComponent<Character>();
-        ObjectAnimation objectAnimation = warrior.GetComponentInChildren<ObjectAnimation>();
+        GameObject warriorObject = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
+        warriorObject.name = stats.title;
+        warriorObject.GetComponent<RectTransform>().localScale = gridManager.GetCellDimension() / warriorObject.GetComponent<RectTransform>().rect.width;
+        Character character = warriorObject.GetComponent<Character>();
+        ObjectAnimation objectAnimation = warriorObject.GetComponentInChildren<ObjectAnimation>();
 
         List<Character> friends = gridManager.GetFriends(stats.alignment);
         foreach (Character friend in friends) {
@@ -55,7 +56,6 @@ public class CharacterSpawner : MonoBehaviour {
         gameManager.RegisterCharacter(character, stats.alignment);
         await objectAnimation.MoveObject(from, gridManager.GetCellPosition(gridIndex));
 
-        warrior.GetComponent<RectTransform>().localScale = gridManager.GetCellDimension() / warrior.GetComponent<RectTransform>().rect.width;
 
         Hand hand = null;
         Transform summonerObject = null;
