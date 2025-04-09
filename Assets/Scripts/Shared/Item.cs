@@ -21,7 +21,19 @@ public class Item : MonoBehaviour {
     }
 
     public virtual async Task UseAfterWarriorSpawn(WarriorStats stats, Vector2 gridIndex) {
-        await Task.Delay(0); //This removes the CS1998 warning
+        await Task.Delay(0); // This removes the CS1998 warning
+        // This metod should be overridden by each item
+    }
+
+    public virtual void UseStartOfCombat(Summoner summoner) {
+        // This metod should be overridden by each item
+    }
+
+    public virtual void UseStartOfTurn(Summoner summoner) {
+        // This metod should be overridden by each item
+    }
+
+    public virtual void UseOnWarriorDeath(Summoner summoner) {
         // This metod should be overridden by each item
     }
 }

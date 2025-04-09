@@ -11,7 +11,7 @@ public class SummonerStats {
         this.description = description;
         this.health = health;
         this.healthMax = healthMax;
-        shield = 3;
+        shield = 0;
     }
 
     public SummonerStats() {

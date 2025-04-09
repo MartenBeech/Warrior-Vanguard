@@ -19,6 +19,18 @@ public class CLASSNAME : Item {
     }
 
     public override async Task UseAfterWarriorSpawn(WarriorStats stats, Vector2 gridIndex) {
-        await Task.Delay(0); //This removes the CS1998 warning
+        await Task.Delay(0); // This removes the CS1998 warning
+    }
+
+    public override void UseStartOfCombat(Summoner summoner) {
+
+    }
+
+    public override void UseStartOfTurn(Summoner summoner) {
+
+    }
+
+    public override void UseOnWarriorDeath(Summoner summoner) {
+
     }
 }

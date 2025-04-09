@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6285cf0de8ae9d64fb7bc5069e740228
+guid: 031c729b6e5adc74590bcefcae409eda
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1329962797233337312
-    second: Cracked Egg_0
+      213: 5466706822965769557
+    second: ChatGPT Image Apr 9, 2025, 09_56_13 PM 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cracked Egg_0
+      name: ChatGPT Image Apr 9, 2025, 09_56_13 PM 1_0
       rect:
         serializedVersion: 2
         x: 43
-        y: 79
-        width: 883
-        height: 876
+        y: 24
+        width: 963
+        height: 987
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 02c0c62e1e50b8de0800000000000000
-      internalID: -1329962797233337312
+      spriteID: 555341244e4addb40800000000000000
+      internalID: 5466706822965769557
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cracked Egg_0: -1329962797233337312
+      ChatGPT Image Apr 9, 2025, 09_56_13 PM 1_0: 5466706822965769557
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

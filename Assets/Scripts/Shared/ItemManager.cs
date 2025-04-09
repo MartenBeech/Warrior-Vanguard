@@ -7,6 +7,9 @@ public static class ItemManager {
     static string availableItemsKey = "availableItems";
     public static List<Item> items = new();
     private static List<Item> allItems = new() {
+            new Recycle().GetItem(),
+            new TurtleUp().GetItem(),
+            new TurtleAssembler().GetItem(),
             new CrackedEgg().GetItem(),
             new SmallHeart().GetItem(),
             new BigHeart().GetItem(),
@@ -26,7 +29,8 @@ public static class ItemManager {
     public static Item GetRandomItem() {
         availableItems = LoadAvailableItems();
 
-        int randomIndex = Rng.Range(0, availableItems.Count);
+        int randomIndex = 0; // TODO: Replace this line with the below one after testing
+        // int randomIndex = Rng.Range(0, availableItems.Count);
         Item randomItem = availableItems[randomIndex];
         availableItems.RemoveAt(randomIndex);
         SaveAvailableItems();
