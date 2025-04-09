@@ -1154,7 +1154,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4800741761136664645, guid: 16c2031cd30024c41b506f5a6902ba81, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 16c2031cd30024c41b506f5a6902ba81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1374,7 +1374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1492728437177811011
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1451,7 +1451,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsObject: {fileID: 4359643759573344040}
   gameSpeedText: {fileID: 4493876974821167445}
-  musicPlayer: {fileID: 0}
   musicPlayerMute: {fileID: 3638287562208505042}
   musicPlayerBars:
   - {fileID: 8424269703570085351}
@@ -1459,8 +1458,9 @@ MonoBehaviour:
   - {fileID: 3434272346565029761}
   - {fileID: 8162133968531144980}
   - {fileID: 1617289506228949157}
-  audioIcon: {fileID: 4800741761136664645, guid: 16c2031cd30024c41b506f5a6902ba81, type: 3}
-  audioIconMute: {fileID: -6450626651749564684, guid: a691b8e0e598bc64cb92028a3823f7fb, type: 3}
+  audioIcon: {fileID: 21300000, guid: 16c2031cd30024c41b506f5a6902ba81, type: 3}
+  audioIconMute: {fileID: 21300000, guid: a691b8e0e598bc64cb92028a3823f7fb, type: 3}
+  settings: {fileID: 0}
 --- !u!1 &4682629696592443714
 GameObject:
   m_ObjectHideFlags: 0
