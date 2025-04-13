@@ -13,16 +13,12 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject shieldImage;
     public TooltipManager tooltipManager;
     public void OnPointerEnter(PointerEventData eventData) {
-        if (tooltipManager) {
-            tooltipManager.transform.position = new Vector2(transform.position.x, transform.position.y + 200);
-            tooltipManager.AddTooltip(stats.title, stats.description);
-        }
+        tooltipManager.transform.position = new Vector2(transform.position.x, transform.position.y + 200);
+        tooltipManager.AddTooltip(stats.title, stats.description);
     }
 
     public void OnPointerExit(PointerEventData eventData) {
-        if (tooltipManager) {
-            tooltipManager.RemoveTooltips();
-        }
+        tooltipManager.RemoveTooltips();
     }
 
     public void UpdateSummonerUI() {

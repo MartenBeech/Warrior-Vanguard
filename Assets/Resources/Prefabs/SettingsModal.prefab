@@ -1449,7 +1449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f587689fd078b43baed5e79f53b4be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsObject: {fileID: 4359643759573344040}
   gameSpeedText: {fileID: 4493876974821167445}
   musicPlayerMute: {fileID: 3638287562208505042}
   musicPlayerBars:

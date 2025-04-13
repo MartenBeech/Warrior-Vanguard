@@ -134,9 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fa0ccb964d4de478bb2c460c662f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Item
-  description: This is an item
+  title: 
+  displayTitle: 
+  description: 
   image: {fileID: 2619659621084207209}
+  tooltipManager: {fileID: 7063491433533792378, guid: 90ac98b555522a640a0f971415153a25, type: 3}
 --- !u!114 &-4722218049515229210
 MonoBehaviour:
   m_ObjectHideFlags: 0

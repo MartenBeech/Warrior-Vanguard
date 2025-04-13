@@ -1,12 +1,20 @@
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Item : MonoBehaviour {
+public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public string title;
     public string displayTitle;
     public string description;
     public GameObject image;
+    private TooltipManager tooltipManager;
+    private float tooltipWidth;
+
+    void Awake() {
+        tooltipManager = FindFirstObjectByType<TooltipManager>();
+        tooltipWidth = tooltipManager.gameObject.GetComponent<RectTransform>().rect.width;
+    }
 
     public void UpdateItemUI() {
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{displayTitle}");
@@ -35,5 +43,14 @@ public class Item : MonoBehaviour {
 
     public virtual void UseOnWarriorDeath(Summoner summoner) {
         // This metod should be overridden by each item
+    }
+
+    public void OnPointerEnter(PointerEventData eventData) {
+        tooltipManager.transform.position = new Vector2((tooltipWidth / 2) + 20, transform.position.y - 125);
+        tooltipManager.AddTooltip(displayTitle, description);
+    }
+
+    public void OnPointerExit(PointerEventData eventData) {
+        tooltipManager.RemoveTooltips();
     }
 }

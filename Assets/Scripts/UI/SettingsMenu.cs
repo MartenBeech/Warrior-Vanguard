@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 
 public class SettingsMenu : MonoBehaviour {
-    public GameObject settingsObject;
     public TextMeshProUGUI gameSpeedText;
     public GameObject musicPlayerMute;
     public GameObject[] musicPlayerBars;
@@ -17,10 +16,10 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void ToggleSettingsEnabled() {
-        if (settingsObject.activeSelf) {
-            settingsObject.SetActive(false);
+        if (gameObject.activeSelf) {
+            gameObject.SetActive(false);
         } else {
-            settingsObject.SetActive(true);
+            gameObject.SetActive(true);
         }
     }
 
