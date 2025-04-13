@@ -5,7 +5,6 @@ public static class DeckManager {
     static string deckKey = "playerDeck";
     public static List<Card> deck = new();
 
-
     public static void AddCard(Card card) {
         deck = LoadDeck();
         deck.Add(card);
@@ -68,7 +67,9 @@ public static class DeckManager {
         foreach (string id in statIds) {
             WarriorStats stats = CardDatabase.GetStatsByTitleAndLevel(id);
             if (stats != null) {
-                Card card = new Card();
+                GameObject newGameObject = new();
+                newGameObject.AddComponent<Card>();
+                Card card = newGameObject.GetComponent<Card>();
                 card.SetStats(stats);
                 tempDeck.Add(card);
             }

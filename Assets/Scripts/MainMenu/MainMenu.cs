@@ -1,13 +1,12 @@
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
-
+    public Card card;
     public void StartNewGame() {
         PlayerPrefs.DeleteAll();
-        
+
         //Start with 10 random cards
         for (int i = 0; i < 10; i++) {
-            Card card = new();
             card.SetStats(CardDatabase.GetRandomWarriorStats());
             DeckManager.AddCard(card);
         }
@@ -16,7 +15,7 @@ public class MainMenu : MonoBehaviour {
         SceneLoader.LoadMap();
     }
 
-    public void ContinueGame() {    
+    public void ContinueGame() {
         SceneLoader.LoadMap();
     }
 
