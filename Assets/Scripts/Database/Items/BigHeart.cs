@@ -1,8 +1,7 @@
 using System.Text.RegularExpressions;
-using UnityEngine;
 
 public class BigHeart : Item {
-    public Item GetItem() {
+    public override Item GetItem() {
         title = GetType().Name;
         description = "All friendly warriors gain 2 health";
         displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");

@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 
 public class Recycle : Item {
-    public Item GetItem() {
+    public override Item GetItem() {
         title = GetType().Name;
         description = "When a friend dies, gain 2 shield";
         displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");

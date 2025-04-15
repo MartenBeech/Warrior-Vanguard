@@ -6,18 +6,27 @@ public static class ItemManager {
     static string itemKey = "playerItems";
     static string availableItemsKey = "availableItems";
     public static List<Item> items = new();
-    private static List<Item> allItems = new() {
-            new Recycle().GetItem(),
-            new TurtleUp().GetItem(),
-            new TurtleAssembler().GetItem(),
-            new CrackedEgg().GetItem(),
-            new SmallHeart().GetItem(),
-            new BigHeart().GetItem(),
-            new WoodenSword().GetItem(),
-            new BigCoin().GetItem(),
-        };
+    private static List<Item> allItems = new();
     private static List<Item> availableItems = new();
     public static ItemsPanel ItemsPanel;
+
+    private static void LoadAllItems() {
+        Type[] itemTypes = new Type[] {
+            typeof(Recycle),
+            typeof(TurtleUp),
+            typeof(TurtleAssembler),
+            typeof(CrackedEgg),
+            typeof(SmallHeart),
+            typeof(BigHeart),
+            typeof(WoodenSword),
+            typeof(BigCoin),
+        };
+
+        foreach (var type in itemTypes) {
+            Item item = CreateItemByTitle(type.Name);
+            allItems.Add(item);
+        }
+    }
 
     public static void AddItem(Item item) {
         items = LoadItems();
@@ -38,11 +47,12 @@ public static class ItemManager {
     }
 
     public static void InitAvailableItems() {
+        LoadAllItems();
         availableItems = allItems;
         SaveAvailableItems();
     }
 
-    public static void SaveItems() {
+    private static void SaveItems() {
         List<string> itemTitles = new();
         foreach (var item in items) {
             itemTitles.Add(item.title);
@@ -68,7 +78,7 @@ public static class ItemManager {
         return tempItems;
     }
 
-    public static void SaveAvailableItems() {
+    private static void SaveAvailableItems() {
         List<string> itemTitles = new();
         foreach (var item in availableItems) {
             itemTitles.Add(item.title);
@@ -79,7 +89,7 @@ public static class ItemManager {
         PlayerPrefs.Save();
     }
 
-    public static List<Item> LoadAvailableItems() {
+    private static List<Item> LoadAvailableItems() {
         List<Item> tempItems = new();
         if (!PlayerPrefs.HasKey(availableItemsKey)) return tempItems;
 
@@ -94,13 +104,17 @@ public static class ItemManager {
         return tempItems;
     }
 
-    // Match titles to item constructors
     private static Item CreateItemByTitle(string title) {
-        if (title == "") return new TrashItem().GetItem();
+        GameObject itemObj = new();
+
+        if (title == "") {
+            Item trashItem = itemObj.AddComponent<TrashItem>();
+            return trashItem;
+        }
 
         Type type = Type.GetType(title);
-        object instance = Activator.CreateInstance(type);
-        Item item = (Item)type.GetMethod("GetItem")?.Invoke(instance, null);
+        Item itemComponent = (Item)itemObj.AddComponent(type);
+        Item item = itemComponent.GetItem();
         return item;
     }
 }

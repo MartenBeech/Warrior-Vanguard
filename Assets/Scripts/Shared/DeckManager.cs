@@ -68,8 +68,7 @@ public static class DeckManager {
             WarriorStats stats = CardDatabase.GetStatsByTitleAndLevel(id);
             if (stats != null) {
                 GameObject newGameObject = new();
-                newGameObject.AddComponent<Card>();
-                Card card = newGameObject.GetComponent<Card>();
+                Card card = newGameObject.AddComponent<Card>();
                 card.SetStats(stats);
                 tempDeck.Add(card);
             }

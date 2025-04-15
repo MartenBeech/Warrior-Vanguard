@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 
 public class TurtleUp : Item {
-    public Item GetItem() {
+    public override Item GetItem() {
         title = GetType().Name;
         description = "Start combat with 10 shield";
         displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");

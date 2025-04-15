@@ -9,12 +9,6 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public string description;
     public GameObject image;
     private TooltipManager tooltipManager;
-    private float tooltipWidth;
-
-    void Awake() {
-        tooltipManager = FindFirstObjectByType<TooltipManager>();
-        tooltipWidth = tooltipManager.gameObject.GetComponent<RectTransform>().rect.width;
-    }
 
     public void UpdateItemUI() {
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{displayTitle}");
@@ -46,11 +40,18 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
+        tooltipManager = FindFirstObjectByType<TooltipManager>();
+        float tooltipWidth = tooltipManager.gameObject.GetComponent<RectTransform>().rect.width;
         tooltipManager.transform.position = new Vector2((tooltipWidth / 2) + 20, transform.position.y - 125);
         tooltipManager.AddTooltip(displayTitle, description);
     }
 
     public void OnPointerExit(PointerEventData eventData) {
         tooltipManager.RemoveTooltips();
+    }
+
+    public virtual Item GetItem() {
+        return this;
+        // This metod should be overridden by each item
     }
 }

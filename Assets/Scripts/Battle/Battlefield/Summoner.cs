@@ -9,7 +9,6 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public SummonerStats stats = new();
     public GameObject healthText;
     public GameObject shieldText;
-    public GameObject image;
     public GameObject shieldImage;
     public TooltipManager tooltipManager;
     public void OnPointerEnter(PointerEventData eventData) {
@@ -22,7 +21,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public void UpdateSummonerUI() {
-        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Summoners/{stats.title}");
+        GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Summoners/{stats.title}");
         healthText.GetComponent<TMP_Text>().text = $"{stats.health}/{stats.healthMax}";
         if (stats.shield > 0) {
             shieldImage.SetActive(true);
