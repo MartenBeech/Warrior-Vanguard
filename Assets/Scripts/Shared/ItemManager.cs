@@ -115,6 +115,8 @@ public static class ItemManager {
         Type type = Type.GetType(title);
         Item itemComponent = (Item)itemObj.AddComponent(type);
         Item item = itemComponent.GetItem();
+
+        UnityEngine.Object.Destroy(itemObj);
         return item;
     }
 }

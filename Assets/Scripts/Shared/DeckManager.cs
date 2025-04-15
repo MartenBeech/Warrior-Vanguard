@@ -71,6 +71,8 @@ public static class DeckManager {
                 Card card = newGameObject.AddComponent<Card>();
                 card.SetStats(stats);
                 tempDeck.Add(card);
+
+                Object.Destroy(newGameObject);
             }
         }
 

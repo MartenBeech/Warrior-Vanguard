@@ -4444,6 +4444,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 420113278869795455, guid: 6c0329d652aee24498d7667ef54f3366, type: 3}
+      propertyPath: tooltipManager
+      value: 
+      objectReference: {fileID: 839917653}
     - target: {fileID: 4669683662829854637, guid: 6c0329d652aee24498d7667ef54f3366, type: 3}
       propertyPath: m_Name
       value: Summoner
@@ -5917,6 +5921,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3503576942632063602, guid: 90ac98b555522a640a0f971415153a25, type: 3}
   m_PrefabInstance: {fileID: 839917651}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &839917653 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7063491433533792378, guid: 90ac98b555522a640a0f971415153a25, type: 3}
+  m_PrefabInstance: {fileID: 839917651}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad00e3dcded940499a182199ca5669f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &848705910
 GameObject:
   m_ObjectHideFlags: 0
@@ -6865,7 +6880,6 @@ GameObject:
   - component: {fileID: 915896368}
   - component: {fileID: 915896371}
   - component: {fileID: 915896370}
-  - component: {fileID: 915896369}
   m_Layer: 5
   m_Name: GoldPanel
   m_TagString: Untagged
@@ -6893,18 +6907,6 @@ RectTransform:
   m_AnchoredPosition: {x: -100, y: 30}
   m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &915896369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915896367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d88fcd4eb6a3ca14f9347f86c76c6a69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &915896370
 MonoBehaviour:
   m_ObjectHideFlags: 0

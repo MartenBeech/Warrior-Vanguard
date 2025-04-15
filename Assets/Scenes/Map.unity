@@ -1345,6 +1345,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3503576942632063602, guid: 90ac98b555522a640a0f971415153a25, type: 3}
   m_PrefabInstance: {fileID: 299783934}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &299783936 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7063491433533792378, guid: 90ac98b555522a640a0f971415153a25, type: 3}
+  m_PrefabInstance: {fileID: 299783934}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad00e3dcded940499a182199ca5669f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &300904562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,6 +2233,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 420113278869795455, guid: 6c0329d652aee24498d7667ef54f3366, type: 3}
+      propertyPath: tooltipManager
+      value: 
+      objectReference: {fileID: 299783936}
     - target: {fileID: 4669683662829854637, guid: 6c0329d652aee24498d7667ef54f3366, type: 3}
       propertyPath: m_Name
       value: Summoner
@@ -3853,7 +3868,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 732042104}
-  - component: {fileID: 732042103}
   - component: {fileID: 732042105}
   m_Layer: 0
   m_Name: RewardManager
@@ -3862,18 +3876,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &732042103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732042102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b24ee455430343741bb4b567019d71f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &732042104
 Transform:
   m_ObjectHideFlags: 0
@@ -8150,7 +8152,6 @@ GameObject:
   - component: {fileID: 1637913136}
   - component: {fileID: 1637913138}
   - component: {fileID: 1637913137}
-  - component: {fileID: 1637913139}
   m_Layer: 5
   m_Name: GoldPanel
   m_TagString: Untagged
@@ -8216,18 +8217,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1637913135}
   m_CullTransparentMesh: 1
---- !u!114 &1637913139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1637913135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d88fcd4eb6a3ca14f9347f86c76c6a69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1674150498
 GameObject:
   m_ObjectHideFlags: 0
@@ -8930,7 +8919,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1794291855}
-  - component: {fileID: 1794291854}
   m_Layer: 0
   m_Name: MapScrollController
   m_TagString: Untagged
@@ -8938,18 +8926,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1794291854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794291853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6d53a464869fa14e8de450d0f66c03f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1794291855
 Transform:
   m_ObjectHideFlags: 0
