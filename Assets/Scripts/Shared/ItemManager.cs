@@ -12,6 +12,9 @@ public static class ItemManager {
 
     private static void LoadAllItems() {
         Type[] itemTypes = new Type[] {
+            typeof(HolyLight),
+            typeof(ThunderStorm),
+            typeof(WarmWelcome),
             typeof(Recycle),
             typeof(TurtleUp),
             typeof(TurtleAssembler),
@@ -19,7 +22,7 @@ public static class ItemManager {
             typeof(SmallHeart),
             typeof(BigHeart),
             typeof(WoodenSword),
-            typeof(BigCoin),
+            typeof(MoneyBag),
         };
 
         foreach (var type in itemTypes) {

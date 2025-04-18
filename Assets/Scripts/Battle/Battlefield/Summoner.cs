@@ -103,8 +103,11 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdateSummonerUI();
     }
 
-    public void AddShield(int amount) {
+    public async Task AddShield(int amount) {
         stats.shield += amount;
         UpdateSummonerUI();
+
+        FloatingText floatingText = FindFirstObjectByType<FloatingText>();
+        await floatingText.CreateFloatingText(transform, $"+{amount} shield", ColorPalette.ColorEnum.gray);
     }
 }

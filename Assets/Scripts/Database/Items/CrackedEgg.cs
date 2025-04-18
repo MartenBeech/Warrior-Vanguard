@@ -10,7 +10,7 @@ public class CrackedEgg : Item {
         return this;
     }
 
-    public override async Task UseAfterWarriorSpawn(WarriorStats stats, Vector2 gridIndex) {
+    public override async Task UseAfterFriendSpawn(WarriorStats stats, Vector2 gridIndex) {
         if (stats.cost >= 5) {
             CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
             WarriorStats random1Cost = CardDatabase.GetRandomWarriorWithSpecificCost(1);

@@ -30,10 +30,12 @@ public class CharacterSpawner : MonoBehaviour {
     }
 
     public async Task Spawn(Vector2 gridIndex, WarriorStats stats, Vector2 from) {
-        if (stats.alignment == Alignment.Friend) {
-            //Activate friendly items
-            foreach (Item item in ItemManager.LoadItems()) {
-                item.UseOnWarriorSpawn(stats);
+
+        foreach (Item item in ItemManager.LoadItems()) {
+            if (stats.alignment == Alignment.Friend) {
+                item.UseOnFriendSpawn(stats);
+            } else if (stats.alignment == Alignment.Enemy) {
+                item.UseOnEnemySpawn(stats);
             }
         }
 
@@ -74,7 +76,11 @@ public class CharacterSpawner : MonoBehaviour {
         character.SetPosition(gridIndex);
 
         foreach (Item item in ItemManager.LoadItems()) {
-            await item.UseAfterWarriorSpawn(stats, gridIndex);
+            if (stats.alignment == Alignment.Friend) {
+                await item.UseAfterFriendSpawn(stats, gridIndex);
+            } else if (stats.alignment == Alignment.Enemy) {
+                await item.UseAfterEnemySpawn(stats, gridIndex);
+            }
         }
     }
 

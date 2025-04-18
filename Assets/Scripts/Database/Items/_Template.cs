@@ -10,27 +10,35 @@ public class CLASSNAME : Item {
         return this;
     }
 
-    public override void UseOnWarriorSpawn(WarriorStats stats) {
-
-    }
-
     public override void UseImmediately() {
 
     }
 
-    public override async Task UseAfterWarriorSpawn(WarriorStats stats, Vector2 gridIndex) {
-        await Task.Delay(0); // This removes the CS1998 warning
-    }
-
-    public override void UseStartOfCombat(Summoner summoner) {
+    public override void UseOnFriendSpawn(WarriorStats stats) {
 
     }
 
-    public override void UseStartOfTurn(Summoner summoner) {
+    public override async Task UseAfterFriendSpawn(WarriorStats stats, Vector2 gridIndex) {
+        await Task.Delay(0);
+    }
+
+    public override void UseOnEnemySpawn(WarriorStats stats) {
 
     }
 
-    public override void UseOnWarriorDeath(Summoner summoner) {
+    public override async Task UseAfterEnemySpawn(WarriorStats stats, Vector2 gridIndex) {
+        await Task.Delay(0);
+    }
 
+    public override async Task UseStartOfCombat(Summoner summoner) {
+        await Task.Delay(0);
+    }
+
+    public override async Task UseStartOfTurn(Summoner summoner) {
+        await Task.Delay(0);
+    }
+
+    public override async Task UseOnWarriorDeath(Summoner summoner) {
+        await Task.Delay(0);
     }
 }

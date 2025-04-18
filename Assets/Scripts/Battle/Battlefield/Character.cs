@@ -232,9 +232,11 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             asyncFunctions.Add(dealer.stats.ability.possess.Trigger(dealer, this, characterSpawner));
         }
 
+        gameObject.SetActive(false);
+
         if (alignment == CharacterSpawner.Alignment.Friend) {
             foreach (Item item in ItemManager.LoadItems()) {
-                item.UseOnWarriorDeath(summonerObject.GetComponent<Summoner>());
+                await item.UseOnWarriorDeath(summonerObject.GetComponent<Summoner>());
             }
         }
 

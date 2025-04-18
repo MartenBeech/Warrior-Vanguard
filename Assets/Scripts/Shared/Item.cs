@@ -14,28 +14,40 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{displayTitle}");
     }
 
-    public virtual void UseOnWarriorSpawn(WarriorStats stats) {
-        // This metod should be overridden by each item
-    }
-
     public virtual void UseImmediately() {
         // This metod should be overridden by each item
     }
 
-    public virtual async Task UseAfterWarriorSpawn(WarriorStats stats, Vector2 gridIndex) {
+    public virtual void UseOnFriendSpawn(WarriorStats stats) {
+        // This metod should be overridden by each item
+    }
+
+    public virtual async Task UseAfterFriendSpawn(WarriorStats stats, Vector2 gridIndex) {
         await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }
 
-    public virtual void UseStartOfCombat(Summoner summoner) {
+    public virtual void UseOnEnemySpawn(WarriorStats stats) {
         // This metod should be overridden by each item
     }
 
-    public virtual void UseStartOfTurn(Summoner summoner) {
+    public virtual async Task UseAfterEnemySpawn(WarriorStats stats, Vector2 gridIndex) {
+        await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }
 
-    public virtual void UseOnWarriorDeath(Summoner summoner) {
+    public virtual async Task UseStartOfCombat(Summoner summoner) {
+        await Task.Delay(0); // This removes the CS1998 warning
+        // This metod should be overridden by each item
+    }
+
+    public virtual async Task UseStartOfTurn(Summoner summoner) {
+        await Task.Delay(0); // This removes the CS1998 warning
+        // This metod should be overridden by each item
+    }
+
+    public virtual async Task UseOnWarriorDeath(Summoner summoner) {
+        await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -230,7 +231,11 @@ public class GridManager : MonoBehaviour {
     }
 
     public List<Character> GetCharacters() {
-        return allCharacters;
+        List<Character> characters = new();
+        foreach (var character in allCharacters) {
+            characters.Add(character);
+        }
+        return characters;
     }
 
     public List<Character> GetFriends(CharacterSpawner.Alignment alignment) {
@@ -251,6 +256,12 @@ public class GridManager : MonoBehaviour {
             }
         }
         return enemies;
+    }
+
+    public List<Character> GetDamagedFriends(CharacterSpawner.Alignment alignment) {
+        List<Character> friends = GetFriends(alignment);
+        List<Character> damagedfriends = friends.Where(friend => friend.stats.GetHealth() < friend.stats.GetHealthMax()).ToList();
+        return damagedfriends;
     }
 
     public int GetDistanceBetweenCharacters(Character character1, Character character2) {

@@ -8,7 +8,7 @@ public class WoodenSword : Item {
         return this;
     }
 
-    public override void UseOnWarriorSpawn(WarriorStats stats) {
+    public override void UseOnFriendSpawn(WarriorStats stats) {
         stats.AddStrength(1);
     }
 }

@@ -10,9 +10,8 @@ public class LifeTransfer {
 
     public async Task<bool> Trigger(Character dealer, int damage, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            List<Character> friends = gridManager.GetFriends(dealer.alignment);
-            friends.Remove(dealer);
-            List<Character> damagedfriends = friends.Where(friend => friend.stats.GetHealth() < friend.stats.GetHealthMax()).ToList();
+            List<Character> damagedfriends = gridManager.GetDamagedFriends(dealer.alignment);
+            damagedfriends.Remove(dealer);
             if (damagedfriends.Count == 0) return false;
 
             Character randomDamagedFriend = damagedfriends[Rng.Range(0, damagedfriends.Count)];

@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-public class BigCoin : Item {
+public class MoneyBag : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Immediately gain 200 gold";

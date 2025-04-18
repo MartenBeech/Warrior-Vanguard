@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 public class Recycle : Item {
     public override Item GetItem() {
@@ -8,7 +9,7 @@ public class Recycle : Item {
         return this;
     }
 
-    public override void UseOnWarriorDeath(Summoner summoner) {
-        summoner.AddShield(2);
+    public override async Task UseOnWarriorDeath(Summoner summoner) {
+        await summoner.AddShield(2);
     }
 }

@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 public class TurtleUp : Item {
     public override Item GetItem() {
@@ -8,7 +9,7 @@ public class TurtleUp : Item {
         return this;
     }
 
-    public override void UseStartOfCombat(Summoner summoner) {
-        summoner.AddShield(10);
+    public override async Task UseStartOfCombat(Summoner summoner) {
+        await summoner.AddShield(10);
     }
 }
