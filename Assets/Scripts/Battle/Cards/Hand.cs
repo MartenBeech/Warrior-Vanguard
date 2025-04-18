@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using System.Diagnostics;
 
 public class Hand : MonoBehaviour {
     public Transform handObject;

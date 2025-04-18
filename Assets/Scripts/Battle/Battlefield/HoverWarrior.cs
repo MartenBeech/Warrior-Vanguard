@@ -5,7 +5,7 @@ public class HoverWarrior : MonoBehaviour {
     public GameObject cardObject;
     public TooltipManager tooltipManager;
 
-    const float battlefieldCardOffset = 200;
+    const float battlefieldCardOffset = 225;
     const float cardTooltipOffset = 325;
 
     public void UpdateCardUI(WarriorStats stats) {
@@ -18,7 +18,7 @@ public class HoverWarrior : MonoBehaviour {
         UpdateCardUI(stats);
         float battlefieldCardOffsetCopy = battlefieldCardOffset;
         float cardTooltipOffsetCopy = cardTooltipOffset;
-        if (position.x > 0) {
+        if (position.x > 960) {
             battlefieldCardOffsetCopy *= -1;
             cardTooltipOffsetCopy *= -1;
         }
@@ -30,8 +30,8 @@ public class HoverWarrior : MonoBehaviour {
 
     public void ShowCardFromHand(WarriorStats stats) {
         UpdateCardUI(stats);
-        hoverPanel.transform.position = new Vector2(0, 0);
-        tooltipManager.transform.position = new Vector2(cardTooltipOffset, 0);
+        hoverPanel.transform.position = new Vector2(960, 540);
+        tooltipManager.transform.position = new Vector2(960 + cardTooltipOffset, 540);
         cardObject.SetActive(true);
         DisplayTooltips(stats);
     }
