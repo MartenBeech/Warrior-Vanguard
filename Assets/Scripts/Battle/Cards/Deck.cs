@@ -38,7 +38,7 @@ public class Deck : MonoBehaviour {
 
         Vector2 deckPos = transform.position;
         Vector2 handPos = handObject.transform.position;
-        Vector2 centerPos = new(920, 540);
+        Vector2 centerPos = new(920, 490);
 
         GameObject cardInstance = Instantiate(cardPrefab, deckPos, Quaternion.identity, transform);
         ObjectAnimation objectAnimation = cardInstance.GetComponentInChildren<ObjectAnimation>();
