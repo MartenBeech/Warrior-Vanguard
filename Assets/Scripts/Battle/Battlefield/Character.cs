@@ -23,6 +23,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public enum DamageType {
         Physical, Magical
     };
+    public enum ClassType {
+        None, Undead, Human
+    }
     private Hand hand;
     private CharacterSpawner characterSpawner;
     private Transform summonerObject;

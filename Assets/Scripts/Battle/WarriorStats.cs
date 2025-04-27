@@ -24,6 +24,7 @@ public class WarriorStats {
     public CardRarity rarity = CardRarity.Common;
     public int level = 0;
     public Character.DamageType damageType = Character.DamageType.Physical;
+    public Character.ClassType classType = Character.ClassType.None;
     public CharacterSpawner.Alignment alignment;
     public CardType cardType = CardType.warrior;
     public SpellTarget spellTarget = SpellTarget.none;
@@ -45,6 +46,7 @@ public class WarriorStats {
         alignment = stats.alignment;
         cardType = stats.cardType;
         spellTarget = stats.spellTarget;
+        classType = stats.classType;
 
         for (int i = 0; i < 2; i++) {
             strength[i] = stats.strength[i];

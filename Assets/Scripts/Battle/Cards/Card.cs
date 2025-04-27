@@ -11,6 +11,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public GameObject image;
     public TMP_Text titleText;
     public TMP_Text abilityText;
+    public TMP_Text classText;
     public GameObject rangeImage;
     public GameObject speedImage;
     public WarriorStats stats = new();
@@ -23,6 +24,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         cleanTitle = Regex.Replace(cleanTitle, "(?<!^)([A-Z])", " $1");
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{cleanTitle}");
         titleText.text = $"{cleanTitle}";
+        classText.text = $"{stats.classType}";
 
         if (stats.cardType == CardType.warrior) {
             attackText.text = $"{stats.GetStrength()}";
@@ -48,6 +50,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             speedImage.SetActive(false);
             attackText.text = "";
             healthText.text = "";
+            classText.text = "";
         }
     }
 

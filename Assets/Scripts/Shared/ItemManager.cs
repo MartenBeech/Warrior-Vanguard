@@ -23,6 +23,8 @@ public static class ItemManager {
             typeof(BigHeart),
             typeof(WoodenSword),
             typeof(MoneyBag),
+            typeof(UndeadRing),
+            typeof(HumanRing),
         };
 
         foreach (var type in itemTypes) {
@@ -41,7 +43,7 @@ public static class ItemManager {
     public static Item GetRandomItem() {
         availableItems = LoadAvailableItems();
 
-        int randomIndex = 0; // TODO: Replace this line with the below one after testing
+        int randomIndex = 11; // TODO: Replace this line with the below one after testing
         // int randomIndex = Rng.Range(0, availableItems.Count);
         Item randomItem = availableItems[randomIndex];
         availableItems.RemoveAt(randomIndex);
