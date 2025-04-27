@@ -30,10 +30,9 @@ public class TileManager : MonoBehaviour {
 
                 //TODO: Scroll to finished tile
 
-                if (mapTiles[i].tileType == MapTile.TileType.Battlefield) {
+                if (mapTiles[i].tileType == MapTile.TileType.Battlefield && PlayerPrefs.GetInt($"RewardChosen", 0) == 0) {
                     rewardManager.ShowReward(mapTiles[i].enemyType);
                 }
-
             }
         }
     }

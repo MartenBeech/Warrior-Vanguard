@@ -35,6 +35,8 @@ public class RewardManager : MonoBehaviour {
     public void SelectCard(Card card) {
         ClosePopup();
         deckBuilder.AddCardToDeck(card);
+        PlayerPrefs.SetInt($"RewardChosen", 1);
+        PlayerPrefs.Save();
     }
 
     public void SkipReward() {

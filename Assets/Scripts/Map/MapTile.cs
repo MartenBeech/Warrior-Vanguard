@@ -63,6 +63,7 @@ public class MapTile : MonoBehaviour {
         tileManager.ClearLastCompleted();
         tileManager.MarkTileAsCompleted(this);
         LevelManager.SetCurrentTile(this);
+        PlayerPrefs.SetInt($"RewardChosen", 0);
 
         switch (tileType) {
             case TileType.Battlefield:
