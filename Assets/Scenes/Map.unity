@@ -716,7 +716,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 89459925}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 732042105}
+        m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+        m_MethodName: SelectCard
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 89459920}
+          m_ObjectArgumentAssemblyTypeName: Card, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &89459927
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4692,7 +4704,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 861179625}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 732042105}
+        m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+        m_MethodName: SelectCard
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 861179620}
+          m_ObjectArgumentAssemblyTypeName: Card, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &861179627
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7506,7 +7530,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1398919496}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 732042105}
+        m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+        m_MethodName: SelectCard
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1398919491}
+          m_ObjectArgumentAssemblyTypeName: Card, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1398919498
 CanvasRenderer:
   m_ObjectHideFlags: 0
