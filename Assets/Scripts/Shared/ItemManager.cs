@@ -23,7 +23,7 @@ public static class ItemManager {
             typeof(BigHeart),
             typeof(WoodenSword),
             typeof(MoneyBag),
-            typeof(UndeadRing),
+            typeof(VampireRing),
             typeof(HumanRing),
         };
 

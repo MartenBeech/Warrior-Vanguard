@@ -23,8 +23,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public enum DamageType {
         Physical, Magical
     };
-    public enum ClassType {
-        None, Undead, Human
+    public enum Race {
+        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human
     }
     private Hand hand;
     private CharacterSpawner characterSpawner;

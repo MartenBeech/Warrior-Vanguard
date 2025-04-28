@@ -9,7 +9,7 @@ public class ZombieHydra {
             range = 2,
             level = 1,
             damageType = Character.DamageType.Physical,
-            classType = Character.ClassType.Undead,
+            race = Character.Race.Zombie,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

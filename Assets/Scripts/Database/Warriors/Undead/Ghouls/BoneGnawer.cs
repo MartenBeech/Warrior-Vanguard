@@ -8,7 +8,7 @@ public class BoneGnawer {
             speed = 3,
             range = 2,
             damageType = Character.DamageType.Physical,
-            classType = Character.ClassType.Undead,
+            race = Character.Race.Ghoul,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

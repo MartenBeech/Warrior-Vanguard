@@ -164,7 +164,7 @@ MonoBehaviour:
   image: {fileID: 7848206802544682554}
   titleText: {fileID: 2855779047729936521}
   abilityText: {fileID: 2398275078950326991}
-  classText: {fileID: 6150487615768610674}
+  raceText: {fileID: 6150487615768610674}
   rangeImage: {fileID: 5383257627995781560}
   speedImage: {fileID: 6680957761534287780}
 --- !u!114 &4471209195622854212
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 2529604357754290676}
   - component: {fileID: 6150487615768610674}
   m_Layer: 5
-  m_Name: Text Class
+  m_Name: Text Race
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
