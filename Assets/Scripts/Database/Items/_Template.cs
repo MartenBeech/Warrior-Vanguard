@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -6,7 +5,6 @@ public class CLASSNAME : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "DESCRIPTION";
-        displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");
         return this;
     }
 

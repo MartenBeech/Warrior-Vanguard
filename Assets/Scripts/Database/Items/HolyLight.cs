@@ -1,12 +1,10 @@
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 public class HolyLight : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Heal a random friend by 2 each turn";
-        displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");
         return this;
     }
 

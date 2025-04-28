@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -6,7 +5,6 @@ public class WarmWelcome : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Enemies take 1 magical damage when summoned";
-        displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");
         return this;
     }
 

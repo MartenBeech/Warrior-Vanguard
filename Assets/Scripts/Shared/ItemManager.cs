@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public static class ItemManager {
@@ -12,6 +13,8 @@ public static class ItemManager {
 
     private static void LoadAllItems() {
         Type[] itemTypes = new Type[] {
+            typeof(VampireRing),
+            typeof(HumanRing),
             typeof(HolyLight),
             typeof(ThunderStorm),
             typeof(WarmWelcome),
@@ -23,8 +26,6 @@ public static class ItemManager {
             typeof(BigHeart),
             typeof(WoodenSword),
             typeof(MoneyBag),
-            typeof(VampireRing),
-            typeof(HumanRing),
         };
 
         foreach (var type in itemTypes) {
@@ -43,7 +44,7 @@ public static class ItemManager {
     public static Item GetRandomItem() {
         availableItems = LoadAvailableItems();
 
-        int randomIndex = 11; // TODO: Replace this line with the below one after testing
+        int randomIndex = 0; // TODO: Replace this line with the below one after testing
         // int randomIndex = Rng.Range(0, availableItems.Count);
         Item randomItem = availableItems[randomIndex];
         availableItems.RemoveAt(randomIndex);
@@ -120,6 +121,7 @@ public static class ItemManager {
         Type type = Type.GetType(title);
         Item itemComponent = (Item)itemObj.AddComponent(type);
         Item item = itemComponent.GetItem();
+        item.displayTitle = Regex.Replace(item.title, "(?<!^)([A-Z])", " $1");
 
         UnityEngine.Object.Destroy(itemObj);
         return item;

@@ -1,12 +1,10 @@
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 public class ThunderStorm : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Deal 1 magical damage to all warriors each turn";
-        displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");
         return this;
     }
 

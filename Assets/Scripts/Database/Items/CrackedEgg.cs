@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -6,7 +5,6 @@ public class CrackedEgg : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "When you summon a 5+ cost warrior, it summons a 1 cost warrior";
-        displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");
         return this;
     }
 
