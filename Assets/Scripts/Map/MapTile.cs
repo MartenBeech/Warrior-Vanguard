@@ -65,6 +65,9 @@ public class MapTile : MonoBehaviour {
         LevelManager.SetCurrentTile(this);
         PlayerPrefs.SetInt($"RewardChosen", 0);
 
+        string enemySummonerName = gameObject.GetComponent<Image>().sprite.name;
+        GameManager.enemySummonerName = enemySummonerName;
+
         switch (tileType) {
             case TileType.Battlefield:
                 SceneLoader.LoadBattlefield();

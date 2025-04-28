@@ -3,7 +3,7 @@ public class CorpseBehemoth {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = 7,
-            strength = new int[] { 4, 6 },
+            strength = new int[] { 4, 5 },
             health = new int[] { 7, 7 },
             speed = 2,
             range = 2,
@@ -16,7 +16,7 @@ public class CorpseBehemoth {
 
         WarriorAbility ability = stats.ability;
         ability.revive.Add();
-        ability.poison.Add(4, 6);
+        ability.poison.Add(4, 5);
         ability.poisonCloud.Add(2, 3);
 
         return stats;

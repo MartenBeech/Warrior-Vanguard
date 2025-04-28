@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,14 +16,19 @@ public class GameManager : MonoBehaviour {
     public Deck enemyDeck;
     public Hand enemyHand;
     public static CharacterSpawner.Alignment turn;
+    public static string enemySummonerName;
 
     async void Awake() {
         Summoner friendSummoner = friendSummonerObject.GetComponent<Summoner>();
         friendSummoner.SetStats(new SummonerStats(Angel.title, Angel.description, Angel.currentHealth, Angel.maxHealth));
-        Summoner enemySummoner = enemySummonerObject.GetComponent<Summoner>();
-        enemySummoner.SetStats(new Devil().GetSummoner());
         friendDeck.GetDeck();
-        enemyDeck.GetDeck();
+
+        Summoner enemySummoner = enemySummonerObject.GetComponent<Summoner>();
+        Type type = Type.GetType(enemySummonerName);
+        object instance = Activator.CreateInstance(type);
+        enemySummoner.SetStats((SummonerStats)type.GetMethod("GetSummoner")?.Invoke(instance, null));
+        enemyDeck.deck = (List<WarriorStats>)type.GetMethod("GetDeck")?.Invoke(instance, null);
+
         List<Task> asyncFunctions = new();
         for (int i = 0; i < 3; i++) {
             asyncFunctions.Add(friendDeck.DrawCard(false));
@@ -124,3 +130,4 @@ public class GameManager : MonoBehaviour {
         EndEnemyTurn();
     }
 }
+

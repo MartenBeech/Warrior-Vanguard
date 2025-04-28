@@ -7,7 +7,6 @@ public class ZombieHydra {
             health = new int[] { 6, 9 },
             speed = 2,
             range = 2,
-            level = 1,
             damageType = Character.DamageType.Physical,
             race = Character.Race.Zombie,
         };

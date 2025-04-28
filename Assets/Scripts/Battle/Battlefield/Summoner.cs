@@ -13,7 +13,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public TooltipManager tooltipManager;
     public void OnPointerEnter(PointerEventData eventData) {
         tooltipManager.transform.position = new Vector2(transform.position.x, transform.position.y + 200);
-        tooltipManager.AddTooltip(stats.title, stats.description);
+        tooltipManager.AddTooltip(stats.displayTitle, stats.description);
     }
 
     public void OnPointerExit(PointerEventData eventData) {
