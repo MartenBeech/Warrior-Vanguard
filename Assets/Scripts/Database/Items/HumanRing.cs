@@ -1,7 +1,7 @@
 public class HumanRing : Item {
     public override Item GetItem() {
         title = GetType().Name;
-        description = "All friendly human warriors gain 2 health";
+        description = "All friendly humans gain 2 health";
         return this;
     }
 

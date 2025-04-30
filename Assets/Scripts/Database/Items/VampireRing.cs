@@ -1,7 +1,7 @@
 public class VampireRing : Item {
     public override Item GetItem() {
         title = GetType().Name;
-        description = "All friendly vampires warriors gain 2 health";
+        description = "All friendly vampires gain 2 health";
         return this;
     }
 

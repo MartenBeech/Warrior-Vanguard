@@ -33,6 +33,7 @@ public class ShopManager : MonoBehaviour {
     }
 
     public void ReturnToMap() {
+        TileCompleter.MarkTileAsCompleted();
         SceneLoader.LoadMap();
     }
 }

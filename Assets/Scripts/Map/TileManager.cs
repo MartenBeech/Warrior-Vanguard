@@ -6,7 +6,7 @@ public class TileManager : MonoBehaviour {
     public RectTransform scrollViewPanel;
     public RewardManager rewardManager;
     public GameObject rewardPanel;
-
+    public MapTile currentTile;
 
     private void Start() {
         UpdateTileAccess();
@@ -37,19 +37,10 @@ public class TileManager : MonoBehaviour {
         }
     }
 
-    public void MarkTileAsCompleted(MapTile tile) {
-        if (mapTiles.Contains(tile)) {
-            int tileIndex = mapTiles.IndexOf(tile);
-            PlayerPrefs.SetInt($"TileCompleted_{tileIndex}", 1);
-            PlayerPrefs.SetInt($"LastCompleted_{tileIndex}", 1);
-            PlayerPrefs.Save();
-        }
-    }
-
-    public void ClearLastCompleted() {
-        for (int i = 0; i < mapTiles.Count; i++) {
-            PlayerPrefs.DeleteKey($"LastCompleted_{i}");
-        }
+    public void MarkTileAsCurrent(MapTile tile) {
+        currentTile = tile;
+        int tileIndex = mapTiles.IndexOf(currentTile);
+        TileCompleter.MarkTileAsCompleted(false, tileIndex);
     }
 
     private void LockAllTiles() {

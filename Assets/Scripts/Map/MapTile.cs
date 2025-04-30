@@ -60,8 +60,8 @@ public class MapTile : MonoBehaviour {
 
     private void TileClicked() {
         TileManager tileManager = FindFirstObjectByType<TileManager>();
-        tileManager.ClearLastCompleted();
-        tileManager.MarkTileAsCompleted(this);
+        tileManager.MarkTileAsCurrent(this);
+
         LevelManager.SetCurrentTile(this);
         PlayerPrefs.SetInt($"RewardChosen", 0);
 

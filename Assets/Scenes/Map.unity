@@ -1549,7 +1549,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5372225927811697911, guid: e8e1d2309d33d764ba63343482043a96, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b8bf0d5f54cce5a4fa3898951aee8129, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4003,7 +4003,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -854338657533228003, guid: b71ba390a5055de4e85c346d8be85ade, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b71ba390a5055de4e85c346d8be85ade, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4981,10 +4981,10 @@ RectTransform:
   m_Children:
   - {fileID: 998474681}
   - {fileID: 1244005993}
+  - {fileID: 1637913136}
   - {fileID: 869221429}
   - {fileID: 181024420}
   - {fileID: 805222021}
-  - {fileID: 1637913136}
   - {fileID: 508920833}
   - {fileID: 590506549}
   - {fileID: 299783935}
@@ -8886,6 +8886,7 @@ MonoBehaviour:
   scrollViewPanel: {fileID: 1865669852}
   rewardManager: {fileID: 732042105}
   rewardPanel: {fileID: 1244005992}
+  currentTile: {fileID: 0}
 --- !u!4 &1791771067
 Transform:
   m_ObjectHideFlags: 0

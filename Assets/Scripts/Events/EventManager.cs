@@ -81,6 +81,7 @@ public class EventManager : MonoBehaviour {
         int goldAmount = 25;
         GoldManager.RemoveGold(goldAmount);
         eventText.text = $"A thief stole {goldAmount} gold from you! You cry for a bit but then realise your time is better spent moving on.";
+        TileCompleter.MarkTileAsCompleted();
     }
 
     void GainCardEvent() {
@@ -116,12 +117,14 @@ public class EventManager : MonoBehaviour {
         healthDifference = 5;
         summonerManager.LoseHealth(healthDifference);
         eventText.text = $"An unfriendly skeleton walks up to you and hit you in the face. You leave with {healthDifference} less health and a lot of questions.";
+        TileCompleter.MarkTileAsCompleted();
     }
 
     void GainMaxHealthEvent() {
         healthDifference = 5;
         summonerManager.GainMaxHealth(healthDifference);
         eventText.text = $"A stranger walks up to you and gives you a potion. Without hesitation, you drink it and gains {healthDifference} max health. You are happy about your life choices.";
+        TileCompleter.MarkTileAsCompleted();
     }
 
     void RemoveCardEvent() {
@@ -171,6 +174,7 @@ public class EventManager : MonoBehaviour {
                 eventText.text = "This unfortunately doesn't seem to do anything.";
                 break;
         }
+        TileCompleter.MarkTileAsCompleted();
     }
 
     public void UpgradeCard(int index) {
@@ -179,6 +183,7 @@ public class EventManager : MonoBehaviour {
         card.stats.level = 1;
         eventText.text = $"You upgraded {card.stats.title}!";
         DeckManager.SaveDeck();
+        TileCompleter.MarkTileAsCompleted();
     }
 
     public void RemoveCard(int index) {
@@ -186,15 +191,18 @@ public class EventManager : MonoBehaviour {
         Card card = DeckManager.GetCard(cardIndexes[index]);
         deckBuilder.RemoveCardFromDeck(cardIndexes[index]);
         eventText.text = $"You removed {card.stats.title} from your deck! We will not be seeing much more of them.";
+        TileCompleter.MarkTileAsCompleted();
     }
 
     public void GainCard(Card card) {
         gainCardPanel.SetActive(false);
         deckBuilder.AddCardToDeck(card);
         eventText.text = $"You added {card.stats.title} to your deck!";
+        TileCompleter.MarkTileAsCompleted();
     }
 
     public void ReturnToMap() {
+        TileCompleter.MarkTileAsCompleted();
         SceneManager.LoadScene("Map");
     }
 }
