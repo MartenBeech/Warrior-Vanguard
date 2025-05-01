@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShopManager : MonoBehaviour {
     public List<Card> cardsForSale = new List<Card>();
     public TMP_Text actionInfoText;
+    public DeckBuilder deckBuilder;
 
     private void Start() {
         PopulateShop();
@@ -21,7 +22,7 @@ public class ShopManager : MonoBehaviour {
 
     public void BuyCard(Card card) {
         if (GoldManager.SpendGold(50)) {
-            DeckManager.AddCard(card);
+            deckBuilder.AddCardToDeck(card);
 
             cardsForSale.Remove(card);
             Destroy(card.gameObject);

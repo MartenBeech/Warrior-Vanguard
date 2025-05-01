@@ -60,7 +60,7 @@ public static class ItemManager {
 
     private static void SaveItems() {
         List<string> itemTitles = new();
-        foreach (var item in items) {
+        foreach (Item item in items) {
             itemTitles.Add(item.title);
         }
 
