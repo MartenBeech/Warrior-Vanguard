@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
     public Deck enemyDeck;
     public Hand enemyHand;
     public static CharacterSpawner.Alignment turn;
-    public static string enemySummonerName;
+    public static string enemySummonerName = "Devil";
 
     async void Awake() {
         Summoner friendSummoner = friendSummonerObject.GetComponent<Summoner>();

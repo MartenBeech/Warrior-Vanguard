@@ -19,6 +19,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public TMP_Text attackText;
     public TMP_Text healthText;
     public GameObject image;
+    public GameObject border;
     private GameManager gameManager;
     public enum DamageType {
         Physical, Magical
@@ -30,12 +31,13 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private CharacterSpawner characterSpawner;
     private Transform summonerObject;
 
-    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner, Transform summonerObject) {
+    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner, Transform summonerObject, HoverWarrior hoverWarrior) {
         this.gameManager = gameManager;
         this.gridManager = gridManager;
         this.hand = hand;
         this.characterSpawner = characterSpawner;
         this.summonerObject = summonerObject;
+        this.hoverWarrior = hoverWarrior;
     }
 
     public void UpdateWarriorUI() {
@@ -44,6 +46,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         string cleanTitle = stats.title.Replace("+", string.Empty);
         cleanTitle = Regex.Replace(cleanTitle, "(?<!^)([A-Z])", " $1");
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{cleanTitle}");
+
+        if (alignment == CharacterSpawner.Alignment.Friend) {
+            border.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
+        } else if (alignment == CharacterSpawner.Alignment.Enemy) {
+            border.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
+        }
 
         if (stats.ability.stealth.GetValue(stats)) {
             image.GetComponent<Image>().color = ColorPalette.AddTransparency(image.GetComponent<Image>().color, 70);
@@ -55,14 +63,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void SetStats(WarriorStats warriorStats) {
         stats = warriorStats;
         UpdateWarriorUI();
-    }
-
-    public void SetAlignment(CharacterSpawner.Alignment alignment) {
-        this.alignment = alignment;
-    }
-
-    public void SetHoverWarrior(HoverWarrior hoverWarrior) {
-        this.hoverWarrior = hoverWarrior;
     }
 
     public void SetPosition(Vector2 position) {

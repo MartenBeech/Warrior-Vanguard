@@ -20,24 +20,28 @@ public class GridCell : MonoBehaviour {
     }
 
     public void Highlight() {
+        isHighlighed = true;
+
+        Character character = gridManager.GetCellCharacter(gridIndex);
+        if (character) {
+            character.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.tealMedium);
+        }
+
         GetComponent<Outline>().enabled = true;
         GetComponent<Outline>().effectColor = ColorPalette.GetColor(ColorPalette.ColorEnum.teal);
         GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.tealWeak);
-        isHighlighed = true;
-        Character character = gridManager.GetCellCharacter(gridIndex);
-        if (character) {
-            character.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.tealWeak);
-        }
     }
 
     public void ClearHighlight() {
-        GetComponent<Outline>().enabled = false;
-        GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
         isHighlighed = false;
+
         Character character = gridManager.GetCellCharacter(gridIndex);
         if (character) {
             character.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
         }
+
+        GetComponent<Outline>().enabled = false;
+        GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
     }
 
     public bool IsHighlighed() {

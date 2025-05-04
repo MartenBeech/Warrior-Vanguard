@@ -50,15 +50,6 @@ public class CharacterSpawner : MonoBehaviour {
             friend.stats.ability.boneSculptor.Trigger(friend, stats);
         }
 
-        character.SetStats(stats);
-        character.gridIndex = gridIndex;
-
-        stats.ability.skeletal.TriggerSummon(character, gameManager);
-
-        gameManager.RegisterCharacter(character, stats.alignment);
-        await objectAnimation.MoveObject(from, gridManager.GetCellPosition(gridIndex));
-
-
         Hand hand = null;
         Transform summonerObject = null;
         if (stats.alignment == Alignment.Friend) {
@@ -68,10 +59,17 @@ public class CharacterSpawner : MonoBehaviour {
             hand = enemyHand;
             summonerObject = enemySummonerObject;
         }
-        character.Initiate(gameManager, gridManager, hand, this, summonerObject);
+        character.Initiate(gameManager, gridManager, hand, this, summonerObject, hoverWarrior);
 
-        character.SetAlignment(stats.alignment);
-        character.SetHoverWarrior(hoverWarrior);
+        character.gridIndex = gridIndex;
+        character.alignment = stats.alignment;
+
+        character.SetStats(stats);
+
+        stats.ability.skeletal.TriggerSummon(character, gameManager);
+
+        gameManager.RegisterCharacter(character, stats.alignment);
+        await objectAnimation.MoveObject(from, gridManager.GetCellPosition(gridIndex));
 
         character.SetPosition(gridIndex);
 
