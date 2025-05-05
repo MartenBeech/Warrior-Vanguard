@@ -34,9 +34,11 @@ public class RewardManager : MonoBehaviour {
                 card.SetStats(stats);
                 card.UpdateCardUi();
             }
+
+            SaveRewardOptions();
         }
 
-        SaveRewardOptions();
+        
     }
 
     public void SelectCard(Card card) {

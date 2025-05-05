@@ -12,6 +12,7 @@ public static class TileCompleter {
             ClearLastCompleted();
             PlayerPrefs.SetInt($"TileCompleted_{currentTileIndex}", 1);
             PlayerPrefs.SetInt($"LastCompleted_{currentTileIndex}", 1);
+            PlayerPrefs.DeleteKey($"TileActive");
             PlayerPrefs.Save();
         }
     }

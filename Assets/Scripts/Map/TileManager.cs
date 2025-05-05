@@ -14,6 +14,7 @@ public class TileManager : MonoBehaviour {
 
     private void UpdateTileAccess() {
         LockAllTiles();
+        bool isTileActive = PlayerPrefs.HasKey("TileActive");
 
         for (int i = 0; i < mapTiles.Count; i++) {
             bool isCompleted = PlayerPrefs.GetInt($"TileCompleted_{i}", 0) == 1;
@@ -25,7 +26,7 @@ public class TileManager : MonoBehaviour {
                 mapTiles[i].MarkAsIncompleted();
             }
 
-            if (isLastCompleted) {
+            if (!isTileActive && isLastCompleted) {
                 mapTiles[i].UnlockNextTiles();
 
                 //TODO: Scroll to finished tile
@@ -35,12 +36,18 @@ public class TileManager : MonoBehaviour {
                 }
             }
         }
+
+        if (isTileActive) {
+            int activeTileIndex = PlayerPrefs.GetInt("TileActive", 0);
+            mapTiles[activeTileIndex].SetUnlocked(true);
+        }
     }
 
     public void MarkTileAsCurrent(MapTile tile) {
         currentTile = tile;
         int tileIndex = mapTiles.IndexOf(currentTile);
         TileCompleter.MarkTileAsCompleted(false, tileIndex);
+        PlayerPrefs.SetInt($"TileActive", tileIndex);
     }
 
     private void LockAllTiles() {
