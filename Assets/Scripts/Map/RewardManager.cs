@@ -29,8 +29,13 @@ public class RewardManager : MonoBehaviour {
             CardRarity rarity = enemyType == MapTile.EnemyType.Miniboss ? CardRarity.Legendary :
                                         CardRarity.Common;
 
+            List<WarriorStats> usedStats = new List<WarriorStats>();
             foreach (Card card in rewardedCards) {
-                WarriorStats stats = CardDatabase.GetRandomWarriorStats(rarity);
+                WarriorStats stats;
+                do {
+                    stats = CardDatabase.GetRandomWarriorStats(rarity);
+                } while (usedStats.Contains(stats));
+                usedStats.Add(stats);
                 card.SetStats(stats);
                 card.UpdateCardUi();
             }

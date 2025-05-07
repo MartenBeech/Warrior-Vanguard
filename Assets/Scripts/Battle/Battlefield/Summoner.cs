@@ -77,16 +77,11 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         await Task.WhenAll(asyncFunctions);
 
         if (stats.health <= 0) {
-            switch (stats.title) {
-                case "Angel":
-                    LevelManager.LoseLevel();
-                    return;
-                case "Devil":
-                    LevelManager.CompleteLevel();
-                    return;
-                default:
-                    LevelManager.CompleteLevel();
-                    return;
+            //TODO: Summoners should have a bool for isFriendly in case we will make different summoners to choose from.
+            if (stats.title == "Angel") {
+                LevelManager.LoseLevel();
+            } else {
+                LevelManager.CompleteLevel();
             }
         }
     }

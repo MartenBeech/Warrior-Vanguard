@@ -16,11 +16,13 @@ public class ShopManager : MonoBehaviour {
         if (PlayerPrefs.HasKey(shopCardsKey)) {
             LoadShop();
         } else {
+            List<WarriorStats> tempCards = new List<WarriorStats>(CardDatabase.allCards);
             foreach (Card card in cardsForSale) {
-                int randomIndex = Random.Range(0, CardDatabase.allCards.Count);
-                WarriorStats stats = CardDatabase.allCards[randomIndex];
+                int randomIndex = Random.Range(0, tempCards.Count);
+                WarriorStats stats = tempCards[randomIndex];
                 card.SetStats(stats);
                 card.UpdateCardUi();
+                tempCards.RemoveAt(randomIndex);
             }
 
             SaveShop();

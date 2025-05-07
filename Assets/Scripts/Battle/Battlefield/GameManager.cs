@@ -103,7 +103,6 @@ public class GameManager : MonoBehaviour {
     }
 
     public void WinFight() {
-        TileCompleter.MarkTileAsCompleted();
         LevelManager.CompleteLevel();
     }
 
