@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class EventManager : MonoBehaviour {
     public TMP_Text eventText;
@@ -12,6 +14,10 @@ public class EventManager : MonoBehaviour {
     public GameObject removeCardPanel;
     public GameObject gainCardPanel;
     public GameObject acceptButton;
+    public GameObject itemRewardPanel;
+    public GameObject itemImage;
+    public GameObject itemTitle;
+    public GameObject itemDescription;
     public DeckBuilder deckBuilder;
     public SummonerManager summonerManager;
     enum events {
@@ -35,6 +41,7 @@ public class EventManager : MonoBehaviour {
         removeCardPanel.SetActive(false);
         gainCardPanel.SetActive(false);
         acceptButton.SetActive(false);
+        itemRewardPanel.SetActive(false);
         TriggerRandomEvent();
     }
 
@@ -153,6 +160,11 @@ public class EventManager : MonoBehaviour {
             return;
         }
 
+        itemRewardPanel.SetActive(true);
+        itemImage.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{item.displayTitle}");
+        itemTitle.GetComponent<TMP_Text>().text = item.displayTitle;
+        itemDescription.GetComponent<TMP_Text>().text = item.description;
+
         eventText.text = $"You find a mysterious item on the ground called {item.displayTitle}. Do you want to pick it up?";
         acceptButton.SetActive(true);
     }
@@ -169,6 +181,7 @@ public class EventManager : MonoBehaviour {
                 ItemManager.AddItem(item);
                 eventText.text = $"You picked up {item.displayTitle}!";
                 acceptButton.SetActive(false);
+                itemRewardPanel.SetActive(false);
                 break;
             default:
                 eventText.text = "This unfortunately doesn't seem to do anything.";
