@@ -19,7 +19,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public TMP_Text attackText;
     public TMP_Text healthText;
     public GameObject image;
-    public GameObject border;
+    public GameObject crystal;
     private GameManager gameManager;
     public enum DamageType {
         Physical, Magical
@@ -48,9 +48,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{cleanTitle}");
 
         if (alignment == CharacterSpawner.Alignment.Friend) {
-            border.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
+            crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
         } else if (alignment == CharacterSpawner.Alignment.Enemy) {
-            border.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
+            crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
         }
 
         if (stats.ability.stealth.GetValue(stats)) {
