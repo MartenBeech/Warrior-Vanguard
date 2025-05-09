@@ -10,6 +10,7 @@ public class PoisonPotion {
             "Apply 2 poison to an enemy",
             "Apply 3 poison to an enemy"
             },
+            race = Character.Race.Dark,
             cardType = CardType.spell,
         };
 

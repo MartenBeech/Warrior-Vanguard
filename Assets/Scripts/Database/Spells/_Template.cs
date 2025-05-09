@@ -11,6 +11,7 @@ public class CLASSNAMESPELL {
             "UNUPGRADED_DESCRIPTION",
             "UPGRADED_DESCRIPTION"
             },
+            race = Character.Race.None,
             cardType = CardType.spell,
         };
 

@@ -11,6 +11,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public GameObject image;
     public TMP_Text titleText;
     public TMP_Text abilityText;
+    public GameObject racePanel;
     public TMP_Text raceText;
     public GameObject rangeImage;
     public GameObject speedImage;
@@ -50,7 +51,14 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             speedImage.SetActive(false);
             attackText.text = "";
             healthText.text = "";
+            raceText.text = $"{stats.race}";
+        }
+
+        if (stats.race == Character.Race.None) {
+            racePanel.SetActive(false);
             raceText.text = "";
+        } else {
+            racePanel.SetActive(true);
         }
     }
 

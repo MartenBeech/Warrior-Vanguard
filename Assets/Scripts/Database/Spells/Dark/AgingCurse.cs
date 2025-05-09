@@ -11,6 +11,7 @@ public class AgingCurse {
             "Reduce an enemy's strength, health and speed to half",
             "Reduce an enemy's strength, health and speed to 1/3"
             },
+            race = Character.Race.Dark,
             cardType = CardType.spell,
         };
 

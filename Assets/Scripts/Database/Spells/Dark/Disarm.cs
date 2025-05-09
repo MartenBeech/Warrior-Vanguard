@@ -10,6 +10,7 @@ public class Disarm {
             "Set an enemy's strength to 1",
             "Set an enemy's strength to 0"
             },
+            race = Character.Race.Dark,
             cardType = CardType.spell,
         };
 

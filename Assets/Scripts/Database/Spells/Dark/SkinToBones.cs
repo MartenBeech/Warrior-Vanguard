@@ -11,6 +11,7 @@ public class SkinToBones {
             "Kill an enemy and summon a skeleton for its owner",
             "Kill an enemy and summon a skeleton for you"
             },
+            race = Character.Race.Dark,
             cardType = CardType.spell,
         };
 

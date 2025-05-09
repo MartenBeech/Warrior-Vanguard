@@ -164,6 +164,7 @@ MonoBehaviour:
   image: {fileID: 7848206802544682554}
   titleText: {fileID: 2855779047729936521}
   abilityText: {fileID: 2398275078950326991}
+  racePanel: {fileID: 5969245008289586141}
   raceText: {fileID: 6150487615768610674}
   rangeImage: {fileID: 5383257627995781560}
   speedImage: {fileID: 6680957761534287780}

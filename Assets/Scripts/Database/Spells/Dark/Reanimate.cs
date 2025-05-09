@@ -10,6 +10,7 @@ public class Reanimate {
             "Give a friend 'Revive' and set its health to 1",
             "Give a friend 'Revive'"
             },
+            race = Character.Race.Dark,
             cardType = CardType.spell,
         };
 

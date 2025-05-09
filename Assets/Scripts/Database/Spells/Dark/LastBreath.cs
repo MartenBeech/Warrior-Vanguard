@@ -11,6 +11,7 @@ public class LastBreath {
             "Set an enemy's health to 1",
             "Kill an enemy"
             },
+            race = Character.Race.Dark,
             cardType = CardType.spell,
         };
 

@@ -11,6 +11,7 @@ public class UnholyStorm {
             "Reduce all enemies' strength by 2 (minimum 1)",
             "Reduce all enemies' strength by 3 (minimum 1)"
             },
+            race = Character.Race.Dark,
             cardType = CardType.spell,
         };
 
