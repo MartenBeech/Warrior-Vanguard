@@ -3,10 +3,10 @@ using UnityEngine;
 public class Stealth {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"Take half damage. {WarriorAbility.Keywords.Attack}: Deal double damage and break stealth";
+        return $"Take half damage. {WarriorAbility.Keywords.Strike}: Deal double damage and break stealth";
     }
 
-    public int TriggerAttack(Character dealer, int damage) {
+    public int TriggerStrike(Character dealer, int damage) {
         if (GetValue(dealer.stats)) {
             damage *= 2;
             if (!dealer.stats.ability.permaStealth.GetValue(dealer.stats)) {

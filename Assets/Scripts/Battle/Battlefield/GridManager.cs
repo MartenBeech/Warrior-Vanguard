@@ -270,4 +270,15 @@ public class GridManager : MonoBehaviour {
         float dist = Mathf.Abs(character1.gridIndex.x - character2.gridIndex.x);
         return (int)dist;
     }
+
+    public Character GetCharacterBehindTarget(Vector2 targetGridIndex, CharacterSpawner.Alignment dealerAlignment) {
+        Character character = null;
+        if (dealerAlignment == CharacterSpawner.Alignment.Friend) {
+            character = GetCellCharacter(targetGridIndex + new Vector2(1, 0));
+        } else if (dealerAlignment == CharacterSpawner.Alignment.Enemy) {
+            character = GetCellCharacter(targetGridIndex - new Vector2(1, 0));
+        }
+
+        return character;
+    }
 }

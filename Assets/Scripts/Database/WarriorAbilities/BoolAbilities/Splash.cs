@@ -13,7 +13,7 @@ public class Splash {
             List<Task> asyncFunctions = new();
             foreach (Character character in characters) {
                 if (character.alignment != dealer.alignment) {
-                    asyncFunctions.Add(dealer.Strike(character, dealer.stats.GetStrength()));
+                    asyncFunctions.Add(dealer.Strike(character));
                 }
             }
 

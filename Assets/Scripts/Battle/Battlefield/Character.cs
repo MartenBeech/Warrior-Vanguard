@@ -25,7 +25,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Physical, Magical
     };
     public enum Race {
-        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark
+        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn
     }
     private Hand hand;
     private CharacterSpawner characterSpawner;
@@ -123,13 +123,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Attack(Character target) {
-        int damage = stats.GetStrength();
-
-        damage = stats.ability.stealth.TriggerAttack(this, damage);
-
         List<Task> asyncFunctions = new() {
             stats.ability.splash.Trigger(this, target, gridManager),
-            Strike(target, damage)
+            stats.ability.pierce.Trigger(this, target, gridManager),
+            Strike(target)
         };
 
         if (target.stats.GetHealth() > 0) {
@@ -154,7 +151,11 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await stats.ability.hitAndRun.Trigger(this);
     }
 
-    public async Task Strike(Character target, int damage) {
+    public async Task Strike(Character target) {
+        int damage = stats.GetStrength();
+
+        damage = stats.ability.stealth.TriggerStrike(this, damage);
+
         stats.ability.poison.Trigger(this, target);
         stats.ability.frozenTouch.Trigger(this, target);
 
@@ -169,6 +170,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public async Task<int> TakeDamage(Character dealer, int damage, DamageType damageType) {
         damage = stats.ability.stealth.TriggerTakeDamage(this, damage);
         damage = stats.ability.armor.Trigger(this, damage, damageType);
+        damage = stats.ability.resistance.Trigger(this, damage, damageType);
 
         damage = stats.ability.incorporeal.Trigger(this, damage, damageType);
 
@@ -183,15 +185,15 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
         }
 
+        dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
+
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString(), ColorPalette.ColorEnum.red, true));
 
-        Color currentColor = dealer.image.GetComponent<Image>().color;
-        dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
-
         await Task.WhenAll(asyncFunctions);
+
         if (dealer) {
-            dealer.image.GetComponent<Image>().color = currentColor;
+            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
         }
 
         return damage;
@@ -201,13 +203,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         stats.AddHealthCurrent(amount);
         UpdateWarriorUI();
 
-        Color currentColor = dealer.image.GetComponent<Image>().color;
         dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green, true);
 
-        dealer.image.GetComponent<Image>().color = currentColor;
+        dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
     }
 
     public async Task Die(Character dealer) {

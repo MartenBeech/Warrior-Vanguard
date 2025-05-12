@@ -1,18 +1,18 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class Retaliate {
+public class Pierce {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"After I get attacked, I strike the attacker";
+        return $"{WarriorAbility.Keywords.Attack}: Also strike the enemy behind the target";
     }
 
     public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
-        if (GetValue(target.stats)) {
-            int dist = gridManager.GetDistanceBetweenCharacters(dealer, target);
-            if (dist > 0 && dist <= target.stats.range) {
-                await target.Strike(dealer);
-                return true;
+        if (GetValue(dealer.stats)) {
+            Character neighbor = gridManager.GetCharacterBehindTarget(target.gridIndex, dealer.alignment);
+            if (neighbor) {
+                await dealer.Strike(neighbor);
             }
+            return true;
         }
         return false;
     }

@@ -73,6 +73,9 @@ public class CharacterSpawner : MonoBehaviour {
 
         character.SetPosition(gridIndex);
 
+        FloatingText floatingText = FindFirstObjectByType<FloatingText>();
+        await stats.ability.massResistance.Trigger(character, gridManager, floatingText);
+
         foreach (Item item in ItemManager.LoadItems()) {
             if (stats.alignment == Alignment.Friend) {
                 await item.UseAfterFriendSpawn(stats, gridIndex);

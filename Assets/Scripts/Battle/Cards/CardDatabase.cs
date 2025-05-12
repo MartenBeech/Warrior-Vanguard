@@ -3,6 +3,10 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new RadiantProtector().GetStats(),
+        new ForestPrism().GetStats(),
+        new LightPiercer().GetStats(),
+        new UnicornFoal().GetStats(),
         new ZombieHydra().GetStats(),
         new SkeletonMage().GetStats(),
         new SkeletonRider().GetStats(),

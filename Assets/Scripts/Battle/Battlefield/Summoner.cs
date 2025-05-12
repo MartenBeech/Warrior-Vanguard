@@ -38,7 +38,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public async Task Damage(Character dealer, int damage, GridManager gridManager) {
 
-        damage = dealer.stats.ability.stealth.TriggerAttack(dealer, damage);
+        damage = dealer.stats.ability.stealth.TriggerStrike(dealer, damage);
 
         int damageAfterShield = damage;
 

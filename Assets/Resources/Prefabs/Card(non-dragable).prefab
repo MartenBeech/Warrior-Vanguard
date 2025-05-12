@@ -150,6 +150,7 @@ MonoBehaviour:
   image: {fileID: 7620809918616325457}
   titleText: {fileID: 3662622320712879152}
   abilityText: {fileID: 2051409666727032415}
+  racePanel: {fileID: 4400695224370143041}
   raceText: {fileID: 7648404769333643724}
   rangeImage: {fileID: 2625878838467912378}
   speedImage: {fileID: 348201486885683676}
