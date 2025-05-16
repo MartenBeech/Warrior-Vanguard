@@ -2981,7 +2981,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 50, y: -0}
-  m_SizeDelta: {x: 800, y: 0}
+  m_SizeDelta: {x: 800, y: 25}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &280725760
 MonoBehaviour:
@@ -3551,6 +3551,7 @@ MonoBehaviour:
   image: {fileID: 2138440945}
   titleText: {fileID: 1114468735}
   abilityText: {fileID: 91877339}
+  racePanel: {fileID: 1890445790}
   raceText: {fileID: 662176674}
   rangeImage: {fileID: 1550946426}
   speedImage: {fileID: 607479843}
@@ -4688,6 +4689,7 @@ MonoBehaviour:
   image: {fileID: 1207045645}
   titleText: {fileID: 1798906719}
   abilityText: {fileID: 51308428}
+  racePanel: {fileID: 1214626709}
   raceText: {fileID: 1139497536}
   rangeImage: {fileID: 128849972}
   speedImage: {fileID: 120128784}
@@ -7101,6 +7103,7 @@ MonoBehaviour:
   image: {fileID: 1560534118}
   titleText: {fileID: 995817533}
   abilityText: {fileID: 1431281463}
+  racePanel: {fileID: 1797493971}
   raceText: {fileID: 521894803}
   rangeImage: {fileID: 134429211}
   speedImage: {fileID: 1798161817}
@@ -8965,7 +8968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8301887069543067518, guid: 38e297bb9eba6624292b0f648faf046a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -1890
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10901,6 +10904,7 @@ MonoBehaviour:
   image: {fileID: 556986772}
   titleText: {fileID: 440200827}
   abilityText: {fileID: 604021155}
+  racePanel: {fileID: 1616416827}
   raceText: {fileID: 1991789013}
   rangeImage: {fileID: 1702262252}
   speedImage: {fileID: 760500503}
@@ -12487,6 +12491,7 @@ MonoBehaviour:
   image: {fileID: 322764312}
   titleText: {fileID: 1381173696}
   abilityText: {fileID: 614073714}
+  racePanel: {fileID: 1633768120}
   raceText: {fileID: 229543562}
   rangeImage: {fileID: 1311328268}
   speedImage: {fileID: 1588539046}
@@ -14790,6 +14795,7 @@ MonoBehaviour:
   image: {fileID: 1995423050}
   titleText: {fileID: 1524844747}
   abilityText: {fileID: 387583096}
+  racePanel: {fileID: 478175811}
   raceText: {fileID: 527552368}
   rangeImage: {fileID: 1203669584}
   speedImage: {fileID: 930929732}
@@ -15700,6 +15706,7 @@ MonoBehaviour:
   image: {fileID: 768984305}
   titleText: {fileID: 1153014599}
   abilityText: {fileID: 667235663}
+  racePanel: {fileID: 1828697350}
   raceText: {fileID: 1517770590}
   rangeImage: {fileID: 706757162}
   speedImage: {fileID: 229051715}
@@ -17020,6 +17027,7 @@ MonoBehaviour:
   image: {fileID: 2011968336}
   titleText: {fileID: 684672171}
   abilityText: {fileID: 217363345}
+  racePanel: {fileID: 394129441}
   raceText: {fileID: 551209011}
   rangeImage: {fileID: 1404170108}
   speedImage: {fileID: 191326755}
@@ -17506,6 +17514,7 @@ MonoBehaviour:
   image: {fileID: 662831701}
   titleText: {fileID: 1835547994}
   abilityText: {fileID: 1668442024}
+  racePanel: {fileID: 1277610067}
   raceText: {fileID: 252042591}
   rangeImage: {fileID: 791059958}
   speedImage: {fileID: 605873066}
