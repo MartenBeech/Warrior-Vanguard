@@ -37,6 +37,7 @@ public static class ItemManager {
     public static void AddItem(Item item) {
         items = LoadItems();
         items.Add(item);
+        RemoveItemFromAvailable(item);
         SaveItems();
         ItemsPanel.UpdateUI();
     }
@@ -47,9 +48,12 @@ public static class ItemManager {
         int randomIndex = 0; // TODO: Replace this line with the below one after testing
         // int randomIndex = Rng.Range(0, availableItems.Count);
         Item randomItem = availableItems[randomIndex];
-        availableItems.RemoveAt(randomIndex);
-        SaveAvailableItems();
         return randomItem;
+    }
+
+    public static void RemoveItemFromAvailable(Item item) {
+        availableItems.Remove(item);
+        SaveAvailableItems();
     }
 
     public static void InitAvailableItems() {

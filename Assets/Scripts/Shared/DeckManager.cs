@@ -19,12 +19,8 @@ public static class DeckManager {
         SaveDeck();
     }
 
-    public static void SetDeck(List<Card> newDeck) {
-        deck = new List<Card>(newDeck);
-        SaveDeck();
-    }
-
     public static Card GetCard(int index) {
+        deck = LoadDeck();
         return deck[index];
     }
 

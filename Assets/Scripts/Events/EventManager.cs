@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
 public class EventManager : MonoBehaviour {
+    string eventKey = "eventKey";
     public TMP_Text eventText;
     public List<Card> upgradeCardsOptions;
     public List<Card> removeCardsOptions;
@@ -46,10 +47,18 @@ public class EventManager : MonoBehaviour {
     }
 
     public void TriggerRandomEvent() {
-        int randomIndex = Random.Range(0, System.Enum.GetValues(typeof(events)).Length);
+        int randomIndex = 0;
+        if (PlayerPrefs.HasKey(eventKey)) {
+            randomIndex = PlayerPrefs.GetInt(eventKey);
+        } else {
+            randomIndex = Random.Range(0, System.Enum.GetValues(typeof(events)).Length);
+        }
         currentEvent = (events)randomIndex;
 
-        currentEvent = events.GainItemEvent; // Hardcoded for testing
+        PlayerPrefs.SetInt(eventKey, randomIndex);
+        PlayerPrefs.Save();
+
+        // currentEvent = events.GainItemEvent; // Hardcoded for testing
         switch (currentEvent) {
             case events.GainGoldEvent:
                 GainGoldEvent();
@@ -88,7 +97,7 @@ public class EventManager : MonoBehaviour {
         int goldAmount = 25;
         GoldManager.RemoveGold(goldAmount);
         eventText.text = $"A thief stole {goldAmount} gold from you! You cry for a bit but then realise your time is better spent moving on.";
-        TileCompleter.MarkTileAsCompleted();
+        FinishEvent();
     }
 
     void GainCardEvent() {
@@ -108,7 +117,6 @@ public class EventManager : MonoBehaviour {
             eventText.text += " However it seems like you don't have any cards to upgrade sorry";
             return;
         }
-        ;
 
         upgradeCardPanel.SetActive(true);
 
@@ -124,14 +132,14 @@ public class EventManager : MonoBehaviour {
         healthDifference = 5;
         summonerManager.LoseHealth(healthDifference);
         eventText.text = $"An unfriendly skeleton walks up to you and hit you in the face. You leave with {healthDifference} less health and a lot of questions.";
-        TileCompleter.MarkTileAsCompleted();
+        FinishEvent();
     }
 
     void GainMaxHealthEvent() {
         healthDifference = 5;
         summonerManager.GainMaxHealth(healthDifference);
         eventText.text = $"A stranger walks up to you and gives you a potion. Without hesitation, you drink it and gains {healthDifference} max health. You are happy about your life choices.";
-        TileCompleter.MarkTileAsCompleted();
+        FinishEvent();
     }
 
     void RemoveCardEvent() {
@@ -140,7 +148,6 @@ public class EventManager : MonoBehaviour {
             eventText.text += " However it seems like you don't have any cards to cut sorry. You should probably get some cards..";
             return;
         }
-        ;
 
         removeCardPanel.SetActive(true);
 
@@ -187,7 +194,7 @@ public class EventManager : MonoBehaviour {
                 eventText.text = "This unfortunately doesn't seem to do anything.";
                 break;
         }
-        TileCompleter.MarkTileAsCompleted();
+        FinishEvent();
     }
 
     public void UpgradeCard(int index) {
@@ -196,7 +203,7 @@ public class EventManager : MonoBehaviour {
         card.stats.level = 1;
         eventText.text = $"You upgraded {card.stats.title}!";
         DeckManager.SaveDeck();
-        TileCompleter.MarkTileAsCompleted();
+        FinishEvent();
     }
 
     public void RemoveCard(int index) {
@@ -204,18 +211,23 @@ public class EventManager : MonoBehaviour {
         Card card = DeckManager.GetCard(cardIndexes[index]);
         deckBuilder.RemoveCardFromDeck(cardIndexes[index]);
         eventText.text = $"You removed {card.stats.title} from your deck! We will not be seeing much more of them.";
-        TileCompleter.MarkTileAsCompleted();
+        FinishEvent();
     }
 
     public void GainCard(Card card) {
         gainCardPanel.SetActive(false);
         deckBuilder.AddCardToDeck(card);
         eventText.text = $"You added {card.stats.title} to your deck!";
+        FinishEvent();
+    }
+
+    public void FinishEvent() {
+        PlayerPrefs.DeleteKey(eventKey);
         TileCompleter.MarkTileAsCompleted();
     }
 
     public void ReturnToMap() {
-        TileCompleter.MarkTileAsCompleted();
+        FinishEvent();
         SceneManager.LoadScene("Map");
     }
 }
