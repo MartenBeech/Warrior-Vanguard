@@ -25,7 +25,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Physical, Magical
     };
     public enum Race {
-        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn
+        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf
     }
     private Hand hand;
     private CharacterSpawner characterSpawner;
@@ -123,11 +123,17 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Attack(Character target) {
-        List<Task> asyncFunctions = new() {
-            stats.ability.splash.Trigger(this, target, gridManager),
-            stats.ability.pierce.Trigger(this, target, gridManager),
-            Strike(target)
-        };
+        for (int i = 0; i < (stats.ability.doubleStrike.GetValue(stats) ? 2 : 1); i++) {
+            if (target.stats.GetHealth() > 0) {
+                List<Task> asyncFunctions = new() {
+                stats.ability.multishot.Trigger(this, target, gridManager),
+                stats.ability.splash.Trigger(this, target, gridManager),
+                stats.ability.pierce.Trigger(this, target, gridManager),
+                Strike(target)
+            };
+                await Task.WhenAll(asyncFunctions);
+            }
+        }
 
         if (target.stats.GetHealth() > 0) {
             stats.ability.weaken.Trigger(this, target);
@@ -136,7 +142,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         target.stats.ability.poisoningAura.Trigger(this, target);
         stats.ability.bloodlust.Trigger(this);
 
-        await Task.WhenAll(asyncFunctions);
 
         if (target.stats.GetHealth() > 0) {
             if (stats.ability.darkTouch.Trigger(this, target)) {

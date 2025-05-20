@@ -281,4 +281,23 @@ public class GridManager : MonoBehaviour {
 
         return character;
     }
+
+    public List<Character> GetEnemiesInRange(Vector2 gridIndex) {
+        Character dealer = GetCellCharacter(gridIndex);
+        List<Character> enemiesInRange = new();
+        int xIncrement = dealer.alignment == CharacterSpawner.Alignment.Friend
+            ? 1
+            : dealer.alignment == CharacterSpawner.Alignment.Enemy
+            ? -1
+            : 0;
+
+        for (int i = 1; i <= dealer.stats.range; i++) {
+            Character character = GetCellCharacter(new Vector2(gridIndex.x + (xIncrement * i), gridIndex.y));
+            if (character && character.alignment != dealer.alignment) {
+                enemiesInRange.Add(character);
+            }
+        }
+
+        return enemiesInRange;
+    }
 }
