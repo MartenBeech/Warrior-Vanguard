@@ -445,6 +445,7 @@ MonoBehaviour:
   image: {fileID: 71182821}
   titleText: {fileID: 400752545}
   abilityText: {fileID: 306309559}
+  racePanel: {fileID: 3008393}
   raceText: {fileID: 118660019}
   rangeImage: {fileID: 1937514570}
   speedImage: {fileID: 751868907}
@@ -4691,6 +4692,7 @@ MonoBehaviour:
   image: {fileID: 1275198366}
   titleText: {fileID: 90741205}
   abilityText: {fileID: 943295098}
+  racePanel: {fileID: 1704931783}
   raceText: {fileID: 1651862182}
   rangeImage: {fileID: 937252049}
   speedImage: {fileID: 680790122}
@@ -6529,6 +6531,7 @@ MonoBehaviour:
   image: {fileID: 1531258788}
   titleText: {fileID: 1230640229}
   abilityText: {fileID: 1124206235}
+  racePanel: {fileID: 457830236}
   raceText: {fileID: 137578445}
   rangeImage: {fileID: 383375686}
   speedImage: {fileID: 367434772}
@@ -7283,6 +7286,7 @@ MonoBehaviour:
   image: {fileID: 33297309}
   titleText: {fileID: 1908126013}
   abilityText: {fileID: 533876270}
+  racePanel: {fileID: 64960154}
   raceText: {fileID: 187654942}
   rangeImage: {fileID: 1519960357}
   speedImage: {fileID: 1491615814}
@@ -10205,6 +10209,7 @@ MonoBehaviour:
   image: {fileID: 2126075558}
   titleText: {fileID: 1133078287}
   abilityText: {fileID: 1196876475}
+  racePanel: {fileID: 446571858}
   raceText: {fileID: 1802161406}
   rangeImage: {fileID: 689865066}
   speedImage: {fileID: 1726655243}
@@ -11226,6 +11231,7 @@ MonoBehaviour:
   image: {fileID: 2132818995}
   titleText: {fileID: 431153916}
   abilityText: {fileID: 1345292925}
+  racePanel: {fileID: 673880752}
   raceText: {fileID: 922354120}
   rangeImage: {fileID: 997744801}
   speedImage: {fileID: 2119280424}
@@ -11554,6 +11560,7 @@ MonoBehaviour:
   image: {fileID: 499711640}
   titleText: {fileID: 1359164782}
   abilityText: {fileID: 1267948111}
+  racePanel: {fileID: 85422260}
   raceText: {fileID: 1383325332}
   rangeImage: {fileID: 323723320}
   speedImage: {fileID: 1818202865}
@@ -13240,7 +13247,6 @@ GameObject:
   - component: {fileID: 1898882108}
   - component: {fileID: 1898882111}
   - component: {fileID: 1898882110}
-  - component: {fileID: 1898882109}
   m_Layer: 5
   m_Name: GoldPanel
   m_TagString: Untagged
@@ -13268,18 +13274,6 @@ RectTransform:
   m_AnchoredPosition: {x: -100, y: 30}
   m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1898882109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1898882107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d88fcd4eb6a3ca14f9347f86c76c6a69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1898882110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14386,6 +14380,7 @@ MonoBehaviour:
   image: {fileID: 223211858}
   titleText: {fileID: 106728018}
   abilityText: {fileID: 1236970551}
+  racePanel: {fileID: 504258754}
   raceText: {fileID: 844573098}
   rangeImage: {fileID: 1816618137}
   speedImage: {fileID: 294038985}
