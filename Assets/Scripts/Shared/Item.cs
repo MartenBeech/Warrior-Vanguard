@@ -11,7 +11,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     private TooltipManager tooltipManager;
 
     public void UpdateItemUI() {
-        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{displayTitle}");
+        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{title}");
     }
 
     public virtual void UseImmediately() {

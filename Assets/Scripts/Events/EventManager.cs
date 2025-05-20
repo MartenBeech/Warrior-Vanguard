@@ -168,7 +168,7 @@ public class EventManager : MonoBehaviour {
         }
 
         itemRewardPanel.SetActive(true);
-        itemImage.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{item.displayTitle}");
+        itemImage.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{item.title}");
         itemTitle.GetComponent<TMP_Text>().text = item.displayTitle;
         itemDescription.GetComponent<TMP_Text>().text = item.description;
 
