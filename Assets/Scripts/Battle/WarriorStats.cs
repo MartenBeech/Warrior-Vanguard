@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 
 public enum CardType {
     warrior,
@@ -21,6 +22,7 @@ public enum CardRarity {
 
 public class WarriorStats {
     public string title;
+    public string displayTitle;
     public CardRarity rarity = CardRarity.Common;
     public int level = 0;
     public Character.DamageType damageType = Character.DamageType.Physical;
@@ -41,6 +43,7 @@ public class WarriorStats {
 
     public void SetStats(WarriorStats stats) {
         title = stats.title;
+        displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");
         level = stats.level;
         damageType = stats.damageType;
         alignment = stats.alignment;

@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public Vector2 gridIndex;
@@ -43,9 +42,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void UpdateWarriorUI() {
         attackText.text = $"{stats.GetStrength()}";
         healthText.text = $"{stats.GetHealth()}";
-        string cleanTitle = stats.title.Replace("+", string.Empty);
-        cleanTitle = Regex.Replace(cleanTitle, "(?<!^)([A-Z])", " $1");
-        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{cleanTitle}");
+        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
 
         if (alignment == CharacterSpawner.Alignment.Friend) {
             crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
