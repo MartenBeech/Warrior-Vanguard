@@ -201,7 +201,7 @@ public class EventManager : MonoBehaviour {
         upgradeCardPanel.SetActive(false);
         Card card = DeckManager.GetCard(cardIndexes[index]);
         card.stats.level = 1;
-        eventText.text = $"You upgraded {card.stats.title}!";
+        eventText.text = $"You upgraded {card.stats.displayTitle}!";
         DeckManager.SaveDeck();
         FinishEvent();
     }
@@ -210,14 +210,14 @@ public class EventManager : MonoBehaviour {
         removeCardPanel.SetActive(false);
         Card card = DeckManager.GetCard(cardIndexes[index]);
         deckBuilder.RemoveCardFromDeck(cardIndexes[index]);
-        eventText.text = $"You removed {card.stats.title} from your deck! We will not be seeing much more of them.";
+        eventText.text = $"You removed {card.stats.displayTitle} from your deck! We will not be seeing much more of them.";
         FinishEvent();
     }
 
     public void GainCard(Card card) {
         gainCardPanel.SetActive(false);
         deckBuilder.AddCardToDeck(card);
-        eventText.text = $"You added {card.stats.title} to your deck!";
+        eventText.text = $"You added {card.stats.displayTitle} to your deck!";
         FinishEvent();
     }
 

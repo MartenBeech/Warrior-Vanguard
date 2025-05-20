@@ -36,7 +36,7 @@ public class ShopManager : MonoBehaviour {
             cardsForSale.Remove(card);
             Destroy(card.gameObject);
             SaveShop();
-            actionInfoText.text = $"Added {card.stats.title} to your deck";
+            actionInfoText.text = $"Added {card.stats.displayTitle} to your deck";
         } else {
             actionInfoText.text = $"Not enough gold!";
         }
@@ -64,7 +64,7 @@ public class ShopManager : MonoBehaviour {
                 cardsForSale[i].gameObject.SetActive(false);
                 break;
             }
-            
+
             WarriorStats stats = CardDatabase.GetStatsByTitleAndLevel(cardTitlesAndLevels[i]);
             cardsForSale[i].SetStats(stats);
             cardsForSale[i].UpdateCardUi();

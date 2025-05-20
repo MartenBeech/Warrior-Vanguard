@@ -40,7 +40,7 @@ public class CharacterSpawner : MonoBehaviour {
         }
 
         GameObject warriorObject = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
-        warriorObject.name = stats.title;
+        warriorObject.name = stats.displayTitle;
         warriorObject.GetComponent<RectTransform>().localScale = gridManager.GetCellDimension() / warriorObject.GetComponent<RectTransform>().rect.width;
         Character character = warriorObject.GetComponent<Character>();
         ObjectAnimation objectAnimation = warriorObject.GetComponentInChildren<ObjectAnimation>();

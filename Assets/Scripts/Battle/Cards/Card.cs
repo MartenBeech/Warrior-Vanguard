@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Text.RegularExpressions;
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text attackText;
