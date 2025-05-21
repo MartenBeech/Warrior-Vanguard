@@ -589,6 +589,7 @@ MonoBehaviour:
   image: {fileID: 279613697}
   titleText: {fileID: 808866589}
   abilityText: {fileID: 996158155}
+  racePanel: {fileID: 1816175121}
   raceText: {fileID: 2075881716}
   rangeImage: {fileID: 1084422817}
   speedImage: {fileID: 1890937360}
@@ -4577,6 +4578,7 @@ MonoBehaviour:
   image: {fileID: 560905076}
   titleText: {fileID: 1830848798}
   abilityText: {fileID: 2124498096}
+  racePanel: {fileID: 844969375}
   raceText: {fileID: 90783089}
   rangeImage: {fileID: 17409852}
   speedImage: {fileID: 1667844059}
@@ -7403,6 +7405,7 @@ MonoBehaviour:
   image: {fileID: 1064818682}
   titleText: {fileID: 1808235650}
   abilityText: {fileID: 1236511115}
+  racePanel: {fileID: 1508249884}
   raceText: {fileID: 1110624962}
   rangeImage: {fileID: 208901852}
   speedImage: {fileID: 1842782025}
