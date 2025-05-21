@@ -42,7 +42,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void UpdateWarriorUI() {
         attackText.text = $"{stats.GetStrength()}";
         healthText.text = $"{stats.GetHealth()}";
-        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
+
+        Sprite sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
+        image.GetComponent<Image>().sprite = sprite != null ? sprite : Resources.Load<Sprite>($"Images/Icons/Red Cross");
 
         if (alignment == CharacterSpawner.Alignment.Friend) {
             crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);

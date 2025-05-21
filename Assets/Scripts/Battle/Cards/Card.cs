@@ -20,7 +20,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
     public void UpdateCardUi() {
         costText.text = $"{stats.cost}";
-        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
+        Sprite sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
+        image.GetComponent<Image>().sprite = sprite != null ? sprite : Resources.Load<Sprite>($"Images/Icons/Red Cross");
         titleText.text = $"{stats.displayTitle}";
         if (stats.level == 1) {
             GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Icons/GoldenBackground");
