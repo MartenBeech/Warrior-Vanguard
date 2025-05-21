@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class Multishot {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Strike all enemies wihtin range";
+        return $"{WarriorAbility.Keywords.Attack}: Strike all enemies within range";
     }
 
     public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
