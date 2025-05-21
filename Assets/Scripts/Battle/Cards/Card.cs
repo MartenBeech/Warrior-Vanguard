@@ -22,6 +22,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         costText.text = $"{stats.cost}";
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
         titleText.text = $"{stats.displayTitle}";
+        if (stats.level == 1) {
+            GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Icons/GoldenBackground");
+        } else {
+            GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Icons/SilverBackground");
+        }
 
         if (stats.cardType == CardType.warrior) {
             attackText.text = $"{stats.GetStrength()}";
