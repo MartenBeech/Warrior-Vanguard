@@ -24,7 +24,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Physical, Magical
     };
     public enum Race {
-        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf
+        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur
     }
     private Hand hand;
     private CharacterSpawner characterSpawner;
@@ -227,6 +227,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             asyncFunctions.Add(stats.ability.afterlife.Trigger(this, gridManager, hand, summonerObject, clone));
         }
         stats.ability.skeletal.TriggerDeath(this, gameManager);
+        stats.ability.forestStrength.TriggerDeath(this, gridManager);
 
         if (dealer != this) {
             dealer.stats.ability.cannibalism.Trigger(dealer);

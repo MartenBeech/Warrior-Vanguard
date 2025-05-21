@@ -7,6 +7,7 @@ public class WarriorAbility {
         Strike,     //After it strikes a warrior
         Summon,     //after it is summoned
         Kill,       //After it kills a warrior
+        Aura,       //Active while it is alive
     }
 
     public Construct construct = new();
@@ -45,6 +46,7 @@ public class WarriorAbility {
     public DoubleStrike doubleStrike = new();
     public Multishot multishot = new();
     public GreedyStrike greedyStrike = new();
+    public ForestStrength forestStrength = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

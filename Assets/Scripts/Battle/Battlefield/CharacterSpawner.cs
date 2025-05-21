@@ -48,6 +48,7 @@ public class CharacterSpawner : MonoBehaviour {
         List<Character> friends = gridManager.GetFriends(stats.alignment);
         foreach (Character friend in friends) {
             friend.stats.ability.boneSculptor.Trigger(friend, stats);
+            friend.stats.ability.forestStrength.TriggerSummonFriend(friend, stats);
         }
 
         Hand hand = null;
@@ -75,6 +76,7 @@ public class CharacterSpawner : MonoBehaviour {
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         await stats.ability.massResistance.Trigger(character, gridManager, floatingText);
+        stats.ability.forestStrength.TriggerSummon(character, gridManager);
 
         foreach (Item item in ItemManager.LoadItems()) {
             if (stats.alignment == Alignment.Friend) {
