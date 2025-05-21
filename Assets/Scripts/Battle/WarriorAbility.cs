@@ -44,6 +44,7 @@ public class WarriorAbility {
     public MassResistance massResistance = new();
     public DoubleStrike doubleStrike = new();
     public Multishot multishot = new();
+    public GreedyStrike greedyStrike = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

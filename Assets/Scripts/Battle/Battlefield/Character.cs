@@ -231,11 +231,16 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (dealer != this) {
             dealer.stats.ability.cannibalism.Trigger(dealer);
             asyncFunctions.Add(dealer.stats.ability.raiseDead.Trigger(dealer, this, characterSpawner));
+
             List<Character> friends = gridManager.GetFriends(dealer.alignment);
             foreach (Character friend in friends) {
                 asyncFunctions.Add(friend.stats.ability.deathCall.Trigger(friend, this, characterSpawner));
             }
+
             asyncFunctions.Add(dealer.stats.ability.possess.Trigger(dealer, this, characterSpawner));
+
+            FloatingText floatingText = FindFirstObjectByType<FloatingText>();
+            asyncFunctions.Add(dealer.stats.ability.greedyStrike.Trigger(dealer, floatingText));
         }
 
         gameObject.SetActive(false);

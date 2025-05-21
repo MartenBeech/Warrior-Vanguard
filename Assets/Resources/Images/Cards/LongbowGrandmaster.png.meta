@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 06c687ce11fc5514fba76d5dc2347a2d
+guid: 0719f034bb90fff418966542b0b39656
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6062913786287172137
-    second: WoodElf_0
+      213: 7292748093045951802
+    second: LongbowGrandmaster_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WoodElf_0
+      name: LongbowGrandmaster_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7d5d888b8043cdba0800000000000000
-      internalID: -6062913786287172137
+      spriteID: a3d496280cb053560800000000000000
+      internalID: 7292748093045951802
       vertices: []
       indices: 
       edges: []
