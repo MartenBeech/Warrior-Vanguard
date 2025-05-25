@@ -1,14 +1,17 @@
 using System.Text.RegularExpressions;
-public class CLASSNAMEBOOL {
+using System.Threading.Tasks;
+public class PhoenixAshes {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"DESCRIPTION";
+        return $"{WarriorAbility.Keywords.Death}: Turn into 0/1 ashes that resummon this next turn";
     }
 
-    public bool Trigger(Character character) {
-        if (GetValue(character.stats)) {
-            // Add trigger event here
-            character.UpdateWarriorUI();
+    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
+        if (GetValue(target.stats)) {
+            WarriorStats ashes = new Ashes().GetStats();
+            ashes.alignment = target.alignment;
+
+            await characterSpawner.Spawn(target.gridIndex, ashes, target.transform.position);
             return true;
         }
         return false;
@@ -16,7 +19,7 @@ public class CLASSNAMEBOOL {
 
     bool[] value = new bool[] { false, false };
 
-    public bool GetValue(WarriorStats stats) {
+    bool GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 

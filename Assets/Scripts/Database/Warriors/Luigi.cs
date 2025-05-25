@@ -2,7 +2,7 @@ public class Luigi : WarriorStats {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = "Luigi",
-            strength = new int[] { 2, 3 },
+            strength = new int[] { 12, 13 },
             health = new int[] { 10, 12 },
             cost = new int[] { 1, 1 },
             speed = 2,

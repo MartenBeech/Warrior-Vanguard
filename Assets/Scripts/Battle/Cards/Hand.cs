@@ -80,13 +80,13 @@ public class Hand : MonoBehaviour {
                     gridManager.HighlightAllCells();
                     break;
                 case SpellTarget.enemy:
-                    gridManager.HighlightEnemies(card.stats.alignment);
+                    gridManager.HighlightEnemies(card.stats.alignment, true);
                     break;
                 case SpellTarget.friend:
-                    gridManager.HighlightFriends(card.stats.alignment);
+                    gridManager.HighlightFriends(card.stats.alignment, true);
                     break;
                 case SpellTarget.warrior:
-                    gridManager.HighlightWarriors();
+                    gridManager.HighlightWarriors(true);
                     break;
             }
         }

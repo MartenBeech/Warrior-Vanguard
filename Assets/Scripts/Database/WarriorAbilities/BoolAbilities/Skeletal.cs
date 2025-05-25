@@ -41,6 +41,9 @@ public class Skeletal {
                         case "SkeletonWarrior":
                             target.stats.ability.armor.Add(1);
                             break;
+                        default:
+                            target.stats.AddStrength(1);
+                            break;
                     }
                 }
             }

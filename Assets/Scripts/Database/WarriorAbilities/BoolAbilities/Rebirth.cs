@@ -1,14 +1,23 @@
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
-public class CLASSNAMEBOOL {
+using System.Threading.Tasks;
+public class Rebirth {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"DESCRIPTION";
+        return $"{WarriorAbility.Keywords.Overturn}: Turn into a resummoned Phoenix";
     }
 
-    public bool Trigger(Character character) {
-        if (GetValue(character.stats)) {
-            // Add trigger event here
-            character.UpdateWarriorUI();
+    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
+        if (GetValue(target.stats)) {
+            WarriorStats phoenix = new Phoenix().GetStats();
+            phoenix.alignment = target.alignment;
+
+            List<Task> asyncFunctions = new() {
+                characterSpawner.SpawnRandomly(phoenix, target.transform.position),
+                target.Die(target)
+            };
+
+            await Task.WhenAll(asyncFunctions);
             return true;
         }
         return false;
@@ -16,7 +25,7 @@ public class CLASSNAMEBOOL {
 
     bool[] value = new bool[] { false, false };
 
-    public bool GetValue(WarriorStats stats) {
+    bool GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 

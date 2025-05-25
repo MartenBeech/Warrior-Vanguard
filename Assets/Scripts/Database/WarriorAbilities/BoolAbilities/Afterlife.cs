@@ -14,7 +14,9 @@ public class Afterlife {
             await objectAnimation.MoveObject(gridManager.GetCellPosition(target.gridIndex), summonerObject.position, 1, true);
 
             target.stats.ResetStats();
-            target.stats.ability.afterlife.Remove();
+            if (!target.stats.ability.haunting.GetValue(target.stats)) {
+                target.stats.ability.afterlife.Remove();
+            }
             hand.AddCardToHand(target.stats);
             return true;
         }

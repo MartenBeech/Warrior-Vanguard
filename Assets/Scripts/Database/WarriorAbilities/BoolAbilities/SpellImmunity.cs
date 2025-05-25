@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
-public class CLASSNAMEBOOL {
+public class SpellImmunity {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"DESCRIPTION";
+        return $"Immune to all spells";
     }
 
     public bool Trigger(Character character) {

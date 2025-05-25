@@ -1,14 +1,14 @@
 using System.Text.RegularExpressions;
-public class CLASSNAMEBOOL {
+public class Haunting {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"DESCRIPTION";
+        return $"This has permanent Afterlife";
     }
 
-    public bool Trigger(Character character) {
-        if (GetValue(character.stats)) {
-            // Add trigger event here
-            character.UpdateWarriorUI();
+    public bool Trigger(Character target) {
+        if (GetValue(target.stats)) {
+            target.stats.ability.afterlife.Add();
+            target.UpdateWarriorUI();
             return true;
         }
         return false;

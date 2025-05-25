@@ -24,7 +24,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Physical, Magical
     };
     public enum Race {
-        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur
+        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur, Dragon
     }
     private Hand hand;
     private CharacterSpawner characterSpawner;
@@ -172,9 +172,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task<int> TakeDamage(Character dealer, int damage, DamageType damageType) {
-        damage = stats.ability.stealth.TriggerTakeDamage(this, damage);
         damage = stats.ability.armor.Trigger(this, damage, damageType);
         damage = stats.ability.resistance.Trigger(this, damage, damageType);
+        damage = stats.ability.stealth.TriggerTakeDamage(this, damage);
+        damage = stats.ability.thickSkin.Trigger(this, damage);
 
         damage = stats.ability.incorporeal.Trigger(this, damage, damageType);
 
@@ -219,17 +220,20 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         gameManager.RemoveCharacter(this);
         gridManager.RemoveCharacter(this);
 
+        stats.ability.skeletal.TriggerDeath(this, gameManager);
+        stats.ability.forestStrength.TriggerDeath(this, gridManager);
+
         List<Task> asyncFunctions = new() {
             stats.ability.revive.Trigger(this, characterSpawner),
             stats.ability.hydraSplit.Trigger(this, characterSpawner),
             stats.ability.boneSpread.Trigger(this, characterSpawner),
+            stats.ability.phoenixAshes.Trigger(this, characterSpawner),
         };
+
         if (stats.ability.afterlife.GetValue(stats)) {
             GameObject clone = Instantiate(gameObject, transform.position, Quaternion.identity, transform.parent);
             asyncFunctions.Add(stats.ability.afterlife.Trigger(this, gridManager, hand, summonerObject, clone));
         }
-        stats.ability.skeletal.TriggerDeath(this, gameManager);
-        stats.ability.forestStrength.TriggerDeath(this, gridManager);
 
         if (dealer != this) {
             dealer.stats.ability.cannibalism.Trigger(dealer);
@@ -263,7 +267,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         List<Task> asyncFunctions = new() {
             stats.ability.poisoned.Trigger(this),
-            stats.ability.cemeteryGates.Trigger(this, characterSpawner)
+            stats.ability.cemeteryGates.Trigger(this, characterSpawner),
+            stats.ability.rebirth.Trigger(this, characterSpawner),
         };
         await Task.WhenAll(asyncFunctions);
     }

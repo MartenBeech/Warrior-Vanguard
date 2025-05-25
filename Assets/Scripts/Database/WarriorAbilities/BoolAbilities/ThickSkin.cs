@@ -1,22 +1,21 @@
 using System.Text.RegularExpressions;
-public class CLASSNAMEBOOL {
+using UnityEngine;
+public class ThickSkin {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"DESCRIPTION";
+        return $"Take half damage";
     }
 
-    public bool Trigger(Character character) {
-        if (GetValue(character.stats)) {
-            // Add trigger event here
-            character.UpdateWarriorUI();
-            return true;
+    public int Trigger(Character target, int damage) {
+        if (GetValue(target.stats)) {
+            damage = (int)Mathf.Ceil(damage / 2f);
         }
-        return false;
+        return damage;
     }
 
     bool[] value = new bool[] { false, false };
 
-    public bool GetValue(WarriorStats stats) {
+    bool GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 

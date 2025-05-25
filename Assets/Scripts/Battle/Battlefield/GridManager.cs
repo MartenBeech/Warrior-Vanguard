@@ -152,25 +152,31 @@ public class GridManager : MonoBehaviour {
         }
     }
 
-    public void HighlightEnemies(CharacterSpawner.Alignment alignment) {
+    public void HighlightEnemies(CharacterSpawner.Alignment alignment, bool withSpell = false) {
         List<Character> enemies = GetEnemies(alignment);
         foreach (var enemy in enemies) {
+            if (withSpell && enemy.stats.ability.spellImmunity.GetValue(enemy.stats)) continue;
+
             GridCell cell = grid[(int)enemy.gridIndex.x, (int)enemy.gridIndex.y];
             cell.Highlight();
         }
     }
 
-    public void HighlightFriends(CharacterSpawner.Alignment alignment) {
+    public void HighlightFriends(CharacterSpawner.Alignment alignment, bool withSpell = false) {
         List<Character> friends = GetFriends(alignment);
         foreach (var friend in friends) {
+            if (withSpell && friend.stats.ability.spellImmunity.GetValue(friend.stats)) continue;
+
             GridCell cell = grid[(int)friend.gridIndex.x, (int)friend.gridIndex.y];
             cell.Highlight();
         }
     }
 
-    public void HighlightWarriors() {
+    public void HighlightWarriors(bool withSpell = false) {
         List<Character> warriors = GetCharacters();
         foreach (var warrior in warriors) {
+            if (withSpell && warrior.stats.ability.spellImmunity.GetValue(warrior.stats)) continue;
+
             GridCell cell = grid[(int)warrior.gridIndex.x, (int)warrior.gridIndex.y];
             cell.Highlight();
         }

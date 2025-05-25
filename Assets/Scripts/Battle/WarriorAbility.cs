@@ -47,6 +47,11 @@ public class WarriorAbility {
     public Multishot multishot = new();
     public GreedyStrike greedyStrike = new();
     public ForestStrength forestStrength = new();
+    public ThickSkin thickSkin = new();
+    public PhoenixAshes phoenixAshes = new();
+    public Haunting haunting = new();
+    public Rebirth rebirth = new();
+    public SpellImmunity spellImmunity = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";
