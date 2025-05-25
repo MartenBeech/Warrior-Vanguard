@@ -2,7 +2,7 @@ public class SoulStealer {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 7,
+            cost = new int[] { 7, 7 },
             strength = new int[] { 0, 0 },
             health = new int[] { 5, 7 },
             speed = 2,

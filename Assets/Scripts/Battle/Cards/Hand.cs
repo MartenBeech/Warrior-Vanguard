@@ -44,7 +44,7 @@ public class Hand : MonoBehaviour {
             coin = gameManager.enemyCoin;
             summonerObject = gameManager.enemySummonerObject;
         }
-        coin.SpendCoins(selectedCard.stats.cost);
+        coin.SpendCoins(selectedCard.stats.GetCost());
 
         List<Task> asyncFunctions = new();
         if (selectedCard.stats.cardType == CardType.warrior) {

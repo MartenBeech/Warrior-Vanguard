@@ -81,7 +81,7 @@ public static class CardDatabase {
     }
 
     public static WarriorStats GetRandomWarriorWithSpecificCost(int cost) {
-        List<WarriorStats> warriors = allCards.Where(card => card.cost == cost && card.cardType == CardType.warrior).ToList();
+        List<WarriorStats> warriors = allCards.Where(card => card.GetCost() == cost && card.cardType == CardType.warrior).ToList();
         return warriors[Rng.Range(0, warriors.Count)];
     }
 }

@@ -5,7 +5,7 @@ public class SkinToBones {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 6,
+            cost = new int[] { 6, 6 },
             spellTarget = SpellTarget.enemy,
             spellDescription = new string[] {
             "Kill an enemy and summon a skeleton for its owner",

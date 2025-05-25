@@ -2,7 +2,7 @@ public class MultibowNovice {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 1,
+            cost = new int[] { 1, 1 },
             strength = new int[] { 1, 2 },
             health = new int[] { 1, 1 },
             speed = 2,

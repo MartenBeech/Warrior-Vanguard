@@ -4,7 +4,7 @@ public class PoisonPotion {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 1,
+            cost = new int[] { 1, 1 },
             spellTarget = SpellTarget.enemy,
             spellDescription = new string[] {
             "Apply 2 poison to an enemy",

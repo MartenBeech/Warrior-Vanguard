@@ -2,7 +2,7 @@ public class SkeletonMage {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 2,
+            cost = new int[] { 2, 2 },
             strength = new int[] { 1, 2 },
             health = new int[] { 1, 1 },
             speed = 2,

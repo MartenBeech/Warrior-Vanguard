@@ -2,7 +2,7 @@ public class EldritchSorcerer {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 2,
+            cost = new int[] { 2, 2 },
             strength = new int[] { 3, 5 },
             health = new int[] { 2, 2 },
             speed = 2,

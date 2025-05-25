@@ -2,7 +2,7 @@ public class PileOfBones {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 5,
+            cost = new int[] { 5, 5 },
             strength = new int[] { 0, 0 },
             health = new int[] { 4, 5 },
             speed = 0,

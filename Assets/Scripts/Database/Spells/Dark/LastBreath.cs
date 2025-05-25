@@ -5,7 +5,7 @@ public class LastBreath {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 5,
+            cost = new int[] { 5, 5 },
             spellTarget = SpellTarget.enemy,
             spellDescription = new string[] {
             "Set an enemy's health to 1",

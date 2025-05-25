@@ -4,7 +4,7 @@ public class Mortana : WarriorStats {
             title = "Mortana",
             strength = new int[] { 11, 12 },
             health = new int[] { 11, 12 },
-            cost = 11,
+            cost = new int[] { 11, 11 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,

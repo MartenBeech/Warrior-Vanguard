@@ -2,7 +2,7 @@ public class LichQueen {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 9,
+            cost = new int[] { 9, 9 },
             strength = new int[] { 3, 4 },
             health = new int[] { 14, 16 },
             speed = 2,

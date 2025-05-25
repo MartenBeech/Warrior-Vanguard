@@ -5,7 +5,7 @@ public class AgingCurse {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 3,
+            cost = new int[] { 3, 3 },
             spellTarget = SpellTarget.enemy,
             spellDescription = new string[] {
             "Reduce an enemy's strength, health and speed to half",

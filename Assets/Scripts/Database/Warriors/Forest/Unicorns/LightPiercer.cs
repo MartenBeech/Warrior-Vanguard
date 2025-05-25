@@ -2,7 +2,7 @@ public class LightPiercer {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 4,
+            cost = new int[] { 4, 4 },
             strength = new int[] { 4, 5 },
             health = new int[] { 6, 7 },
             speed = 4,

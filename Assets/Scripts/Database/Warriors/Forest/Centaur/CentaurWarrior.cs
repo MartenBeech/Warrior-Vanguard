@@ -2,7 +2,7 @@ public class CentaurWarrior {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 2,
+            cost = new int[] { 2, 2 },
             strength = new int[] { 2, 3 },
             health = new int[] { 1, 1 },
             speed = 4,

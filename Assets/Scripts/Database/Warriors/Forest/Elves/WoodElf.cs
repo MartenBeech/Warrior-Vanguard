@@ -2,7 +2,7 @@ public class WoodElf {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 3,
+            cost = new int[] { 3, 3 },
             strength = new int[] { 3, 4 },
             health = new int[] { 2, 3 },
             speed = 2,

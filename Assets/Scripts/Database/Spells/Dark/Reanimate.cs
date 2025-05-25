@@ -4,7 +4,7 @@ public class Reanimate {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 4,
+            cost = new int[] { 4, 4 },
             spellTarget = SpellTarget.friend,
             spellDescription = new string[] {
             "Give a friend 'Revive' and set its health to 1",

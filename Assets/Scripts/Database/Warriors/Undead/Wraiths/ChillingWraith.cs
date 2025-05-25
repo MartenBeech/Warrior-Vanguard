@@ -2,7 +2,7 @@ public class ChillingWraith {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 4,
+            cost = new int[] { 4, 4 },
             strength = new int[] { 3, 5 },
             health = new int[] { 3, 3 },
             speed = 2,

@@ -5,7 +5,7 @@ public class UnholyStorm {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 4,
+            cost = new int[] { 4, 4 },
             spellTarget = SpellTarget.none,
             spellDescription = new string[] {
             "Reduce all enemies' strength by 2 (minimum 1)",

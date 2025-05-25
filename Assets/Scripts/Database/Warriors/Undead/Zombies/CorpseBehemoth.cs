@@ -2,7 +2,7 @@ public class CorpseBehemoth {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 7,
+            cost = new int[] { 7, 7 },
             strength = new int[] { 4, 5 },
             health = new int[] { 7, 7 },
             speed = 2,

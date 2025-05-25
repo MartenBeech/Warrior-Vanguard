@@ -4,7 +4,7 @@ public class Duck : WarriorStats {
             title = "Duck",
             strength = new int[] { 9001, 9999 },
             health = new int[] { 9001, 9999 },
-            cost = 1,
+            cost = new int[] { 1, 1 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,

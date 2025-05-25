@@ -2,7 +2,7 @@ public class GreedyDwarf {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 4,
+            cost = new int[] { 4, 4 },
             strength = new int[] { 4, 5 },
             health = new int[] { 4, 6 },
             speed = 1,

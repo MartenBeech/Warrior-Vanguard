@@ -2,7 +2,7 @@ public class WindDancer {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 1,
+            cost = new int[] { 1, 1 },
             strength = new int[] { 2, 3 },
             health = new int[] { 2, 3 },
             speed = 2,

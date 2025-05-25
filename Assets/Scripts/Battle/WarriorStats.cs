@@ -32,7 +32,7 @@ public class WarriorStats {
     public SpellTarget spellTarget = SpellTarget.none;
     public string[] spellDescription = new string[2];
 
-    public int cost;
+    public int[] cost = new int[2];
     public int[] strength = new int[2];
     public int[] health = new int[2];
     public int[] healthMax = new int[2];
@@ -52,12 +52,12 @@ public class WarriorStats {
         race = stats.race;
 
         for (int i = 0; i < 2; i++) {
+            cost[i] = stats.cost[i];
             strength[i] = stats.strength[i];
             health[i] = stats.health[i];
             healthMax[i] = stats.healthMax[i];
             spellDescription[i] = stats.spellDescription[i];
         }
-        cost = stats.cost;
         speed = stats.speed;
         range = stats.range;
 
@@ -71,14 +71,18 @@ public class WarriorStats {
 
         strength = defaultStats.strength;
         for (int i = 0; i < 2; i++) {
+            cost[i] = defaultStats.cost[i];
             strength[i] = defaultStats.strength[i];
             health[i] = defaultStats.health[i];
             healthMax[i] = defaultStats.healthMax[i];
         }
-        cost = defaultStats.cost;
         speed = defaultStats.speed;
         range = defaultStats.range;
         ability = defaultStats.ability;
+    }
+
+    public int GetCost() {
+        return cost[level];
     }
 
     public int GetStrength() {

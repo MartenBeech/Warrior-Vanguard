@@ -4,7 +4,7 @@ public class Disarm {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 2,
+            cost = new int[] { 2, 2 },
             spellTarget = SpellTarget.enemy,
             spellDescription = new string[] {
             "Set an enemy's strength to 1",

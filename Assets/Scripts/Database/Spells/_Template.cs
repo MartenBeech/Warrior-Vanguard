@@ -5,7 +5,7 @@ public class CLASSNAMESPELL {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 0,
+            cost = new int[] { 0, 0 },
             spellTarget = SpellTarget.none,
             spellDescription = new string[] {
             "UNUPGRADED_DESCRIPTION",

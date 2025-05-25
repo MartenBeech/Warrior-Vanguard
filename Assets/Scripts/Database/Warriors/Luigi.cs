@@ -4,7 +4,7 @@ public class Luigi : WarriorStats {
             title = "Luigi",
             strength = new int[] { 2, 3 },
             health = new int[] { 10, 12 },
-            cost = 1,
+            cost = new int[] { 1, 1 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,

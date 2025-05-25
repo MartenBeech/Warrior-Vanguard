@@ -114,9 +114,9 @@ public class GameManager : MonoBehaviour {
         await Task.Delay(1000 / Settings.gameSpeed);
         CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
         List<Card> cardsInHand = new(enemyHand.GetCardsInHand());
-        cardsInHand.Sort((a, b) => b.stats.cost - a.stats.cost);
+        cardsInHand.Sort((a, b) => b.stats.GetCost() - a.stats.GetCost());
         foreach (Card card in cardsInHand) {
-            if (enemyCoin.CanAfford(card.stats.cost)) {
+            if (enemyCoin.CanAfford(card.stats.GetCost())) {
                 enemyHand.SelectCard(card);
                 GridCell randomCell = gridManager.GetRandomHighlighedCell();
                 if (!randomCell) {

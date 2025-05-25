@@ -2,7 +2,7 @@ public class ShadowyEntity {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 10,
+            cost = new int[] { 10, 10 },
             strength = new int[] { 4, 5 },
             health = new int[] { 4, 5 },
             speed = 3,

@@ -2,7 +2,7 @@ public class VampireElder {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 6,
+            cost = new int[] { 6, 6 },
             strength = new int[] { 5, 7 },
             health = new int[] { 9, 9 },
             speed = 2,

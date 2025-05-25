@@ -2,7 +2,7 @@ public class FrenziedGhoul {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 3,
+            cost = new int[] { 3, 3 },
             strength = new int[] { 3, 3 },
             health = new int[] { 7, 9 },
             speed = 3,

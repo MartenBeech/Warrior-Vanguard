@@ -4,7 +4,7 @@ public class Mario : WarriorStats {
             title = "Mario",
             strength = new int[] { 2, 4 },
             health = new int[] { 4, 4 },
-            cost = 0,
+            cost = new int[] { 0, 0 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,

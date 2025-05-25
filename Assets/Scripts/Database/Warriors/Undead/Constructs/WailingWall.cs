@@ -2,7 +2,7 @@ public class WailingWall {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 3,
+            cost = new int[] { 3, 3 },
             strength = new int[] { 0, 0 },
             health = new int[] { 6, 7 },
             speed = 0,

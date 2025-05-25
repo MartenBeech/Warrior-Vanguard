@@ -2,7 +2,7 @@ public class BoneConjurer {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = 5,
+            cost = new int[] { 5, 5 },
             strength = new int[] { 3, 4 },
             health = new int[] { 7, 8 },
             speed = 2,
