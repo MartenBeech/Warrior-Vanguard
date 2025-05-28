@@ -1,14 +1,15 @@
-public class Mario : WarriorStats {
+public class ElderwoodElder {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Mario",
-            strength = new int[] { 5, 4 },
-            health = new int[] { 10, 4 },
-            cost = new int[] { 0, 0 },
-            speed = 2,
-            range = 2,
+            title = GetType().Name,
+            cost = new int[] { 9, 9 },
+            strength = new int[] { 4, 5 },
+            health = new int[] { 16, 19 },
+            speed = 1,
+            range = 1,
             damageType = Character.DamageType.Physical,
-            race = Character.Race.Human,
+            race = Character.Race.Treant,
+            rarity = CardRarity.Common,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
@@ -16,6 +17,7 @@ public class Mario : WarriorStats {
 
         WarriorAbility ability = stats.ability;
         ability.rooting.Add();
+        ability.sprout.Add();
 
         return stats;
     }

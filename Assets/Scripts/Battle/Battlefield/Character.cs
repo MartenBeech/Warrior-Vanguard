@@ -24,7 +24,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Physical, Magical
     };
     public enum Race {
-        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur, Dragon, Troll
+        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur, Dragon, Troll, Treant
     }
     private Hand hand;
     private CharacterSpawner characterSpawner;
@@ -42,6 +42,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public void UpdateWarriorUI() {
+        if (this == null) return;
+
         attackText.text = $"{stats.GetStrength()}";
         healthText.text = $"{stats.GetHealth()}";
 
@@ -89,9 +91,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
 
         if (stepsToMove > 0) {
+            if (stats.ability.rooted.Trigger(this)) return;
+
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, stepsToMove);
             ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
             await objectAnimation.MoveObject(transform.position, gridManager.GetCellPosition(newGridIndex), 2);
+            stats.ability.familiarGround.TriggerMove(this, gridIndex, newGridIndex, gridManager);
             gridIndex = newGridIndex;
         }
     }
@@ -173,6 +178,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             await stats.ability.lifeTransfer.Trigger(this, damage, gridManager);
         }
         await stats.ability.bash.Trigger(this, target, floatingText);
+        stats.ability.rooting.Trigger(this, target);
     }
 
     public async Task<int> TakeDamage(Character dealer, int damage, DamageType damageType) {
@@ -209,14 +215,16 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Heal(Character dealer, int amount) {
-        stats.AddHealthCurrent(amount);
-        UpdateWarriorUI();
+        if (stats.GetHealth() < stats.GetHealthMax()) {
+            stats.AddHealthCurrent(amount);
+            UpdateWarriorUI();
 
-        dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
+            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
 
-        await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green, true);
+            await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green, true);
 
-        dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
+            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
+        }
     }
 
     public async Task Die(Character dealer) {
@@ -272,6 +280,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             stats.ability.cemeteryGates.Trigger(this, characterSpawner),
             stats.ability.rebirth.Trigger(this, characterSpawner),
             stats.ability.regeneration.Trigger(this),
+            stats.ability.sprout.Trigger(this, characterSpawner),
+            stats.ability.sapEnergy.Trigger(this, gridManager),
         };
         await Task.WhenAll(asyncFunctions);
     }

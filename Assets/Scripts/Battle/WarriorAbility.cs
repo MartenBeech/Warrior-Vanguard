@@ -56,6 +56,11 @@ public class WarriorAbility {
     public Regeneration regeneration = new();
     public Bash bash = new();
     public Stunned stunned = new();
+    public FamiliarGround familiarGround = new();
+    public Rooting rooting = new();
+    public Rooted rooted = new();
+    public Sprout sprout = new();
+    public SapEnergy sapEnergy = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

@@ -1,14 +1,23 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class Regeneration {
+public class SapEnergy {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Heal {GetValue(stats)} to this warrior";
+        return $"{WarriorAbility.Keywords.Overturn}: Heal {GetValue(stats)} to your Elderwood Elder";
     }
 
-    public async Task<bool> Trigger(Character dealer) {
+    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            await dealer.Heal(dealer, GetValue(dealer.stats));
+            List<Character> friends = gridManager.GetFriends(dealer.alignment);
+            List<Character> elderwoodElders = friends.Where(friend => friend.stats.title == "ElderwoodElder").ToList();
+
+            List<Task> asyncFunctions = new();
+            foreach (var elderwoodElder in elderwoodElders) {
+                asyncFunctions.Add(elderwoodElder.Heal(dealer, GetValue(dealer.stats)));
+            }
+            await Task.WhenAll(asyncFunctions);
             return true;
         }
         return false;

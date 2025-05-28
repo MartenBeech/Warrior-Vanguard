@@ -5,9 +5,10 @@ public class Stunned {
         return $"Skip this warrior's next turn";
     }
 
-    public bool Trigger(Character target) {
-        if (GetValue(target.stats)) {
-            target.stats.ability.stunned.Remove();
+    public bool Trigger(Character dealer) {
+        if (GetValue(dealer.stats)) {
+            dealer.stats.ability.stunned.Remove();
+            dealer.UpdateWarriorUI();
             return true;
         }
         return false;

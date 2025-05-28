@@ -4,13 +4,14 @@ using System.Threading.Tasks;
 public class Rebirth {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Turn into a resummoned Phoenix";
+        return $"{WarriorAbility.Keywords.Overturn}: Turn into a new Phoenix";
     }
 
     public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
             WarriorStats phoenix = new Phoenix().GetStats();
             phoenix.alignment = target.alignment;
+            phoenix.level = target.stats.level;
 
             List<Task> asyncFunctions = new() {
                 characterSpawner.SpawnRandomly(phoenix, target.transform.position),

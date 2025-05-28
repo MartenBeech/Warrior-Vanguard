@@ -1,22 +1,23 @@
-public class Luigi : WarriorStats {
+public class ElderwoodRoot {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Luigi",
-            strength = new int[] { 2, 13 },
-            health = new int[] { 1, 12 },
+            title = GetType().Name,
             cost = new int[] { 1, 1 },
-            speed = 2,
-            range = 2,
+            strength = new int[] { 1, 1 },
+            health = new int[] { 3, 4 },
+            speed = 0,
+            range = 1,
             damageType = Character.DamageType.Physical,
-            race = Character.Race.Human,
+            race = Character.Race.Treant,
+            rarity = CardRarity.Common,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
         }
 
         WarriorAbility ability = stats.ability;
-        ability.stoneskin.Add();
-        ability.regeneration.Add(2);
+        ability.rooting.Add();
+        ability.sapEnergy.Add(1, 2);
 
         return stats;
     }

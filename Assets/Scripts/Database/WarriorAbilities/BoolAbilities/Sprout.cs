@@ -1,18 +1,18 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class PhoenixAshes {
+public class Sprout {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Turn into 0/1 ashes that resummon this next turn";
+        return $"{WarriorAbility.Keywords.Overturn}: Summon a Sprout";
     }
 
-    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
-        if (GetValue(target.stats)) {
-            WarriorStats ashes = new Ashes().GetStats();
-            ashes.alignment = target.alignment;
-            ashes.level = target.stats.level;
+    public async Task<bool> Trigger(Character dealer, CharacterSpawner characterSpawner) {
+        if (GetValue(dealer.stats)) {
+            WarriorStats elderwoodRoot = new ElderwoodRoot().GetStats();
+            elderwoodRoot.alignment = dealer.alignment;
+            elderwoodRoot.level = dealer.stats.level;
 
-            await characterSpawner.Spawn(target.gridIndex, ashes, target.transform.position);
+            await characterSpawner.SpawnRandomly(elderwoodRoot, dealer.transform.position);
             return true;
         }
         return false;
@@ -20,7 +20,7 @@ public class PhoenixAshes {
 
     bool[] value = new bool[] { false, false };
 
-    bool GetValue(WarriorStats stats) {
+    public bool GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 

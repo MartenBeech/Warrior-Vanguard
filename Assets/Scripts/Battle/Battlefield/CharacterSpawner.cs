@@ -69,6 +69,7 @@ public class CharacterSpawner : MonoBehaviour {
         character.SetStats(stats);
 
         stats.ability.skeletal.TriggerSummon(character, gameManager);
+        stats.ability.familiarGround.TriggerSummon(character);
 
         gameManager.RegisterCharacter(character, stats.alignment);
         await objectAnimation.MoveObject(from, gridManager.GetCellPosition(gridIndex));
