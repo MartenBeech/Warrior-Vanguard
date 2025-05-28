@@ -49,9 +49,13 @@ public class WarriorAbility {
     public ForestStrength forestStrength = new();
     public ThickSkin thickSkin = new();
     public PhoenixAshes phoenixAshes = new();
-    public Haunting haunting = new();
+    public EternalNightmare eternalNightmare = new();
     public Rebirth rebirth = new();
     public SpellImmunity spellImmunity = new();
+    public Stoneskin stoneskin = new();
+    public Regeneration regeneration = new();
+    public Bash bash = new();
+    public Stunned stunned = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

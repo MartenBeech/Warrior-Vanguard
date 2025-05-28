@@ -1,14 +1,13 @@
 using System.Text.RegularExpressions;
-public class Haunting {
+public class Stunned {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"This has permanent Afterlife";
+        return $"Skip this warrior's next turn";
     }
 
     public bool Trigger(Character target) {
         if (GetValue(target.stats)) {
-            target.stats.ability.afterlife.Add();
-            target.UpdateWarriorUI();
+            target.stats.ability.stunned.Remove();
             return true;
         }
         return false;

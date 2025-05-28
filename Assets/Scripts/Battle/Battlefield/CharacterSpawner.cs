@@ -60,7 +60,8 @@ public class CharacterSpawner : MonoBehaviour {
             hand = enemyHand;
             summonerObject = enemySummonerObject;
         }
-        character.Initiate(gameManager, gridManager, hand, this, summonerObject, hoverWarrior);
+        FloatingText floatingText = FindFirstObjectByType<FloatingText>();
+        character.Initiate(gameManager, gridManager, hand, this, summonerObject, hoverWarrior, floatingText);
 
         character.gridIndex = gridIndex;
         character.alignment = stats.alignment;
@@ -74,7 +75,6 @@ public class CharacterSpawner : MonoBehaviour {
 
         character.SetPosition(gridIndex);
 
-        FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         await stats.ability.massResistance.Trigger(character, gridManager, floatingText);
         stats.ability.forestStrength.TriggerSummon(character, gridManager);
 

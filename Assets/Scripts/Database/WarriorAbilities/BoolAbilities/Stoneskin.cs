@@ -1,26 +1,17 @@
-
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using UnityEngine;
-public class Afterlife {
+public class Stoneskin {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Return to your hand without this ability";
+        return $"Can max take 3 damage at a time";
     }
 
-    public async Task<bool> Trigger(Character target, GridManager gridManager, Hand hand, Transform summonerObject, GameObject clone) {
+    public int Trigger(Character target, int damage) {
         if (GetValue(target.stats)) {
-            ObjectAnimation objectAnimation = clone.GetComponent<ObjectAnimation>();
-            await objectAnimation.MoveObject(gridManager.GetCellPosition(target.gridIndex), summonerObject.position, 1, true);
-
-            target.stats.ResetStats();
-            if (!target.stats.ability.eternalNightmare.GetValue(target.stats)) {
-                target.stats.ability.afterlife.Remove();
+            if (damage > 3) {
+                damage = 3;
             }
-            hand.AddCardToHand(target.stats);
-            return true;
         }
-        return false;
+        return damage;
     }
 
     bool[] value = new bool[] { false, false };

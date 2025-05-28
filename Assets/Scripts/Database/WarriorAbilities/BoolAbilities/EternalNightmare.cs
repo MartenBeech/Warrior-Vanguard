@@ -1,23 +1,14 @@
-
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using UnityEngine;
-public class Afterlife {
+public class EternalNightmare {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Return to your hand without this ability";
+        return $"This has permanent Afterlife";
     }
 
-    public async Task<bool> Trigger(Character target, GridManager gridManager, Hand hand, Transform summonerObject, GameObject clone) {
+    public bool Trigger(Character target) {
         if (GetValue(target.stats)) {
-            ObjectAnimation objectAnimation = clone.GetComponent<ObjectAnimation>();
-            await objectAnimation.MoveObject(gridManager.GetCellPosition(target.gridIndex), summonerObject.position, 1, true);
-
-            target.stats.ResetStats();
-            if (!target.stats.ability.eternalNightmare.GetValue(target.stats)) {
-                target.stats.ability.afterlife.Remove();
-            }
-            hand.AddCardToHand(target.stats);
+            target.stats.ability.afterlife.Add();
+            target.UpdateWarriorUI();
             return true;
         }
         return false;

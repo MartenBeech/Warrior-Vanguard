@@ -1,23 +1,18 @@
-
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using UnityEngine;
-public class Afterlife {
+public class Bash {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Return to your hand without this ability";
+        return $"{WarriorAbility.Keywords.Strike}: 50% chance to stun the target";
     }
 
-    public async Task<bool> Trigger(Character target, GridManager gridManager, Hand hand, Transform summonerObject, GameObject clone) {
-        if (GetValue(target.stats)) {
-            ObjectAnimation objectAnimation = clone.GetComponent<ObjectAnimation>();
-            await objectAnimation.MoveObject(gridManager.GetCellPosition(target.gridIndex), summonerObject.position, 1, true);
-
-            target.stats.ResetStats();
-            if (!target.stats.ability.eternalNightmare.GetValue(target.stats)) {
-                target.stats.ability.afterlife.Remove();
+    public async Task<bool> Trigger(Character dealer, Character target, FloatingText floatingText) {
+        if (GetValue(dealer.stats)) {
+            if (Rng.Chance(50)) {
+                target.stats.ability.stunned.Add();
+                target.UpdateWarriorUI();
+                await floatingText.CreateFloatingText(target.transform, "Stunned", ColorPalette.ColorEnum.purple);
             }
-            hand.AddCardToHand(target.stats);
             return true;
         }
         return false;

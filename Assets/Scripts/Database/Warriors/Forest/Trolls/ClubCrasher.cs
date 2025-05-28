@@ -1,14 +1,15 @@
-public class Luigi : WarriorStats {
+public class ClubCrasher {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Luigi",
-            strength = new int[] { 12, 13 },
-            health = new int[] { 10, 12 },
-            cost = new int[] { 1, 1 },
+            title = GetType().Name,
+            cost = new int[] { 4, 4 },
+            strength = new int[] { 3, 4 },
+            health = new int[] { 6, 7 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,
-            race = Character.Race.Human,
+            race = Character.Race.Troll,
+            rarity = CardRarity.Common,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
@@ -16,7 +17,7 @@ public class Luigi : WarriorStats {
 
         WarriorAbility ability = stats.ability;
         ability.stoneskin.Add();
-        ability.regeneration.Add(2);
+        ability.bash.Add();
 
         return stats;
     }

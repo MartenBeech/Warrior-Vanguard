@@ -24,19 +24,21 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Physical, Magical
     };
     public enum Race {
-        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur, Dragon
+        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur, Dragon, Troll
     }
     private Hand hand;
     private CharacterSpawner characterSpawner;
     private Transform summonerObject;
+    private FloatingText floatingText;
 
-    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner, Transform summonerObject, HoverWarrior hoverWarrior) {
+    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner, Transform summonerObject, HoverWarrior hoverWarrior, FloatingText floatingText) {
         this.gameManager = gameManager;
         this.gridManager = gridManager;
         this.hand = hand;
         this.characterSpawner = characterSpawner;
         this.summonerObject = summonerObject;
         this.hoverWarrior = hoverWarrior;
+        this.floatingText = floatingText;
     }
 
     public void UpdateWarriorUI() {
@@ -100,6 +102,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public async Task StandAndAttack(Direction direction) {
         if (stats.GetHealth() <= 0) return;
+        if (stats.ability.stunned.Trigger(this)) return;
 
         for (int i = 1; i <= stats.range; i++) {
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
@@ -169,6 +172,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             await stats.ability.lifeSteal.Trigger(this, damage);
             await stats.ability.lifeTransfer.Trigger(this, damage, gridManager);
         }
+        await stats.ability.bash.Trigger(this, target, floatingText);
     }
 
     public async Task<int> TakeDamage(Character dealer, int damage, DamageType damageType) {
@@ -177,6 +181,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         damage = stats.ability.stealth.TriggerTakeDamage(this, damage);
         damage = stats.ability.thickSkin.Trigger(this, damage);
 
+        damage = stats.ability.stoneskin.Trigger(this, damage);
         damage = stats.ability.incorporeal.Trigger(this, damage, damageType);
 
         List<Task> asyncFunctions = new();
@@ -192,7 +197,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
 
-        FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString(), ColorPalette.ColorEnum.red, true));
 
         await Task.WhenAll(asyncFunctions);
@@ -210,7 +214,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
 
-        FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green, true);
 
         dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
@@ -246,7 +249,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
             asyncFunctions.Add(dealer.stats.ability.possess.Trigger(dealer, this, characterSpawner));
 
-            FloatingText floatingText = FindFirstObjectByType<FloatingText>();
             asyncFunctions.Add(dealer.stats.ability.greedyStrike.Trigger(dealer, floatingText));
         }
 
@@ -269,6 +271,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             stats.ability.poisoned.Trigger(this),
             stats.ability.cemeteryGates.Trigger(this, characterSpawner),
             stats.ability.rebirth.Trigger(this, characterSpawner),
+            stats.ability.regeneration.Trigger(this),
         };
         await Task.WhenAll(asyncFunctions);
     }
