@@ -47,6 +47,7 @@ public class WarriorAbility {
     public Multishot multishot = new();
     public GreedyStrike greedyStrike = new();
     public ForestStrength forestStrength = new();
+    public EvilInspiration evilInspiration = new();
     public ThickSkin thickSkin = new();
     public PhoenixAshes phoenixAshes = new();
     public EternalNightmare eternalNightmare = new();

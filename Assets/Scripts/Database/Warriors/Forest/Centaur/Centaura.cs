@@ -3,7 +3,7 @@ public class Centaura {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 6, 6 },
-            strength = new int[] { 2, 3 },
+            strength = new int[] { 3, 3 },
             health = new int[] { 7, 7 },
             speed = 4,
             range = 2,

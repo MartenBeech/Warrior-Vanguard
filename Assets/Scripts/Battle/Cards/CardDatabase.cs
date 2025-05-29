@@ -3,6 +3,19 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new WatchTower().GetStats(),
+        new Archer().GetStats(),
+        new HoodyRobin().GetStats(),
+        new Knight().GetStats(),
+        new LegionOfPeasants().GetStats(),
+        new Peasant().GetStats(),
+        new Squire().GetStats(),
+        new Gunslinger().GetStats(),
+        new FlameThrower().GetStats(),
+        new RockThrower().GetStats(),
+        new MinotaurBaby().GetStats(),
+        new MinotaurKing().GetStats(),
+        new MinotaurLord().GetStats(),
         new ElderwoodElder().GetStats(),
         new UprootedWoods().GetStats(),
         new WanderingBirch().GetStats(),

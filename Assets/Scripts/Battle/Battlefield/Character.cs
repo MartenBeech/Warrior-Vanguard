@@ -24,7 +24,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Physical, Magical
     };
     public enum Race {
-        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur, Dragon, Troll, Treant
+        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur, Dragon, Troll, Treant, Imp, Minotaur, Pirate
     }
     private Hand hand;
     private CharacterSpawner characterSpawner;
@@ -233,6 +233,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         stats.ability.skeletal.TriggerDeath(this, gameManager);
         stats.ability.forestStrength.TriggerDeath(this, gridManager);
+        stats.ability.evilInspiration.TriggerDeath(this, gridManager);
 
         List<Task> asyncFunctions = new() {
             stats.ability.revive.Trigger(this, characterSpawner),
