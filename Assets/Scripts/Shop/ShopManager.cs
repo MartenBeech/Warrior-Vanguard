@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour {
     string shopCardsKey = "shopCards";
+    string shopItemsKey = "shopItems";
     public List<Card> cardsForSale = new List<Card>();
+    public List<Item> itemsForSale = new List<Item>();
     public TMP_Text actionInfoText;
     public DeckBuilder deckBuilder;
 
@@ -13,7 +15,7 @@ public class ShopManager : MonoBehaviour {
     }
 
     void PopulateShop() {
-        if (PlayerPrefs.HasKey(shopCardsKey)) {
+        if (PlayerPrefs.HasKey(shopCardsKey) && PlayerPrefs.HasKey(shopItemsKey)) {
             LoadShop();
         } else {
             List<WarriorStats> tempCards = new List<WarriorStats>(CardDatabase.allCards);
@@ -23,6 +25,14 @@ public class ShopManager : MonoBehaviour {
                 card.SetStats(stats);
                 card.UpdateCardUi();
                 tempCards.RemoveAt(randomIndex);
+            }
+
+            List<Item> tempItems = new List<Item>(ItemManager.availableItems);
+            foreach (Item itemForSale in itemsForSale) {
+                int randomIndex = Random.Range(0, tempItems.Count);
+                Item item = tempItems[randomIndex];
+                itemForSale.SetItem(item);
+                tempItems.RemoveAt(randomIndex);
             }
 
             SaveShop();
@@ -43,14 +53,36 @@ public class ShopManager : MonoBehaviour {
 
     }
 
+    public void BuyItem(Item item) {
+        if (GoldManager.SpendGold(50)) {
+            ItemManager.AddItem(item);
+
+            itemsForSale.Remove(item);
+            Destroy(item.gameObject);
+            SaveShop();
+            actionInfoText.text = $"Bought {item.displayTitle}";
+        } else {
+            actionInfoText.text = $"Not enough gold!";
+        }
+    }
+
     private void SaveShop() {
         List<string> cardTitlesAndLevels = new();
+        List<string> itemTitles = new();
         foreach (Card card in cardsForSale) {
             cardTitlesAndLevels.Add($"{card.stats.title}_{card.stats.level}");
         }
 
+        foreach (Item item in itemsForSale) {
+            itemTitles.Add($"{item.title}");
+        }
+
         string cardData = string.Join(",", cardTitlesAndLevels);
         PlayerPrefs.SetString(shopCardsKey, cardData);
+
+        string itemData = string.Join(",", itemTitles);
+        PlayerPrefs.SetString(shopItemsKey, itemData);
+
         PlayerPrefs.Save();
     }
 
@@ -62,12 +94,26 @@ public class ShopManager : MonoBehaviour {
             if (i >= cardTitlesAndLevels.Length) {
                 // This happens if cards have already been bought, and then reloading the shop.
                 cardsForSale[i].gameObject.SetActive(false);
-                break;
+            } else {
+                WarriorStats stats = CardDatabase.GetStatsByTitleAndLevel(cardTitlesAndLevels[i]);
+                cardsForSale[i].SetStats(stats);
+                cardsForSale[i].UpdateCardUi();
             }
+        }
 
-            WarriorStats stats = CardDatabase.GetStatsByTitleAndLevel(cardTitlesAndLevels[i]);
-            cardsForSale[i].SetStats(stats);
-            cardsForSale[i].UpdateCardUi();
+        string itemData = PlayerPrefs.GetString(shopItemsKey);
+        string[] itemTitles = itemData.Split(',');
+
+        for (int i = 0; i < itemsForSale.Count; i++) {
+            Debug.Log(i);
+            if (i >= itemTitles.Length) {
+                Debug.Log("INVALID INDEX");
+                // This happens if items have already been bought, and then reloading the shop.
+                itemsForSale[i].gameObject.SetActive(false);
+            } else {
+                Item item = ItemManager.GetItemByTitle(itemTitles[i]);
+                itemsForSale[i].SetItem(item);
+            }
         }
     }
 

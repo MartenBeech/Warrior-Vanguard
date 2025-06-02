@@ -10,6 +10,13 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public GameObject image;
     private TooltipManager tooltipManager;
 
+    public void SetItem(Item item) {
+        title = item.title;
+        displayTitle = item.displayTitle;
+        description = item.description;
+        UpdateItemUI();
+    }
+    
     public void UpdateItemUI() {
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{title}");
     }
@@ -54,7 +61,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public void OnPointerEnter(PointerEventData eventData) {
         tooltipManager = FindFirstObjectByType<TooltipManager>();
         float tooltipWidth = tooltipManager.gameObject.GetComponent<RectTransform>().rect.width;
-        tooltipManager.transform.position = new Vector2((tooltipWidth / 2) + 20, transform.position.y - 125);
+        tooltipManager.transform.position = new Vector2((tooltipWidth / 2) + transform.position.x, transform.position.y - 125);
         tooltipManager.AddTooltip(displayTitle, description);
     }
 

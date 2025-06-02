@@ -8,7 +8,7 @@ public static class ItemManager {
     static string availableItemsKey = "availableItems";
     public static List<Item> items = new();
     private static List<Item> allItems = new();
-    private static List<Item> availableItems = new();
+    public static List<Item> availableItems = new();
     public static ItemsPanel ItemsPanel;
 
     private static void LoadAllItems() {
@@ -29,7 +29,7 @@ public static class ItemManager {
         };
 
         foreach (var type in itemTypes) {
-            Item item = CreateItemByTitle(type.Name);
+            Item item = GetItemByTitle(type.Name);
             allItems.Add(item);
         }
     }
@@ -81,7 +81,7 @@ public static class ItemManager {
         string[] itemTitles = itemData.Split(',');
 
         foreach (string title in itemTitles) {
-            Item item = CreateItemByTitle(title);
+            Item item = GetItemByTitle(title);
             tempItems.Add(item);
         }
 
@@ -107,14 +107,14 @@ public static class ItemManager {
         string[] itemTitles = itemData.Split(',');
 
         foreach (string title in itemTitles) {
-            Item item = CreateItemByTitle(title);
+            Item item = GetItemByTitle(title);
             tempItems.Add(item);
         }
 
         return tempItems;
     }
 
-    private static Item CreateItemByTitle(string title) {
+    public static Item GetItemByTitle(string title) {
         GameObject itemObj = new();
 
         if (title == "") {

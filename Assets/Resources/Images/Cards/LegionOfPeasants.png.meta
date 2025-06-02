@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LegionOfPeasants_0: 6346850964828457225
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
