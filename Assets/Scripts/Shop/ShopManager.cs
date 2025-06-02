@@ -105,9 +105,7 @@ public class ShopManager : MonoBehaviour {
         string[] itemTitles = itemData.Split(',');
 
         for (int i = 0; i < itemsForSale.Count; i++) {
-            Debug.Log(i);
             if (i >= itemTitles.Length) {
-                Debug.Log("INVALID INDEX");
                 // This happens if items have already been bought, and then reloading the shop.
                 itemsForSale[i].gameObject.SetActive(false);
             } else {
