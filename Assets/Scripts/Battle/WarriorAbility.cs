@@ -62,6 +62,9 @@ public class WarriorAbility {
     public Rooted rooted = new();
     public Sprout sprout = new();
     public SapEnergy sapEnergy = new();
+    public Looting looting = new();
+    public Heal heal = new();
+    public MassHeal massHeal = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

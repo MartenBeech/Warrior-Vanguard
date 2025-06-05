@@ -3,7 +3,12 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
-        new WatchTower().GetStats(),
+        new LightkeeperZealot().GetStats(),
+        new BountyHunter().GetStats(),
+        new LuckyLooter().GetStats(),
+        new YoungPriestess().GetStats(),
+        new WiseMonk().GetStats(),
+        new Watchtower().GetStats(),
         new Archer().GetStats(),
         new HoodyRobin().GetStats(),
         new Knight().GetStats(),

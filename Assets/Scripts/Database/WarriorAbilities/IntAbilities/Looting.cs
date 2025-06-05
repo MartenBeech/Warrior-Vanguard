@@ -1,9 +1,9 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class GreedyStrike {
+public class Looting {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Gain {GetValue(stats)} Gold";
+        return $"When another warrior dies, gain 10 gold";
     }
 
     public async Task<bool> Trigger(Character dealer, FloatingText floatingText) {
@@ -19,7 +19,7 @@ public class GreedyStrike {
 
     int[] value = new int[] { 0, 0 };
 
-    int GetValue(WarriorStats stats) {
+    public int GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 

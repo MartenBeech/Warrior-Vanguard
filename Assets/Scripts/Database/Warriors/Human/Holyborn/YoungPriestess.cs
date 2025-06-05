@@ -1,14 +1,14 @@
-public class Watchtower {
+public class YoungPriestess {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 4, 4 },
-            strength = new int[] { 4, 5 },
-            health = new int[] { 4, 5 },
-            speed = 0,
+            cost = new int[] { 2, 2 },
+            strength = new int[] { 1, 1 },
+            health = new int[] { 3, 4 },
+            speed = 2,
             range = 4,
-            damageType = Character.DamageType.Physical,
-            race = Character.Race.Construct,
+            damageType = Character.DamageType.Magical,
+            race = Character.Race.Holyborn,
             rarity = CardRarity.Common,
         };
         for (int i = 0; i < 2; i++) {
@@ -16,7 +16,7 @@ public class Watchtower {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.construct.Add();
+        ability.heal.Add(1, 2);
 
         return stats;
     }

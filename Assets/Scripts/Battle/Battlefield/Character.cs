@@ -24,7 +24,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Physical, Magical
     };
     public enum Race {
-        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur, Dragon, Troll, Treant, Imp, Minotaur, Pirate
+        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur, Dragon, Troll, Treant, Imp, Minotaur, Pirate, Holyborn
     }
     private Hand hand;
     private CharacterSpawner characterSpawner;
@@ -256,6 +256,11 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 asyncFunctions.Add(friend.stats.ability.deathCall.Trigger(friend, this, characterSpawner));
             }
 
+            List<Character> characters = gridManager.GetCharacters();
+            foreach (Character character in characters) {
+                asyncFunctions.Add(character.stats.ability.looting.Trigger(character, floatingText));
+            }
+
             asyncFunctions.Add(dealer.stats.ability.possess.Trigger(dealer, this, characterSpawner));
 
             asyncFunctions.Add(dealer.stats.ability.greedyStrike.Trigger(dealer, floatingText));
@@ -276,6 +281,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public async Task EndTurn() {
         stats.ability.poisonCloud.Trigger(this, gridManager);
 
+        await stats.ability.massHeal.Trigger(this, gridManager);
+
         List<Task> asyncFunctions = new() {
             stats.ability.poisoned.Trigger(this),
             stats.ability.cemeteryGates.Trigger(this, characterSpawner),
@@ -283,6 +290,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             stats.ability.regeneration.Trigger(this),
             stats.ability.sprout.Trigger(this, characterSpawner),
             stats.ability.sapEnergy.Trigger(this, gridManager),
+
+            stats.ability.heal.Trigger(this, gridManager),
         };
         await Task.WhenAll(asyncFunctions);
     }

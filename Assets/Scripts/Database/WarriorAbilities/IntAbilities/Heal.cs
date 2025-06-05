@@ -1,25 +1,32 @@
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class GreedyStrike {
+public class Heal {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Gain {GetValue(stats)} Gold";
+        return $"{WarriorAbility.Keywords.Overturn}: Heal another random friend by {GetValue(stats)}";
     }
 
-    public async Task<bool> Trigger(Character dealer, FloatingText floatingText) {
+    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            if (dealer.alignment == CharacterSpawner.Alignment.Friend) {
-                GoldManager.AddGold(GetValue(dealer.stats));
-                await floatingText.CreateFloatingText(dealer.transform, $"+{GetValue(dealer.stats)} Gold", ColorPalette.ColorEnum.yellow);
-                return true;
-            }
+            List<Character> damagedFriends = gridManager.GetDamagedFriends(dealer.alignment);
+            damagedFriends.Remove(dealer);
+
+            if (damagedFriends.Count == 0) return false;
+
+            int index = Rng.Range(0, damagedFriends.Count);
+
+            Character damagedFriend = damagedFriends[index];
+            await damagedFriend.Heal(dealer, GetValue(dealer.stats));
+
+            return true;
         }
         return false;
     }
 
     int[] value = new int[] { 0, 0 };
 
-    int GetValue(WarriorStats stats) {
+    public int GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 
