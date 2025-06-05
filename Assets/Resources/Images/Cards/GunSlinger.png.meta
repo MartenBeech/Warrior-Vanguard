@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GunSlinger_0: -6792815948972800468
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f64569fd0c15d80458764c1a524a5351
+guid: 17c47f5e711bf7d48bbef9a99334fc4e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8932092875127675973
-    second: FlameThrower_0
+      213: -1749779122104887584
+    second: RejuvenatingOak_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FlameThrower_0
+      name: RejuvenatingOak_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bb3a735bad4da0480800000000000000
-      internalID: -8932092875127675973
+      spriteID: 0e61b8fb82987b7e0800000000000000
+      internalID: -1749779122104887584
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      FlameThrower_0: -8932092875127675973
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

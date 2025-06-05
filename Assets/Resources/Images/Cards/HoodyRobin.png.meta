@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HoodyRobin_0: -6757301807982498898
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

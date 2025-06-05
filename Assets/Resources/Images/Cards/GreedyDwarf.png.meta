@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GreedyDwarf_0: 6439065366198132004
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

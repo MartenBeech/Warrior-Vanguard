@@ -139,6 +139,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 Strike(target)
             };
                 await Task.WhenAll(asyncFunctions);
+                await target.stats.ability.spikes.Trigger(this, target);
             }
         }
 
@@ -215,6 +216,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Heal(Character dealer, int amount) {
+        if (!this || !dealer) return;
+
         if (stats.GetHealth() < stats.GetHealthMax()) {
             stats.AddHealthCurrent(amount);
             UpdateWarriorUI();
@@ -234,6 +237,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         stats.ability.skeletal.TriggerDeath(this, gameManager);
         stats.ability.forestStrength.TriggerDeath(this, gridManager);
         stats.ability.evilInspiration.TriggerDeath(this, gridManager);
+        stats.ability.forestProtection.TriggerDeath(this, gridManager);
 
         List<Task> asyncFunctions = new() {
             stats.ability.revive.Trigger(this, characterSpawner),
@@ -280,20 +284,15 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public async Task EndTurn() {
         stats.ability.poisonCloud.Trigger(this, gridManager);
-
+        await stats.ability.poisoned.Trigger(this);
+        await stats.ability.cemeteryGates.Trigger(this, characterSpawner);
+        await stats.ability.rebirth.Trigger(this, characterSpawner);
+        await stats.ability.regeneration.Trigger(this);
+        await stats.ability.sprout.Trigger(this, characterSpawner);
+        await stats.ability.sapEnergy.Trigger(this, gridManager);
         await stats.ability.massHeal.Trigger(this, gridManager);
-
-        List<Task> asyncFunctions = new() {
-            stats.ability.poisoned.Trigger(this),
-            stats.ability.cemeteryGates.Trigger(this, characterSpawner),
-            stats.ability.rebirth.Trigger(this, characterSpawner),
-            stats.ability.regeneration.Trigger(this),
-            stats.ability.sprout.Trigger(this, characterSpawner),
-            stats.ability.sapEnergy.Trigger(this, gridManager),
-
-            stats.ability.heal.Trigger(this, gridManager),
-        };
-        await Task.WhenAll(asyncFunctions);
+        await stats.ability.lushGrounds.Trigger(this, gridManager);
+        await stats.ability.heal.Trigger(this, gridManager);
     }
 
     private Vector2 GetFrontCellIndex(Vector2 gridIndex, Direction direction, int range = 1) {

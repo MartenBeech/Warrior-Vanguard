@@ -65,6 +65,9 @@ public class WarriorAbility {
     public Looting looting = new();
     public Heal heal = new();
     public MassHeal massHeal = new();
+    public Spikes spikes = new();
+    public LushGrounds lushGrounds = new();
+    public ForestProtection forestProtection = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

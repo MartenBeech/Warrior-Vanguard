@@ -236,6 +236,13 @@ public class GridManager : MonoBehaviour {
         return warriors;
     }
 
+    public List<Character> GetNearbyFriends(Character warrior) {
+        List<Character> nearbyWarriors = GetWarriorsAroundCell(warrior.gridIndex);
+        List<Character> nearbyFriends = nearbyWarriors.Where(a => a.alignment == warrior.alignment).ToList();
+
+        return nearbyFriends;
+    }
+
     public List<Character> GetCharacters() {
         List<Character> characters = new();
         foreach (var character in allCharacters) {

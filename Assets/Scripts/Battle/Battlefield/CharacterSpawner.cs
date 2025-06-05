@@ -50,6 +50,7 @@ public class CharacterSpawner : MonoBehaviour {
             friend.stats.ability.boneSculptor.Trigger(friend, stats);
             friend.stats.ability.forestStrength.TriggerSummonFriend(friend, stats);
             friend.stats.ability.evilInspiration.TriggerSummonFriend(friend, stats);
+            friend.stats.ability.forestProtection.TriggerSummonFriend(friend, stats);
         }
 
         Hand hand = null;
@@ -80,6 +81,7 @@ public class CharacterSpawner : MonoBehaviour {
         await stats.ability.massResistance.Trigger(character, gridManager, floatingText);
         stats.ability.forestStrength.TriggerSummon(character, gridManager);
         stats.ability.evilInspiration.TriggerSummon(character, gridManager);
+        stats.ability.forestProtection.TriggerSummon(character, gridManager);
 
         foreach (Item item in ItemManager.LoadItems()) {
             if (stats.alignment == Alignment.Friend) {
