@@ -3,10 +3,10 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using System.Text.RegularExpressions;
 
 public class EventManager : MonoBehaviour {
     string eventKey = "eventKey";
+    string eventGainItemKey = "eventGainItem";
     public TMP_Text eventText;
     public List<Card> upgradeCardsOptions;
     public List<Card> removeCardsOptions;
@@ -47,7 +47,7 @@ public class EventManager : MonoBehaviour {
     }
 
     public void TriggerRandomEvent() {
-        int randomIndex = 0;
+        int randomIndex;
         if (PlayerPrefs.HasKey(eventKey)) {
             randomIndex = PlayerPrefs.GetInt(eventKey);
         } else {
@@ -58,7 +58,7 @@ public class EventManager : MonoBehaviour {
         PlayerPrefs.SetInt(eventKey, randomIndex);
         PlayerPrefs.Save();
 
-        // currentEvent = events.GainItemEvent; // Hardcoded for testing
+        currentEvent = events.GainCardEvent; // Hardcoded for testing
         switch (currentEvent) {
             case events.GainGoldEvent:
                 GainGoldEvent();
@@ -160,7 +160,13 @@ public class EventManager : MonoBehaviour {
     }
 
     void GainItemEvent() {
-        item = ItemManager.GetRandomItem();
+        if (PlayerPrefs.HasKey(eventGainItemKey)) {
+            item = ItemManager.GetItemByTitle(PlayerPrefs.GetString(eventGainItemKey));
+        } else {
+            item = ItemManager.GetRandomItem();
+            PlayerPrefs.SetString(eventGainItemKey, item.title);
+            PlayerPrefs.Save();
+        }
 
         if (item.title == null) {
             eventText.text = "You find a hole where an item used to be. However, it seems like you already have all the items in the world.";
@@ -223,6 +229,7 @@ public class EventManager : MonoBehaviour {
 
     public void FinishEvent() {
         PlayerPrefs.DeleteKey(eventKey);
+        PlayerPrefs.DeleteKey(eventGainItemKey);
         TileCompleter.MarkTileAsCompleted();
     }
 

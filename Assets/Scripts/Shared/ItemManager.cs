@@ -7,31 +7,33 @@ public static class ItemManager {
     static string itemKey = "playerItems";
     static string availableItemsKey = "availableItems";
     public static List<Item> items = new();
-    private static List<Item> allItems = new();
     public static List<Item> availableItems = new();
     public static ItemsPanel ItemsPanel;
 
-    private static void LoadAllItems() {
+    private static List<Item> LoadAllItems() {
+        List<Item> allItems = new();
         Type[] itemTypes = new Type[] {
             typeof(VampireRing),
             typeof(HumanRing),
             typeof(HolyLight),
             typeof(ThunderStorm),
-            typeof(WarmWelcome),
-            typeof(Recycle),
-            typeof(TurtleUp),
-            typeof(TurtleAssembler),
-            typeof(CrackedEgg),
-            typeof(SmallHeart),
-            typeof(BigHeart),
-            typeof(WoodenSword),
-            typeof(MoneyBag),
+            // typeof(WarmWelcome),
+            // typeof(Recycle),
+            // typeof(TurtleUp),
+            // typeof(TurtleAssembler),
+            // typeof(CrackedEgg),
+            // typeof(SmallHeart),
+            // typeof(BigHeart),
+            // typeof(WoodenSword),
+            // typeof(MoneyBag),
         };
 
         foreach (var type in itemTypes) {
             Item item = GetItemByTitle(type.Name);
             allItems.Add(item);
         }
+
+        return allItems;
     }
 
     public static void AddItem(Item item) {
@@ -45,20 +47,19 @@ public static class ItemManager {
     public static Item GetRandomItem() {
         availableItems = LoadAvailableItems();
 
-        int randomIndex = 0; // TODO: Replace this line with the below one after testing
-        // int randomIndex = Rng.Range(0, availableItems.Count);
+        // int randomIndex = 0; // TODO: Replace this line with the below one after testing
+        int randomIndex = Rng.Range(0, availableItems.Count);
         Item randomItem = availableItems[randomIndex];
         return randomItem;
     }
 
     public static void RemoveItemFromAvailable(Item item) {
-        availableItems.Remove(item);
+        availableItems.RemoveAll(i => i.title == item.title);
         SaveAvailableItems();
     }
 
     public static void InitAvailableItems() {
-        LoadAllItems();
-        availableItems = allItems;
+        availableItems = LoadAllItems();
         SaveAvailableItems();
     }
 
@@ -99,9 +100,9 @@ public static class ItemManager {
         PlayerPrefs.Save();
     }
 
-    private static List<Item> LoadAvailableItems() {
+    public static List<Item> LoadAvailableItems() {
         List<Item> tempItems = new();
-        if (!PlayerPrefs.HasKey(availableItemsKey)) return tempItems;
+        if (!PlayerPrefs.HasKey(availableItemsKey)) return availableItems;
 
         string itemData = PlayerPrefs.GetString(availableItemsKey);
         string[] itemTitles = itemData.Split(',');
@@ -111,6 +112,7 @@ public static class ItemManager {
             tempItems.Add(item);
         }
 
+        availableItems = tempItems;
         return tempItems;
     }
 

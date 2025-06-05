@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 81aed7c7fc66e8a40b66f6c891b50b17
+guid: af3876d9fe3c59f458036ad781106422
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5358998048397209211
-    second: BountyHunter_0
+      213: 6439065366198132004
+    second: GreedyDwarf_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BountyHunter_0
+      name: GreedyDwarf_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 581d54d0ba301a5b0800000000000000
-      internalID: -5358998048397209211
+      spriteID: 42d92cdb5d72c5950800000000000000
+      internalID: 6439065366198132004
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      BountyHunter_0: -5358998048397209211
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

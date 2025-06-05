@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 81aed7c7fc66e8a40b66f6c891b50b17
+guid: f64569fd0c15d80458764c1a524a5351
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5358998048397209211
-    second: BountyHunter_0
+      213: -8932092875127675973
+    second: FlameThrower_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BountyHunter_0
+      name: FlameThrower_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 581d54d0ba301a5b0800000000000000
-      internalID: -5358998048397209211
+      spriteID: bb3a735bad4da0480800000000000000
+      internalID: -8932092875127675973
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      BountyHunter_0: -5358998048397209211
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

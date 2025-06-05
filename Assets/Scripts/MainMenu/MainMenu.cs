@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void ContinueGame() {
+        ItemManager.LoadAvailableItems();
         SceneLoader.LoadMap();
     }
 
