@@ -6,6 +6,6 @@ public class SmallHeart : Item {
     }
 
     public override void UseOnFriendSpawn(WarriorStats stats) {
-        stats.AddHealthMax(1);
+        stats.AddHealth(1);
     }
 }

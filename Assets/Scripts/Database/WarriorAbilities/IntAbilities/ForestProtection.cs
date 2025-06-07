@@ -11,7 +11,7 @@ public class ForestProtection {
             List<Character> friends = gridManager.GetFriends(dealer.alignment);
             friends.Remove(dealer);
             foreach (var friend in friends) {
-                friend.stats.AddHealthMax(GetValue(dealer.stats));
+                friend.stats.AddHealth(GetValue(dealer.stats));
                 friend.UpdateWarriorUI();
             }
             return true;
@@ -24,7 +24,7 @@ public class ForestProtection {
             List<Character> friends = gridManager.GetFriends(dealer.alignment);
             friends.Remove(dealer);
             foreach (var friend in friends) {
-                friend.stats.AddHealthMax(-GetValue(dealer.stats));
+                friend.stats.AddHealth(-GetValue(dealer.stats));
                 friend.UpdateWarriorUI();
             }
             return true;
@@ -34,7 +34,7 @@ public class ForestProtection {
 
     public bool TriggerSummonFriend(Character dealer, WarriorStats targetStats) {
         if (GetValue(dealer.stats) > 0) {
-            targetStats.AddHealthMax(GetValue(dealer.stats));
+            targetStats.AddHealth(GetValue(dealer.stats));
             return true;
         }
         return false;

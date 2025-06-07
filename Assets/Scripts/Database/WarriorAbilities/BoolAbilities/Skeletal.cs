@@ -24,7 +24,7 @@ public class Skeletal {
             for (int i = 0; i < summoner.stats.skeletonBones; i++) {
                 int rng = Rng.Range(0, 10);
                 if (rng < 6) {
-                    target.stats.AddHealthMax(1);
+                    target.stats.AddHealth(1);
                 } else if (rng < 9) {
                     target.stats.AddStrength(1);
                 } else {

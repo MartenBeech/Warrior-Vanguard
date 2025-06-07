@@ -7,7 +7,7 @@ public class HumanRing : Item {
 
     public override void UseOnFriendSpawn(WarriorStats stats) {
         if (stats.race == Character.Race.Human) {
-            stats.AddHealthMax(2);
+            stats.AddHealth(2);
         }
     }
 }

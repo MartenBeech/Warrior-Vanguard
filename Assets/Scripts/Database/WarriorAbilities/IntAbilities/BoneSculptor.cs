@@ -9,7 +9,7 @@ public class BoneSculptor {
         if (GetValue(dealer.stats) > 0) {
             if (targetStats.ability.skeletal.GetValue(targetStats)) {
                 targetStats.AddStrength(GetValue(dealer.stats));
-                targetStats.AddHealthMax(GetValue(dealer.stats));
+                targetStats.AddHealth(GetValue(dealer.stats));
             }
             return true;
         }

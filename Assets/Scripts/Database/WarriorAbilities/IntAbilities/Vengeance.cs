@@ -1,15 +1,14 @@
 using System.Text.RegularExpressions;
-public class Cannibalism {
+public class Vengeance {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Gain +{GetValue(stats)}/+{GetValue(stats)}";
+        return $"When taking damage, gain +{GetValue(stats)} strength";
     }
 
-    public bool Trigger(Character dealer) {
-        if (GetValue(dealer.stats) > 0) {
-            dealer.stats.AddStrength(GetValue(dealer.stats));
-            dealer.stats.AddHealth(GetValue(dealer.stats));
-            dealer.UpdateWarriorUI();
+    public bool Trigger(Character target) {
+        if (GetValue(target.stats) > 0) {
+            target.stats.AddStrength(GetValue(target.stats));
+            target.UpdateWarriorUI();
             return true;
         }
         return false;
@@ -17,7 +16,7 @@ public class Cannibalism {
 
     int[] value = new int[] { 0, 0 };
 
-    int GetValue(WarriorStats stats) {
+    public int GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 

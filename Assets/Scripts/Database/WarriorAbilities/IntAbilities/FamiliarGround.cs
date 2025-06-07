@@ -9,7 +9,7 @@ public class FamiliarGround {
     public bool TriggerSummon(Character dealer) {
         if (GetValue(dealer.stats) > 0) {
             dealer.stats.AddStrength(GetValue(dealer.stats));
-            dealer.stats.AddHealthMax(GetValue(dealer.stats));
+            dealer.stats.AddHealth(GetValue(dealer.stats));
             dealer.UpdateWarriorUI();
             return true;
         }
@@ -21,20 +21,20 @@ public class FamiliarGround {
             if (dealer.alignment == CharacterSpawner.Alignment.Friend) {
                 if (moveFrom.x < 3 && moveTo.x >= 3) {
                     dealer.stats.AddStrength(-GetValue(dealer.stats));
-                    dealer.stats.AddHealthMax(-GetValue(dealer.stats));
+                    dealer.stats.AddHealth(-GetValue(dealer.stats));
                 } else if (moveFrom.x >= 3 && moveTo.x < 3) {
                     dealer.stats.AddStrength(GetValue(dealer.stats));
-                    dealer.stats.AddHealthMax(GetValue(dealer.stats));
+                    dealer.stats.AddHealth(GetValue(dealer.stats));
                 }
             }
 
             if (dealer.alignment == CharacterSpawner.Alignment.Enemy) {
                 if (moveFrom.x >= gridManager.columns - 3 && moveTo.x < gridManager.columns - 3) {
                     dealer.stats.AddStrength(-GetValue(dealer.stats));
-                    dealer.stats.AddHealthMax(-GetValue(dealer.stats));
+                    dealer.stats.AddHealth(-GetValue(dealer.stats));
                 } else if (moveFrom.x < gridManager.columns - 3 && moveTo.x >= gridManager.columns - 3) {
                     dealer.stats.AddStrength(GetValue(dealer.stats));
-                    dealer.stats.AddHealthMax(GetValue(dealer.stats));
+                    dealer.stats.AddHealth(GetValue(dealer.stats));
                 }
             }
 

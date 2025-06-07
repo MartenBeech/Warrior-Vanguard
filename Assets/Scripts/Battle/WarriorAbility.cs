@@ -68,6 +68,8 @@ public class WarriorAbility {
     public Spikes spikes = new();
     public LushGrounds lushGrounds = new();
     public ForestProtection forestProtection = new();
+    public Carnivore carnivore = new();
+    public Vengeance vengeance = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

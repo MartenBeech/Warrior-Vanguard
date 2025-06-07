@@ -24,7 +24,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Physical, Magical
     };
     public enum Race {
-        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur, Dragon, Troll, Treant, Imp, Minotaur, Pirate, Holyborn
+        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur, Dragon, Troll, Treant, Imp, Minotaur, Pirate, Holyborn, Werewolf, Pixie
     }
     private Hand hand;
     private CharacterSpawner characterSpawner;
@@ -199,6 +199,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
             if (stats.GetHealth() <= 0) {
                 asyncFunctions.Add(Die(dealer));
+            } else {
+                stats.ability.vengeance.Trigger(this);
             }
         }
 
@@ -253,6 +255,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         if (dealer != this) {
             dealer.stats.ability.cannibalism.Trigger(dealer);
+            asyncFunctions.Add(dealer.stats.ability.carnivore.Trigger(dealer, this));
             asyncFunctions.Add(dealer.stats.ability.raiseDead.Trigger(dealer, this, characterSpawner));
 
             List<Character> friends = gridManager.GetFriends(dealer.alignment);
