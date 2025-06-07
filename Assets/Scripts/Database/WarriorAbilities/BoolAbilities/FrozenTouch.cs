@@ -21,7 +21,7 @@ public class FrozenTouch {
 
     bool[] value = new bool[] { false, false };
 
-    bool GetValue(WarriorStats stats) {
+    public bool GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 
