@@ -70,6 +70,10 @@ public class WarriorAbility {
     public ForestProtection forestProtection = new();
     public Carnivore carnivore = new();
     public Vengeance vengeance = new();
+    public Flying flying = new();
+    public FaeMagic faeMagic = new();
+    public SapPower sapPower = new();
+    public Weakened weakened = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

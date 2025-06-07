@@ -1,14 +1,14 @@
 using System.Text.RegularExpressions;
-public class Weaken {
+using System.Threading.Tasks;
+public class FaeMagic {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Apply {GetValue(stats)} Weakened which reduces target's strength";
+        return $"{WarriorAbility.Keywords.Overturn}: Give your summoner +{GetValue(stats)} shield";
     }
 
-    public bool Trigger(Character dealer, Character target) {
+    public async Task<bool> Trigger(Character dealer, Summoner summoner) {
         if (GetValue(dealer.stats) > 0) {
-            target.stats.ability.weakened.Add(GetValue(dealer.stats));
-            target.UpdateWarriorUI();
+            await summoner.AddShield(GetValue(dealer.stats));
             return true;
         }
         return false;
@@ -16,7 +16,7 @@ public class Weaken {
 
     int[] value = new int[] { 0, 0 };
 
-    int GetValue(WarriorStats stats) {
+    public int GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 

@@ -86,7 +86,11 @@ public class WarriorStats {
     }
 
     public int GetStrength() {
-        return strength[level];
+        int totalStrength = strength[level] - ability.weakened.GetValue(this);
+        if (totalStrength < 0) {
+            totalStrength = 0;
+        }
+        return totalStrength;
     }
 
     public void AddStrength(int amount) {

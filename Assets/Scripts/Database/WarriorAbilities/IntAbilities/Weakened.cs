@@ -1,31 +1,21 @@
 using System.Text.RegularExpressions;
-public class Weaken {
+public class Weakened {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Apply {GetValue(stats)} Weakened which reduces target's strength";
-    }
-
-    public bool Trigger(Character dealer, Character target) {
-        if (GetValue(dealer.stats) > 0) {
-            target.stats.ability.weakened.Add(GetValue(dealer.stats));
-            target.UpdateWarriorUI();
-            return true;
-        }
-        return false;
+        return $"Reduce strength by {GetValue(stats)}";
     }
 
     int[] value = new int[] { 0, 0 };
 
-    int GetValue(WarriorStats stats) {
+    public int GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 
     public void Add(int unupgradedValue, int upgradedValue) {
         int[] newValues = new int[] { unupgradedValue, upgradedValue };
         for (int i = 0; i < 2; i++) {
-            value[i] += newValues[i];
-            if (value[i] < 0) {
-                value[i] = 0;
+            if (value[i] < newValues[i]) {
+                value[i] = newValues[i];
             }
         }
     }

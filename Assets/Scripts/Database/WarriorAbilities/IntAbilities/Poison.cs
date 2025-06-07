@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class Poison {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Apply {GetValue(stats)} Poison";
+        return $"{WarriorAbility.Keywords.Strike}: Apply {GetValue(stats)} Poisoned";
     }
 
     public bool Trigger(Character dealer, Character target) {

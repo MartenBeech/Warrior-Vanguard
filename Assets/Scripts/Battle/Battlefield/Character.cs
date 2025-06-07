@@ -29,6 +29,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private Hand hand;
     private CharacterSpawner characterSpawner;
     private Transform summonerObject;
+    private Summoner summoner;
     private FloatingText floatingText;
 
     public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner, Transform summonerObject, HoverWarrior hoverWarrior, FloatingText floatingText) {
@@ -37,6 +38,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         this.hand = hand;
         this.characterSpawner = characterSpawner;
         this.summonerObject = summonerObject;
+        summoner = summonerObject.GetComponent<Summoner>();
         this.hoverWarrior = hoverWarrior;
         this.floatingText = floatingText;
     }
@@ -86,7 +88,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             if (!frontCellCharacter) {
                 stepsToMove = i;
             } else if (frontCellCharacter && frontCellCharacter.alignment != alignment) {
-                break;
+                if (!stats.ability.flying.GetValue(stats) || frontCellCharacter.stats.ability.flying.GetValue(frontCellCharacter.stats))
+                    break;
             }
         }
 
@@ -119,11 +122,11 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
 
             if (IsOutOfField(newGridIndex)) {
-                Summoner summoner = alignment == CharacterSpawner.Alignment.Enemy ?
+                Summoner summonerTarget = alignment == CharacterSpawner.Alignment.Enemy ?
                     gameManager.friendSummonerObject.GetComponent<Summoner>() :
                     gameManager.enemySummonerObject.GetComponent<Summoner>();
 
-                await summoner.Damage(this, stats.GetStrength(), gridManager);
+                await summonerTarget.Damage(this, stats.GetStrength(), gridManager);
                 break;
             }
         }
@@ -183,6 +186,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task<int> TakeDamage(Character dealer, int damage, DamageType damageType) {
+        damage = stats.ability.sapPower.Trigger(dealer, this, damage);
         damage = stats.ability.armor.Trigger(this, damage, damageType);
         damage = stats.ability.resistance.Trigger(this, damage, damageType);
         damage = stats.ability.stealth.TriggerTakeDamage(this, damage);
@@ -277,7 +281,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         if (alignment == CharacterSpawner.Alignment.Friend) {
             foreach (Item item in ItemManager.LoadItems()) {
-                await item.UseOnWarriorDeath(summonerObject.GetComponent<Summoner>());
+                await item.UseOnWarriorDeath(summoner);
             }
         }
 
@@ -296,6 +300,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await stats.ability.massHeal.Trigger(this, gridManager);
         await stats.ability.lushGrounds.Trigger(this, gridManager);
         await stats.ability.heal.Trigger(this, gridManager);
+        await stats.ability.faeMagic.Trigger(this, summoner);
     }
 
     private Vector2 GetFrontCellIndex(Vector2 gridIndex, Direction direction, int range = 1) {
