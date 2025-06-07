@@ -15,7 +15,7 @@ public class SkeletonWarrior {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.skeletal.Add();
+        ability.skeletal.Add(1, 2);
         ability.armor.Add(1, 2);
 
         return stats;

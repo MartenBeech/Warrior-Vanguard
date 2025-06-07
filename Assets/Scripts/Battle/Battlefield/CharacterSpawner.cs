@@ -63,14 +63,15 @@ public class CharacterSpawner : MonoBehaviour {
             summonerObject = enemySummonerObject;
         }
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-        character.Initiate(gameManager, gridManager, hand, this, summonerObject, hoverWarrior, floatingText);
+        Summoner summoner = summonerObject.GetComponent<Summoner>();
+        character.Initiate(gameManager, gridManager, hand, this, summonerObject, summoner, hoverWarrior, floatingText);
 
         character.gridIndex = gridIndex;
         character.alignment = stats.alignment;
 
         character.SetStats(stats);
 
-        stats.ability.skeletal.TriggerSummon(character, gameManager);
+        stats.ability.skeletal.TriggerSummon(character, summoner);
         stats.ability.familiarGround.TriggerSummon(character);
 
         gameManager.RegisterCharacter(character, stats.alignment);

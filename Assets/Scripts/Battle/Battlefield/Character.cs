@@ -32,13 +32,13 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private Summoner summoner;
     private FloatingText floatingText;
 
-    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner, Transform summonerObject, HoverWarrior hoverWarrior, FloatingText floatingText) {
+    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner, Transform summonerObject, Summoner summoner, HoverWarrior hoverWarrior, FloatingText floatingText) {
         this.gameManager = gameManager;
         this.gridManager = gridManager;
         this.hand = hand;
         this.characterSpawner = characterSpawner;
         this.summonerObject = summonerObject;
-        summoner = summonerObject.GetComponent<Summoner>();
+        this.summoner = summoner;
         this.hoverWarrior = hoverWarrior;
         this.floatingText = floatingText;
     }
@@ -240,7 +240,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         gameManager.RemoveCharacter(this);
         gridManager.RemoveCharacter(this);
 
-        stats.ability.skeletal.TriggerDeath(this, gameManager);
+        stats.ability.skeletal.TriggerDeath(this, summoner);
         stats.ability.forestStrength.TriggerDeath(this, gridManager);
         stats.ability.evilInspiration.TriggerDeath(this, gridManager);
         stats.ability.forestProtection.TriggerDeath(this, gridManager);

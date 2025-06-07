@@ -7,7 +7,7 @@ public class BoneSculptor {
 
     public bool Trigger(Character dealer, WarriorStats targetStats) {
         if (GetValue(dealer.stats) > 0) {
-            if (targetStats.ability.skeletal.GetValue(targetStats)) {
+            if (targetStats.ability.skeletal.GetValue(targetStats) > 0) {
                 targetStats.AddStrength(GetValue(dealer.stats));
                 targetStats.AddHealth(GetValue(dealer.stats));
             }

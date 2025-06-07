@@ -3,8 +3,8 @@ public class SkeletonRider {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 2, 2 },
-            strength = new int[] { 2, 3 },
-            health = new int[] { 3, 4 },
+            strength = new int[] { 1, 1 },
+            health = new int[] { 3, 3 },
             speed = 4,
             range = 2,
             damageType = Character.DamageType.Physical,
@@ -15,7 +15,8 @@ public class SkeletonRider {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.skeletal.Add();
+        ability.skeletal.Add(1, 2);
+        ability.bloodlust.Add(1, 2);
 
         return stats;
     }

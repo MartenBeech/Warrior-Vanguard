@@ -3,8 +3,8 @@ public class SkeletonArcher {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 2, 2 },
-            strength = new int[] { 2, 3 },
-            health = new int[] { 1, 2 },
+            strength = new int[] { 3, 3 },
+            health = new int[] { 1, 1 },
             speed = 2,
             range = 4,
             damageType = Character.DamageType.Physical,
@@ -15,7 +15,8 @@ public class SkeletonArcher {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.skeletal.Add();
+        ability.skeletal.Add(1, 2);
+        ability.poison.Add(1, 2);
 
         return stats;
     }
