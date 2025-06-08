@@ -1,20 +1,17 @@
 using System.Text.RegularExpressions;
-using UnityEngine;
-public class Stealth {
+public class Bleed {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Deal double damage and break stealth";
+        return $"{WarriorAbility.Keywords.Strike}: Apply Bleeding";
     }
 
-    public int Trigger(Character dealer, int damage) {
+    public bool Trigger(Character dealer, Character target) {
         if (GetValue(dealer.stats)) {
-            damage *= 2;
-            if (!dealer.stats.ability.permaStealth.GetValue(dealer.stats)) {
-                dealer.stats.ability.stealth.Add(false, false);
-            }
-            dealer.UpdateWarriorUI();
+            target.stats.ability.bleeding.Add();
+            target.UpdateWarriorUI();
+            return true;
         }
-        return damage;
+        return false;
     }
 
     bool[] value = new bool[] { false, false };

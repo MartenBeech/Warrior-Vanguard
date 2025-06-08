@@ -6,7 +6,7 @@ public class BloodMerchant {
             strength = new int[] { 4, 5 },
             health = new int[] { 6, 8 },
             speed = 2,
-            range = 4,
+            range = 2,
             damageType = Character.DamageType.Physical,
             race = Character.Race.Vampire,
         };
@@ -17,6 +17,7 @@ public class BloodMerchant {
 
         WarriorAbility ability = stats.ability;
         ability.lifeTransfer.Add();
+        ability.bleed.Add();
 
         return stats;
     }

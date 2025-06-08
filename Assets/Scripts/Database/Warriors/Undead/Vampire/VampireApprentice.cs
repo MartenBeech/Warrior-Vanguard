@@ -3,12 +3,13 @@ public class VampireApprentice {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 2, 2 },
-            strength = new int[] { 1, 1 },
-            health = new int[] { 5, 7 },
+            strength = new int[] { 1, 2 },
+            health = new int[] { 5, 6 },
             speed = 2,
-            range = 4,
+            range = 2,
             damageType = Character.DamageType.Physical,
             race = Character.Race.Vampire,
+            rarity = CardRarity.Common,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
@@ -17,7 +18,7 @@ public class VampireApprentice {
 
         WarriorAbility ability = stats.ability;
         ability.lifeSteal.Add();
-        ability.weaken.Add(1, 2);
+        ability.bleed.Add();
 
         return stats;
     }

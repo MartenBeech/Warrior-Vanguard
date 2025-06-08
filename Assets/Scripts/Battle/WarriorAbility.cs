@@ -75,6 +75,8 @@ public class WarriorAbility {
     public SapPower sapPower = new();
     public Weakened weakened = new();
     public Backstab backstab = new();
+    public Bleed bleed = new();
+    public Bleeding bleeding = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

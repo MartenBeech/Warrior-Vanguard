@@ -4,7 +4,7 @@ public class TheOriginal {
             title = GetType().Name,
             cost = new int[] { 8, 8 },
             strength = new int[] { 3, 4 },
-            health = new int[] { 15, 19 },
+            health = new int[] { 13, 16 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,
@@ -18,6 +18,7 @@ public class TheOriginal {
         WarriorAbility ability = stats.ability;
         ability.lifeSteal.Add();
         ability.retaliate.Add();
+        ability.bleed.Add();
 
         return stats;
     }

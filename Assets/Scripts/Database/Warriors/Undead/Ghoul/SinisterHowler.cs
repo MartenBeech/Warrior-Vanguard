@@ -3,8 +3,8 @@ public class SinisterHowler {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 5, 5 },
-            strength = new int[] { 5, 6 },
-            health = new int[] { 3, 3 },
+            strength = new int[] { 4, 5 },
+            health = new int[] { 5, 5 },
             speed = 3,
             range = 2,
             damageType = Character.DamageType.Physical,

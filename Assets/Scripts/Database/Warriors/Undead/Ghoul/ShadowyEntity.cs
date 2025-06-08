@@ -4,7 +4,7 @@ public class ShadowyEntity {
             title = GetType().Name,
             cost = new int[] { 10, 10 },
             strength = new int[] { 4, 5 },
-            health = new int[] { 4, 5 },
+            health = new int[] { 8, 10 },
             speed = 3,
             range = 2,
             damageType = Character.DamageType.Physical,

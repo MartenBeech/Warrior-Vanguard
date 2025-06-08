@@ -4,7 +4,7 @@ public class VampireElder {
             title = GetType().Name,
             cost = new int[] { 6, 6 },
             strength = new int[] { 5, 7 },
-            health = new int[] { 9, 9 },
+            health = new int[] { 8, 8 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,
@@ -17,6 +17,7 @@ public class VampireElder {
 
         WarriorAbility ability = stats.ability;
         ability.lifeSteal.Add();
+        ability.bleed.Add();
 
         return stats;
     }

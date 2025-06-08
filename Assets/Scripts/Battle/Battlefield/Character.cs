@@ -154,9 +154,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
         }
 
-        if (target.stats.GetHealth() > 0) {
-            stats.ability.weaken.Trigger(this, target);
-        }
         target.stats.ability.weakeningAura.Trigger(this, target);
         target.stats.ability.poisoningAura.Trigger(this, target);
         stats.ability.bloodlust.Trigger(this);
@@ -180,10 +177,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             damage = stats.GetStrength();
         }
 
-        damage = stats.ability.stealth.TriggerStrike(this, damage);
+        damage = stats.ability.stealth.Trigger(this, damage);
 
         stats.ability.poison.Trigger(this, target);
         stats.ability.frozenTouch.Trigger(this, target);
+        stats.ability.weaken.Trigger(this, target);
+        stats.ability.bleed.Trigger(this, target);
 
         damage = await target.TakeDamage(this, damage, stats.damageType);
 
@@ -199,7 +198,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         damage = stats.ability.sapPower.Trigger(dealer, this, damage);
         damage = stats.ability.armor.Trigger(this, damage, damageType);
         damage = stats.ability.resistance.Trigger(this, damage, damageType);
-        damage = stats.ability.stealth.TriggerTakeDamage(this, damage);
         damage = stats.ability.thickSkin.Trigger(this, damage);
 
         damage = stats.ability.stoneskin.Trigger(this, damage);
@@ -235,6 +233,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (!this || !dealer) return;
 
         if (stats.GetHealth() < stats.GetHealthMax()) {
+            if (stats.ability.bleeding.GetValue(stats)) {
+                amount = 0;
+            }
+
             stats.AddHealthCurrent(amount);
             UpdateWarriorUI();
 

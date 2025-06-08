@@ -1,20 +1,8 @@
 using System.Text.RegularExpressions;
-using UnityEngine;
-public class Stealth {
+public class Bleeding {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Deal double damage and break stealth";
-    }
-
-    public int Trigger(Character dealer, int damage) {
-        if (GetValue(dealer.stats)) {
-            damage *= 2;
-            if (!dealer.stats.ability.permaStealth.GetValue(dealer.stats)) {
-                dealer.stats.ability.stealth.Add(false, false);
-            }
-            dealer.UpdateWarriorUI();
-        }
-        return damage;
+        return $"Negates all healing received";
     }
 
     bool[] value = new bool[] { false, false };
