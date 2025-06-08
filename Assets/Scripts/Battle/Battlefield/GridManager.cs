@@ -284,12 +284,12 @@ public class GridManager : MonoBehaviour {
         return (int)dist;
     }
 
-    public Character GetCharacterBehindTarget(Vector2 targetGridIndex, CharacterSpawner.Alignment dealerAlignment) {
+    public Character GetCharacterBehindTarget(Character target) {
         Character character = null;
-        if (dealerAlignment == CharacterSpawner.Alignment.Friend) {
-            character = GetCellCharacter(targetGridIndex + new Vector2(1, 0));
-        } else if (dealerAlignment == CharacterSpawner.Alignment.Enemy) {
-            character = GetCellCharacter(targetGridIndex - new Vector2(1, 0));
+        if (target.alignment == CharacterSpawner.Alignment.Enemy) {
+            character = GetCellCharacter(target.gridIndex + new Vector2(1, 0));
+        } else if (target.alignment == CharacterSpawner.Alignment.Friend) {
+            character = GetCellCharacter(target.gridIndex - new Vector2(1, 0));
         }
 
         return character;

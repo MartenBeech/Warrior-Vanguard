@@ -15,7 +15,6 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.flying.Add();
 
         return stats;
     }

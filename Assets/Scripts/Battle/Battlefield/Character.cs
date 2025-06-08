@@ -118,6 +118,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (stats.GetHealth() <= 0) return;
         if (stats.ability.stunned.Trigger(this)) return;
 
+        if (await stats.ability.backstab.Trigger(this, gridManager)) return;
+
         for (int i = 1; i <= stats.range; i++) {
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
             Character characterOnCell = gridManager.GetCellCharacter(newGridIndex);
@@ -138,14 +140,14 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
     }
 
-    public async Task Attack(Character target) {
+    public async Task Attack(Character target, bool dealDoubleDamage = false) {
         for (int i = 0; i < (stats.ability.doubleStrike.GetValue(stats) ? 2 : 1); i++) {
             if (target.stats.GetHealth() > 0) {
                 List<Task> asyncFunctions = new() {
                 stats.ability.multishot.Trigger(this, target, gridManager),
                 stats.ability.splash.Trigger(this, target, gridManager),
                 stats.ability.pierce.Trigger(this, target, gridManager),
-                Strike(target)
+                Strike(target, dealDoubleDamage ? stats.GetStrength() * 2 : stats.GetStrength())
             };
                 await Task.WhenAll(asyncFunctions);
                 await target.stats.ability.spikes.Trigger(this, target);
@@ -173,8 +175,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await stats.ability.hitAndRun.Trigger(this);
     }
 
-    public async Task Strike(Character target) {
-        int damage = stats.GetStrength();
+    public async Task Strike(Character target, int damage = -1) {
+        if (damage == -1) {
+            damage = stats.GetStrength();
+        }
 
         damage = stats.ability.stealth.TriggerStrike(this, damage);
 

@@ -1,17 +1,17 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class Pierce {
+public class Backstab {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Also strike the enemy behind the target";
+        return $"Can attack backwards, dealing double damage";
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
+    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            Character neighbor = gridManager.GetCharacterBehindTarget(target);
+            Character neighbor = gridManager.GetCharacterBehindTarget(dealer);
 
             if (neighbor && neighbor.alignment != dealer.alignment) {
-                await dealer.Strike(neighbor);
+                await dealer.Attack(neighbor, true);
                 return true;
             }
         }

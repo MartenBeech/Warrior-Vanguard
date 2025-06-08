@@ -1,15 +1,15 @@
-public class HappyHarpy {
+public class ThirdEyeHarpy {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 3, 3 },
+            cost = new int[] { 2, 2 },
             strength = new int[] { 4, 5 },
-            health = new int[] { 3, 4 },
+            health = new int[] { 2, 3 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,
             race = Character.Race.Harpy,
-            rarity = CardRarity.Common,
+            rarity = CardRarity.Rare,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
@@ -17,6 +17,7 @@ public class HappyHarpy {
 
         WarriorAbility ability = stats.ability;
         ability.flying.Add();
+        ability.backstab.Add();
 
         return stats;
     }

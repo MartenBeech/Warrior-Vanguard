@@ -1,14 +1,14 @@
-public class HappyHarpy {
+public class SuspiciousGargoyle {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 3, 3 },
-            strength = new int[] { 4, 5 },
-            health = new int[] { 3, 4 },
-            speed = 2,
-            range = 2,
+            strength = new int[] { 3, 4 },
+            health = new int[] { 6, 7 },
+            speed = 0,
+            range = 1,
             damageType = Character.DamageType.Physical,
-            race = Character.Race.Harpy,
+            race = Character.Race.Construct,
             rarity = CardRarity.Common,
         };
         for (int i = 0; i < 2; i++) {
@@ -16,7 +16,8 @@ public class HappyHarpy {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.flying.Add();
+        ability.construct.Add();
+        ability.backstab.Add();
 
         return stats;
     }

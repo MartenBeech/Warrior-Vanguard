@@ -74,6 +74,7 @@ public class WarriorAbility {
     public FaeMagic faeMagic = new();
     public SapPower sapPower = new();
     public Weakened weakened = new();
+    public Backstab backstab = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

@@ -2,8 +2,8 @@ public class Luigi : WarriorStats {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = "Luigi",
-            strength = new int[] { 2, 13 },
-            health = new int[] { 1, 12 },
+            strength = new int[] { 1, 13 },
+            health = new int[] { 10, 12 },
             cost = new int[] { 1, 1 },
             speed = 2,
             range = 2,
@@ -15,8 +15,6 @@ public class Luigi : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.stoneskin.Add();
-        ability.regeneration.Add(2);
 
         return stats;
     }
