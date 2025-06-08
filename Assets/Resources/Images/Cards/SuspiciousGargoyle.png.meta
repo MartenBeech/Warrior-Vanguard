@@ -3,8 +3,8 @@ guid: 35cfe19947c40d043aa00eabebfd3692
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1458205379399014989
-    second: ChatGPT Image Jun 8, 2025, 10_52_29 PM_0
+      213: -9093390320520835201
+    second: SuspiciousGargoyle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT Image Jun 8, 2025, 10_52_29 PM_0
+      name: SuspiciousGargoyle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4a54a011169c3410800000000000000
-      internalID: 1458205379399014989
+      spriteID: f7f416daea9cdc180800000000000000
+      internalID: -9093390320520835201
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      ChatGPT Image Jun 8, 2025, 10_52_29 PM_0: 1458205379399014989
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
