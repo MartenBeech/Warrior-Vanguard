@@ -24,13 +24,23 @@ public static class DeckManager {
         return deck[index];
     }
 
-    public static List<WarriorStats> GetUnUpgradedCards() {
-        List<WarriorStats> warriorStatsDeck = new();
-        foreach (Card card in LoadDeck()) {
-            if (card.stats.level == 0) {
-                warriorStatsDeck.Add(card.stats);
+    public static List<int> GetUnUpgradedCards() {
+        List<int> warriorStatsDeck = new();
+        for (int i = 0; i < LoadDeck().Count; i++) {
+            if (LoadDeck()[i].stats.level == 0) {
+                warriorStatsDeck.Add(i);
             }
         }
+
+        return warriorStatsDeck;
+    }
+
+    public static List<int> GetDeckIndexes() {
+        List<int> warriorStatsDeck = new();
+        for (int i = 0; i < LoadDeck().Count; i++) {
+            warriorStatsDeck.Add(i);
+        }
+
         return warriorStatsDeck;
     }
 
