@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 
 public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+    public enum Race {
+        None, Construct, Dragon, //Common
+        Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, //Undead
+        Human, Pirate, Holyborn, //Human
+        Unicorn, Elf, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Forest
+        Imp, Minotaur, Harpy, //Underworld
+        Dark, //Spells
+    }
     public Vector2 gridIndex;
     private GridManager gridManager;
     public WarriorStats stats;
@@ -23,9 +31,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public enum DamageType {
         Physical, Magical
     };
-    public enum Race {
-        None, Construct, Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Human, Dark, Unicorn, Elf, Dwarf, Centaur, Dragon, Troll, Treant, Imp, Minotaur, Pirate, Holyborn, Werewolf, Pixie
-    }
+
     private Hand hand;
     private CharacterSpawner characterSpawner;
     private Transform summonerObject;
