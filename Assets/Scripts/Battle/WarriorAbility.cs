@@ -10,41 +10,60 @@ public class WarriorAbility {
         Aura,       //Active while it is alive
     }
 
+    // Identity abilities
     public Construct construct = new();
-    public Weaken weaken = new();
-    public Bloodlust bloodlust = new();
+    public Flying flying = new();
     public Revive revive = new();
-    public HydraSplit hydraSplit = new();
-    public Poison poison = new();
-    public PoisonCloud poisonCloud = new();
-    public Poisoned poisoned = new();
     public LifeSteal lifeSteal = new();
     public LifeTransfer lifeTransfer = new();
-    public Retaliate retaliate = new();
-    public Cannibalism cannibalism = new();
-    public Stealth stealth = new();
-    public PermaStealth permaStealth = new();
-    public Splash splash = new();
     public RaiseDead raiseDead = new();
-    public FrozenTouch frozenTouch = new();
     public Skeletal skeletal = new();
+    public Cannibalism cannibalism = new();
+    public Afterlife afterlife = new();
+    public Stoneskin stoneskin = new();
+    public Rooting rooting = new();
+    public FamiliarGround familiarGround = new();
+    public FaeMagic faeMagic = new();
+    public SapPower sapPower = new();
+    public Bleed bleed = new();
+
+    // Common abilities
+    public Armor armor = new();
+    public Resistance resistance = new();
+    public Guard guard = new();
+    public Weaken weaken = new();
+    public Bloodlust bloodlust = new();
+    public Vengeance vengeance = new();
+    public Poison poison = new();
+    public Retaliate retaliate = new();
+    public Stealth stealth = new();
+    public Splash splash = new();
+    public Incorporeal incorporeal = new();
+    public FrozenTouch frozenTouch = new();
+    public DarkTouch darkTouch = new();
+    public HitAndRun hitAndRun = new();
+    public Pierce pierce = new();
+    public DoubleStrike doubleStrike = new();
+    public Multishot multishot = new();
+    public Regeneration regeneration = new();
+    public Bash bash = new();
+    public Heal heal = new();
+    public Spikes spikes = new();
+    public Carnivore carnivore = new();
+    public Backstab backstab = new();
+
+    // Unique abilities
+    public HydraSplit hydraSplit = new();
+    public PermaStealth permaStealth = new();
     public DeathCall deathCall = new();
     public BoneSculptor boneSculptor = new();
-    public Incorporeal incorporeal = new();
-    public Afterlife afterlife = new();
-    public DarkTouch darkTouch = new();
+    public PoisonCloud poisonCloud = new();
     public Possess possess = new();
     public BoneSpread boneSpread = new();
     public WeakeningAura weakeningAura = new();
-    public HitAndRun hitAndRun = new();
     public PoisoningAura poisoningAura = new();
     public CemeteryGates cemeteryGates = new();
-    public Armor armor = new();
-    public Resistance resistance = new();
-    public Pierce pierce = new();
     public MassResistance massResistance = new();
-    public DoubleStrike doubleStrike = new();
-    public Multishot multishot = new();
     public GreedyStrike greedyStrike = new();
     public ForestStrength forestStrength = new();
     public EvilInspiration evilInspiration = new();
@@ -53,31 +72,19 @@ public class WarriorAbility {
     public EternalNightmare eternalNightmare = new();
     public Rebirth rebirth = new();
     public SpellImmunity spellImmunity = new();
-    public Stoneskin stoneskin = new();
-    public Regeneration regeneration = new();
-    public Bash bash = new();
-    public Stunned stunned = new();
-    public FamiliarGround familiarGround = new();
-    public Rooting rooting = new();
-    public Rooted rooted = new();
     public Sprout sprout = new();
     public SapEnergy sapEnergy = new();
     public Looting looting = new();
-    public Heal heal = new();
     public MassHeal massHeal = new();
-    public Spikes spikes = new();
     public LushGrounds lushGrounds = new();
     public ForestProtection forestProtection = new();
-    public Carnivore carnivore = new();
-    public Vengeance vengeance = new();
-    public Flying flying = new();
-    public FaeMagic faeMagic = new();
-    public SapPower sapPower = new();
+
+    // Buffs and Debuffs
+    public Poisoned poisoned = new();
+    public Stunned stunned = new();
+    public Rooted rooted = new();
     public Weakened weakened = new();
-    public Backstab backstab = new();
-    public Bleed bleed = new();
     public Bleeding bleeding = new();
-    public Guard guard = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";
