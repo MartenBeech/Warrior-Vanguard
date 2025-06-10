@@ -77,6 +77,7 @@ public class WarriorAbility {
     public Backstab backstab = new();
     public Bleed bleed = new();
     public Bleeding bleeding = new();
+    public Guard guard = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

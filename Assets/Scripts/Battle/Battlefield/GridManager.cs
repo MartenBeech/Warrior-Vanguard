@@ -218,7 +218,7 @@ public class GridManager : MonoBehaviour {
         return cells[randomIndex];
     }
 
-    public List<Character> GetWarriorsAroundCell(Vector2 gridIndex) {
+    public List<Character> GetNearbyWarriors(Vector2 gridIndex) {
         List<Character> warriors = new();
         for (int x = (int)gridIndex.x - 1; x <= (int)gridIndex.x + 1; x++) {
             if (x < 0 || x >= columns) continue;
@@ -237,8 +237,15 @@ public class GridManager : MonoBehaviour {
     }
 
     public List<Character> GetNearbyFriends(Character warrior) {
-        List<Character> nearbyWarriors = GetWarriorsAroundCell(warrior.gridIndex);
+        List<Character> nearbyWarriors = GetNearbyWarriors(warrior.gridIndex);
         List<Character> nearbyFriends = nearbyWarriors.Where(a => a.alignment == warrior.alignment).ToList();
+
+        return nearbyFriends;
+    }
+
+    public List<Character> GetNearbyEnemies(Character warrior) {
+        List<Character> nearbyWarriors = GetNearbyWarriors(warrior.gridIndex);
+        List<Character> nearbyFriends = nearbyWarriors.Where(a => a.alignment != warrior.alignment).ToList();
 
         return nearbyFriends;
     }

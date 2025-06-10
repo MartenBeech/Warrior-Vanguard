@@ -36,4 +36,11 @@ public class Rng : MonoBehaviour {
         }
         return false;
     }
+
+    public static T Entry<T>(List<T> list) {
+        int randomIndex = Range(0, list.Count);
+
+        T randomEntry = list[randomIndex];
+        return randomEntry;
+    }
 }

@@ -9,8 +9,7 @@ public class PoisonCloud {
 
     public bool Trigger(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            List<Character> nearbyWarriors = gridManager.GetWarriorsAroundCell(dealer.gridIndex);
-            List<Character> nearbyEnemies = nearbyWarriors.Where(warrior => warrior.alignment != dealer.alignment).ToList();
+            List<Character> nearbyEnemies = gridManager.GetNearbyEnemies(dealer);
             foreach (Character enemy in nearbyEnemies) {
                 enemy.stats.ability.poisoned.Add(GetValue(dealer.stats));
                 enemy.UpdateWarriorUI();

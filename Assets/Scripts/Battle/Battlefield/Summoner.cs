@@ -60,20 +60,16 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Color currentColor = dealer.image.GetComponent<Image>().color;
         dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
 
-        List<Task> asyncFunctions = new();
-
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-        asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString()));
+
+        await floatingText.CreateFloatingText(transform, damage.ToString());
 
         dealer.image.GetComponent<Image>().color = currentColor;
 
-
         if (damageAfterShield > 0) {
-            asyncFunctions.Add(dealer.stats.ability.lifeSteal.Trigger(dealer, damageAfterShield));
-            asyncFunctions.Add(dealer.stats.ability.lifeTransfer.Trigger(dealer, damageAfterShield, gridManager));
+            await dealer.stats.ability.lifeSteal.Trigger(dealer, damageAfterShield);
+            await dealer.stats.ability.lifeTransfer.Trigger(dealer, damageAfterShield, gridManager);
         }
-
-        await Task.WhenAll(asyncFunctions);
 
         dealer.stats.ability.bloodlust.Trigger(dealer);
 

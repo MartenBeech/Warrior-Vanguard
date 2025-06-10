@@ -1,22 +1,31 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class Splash {
+public class Guard {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Also {WarriorAbility.Keywords.Strike} all enemies around your target";
+        return $"Can attack a random nearby enemy (even without moving)";
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
+    public Character GetRandomNearbyEnemy(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            List<Character> enemies = gridManager.GetNearbyFriends(target);
-            List<Task> asyncFunctions = new();
-            foreach (Character enemy in enemies) {
-                asyncFunctions.Add(dealer.Strike(enemy));
-            }
+            List<Character> enemies = gridManager.GetNearbyEnemies(dealer);
+            if (enemies.Count == 0) return null;
 
-            await Task.WhenAll(asyncFunctions);
-            return true;
+            Character randomEnemy = Rng.Entry(enemies);
+            return randomEnemy;
+        }
+        return null;
+    }
+
+    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+        if (GetValue(dealer.stats)) {
+            Character nearbyEnemy = GetRandomNearbyEnemy(dealer, gridManager);
+
+            if (nearbyEnemy) {
+                await dealer.Attack(nearbyEnemy);
+                return true;
+            }
         }
         return false;
     }

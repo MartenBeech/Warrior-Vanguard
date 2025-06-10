@@ -85,6 +85,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (stats.GetHealth() <= 0) return;
 
         if (stats.ability.backstab.GetEnemyBehind(this, gridManager)) return;
+        if (stats.ability.guard.GetRandomNearbyEnemy(this, gridManager)) return;
 
         int stepsToMove = 0;
         for (int i = 1; i <= stats.speed; i++) {
@@ -121,6 +122,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (stats.ability.stunned.Trigger(this)) return;
 
         if (await stats.ability.backstab.Trigger(this, gridManager)) return;
+        if (await stats.ability.guard.Trigger(this, gridManager)) return;
 
         for (int i = 1; i <= stats.range; i++) {
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
