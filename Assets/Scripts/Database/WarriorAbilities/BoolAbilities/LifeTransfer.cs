@@ -14,7 +14,7 @@ public class LifeTransfer {
             damagedfriends.Remove(dealer);
             if (damagedfriends.Count == 0) return false;
 
-            Character randomDamagedFriend = damagedfriends[Rng.Range(0, damagedfriends.Count)];
+            Character randomDamagedFriend = Rng.Entry(damagedfriends);
             await randomDamagedFriend.Heal(dealer, damage);
             return true;
         }

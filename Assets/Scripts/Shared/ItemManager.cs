@@ -47,9 +47,7 @@ public static class ItemManager {
     public static Item GetRandomItem() {
         availableItems = LoadAvailableItems();
 
-        // int randomIndex = 0; // TODO: Replace this line with the below one after testing
-        int randomIndex = Rng.Range(0, availableItems.Count);
-        Item randomItem = availableItems[randomIndex];
+        Item randomItem = Rng.Entry(availableItems);
         return randomItem;
     }
 

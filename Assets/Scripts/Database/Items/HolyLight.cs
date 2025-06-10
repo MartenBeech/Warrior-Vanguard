@@ -14,8 +14,7 @@ public class HolyLight : Item {
 
         if (damagedFriends.Count == 0) return;
 
-        int index = Rng.Range(0, damagedFriends.Count);
-        Character damagedFriend = damagedFriends[index];
+        Character damagedFriend = Rng.Entry(damagedFriends);
 
         await damagedFriend.Heal(damagedFriend, 2);
     }

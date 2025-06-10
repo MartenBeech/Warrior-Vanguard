@@ -141,8 +141,7 @@ public class GridManager : MonoBehaviour {
         List<GridCell> cells = GetEmptyDeploys(largeDeployArea, alignment);
         if (cells.Count == 0) return null;
 
-        int randomIndex = Rng.Range(0, cells.Count);
-        return cells[randomIndex];
+        return Rng.Entry(cells);
     }
 
     public void HighlightDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment) {
@@ -214,8 +213,7 @@ public class GridManager : MonoBehaviour {
         List<GridCell> cells = GetHighlighedCells();
         if (cells.Count == 0) return null;
 
-        int randomIndex = Rng.Range(0, cells.Count);
-        return cells[randomIndex];
+        return Rng.Entry(cells);
     }
 
     public List<Character> GetNearbyWarriors(Vector2 gridIndex) {

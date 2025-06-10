@@ -105,11 +105,11 @@ public static class CardDatabase {
 
     public static WarriorStats GetRandomWarriorStats(CardRarity rarity = CardRarity.None) {
         if (rarity == CardRarity.None) {
-            return allCards[Rng.Range(0, allCards.Count)];
+            return Rng.Entry(allCards);
         }
 
         List<WarriorStats> filteredCards = allCards.FindAll(card => card.rarity == rarity);
-        return filteredCards[Rng.Range(0, filteredCards.Count)];
+        return Rng.Entry(filteredCards);
     }
 
     public static WarriorStats GetStatsByTitleAndLevel(string titleAndLevel) {
@@ -130,6 +130,6 @@ public static class CardDatabase {
 
     public static WarriorStats GetRandomWarriorWithSpecificCost(int cost) {
         List<WarriorStats> warriors = allCards.Where(card => card.GetCost() == cost && card.cardType == CardType.warrior).ToList();
-        return warriors[Rng.Range(0, warriors.Count)];
+        return Rng.Entry(warriors);
     }
 }

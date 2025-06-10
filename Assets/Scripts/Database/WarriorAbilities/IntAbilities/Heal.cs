@@ -14,9 +14,7 @@ public class Heal {
 
             if (damagedFriends.Count == 0) return false;
 
-            int index = Rng.Range(0, damagedFriends.Count);
-
-            Character damagedFriend = damagedFriends[index];
+            Character damagedFriend = Rng.Entry(damagedFriends);
             await damagedFriend.Heal(dealer, GetValue(dealer.stats));
 
             return true;
