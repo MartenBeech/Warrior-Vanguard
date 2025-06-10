@@ -20,6 +20,7 @@ public class GridManager : MonoBehaviour {
     void Start() {
         grid = new GridCell[columns, rows];
         GenerateGrid();
+        ClearHighlightedCells();
     }
 
     public float GetGridSpacingX() {
