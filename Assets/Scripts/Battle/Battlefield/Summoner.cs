@@ -76,7 +76,6 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         await Task.WhenAll(asyncFunctions);
 
         dealer.stats.ability.bloodlust.Trigger(dealer);
-        await dealer.stats.ability.hitAndRun.Trigger(dealer);
 
         if (stats.health <= 0) {
             //TODO: Summoners should have a bool for isFriendly in case we will make different summoners to choose from.

@@ -3,14 +3,25 @@ using System.Threading.Tasks;
 public class Backstab {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"Can attack backwards, dealing double damage";
+        return $"Can attack backwards, dealing double damage (even without moving)";
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+    public Character GetEnemyBehind(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
             Character neighbor = gridManager.GetCharacterBehindTarget(dealer);
 
             if (neighbor && neighbor.alignment != dealer.alignment) {
+                return neighbor;
+            }
+        }
+        return null;
+    }
+
+    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+        if (GetValue(dealer.stats)) {
+            Character neighbor = GetEnemyBehind(dealer, gridManager);
+
+            if (neighbor) {
                 await dealer.Attack(neighbor, true);
                 return true;
             }

@@ -84,6 +84,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public async Task MoveWarrior(Direction direction) {
         if (stats.GetHealth() <= 0) return;
 
+        if (stats.ability.backstab.GetEnemyBehind(this, gridManager)) return;
+
         int stepsToMove = 0;
         for (int i = 1; i <= stats.speed; i++) {
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
@@ -168,8 +170,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (target.stats.GetHealth() > 0) {
             await target.stats.ability.retaliate.Trigger(this, target, gridManager);
         }
-
-        await stats.ability.hitAndRun.Trigger(this);
     }
 
     public async Task Strike(Character target, int damage = -1) {
@@ -302,6 +302,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task EndTurn() {
+        await stats.ability.hitAndRun.Trigger(this);
         stats.ability.poisonCloud.Trigger(this, gridManager);
         await stats.ability.poisoned.Trigger(this);
         await stats.ability.cemeteryGates.Trigger(this, characterSpawner);
