@@ -17,8 +17,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public WarriorStats stats = new();
     HoverWarrior hoverWarrior;
     Hand hand;
+    GameManager gameManager;
+    bool isDisabled;
 
-    public void UpdateCardUi() {
+    public void UpdateCardUI() {
         costText.text = $"{stats.GetCost()}";
         Sprite sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
         image.GetComponent<Image>().sprite = sprite != null ? sprite : Resources.Load<Sprite>($"Images/Icons/Red Cross");
@@ -63,6 +65,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         } else {
             racePanel.SetActive(true);
         }
+
+        UpdateDisabledUI();
     }
 
     public void SetStats(WarriorStats stats) {
@@ -73,8 +77,14 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         hoverWarrior = FindFirstObjectByType<HoverWarrior>();
     }
 
+    public void SetGameManager() {
+        gameManager = FindFirstObjectByType<GameManager>();
+    }
+
     public void OnClick() {
         if (hand == null) return;
+        if (isDisabled) return;
+
         if (this == hand.selectedCard) {
             hand.DeselectCard(hand.selectedCard);
         } else {
@@ -97,5 +107,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
     public void SetHand(Hand hand) {
         this.hand = hand;
+    }
+
+    public void UpdateDisabledUI() {
+        isDisabled = false;
+        if (gameManager && stats.alignment == CharacterSpawner.Alignment.Friend) {
+            isDisabled = !gameManager.friendCoin.CanAfford(stats.GetCost());
+        }
+
+        Color color = GetComponent<Image>().color;
+        color.a = isDisabled ? 0.25f : 1f;
+        GetComponent<Image>().color = color;
     }
 }

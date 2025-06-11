@@ -22,8 +22,9 @@ public class Hand : MonoBehaviour {
         Card card = cardInstance.GetComponent<Card>();
         card.SetHand(this);
         card.stats.SetStats(stats);
-        card.UpdateCardUi();
         card.SetHoverWarrior();
+        card.SetGameManager();
+        card.UpdateCardUI();
 
         cardsInHand.Add(card);
 
@@ -44,7 +45,8 @@ public class Hand : MonoBehaviour {
             coin = gameManager.enemyCoin;
             summonerObject = gameManager.enemySummonerObject;
         }
-        coin.SpendCoins(selectedCard.stats.GetCost());
+
+        if (!coin.SpendCoins(selectedCard.stats.GetCost())) return;
 
         List<Task> asyncFunctions = new();
         if (selectedCard.stats.cardType == CardType.warrior) {
@@ -108,5 +110,11 @@ public class Hand : MonoBehaviour {
 
     public List<Card> GetCardsInHand() {
         return cardsInHand;
+    }
+
+    public void UpdateDisabledCardsUI() {
+        foreach (var card in cardsInHand) {
+            card.UpdateDisabledUI();
+        }
     }
 }

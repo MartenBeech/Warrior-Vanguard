@@ -45,7 +45,7 @@ public class Deck : MonoBehaviour {
         Card card = cardInstance.GetComponentInChildren<Card>();
 
         card.SetStats(drawnCard);
-        card.UpdateCardUi();
+        card.UpdateCardUI();
 
         if (highlightCard) {
             await objectAnimation.MoveObject(deckPos, centerPos);

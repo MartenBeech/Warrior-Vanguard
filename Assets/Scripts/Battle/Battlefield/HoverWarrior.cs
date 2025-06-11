@@ -11,7 +11,7 @@ public class HoverWarrior : MonoBehaviour {
     public void UpdateCardUI(WarriorStats stats) {
         Card card = cardObject.GetComponent<Card>();
         card.stats = stats;
-        card.UpdateCardUi();
+        card.UpdateCardUI();
     }
 
     public void ShowCardFromBattlefield(WarriorStats stats, Vector2 position) {

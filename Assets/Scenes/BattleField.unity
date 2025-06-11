@@ -360,6 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 4650228782262450709, guid: c6e52619b5eb51d42bd4982aeeb4f52e, type: 3}
+  hand: {fileID: 799138551}
 --- !u!1 &124136970 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4669683662829854637, guid: 6c0329d652aee24498d7667ef54f3366, type: 3}
@@ -842,6 +843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 4650228782262450709, guid: c6e52619b5eb51d42bd4982aeeb4f52e, type: 3}
+  hand: {fileID: 179982829}
 --- !u!1 &411730127
 GameObject:
   m_ObjectHideFlags: 0

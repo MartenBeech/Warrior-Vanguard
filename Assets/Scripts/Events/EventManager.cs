@@ -115,7 +115,7 @@ public class EventManager : MonoBehaviour {
                     stats = CardDatabase.GetRandomWarriorStats(CardRarity.Legendary);
                 } while (gainCardsOptions.Exists(c => c.stats != null && c.stats.title == stats.title));
                 card.SetStats(stats);
-                card.UpdateCardUi();
+                card.UpdateCardUI();
             }
 
             SaveCardsEvent(gainCardsOptions);
@@ -145,7 +145,7 @@ public class EventManager : MonoBehaviour {
                     randomIndex = Random.Range(0, DeckManager.GetUnUpgradedCards().Count);
                 } while (cardIndexes.Contains(randomIndex));
                 upgradeCardsOptions[i].SetStats(DeckManager.GetCard(DeckManager.GetUnUpgradedCards()[randomIndex]).stats);
-                upgradeCardsOptions[i].UpdateCardUi();
+                upgradeCardsOptions[i].UpdateCardUI();
                 cardIndexes.Add(DeckManager.GetUnUpgradedCards()[randomIndex]);
             }
 
@@ -176,7 +176,7 @@ public class EventManager : MonoBehaviour {
                     randomIndex = Random.Range(0, DeckManager.GetDeck().Count);
                 } while (cardIndexes.Contains(randomIndex));
                 removeCardsOptions[i].SetStats(DeckManager.GetCard(randomIndex).stats);
-                removeCardsOptions[i].UpdateCardUi();
+                removeCardsOptions[i].UpdateCardUI();
                 cardIndexes.Add(randomIndex);
             }
 
@@ -206,7 +206,7 @@ public class EventManager : MonoBehaviour {
             } else {
                 WarriorStats stats = CardDatabase.GetStatsByTitleAndLevel(cardTitlesAndLevels[i]);
                 cards[i].SetStats(stats);
-                cards[i].UpdateCardUi();
+                cards[i].UpdateCardUI();
             }
         }
     }

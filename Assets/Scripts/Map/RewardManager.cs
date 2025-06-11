@@ -37,13 +37,13 @@ public class RewardManager : MonoBehaviour {
                 } while (usedStats.Contains(stats));
                 usedStats.Add(stats);
                 card.SetStats(stats);
-                card.UpdateCardUi();
+                card.UpdateCardUI();
             }
 
             SaveRewardOptions();
         }
 
-        
+
     }
 
     public void SelectCard(Card card) {
@@ -72,7 +72,7 @@ public class RewardManager : MonoBehaviour {
         for (int i = 0; i < rewardedCards.Count; i++) {
             WarriorStats stats = CardDatabase.GetStatsByTitleAndLevel(cardTitlesAndLevels[i]);
             rewardedCards[i].SetStats(stats);
-            rewardedCards[i].UpdateCardUi();
+            rewardedCards[i].UpdateCardUI();
         }
     }
 

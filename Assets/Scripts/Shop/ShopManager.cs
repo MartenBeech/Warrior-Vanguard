@@ -23,7 +23,7 @@ public class ShopManager : MonoBehaviour {
                 int randomIndex = Random.Range(0, tempCards.Count);
                 WarriorStats stats = tempCards[randomIndex];
                 card.SetStats(stats);
-                card.UpdateCardUi();
+                card.UpdateCardUI();
                 tempCards.RemoveAt(randomIndex);
             }
 
@@ -97,7 +97,7 @@ public class ShopManager : MonoBehaviour {
             } else {
                 WarriorStats stats = CardDatabase.GetStatsByTitleAndLevel(cardTitlesAndLevels[i]);
                 cardsForSale[i].SetStats(stats);
-                cardsForSale[i].UpdateCardUi();
+                cardsForSale[i].UpdateCardUI();
             }
         }
 
