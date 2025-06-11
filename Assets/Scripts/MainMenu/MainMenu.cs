@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour {
         }
         ItemManager.InitAvailableItems();
 
-        SceneLoader.LoadMap();
+        SceneLoader.LoadSummonerSelector();
     }
 
     public void ContinueGame() {

@@ -6,6 +6,10 @@ public static class SceneLoader {
         SceneManager.LoadScene("MainMenu");
     }
 
+    public static void LoadSummonerSelector() {
+        SceneManager.LoadScene("SummonerSelector");
+    }
+
     public static void LoadBattlefield() {
         SceneManager.LoadScene("Battlefield");
     }

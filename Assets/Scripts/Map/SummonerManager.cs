@@ -30,6 +30,7 @@ public class SummonerManager : MonoBehaviour {
     }
 
     private void UpdateSummonerUi() {
-        summoner.SetStats(new SummonerStats(Angel.title, Angel.description, Angel.currentHealth, Angel.maxHealth));
+        string summonerTitle = PlayerPrefs.GetString("SelectedSummoner");
+        summoner.SetStats(new SummonerStats(summonerTitle, Angel.currentHealth, Angel.maxHealth));
     }
 }

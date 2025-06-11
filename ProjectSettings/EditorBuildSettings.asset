@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 69e19602720e3f142aa3dfbd2e051d9a
+  - enabled: 1
+    path: Assets/Scenes/SummonerSelector.unity
+    guid: 4d156aa8f7e645e439300527fd1f1f31
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 public class SummonerStats {
     public string title;
@@ -9,10 +10,16 @@ public class SummonerStats {
     public int shield;
     public int skeletonBones = 0;
 
-    public SummonerStats(string title, string description, int health, int healthMax) {
-        this.title = title;
+    public SummonerStats(string title, int health, int healthMax) {
+        this.title = PlayerPrefs.GetString("SelectedSummoner");
         displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");
-        this.description = description;
+        description = title switch {
+            "HumanSummoner" => "A Human Summoner with balanced stats.",
+            "ElvenSummoner" => "An Elven Summoner with agility and magic.",
+            "UndeadSummoner" => "An Undead Summoner with dark powers.",
+            "UnderworldSummoner" => "A Summoner from the Underworld with unique abilities.",
+            _ => "Just your friendly neighborhood Summoner.",
+        };
         this.health = health;
         this.healthMax = healthMax;
         shield = 0;

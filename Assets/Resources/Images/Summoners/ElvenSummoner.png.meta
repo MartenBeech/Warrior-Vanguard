@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 35cfe19947c40d043aa00eabebfd3692
+guid: a736f3600c515a543ac2aa95d3da4945
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9093390320520835201
-    second: SuspiciousGargoyle_0
+      213: 6038546126168133665
+    second: ElvenSummoner_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SuspiciousGargoyle_0
+      name: ElvenSummoner_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f7f416daea9cdc180800000000000000
-      internalID: -9093390320520835201
+      spriteID: 120101a45b93dc350800000000000000
+      internalID: 6038546126168133665
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      SuspiciousGargoyle_0: -9093390320520835201
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
