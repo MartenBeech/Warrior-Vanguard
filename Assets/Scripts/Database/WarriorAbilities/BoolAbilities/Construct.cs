@@ -5,13 +5,6 @@ public class Construct {
         return $"Has a bigger deployment area";
     }
 
-    public bool Trigger(WarriorStats stats) {
-        if (GetValue(stats)) {
-            return true;
-        }
-        return false;
-    }
-
     bool[] value = new bool[] { false, false };
 
     public bool GetValue(WarriorStats stats) {

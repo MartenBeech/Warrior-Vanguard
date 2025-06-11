@@ -94,7 +94,7 @@ public class CharacterSpawner : MonoBehaviour {
     }
 
     public async Task SpawnRandomly(WarriorStats stats, Vector2 from) {
-        GridCell randomCell = gridManager.GetRandomEmptyDeploy(stats.ability.construct.Trigger(stats), stats.alignment);
+        GridCell randomCell = gridManager.GetRandomEmptyDeploy(stats.ability.construct.GetValue(stats), stats.alignment);
         if (!randomCell) return;
 
         await Spawn(randomCell.gridIndex, stats, from);

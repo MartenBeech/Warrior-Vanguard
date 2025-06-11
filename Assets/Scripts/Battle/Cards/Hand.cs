@@ -73,7 +73,7 @@ public class Hand : MonoBehaviour {
         GridManager gridManager = FindFirstObjectByType<GridManager>();
 
         if (card.stats.cardType == CardType.warrior) {
-            gridManager.HighlightDeploys(card.stats.ability.construct.Trigger(card.stats), card.stats.alignment);
+            gridManager.HighlightDeploys(card.stats.ability.construct.GetValue(card.stats), card.stats.alignment);
         } else if (card.stats.cardType == CardType.spell) {
             switch (card.stats.spellTarget) {
                 case SpellTarget.none:
