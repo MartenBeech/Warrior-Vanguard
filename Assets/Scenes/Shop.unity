@@ -4319,8 +4319,9 @@ GameObject:
   m_Component:
   - component: {fileID: 588044086}
   - component: {fileID: 588044085}
+  - component: {fileID: 588044087}
   m_Layer: 0
-  m_Name: HoverWarriorManager
+  m_Name: HoverCardManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4356,6 +4357,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &588044087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588044084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afebf8e2a1fcc67409eeeca6b9c596a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverPanel: {fileID: 1079247113}
+  cardObject: {fileID: 2006690316}
+  tooltipManager: {fileID: 1655174735}
 --- !u!1 &593621643
 GameObject:
   m_ObjectHideFlags: 0
@@ -7773,7 +7789,7 @@ GameObject:
   - component: {fileID: 1079247114}
   - component: {fileID: 1079247115}
   m_Layer: 5
-  m_Name: HoverWarrior
+  m_Name: HoverCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

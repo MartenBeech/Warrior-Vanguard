@@ -11,7 +11,7 @@ public class CharacterSpawner : MonoBehaviour {
     public GridManager gridManager;
     public Transform warriorsObject;
     public GameManager gameManager;
-    public HoverWarrior hoverWarrior;
+    public HoverCard hoverCard;
     public Hand friendHand;
     public Hand enemyHand;
     public Transform friendSummonerObject;
@@ -64,7 +64,7 @@ public class CharacterSpawner : MonoBehaviour {
         }
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         Summoner summoner = summonerObject.GetComponent<Summoner>();
-        character.Initiate(gameManager, gridManager, hand, this, summonerObject, summoner, hoverWarrior, floatingText);
+        character.Initiate(gameManager, gridManager, hand, this, summonerObject, summoner, hoverCard, floatingText);
 
         character.gridIndex = gridIndex;
         character.alignment = stats.alignment;

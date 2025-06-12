@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HoverWarrior : MonoBehaviour {
+public class HoverCard : MonoBehaviour {
     public GameObject hoverPanel;
     public GameObject cardObject;
     public TooltipManager tooltipManager;

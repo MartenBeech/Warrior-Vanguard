@@ -17,7 +17,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public Vector2 gridIndex;
     private GridManager gridManager;
     public WarriorStats stats;
-    private HoverWarrior hoverWarrior;
+    private HoverCard hoverCard;
     public enum Direction {
         Left, Right
     };
@@ -38,14 +38,14 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private Summoner summoner;
     private FloatingText floatingText;
 
-    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner, Transform summonerObject, Summoner summoner, HoverWarrior hoverWarrior, FloatingText floatingText) {
+    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner, Transform summonerObject, Summoner summoner, HoverCard hoverCard, FloatingText floatingText) {
         this.gameManager = gameManager;
         this.gridManager = gridManager;
         this.hand = hand;
         this.characterSpawner = characterSpawner;
         this.summonerObject = summonerObject;
         this.summoner = summoner;
-        this.hoverWarrior = hoverWarrior;
+        this.hoverCard = hoverCard;
         this.floatingText = floatingText;
     }
 
@@ -328,14 +328,14 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
-        if (hoverWarrior) {
-            hoverWarrior.ShowCardFromBattlefield(stats, gridManager.GetCellPosition(gridIndex));
+        if (hoverCard) {
+            hoverCard.ShowCardFromBattlefield(stats, gridManager.GetCellPosition(gridIndex));
         }
     }
 
     public void OnPointerExit(PointerEventData eventData) {
-        if (hoverWarrior) {
-            hoverWarrior.HideCard();
+        if (hoverCard) {
+            hoverCard.HideCard();
         }
     }
 

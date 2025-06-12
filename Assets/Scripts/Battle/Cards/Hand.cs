@@ -22,7 +22,7 @@ public class Hand : MonoBehaviour {
         Card card = cardInstance.GetComponent<Card>();
         card.SetHand(this);
         card.stats.SetStats(stats);
-        card.SetHoverWarrior();
+        card.SetHoverCard();
         card.SetGameManager();
         card.UpdateCardUI();
 

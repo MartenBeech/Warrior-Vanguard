@@ -2444,7 +2444,7 @@ MonoBehaviour:
   gridManager: {fileID: 509353786}
   warriorsObject: {fileID: 41112488}
   gameManager: {fileID: 2106477979}
-  hoverWarrior: {fileID: 1326509022}
+  hoverCard: {fileID: 1326509024}
   friendHand: {fileID: 179982829}
   enemyHand: {fileID: 799138551}
   friendSummonerObject: {fileID: 2039605223}
@@ -2726,7 +2726,7 @@ GameObject:
   - component: {fileID: 1266967319}
   - component: {fileID: 1266967322}
   m_Layer: 5
-  m_Name: HoverWarrior
+  m_Name: HoverCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2905,8 +2905,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1326509023}
   - component: {fileID: 1326509022}
+  - component: {fileID: 1326509024}
   m_Layer: 0
-  m_Name: HoverWarriorManager
+  m_Name: HoverCardManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2942,6 +2943,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1326509024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326509021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afebf8e2a1fcc67409eeeca6b9c596a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverPanel: {fileID: 1266967318}
+  cardObject: {fileID: 379184293}
+  tooltipManager: {fileID: 598212541}
 --- !u!1 &1394402495
 GameObject:
   m_ObjectHideFlags: 0
