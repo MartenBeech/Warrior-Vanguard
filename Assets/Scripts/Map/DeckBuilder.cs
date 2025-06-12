@@ -37,6 +37,7 @@ public class DeckBuilder : MonoBehaviour {
             cardItem.transform.localScale = new Vector2(1.5f, 1.5f);
             Card cardComponent = cardItem.GetComponent<Card>();
             cardComponent.SetStats(stats);
+            cardComponent.SetHoverCardFromEvent();
             cardComponent.UpdateCardUI();
         }
     }
