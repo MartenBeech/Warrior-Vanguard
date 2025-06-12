@@ -66,6 +66,10 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     }
 
     public void OnPointerExit(PointerEventData eventData) {
+        RemoveTooltips();
+    }
+
+    public void RemoveTooltips() {
         tooltipManager.RemoveTooltips();
     }
 
