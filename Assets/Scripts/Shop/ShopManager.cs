@@ -23,7 +23,7 @@ public class ShopManager : MonoBehaviour {
                 int randomIndex = Random.Range(0, tempCards.Count);
                 WarriorStats stats = tempCards[randomIndex];
                 card.SetStats(stats);
-                card.SetHoverCardFromEvent();
+                card.SetHoverCardFromMap();
                 card.UpdateCardUI();
                 tempCards.RemoveAt(randomIndex);
             }
@@ -45,7 +45,7 @@ public class ShopManager : MonoBehaviour {
             deckBuilder.AddCardToDeck(card);
             cardsForSale.Remove(card);
 
-            card.SetHoverCardFromEvent();
+            card.SetHoverCardFromMap();
             card.HideCard();
 
             Destroy(card.gameObject);
@@ -102,7 +102,7 @@ public class ShopManager : MonoBehaviour {
             } else {
                 WarriorStats stats = CardDatabase.GetStatsByTitleAndLevel(cardTitlesAndLevels[i]);
                 cardsForSale[i].SetStats(stats);
-                cardsForSale[i].SetHoverCardFromEvent();
+                cardsForSale[i].SetHoverCardFromMap();
                 cardsForSale[i].UpdateCardUI();
             }
         }

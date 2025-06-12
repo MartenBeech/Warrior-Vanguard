@@ -16,7 +16,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public GameObject speedImage;
     public WarriorStats stats = new();
     HoverWarrior hoverWarrior;
-    HoverWarrior hoverCardFromEvent;
+    HoverWarrior hoverCardFromMap;
     Hand hand;
     GameManager gameManager;
     bool isDisabled;
@@ -78,8 +78,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         hoverWarrior = FindFirstObjectByType<HoverWarrior>();
     }
 
-    public void SetHoverCardFromEvent() {
-        hoverCardFromEvent = FindFirstObjectByType<HoverWarrior>();
+    public void SetHoverCardFromMap() {
+        hoverCardFromMap = FindFirstObjectByType<HoverWarrior>();
     }
 
     public void SetGameManager() {
@@ -101,9 +101,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public void OnPointerEnter(PointerEventData eventData) {
         if (hoverWarrior) {
             hoverWarrior.ShowCardFromHand(stats);
-        } else if (hoverCardFromEvent) {
+        } else if (hoverCardFromMap) {
             Vector2 position = transform.position;
-            hoverCardFromEvent.ShowCardFromEvent(stats, position);
+            hoverCardFromMap.ShowCardFromEvent(stats, position);
         }
     }
 
@@ -114,9 +114,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public void HideCard() {
         if (hoverWarrior) {
             hoverWarrior.HideCard();
-        } else if (hoverCardFromEvent) {
-            Debug.Log("Hiding card from event");
-            hoverCardFromEvent.HideCard();
+        } else if (hoverCardFromMap) {
+            hoverCardFromMap.HideCard();
         }
     }
 

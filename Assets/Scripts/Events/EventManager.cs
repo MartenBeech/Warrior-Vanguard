@@ -115,7 +115,7 @@ public class EventManager : MonoBehaviour {
                     stats = CardDatabase.GetRandomWarriorStats(CardRarity.Legendary);
                 } while (gainCardsOptions.Exists(c => c.stats != null && c.stats.title == stats.title));
                 card.SetStats(stats);
-                card.SetHoverCardFromEvent();
+                card.SetHoverCardFromMap();
                 card.UpdateCardUI();
             }
 
@@ -146,7 +146,7 @@ public class EventManager : MonoBehaviour {
                     randomIndex = Random.Range(0, DeckManager.GetUnUpgradedCards().Count);
                 } while (cardIndexes.Contains(randomIndex));
                 upgradeCardsOptions[i].SetStats(DeckManager.GetCard(DeckManager.GetUnUpgradedCards()[randomIndex]).stats);
-                upgradeCardsOptions[i].SetHoverCardFromEvent();
+                upgradeCardsOptions[i].SetHoverCardFromMap();
                 upgradeCardsOptions[i].UpdateCardUI();
                 cardIndexes.Add(DeckManager.GetUnUpgradedCards()[randomIndex]);
             }
@@ -178,7 +178,7 @@ public class EventManager : MonoBehaviour {
                     randomIndex = Random.Range(0, DeckManager.GetDeck().Count);
                 } while (cardIndexes.Contains(randomIndex));
                 removeCardsOptions[i].SetStats(DeckManager.GetCard(randomIndex).stats);
-                removeCardsOptions[i].SetHoverCardFromEvent();
+                removeCardsOptions[i].SetHoverCardFromMap();
                 removeCardsOptions[i].UpdateCardUI();
                 cardIndexes.Add(randomIndex);
             }
@@ -209,7 +209,7 @@ public class EventManager : MonoBehaviour {
             } else {
                 WarriorStats stats = CardDatabase.GetStatsByTitleAndLevel(cardTitlesAndLevels[i]);
                 cards[i].SetStats(stats);
-                cards[i].SetHoverCardFromEvent();
+                cards[i].SetHoverCardFromMap();
                 cards[i].UpdateCardUI();
             }
         }
@@ -278,7 +278,7 @@ public class EventManager : MonoBehaviour {
         Card card = DeckManager.GetCard(cardIndexes[index]);
         card.stats.level = 1;
         eventText.text = $"You upgraded {card.stats.displayTitle}!";
-        card.SetHoverCardFromEvent();
+        card.SetHoverCardFromMap();
         card.HideCard();
         DeckManager.SaveDeck();
         FinishEvent();
@@ -289,7 +289,7 @@ public class EventManager : MonoBehaviour {
         Card card = DeckManager.GetCard(cardIndexes[index]);
         deckBuilder.RemoveCardFromDeck(cardIndexes[index]);
         eventText.text = $"You removed {card.stats.displayTitle} from your deck! We will not be seeing much more of them.";
-        card.SetHoverCardFromEvent();
+        card.SetHoverCardFromMap();
         card.HideCard();
         FinishEvent();
     }
@@ -298,7 +298,7 @@ public class EventManager : MonoBehaviour {
         gainCardPanel.SetActive(false);
         deckBuilder.AddCardToDeck(card);
         eventText.text = $"You added {card.stats.displayTitle} to your deck!";
-        card.SetHoverCardFromEvent();
+        card.SetHoverCardFromMap();
         card.HideCard();
         FinishEvent();
     }
