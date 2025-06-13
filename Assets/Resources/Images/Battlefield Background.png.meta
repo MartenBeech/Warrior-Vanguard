@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 10d1bef3886dd034c8fd1381392319bc
+guid: 6e526e4335c0b6b48bc1ce75a3c48818
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7447161307777761770
-    second: ChatGPT Image Jun 10, 2025, 10_43_12 PM_0
+      213: 9106880947632523435
+    second: "Gr\xF8nne marker under en skyet himmel_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT Image Jun 10, 2025, 10_43_12 PM_0
+      name: "Gr\xF8nne marker under en skyet himmel_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 1536
-        height: 533
+        height: 546
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae1802fa0c1a95760800000000000000
-      internalID: 7447161307777761770
+      spriteID: ba8c867b8f3226e70800000000000000
+      internalID: 9106880947632523435
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ChatGPT Image Jun 10, 2025, 10_43_12 PM_0: 7447161307777761770
+      "Gr\xF8nne marker under en skyet himmel_0": 9106880947632523435
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
