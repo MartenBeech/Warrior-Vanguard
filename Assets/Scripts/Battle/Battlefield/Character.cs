@@ -197,6 +197,16 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task<int> TakeDamage(Character dealer, int damage, DamageType damageType) {
+        if (!stats.ability.humanShield.GetValue(stats)) {
+            List<Character> nearbyFriends = gridManager.GetNearbyFriends(this);
+            foreach (var nearbyFriend in nearbyFriends) {
+                if (nearbyFriend.stats.ability.humanShield.GetValue(nearbyFriend.stats)) {
+                    return await nearbyFriend.TakeDamage(dealer, damage, damageType);
+                }
+            }
+        }
+
+
         damage = stats.ability.sapPower.Trigger(dealer, this, damage);
         damage = stats.ability.armor.Trigger(this, damage, damageType);
         damage = stats.ability.resistance.Trigger(this, damage, damageType);

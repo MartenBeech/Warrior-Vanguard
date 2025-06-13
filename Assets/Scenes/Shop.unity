@@ -4318,7 +4318,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 588044086}
-  - component: {fileID: 588044085}
   - component: {fileID: 588044087}
   m_Layer: 0
   m_Name: HoverCardManager
@@ -4327,21 +4326,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &588044085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588044084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5dd5d0f1905a9e459f03be2bcb6fd67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverPanel: {fileID: 1079247113}
-  cardObject: {fileID: 2006690316}
-  tooltipManager: {fileID: 1655174735}
 --- !u!4 &588044086
 Transform:
   m_ObjectHideFlags: 0

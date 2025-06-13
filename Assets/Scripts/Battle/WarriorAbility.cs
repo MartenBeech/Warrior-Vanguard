@@ -85,6 +85,7 @@ public class WarriorAbility {
     public Rooted rooted = new();
     public Weakened weakened = new();
     public Bleeding bleeding = new();
+    public HumanShield humanShield = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

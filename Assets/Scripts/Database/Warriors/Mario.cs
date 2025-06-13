@@ -15,7 +15,7 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.guard.Add();
+        ability.humanShield.Add();
 
         return stats;
     }
