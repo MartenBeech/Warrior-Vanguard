@@ -1,8 +1,6 @@
-public static class Angel {
+public static class FriendlySummoner {
     public static int maxHealth = 42;
     public static int currentHealth = 42;
-    public static string title = "Angel";
-    public static string description = "Just a chill guy";
 
     public static void GainHealth(int health) {
         currentHealth += health;

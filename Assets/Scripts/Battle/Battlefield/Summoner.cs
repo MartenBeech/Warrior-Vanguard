@@ -49,8 +49,8 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if (stats.shield < 0) {
                 stats.shield = 0;
                 stats.health -= damageAfterShield;
-                if (stats.title == "Angel") {
-                    Angel.LoseHealth(damageAfterShield);
+                if (stats.isFriendly) {
+                    FriendlySummoner.LoseHealth(damageAfterShield);
                 }
             }
 
@@ -74,8 +74,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         dealer.stats.ability.bloodlust.Trigger(dealer);
 
         if (stats.health <= 0) {
-            //TODO: Summoners should have a bool for isFriendly in case we will make different summoners to choose from.
-            if (stats.title == "Angel") {
+            if (stats.isFriendly) {
                 LevelManager.LoseLevel();
             } else {
                 LevelManager.CompleteLevel();
@@ -84,8 +83,8 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public void Heal(int amount) {
-        if (stats.title == "Angel") {
-            Angel.GainHealth(amount);
+        if (stats.isFriendly) {
+            FriendlySummoner.GainHealth(amount);
         }
 
         stats.health += amount;

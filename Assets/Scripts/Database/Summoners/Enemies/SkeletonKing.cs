@@ -6,6 +6,7 @@ public class SkeletonKing : SummonerStats {
             title = GetType().Name,
             description = "He finna bone you up mate!",
             health = 42,
+            isFriendly = false,
         };
         stats.healthMax = stats.health;
         return stats;

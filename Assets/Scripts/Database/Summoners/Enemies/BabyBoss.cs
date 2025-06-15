@@ -6,6 +6,7 @@ public class BabyBoss : SummonerStats {
             title = GetType().Name,
             description = "I'M OWNWY THWEE",
             health = 3,
+            isFriendly = false,
         };
         stats.healthMax = stats.health;
         return stats;

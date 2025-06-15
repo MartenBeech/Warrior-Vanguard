@@ -10,27 +10,27 @@ public class SummonerManager : MonoBehaviour {
     }
 
     public void GainHealth(int health) {
-        Angel.GainHealth(health);
+        FriendlySummoner.GainHealth(health);
         UpdateSummonerUi();
     }
 
     public void LoseHealth(int health) {
-        Angel.LoseHealth(health);
+        FriendlySummoner.LoseHealth(health);
         UpdateSummonerUi();
     }
 
     public void GainMaxHealth(int health) {
-        Angel.GainMaxHealth(health);
+        FriendlySummoner.GainMaxHealth(health);
         UpdateSummonerUi();
     }
 
     public void LoseMaxHealth(int health) {
-        Angel.LoseMaxHealth(health);
+        FriendlySummoner.LoseMaxHealth(health);
         UpdateSummonerUi();
     }
 
     private void UpdateSummonerUi() {
         string summonerTitle = PlayerPrefs.GetString("SelectedSummoner");
-        summoner.SetStats(new SummonerStats(summonerTitle, Angel.currentHealth, Angel.maxHealth));
+        summoner.SetStats(new SummonerStats(summonerTitle, FriendlySummoner.currentHealth, FriendlySummoner.maxHealth, true));
     }
 }

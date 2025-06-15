@@ -5,12 +5,13 @@ public class SummonerStats {
     public string title;
     public string displayTitle;
     public string description;
+    public bool isFriendly;
     public int health;
     public int healthMax;
     public int shield;
     public int skeletonBones = 0;
 
-    public SummonerStats(string title, int health, int healthMax) {
+    public SummonerStats(string title, int health, int healthMax, bool isFriendly) {
         this.title = PlayerPrefs.GetString("SelectedSummoner");
         displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");
         description = title switch {
