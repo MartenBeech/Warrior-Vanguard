@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class SkeletonKing : SummonerStats {
     public SummonerStats GetSummoner() {
@@ -13,6 +15,7 @@ public class SkeletonKing : SummonerStats {
     }
 
     public List<WarriorStats> GetDeck() {
+        SetItems();
         return new List<WarriorStats>() {
            new SkeletonMage().GetStats(),
            new SkeletonMage().GetStats(),
@@ -35,5 +38,14 @@ public class SkeletonKing : SummonerStats {
            new SkeletonArcher().GetStats(),
            new SkeletonArcher().GetStats(),
        };
+    }
+
+    void SetItems() {
+        Type[] itemTypes = new Type[] {
+            typeof(WoodenSword),
+        };
+
+        List<Item> items = itemTypes.Select(type => ItemManager.GetItemByTitle(type.Name)).ToList();
+        SetEnemyItems(items);
     }
 }

@@ -7,6 +7,7 @@ public static class ItemManager {
     static string itemKey = "playerItems";
     static string availableItemsKey = "availableItems";
     public static List<Item> items = new();
+    public static List<Item> enemyItems = new();
     public static List<Item> availableItems = new();
     public static ItemsPanel ItemsPanel;
 

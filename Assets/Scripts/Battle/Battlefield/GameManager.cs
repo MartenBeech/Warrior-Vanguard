@@ -41,6 +41,10 @@ public class GameManager : MonoBehaviour {
             await item.UseStartOfCombat(friendSummoner);
         }
 
+        foreach (Item item in ItemManager.enemyItems) {
+            await item.UseStartOfCombat(enemySummoner);
+        }
+
         await StartPlayerTurn();
     }
 
@@ -52,6 +56,10 @@ public class GameManager : MonoBehaviour {
 
         foreach (Item item in ItemManager.LoadItems()) {
             await item.UseStartOfTurn(friendSummonerObject.GetComponent<Summoner>());
+        }
+
+        foreach (Item item in ItemManager.enemyItems) {
+            await item.UseStartOfTurn(enemySummonerObject.GetComponent<Summoner>());
         }
     }
 

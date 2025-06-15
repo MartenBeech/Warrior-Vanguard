@@ -39,6 +39,14 @@ public class CharacterSpawner : MonoBehaviour {
             }
         }
 
+        foreach (Item item in ItemManager.enemyItems) {
+            if (stats.alignment == Alignment.Enemy) {
+                item.UseOnFriendSpawn(stats);
+            } else if (stats.alignment == Alignment.Friend) {
+                item.UseOnEnemySpawn(stats);
+            }
+        }
+
         GameObject warriorObject = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
         warriorObject.name = stats.displayTitle;
         warriorObject.GetComponent<RectTransform>().localScale = gridManager.GetCellDimension() / warriorObject.GetComponent<RectTransform>().rect.width;
@@ -88,6 +96,14 @@ public class CharacterSpawner : MonoBehaviour {
             if (stats.alignment == Alignment.Friend) {
                 await item.UseAfterFriendSpawn(stats, gridIndex);
             } else if (stats.alignment == Alignment.Enemy) {
+                await item.UseAfterEnemySpawn(stats, gridIndex);
+            }
+        }
+
+        foreach (Item item in ItemManager.enemyItems) {
+            if (stats.alignment == Alignment.Enemy) {
+                await item.UseAfterFriendSpawn(stats, gridIndex);
+            } else if (stats.alignment == Alignment.Friend) {
                 await item.UseAfterEnemySpawn(stats, gridIndex);
             }
         }

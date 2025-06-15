@@ -309,6 +309,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
         }
 
+        if (alignment == CharacterSpawner.Alignment.Enemy) {
+            foreach (Item item in ItemManager.enemyItems) {
+                await item.UseOnWarriorDeath(summoner);
+            }
+        }
+
         Destroy(gameObject);
         await Task.WhenAll(asyncFunctions);
     }
