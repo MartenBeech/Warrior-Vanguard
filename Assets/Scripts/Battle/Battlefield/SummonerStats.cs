@@ -39,11 +39,4 @@ public class SummonerStats {
         healthMax = stats.healthMax;
         shield = stats.shield;
     }
-
-    public void SetEnemyItems(List<Item> items) {
-        ItemManager.enemyItems.Clear();
-        foreach (Item item in items) {
-            ItemManager.enemyItems.Add(item);
-        }
-    }
 }

@@ -9,6 +9,7 @@ public static class LevelManager {
         TileCompleter.MarkTileAsCompleted();
         GoldManager.AddGold(50);
         SceneLoader.LoadMap();
+        ItemManager.enemyItem = null;
     }
 
     public static void LoseLevel() {

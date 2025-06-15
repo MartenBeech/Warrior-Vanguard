@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour {
         Summoner enemySummoner = enemySummonerObject.GetComponent<Summoner>();
         Type type = Type.GetType(enemySummonerName);
         object instance = Activator.CreateInstance(type);
-        enemySummoner.SetStats((SummonerStats)type.GetMethod("GetSummoner")?.Invoke(instance, null));
         enemyDeck.deck = (List<WarriorStats>)type.GetMethod("GetDeck")?.Invoke(instance, null);
+        enemySummoner.SetStats((SummonerStats)type.GetMethod("GetSummoner")?.Invoke(instance, null));
 
         List<Task> asyncFunctions = new();
         for (int i = 0; i < 3; i++) {
@@ -41,9 +41,7 @@ public class GameManager : MonoBehaviour {
             await item.UseStartOfCombat(friendSummoner);
         }
 
-        foreach (Item item in ItemManager.enemyItems) {
-            await item.UseStartOfCombat(enemySummoner);
-        }
+        await ItemManager.enemyItem.UseStartOfCombat(enemySummoner);
 
         await StartPlayerTurn();
     }
@@ -58,9 +56,7 @@ public class GameManager : MonoBehaviour {
             await item.UseStartOfTurn(friendSummonerObject.GetComponent<Summoner>());
         }
 
-        foreach (Item item in ItemManager.enemyItems) {
-            await item.UseStartOfTurn(enemySummonerObject.GetComponent<Summoner>());
-        }
+        await ItemManager.enemyItem.UseStartOfTurn(enemySummonerObject.GetComponent<Summoner>());
     }
 
     public async void EndPlayerTurn() {

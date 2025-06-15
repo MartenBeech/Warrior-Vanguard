@@ -17,10 +17,6 @@ public class CharacterSpawner : MonoBehaviour {
     public Transform friendSummonerObject;
     public Transform enemySummonerObject;
 
-    public void ActivateSpawnEnemy() {
-        spawningAlignment = Alignment.Enemy;
-        gridManager.HighlightAllCells();
-    }
     public void ActivateSpawn(Alignment alignment) {
         spawningAlignment = alignment;
     }
@@ -39,12 +35,10 @@ public class CharacterSpawner : MonoBehaviour {
             }
         }
 
-        foreach (Item item in ItemManager.enemyItems) {
-            if (stats.alignment == Alignment.Enemy) {
-                item.UseOnFriendSpawn(stats);
-            } else if (stats.alignment == Alignment.Friend) {
-                item.UseOnEnemySpawn(stats);
-            }
+        if (stats.alignment == Alignment.Enemy) {
+            ItemManager.enemyItem.UseOnFriendSpawn(stats);
+        } else if (stats.alignment == Alignment.Friend) {
+            ItemManager.enemyItem.UseOnEnemySpawn(stats);
         }
 
         GameObject warriorObject = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
@@ -100,13 +94,12 @@ public class CharacterSpawner : MonoBehaviour {
             }
         }
 
-        foreach (Item item in ItemManager.enemyItems) {
-            if (stats.alignment == Alignment.Enemy) {
-                await item.UseAfterFriendSpawn(stats, gridIndex);
-            } else if (stats.alignment == Alignment.Friend) {
-                await item.UseAfterEnemySpawn(stats, gridIndex);
-            }
+        if (stats.alignment == Alignment.Enemy) {
+            await ItemManager.enemyItem.UseAfterFriendSpawn(stats, gridIndex);
+        } else if (stats.alignment == Alignment.Friend) {
+            await ItemManager.enemyItem.UseAfterEnemySpawn(stats, gridIndex);
         }
+
     }
 
     public async Task SpawnRandomly(WarriorStats stats, Vector2 from) {

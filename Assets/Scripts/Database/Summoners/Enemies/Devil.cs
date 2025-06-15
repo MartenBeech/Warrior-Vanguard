@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 public class Devil : SummonerStats {
     public SummonerStats GetSummoner() {
@@ -59,11 +58,7 @@ public class Devil : SummonerStats {
     }
 
     void SetItems() {
-        Type[] itemTypes = new Type[] {
-            typeof(WoodenSword),
-        };
-        
-        List<Item> items = itemTypes.Select(type => ItemManager.GetItemByTitle(type.Name)).ToList();
-        SetEnemyItems(items);
+        Type itemType = typeof(WoodenSword);
+        ItemManager.enemyItem = ItemManager.GetItemByTitle(itemType.Name);
     }
 }

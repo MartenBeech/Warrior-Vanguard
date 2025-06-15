@@ -10,6 +10,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject healthText;
     public GameObject shieldText;
     public GameObject shieldImage;
+    public GameObject itemImage;
     public TooltipManager tooltipManager;
     public void OnPointerEnter(PointerEventData eventData) {
         tooltipManager.transform.position = new Vector2(transform.position.x, transform.position.y + 200);
@@ -28,6 +29,15 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             shieldText.GetComponent<TMP_Text>().text = stats.shield.ToString();
         } else {
             shieldImage.SetActive(false);
+        }
+
+        if (itemImage != null) {
+            if (!stats.isFriendly && ItemManager.enemyItem != null) {
+                itemImage.SetActive(true);
+                itemImage.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{ItemManager.enemyItem.title}");
+            } else {
+                itemImage.SetActive(false);
+            }
         }
     }
 
