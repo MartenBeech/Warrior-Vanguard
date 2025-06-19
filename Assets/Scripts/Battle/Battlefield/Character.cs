@@ -9,7 +9,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public enum Race {
         None, Construct, Dragon, //Common
         Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, //Undead
-        Human, Pirate, Holyborn, //Human
+        Human, Pirate, Holyborn, Knight, Griffin, //Human
         Unicorn, Elf, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Forest
         Imp, Minotaur, Harpy, //Underworld
         Dark, //Spells
@@ -104,6 +104,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         if (stepsToMove > 0) {
             if (stats.ability.rooted.Trigger(this)) return;
+            stats.ability.joust.Trigger(this, stepsToMove);
 
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, stepsToMove);
             ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
@@ -145,18 +146,28 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Attack(Character target, bool dealDoubleDamage = false) {
+        await target.stats.ability.firstStrike.Trigger(this, target, gridManager);
+        if (stats.GetHealth() < 0) return;
+
+        int damage = stats.GetStrength() + stats.tempStrength;
+        if (dealDoubleDamage) {
+            damage *= 2;
+        }
+
         for (int i = 0; i < (stats.ability.doubleStrike.GetValue(stats) ? 2 : 1); i++) {
             if (target.stats.GetHealth() > 0) {
                 List<Task> asyncFunctions = new() {
                 stats.ability.multishot.Trigger(this, target, gridManager),
                 stats.ability.splash.Trigger(this, target, gridManager),
                 stats.ability.pierce.Trigger(this, target, gridManager),
-                Strike(target, dealDoubleDamage ? stats.GetStrength() * 2 : stats.GetStrength())
+                Strike(target, damage)
             };
                 await Task.WhenAll(asyncFunctions);
                 await target.stats.ability.spikes.Trigger(this, target);
             }
         }
+
+        stats.tempStrength = 0;
 
         target.stats.ability.weakeningAura.Trigger(this, target);
         target.stats.ability.poisoningAura.Trigger(this, target);
@@ -172,6 +183,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (target.stats.GetHealth() > 0) {
             await target.stats.ability.retaliate.Trigger(this, target, gridManager);
         }
+
     }
 
     public async Task Strike(Character target, int damage = -1) {
@@ -205,7 +217,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 }
             }
         }
-
 
         damage = stats.ability.sapPower.Trigger(dealer, this, damage);
         damage = stats.ability.armor.Trigger(this, damage, damageType);

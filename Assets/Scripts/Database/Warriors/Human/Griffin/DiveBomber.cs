@@ -1,22 +1,24 @@
-public class Mario : WarriorStats {
+public class DiveBomber {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Mario",
-            strength = new int[] { 2, 4 },
-            health = new int[] { 10, 4 },
-            cost = new int[] { 0, 0 },
-            speed = 2,
+            title = GetType().Name,
+            cost = new int[] { 3, 3 },
+            strength = new int[] { 3, 4 },
+            health = new int[] { 3, 4 },
+            speed = 4,
             range = 2,
             damageType = Character.DamageType.Physical,
-            race = Character.Race.Human,
+            race = Character.Race.Griffin,
+            rarity = CardRarity.Legendary,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
         }
 
         WarriorAbility ability = stats.ability;
-        ability.firstStrike.Add();
+        ability.flying.Add();
         ability.stealth.Add();
+        ability.firstStrike.Add();
 
         return stats;
     }

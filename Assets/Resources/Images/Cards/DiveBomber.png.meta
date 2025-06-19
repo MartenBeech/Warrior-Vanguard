@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5e50ca09387189d4c9152b4802bf9ff0
+guid: b2414078af45a004b9e0234bfa6ea08d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -312738567421119420
-    second: Farmer_0
+      213: 8072052489536008353
+    second: DiveBomber_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Farmer_0
+      name: DiveBomber_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 444bc4d0eede8abf0800000000000000
-      internalID: -312738567421119420
+      spriteID: 1a0f91fb8f0b50070800000000000000
+      internalID: 8072052489536008353
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Farmer_0: -312738567421119420
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

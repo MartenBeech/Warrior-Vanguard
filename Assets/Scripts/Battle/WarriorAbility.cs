@@ -26,6 +26,7 @@ public class WarriorAbility {
     public FaeMagic faeMagic = new();
     public SapPower sapPower = new();
     public Bleed bleed = new();
+    public Joust joust = new();
 
     // Common abilities
     public Armor armor = new();
@@ -36,6 +37,7 @@ public class WarriorAbility {
     public Vengeance vengeance = new();
     public Poison poison = new();
     public Retaliate retaliate = new();
+    public FirstStrike firstStrike = new();
     public Stealth stealth = new();
     public Splash splash = new();
     public Incorporeal incorporeal = new();

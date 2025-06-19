@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Cavalier_0: -8864775085466101772
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

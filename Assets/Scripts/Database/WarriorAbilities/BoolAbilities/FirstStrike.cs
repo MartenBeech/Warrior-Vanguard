@@ -1,9 +1,9 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class Retaliate {
+public class FirstStrike {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"After getting attacked, strike back";
+        return $"Before getting attacked, strike the attacker";
     }
 
     public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {

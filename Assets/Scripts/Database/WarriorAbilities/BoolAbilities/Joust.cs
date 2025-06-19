@@ -1,18 +1,14 @@
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-public class Retaliate {
+public class Joust {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"After getting attacked, strike back";
+        return $"{WarriorAbility.Keywords.Attack}: Deal +1 damage for each cell moved this turn";
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
-        if (GetValue(target.stats)) {
-            int dist = gridManager.GetDistanceBetweenCharacters(dealer, target);
-            if (dist > 0 && dist <= target.stats.range) {
-                await target.Strike(dealer);
-                return true;
-            }
+    public bool Trigger(Character dealer, int cellsMoved) {
+        if (GetValue(dealer.stats)) {
+            dealer.stats.tempStrength += cellsMoved;
+            return true;
         }
         return false;
     }

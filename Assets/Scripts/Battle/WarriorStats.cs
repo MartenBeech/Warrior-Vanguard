@@ -39,6 +39,8 @@ public class WarriorStats {
     public int speed = 2;
     public int range = 2;
 
+    public int tempStrength = 0;
+
     public WarriorAbility ability = new();
 
     public void SetStats(WarriorStats stats) {

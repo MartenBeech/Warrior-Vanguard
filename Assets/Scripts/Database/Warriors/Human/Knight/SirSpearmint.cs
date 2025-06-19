@@ -1,22 +1,24 @@
-public class Mario : WarriorStats {
+public class SirSpearmint {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Mario",
+            title = GetType().Name,
+            cost = new int[] { 8, 8 },
             strength = new int[] { 2, 4 },
-            health = new int[] { 10, 4 },
-            cost = new int[] { 0, 0 },
-            speed = 2,
+            health = new int[] { 12, 14 },
+            speed = 4,
             range = 2,
             damageType = Character.DamageType.Physical,
-            race = Character.Race.Human,
+            race = Character.Race.Knight,
+            rarity = CardRarity.Legendary,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
         }
 
         WarriorAbility ability = stats.ability;
-        ability.firstStrike.Add();
-        ability.stealth.Add();
+        ability.joust.Add();
+        ability.pierce.Add();
+        ability.hitAndRun.Add();
 
         return stats;
     }
