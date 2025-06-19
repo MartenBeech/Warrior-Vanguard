@@ -2,7 +2,7 @@ public class GriffinCombatant {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 5, 5 },
+            cost = new int[] { 6, 6 },
             strength = new int[] { 3, 3 },
             health = new int[] { 9, 10 },
             speed = 4,
