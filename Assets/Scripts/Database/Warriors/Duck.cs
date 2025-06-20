@@ -9,6 +9,7 @@ public class Duck : WarriorStats {
             range = 2,
             damageType = Character.DamageType.Physical,
             race = Character.Race.None,
+            genre = Character.Genre.None,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

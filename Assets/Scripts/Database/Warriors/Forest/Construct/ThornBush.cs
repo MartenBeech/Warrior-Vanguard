@@ -10,6 +10,7 @@ public class ThornBush {
             damageType = Character.DamageType.Physical,
             race = Character.Race.Construct,
             rarity = CardRarity.None,
+            genre = Character.Genre.Forest,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

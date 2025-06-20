@@ -27,6 +27,7 @@ public class WarriorStats {
     public int level = 0;
     public Character.DamageType damageType = Character.DamageType.Physical;
     public Character.Race race = Character.Race.None;
+    public Character.Genre genre = Character.Genre.None;
     public CharacterSpawner.Alignment alignment;
     public CardType cardType = CardType.warrior;
     public SpellTarget spellTarget = SpellTarget.none;

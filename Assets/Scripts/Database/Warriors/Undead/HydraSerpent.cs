@@ -9,6 +9,7 @@ public class HydraSerpent {
             range = 2,
             damageType = Character.DamageType.Physical,
             race = Character.Race.None,
+            genre = Character.Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

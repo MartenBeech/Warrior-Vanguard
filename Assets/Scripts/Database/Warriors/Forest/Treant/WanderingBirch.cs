@@ -10,6 +10,7 @@ public class WanderingBirch {
             damageType = Character.DamageType.Physical,
             race = Character.Race.Treant,
             rarity = CardRarity.Common,
+            genre = Character.Genre.Forest
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

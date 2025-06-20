@@ -9,6 +9,7 @@ public class Mario : WarriorStats {
             range = 2,
             damageType = Character.DamageType.Physical,
             race = Character.Race.Human,
+            genre = Character.Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

@@ -6,6 +6,7 @@ public class CLASSNAMESPELL {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 0, 0 },
+            rarity = CardRarity.None,
             spellTarget = SpellTarget.none,
             spellDescription = new string[] {
             "UNUPGRADED_DESCRIPTION",

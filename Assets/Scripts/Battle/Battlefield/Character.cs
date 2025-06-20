@@ -14,6 +14,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Imp, Minotaur, Harpy, //Underworld
         Dark, //Spells
     }
+    public enum Genre {
+        Human, Forest, Undead, Underworld, None
+    }
     public Vector2 gridIndex;
     private GridManager gridManager;
     public WarriorStats stats;

@@ -3,6 +3,14 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new TearsOfTheLight().GetStats(),
+        new HolyEmpower().GetStats(),
+        new HolyFlame().GetStats(),
+        new GuidingStrength().GetStats(),
+        new Fireball().GetStats(),
+        new Armageddon().GetStats(),
+        new RainOfFire().GetStats(),
+        new Firebolt().GetStats(),
         new DiveBomber().GetStats(),
         new GriffinCombatant().GetStats(),
         new SkyGlider().GetStats(),

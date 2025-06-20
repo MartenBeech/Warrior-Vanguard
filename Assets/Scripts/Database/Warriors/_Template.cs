@@ -10,6 +10,7 @@ public class CLASSNAMEWARRIOR {
             damageType = Character.DamageType.Physical,
             race = Character.Race.None,
             rarity = CardRarity.None,
+            genre = Character.Genre.None,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

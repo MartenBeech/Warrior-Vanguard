@@ -10,6 +10,7 @@ public class MinotaurBaby {
             damageType = Character.DamageType.Physical,
             race = Character.Race.Minotaur,
             rarity = CardRarity.Rare,
+            genre = Character.Genre.Underworld,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
