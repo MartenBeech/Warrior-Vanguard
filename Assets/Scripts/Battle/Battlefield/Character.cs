@@ -11,7 +11,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, //Undead
         Human, Pirate, Holyborn, Knight, Griffin, Sorcerer, //Human
         Unicorn, Elf, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Forest
-        Imp, Minotaur, Harpy, //Underworld
+        Imp, Minotaur, Harpy, Pestilence, //Underworld
         Dark, //Spells
     }
     public enum Genre {
@@ -284,6 +284,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         stats.ability.forestProtection.TriggerDeath(this, gridManager);
 
         List<Task> asyncFunctions = new() {
+            stats.ability.explosion.Trigger(this, gridManager),
             stats.ability.revive.Trigger(this, characterSpawner),
             stats.ability.hydraSplit.Trigger(this, characterSpawner),
             stats.ability.boneSpread.Trigger(this, characterSpawner),

@@ -56,6 +56,7 @@ public class WarriorAbility {
     public Spikes spikes = new();
     public Carnivore carnivore = new();
     public Backstab backstab = new();
+    public Explosion explosion = new();
 
     // Unique abilities
     public HydraSplit hydraSplit = new();
