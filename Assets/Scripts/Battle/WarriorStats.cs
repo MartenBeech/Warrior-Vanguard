@@ -64,7 +64,7 @@ public class WarriorStats {
         speed = stats.speed;
         range = stats.range;
 
-        ability = stats.ability;
+        ability.SetWarriorAbility(stats.ability);
     }
 
     public void ResetStats() {

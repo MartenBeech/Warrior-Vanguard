@@ -17,7 +17,7 @@ public class Cannibalism {
 
     int[] value = new int[] { 0, 0 };
 
-    int GetValue(WarriorStats stats) {
+    public int GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 

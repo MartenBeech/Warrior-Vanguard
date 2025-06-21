@@ -1,14 +1,27 @@
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
-public class Weaken {
+using System.Threading.Tasks;
+public class Spawn {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Apply {GetValue(stats)} Weakened which reduces target's strength";
+        int value = GetValue(stats);
+        return $"{WarriorAbility.Keywords.Summon}: Summon {value} extra {(value > 1 ? "copies" : "copy")} of this";
     }
 
-    public bool Trigger(Character dealer, Character target) {
+    public async Task<bool> Trigger(Character dealer, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats) > 0) {
-            target.stats.ability.weakened.Add(GetValue(dealer.stats));
-            target.UpdateWarriorUI();
+
+            List<Task> asyncFunctions = new();
+            int value = GetValue(dealer.stats);
+
+            for (int i = 0; i < value; i++) {
+                WarriorStats clone = new();
+                clone.SetStats(dealer.stats);
+                clone.ability.spawn.Remove();
+                asyncFunctions.Add(characterSpawner.SpawnRandomly(clone, dealer.transform.position));
+            }
+
+            await Task.WhenAll(asyncFunctions);
             return true;
         }
         return false;

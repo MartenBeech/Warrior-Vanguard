@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 public class WarriorAbility {
     public enum Keywords {
@@ -28,6 +29,7 @@ public class WarriorAbility {
     public Bleed bleed = new();
     public Joust joust = new();
     public LightningBolt lightningBolt = new();
+    public Spawn spawn = new();
 
     // Common abilities
     public Armor armor = new();
@@ -121,6 +123,28 @@ public class WarriorAbility {
             string description = (string)descriptionMethod.Invoke(abilityInstance, parameters);
 
             tooltipManager.AddTooltip(title, description, 0.5f);
+        }
+    }
+
+    public void SetWarriorAbility(WarriorAbility ability) {
+        var abilityType = typeof(WarriorAbility);
+        var fields = abilityType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (var field in fields) {
+            object fromAbility = field.GetValue(ability);
+            object toAbility = field.GetValue(this);
+
+            if (fromAbility == null || toAbility == null) continue;
+
+            var valueField = fromAbility.GetType()
+                .GetField("value", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            if (valueField != null) {
+                Array value = (Array)valueField.GetValue(fromAbility);
+
+                var cloned = value.Clone();
+                valueField.SetValue(toAbility, cloned);
+            }
         }
     }
 }

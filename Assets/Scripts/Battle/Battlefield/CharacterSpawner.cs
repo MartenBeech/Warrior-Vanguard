@@ -105,6 +105,8 @@ public class CharacterSpawner : MonoBehaviour {
             await ItemManager.enemyItem.UseAfterEnemySpawn(stats, gridIndex);
         }
 
+        await stats.ability.spawn.Trigger(character, this);
+
     }
 
     public async Task SpawnRandomly(WarriorStats stats, Vector2 from) {
