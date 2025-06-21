@@ -27,6 +27,7 @@ public class WarriorAbility {
     public SapPower sapPower = new();
     public Bleed bleed = new();
     public Joust joust = new();
+    public LightningBolt lightningBolt = new();
 
     // Common abilities
     public Armor armor = new();
@@ -80,6 +81,8 @@ public class WarriorAbility {
     public MassHeal massHeal = new();
     public LushGrounds lushGrounds = new();
     public ForestProtection forestProtection = new();
+    public Thunderstorm thunderstorm = new();
+    public StaticEntrance staticEntrance = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();

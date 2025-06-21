@@ -86,6 +86,11 @@ public class CharacterSpawner : MonoBehaviour {
         stats.ability.evilInspiration.TriggerSummon(character, gridManager);
         stats.ability.forestProtection.TriggerSummon(character, gridManager);
 
+        List<Character> enemies = gridManager.GetEnemies(stats.alignment);
+        foreach (Character enemy in enemies) {
+            await enemy.stats.ability.staticEntrance.Trigger(enemy, character);
+        }
+
         foreach (Item item in ItemManager.LoadItems()) {
             if (stats.alignment == Alignment.Friend) {
                 await item.UseAfterFriendSpawn(stats, gridIndex);

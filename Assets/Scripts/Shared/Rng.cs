@@ -38,6 +38,7 @@ public class Rng : MonoBehaviour {
     }
 
     public static T Entry<T>(List<T> list) {
+        if (list.Count == 0) return default;
         int randomIndex = Range(0, list.Count);
 
         T randomEntry = list[randomIndex];

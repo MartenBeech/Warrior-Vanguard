@@ -17,7 +17,7 @@ public static class ItemManager {
             typeof(VampireRing),
             typeof(HumanRing),
             typeof(HolyLight),
-            typeof(ThunderStorm),
+            typeof(ThunderCloud),
             typeof(WarmWelcome),
             typeof(Recycle),
             typeof(TurtleUp),

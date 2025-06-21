@@ -3,6 +3,11 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new Stormseer().GetStats(),
+        new MargeTheCharged().GetStats(),
+        new LightningCaller().GetStats(),
+        new Apprentice().GetStats(),
+        new Mario().GetStats(),
         new TearsOfTheLight().GetStats(),
         new HolyEmpower().GetStats(),
         new HolyFlame().GetStats(),
@@ -19,7 +24,6 @@ public static class CardDatabase {
         new MortalLance().GetStats(),
         new HeavyRider().GetStats(),
         new GoodKnight().GetStats(),
-        new Mario().GetStats(),
         new Bodyguard().GetStats(),
         new WatchfulGuard().GetStats(),
         new Defender().GetStats(),

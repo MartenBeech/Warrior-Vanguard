@@ -9,7 +9,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public enum Race {
         None, Construct, Dragon, //Common
         Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, //Undead
-        Human, Pirate, Holyborn, Knight, Griffin, //Human
+        Human, Pirate, Holyborn, Knight, Griffin, Sorcerer, //Human
         Unicorn, Elf, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Forest
         Imp, Minotaur, Harpy, //Underworld
         Dark, //Spells
@@ -344,6 +344,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await stats.ability.lushGrounds.Trigger(this, gridManager);
         await stats.ability.heal.Trigger(this, gridManager);
         await stats.ability.faeMagic.Trigger(this, summoner);
+        await stats.ability.thunderstorm.Trigger(this, gridManager);
+        await stats.ability.lightningBolt.Trigger(this, gridManager);
     }
 
     private Vector2 GetFrontCellIndex(Vector2 gridIndex, Direction direction, int range = 1) {

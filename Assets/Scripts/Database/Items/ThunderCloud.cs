@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public class ThunderStorm : Item {
+public class ThunderCloud : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Deal 1 magical damage to all warriors each turn";

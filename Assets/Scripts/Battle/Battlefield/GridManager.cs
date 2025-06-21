@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -318,5 +319,12 @@ public class GridManager : MonoBehaviour {
         }
 
         return enemiesInRange;
+    }
+
+    public Character GetRandomEnemy(Character dealer) {
+        List<Character> enemies = GetEnemies(dealer.alignment);
+
+        Character enemy = Rng.Entry(enemies);
+        return enemy;
     }
 }

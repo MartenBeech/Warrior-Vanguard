@@ -16,8 +16,9 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.firstStrike.Add();
-        ability.stealth.Add();
+        ability.lightningBolt.Add(1);
+        ability.thunderstorm.Add(1);
+        ability.staticEntrance.Add(1);
 
         return stats;
     }
