@@ -1,23 +1,40 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 public class MassResistance {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Summon}: Give all friends +{GetValue(stats)} Resistance";
+        return $"{WarriorAbility.Keywords.Aura}: Friends have +{GetValue(stats)} Resistance";
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager, FloatingText floatingText) {
+    public bool TriggerSummon(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
             List<Character> friends = gridManager.GetFriends(dealer.alignment);
             friends.Remove(dealer);
-            List<Task> asyncFunctions = new();
             foreach (var friend in friends) {
                 friend.stats.ability.resistance.Add(GetValue(dealer.stats));
-                asyncFunctions.Add(floatingText.CreateFloatingText(friend.transform, $"+{GetValue(dealer.stats)} Resistance", ColorPalette.ColorEnum.teal));
+                friend.UpdateWarriorUI();
             }
-            await Task.WhenAll(asyncFunctions);
+            return true;
+        }
+        return false;
+    }
 
+    public bool TriggerDeath(Character dealer, GridManager gridManager) {
+        if (GetValue(dealer.stats) > 0) {
+            List<Character> friends = gridManager.GetFriends(dealer.alignment);
+            friends.Remove(dealer);
+            foreach (var friend in friends) {
+                friend.stats.ability.resistance.Add(-GetValue(dealer.stats));
+                friend.UpdateWarriorUI();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public bool TriggerSummonFriend(Character dealer, WarriorStats targetStats) {
+        if (GetValue(dealer.stats) > 0) {
+            targetStats.ability.resistance.Add(GetValue(dealer.stats));
             return true;
         }
         return false;

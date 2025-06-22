@@ -53,6 +53,7 @@ public class CharacterSpawner : MonoBehaviour {
             friend.stats.ability.forestStrength.TriggerSummonFriend(friend, stats);
             friend.stats.ability.evilInspiration.TriggerSummonFriend(friend, stats);
             friend.stats.ability.forestProtection.TriggerSummonFriend(friend, stats);
+            friend.stats.ability.massResistance.TriggerSummonFriend(friend, stats);
         }
 
         Hand hand = null;
@@ -81,10 +82,10 @@ public class CharacterSpawner : MonoBehaviour {
 
         character.SetPosition(gridIndex);
 
-        await stats.ability.massResistance.Trigger(character, gridManager, floatingText);
         stats.ability.forestStrength.TriggerSummon(character, gridManager);
         stats.ability.evilInspiration.TriggerSummon(character, gridManager);
         stats.ability.forestProtection.TriggerSummon(character, gridManager);
+        stats.ability.massResistance.TriggerSummon(character, gridManager);
 
         List<Character> enemies = gridManager.GetEnemies(stats.alignment);
         foreach (Character enemy in enemies) {
