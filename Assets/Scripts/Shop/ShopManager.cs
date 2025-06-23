@@ -59,9 +59,6 @@ public class ShopManager : MonoBehaviour {
 
     public void BuyItem(Item item) {
         if (GoldManager.SpendGold(50)) {
-            for (int i = 0; i < 20; i++) {
-                ItemManager.AddItem(item);
-            }
             ItemManager.AddItem(item);
             itemsForSale.Remove(item);
 
