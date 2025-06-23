@@ -58,7 +58,7 @@ public class Devil : SummonerStats {
     }
 
     void SetItems() {
-        Type itemType = typeof(WoodenSword);
+        Type itemType = typeof(SmallHeart);
         ItemManager.enemyItem = ItemManager.GetItemByTitle(itemType.Name);
     }
 }

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     public Deck friendDeck;
     public Deck enemyDeck;
     public Hand enemyHand;
+    public Item enemyItem;
     public static CharacterSpawner.Alignment turn;
     public static string enemySummonerName = "Devil";
 
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour {
         object instance = Activator.CreateInstance(type);
         enemyDeck.deck = (List<WarriorStats>)type.GetMethod("GetDeck")?.Invoke(instance, null);
         enemySummoner.SetStats((SummonerStats)type.GetMethod("GetSummoner")?.Invoke(instance, null));
+        enemyItem.SetItem(ItemManager.enemyItem);
 
         List<Task> asyncFunctions = new();
         for (int i = 0; i < 3; i++) {

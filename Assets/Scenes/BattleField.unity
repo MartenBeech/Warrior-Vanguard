@@ -2110,6 +2110,7 @@ RectTransform:
   - {fileID: 411730128}
   - {fileID: 509353787}
   - {fileID: 1303562216}
+  - {fileID: 846094245}
   - {fileID: 41112488}
   - {fileID: 1647734885}
   - {fileID: 1425579121}
@@ -2186,7 +2187,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1267235796}
+    m_TransformParent: {fileID: 921028865}
     m_Modifications:
     - target: {fileID: 2619659621084207209, guid: f4ac1b238fcfad24b80fb39796b23aae, type: 3}
       propertyPath: m_Name
@@ -2194,7 +2195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6368626171914487445, guid: f4ac1b238fcfad24b80fb39796b23aae, type: 3}
       propertyPath: m_Name
-      value: Item
+      value: EnemyItem
       objectReference: {fileID: 0}
     - target: {fileID: 7317926180862125854, guid: f4ac1b238fcfad24b80fb39796b23aae, type: 3}
       propertyPath: m_Pivot.x
@@ -2258,11 +2259,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7317926180862125854, guid: f4ac1b238fcfad24b80fb39796b23aae, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -85
+      value: 690
       objectReference: {fileID: 0}
     - target: {fileID: 7317926180862125854, guid: f4ac1b238fcfad24b80fb39796b23aae, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 165
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 7317926180862125854, guid: f4ac1b238fcfad24b80fb39796b23aae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2286,6 +2287,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2619659621084207209, guid: f4ac1b238fcfad24b80fb39796b23aae, type: 3}
   m_PrefabInstance: {fileID: 1265140658}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1265140660 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8160817191698793338, guid: f4ac1b238fcfad24b80fb39796b23aae, type: 3}
+  m_PrefabInstance: {fileID: 1265140658}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fa0ccb964d4de478bb2c460c662f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1266967318
 GameObject:
   m_ObjectHideFlags: 0
@@ -2429,10 +2441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 344046115080938787, guid: 6c0329d652aee24498d7667ef54f3366, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 846094245}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c0329d652aee24498d7667ef54f3366, type: 3}
 --- !u!224 &1267235796 stripped
@@ -3415,6 +3424,7 @@ MonoBehaviour:
   friendDeck: {fileID: 233183271}
   enemyDeck: {fileID: 1651248352}
   enemyHand: {fileID: 799138551}
+  enemyItem: {fileID: 1265140660}
 --- !u!4 &2106477980
 Transform:
   m_ObjectHideFlags: 0

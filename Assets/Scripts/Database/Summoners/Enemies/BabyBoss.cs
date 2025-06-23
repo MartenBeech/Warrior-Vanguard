@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class BabyBoss : SummonerStats {
     public SummonerStats GetSummoner() {
@@ -40,7 +41,7 @@ public class BabyBoss : SummonerStats {
     }
 
     void SetItems() {
-        Type itemType = typeof(WoodenSword);
+        Type itemType = typeof(SmallHeart);
         ItemManager.enemyItem = ItemManager.GetItemByTitle(itemType.Name);
     }
 }
