@@ -84,6 +84,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public async Task MoveWarrior(Direction direction) {
         if (stats.GetHealth() <= 0) return;
+        if (stats.ability.stunned.GetValue(stats)) return;
 
         if (stats.ability.seduced.GetValue(stats)) {
             stats.alignment = stats.alignment == CharacterSpawner.Alignment.Enemy ? CharacterSpawner.Alignment.Friend : CharacterSpawner.Alignment.Enemy;
@@ -126,7 +127,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public async Task StandAndAttack(Direction direction) {
         if (stats.GetHealth() <= 0) return;
-        if (stats.ability.stunned.Trigger(this)) return;
+        if (stats.ability.stunned.GetValue(stats)) return;
 
         if (stats.ability.seduced.GetValue(stats)) {
             direction = direction == Direction.Left ? Direction.Right : Direction.Left;
@@ -363,6 +364,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await stats.ability.lightningBolt.Trigger(this, gridManager);
         await stats.ability.immolate.Trigger(this, gridManager, gameManager);
         stats.ability.seduced.Trigger(this);
+        stats.ability.stunned.Trigger(this);
     }
 
     private Vector2 GetFrontCellIndex(Vector2 gridIndex, Direction direction, int range = 1) {
