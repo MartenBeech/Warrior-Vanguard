@@ -327,4 +327,19 @@ public class GridManager : MonoBehaviour {
         Character enemy = Rng.Entry(enemies);
         return enemy;
     }
+
+    public List<Character> GetFriendsOnColumn(Character warrior) {
+        List<Character> friends = new();
+
+        for (int y = 0; y <= rows; y++) {
+            if (y == warrior.gridIndex.y) continue;
+
+            Character character = GetCellCharacter(new Vector2(warrior.gridIndex.x, y));
+            if (character != null && character.alignment == warrior.alignment) {
+                friends.Add(character);
+            }
+        }
+
+        return friends;
+    }
 }

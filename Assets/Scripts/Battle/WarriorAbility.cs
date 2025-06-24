@@ -29,6 +29,7 @@ public class WarriorAbility {
     public Bleed bleed = new();
     public Joust joust = new();
     public LightningBolt lightningBolt = new();
+    public Cleave cleave = new();
     public Spawn spawn = new();
 
     // Common abilities
@@ -57,6 +58,7 @@ public class WarriorAbility {
     public Carnivore carnivore = new();
     public Backstab backstab = new();
     public Explosion explosion = new();
+    public Enflame enflame = new();
 
     // Unique abilities
     public HydraSplit hydraSplit = new();
@@ -86,6 +88,7 @@ public class WarriorAbility {
     public ForestProtection forestProtection = new();
     public Thunderstorm thunderstorm = new();
     public StaticEntrance staticEntrance = new();
+    public HumanShield humanShield = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();
@@ -93,7 +96,7 @@ public class WarriorAbility {
     public Rooted rooted = new();
     public Weakened weakened = new();
     public Bleeding bleeding = new();
-    public HumanShield humanShield = new();
+    public Burning burning = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

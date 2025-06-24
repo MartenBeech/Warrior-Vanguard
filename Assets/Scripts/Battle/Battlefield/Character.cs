@@ -11,7 +11,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, //Undead
         Human, Pirate, Holyborn, Knight, Griffin, Sorcerer, //Human
         Unicorn, Elf, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Forest
-        Imp, Minotaur, Harpy, Pestilence, //Underworld
+        Imp, Minotaur, Harpy, Pestilence, Cerberus, //Underworld
         Dark, //Spells
     }
     public enum Genre {
@@ -162,6 +162,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 List<Task> asyncFunctions = new() {
                 stats.ability.multishot.Trigger(this, target, gridManager),
                 stats.ability.splash.Trigger(this, target, gridManager),
+                stats.ability.cleave.Trigger(this, target, gridManager),
                 stats.ability.pierce.Trigger(this, target, gridManager),
                 Strike(target, damage)
             };
@@ -197,6 +198,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         damage = stats.ability.stealth.Trigger(this, damage);
 
         stats.ability.poison.Trigger(this, target);
+        stats.ability.enflame.Trigger(this, target);
         stats.ability.frozenTouch.Trigger(this, target);
         stats.ability.weaken.Trigger(this, target);
         stats.ability.bleed.Trigger(this, target);
@@ -337,6 +339,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await stats.ability.hitAndRun.Trigger(this);
         stats.ability.poisonCloud.Trigger(this, gridManager);
         await stats.ability.poisoned.Trigger(this);
+        await stats.ability.burning.Trigger(this);
         await stats.ability.cemeteryGates.Trigger(this, characterSpawner);
         await stats.ability.rebirth.Trigger(this, characterSpawner);
         await stats.ability.regeneration.Trigger(this);

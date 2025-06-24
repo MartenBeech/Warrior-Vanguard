@@ -1,15 +1,15 @@
-public class PlagueRat {
+public class HadesCompanion {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 2, 2 },
-            strength = new int[] { 1, 1 },
-            health = new int[] { 1, 2 },
-            speed = 2,
+            cost = new int[] { 1, 1 },
+            strength = new int[] { 0, 0 },
+            health = new int[] { 1, 4 },
+            speed = 3,
             range = 2,
             damageType = Character.DamageType.Physical,
-            race = Character.Race.Pestilence,
-            rarity = CardRarity.Common,
+            race = Character.Race.Cerberus,
+            rarity = CardRarity.Legendary,
             genre = Character.Genre.Underworld,
         };
         for (int i = 0; i < 2; i++) {
@@ -17,8 +17,8 @@ public class PlagueRat {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.spawn.Add(2);
-        ability.poison.Add(1, 2);
+        ability.cleave.Add();
+        ability.enflame.Add(5, 7);
 
         return stats;
     }
