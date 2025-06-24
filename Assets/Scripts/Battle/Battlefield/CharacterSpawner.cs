@@ -54,6 +54,8 @@ public class CharacterSpawner : MonoBehaviour {
             friend.stats.ability.evilInspiration.TriggerSummonFriend(friend, stats);
             friend.stats.ability.forestProtection.TriggerSummonFriend(friend, stats);
             friend.stats.ability.massResistance.TriggerSummonFriend(friend, stats);
+            friend.stats.ability.massEnflame.TriggerSummonFriend(friend, stats);
+            friend.stats.ability.massImmolate.TriggerSummonFriend(friend, stats);
         }
 
         Hand hand = null;
@@ -70,9 +72,8 @@ public class CharacterSpawner : MonoBehaviour {
         character.Initiate(gameManager, gridManager, hand, this, summonerObject, summoner, hoverCard, floatingText);
 
         character.gridIndex = gridIndex;
-        character.alignment = stats.alignment;
-
         character.SetStats(stats);
+        character.stats.alignment = stats.alignment;
 
         stats.ability.skeletal.TriggerSummon(character, summoner);
         stats.ability.familiarGround.TriggerSummon(character);
@@ -86,6 +87,8 @@ public class CharacterSpawner : MonoBehaviour {
         stats.ability.evilInspiration.TriggerSummon(character, gridManager);
         stats.ability.forestProtection.TriggerSummon(character, gridManager);
         stats.ability.massResistance.TriggerSummon(character, gridManager);
+        stats.ability.massEnflame.TriggerSummon(character, gridManager);
+        stats.ability.massImmolate.TriggerSummon(character, gridManager);
 
         List<Character> enemies = gridManager.GetEnemies(stats.alignment);
         foreach (Character enemy in enemies) {

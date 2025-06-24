@@ -10,7 +10,7 @@ public class Rebirth {
     public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
             WarriorStats phoenix = new Phoenix().GetStats();
-            phoenix.alignment = target.alignment;
+            phoenix.alignment = target.stats.alignment;
             phoenix.level = target.stats.level;
 
             List<Task> asyncFunctions = new() {

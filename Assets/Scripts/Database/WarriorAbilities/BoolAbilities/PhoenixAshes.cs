@@ -9,7 +9,7 @@ public class PhoenixAshes {
     public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
             WarriorStats ashes = new Ashes().GetStats();
-            ashes.alignment = target.alignment;
+            ashes.alignment = target.stats.alignment;
             ashes.level = target.stats.level;
 
             await characterSpawner.Spawn(target.gridIndex, ashes, target.transform.position);

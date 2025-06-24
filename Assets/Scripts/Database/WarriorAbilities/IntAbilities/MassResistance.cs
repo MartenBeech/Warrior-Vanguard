@@ -8,7 +8,7 @@ public class MassResistance {
 
     public bool TriggerSummon(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            List<Character> friends = gridManager.GetFriends(dealer.alignment);
+            List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
             friends.Remove(dealer);
             foreach (var friend in friends) {
                 friend.stats.ability.resistance.Add(GetValue(dealer.stats));
@@ -21,7 +21,7 @@ public class MassResistance {
 
     public bool TriggerDeath(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            List<Character> friends = gridManager.GetFriends(dealer.alignment);
+            List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
             friends.Remove(dealer);
             foreach (var friend in friends) {
                 friend.stats.ability.resistance.Add(-GetValue(dealer.stats));

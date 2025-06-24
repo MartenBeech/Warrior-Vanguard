@@ -3,7 +3,7 @@ public class Mario : WarriorStats {
         WarriorStats stats = new() {
             title = "Mario",
             strength = new int[] { 2, 4 },
-            health = new int[] { 1, 4 },
+            health = new int[] { 4, 4 },
             cost = new int[] { 0, 0 },
             speed = 2,
             range = 2,
@@ -16,8 +16,7 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.cleave.Add();
-        ability.enflame.Add(2);
+        ability.seduce.Add();
 
         return stats;
     }

@@ -238,14 +238,14 @@ public class GridManager : MonoBehaviour {
 
     public List<Character> GetNearbyFriends(Character warrior) {
         List<Character> nearbyWarriors = GetNearbyWarriors(warrior.gridIndex);
-        List<Character> nearbyFriends = nearbyWarriors.Where(a => a.alignment == warrior.alignment).ToList();
+        List<Character> nearbyFriends = nearbyWarriors.Where(a => a.stats.alignment == warrior.stats.alignment).ToList();
 
         return nearbyFriends;
     }
 
     public List<Character> GetNearbyEnemies(Character warrior) {
         List<Character> nearbyWarriors = GetNearbyWarriors(warrior.gridIndex);
-        List<Character> nearbyFriends = nearbyWarriors.Where(a => a.alignment != warrior.alignment).ToList();
+        List<Character> nearbyFriends = nearbyWarriors.Where(a => a.stats.alignment != warrior.stats.alignment).ToList();
 
         return nearbyFriends;
     }
@@ -261,7 +261,7 @@ public class GridManager : MonoBehaviour {
     public List<Character> GetFriends(CharacterSpawner.Alignment alignment) {
         List<Character> friends = new();
         foreach (Character character in allCharacters) {
-            if (character.alignment == alignment) {
+            if (character.stats.alignment == alignment) {
                 friends.Add(character);
             }
         }
@@ -271,7 +271,7 @@ public class GridManager : MonoBehaviour {
     public List<Character> GetEnemies(CharacterSpawner.Alignment alignment) {
         List<Character> enemies = new();
         foreach (Character character in allCharacters) {
-            if (character.alignment != alignment) {
+            if (character.stats.alignment != alignment) {
                 enemies.Add(character);
             }
         }
@@ -293,9 +293,9 @@ public class GridManager : MonoBehaviour {
 
     public Character GetCharacterBehindTarget(Character target) {
         Character character = null;
-        if (target.alignment == CharacterSpawner.Alignment.Enemy) {
+        if (target.stats.alignment == CharacterSpawner.Alignment.Enemy) {
             character = GetCellCharacter(target.gridIndex + new Vector2(1, 0));
-        } else if (target.alignment == CharacterSpawner.Alignment.Friend) {
+        } else if (target.stats.alignment == CharacterSpawner.Alignment.Friend) {
             character = GetCellCharacter(target.gridIndex - new Vector2(1, 0));
         }
 
@@ -305,15 +305,15 @@ public class GridManager : MonoBehaviour {
     public List<Character> GetEnemiesInRange(Vector2 gridIndex) {
         Character dealer = GetCellCharacter(gridIndex);
         List<Character> enemiesInRange = new();
-        int xIncrement = dealer.alignment == CharacterSpawner.Alignment.Friend
+        int xIncrement = dealer.stats.alignment == CharacterSpawner.Alignment.Friend
             ? 1
-            : dealer.alignment == CharacterSpawner.Alignment.Enemy
+            : dealer.stats.alignment == CharacterSpawner.Alignment.Enemy
             ? -1
             : 0;
 
         for (int i = 1; i <= dealer.stats.range; i++) {
             Character character = GetCellCharacter(new Vector2(gridIndex.x + (xIncrement * i), gridIndex.y));
-            if (character && character.alignment != dealer.alignment) {
+            if (character && character.stats.alignment != dealer.stats.alignment) {
                 enemiesInRange.Add(character);
             }
         }
@@ -322,7 +322,7 @@ public class GridManager : MonoBehaviour {
     }
 
     public Character GetRandomEnemy(Character dealer) {
-        List<Character> enemies = GetEnemies(dealer.alignment);
+        List<Character> enemies = GetEnemies(dealer.stats.alignment);
 
         Character enemy = Rng.Entry(enemies);
         return enemy;
@@ -335,7 +335,7 @@ public class GridManager : MonoBehaviour {
             if (y == warrior.gridIndex.y) continue;
 
             Character character = GetCellCharacter(new Vector2(warrior.gridIndex.x, y));
-            if (character != null && character.alignment == warrior.alignment) {
+            if (character != null && character.stats.alignment == warrior.stats.alignment) {
                 friends.Add(character);
             }
         }

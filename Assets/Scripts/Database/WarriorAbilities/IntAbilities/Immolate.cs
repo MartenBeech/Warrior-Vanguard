@@ -1,22 +1,17 @@
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class Heal {
+public class Immolate {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Heal another random friend by {GetValue(stats)}";
+        return $"{WarriorAbility.Keywords.Overturn}: Deal {GetValue(stats)} damage to the enemy summoner";
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+    public async Task<bool> Trigger(Character dealer, GridManager gridManager, GameManager gameManager) {
         if (GetValue(dealer.stats) > 0) {
-            List<Character> damagedFriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
-            damagedFriends.Remove(dealer);
-
-            if (damagedFriends.Count == 0) return false;
-
-            Character damagedFriend = Rng.Entry(damagedFriends);
-            await damagedFriend.Heal(dealer, GetValue(dealer.stats));
-
+            Summoner summonerTarget = dealer.stats.alignment == CharacterSpawner.Alignment.Enemy ?
+                    gameManager.friendSummonerObject.GetComponent<Summoner>() :
+                    gameManager.enemySummonerObject.GetComponent<Summoner>();
+            await summonerTarget.TakeDamage(dealer, GetValue(dealer.stats), gridManager);
             return true;
         }
         return false;

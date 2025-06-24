@@ -11,7 +11,7 @@ public class Possess {
             WarriorStats targetStats = new();
             targetStats.SetStats(target.stats);
             targetStats.ResetStats();
-            targetStats.alignment = dealer.alignment;
+            targetStats.alignment = dealer.stats.alignment;
 
             await characterSpawner.SpawnRandomly(targetStats, target.transform.position);
 

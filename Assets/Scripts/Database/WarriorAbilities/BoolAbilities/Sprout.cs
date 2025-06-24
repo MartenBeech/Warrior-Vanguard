@@ -9,7 +9,7 @@ public class Sprout {
     public async Task<bool> Trigger(Character dealer, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats)) {
             WarriorStats elderwoodRoot = new ElderwoodRoot().GetStats();
-            elderwoodRoot.alignment = dealer.alignment;
+            elderwoodRoot.alignment = dealer.stats.alignment;
             elderwoodRoot.level = dealer.stats.level;
 
             await characterSpawner.SpawnRandomly(elderwoodRoot, dealer.transform.position);

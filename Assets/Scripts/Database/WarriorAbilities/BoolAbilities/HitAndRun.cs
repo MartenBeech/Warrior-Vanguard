@@ -8,7 +8,7 @@ public class HitAndRun {
 
     public async Task<bool> Trigger(Character dealer) {
         if (GetValue(dealer.stats)) {
-            await dealer.MoveWarrior(dealer.alignment == CharacterSpawner.Alignment.Enemy ? Character.Direction.Right : Character.Direction.Left);
+            await dealer.MoveWarrior(dealer.stats.alignment == CharacterSpawner.Alignment.Enemy ? Character.Direction.Right : Character.Direction.Left);
             return true;
         }
         return false;

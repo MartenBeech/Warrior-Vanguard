@@ -8,7 +8,7 @@ public class Looting {
 
     public async Task<bool> Trigger(Character dealer, FloatingText floatingText) {
         if (GetValue(dealer.stats) > 0) {
-            if (dealer.alignment == CharacterSpawner.Alignment.Friend) {
+            if (dealer.stats.alignment == CharacterSpawner.Alignment.Friend) {
                 GoldManager.AddGold(GetValue(dealer.stats));
                 await floatingText.CreateFloatingText(dealer.transform, $"+{GetValue(dealer.stats)} Gold", ColorPalette.ColorEnum.yellow);
                 return true;

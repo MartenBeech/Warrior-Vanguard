@@ -46,7 +46,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdateSummonerUI();
     }
 
-    public async Task Damage(Character dealer, int damage, GridManager gridManager) {
+    public async Task TakeDamage(Character dealer, int damage, GridManager gridManager) {
 
         damage = dealer.stats.ability.stealth.Trigger(dealer, damage);
 

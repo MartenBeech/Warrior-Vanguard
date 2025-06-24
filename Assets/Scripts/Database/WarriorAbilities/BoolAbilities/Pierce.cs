@@ -10,7 +10,7 @@ public class Pierce {
         if (GetValue(dealer.stats)) {
             Character neighbor = gridManager.GetCharacterBehindTarget(target);
 
-            if (neighbor && neighbor.alignment != dealer.alignment) {
+            if (neighbor && neighbor.stats.alignment != dealer.stats.alignment) {
                 await dealer.Strike(neighbor);
                 return true;
             }

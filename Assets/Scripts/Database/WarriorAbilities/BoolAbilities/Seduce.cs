@@ -1,30 +1,19 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class Backstab {
+public class Seduce {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"Can attack backwards, dealing double damage (even without moving)";
+        return $"{WarriorAbility.Keywords.Attack}: 50% chance to make the target fight for you next turn";
     }
 
-    public Character GetEnemyBehind(Character dealer, GridManager gridManager) {
+    public async Task<bool> Trigger(Character dealer, Character target, FloatingText floatingText) {
         if (GetValue(dealer.stats)) {
-            Character neighbor = gridManager.GetCharacterBehindTarget(dealer);
-
-            if (neighbor && neighbor.stats.alignment != dealer.stats.alignment) {
-                return neighbor;
+            if (Rng.Chance(50)) {
+                target.stats.ability.seduced.Add();
+                target.UpdateWarriorUI();
+                await floatingText.CreateFloatingText(target.transform, "Seduced", ColorPalette.ColorEnum.purple);
             }
-        }
-        return null;
-    }
-
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
-        if (GetValue(dealer.stats)) {
-            Character neighbor = GetEnemyBehind(dealer, gridManager);
-
-            if (neighbor) {
-                await dealer.Attack(neighbor, true);
-                return true;
-            }
+            return true;
         }
         return false;
     }

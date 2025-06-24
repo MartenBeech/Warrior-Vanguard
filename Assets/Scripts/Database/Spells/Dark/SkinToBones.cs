@@ -25,7 +25,7 @@ public class SkinToBones {
         if (cardLevel == 0) {
             asyncFunctions.Add(target.stats.ability.raiseDead.SummonSkeleton(target, target, characterSpawner));
         } else {
-            asyncFunctions.Add(target.stats.ability.raiseDead.SummonSkeleton(target, target, characterSpawner, target.alignment == CharacterSpawner.Alignment.Enemy ? CharacterSpawner.Alignment.Friend : CharacterSpawner.Alignment.Enemy));
+            asyncFunctions.Add(target.stats.ability.raiseDead.SummonSkeleton(target, target, characterSpawner, target.stats.alignment == CharacterSpawner.Alignment.Enemy ? CharacterSpawner.Alignment.Friend : CharacterSpawner.Alignment.Enemy));
         }
         target.UpdateWarriorUI();
         await floatingText.CreateFloatingText(target.transform, "Boned", ColorPalette.ColorEnum.purple);

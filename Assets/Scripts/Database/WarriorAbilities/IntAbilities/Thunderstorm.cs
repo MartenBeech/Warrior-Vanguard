@@ -9,7 +9,7 @@ public class Thunderstorm {
 
     public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            List<Character> enemies = gridManager.GetEnemies(dealer.alignment);
+            List<Character> enemies = gridManager.GetEnemies(dealer.stats.alignment);
             List<Task> asyncFunctions = new();
             foreach (Character enemy in enemies) {
                 asyncFunctions.Add(enemy.TakeDamage(dealer, GetValue(dealer.stats), Character.DamageType.Magical));

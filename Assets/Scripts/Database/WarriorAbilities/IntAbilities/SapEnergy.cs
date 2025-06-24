@@ -10,7 +10,7 @@ public class SapEnergy {
 
     public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            List<Character> friends = gridManager.GetFriends(dealer.alignment);
+            List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
             List<Character> elderwoodElders = friends.Where(friend => friend.stats.title == "ElderwoodElder").ToList();
 
             List<Task> asyncFunctions = new();

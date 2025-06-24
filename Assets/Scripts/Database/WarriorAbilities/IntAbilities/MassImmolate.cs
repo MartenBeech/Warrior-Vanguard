@@ -1,22 +1,40 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-public class Heal {
+public class MassImmolate {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Heal another random friend by {GetValue(stats)}";
+        return $"{WarriorAbility.Keywords.Aura}: Friends have +{GetValue(stats)} Immolate";
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+    public bool TriggerSummon(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            List<Character> damagedFriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
-            damagedFriends.Remove(dealer);
+            List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
+            friends.Remove(dealer);
+            foreach (var friend in friends) {
+                friend.stats.ability.immolate.Add(GetValue(dealer.stats));
+                friend.UpdateWarriorUI();
+            }
+            return true;
+        }
+        return false;
+    }
 
-            if (damagedFriends.Count == 0) return false;
+    public bool TriggerDeath(Character dealer, GridManager gridManager) {
+        if (GetValue(dealer.stats) > 0) {
+            List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
+            friends.Remove(dealer);
+            foreach (var friend in friends) {
+                friend.stats.ability.immolate.Add(-GetValue(dealer.stats));
+                friend.UpdateWarriorUI();
+            }
+            return true;
+        }
+        return false;
+    }
 
-            Character damagedFriend = Rng.Entry(damagedFriends);
-            await damagedFriend.Heal(dealer, GetValue(dealer.stats));
-
+    public bool TriggerSummonFriend(Character dealer, WarriorStats targetStats) {
+        if (GetValue(dealer.stats) > 0) {
+            targetStats.ability.immolate.Add(GetValue(dealer.stats));
             return true;
         }
         return false;

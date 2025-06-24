@@ -16,7 +16,6 @@ public class Luigi : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.spawn.Add(2);
 
         return stats;
     }

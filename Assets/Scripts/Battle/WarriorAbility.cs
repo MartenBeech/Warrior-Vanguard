@@ -59,6 +59,7 @@ public class WarriorAbility {
     public Backstab backstab = new();
     public Explosion explosion = new();
     public Enflame enflame = new();
+    public Immolate immolate = new();
 
     // Unique abilities
     public HydraSplit hydraSplit = new();
@@ -89,6 +90,9 @@ public class WarriorAbility {
     public Thunderstorm thunderstorm = new();
     public StaticEntrance staticEntrance = new();
     public HumanShield humanShield = new();
+    public Seduce seduce = new();
+    public MassEnflame massEnflame = new();
+    public MassImmolate massImmolate = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();
@@ -97,6 +101,7 @@ public class WarriorAbility {
     public Weakened weakened = new();
     public Bleeding bleeding = new();
     public Burning burning = new();
+    public Seduced seduced = new();
 
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";

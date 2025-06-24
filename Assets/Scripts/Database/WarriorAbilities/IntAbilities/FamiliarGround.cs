@@ -18,7 +18,7 @@ public class FamiliarGround {
 
     public bool TriggerMove(Character dealer, Vector2 moveFrom, Vector2 moveTo, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            if (dealer.alignment == CharacterSpawner.Alignment.Friend) {
+            if (dealer.stats.alignment == CharacterSpawner.Alignment.Friend) {
                 if (moveFrom.x < 3 && moveTo.x >= 3) {
                     dealer.stats.AddStrength(-GetValue(dealer.stats));
                     dealer.stats.AddHealth(-GetValue(dealer.stats));
@@ -28,7 +28,7 @@ public class FamiliarGround {
                 }
             }
 
-            if (dealer.alignment == CharacterSpawner.Alignment.Enemy) {
+            if (dealer.stats.alignment == CharacterSpawner.Alignment.Enemy) {
                 if (moveFrom.x >= gridManager.columns - 3 && moveTo.x < gridManager.columns - 3) {
                     dealer.stats.AddStrength(-GetValue(dealer.stats));
                     dealer.stats.AddHealth(-GetValue(dealer.stats));

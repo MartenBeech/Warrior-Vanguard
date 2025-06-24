@@ -1,7 +1,6 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Linq;
 public class LifeTransfer {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
@@ -10,7 +9,7 @@ public class LifeTransfer {
 
     public async Task<bool> Trigger(Character dealer, int damage, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            List<Character> damagedfriends = gridManager.GetDamagedFriends(dealer.alignment);
+            List<Character> damagedfriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
             damagedfriends.Remove(dealer);
             if (damagedfriends.Count == 0) return false;
 

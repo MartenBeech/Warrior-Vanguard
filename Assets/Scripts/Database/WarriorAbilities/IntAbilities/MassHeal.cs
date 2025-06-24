@@ -9,7 +9,7 @@ public class MassHeal {
 
     public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            List<Character> damagedFriends = gridManager.GetDamagedFriends(dealer.alignment);
+            List<Character> damagedFriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
             damagedFriends.Remove(dealer);
 
             List<Task> asyncFunctions = new() { };
