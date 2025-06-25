@@ -129,8 +129,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             isDisabled = !gameManager.friendCoin.CanAfford(stats.GetCost());
         }
 
-        Color color = GetComponent<Image>().color;
-        color.a = isDisabled ? 0.25f : 1f;
-        GetComponent<Image>().color = color;
+        GetComponent<Image>().color = ColorPalette.AddTransparency(GetComponent<Image>().color, isDisabled ? 25 : 100);
     }
 }

@@ -22,9 +22,7 @@ public class TextAnimation : MonoBehaviour {
             transform.Translate(dist * Time.deltaTime * dir.normalized / duration * Settings.gameSpeed);
             counter -= Time.deltaTime * Settings.gameSpeed;
 
-            var tempColor = text.color;
-            tempColor.a = counter * 1.5f;
-            text.color = tempColor;
+            text.color = ColorPalette.AddTransparency(text.color, (int)(counter * 150));
 
             if (counter <= 0) {
                 Destroy(gameObject);

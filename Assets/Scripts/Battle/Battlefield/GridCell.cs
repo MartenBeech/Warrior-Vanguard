@@ -24,7 +24,10 @@ public class GridCell : MonoBehaviour {
 
         Character character = gridManager.GetCellCharacter(gridIndex);
         if (character) {
-            character.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.tealMedium);
+            float currentTransparency = character.image.GetComponent<Image>().color.a;
+            Color newColor = ColorPalette.GetColor(ColorPalette.ColorEnum.tealMedium);
+            newColor.a = currentTransparency;
+            character.image.GetComponent<Image>().color = newColor;
         }
 
         GetComponent<Outline>().enabled = true;
@@ -37,14 +40,15 @@ public class GridCell : MonoBehaviour {
 
         Character character = gridManager.GetCellCharacter(gridIndex);
         if (character) {
-            character.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
+            float currentTransparency = character.image.GetComponent<Image>().color.a;
+            Color newColor = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
+            newColor.a = currentTransparency;
+            character.image.GetComponent<Image>().color = newColor;
         }
 
         GetComponent<Outline>().enabled = false;
 
-        Color color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
-        color.a = 0.10f;
-        GetComponent<Image>().color = color;
+        GetComponent<Image>().color = ColorPalette.AddTransparency(ColorPalette.GetColor(ColorPalette.ColorEnum.white), 10);
     }
 
     public bool IsHighlighed() {

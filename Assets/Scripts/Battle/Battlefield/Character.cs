@@ -66,7 +66,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
 
         if (stats.ability.stealth.GetValue(stats)) {
-            image.GetComponent<Image>().color = ColorPalette.AddTransparency(image.GetComponent<Image>().color, 70);
+            image.GetComponent<Image>().color = ColorPalette.AddTransparency(image.GetComponent<Image>().color, 60);
         } else {
             image.GetComponent<Image>().color = ColorPalette.AddTransparency(image.GetComponent<Image>().color, 100);
         }

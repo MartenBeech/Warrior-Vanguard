@@ -16,7 +16,7 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.seduce.Add();
+        ability.stealth.Add();
 
         return stats;
     }
