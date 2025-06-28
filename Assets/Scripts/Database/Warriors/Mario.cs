@@ -17,13 +17,6 @@ public class Mario : WarriorStats {
 
         WarriorAbility ability = stats.ability;
         ability.stealth.Add();
-        ability.afterlife.Add();
-        ability.armor.Add(1);
-        ability.backstab.Add();
-        ability.bash.Add();
-        ability.bleed.Add();
-        ability.bleeding.Add();
-        ability.burning.Add(6);
 
         return stats;
     }

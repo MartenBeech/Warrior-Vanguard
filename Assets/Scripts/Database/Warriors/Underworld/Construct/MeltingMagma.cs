@@ -2,7 +2,7 @@ public class MeltingMagma {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 1, 1 },
+            cost = new int[] { 7, 7 },
             strength = new int[] { 0, 0 },
             health = new int[] { 21, 21 },
             speed = 0,

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class Regeneration {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Heal {GetValue(stats)} to this warrior";
+        return $"{WarriorAbility.Keywords.Overturn}: Heal {GetValue(stats)} to self";
     }
 
     public async Task<bool> Trigger(Character dealer) {
