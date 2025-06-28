@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 549865402581631213}
   - component: {fileID: -6877382601561718067}
   - component: {fileID: 1159820094333872920}
-  - component: {fileID: -1415149236313032920}
   - component: {fileID: 3458915321434544214}
   - component: {fileID: 4471209195622854212}
+  - component: {fileID: -1415149236313032920}
   - component: {fileID: -1393055377406092614}
   - component: {fileID: 3530758108900688725}
   m_Layer: 5
@@ -130,18 +130,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-1415149236313032920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60891471826456955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aa7a8437e5b6d24f80d3474492f91d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3458915321434544214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +167,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0.9999995, b: 1, a: 0.5}
   m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
+--- !u!114 &-1415149236313032920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60891471826456955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa7a8437e5b6d24f80d3474492f91d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-1393055377406092614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1527,7 +1527,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Abilities\nAbilities\nAbilities\nAbilities\nAbilities\nAbilities\nAbilities\nAbilities\nAbilities\n
+  m_text: Abilities
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1554,7 +1554,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6
+  m_fontSize: 11
   m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 1

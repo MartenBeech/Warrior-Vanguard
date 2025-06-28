@@ -35,6 +35,8 @@ public class DeckBuilder : MonoBehaviour {
         foreach (WarriorStats stats in DeckManager.GetDeck()) {
             GameObject cardItem = Instantiate(cardPrefab, deckListContainer);
             cardItem.transform.localScale = new Vector2(1.5f, 1.5f);
+            cardItem.GetComponent<DragDrop>().enabled = false;
+            cardItem.GetComponent<ObjectAnimation>().enabled = false;
             Card cardComponent = cardItem.GetComponent<Card>();
             cardComponent.SetStats(stats);
             cardComponent.SetHoverCardFromMap();

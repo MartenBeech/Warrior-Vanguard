@@ -8212,7 +8212,7 @@ MonoBehaviour:
   textObject: {fileID: 1790459933}
   deckViewPanel: {fileID: 181024417}
   hideDeckViewButton: {fileID: 869221428}
-  cardPrefab: {fileID: 60891471826456955, guid: 96d1818a6635e6b4597eeb982cb1b902, type: 3}
+  cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
   deckListContainer: {fileID: 835030897}
 --- !u!4 &1540581550
 Transform:
