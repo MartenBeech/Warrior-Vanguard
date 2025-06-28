@@ -183,6 +183,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         target.stats.ability.weakeningAura.Trigger(this, target);
         target.stats.ability.poisoningAura.Trigger(this, target);
+        target.stats.ability.firewall.Trigger(this, target);
         stats.ability.bloodlust.Trigger(this);
 
 
@@ -349,8 +350,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public async Task EndTurn() {
         await stats.ability.hitAndRun.Trigger(this);
         stats.ability.poisonCloud.Trigger(this, gridManager);
-        await stats.ability.poisoned.Trigger(this);
-        await stats.ability.burning.Trigger(this);
         await stats.ability.cemeteryGates.Trigger(this, characterSpawner);
         await stats.ability.rebirth.Trigger(this, characterSpawner);
         await stats.ability.regeneration.Trigger(this);
@@ -365,6 +364,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await stats.ability.immolate.Trigger(this, gridManager, gameManager);
         stats.ability.seduced.Trigger(this);
         stats.ability.stunned.Trigger(this);
+        await stats.ability.poisoned.Trigger(this);
+        await stats.ability.burning.Trigger(this);
     }
 
     private Vector2 GetFrontCellIndex(Vector2 gridIndex, Direction direction, int range = 1) {

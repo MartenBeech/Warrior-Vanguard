@@ -71,6 +71,7 @@ public class WarriorAbility {
     public BoneSpread boneSpread = new();
     public WeakeningAura weakeningAura = new();
     public PoisoningAura poisoningAura = new();
+    public Firewall firewall = new();
     public CemeteryGates cemeteryGates = new();
     public MassResistance massResistance = new();
     public GreedyStrike greedyStrike = new();
