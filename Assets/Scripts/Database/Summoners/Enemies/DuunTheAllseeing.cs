@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-public class SUMMONERTEMPLATE : SummonerStats {
+public class DuunTheAllseeing : SummonerStats {
     public SummonerStats GetSummoner() {
         SummonerStats stats = new() {
             title = GetType().Name,
-            description = "DESCRIPTION",
+            description = "I see you!",
             health = 20,
             isFriendly = false,
         };
@@ -16,12 +16,23 @@ public class SUMMONERTEMPLATE : SummonerStats {
     public List<WarriorStats> GetDeck() {
         SetItems();
         return new List<WarriorStats>() {
+            //TODO: Replace with long range Warriors
+            new Mario().GetStats(),
+            new Mario().GetStats(),
+            new Mario().GetStats(),
+            new Mario().GetStats(),
+            new Mario().GetStats(),
+            new Mario().GetStats(),
+            new Mario().GetStats(),
+            new Mario().GetStats(),
+            new Mario().GetStats(),
+            new Mario().GetStats(),
             new Mario().GetStats(),
        };
     }
 
     void SetItems() {
-        Type itemType = typeof(WoodenSword);
+        Type itemType = typeof(EagleEye);
         ItemManager.enemyItem = ItemManager.GetItemByTitle(itemType.Name);
     }
 }

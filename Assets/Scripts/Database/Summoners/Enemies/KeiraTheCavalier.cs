@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class Cavalier : SummonerStats {
+public class KeiraTheCavalier : SummonerStats {
     public SummonerStats GetSummoner() {
         SummonerStats stats = new() {
             title = GetType().Name,
@@ -38,7 +38,7 @@ public class Cavalier : SummonerStats {
     }
 
     void SetItems() {
-        Type itemType = typeof(WoodenSword);
+        Type itemType = typeof(HorseShoe);
         ItemManager.enemyItem = ItemManager.GetItemByTitle(itemType.Name);
     }
 }

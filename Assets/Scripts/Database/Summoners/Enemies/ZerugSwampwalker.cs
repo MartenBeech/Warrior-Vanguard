@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class OldTree : SummonerStats {
+public class ZerugSwampwalker : SummonerStats {
     public SummonerStats GetSummoner() {
         SummonerStats stats = new() {
             title = GetType().Name,
@@ -39,7 +39,7 @@ public class OldTree : SummonerStats {
     }
 
     void SetItems() {
-        Type itemType = typeof(SmallHeart);
+        Type itemType = typeof(Hourglass);
         ItemManager.enemyItem = ItemManager.GetItemByTitle(itemType.Name);
     }
 }

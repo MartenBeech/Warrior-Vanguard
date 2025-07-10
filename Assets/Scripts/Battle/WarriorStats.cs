@@ -105,6 +105,15 @@ public class WarriorStats {
         }
     }
 
+    public void SetStrength(int amount) {
+        for (int i = 0; i < 2; i++) {
+            strength[i] = amount;
+            if (strength[i] < 0) {
+                strength[i] = 0;
+            }
+        }
+    }
+
     public int GetHealth() {
         return health[level];
     }
@@ -126,6 +135,21 @@ public class WarriorStats {
         for (int i = 0; i < 2; i++) {
             healthMax[i] += amount;
             health[i] += amount;
+        }
+    }
+
+    public void SetHealth(int amount) {
+        for (int i = 0; i < 2; i++) {
+            healthMax[i] = amount;
+            health[i] = amount;
+        }
+    }
+
+    public void DoubleStats() {
+        for (int i = 0; i < 2; i++) {
+            healthMax[i] *= 2;
+            health[i] *= 2;
+            strength[i] *= 2;
         }
     }
 }
