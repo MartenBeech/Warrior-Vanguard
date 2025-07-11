@@ -9,6 +9,7 @@ public class BabyBoss : SummonerStats {
             description = "I'M OWNWY THWEE",
             health = 3,
             isFriendly = false,
+            difficulty = 1,
         };
         stats.healthMax = stats.health;
         return stats;

@@ -8,6 +8,7 @@ public class BaronGlutton : SummonerStats {
             description = "I like big Warriors and I cannot lie!",
             health = 40,
             isFriendly = false,
+            difficulty = 2,
         };
         stats.healthMax = stats.health;
         return stats;

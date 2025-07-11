@@ -8,6 +8,7 @@ public class Paladin : SummonerStats {
             description = "I will defend the realm",
             health = 30,
             isFriendly = false,
+            difficulty = 1,
         };
         stats.healthMax = stats.health;
         return stats;

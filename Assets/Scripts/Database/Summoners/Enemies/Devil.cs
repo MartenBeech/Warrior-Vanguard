@@ -8,6 +8,7 @@ public class Devil : SummonerStats {
             description = "He's a baaaaaad guy, duh!",
             health = 66,
             isFriendly = false,
+            difficulty = 1,
         };
         stats.healthMax = stats.health;
         return stats;

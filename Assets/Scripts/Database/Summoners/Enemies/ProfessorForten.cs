@@ -8,6 +8,7 @@ public class ProfessorForten : SummonerStats {
             description = "My warriors are a perfect 4/10!",
             health = 20,
             isFriendly = false,
+            difficulty = 1,
         };
         stats.healthMax = stats.health;
         return stats;
@@ -20,10 +21,10 @@ public class ProfessorForten : SummonerStats {
             new IntrusiveTermite().GetStats(),
             new IntrusiveTermite().GetStats(),
             new IntrusiveTermite().GetStats(),
-            new PlagueRat().GetStats(),
-            new PlagueRat().GetStats(),
-            new PlagueRat().GetStats(),
-            new PlagueRat().GetStats(),
+            new CrispRat().GetStats(),
+            new CrispRat().GetStats(),
+            new CrispRat().GetStats(),
+            new CrispRat().GetStats(),
             new HardshellPest().GetStats(),
             new HardshellPest().GetStats(),
             new HardshellPest().GetStats(),

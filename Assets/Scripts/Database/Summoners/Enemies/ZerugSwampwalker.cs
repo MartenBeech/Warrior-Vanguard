@@ -8,6 +8,7 @@ public class ZerugSwampwalker : SummonerStats {
             description = "Tread carefully",
             health = 30,
             isFriendly = false,
+            difficulty = 2,
         };
         stats.healthMax = stats.health;
         return stats;

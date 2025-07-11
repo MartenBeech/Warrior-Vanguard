@@ -8,6 +8,7 @@ public class KeiraTheCavalier : SummonerStats {
             description = "Chaarge!",
             health = 20,
             isFriendly = false,
+            difficulty = 1,
         };
         stats.healthMax = stats.health;
         return stats;

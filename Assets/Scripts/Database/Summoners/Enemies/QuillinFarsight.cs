@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 
-public class DuunTheAllseeing : SummonerStats {
+public class QuillinFarsight : SummonerStats {
     public SummonerStats GetSummoner() {
         SummonerStats stats = new() {
             title = GetType().Name,
             description = "I see you!",
             health = 20,
             isFriendly = false,
+            difficulty = 2,
         };
         stats.healthMax = stats.health;
         return stats;

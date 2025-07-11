@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 
-public class Farmer : SummonerStats {
+public class FredrickTheFarmer : SummonerStats {
     public SummonerStats GetSummoner() {
         SummonerStats stats = new() {
             title = GetType().Name,
             description = "The Farm remembers",
             health = 15,
             isFriendly = false,
+            difficulty = 1,
         };
         stats.healthMax = stats.health;
         return stats;
@@ -40,7 +41,7 @@ public class Farmer : SummonerStats {
     }
 
     void SetItems() {
-        Type itemType = typeof(SmallHeart);
+        Type itemType = typeof(WoodenSword);
         ItemManager.enemyItem = ItemManager.GetItemByTitle(itemType.Name);
     }
 }

@@ -8,6 +8,7 @@ public class SUMMONERTEMPLATE : SummonerStats {
             description = "DESCRIPTION",
             health = 20,
             isFriendly = false,
+            difficulty = 1,
         };
         stats.healthMax = stats.health;
         return stats;

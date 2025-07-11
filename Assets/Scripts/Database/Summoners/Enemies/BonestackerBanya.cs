@@ -8,6 +8,7 @@ public class BonestackerBanya : SummonerStats {
             description = "Lovely Boooones!",
             health = 20,
             isFriendly = false,
+            difficulty = 3,
         };
         stats.healthMax = stats.health;
         return stats;
@@ -16,19 +17,30 @@ public class BonestackerBanya : SummonerStats {
     public List<WarriorStats> GetDeck() {
         SetItems();
         return new List<WarriorStats>() {
-            //TODO: Replace with skeleton and liches
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
+           new SkeletonMage().GetStats(),
+           new SkeletonMage().GetStats(),
+           new SkeletonMage().GetStats(),
+           new SkeletonMage().GetStats(),
+           new SkeletonMage().GetStats(),
+           new SkeletonRider().GetStats(),
+           new SkeletonRider().GetStats(),
+           new SkeletonRider().GetStats(),
+           new SkeletonRider().GetStats(),
+           new SkeletonRider().GetStats(),
+           new SkeletonWarrior().GetStats(),
+           new SkeletonWarrior().GetStats(),
+           new SkeletonWarrior().GetStats(),
+           new SkeletonWarrior().GetStats(),
+           new SkeletonWarrior().GetStats(),
+           new SkeletonArcher().GetStats(),
+           new SkeletonArcher().GetStats(),
+           new SkeletonArcher().GetStats(),
+           new SkeletonArcher().GetStats(),
+           new SkeletonArcher().GetStats(),
+           new EldritchSorcerer().GetStats(),
+           new EldritchSorcerer().GetStats(),
+           new BoneConjurer().GetStats(),
+           new LichQueen().GetStats(),
        };
     }
 
