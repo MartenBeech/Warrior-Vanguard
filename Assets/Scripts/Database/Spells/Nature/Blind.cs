@@ -1,0 +1,26 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public class Blind {
+    public WarriorStats GetStats() {
+        WarriorStats stats = new() {
+            title = GetType().Name,
+            cost = new int[] { 2, 1 },
+            rarity = CardRarity.Rare,
+            spellTarget = SpellTarget.enemy,
+            spellDescription = new string[] {
+            "Reduce enemy range to 1",
+            "Reduce enemy range to 1"
+            },
+            race = Character.Race.None,
+            cardType = CardType.spell,
+        };
+
+        return stats;
+    }
+
+    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
+        target.stats.range = 1;
+        await floatingText.CreateFloatingText(target.transform, "Blind", ColorPalette.ColorEnum.red);
+    }
+}

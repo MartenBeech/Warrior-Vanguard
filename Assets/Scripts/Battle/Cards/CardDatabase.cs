@@ -3,6 +3,15 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new AidFromTheSpirits().GetStats(),
+        new CatReflexes().GetStats(),
+        new Blind().GetStats(),
+        new SharpSight().GetStats(),
+        new Thorns().GetStats(),
+        new Haste().GetStats(),
+        new Embiggen().GetStats(),
+        new TimeHealsAllWounds().GetStats(),
+        new GuardianAngel().GetStats(),
         new HellHound().GetStats(),
         new Mario().GetStats(),
         new MeltingMagma().GetStats(),
