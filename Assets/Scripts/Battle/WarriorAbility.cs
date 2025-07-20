@@ -104,6 +104,9 @@ public class WarriorAbility {
     public Burning burning = new();
     public Seduced seduced = new();
 
+    // Summoner abilities
+    public SummonWisp summonWisp = new();
+
     public string GetAbilityText(WarriorStats stats) {
         string returnValue = "";
 

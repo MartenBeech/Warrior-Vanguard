@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 public class Armor {
     public string GetDescription(WarriorStats stats) {

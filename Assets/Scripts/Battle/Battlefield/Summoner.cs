@@ -30,7 +30,9 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         } else {
             shieldImage.SetActive(false);
         }
+    }
 
+    void UpdateItem() {
         if (itemImage != null) {
             if (!stats.isFriendly && ItemManager.enemyItem != null) {
                 itemImage.SetActive(true);
@@ -44,11 +46,14 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void SetStats(SummonerStats stats) {
         this.stats.SetStats(stats);
         UpdateSummonerUI();
+        UpdateItem();
     }
 
-    public async Task TakeDamage(Character dealer, int damage, GridManager gridManager) {
+    public async Task TakeDamage(Character dealer, int damage, GridManager gridManager, Character.DamageType damageType) {
 
         damage = dealer.stats.ability.stealth.Trigger(dealer, damage);
+        damage = stats.ability.armor.Trigger(dealer, damage, damageType);
+        damage = stats.ability.resistance.Trigger(dealer, damage, damageType);
 
         int damageAfterShield = damage;
 
@@ -110,5 +115,9 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         await floatingText.CreateFloatingText(transform, $"+{amount} shield", ColorPalette.ColorEnum.gray);
+    }
+
+    public async Task EndTurn(CharacterSpawner characterSpawner) {
+        await stats.ability.summonWisp.Trigger(this, characterSpawner);
     }
 }

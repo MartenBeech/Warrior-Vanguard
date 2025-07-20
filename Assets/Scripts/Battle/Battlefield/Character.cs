@@ -34,7 +34,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     };
 
     private Hand hand;
-    private CharacterSpawner characterSpawner;
+    public CharacterSpawner characterSpawner;
     private Transform summonerObject;
     private Summoner summoner;
     private FloatingText floatingText;
@@ -150,7 +150,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                     gameManager.friendSummonerObject.GetComponent<Summoner>() :
                     gameManager.enemySummonerObject.GetComponent<Summoner>();
 
-                await summonerTarget.TakeDamage(this, stats.GetStrength(), gridManager);
+                await summonerTarget.TakeDamage(this, stats.GetStrength(), gridManager, stats.damageType);
                 break;
             }
         }

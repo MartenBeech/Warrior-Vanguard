@@ -11,7 +11,7 @@ public class Immolate {
             Summoner summonerTarget = dealer.stats.alignment == CharacterSpawner.Alignment.Enemy ?
                     gameManager.friendSummonerObject.GetComponent<Summoner>() :
                     gameManager.enemySummonerObject.GetComponent<Summoner>();
-            await summonerTarget.TakeDamage(dealer, GetValue(dealer.stats), gridManager);
+            await summonerTarget.TakeDamage(dealer, GetValue(dealer.stats), gridManager, dealer.stats.damageType);
             return true;
         }
         return false;

@@ -3,6 +3,12 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new HellHound().GetStats(),
+        new Mario().GetStats(),
+        new MeltingMagma().GetStats(),
+        new FieryAvatar().GetStats(),
+        new SuccubusSeducer().GetStats(),
+        new FlameWarden().GetStats(),
         new AidFromTheSpirits().GetStats(),
         new CatReflexes().GetStats(),
         new Blind().GetStats(),
@@ -12,12 +18,6 @@ public static class CardDatabase {
         new Embiggen().GetStats(),
         new TimeHealsAllWounds().GetStats(),
         new GuardianAngel().GetStats(),
-        new HellHound().GetStats(),
-        new Mario().GetStats(),
-        new MeltingMagma().GetStats(),
-        new FieryAvatar().GetStats(),
-        new SuccubusSeducer().GetStats(),
-        new FlameWarden().GetStats(),
         new InfernalShooter().GetStats(),
         new HadesCompanion().GetStats(),
         new CerberusPack().GetStats(),

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class Paladin : SummonerStats {
+public class TarrinTheUnharmed : SummonerStats {
     public SummonerStats GetSummoner() {
         SummonerStats stats = new() {
             title = GetType().Name,
@@ -38,7 +38,7 @@ public class Paladin : SummonerStats {
     }
 
     void SetItems() {
-        Type itemType = typeof(HolyLight);
+        Type itemType = typeof(BigArmor);
         ItemManager.enemyItem = ItemManager.GetItemByTitle(itemType.Name);
     }
 }

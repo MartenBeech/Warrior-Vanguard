@@ -7,7 +7,7 @@ public class CharacterSpawner : MonoBehaviour {
         Null, Enemy, Friend
     };
     public GameObject warriorPrefab;
-    private Alignment spawningAlignment;
+    public Alignment spawningAlignment;
     public GridManager gridManager;
     public Transform warriorsObject;
     public GameManager gameManager;
@@ -115,6 +115,7 @@ public class CharacterSpawner : MonoBehaviour {
 
     public async Task SpawnRandomly(WarriorStats stats, Vector2 from) {
         GridCell randomCell = gridManager.GetRandomEmptyDeploy(stats.ability.construct.GetValue(stats), stats.alignment);
+
         if (!randomCell) return;
 
         await Spawn(randomCell.gridIndex, stats, from);

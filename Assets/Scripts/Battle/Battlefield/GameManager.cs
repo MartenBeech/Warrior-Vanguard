@@ -16,16 +16,19 @@ public class GameManager : MonoBehaviour {
     public Deck enemyDeck;
     public Hand enemyHand;
     public Item enemyItem;
+    Summoner friendSummoner;
+    Summoner enemySummoner;
+    CharacterSpawner enemyCharacterSpawner;
     public static CharacterSpawner.Alignment turn;
     public static string enemySummonerName = "Devil";
 
     async void Awake() {
-        Summoner friendSummoner = friendSummonerObject.GetComponent<Summoner>();
+        friendSummoner = friendSummonerObject.GetComponent<Summoner>();
         string summonerTitle = PlayerPrefs.GetString("SelectedSummoner");
         friendSummoner.SetStats(new SummonerStats(summonerTitle, FriendlySummoner.currentHealth, FriendlySummoner.maxHealth, true));
         friendDeck.GetDeck();
 
-        Summoner enemySummoner = enemySummonerObject.GetComponent<Summoner>();
+        enemySummoner = enemySummonerObject.GetComponent<Summoner>();
         Type type = Type.GetType(enemySummonerName);
         object instance = Activator.CreateInstance(type);
         enemyDeck.deck = (List<WarriorStats>)type.GetMethod("GetDeck")?.Invoke(instance, null);
@@ -86,6 +89,9 @@ public class GameManager : MonoBehaviour {
             await enemy.StandAndAttack(Character.Direction.Left);
             await enemy.EndTurn();
         }
+        
+        enemyCharacterSpawner.spawningAlignment = CharacterSpawner.Alignment.Enemy;
+        await enemySummoner.EndTurn(enemyCharacterSpawner);
         await StartPlayerTurn();
     }
 
@@ -119,7 +125,7 @@ public class GameManager : MonoBehaviour {
 
     async Task TakeEnemyTurn() {
         await Task.Delay(1000 / Settings.gameSpeed);
-        CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
+        enemyCharacterSpawner = FindFirstObjectByType<CharacterSpawner>();
         List<Card> cardsInHand = new(enemyHand.GetCardsInHand());
         cardsInHand.Sort((a, b) => b.stats.GetCost() - a.stats.GetCost());
         foreach (Card card in cardsInHand) {
@@ -130,7 +136,7 @@ public class GameManager : MonoBehaviour {
                     enemyHand.DeselectCard(card);
                     break;
                 }
-                await enemyHand.PlayCardFromHand(characterSpawner, randomCell.gridIndex);
+                await enemyHand.PlayCardFromHand(enemyCharacterSpawner, randomCell.gridIndex);
                 await Task.Delay(1000 / Settings.gameSpeed);
             }
         }
