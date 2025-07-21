@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
     public Card card;
+    public GameObject collection;
     public void StartNewGame() {
         PlayerPrefs.DeleteAll();
 
@@ -27,5 +28,9 @@ public class MainMenu : MonoBehaviour {
 
     public void LoadCredits() {
         SceneLoader.LoadCredits();
+    }
+
+    public void ToggleCollection() {
+        collection.SetActive(!collection.activeSelf);
     }
 }
