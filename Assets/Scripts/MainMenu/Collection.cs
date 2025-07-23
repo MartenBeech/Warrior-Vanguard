@@ -20,7 +20,7 @@ public class Collection : MonoBehaviour {
 
         string targetPath;
 
-        switch(title) {
+        switch (title) {
             case "Spells":
                 targetPath = Application.dataPath + $"/Scripts/Database/Spells";
                 break;
@@ -64,11 +64,11 @@ public class Collection : MonoBehaviour {
 
         string targetPath;
 
-        switch(selectedClass) {
+        switch (selectedClass) {
             case "Spells":
                 targetPath = Application.dataPath + $"/Scripts/Database/Spells/{title}";
                 break;
-                
+
             default:
                 targetPath = Application.dataPath + $"/Scripts/Database/Warriors/{selectedClass}/{title}";
                 break;
@@ -98,6 +98,7 @@ public class Collection : MonoBehaviour {
                 Card card = cardObj.GetComponent<Card>();
                 card.SetStats(stats);
                 card.UpdateCardUI();
+                card.SetHoverCardFromCollection();
             }
         }
     }

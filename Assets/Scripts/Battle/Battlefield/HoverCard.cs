@@ -52,6 +52,15 @@ public class HoverCard : MonoBehaviour {
         DisplayTooltips(stats);
     }
 
+    public void ShowCardFromCollection(WarriorStats stats, Vector2 position) {
+        float cardTooltipOffsetCopy = 275;
+        if (position.x > 1160) {
+            cardTooltipOffsetCopy *= -1;
+        }
+        tooltipManager.transform.position = new Vector2(position.x + cardTooltipOffsetCopy, position.y);
+        DisplayTooltips(stats);
+    }
+
     public void HideCard() {
         cardObject.SetActive(false);
         tooltipManager.RemoveTooltips();
