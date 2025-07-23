@@ -18,7 +18,18 @@ public class Collection : MonoBehaviour {
         string title = EventSystem.current.currentSelectedGameObject.name;
         if (title == selectedClass) return;
 
-        string targetPath = Application.dataPath + $"/Scripts/Database/Warriors/{title}";
+        string targetPath;
+
+        switch(title) {
+            case "Spells":
+                targetPath = Application.dataPath + $"/Scripts/Database/Spells";
+                break;
+
+            default:
+                targetPath = Application.dataPath + $"/Scripts/Database/Warriors/{title}";
+                break;
+        }
+
         if (Directory.Exists(targetPath)) {
 
             for (int i = subcategories.childCount - 1; i >= 0; i--) {
@@ -51,7 +62,18 @@ public class Collection : MonoBehaviour {
         string title = EventSystem.current.currentSelectedGameObject.name;
         if (title == selectedRace) return;
 
-        string targetPath = Application.dataPath + $"/Scripts/Database/Warriors/{selectedClass}/{title}";
+        string targetPath;
+
+        switch(selectedClass) {
+            case "Spells":
+                targetPath = Application.dataPath + $"/Scripts/Database/Spells/{title}";
+                break;
+                
+            default:
+                targetPath = Application.dataPath + $"/Scripts/Database/Warriors/{selectedClass}/{title}";
+                break;
+        }
+
         if (Directory.Exists(targetPath)) {
 
             for (int i = items.childCount - 1; i >= 0; i--) {
