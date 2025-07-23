@@ -12,7 +12,7 @@ public class GuardianAngel {
             "Give a friend: Revive",
             "Give a friend: Revive"
             },
-            race = Character.Race.None,
+            race = Character.Race.Light,
             cardType = CardType.spell,
         };
 

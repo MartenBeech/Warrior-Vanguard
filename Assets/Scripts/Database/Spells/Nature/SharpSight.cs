@@ -12,7 +12,7 @@ public class SharpSight {
             "Give a friendly warrior +1 range",
             "Give a friendly warrior +2 range"
             },
-            race = Character.Race.None,
+            race = Character.Race.Nature,
             cardType = CardType.spell,
         };
 

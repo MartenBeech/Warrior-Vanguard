@@ -12,7 +12,7 @@ public class TimeHealsAllWounds {
             "Give a friendly warrior: Regeneration 1",
             "Give a friendly warrior: Regeneration 2"
             },
-            race = Character.Race.None,
+            race = Character.Race.Light,
             cardType = CardType.spell,
         };
 

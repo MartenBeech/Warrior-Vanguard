@@ -12,7 +12,7 @@ public class GuidingStrength {
             "Give a friendly warrior +2 strength",
             "Give a friendly warrior +3 strength"
             },
-            race = Character.Race.None,
+            race = Character.Race.Light,
             cardType = CardType.spell,
         };
 

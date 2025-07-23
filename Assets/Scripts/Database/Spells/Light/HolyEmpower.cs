@@ -12,7 +12,7 @@ public class HolyEmpower {
             "Give a friendly warrior +3/+2",
             "Give a friendly warrior +3/+2"
             },
-            race = Character.Race.None,
+            race = Character.Race.Light,
             cardType = CardType.spell,
         };
 

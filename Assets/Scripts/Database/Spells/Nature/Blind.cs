@@ -12,7 +12,7 @@ public class Blind {
             "Reduce enemy range to 1",
             "Reduce enemy range to 1"
             },
-            race = Character.Race.None,
+            race = Character.Race.Nature,
             cardType = CardType.spell,
         };
 

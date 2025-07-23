@@ -12,7 +12,7 @@ public class Firebolt {
             "Deal 3 damage to a warrior",
             "Deal 4 damage to a warrior"
             },
-            race = Character.Race.None,
+            race = Character.Race.Fire,
             cardType = CardType.spell,
         };
 
@@ -21,7 +21,7 @@ public class Firebolt {
 
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         int value = cardLevel == 0 ? 3 : 4;
-        await target.TakeDamage(target, value, Character.DamageType.Magical);        
+        await target.TakeDamage(target, value, Character.DamageType.Magical);
         target.UpdateWarriorUI();
     }
 }

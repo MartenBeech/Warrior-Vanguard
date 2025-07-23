@@ -12,7 +12,7 @@ public class Embiggen {
             "Give a friendly warrior +2 health",
             "Give a friendly warrior +3 health"
             },
-            race = Character.Race.None,
+            race = Character.Race.Nature,
             cardType = CardType.spell,
         };
 

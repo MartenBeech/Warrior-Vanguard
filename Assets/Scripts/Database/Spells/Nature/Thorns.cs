@@ -12,7 +12,7 @@ public class Thorns {
             "Give a friendly warrior Spikes 2",
             "Give a friendly warrior Spikes 3"
             },
-            race = Character.Race.None,
+            race = Character.Race.Nature,
             cardType = CardType.spell,
         };
 

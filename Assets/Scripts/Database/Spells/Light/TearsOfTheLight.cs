@@ -12,7 +12,7 @@ public class TearsOfTheLight {
             "Heal all friendly warriors for 2 health",
             "Heal all friendly warriors for 3 health"
             },
-            race = Character.Race.None,
+            race = Character.Race.Light,
             cardType = CardType.spell,
         };
 

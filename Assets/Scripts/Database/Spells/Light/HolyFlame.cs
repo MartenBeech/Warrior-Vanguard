@@ -12,7 +12,7 @@ public class HolyFlame {
             "Deal 3 damage to a warrior",
             "Deal 4 damage to a warrior or 6 against undead"
             },
-            race = Character.Race.None,
+            race = Character.Race.Light,
             cardType = CardType.spell,
         };
 
@@ -21,13 +21,13 @@ public class HolyFlame {
 
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         int value = cardLevel == 0 ? 3 : 4;
-        
+
         if (target.stats.genre == Character.Genre.Undead) {
             int undeadValue = cardLevel == 0 ? 3 : 6;
             value = undeadValue;
         }
 
-        await target.TakeDamage(target, value, Character.DamageType.Magical);        
+        await target.TakeDamage(target, value, Character.DamageType.Magical);
         target.UpdateWarriorUI();
     }
 }

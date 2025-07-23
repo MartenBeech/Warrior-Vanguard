@@ -12,7 +12,7 @@ public class Fireball {
             "Deal 5 damage to a warrior and 2 damage to surrounding warriors",
             "Deal 6 damage to a warrior and 3 damage to surrounding warriors"
             },
-            race = Character.Race.None,
+            race = Character.Race.Fire,
             cardType = CardType.spell,
         };
 
@@ -26,12 +26,12 @@ public class Fireball {
         int surroundingDamage = cardLevel == 0 ? 2 : 3;
 
         await target.TakeDamage(target, baseDamage, Character.DamageType.Magical);
-        
+
         List<Character> nearbyWarriors = gridManager.GetNearbyWarriors(target.gridIndex);
         foreach (Character warrior in nearbyWarriors) {
             asyncFunctions.Add(warrior.TakeDamage(warrior, surroundingDamage, Character.DamageType.Magical));
         }
-        
+
         target.UpdateWarriorUI();
     }
 }

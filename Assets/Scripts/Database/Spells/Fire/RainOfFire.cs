@@ -12,7 +12,7 @@ public class RainOfFire {
             "Deal 1 damage to all enemies",
             "Deal 2 damage to all enemies"
             },
-            race = Character.Race.None,
+            race = Character.Race.Fire,
             cardType = CardType.spell,
         };
 

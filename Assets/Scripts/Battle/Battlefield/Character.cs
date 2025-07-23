@@ -12,7 +12,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Human, Pirate, Holyborn, Knight, Griffin, Sorcerer, //Human
         Unicorn, Elf, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Forest
         Imp, Minotaur, Harpy, Pestilence, Cerberus, Succubus, //Underworld
-        Dark, //Spells
+        Dark, Fire, Light, Nature //Spells
     }
     public enum Genre {
         Human, Forest, Undead, Underworld, None

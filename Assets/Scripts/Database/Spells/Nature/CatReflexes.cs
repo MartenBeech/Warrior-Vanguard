@@ -12,7 +12,7 @@ public class CatReflexes {
             "Give a friendly warrior retaliate",
             "Give a friendly warrior retaliate"
             },
-            race = Character.Race.None,
+            race = Character.Race.Nature,
             cardType = CardType.spell,
         };
 

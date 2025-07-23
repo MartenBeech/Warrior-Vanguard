@@ -12,7 +12,7 @@ public class AidFromTheSpirits {
             "Give a friendly warrior +8/+8",
             "Give a friendly warrior +8/+8 and spikes 2"
             },
-            race = Character.Race.None,
+            race = Character.Race.Nature,
             cardType = CardType.spell,
         };
 

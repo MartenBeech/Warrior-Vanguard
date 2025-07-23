@@ -12,7 +12,7 @@ public class Haste {
             "Give a friendly warrior +1 speed",
             "Give a friendly warrior +2 speed"
             },
-            race = Character.Race.None,
+            race = Character.Race.Nature,
             cardType = CardType.spell,
         };
 

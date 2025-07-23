@@ -12,7 +12,7 @@ public class DivineShield {
             "Give warrior immune for 1 turn",
             "Give warrior immune for 1 turn"
             },
-            race = Character.Race.None,
+            race = Character.Race.Light,
             cardType = CardType.spell,
         };
 
@@ -21,7 +21,7 @@ public class DivineShield {
 
     //TODO: Implement immune ability
     // public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        // target.stats.ability.immune.Add(1);
-        // await floatingText.CreateFloatingText(target.transform, "Immune 1", ColorPalette.ColorEnum.yellow);
+    // target.stats.ability.immune.Add(1);
+    // await floatingText.CreateFloatingText(target.transform, "Immune 1", ColorPalette.ColorEnum.yellow);
     // }
 }

@@ -12,7 +12,7 @@ public class Armageddon {
             "Deal 5 damage to ALL warriors",
             "Deal 5 damage to all enemies and 3 damage to all friends"
             },
-            race = Character.Race.None,
+            race = Character.Race.Fire,
             cardType = CardType.spell,
         };
 
@@ -31,7 +31,7 @@ public class Armageddon {
         foreach (Character friend in friends) {
             asyncFunctions.Add(friend.TakeDamage(friend, cardLevel == 0 ? 5 : 3, Character.DamageType.Magical));
         }
-        
+
         await Task.WhenAll(asyncFunctions);
     }
 }
