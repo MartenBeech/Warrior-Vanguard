@@ -11,6 +11,7 @@ public class Sprout {
             WarriorStats elderwoodRoot = new ElderwoodRoot().GetStats();
             elderwoodRoot.alignment = dealer.stats.alignment;
             elderwoodRoot.level = dealer.stats.level;
+            elderwoodRoot.SetStats(elderwoodRoot);
 
             await characterSpawner.SpawnRandomly(elderwoodRoot, dealer.transform.position);
             return true;

@@ -10,10 +10,10 @@ public class SummonWisp {
     }
 
     public async Task<bool> Trigger(Summoner dealer, CharacterSpawner characterSpawner) {
-
             WarriorStats wisp = new Wisp().GetStats();
             wisp.alignment = characterSpawner.spawningAlignment;
             wisp.level = 0;
+            wisp.SetStats(wisp);
 
             await characterSpawner.SpawnRandomly(wisp, dealer.transform.position);
             return true;
@@ -23,6 +23,10 @@ public class SummonWisp {
 
     public bool GetValue(WarriorStats stats) {
         return value[stats.level];
+    }
+
+    public bool GetValue(SummonerStats stats) {
+        return value[0];
     }
 
     public void Add(bool unupgradedValue, bool upgradedValue) {

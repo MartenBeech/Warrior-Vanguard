@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0a2a8ebb0c6da15419272dd2ef68122c
+guid: 19daf54d86da74c4aa77114b0ea7ddaa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6167919392870665696
-    second: GenreForest_0
+      213: 7277215093650894194
+    second: Devil_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GenreForest_0
+      name: Devil_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 1024
+        width: 1072
+        height: 1072
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 02273b0cdf5276aa0800000000000000
-      internalID: -6167919392870665696
+      spriteID: 27d2c23429cddf460800000000000000
+      internalID: 7277215093650894194
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GenreForest_0: -6167919392870665696
+      Devil_0: 7277215093650894194
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

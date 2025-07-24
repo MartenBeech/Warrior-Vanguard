@@ -26,7 +26,6 @@ public class CharacterSpawner : MonoBehaviour {
     }
 
     public async Task Spawn(Vector2 gridIndex, WarriorStats stats, Vector2 from) {
-
         foreach (Item item in ItemManager.LoadItems()) {
             if (stats.alignment == Alignment.Friend) {
                 item.UseOnFriendSpawn(stats);

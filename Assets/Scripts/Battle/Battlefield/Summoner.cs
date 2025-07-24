@@ -118,6 +118,8 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public async Task EndTurn(CharacterSpawner characterSpawner) {
-        await stats.ability.summonWisp.Trigger(this, characterSpawner);
+        if (stats.ability.summonWisp.GetValue(stats)) {
+            await stats.ability.summonWisp.Trigger(this, characterSpawner);
+        }
     }
 }
