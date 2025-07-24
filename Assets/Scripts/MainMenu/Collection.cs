@@ -13,10 +13,19 @@ public class Collection : MonoBehaviour {
     public GameObject cardPrefab;
     private string selectedClass = "";
     private string selectedRace = "";
+    private Button lastClickedClassButton;
+    private Button lastClickedRaceButton;
 
     public void SelectClass() {
-        string title = EventSystem.current.currentSelectedGameObject.name;
+        Button buttonClicked = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+        string title = buttonClicked.name;
         if (title == selectedClass) return;
+
+        if (lastClickedClassButton != null) {
+            lastClickedClassButton.GetComponent<Image>().color = ColorPalette.AddTransparency(lastClickedClassButton.GetComponent<Image>().color, 100);
+        }
+        buttonClicked.GetComponent<Image>().color = ColorPalette.AddTransparency(buttonClicked.GetComponent<Image>().color, 65);
+        lastClickedClassButton = buttonClicked;
 
         string targetPath;
 
@@ -59,8 +68,16 @@ public class Collection : MonoBehaviour {
     }
 
     public void SelectRace() {
-        string title = EventSystem.current.currentSelectedGameObject.name;
+        Button buttonClicked = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+
+        string title = buttonClicked.name;
         if (title == selectedRace) return;
+
+        if (lastClickedRaceButton != null) {
+            lastClickedRaceButton.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
+        }
+        buttonClicked.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.tealMedium);
+        lastClickedRaceButton = buttonClicked;
 
         string targetPath;
 
