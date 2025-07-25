@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class Revive {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Resummon me without this ability";
+        return $"{WarriorAbility.Keywords.Death}: Resummon this warrior (once)";
     }
 
     public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {

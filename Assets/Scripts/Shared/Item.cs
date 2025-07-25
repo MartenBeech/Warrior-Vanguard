@@ -71,7 +71,9 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             tooltipX = tooltipWidth / 2;
         }
 
-        tooltipManager.transform.position = new Vector2(tooltipX, transform.position.y - 100);
+        int offsetY = transform.localScale.y <= 1 ? 100 : 165;
+
+        tooltipManager.transform.position = new Vector2(tooltipX, transform.position.y - offsetY);
         tooltipManager.AddTooltip(displayTitle, description);
     }
 

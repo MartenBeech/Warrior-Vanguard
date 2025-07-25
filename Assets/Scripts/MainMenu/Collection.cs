@@ -5,12 +5,14 @@ using System.IO;
 using TMPro;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 public class Collection : MonoBehaviour {
     public Transform subcategories;
     public Transform items;
     public GameObject subcategoryPrefab;
     public GameObject cardPrefab;
+    public GameObject itemPrefab;
     private string selectedClass = "";
     private string selectedRace = "";
     private Button lastClickedClassButton;
@@ -32,6 +34,10 @@ public class Collection : MonoBehaviour {
         switch (title) {
             case "Spells":
                 targetPath = Application.dataPath + $"/Scripts/Database/Spells";
+                break;
+
+            case "Items":
+                targetPath = Application.dataPath + $"/Scripts/Database/Items";
                 break;
 
             default:
@@ -86,6 +92,10 @@ public class Collection : MonoBehaviour {
                 targetPath = Application.dataPath + $"/Scripts/Database/Spells/{title}";
                 break;
 
+            case "Items":
+                targetPath = Application.dataPath + $"/Scripts/Database/Items/{title}";
+                break;
+
             default:
                 targetPath = Application.dataPath + $"/Scripts/Database/Warriors/{selectedClass}/{title}";
                 break;
@@ -101,21 +111,34 @@ public class Collection : MonoBehaviour {
 
             string[] files = Directory.GetFiles(targetPath, "*.cs");
             foreach (string filePath in files) {
-                GameObject cardObj = Instantiate(cardPrefab, items);
                 string fileTitle = Path.GetFileName(filePath).Split(".")[0];
-
                 Type type = Type.GetType(fileTitle);
-                object instance = Activator.CreateInstance(type);
-                WarriorStats stats = (WarriorStats)type.GetMethod("GetStats")?.Invoke(instance, null);
 
-                cardObj.transform.localScale = new Vector2(2, 2);
-                cardObj.GetComponent<DragDrop>().enabled = false;
-                cardObj.GetComponent<ObjectAnimation>().enabled = false;
+                if (selectedClass == "Items") {
+                    GameObject itemObj = Instantiate(itemPrefab, items);
 
-                Card card = cardObj.GetComponent<Card>();
-                card.SetStats(stats);
-                card.UpdateCardUI();
-                card.SetHoverCardFromCollection();
+                    GameObject tempItemObj = new();
+                    Item itemComponent = (Item)tempItemObj.AddComponent(type);
+                    Item item = itemComponent.GetItem();
+                    item.displayTitle = Regex.Replace(item.title, "(?<!^)([A-Z])", " $1");
+
+                    itemObj.GetComponent<Item>().SetItem(item);
+                    itemObj.transform.localScale = new Vector2(2, 2);
+                } else {
+                    GameObject cardObj = Instantiate(cardPrefab, items);
+
+                    object instance = Activator.CreateInstance(type);
+                    WarriorStats stats = (WarriorStats)type.GetMethod("GetStats")?.Invoke(instance, null);
+
+                    cardObj.transform.localScale = new Vector2(2, 2);
+                    cardObj.GetComponent<DragDrop>().enabled = false;
+                    cardObj.GetComponent<ObjectAnimation>().enabled = false;
+
+                    Card card = cardObj.GetComponent<Card>();
+                    card.SetStats(stats);
+                    card.UpdateCardUI();
+                    card.SetHoverCardFromCollection();
+                }
             }
         }
     }
