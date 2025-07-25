@@ -58,10 +58,8 @@ public class GameManager : MonoBehaviour {
         await friendDeck.DrawCard();
 
         foreach (Item item in ItemManager.LoadItems()) {
-            await item.UseStartOfTurn(friendSummonerObject.GetComponent<Summoner>());
+            await item.UseStartOfTurn(friendSummonerObject.GetComponent<Summoner>(), friendDeck, enemyDeck);
         }
-
-        await ItemManager.enemyItem.UseStartOfTurn(enemySummonerObject.GetComponent<Summoner>());
     }
 
     public async void EndPlayerTurn() {
@@ -79,6 +77,9 @@ public class GameManager : MonoBehaviour {
         enemyCoin.GainCoins();
         enemyCoin.RefreshCoins();
         await enemyDeck.DrawCard(false);
+
+        await ItemManager.enemyItem.UseStartOfTurn(enemySummonerObject.GetComponent<Summoner>(), enemyDeck, friendDeck);
+
         await TakeEnemyTurn();
     }
 
@@ -89,7 +90,7 @@ public class GameManager : MonoBehaviour {
             await enemy.StandAndAttack(Character.Direction.Left);
             await enemy.EndTurn();
         }
-        
+
         enemyCharacterSpawner.spawningAlignment = CharacterSpawner.Alignment.Enemy;
         await enemySummoner.EndTurn(enemyCharacterSpawner);
         await StartPlayerTurn();

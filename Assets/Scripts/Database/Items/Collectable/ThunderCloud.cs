@@ -8,7 +8,7 @@ public class ThunderCloud : Item {
         return this;
     }
 
-    public override async Task UseStartOfTurn(Summoner summoner) {
+    public override async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck) {
         GridManager gridManager = FindFirstObjectByType<GridManager>();
         List<Character> characters = gridManager.GetCharacters();
         List<Task> asyncFunctions = new();

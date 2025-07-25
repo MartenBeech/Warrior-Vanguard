@@ -48,7 +48,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         // This metod should be overridden by each item
     }
 
-    public virtual async Task UseStartOfTurn(Summoner summoner) {
+    public virtual async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck) {
         await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }
