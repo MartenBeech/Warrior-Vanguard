@@ -19,7 +19,7 @@ public class GrandDualist {
         WarriorAbility ability = stats.ability;
         ability.vulnerability.Add(1);
         ability.doubleStrike.Add();
-        ability.bloodlust.Add(2);
+        ability.bloodlust.Add(1, 2);
 
         return stats;
     }

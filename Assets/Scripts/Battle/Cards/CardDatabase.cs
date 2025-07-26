@@ -3,10 +3,10 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
-        new KarenTheLibrarian().GetStats(),
-        new HRSusan().GetStats(),
-        new MarketingManager().GetStats(),
         new LocalBookkeeper().GetStats(),
+        new MarketingManager().GetStats(),
+        new HRSusan().GetStats(),
+        new KarenTheLibrarian().GetStats(),
         new FencingRookie().GetStats(),
         new Vitalblade().GetStats(),
         new GrandDualist().GetStats(),
