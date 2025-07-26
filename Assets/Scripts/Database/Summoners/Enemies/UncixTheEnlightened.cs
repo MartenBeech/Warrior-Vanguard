@@ -17,11 +17,11 @@ public class UncixTheEnlightened : SummonerStats {
     public List<WarriorStats> GetDeck() {
         SetItems();
         return new List<WarriorStats>() {
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
+            new Luigi().GetStats(),
+            new Luigi().GetStats(),
+            new Luigi().GetStats(),
+            new Luigi().GetStats(),
+            new Luigi().GetStats(),
        };
     }
 

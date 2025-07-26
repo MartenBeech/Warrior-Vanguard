@@ -9,7 +9,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public enum Race {
         None, Construct, Dragon, //Common
         Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, //Undead
-        Human, Pirate, Holyborn, Knight, Griffin, Sorcerer, //Human
+        Human, Pirate, Holyborn, Knight, Griffin, Sorcerer, Fencer, //Human
         Unicorn, Elf, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Forest
         Imp, Minotaur, Harpy, Pestilence, Cerberus, Succubus, //Underworld
         Dark, Fire, Light, Nature //Spells
@@ -214,6 +214,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         damage = await target.TakeDamage(this, damage, stats.damageType);
 
+        stats.ability.vulnerability.Trigger(this, target);
+
         if (damage > 0) {
             await stats.ability.lifeSteal.Trigger(this, damage);
             await stats.ability.lifeTransfer.Trigger(this, damage, gridManager);
@@ -233,6 +235,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
         }
 
+        damage = stats.ability.vulnerable.Trigger(this, damage);
         damage = stats.ability.sapPower.Trigger(dealer, this, damage);
         damage = stats.ability.armor.Trigger(this, damage, damageType);
         damage = stats.ability.resistance.Trigger(this, damage, damageType);
@@ -366,7 +369,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         stats.ability.stunned.Trigger(this);
         await stats.ability.poisoned.Trigger(this);
         await stats.ability.burning.Trigger(this);
-        
+
     }
 
     private Vector2 GetFrontCellIndex(Vector2 gridIndex, Direction direction, int range = 1) {

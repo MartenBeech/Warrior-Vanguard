@@ -3,7 +3,7 @@ public class Luigi : WarriorStats {
         WarriorStats stats = new() {
             title = "Luigi",
             strength = new int[] { 1, 13 },
-            health = new int[] { 10, 12 },
+            health = new int[] { 20, 12 },
             cost = new int[] { 1, 1 },
             speed = 2,
             range = 2,

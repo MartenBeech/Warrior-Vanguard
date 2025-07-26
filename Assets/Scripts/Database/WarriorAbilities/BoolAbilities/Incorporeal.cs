@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class Incorporeal {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"Can only take 1 Physical damage at a time";
+        return $"Can max take 1 physical damage at a time";
     }
 
     public int Trigger(Character target, int damage, Character.DamageType damageType) {

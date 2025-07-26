@@ -1,14 +1,15 @@
-public class Mario : WarriorStats {
+public class FencingRookie {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Mario",
-            strength = new int[] { 1, 4 },
-            health = new int[] { 10, 4 },
-            cost = new int[] { 0, 0 },
+            title = GetType().Name,
+            cost = new int[] { 1, 1 },
+            strength = new int[] { 2, 2 },
+            health = new int[] { 2, 4 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,
-            race = Character.Race.Human,
+            race = Character.Race.Fencer,
+            rarity = CardRarity.Common,
             genre = Character.Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
@@ -16,10 +17,7 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.vulnerability.Add(2, 3);
-        ability.doubleStrike.Add();
-        ability.firstStrike.Add();
-        ability.retaliate.Add();
+        ability.vulnerability.Add(1);
 
         return stats;
     }

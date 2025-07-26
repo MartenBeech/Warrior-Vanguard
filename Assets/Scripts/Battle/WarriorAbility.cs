@@ -31,6 +31,7 @@ public class WarriorAbility {
     public LightningBolt lightningBolt = new();
     public Cleave cleave = new();
     public Spawn spawn = new();
+    public Vulnerability vulnerability = new();
 
     // Common abilities
     public Armor armor = new();
@@ -103,6 +104,7 @@ public class WarriorAbility {
     public Bleeding bleeding = new();
     public Burning burning = new();
     public Seduced seduced = new();
+    public Vulnerable vulnerable = new();
 
     // Summoner abilities
     public SummonWisp summonWisp = new();
