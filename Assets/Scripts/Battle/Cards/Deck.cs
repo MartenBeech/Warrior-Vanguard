@@ -11,6 +11,7 @@ public class Deck : MonoBehaviour {
     public GameObject cardPrefab;
     public CharacterSpawner.Alignment alignment;
     public List<WarriorStats> deck = new();
+    public GridManager gridManager;
     private int burnoutDamage = 0;
 
     public void GetDeck() {
@@ -30,6 +31,12 @@ public class Deck : MonoBehaviour {
     }
 
     public async Task DrawCard(bool highlightCard = true) {
+        List<Character> friends = gridManager.GetFriends(alignment);
+        foreach (var friend in friends) {
+            friend.stats.ability.enlighten.Trigger(friend);
+            friend.stats.ability.intelligence.Trigger(friend);
+        }
+
         if (deck.Count == 0) {
             await BurnOut();
             return;

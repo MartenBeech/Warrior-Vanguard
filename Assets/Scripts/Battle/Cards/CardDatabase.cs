@@ -3,11 +3,15 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
-        new Mario().GetStats(),
+        new KarenTheLibrarian().GetStats(),
+        new HRSusan().GetStats(),
+        new MarketingManager().GetStats(),
+        new LocalBookkeeper().GetStats(),
         new FencingRookie().GetStats(),
         new Vitalblade().GetStats(),
         new GrandDualist().GetStats(),
         new UnmatchedEpeewielder().GetStats(),
+        new Mario().GetStats(),
         new HellHound().GetStats(),
         new MeltingMagma().GetStats(),
         new FieryAvatar().GetStats(),

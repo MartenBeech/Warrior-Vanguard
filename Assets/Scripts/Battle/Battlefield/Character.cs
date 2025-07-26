@@ -9,7 +9,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public enum Race {
         None, Construct, Dragon, //Common
         Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, //Undead
-        Human, Pirate, Holyborn, Knight, Griffin, Sorcerer, Fencer, //Human
+        Human, Pirate, Holyborn, Knight, Griffin, Sorcerer, Fencer, Librarian, //Human
         Unicorn, Elf, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Forest
         Imp, Minotaur, Harpy, Pestilence, Cerberus, Succubus, //Underworld
         Dark, Fire, Light, Nature //Spells

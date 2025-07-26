@@ -1,14 +1,15 @@
-public class Mario : WarriorStats {
+public class MarketingManager {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Mario",
-            strength = new int[] { 1, 4 },
-            health = new int[] { 10, 4 },
-            cost = new int[] { 0, 0 },
+            title = GetType().Name,
+            cost = new int[] { 5, 5 },
+            strength = new int[] { 1, 1 },
+            health = new int[] { 5, 6 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,
-            race = Character.Race.Human,
+            race = Character.Race.Librarian,
+            rarity = CardRarity.Common,
             genre = Character.Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
@@ -16,7 +17,8 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.massSilence.Add();
+        ability.enlighten.Add(2);
+        ability.intelligence.Add(1, 2);
 
         return stats;
     }

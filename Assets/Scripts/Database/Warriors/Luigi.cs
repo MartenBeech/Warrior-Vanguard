@@ -16,6 +16,7 @@ public class Luigi : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.enlighten.Add(100);
 
         return stats;
     }

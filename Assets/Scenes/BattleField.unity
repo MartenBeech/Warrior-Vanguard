@@ -549,6 +549,7 @@ MonoBehaviour:
   summonerObject: {fileID: 2039605222}
   cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
   alignment: 2
+  gridManager: {fileID: 509353786}
 --- !u!114 &233183273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2912,6 +2913,7 @@ MonoBehaviour:
   summonerObject: {fileID: 124136970}
   cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
   alignment: 1
+  gridManager: {fileID: 509353786}
 --- !u!114 &1651248354
 MonoBehaviour:
   m_ObjectHideFlags: 0

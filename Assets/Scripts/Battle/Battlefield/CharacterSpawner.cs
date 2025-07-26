@@ -109,7 +109,8 @@ public class CharacterSpawner : MonoBehaviour {
         }
 
         await stats.ability.spawn.Trigger(character, this);
-
+        await stats.ability.silence.Trigger(character, gridManager, floatingText);
+        await stats.ability.massSilence.Trigger(character, gridManager, floatingText);
     }
 
     public async Task SpawnRandomly(WarriorStats stats, Vector2 from) {

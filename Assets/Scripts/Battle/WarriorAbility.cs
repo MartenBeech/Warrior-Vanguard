@@ -32,6 +32,8 @@ public class WarriorAbility {
     public Cleave cleave = new();
     public Spawn spawn = new();
     public Vulnerability vulnerability = new();
+    public Enlighten enlighten = new();
+    public Intelligence intelligence = new();
 
     // Common abilities
     public Armor armor = new();
@@ -95,6 +97,8 @@ public class WarriorAbility {
     public Seduce seduce = new();
     public MassEnflame massEnflame = new();
     public MassImmolate massImmolate = new();
+    public Silence silence = new();
+    public MassSilence massSilence = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();
