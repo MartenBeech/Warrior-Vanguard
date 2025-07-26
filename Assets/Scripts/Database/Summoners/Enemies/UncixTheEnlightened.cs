@@ -22,9 +22,6 @@ public class UncixTheEnlightened : SummonerStats {
             new Mario().GetStats(),
             new Mario().GetStats(),
             new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
-            new Mario().GetStats(),
        };
     }
 

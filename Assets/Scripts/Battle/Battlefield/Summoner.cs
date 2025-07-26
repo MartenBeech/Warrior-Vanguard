@@ -50,10 +50,11 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public async Task TakeDamage(Character dealer, int damage, GridManager gridManager, Character.DamageType damageType) {
-
-        damage = dealer.stats.ability.stealth.Trigger(dealer, damage);
-        damage = stats.ability.armor.Trigger(dealer, damage, damageType);
-        damage = stats.ability.resistance.Trigger(dealer, damage, damageType);
+        if (dealer) {
+            damage = dealer.stats.ability.stealth.Trigger(dealer, damage);
+            damage = stats.ability.armor.Trigger(dealer, damage, damageType);
+            damage = stats.ability.resistance.Trigger(dealer, damage, damageType);
+        }
 
         int damageAfterShield = damage;
 
@@ -72,21 +73,25 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             UpdateSummonerUI();
         }
 
-        Color currentColor = dealer.image.GetComponent<Image>().color;
-        dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
+        if (dealer) {
+            Color currentColor = dealer.image.GetComponent<Image>().color;
+            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
 
-        FloatingText floatingText = FindFirstObjectByType<FloatingText>();
+            FloatingText floatingText = FindFirstObjectByType<FloatingText>();
+            await floatingText.CreateFloatingText(transform, damage.ToString());
 
-        await floatingText.CreateFloatingText(transform, damage.ToString());
+            dealer.image.GetComponent<Image>().color = currentColor;
 
-        dealer.image.GetComponent<Image>().color = currentColor;
+            if (damageAfterShield > 0) {
+                await dealer.stats.ability.lifeSteal.Trigger(dealer, damageAfterShield);
+                await dealer.stats.ability.lifeTransfer.Trigger(dealer, damageAfterShield, gridManager);
+            }
 
-        if (damageAfterShield > 0) {
-            await dealer.stats.ability.lifeSteal.Trigger(dealer, damageAfterShield);
-            await dealer.stats.ability.lifeTransfer.Trigger(dealer, damageAfterShield, gridManager);
+            dealer.stats.ability.bloodlust.Trigger(dealer);
+        } else {
+            FloatingText floatingText = FindFirstObjectByType<FloatingText>();
+            await floatingText.CreateFloatingText(transform, damage.ToString());
         }
-
-        dealer.stats.ability.bloodlust.Trigger(dealer);
 
         if (stats.health <= 0) {
             if (stats.isFriendly) {

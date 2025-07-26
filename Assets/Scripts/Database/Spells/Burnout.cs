@@ -1,0 +1,26 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public class Burnout {
+    public WarriorStats GetStats() {
+        WarriorStats stats = new() {
+            title = GetType().Name,
+            cost = new int[] { 0, 0 },
+            rarity = CardRarity.None,
+            spellTarget = SpellTarget.none,
+            spellDescription = new string[] {
+            "Your deck is empty! Your summoner takes damage instead",
+            "Your deck is empty! Your summoner takes damage instead"
+            },
+            race = Character.Race.None,
+            cardType = CardType.spell,
+        };
+
+        return stats;
+    }
+
+    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
+        List<Task> asyncFunctions = new();
+        await Task.WhenAll(asyncFunctions);
+    }
+}

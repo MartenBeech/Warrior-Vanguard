@@ -546,6 +546,7 @@ MonoBehaviour:
   hand: {fileID: 179982829}
   textObject: {fileID: 96899266}
   handObject: {fileID: 179982827}
+  summonerObject: {fileID: 2039605222}
   cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
   alignment: 2
 --- !u!114 &233183273
@@ -2173,6 +2174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warriorPrefab: {fileID: 6368626171914487445, guid: 999e48af28db63949b2afa51811a0bdf, type: 3}
+  spawningAlignment: 0
   gridManager: {fileID: 509353786}
   warriorsObject: {fileID: 41112488}
   gameManager: {fileID: 2106477979}
@@ -2907,6 +2909,7 @@ MonoBehaviour:
   hand: {fileID: 799138551}
   textObject: {fileID: 622572490}
   handObject: {fileID: 799138549}
+  summonerObject: {fileID: 124136970}
   cardPrefab: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
   alignment: 1
 --- !u!114 &1651248354
