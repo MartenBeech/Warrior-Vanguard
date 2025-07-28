@@ -3,8 +3,8 @@ public class FieryAvatar {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 9, 9 },
-            strength = new int[] { 0, 0 },
-            health = new int[] { 9, 11 },
+            strength = new int[] { 6, 8 },
+            health = new int[] { 10, 12 },
             speed = 2,
             range = 4,
             damageType = Character.DamageType.Magical,
@@ -17,9 +17,9 @@ public class FieryAvatar {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.enflame.Add(6, 8);
-        ability.immolate.Add(2, 3);
-        ability.massEnflame.Add(1, 2);
+        ability.enflame.Add();
+        ability.immolate.Add(1, 3);
+        ability.massEnflame.Add();
         ability.massImmolate.Add(1);
 
         return stats;

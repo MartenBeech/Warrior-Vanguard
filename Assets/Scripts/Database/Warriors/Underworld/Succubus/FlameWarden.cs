@@ -3,8 +3,8 @@ public class FlameWarden {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 5, 5 },
-            strength = new int[] { 3, 4 },
-            health = new int[] { 2, 2 },
+            strength = new int[] { 5, 6 },
+            health = new int[] { 2, 3 },
             speed = 2,
             range = 4,
             damageType = Character.DamageType.Magical,
@@ -17,7 +17,7 @@ public class FlameWarden {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.enflame.Add(3, 4);
+        ability.enflame.Add();
         ability.immolate.Add(2, 3);
 
         return stats;

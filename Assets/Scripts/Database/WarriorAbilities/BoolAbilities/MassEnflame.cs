@@ -2,16 +2,16 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 public class MassEnflame {
     public string GetDescription(WarriorStats stats) {
-        if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Aura}: Friends have +{GetValue(stats)} Enflame";
+        if (!GetValue(stats)) return "";
+        return $"{WarriorAbility.Keywords.Aura}: Friends have Enflame";
     }
 
     public bool TriggerSummon(Character dealer, GridManager gridManager) {
-        if (GetValue(dealer.stats) > 0) {
+        if (GetValue(dealer.stats)) {
             List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
             friends.Remove(dealer);
             foreach (var friend in friends) {
-                friend.stats.ability.enflame.Add(GetValue(dealer.stats));
+                friend.stats.ability.enflame.Add();
                 friend.UpdateWarriorUI();
             }
             return true;
@@ -20,11 +20,11 @@ public class MassEnflame {
     }
 
     public bool TriggerDeath(Character dealer, GridManager gridManager) {
-        if (GetValue(dealer.stats) > 0) {
+        if (GetValue(dealer.stats)) {
             List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
             friends.Remove(dealer);
             foreach (var friend in friends) {
-                friend.stats.ability.enflame.Add(-GetValue(dealer.stats));
+                friend.stats.ability.enflame.Remove();
                 friend.UpdateWarriorUI();
             }
             return true;
@@ -33,42 +33,37 @@ public class MassEnflame {
     }
 
     public bool TriggerSummonFriend(Character dealer, WarriorStats targetStats) {
-        if (GetValue(dealer.stats) > 0) {
-            targetStats.ability.enflame.Add(GetValue(dealer.stats));
+        if (GetValue(dealer.stats)) {
+            targetStats.ability.enflame.Add();
             return true;
         }
         return false;
     }
 
-    int[] value = new int[] { 0, 0 };
+    bool[] value = new bool[] { false, false };
 
-    public int GetValue(WarriorStats stats) {
+    public bool GetValue(WarriorStats stats) {
         return value[stats.level];
     }
 
-    public void Add(int unupgradedValue, int upgradedValue) {
-        int[] newValues = new int[] { unupgradedValue, upgradedValue };
+    public void Add(bool unupgradedValue, bool upgradedValue) {
+        bool[] newValues = new bool[] { unupgradedValue, upgradedValue };
         for (int i = 0; i < 2; i++) {
-            value[i] += newValues[i];
-            if (value[i] < 0) {
-                value[i] = 0;
-            }
+            value[i] = newValues[i];
         }
     }
 
-    public void Add(int value) {
-        Add(value, value);
+    public void Add() {
+        Add(true, true);
     }
 
     public void Remove() {
-        for (int i = 0; i < 2; i++) {
-            value[i] = 0;
-        }
+        Add(false, false);
     }
 
     public string GetTitle(WarriorStats stats) {
-        if (GetValue(stats) == 0) return "";
-        return $"{GetAbilityName()}: {GetValue(stats)}\n";
+        if (!GetValue(stats)) return "";
+        return $"{GetAbilityName()}\n";
     }
 
     string GetAbilityName() {

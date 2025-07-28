@@ -3,11 +3,11 @@ public class HadesCompanion {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 1, 1 },
-            strength = new int[] { 0, 0 },
+            strength = new int[] { 5, 7 },
             health = new int[] { 1, 4 },
             speed = 3,
             range = 2,
-            damageType = Character.DamageType.Physical,
+            damageType = Character.DamageType.Magical,
             race = Character.Race.Cerberus,
             rarity = CardRarity.Legendary,
             genre = Character.Genre.Underworld,
@@ -18,7 +18,7 @@ public class HadesCompanion {
 
         WarriorAbility ability = stats.ability;
         ability.cleave.Add();
-        ability.enflame.Add(5, 7);
+        ability.enflame.Add();
 
         return stats;
     }

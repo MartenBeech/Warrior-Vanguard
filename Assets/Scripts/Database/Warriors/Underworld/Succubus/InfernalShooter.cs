@@ -3,7 +3,7 @@ public class InfernalShooter {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 2, 2 },
-            strength = new int[] { 1, 1 },
+            strength = new int[] { 2, 3 },
             health = new int[] { 1, 1 },
             speed = 2,
             range = 4,
@@ -17,7 +17,7 @@ public class InfernalShooter {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.enflame.Add(2, 3);
+        ability.enflame.Add();
         ability.immolate.Add(1, 2);
 
         return stats;

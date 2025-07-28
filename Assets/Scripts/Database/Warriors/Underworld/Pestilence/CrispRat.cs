@@ -3,11 +3,11 @@ public class CrispRat {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 2, 2 },
-            strength = new int[] { 1, 1 },
-            health = new int[] { 1, 2 },
+            strength = new int[] { 2, 2 },
+            health = new int[] { 1, 1 },
             speed = 2,
             range = 2,
-            damageType = Character.DamageType.Physical,
+            damageType = Character.DamageType.Magical,
             race = Character.Race.Pestilence,
             rarity = CardRarity.Common,
             genre = Character.Genre.Underworld,
@@ -17,8 +17,8 @@ public class CrispRat {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.spawn.Add(2);
-        ability.enflame.Add(1, 2);
+        ability.spawn.Add(2, 3);
+        ability.enflame.Add();
 
         return stats;
     }

@@ -205,9 +205,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
 
         damage = stats.ability.stealth.Trigger(this, damage);
+        damage = stats.ability.enflame.Trigger(this, target, damage);
 
         stats.ability.poison.Trigger(this, target);
-        stats.ability.enflame.Trigger(this, target);
         stats.ability.frozenTouch.Trigger(this, target);
         stats.ability.weaken.Trigger(this, target);
         stats.ability.bleed.Trigger(this, target);

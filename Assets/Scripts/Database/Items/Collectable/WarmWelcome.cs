@@ -4,14 +4,14 @@ using UnityEngine;
 public class WarmWelcome : Item {
     public override Item GetItem() {
         title = GetType().Name;
-        description = "Enemies take 1 magical damage when summoned";
+        description = "Apply 1 Burning to summoned enemies";
         return this;
     }
 
     public override async Task UseAfterEnemySpawn(WarriorStats stats, Vector2 gridIndex) {
-
         GridManager gridManager = FindFirstObjectByType<GridManager>();
         Character character = gridManager.GetCellCharacter(gridIndex);
-        await character.TakeDamage(character, 1, Character.DamageType.Magical);
+        character.stats.ability.burning.Add(1);
+        await Task.Delay(0);
     }
 }

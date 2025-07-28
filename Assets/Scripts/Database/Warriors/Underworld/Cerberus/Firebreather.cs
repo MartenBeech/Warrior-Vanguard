@@ -3,11 +3,11 @@ public class Firebreather {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 3, 3 },
-            strength = new int[] { 1, 1 },
+            strength = new int[] { 2, 3 },
             health = new int[] { 4, 5 },
             speed = 3,
             range = 2,
-            damageType = Character.DamageType.Physical,
+            damageType = Character.DamageType.Magical,
             race = Character.Race.Cerberus,
             rarity = CardRarity.Common,
             genre = Character.Genre.Underworld,
@@ -18,7 +18,7 @@ public class Firebreather {
 
         WarriorAbility ability = stats.ability;
         ability.cleave.Add();
-        ability.enflame.Add(2, 3);
+        ability.enflame.Add();
 
         return stats;
     }

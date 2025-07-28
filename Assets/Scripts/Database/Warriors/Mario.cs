@@ -16,7 +16,7 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.scrollStudies.Add();
+        ability.enflame.Add();
 
         return stats;
     }

@@ -3,7 +3,7 @@ public class SuccubusSeducer {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 6, 6 },
-            strength = new int[] { 0, 0 },
+            strength = new int[] { 4, 5 },
             health = new int[] { 5, 7 },
             speed = 2,
             range = 4,
@@ -17,7 +17,7 @@ public class SuccubusSeducer {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.enflame.Add(4, 5);
+        ability.enflame.Add();
         ability.immolate.Add(1, 2);
         ability.seduce.Add();
 

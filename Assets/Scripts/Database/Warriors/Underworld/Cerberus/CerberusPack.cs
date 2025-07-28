@@ -3,11 +3,11 @@ public class CerberusPack {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 7, 7 },
-            strength = new int[] { 2, 2 },
+            strength = new int[] { 3, 4 },
             health = new int[] { 3, 4 },
             speed = 3,
             range = 2,
-            damageType = Character.DamageType.Physical,
+            damageType = Character.DamageType.Magical,
             race = Character.Race.Cerberus,
             rarity = CardRarity.Rare,
             genre = Character.Genre.Underworld,
@@ -18,7 +18,7 @@ public class CerberusPack {
 
         WarriorAbility ability = stats.ability;
         ability.cleave.Add();
-        ability.enflame.Add(2, 3);
+        ability.enflame.Add();
         ability.spawn.Add(2);
 
         return stats;
