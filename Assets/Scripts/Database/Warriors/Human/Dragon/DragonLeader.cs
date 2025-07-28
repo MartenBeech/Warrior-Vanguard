@@ -1,14 +1,15 @@
-public class Mario : WarriorStats {
+public class DragonLeader {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Mario",
-            strength = new int[] { 5, 4 },
-            health = new int[] { 10, 4 },
-            cost = new int[] { 0, 0 },
+            title = GetType().Name,
+            cost = new int[] { 8, 8 },
+            strength = new int[] { 6, 6 },
+            health = new int[] { 8, 8 },
             speed = 2,
             range = 2,
-            damageType = Character.DamageType.Physical,
-            race = Character.Race.Human,
+            damageType = Character.DamageType.Magical,
+            race = Character.Race.Dragon,
+            rarity = CardRarity.Legendary,
             genre = Character.Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
@@ -16,6 +17,8 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.pierce.Add();
+        ability.armor.Add(2);
         ability.dragonRecruiter.Add();
 
         return stats;

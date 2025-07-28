@@ -278,8 +278,14 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 amount = 0;
             }
 
-            stats.AddHealthCurrent(amount);
-            UpdateWarriorUI();
+            if (amount > 0) {
+                stats.AddHealthCurrent(amount);
+                UpdateWarriorUI();
+
+                dealer.stats.ability.inspire.Trigger(dealer);
+            }
+
+
 
             dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
 
@@ -311,7 +317,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         if (stats.ability.afterlife.GetValue(stats)) {
             GameObject clone = Instantiate(gameObject, transform.position, Quaternion.identity, transform.parent);
-            asyncFunctions.Add(stats.ability.afterlife.Trigger(this, gridManager, hand, summonerObject, clone));
+            asyncFunctions.Add(stats.ability.afterlife.Trigger(this, hand, summonerObject, clone));
         }
 
         if (dealer != this) {
@@ -330,8 +336,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
 
             asyncFunctions.Add(dealer.stats.ability.possess.Trigger(dealer, this, characterSpawner));
-
             asyncFunctions.Add(dealer.stats.ability.greedyStrike.Trigger(dealer, floatingText));
+            asyncFunctions.Add(dealer.stats.ability.lifeInDeath.Trigger(dealer, gridManager));
+            asyncFunctions.Add(dealer.stats.ability.dragonRecruiter.Trigger(dealer, dealer.hand));
         }
 
         gameObject.SetActive(false);

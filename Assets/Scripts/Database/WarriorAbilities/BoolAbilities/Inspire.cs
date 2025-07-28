@@ -1,23 +1,15 @@
-
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using UnityEngine;
-public class Afterlife {
+public class Inspire {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Return to your hand without this ability";
+        return $"Whenever this heals someone, gain +1/+1";
     }
 
-    public async Task<bool> Trigger(Character target, Hand hand, Transform summonerObject, GameObject clone) {
-        if (GetValue(target.stats)) {
-            ObjectAnimation objectAnimation = clone.GetComponent<ObjectAnimation>();
-            await objectAnimation.MoveObject(target.transform.position, summonerObject.position, 1, true);
-
-            target.stats.ResetStats();
-            if (!target.stats.ability.eternalNightmare.GetValue(target.stats)) {
-                target.stats.ability.afterlife.Remove();
-            }
-            hand.AddCardToHand(target.stats);
+    public bool Trigger(Character dealer) {
+        if (GetValue(dealer.stats)) {
+            dealer.stats.AddStrength(1);
+            dealer.stats.AddHealth(1);
+            dealer.UpdateWarriorUI();
             return true;
         }
         return false;

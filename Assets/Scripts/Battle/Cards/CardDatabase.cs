@@ -3,6 +3,9 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new DragonLeader().GetStats(),
+        new LightDragon().GetStats(),
+        new Battlemonk().GetStats(),
         new LocalBookkeeper().GetStats(),
         new MarketingManager().GetStats(),
         new HRSusan().GetStats(),
@@ -11,7 +14,6 @@ public static class CardDatabase {
         new Vitalblade().GetStats(),
         new GrandDualist().GetStats(),
         new UnmatchedEpeewielder().GetStats(),
-        new Mario().GetStats(),
         new HellHound().GetStats(),
         new MeltingMagma().GetStats(),
         new FieryAvatar().GetStats(),
@@ -185,6 +187,11 @@ public static class CardDatabase {
 
     public static WarriorStats GetRandomWarriorWithSpecificCost(int cost) {
         List<WarriorStats> warriors = allCards.Where(card => card.GetCost() == cost && card.cardType == CardType.warrior).ToList();
+        return Rng.Entry(warriors);
+    }
+
+    public static WarriorStats GetRandomWarriorWithSpecificRace(Character.Race race) {
+        List<WarriorStats> warriors = allCards.Where(card => card.race == race).ToList();
         return Rng.Entry(warriors);
     }
 }

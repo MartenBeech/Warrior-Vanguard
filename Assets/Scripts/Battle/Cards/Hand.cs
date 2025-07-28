@@ -10,6 +10,7 @@ public class Hand : MonoBehaviour {
     public Card selectedCard;
     public GridManager gridManager;
     public FloatingText floatingText;
+    public Transform warriors;
     List<Card> cardsInHand = new();
 
     int handSize = 0;
@@ -116,5 +117,22 @@ public class Hand : MonoBehaviour {
         foreach (var card in cardsInHand) {
             card.UpdateDisabledUI();
         }
+    }
+
+    public async Task MoveNewCardToHand(WarriorStats stats, Vector2 fromPos) {
+        Vector2 handPos = handObject.transform.position;
+
+        GameObject cardInstance = Instantiate(cardPrefab, fromPos, Quaternion.identity, warriors);
+        ObjectAnimation objectAnimation = cardInstance.GetComponentInChildren<ObjectAnimation>();
+        Card card = cardInstance.GetComponentInChildren<Card>();
+
+        card.SetStats(stats);
+        card.UpdateCardUI();
+
+        await objectAnimation.MoveObject(fromPos, handPos);
+
+        Destroy(cardInstance);
+
+        AddCardToHand(card.stats);
     }
 }

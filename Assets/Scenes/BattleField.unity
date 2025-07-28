@@ -420,6 +420,7 @@ MonoBehaviour:
   selectedCard: {fileID: 0}
   gridManager: {fileID: 509353786}
   floatingText: {fileID: 189192889}
+  warriors: {fileID: 41112488}
 --- !u!114 &179982830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1709,6 +1710,7 @@ MonoBehaviour:
   selectedCard: {fileID: 0}
   gridManager: {fileID: 509353786}
   floatingText: {fileID: 189192889}
+  warriors: {fileID: 41112488}
 --- !u!114 &799138552
 MonoBehaviour:
   m_ObjectHideFlags: 0
