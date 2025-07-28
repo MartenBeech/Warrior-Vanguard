@@ -63,6 +63,7 @@ public class WarriorAbility {
     public Explosion explosion = new();
     public Enflame enflame = new();
     public Immolate immolate = new();
+    public Inspire inspire = new();
 
     // Unique abilities
     public HydraSplit hydraSplit = new();
@@ -99,6 +100,8 @@ public class WarriorAbility {
     public MassImmolate massImmolate = new();
     public Silence silence = new();
     public MassSilence massSilence = new();
+    public LifeInDeath lifeInDeath = new();
+    public DragonRecruiter dragonRecruiter = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();

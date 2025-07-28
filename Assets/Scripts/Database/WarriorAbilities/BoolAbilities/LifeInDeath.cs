@@ -1,23 +1,24 @@
-
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using UnityEngine;
-public class Afterlife {
+public class LifeInDeath {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Return to your hand without this ability";
+        return $"{WarriorAbility.Keywords.Kill}: Fully heal all other friends";
     }
 
-    public async Task<bool> Trigger(Character target, Hand hand, Transform summonerObject, GameObject clone) {
-        if (GetValue(target.stats)) {
-            ObjectAnimation objectAnimation = clone.GetComponent<ObjectAnimation>();
-            await objectAnimation.MoveObject(target.transform.position, summonerObject.position, 1, true);
+    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+        if (GetValue(dealer.stats)) {
+            List<Character> damagedFriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
+            damagedFriends.Remove(dealer);
 
-            target.stats.ResetStats();
-            if (!target.stats.ability.eternalNightmare.GetValue(target.stats)) {
-                target.stats.ability.afterlife.Remove();
+            List<Task> asyncFunctions = new() { };
+
+            foreach (var friend in damagedFriends) {
+                asyncFunctions.Add(friend.Heal(dealer, friend.stats.GetHealthMax() - friend.stats.GetHealth()));
             }
-            hand.AddCardToHand(target.stats);
+
+            await Task.WhenAll(asyncFunctions);
             return true;
         }
         return false;

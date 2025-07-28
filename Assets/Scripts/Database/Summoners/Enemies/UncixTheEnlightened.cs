@@ -23,6 +23,11 @@ public class UncixTheEnlightened : SummonerStats {
             new Luigi().GetStats(),
             new Luigi().GetStats(),
             new Luigi().GetStats(),
+            new Luigi().GetStats(),
+            new Luigi().GetStats(),
+            new Luigi().GetStats(),
+            new Luigi().GetStats(),
+            new Luigi().GetStats(),
        };
     }
 

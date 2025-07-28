@@ -1,23 +1,16 @@
-
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using UnityEngine;
-public class Afterlife {
+public class DragonRecruiter {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Return to your hand without this ability";
+        return $"{WarriorAbility.Keywords.Kill}: Add a random dragon to your hand";
     }
 
-    public async Task<bool> Trigger(Character target, Hand hand, Transform summonerObject, GameObject clone) {
-        if (GetValue(target.stats)) {
-            ObjectAnimation objectAnimation = clone.GetComponent<ObjectAnimation>();
-            await objectAnimation.MoveObject(target.transform.position, summonerObject.position, 1, true);
+    public async Task<bool> Trigger(Character dealer, Hand hand) {
+        if (GetValue(dealer.stats)) {
+            WarriorStats randomDragon = CardDatabase.GetRandomWarriorWithSpecificRace(Character.Race.Dragon);
 
-            target.stats.ResetStats();
-            if (!target.stats.ability.eternalNightmare.GetValue(target.stats)) {
-                target.stats.ability.afterlife.Remove();
-            }
-            hand.AddCardToHand(target.stats);
+            await hand.MoveNewCardToHand(randomDragon, dealer.transform.position);
             return true;
         }
         return false;
