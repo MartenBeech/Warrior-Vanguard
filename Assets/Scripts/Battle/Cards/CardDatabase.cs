@@ -3,9 +3,11 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new InternationalLibrary().GetStats(),
         new DragonLeader().GetStats(),
         new LightDragon().GetStats(),
         new Battlemonk().GetStats(),
+        new Mario().GetStats(),
         new LocalBookkeeper().GetStats(),
         new MarketingManager().GetStats(),
         new HRSusan().GetStats(),
@@ -192,6 +194,11 @@ public static class CardDatabase {
 
     public static WarriorStats GetRandomWarriorWithSpecificRace(Character.Race race) {
         List<WarriorStats> warriors = allCards.Where(card => card.race == race).ToList();
+        return Rng.Entry(warriors);
+    }
+
+    public static WarriorStats GetRandomSpell() {
+        List<WarriorStats> warriors = allCards.Where(card => card.cardType == CardType.spell).ToList();
         return Rng.Entry(warriors);
     }
 }

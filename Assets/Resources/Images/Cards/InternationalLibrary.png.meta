@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 19ad294759a4f1149b62ecc84f3d75db
+guid: 5e8977e3a3ebdab428f0da6c78bcaf74
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6479772156486608618
-    second: Vitalblade_0
+      213: -466305967575687675
+    second: InternationLibrary_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vitalblade_0
+      name: InternationLibrary_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae6e9dce176cce950800000000000000
-      internalID: 6479772156486608618
+      spriteID: 50e910e61395789f0800000000000000
+      internalID: -466305967575687675
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Vitalblade_0: 6479772156486608618
+      InternationLibrary_0: -466305967575687675
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -372,11 +372,11 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await stats.ability.thunderstorm.Trigger(this, gridManager);
         await stats.ability.lightningBolt.Trigger(this, gridManager);
         await stats.ability.immolate.Trigger(this, gridManager, gameManager);
+        await stats.ability.scrollStudies.Trigger(this, hand);
         stats.ability.seduced.Trigger(this);
         stats.ability.stunned.Trigger(this);
         await stats.ability.poisoned.Trigger(this);
         await stats.ability.burning.Trigger(this);
-
     }
 
     private Vector2 GetFrontCellIndex(Vector2 gridIndex, Direction direction, int range = 1) {

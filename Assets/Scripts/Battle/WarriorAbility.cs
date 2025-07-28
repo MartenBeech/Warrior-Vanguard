@@ -102,6 +102,7 @@ public class WarriorAbility {
     public MassSilence massSilence = new();
     public LifeInDeath lifeInDeath = new();
     public DragonRecruiter dragonRecruiter = new();
+    public ScrollStudies scrollStudies = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();

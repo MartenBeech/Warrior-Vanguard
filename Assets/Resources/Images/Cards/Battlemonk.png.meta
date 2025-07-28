@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 19ad294759a4f1149b62ecc84f3d75db
+guid: f1cea5ae0d261fe40a7b290b4260c04a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6479772156486608618
-    second: Vitalblade_0
+      213: -4849499551045841748
+    second: Battlemonk_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vitalblade_0
+      name: Battlemonk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae6e9dce176cce950800000000000000
-      internalID: 6479772156486608618
+      spriteID: cac0f712add13bcb0800000000000000
+      internalID: -4849499551045841748
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Vitalblade_0: 6479772156486608618
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
