@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d4b6a0e6753f4bb4aafce2c75f2ad481
+guid: a2fefd3a83dda9e41beb5e0b4f81f3c6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7335126227274748141
-    second: Burnout_0
+      213: 7994357627554944480
+    second: WoodenBoard_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Burnout_0
+      name: WoodenBoard_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
+        width: 1536
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 31f23a83f85643a90800000000000000
-      internalID: -7335126227274748141
+      spriteID: 0e5d8d508e9a1fe60800000000000000
+      internalID: 7994357627554944480
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Burnout_0: -7335126227274748141
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

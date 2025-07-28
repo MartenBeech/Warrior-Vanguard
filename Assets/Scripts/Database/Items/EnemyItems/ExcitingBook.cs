@@ -9,7 +9,7 @@ public class ExcitingBook : Item {
         return this;
     }
 
-    public override async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck) {
+    public override async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck, Hand enemyHand) {
         List<Task> asyncFunctions = new() {
             ownDeck.DrawCard(),
             enemyDeck.DrawCard()

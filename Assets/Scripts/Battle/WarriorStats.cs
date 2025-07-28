@@ -88,6 +88,15 @@ public class WarriorStats {
         return cost[level];
     }
 
+    public void ReduceCost(int amount) {
+        for (int i = 0; i < 2; i++) {
+            cost[i] -= amount;
+            if (cost[i] < 0) {
+                cost[i] = 0;
+            }
+        }
+    }
+
     public int GetStrength() {
         int totalStrength = strength[level] - ability.weakened.GetValue(this);
         if (totalStrength < 0) {

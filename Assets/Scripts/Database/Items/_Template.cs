@@ -32,7 +32,7 @@ public class CLASSNAME : Item {
         await Task.Delay(0);
     }
 
-    public override async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck) {
+    public override async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck, Hand enemyHand) {
         await Task.Delay(0);
     }
 

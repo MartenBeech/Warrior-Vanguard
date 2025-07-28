@@ -1,13 +1,15 @@
 using System.Threading.Tasks;
+using UnityEngine;
 
-public class TurtleAssembler : Item {
+public class DragonDiscount : Item {
     public override Item GetItem() {
         title = GetType().Name;
-        description = "Gain 1 shield each turn";
+        description = "Overturn: Reduce the cost of your dragons by 1";
         return this;
     }
 
     public override async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck, Hand enemyHand) {
-        await summoner.AddShield(1);
+        enemyHand.ReduceCostRace(1, Character.Race.Dragon);
+        await Task.CompletedTask;
     }
 }

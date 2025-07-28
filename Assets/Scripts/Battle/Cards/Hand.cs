@@ -117,4 +117,37 @@ public class Hand : MonoBehaviour {
             card.UpdateDisabledUI();
         }
     }
+
+    public void ReduceCostRandomCard(int amount) {
+        if (cardsInHand.Count == 0) return;
+        List<int> indexesWithCost = new();
+
+        for (int i = 0; i < cardsInHand.Count; i++) {
+            if (cardsInHand[i].stats.GetCost() > 0) {
+                indexesWithCost.Add(i);
+            }
+        }
+
+        if (indexesWithCost.Count == 0) return;
+
+        int randomCard = UnityEngine.Random.Range(0, indexesWithCost.Count);
+        int cardIndex = indexesWithCost[randomCard];
+        cardsInHand[cardIndex].stats.ReduceCost(amount);
+    }
+
+    public void ReduceCostAllCards(int amount) {
+        foreach (var card in cardsInHand) {
+            card.stats.ReduceCost(amount);
+            card.UpdateCardUI();
+        }
+    }
+
+    public void ReduceCostRace(int amount, Character.Race race) {
+        foreach (var card in cardsInHand) {
+            if (card.stats.race == race) {
+                card.stats.ReduceCost(amount);
+                card.UpdateCardUI();
+            }
+        }
+    }
 }
