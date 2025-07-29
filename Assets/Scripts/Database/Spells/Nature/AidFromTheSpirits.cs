@@ -7,13 +7,13 @@ public class AidFromTheSpirits {
             title = GetType().Name,
             cost = new int[] { 7, 7 },
             rarity = CardRarity.Legendary,
-            spellTarget = SpellTarget.friend,
+            spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
             "Give a friendly warrior +8/+8",
             "Give a friendly warrior +8/+8 and spikes 2"
             },
             race = Character.Race.Nature,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -28,6 +28,6 @@ public class AidFromTheSpirits {
             target.stats.ability.spikes.Add(2);
         }
 
-        await floatingText.CreateFloatingText(target.transform, "Aid From The Spirits", ColorPalette.ColorEnum.green);
+        await floatingText.CreateFloatingText(target.transform, "Aid From The Spirits", ColorPalette.ColorEnum.Green);
     }
 }

@@ -16,7 +16,7 @@ public class MassSilence {
             foreach (var warrior in warriors) {
                 warrior.stats.ability = new();
                 warrior.UpdateWarriorUI();
-                asyncFunctions.Add(floatingText.CreateFloatingText(warrior.transform, "Sileced", ColorPalette.ColorEnum.purple));
+                asyncFunctions.Add(floatingText.CreateFloatingText(warrior.transform, "Sileced", ColorPalette.ColorEnum.Purple));
             }
             await Task.WhenAll(asyncFunctions);
 

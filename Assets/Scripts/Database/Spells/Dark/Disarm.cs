@@ -5,13 +5,13 @@ public class Disarm {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 2, 2 },
-            spellTarget = SpellTarget.enemy,
+            spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
             "Set an enemy's strength to 1",
             "Set an enemy's strength to 0"
             },
             race = Character.Race.Dark,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -21,6 +21,6 @@ public class Disarm {
         int value = cardLevel == 0 ? 1 : 0;
         target.stats.AddStrength(-(target.stats.GetStrength() - value));
         target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Disarmed", ColorPalette.ColorEnum.purple);
+        await floatingText.CreateFloatingText(target.transform, "Disarmed", ColorPalette.ColorEnum.Purple);
     }
 }

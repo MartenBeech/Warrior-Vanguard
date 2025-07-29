@@ -11,7 +11,7 @@ public class Bash {
             if (Rng.Chance(50)) {
                 target.stats.ability.stunned.Add();
                 target.UpdateWarriorUI();
-                await floatingText.CreateFloatingText(target.transform, "Stunned", ColorPalette.ColorEnum.purple);
+                await floatingText.CreateFloatingText(target.transform, "Stunned", ColorPalette.ColorEnum.Purple);
             }
             return true;
         }

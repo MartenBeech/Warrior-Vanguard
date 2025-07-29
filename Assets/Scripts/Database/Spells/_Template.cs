@@ -7,13 +7,13 @@ public class CLASSNAMESPELL {
             title = GetType().Name,
             cost = new int[] { 0, 0 },
             rarity = CardRarity.None,
-            spellTarget = SpellTarget.none,
+            spellTarget = SpellTarget.None,
             spellDescription = new string[] {
             "UNUPGRADED_DESCRIPTION",
             "UPGRADED_DESCRIPTION"
             },
             race = Character.Race.None,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -23,7 +23,7 @@ public class CLASSNAMESPELL {
         List<Task> asyncFunctions = new();
 
         target.UpdateWarriorUI();
-        asyncFunctions.Add(floatingText.CreateFloatingText(target.transform, "TEXT", ColorPalette.ColorEnum.purple));
+        asyncFunctions.Add(floatingText.CreateFloatingText(target.transform, "TEXT", ColorPalette.ColorEnum.Purple));
         await Task.WhenAll(asyncFunctions);
     }
 }

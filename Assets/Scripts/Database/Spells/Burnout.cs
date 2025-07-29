@@ -7,13 +7,13 @@ public class Burnout {
             title = GetType().Name,
             cost = new int[] { 0, 0 },
             rarity = CardRarity.None,
-            spellTarget = SpellTarget.none,
+            spellTarget = SpellTarget.None,
             spellDescription = new string[] {
             "Your deck is empty! Your summoner takes damage instead",
             "Your deck is empty! Your summoner takes damage instead"
             },
             race = Character.Race.None,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;

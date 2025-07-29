@@ -7,13 +7,13 @@ public class RainOfFire {
             title = GetType().Name,
             cost = new int[] { 3, 3 },
             rarity = CardRarity.Rare,
-            spellTarget = SpellTarget.none,
+            spellTarget = SpellTarget.None,
             spellDescription = new string[] {
             "Deal 1 damage to all enemies",
             "Deal 2 damage to all enemies"
             },
             race = Character.Race.Fire,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;

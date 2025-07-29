@@ -7,13 +7,13 @@ public class GuardianAngel {
             title = GetType().Name,
             cost = new int[] { 4, 3 },
             rarity = CardRarity.Common,
-            spellTarget = SpellTarget.friend,
+            spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
             "Give a friend: Revive",
             "Give a friend: Revive"
             },
             race = Character.Race.Light,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -21,6 +21,6 @@ public class GuardianAngel {
 
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         target.stats.ability.revive.Add();
-        await floatingText.CreateFloatingText(target.transform, "Guardian Angel", ColorPalette.ColorEnum.yellow);
+        await floatingText.CreateFloatingText(target.transform, "Guardian Angel", ColorPalette.ColorEnum.Yellow);
     }
 }

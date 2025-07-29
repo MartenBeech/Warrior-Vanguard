@@ -60,9 +60,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         image.GetComponent<Image>().sprite = sprite != null ? sprite : Resources.Load<Sprite>($"Images/Icons/Red Cross");
 
         if (stats.alignment == CharacterSpawner.Alignment.Friend) {
-            crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
+            crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Green);
         } else if (stats.alignment == CharacterSpawner.Alignment.Enemy) {
-            crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
+            crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Red);
         }
 
         if (stats.ability.stealth.GetValue(stats)) {
@@ -259,14 +259,14 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
         }
 
-        dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.red);
+        dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Red);
 
-        asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString(), ColorPalette.ColorEnum.red, true));
+        asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString(), ColorPalette.ColorEnum.Red, true));
 
         await Task.WhenAll(asyncFunctions);
 
         if (dealer) {
-            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
+            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
         }
 
         return damage;
@@ -289,11 +289,11 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
 
 
-            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.green);
+            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Green);
 
-            await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.green, true);
+            await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.Green, true);
 
-            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
+            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
         }
     }
 

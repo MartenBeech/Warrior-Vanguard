@@ -7,13 +7,13 @@ public class TearsOfTheLight {
             title = GetType().Name,
             cost = new int[] { 3, 3 },
             rarity = CardRarity.Rare,
-            spellTarget = SpellTarget.none,
+            spellTarget = SpellTarget.None,
             spellDescription = new string[] {
             "Heal all friendly warriors for 2 health",
             "Heal all friendly warriors for 3 health"
             },
             race = Character.Race.Light,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;

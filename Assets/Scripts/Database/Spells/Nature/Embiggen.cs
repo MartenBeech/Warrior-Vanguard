@@ -7,13 +7,13 @@ public class Embiggen {
             title = GetType().Name,
             cost = new int[] { 1, 1 },
             rarity = CardRarity.Common,
-            spellTarget = SpellTarget.friend,
+            spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
             "Give a friendly warrior +2 health",
             "Give a friendly warrior +3 health"
             },
             race = Character.Race.Nature,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -23,6 +23,6 @@ public class Embiggen {
         int value = cardLevel == 0 ? 2 : 3;
         target.stats.AddHealth(value);
         target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Embiggen", ColorPalette.ColorEnum.green);
+        await floatingText.CreateFloatingText(target.transform, "Embiggen", ColorPalette.ColorEnum.Green);
     }
 }

@@ -6,13 +6,13 @@ public class AgingCurse {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 3, 3 },
-            spellTarget = SpellTarget.enemy,
+            spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
             "Reduce an enemy's strength, health and speed to half",
             "Reduce an enemy's strength, health and speed to 1/3"
             },
             race = Character.Race.Dark,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -24,6 +24,6 @@ public class AgingCurse {
         target.stats.AddHealthCurrent(-Mathf.FloorToInt(target.stats.GetHealth() / division));
         target.stats.speed /= division;
         target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Aging", ColorPalette.ColorEnum.purple);
+        await floatingText.CreateFloatingText(target.transform, "Aging", ColorPalette.ColorEnum.Purple);
     }
 }

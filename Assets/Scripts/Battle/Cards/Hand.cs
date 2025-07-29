@@ -50,11 +50,11 @@ public class Hand : MonoBehaviour {
         if (!coin.SpendCoins(selectedCard.stats.GetCost())) return;
 
         List<Task> asyncFunctions = new();
-        if (selectedCard.stats.cardType == CardType.warrior) {
+        if (selectedCard.stats.cardType == CardType.Warrior) {
             asyncFunctions.Add(
                 characterSpawner.Spawn(selectedGridIndex, selectedCard.stats, summonerObject.transform.position)
             );
-        } else if (selectedCard.stats.cardType == CardType.spell) {
+        } else if (selectedCard.stats.cardType == CardType.Spell) {
             Type type = Type.GetType(selectedCard.stats.title);
             object instance = Activator.CreateInstance(type);
             Character target = gridManager.GetCellCharacter(selectedGridIndex);
@@ -75,27 +75,27 @@ public class Hand : MonoBehaviour {
 
         GridManager gridManager = FindFirstObjectByType<GridManager>();
 
-        if (card.stats.cardType == CardType.warrior) {
+        if (card.stats.cardType == CardType.Warrior) {
             gridManager.HighlightDeploys(card.stats.ability.construct.GetValue(card.stats), card.stats.alignment);
-        } else if (card.stats.cardType == CardType.spell) {
+        } else if (card.stats.cardType == CardType.Spell) {
             switch (card.stats.spellTarget) {
-                case SpellTarget.none:
+                case SpellTarget.None:
                     gridManager.HighlightAllCells();
                     break;
-                case SpellTarget.enemy:
+                case SpellTarget.Enemy:
                     gridManager.HighlightEnemies(card.stats.alignment, true);
                     break;
-                case SpellTarget.friend:
+                case SpellTarget.Friend:
                     gridManager.HighlightFriends(card.stats.alignment, true);
                     break;
-                case SpellTarget.warrior:
+                case SpellTarget.Warrior:
                     gridManager.HighlightWarriors(true);
                     break;
             }
         }
 
         card.GetComponent<Outline>().enabled = true;
-        card.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.tealWeak);
+        card.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.TealWeak);
     }
 
     public void DeselectCard(Card card) {
@@ -106,7 +106,7 @@ public class Hand : MonoBehaviour {
 
         selectedCard = null;
         card.GetComponent<Outline>().enabled = false;
-        card.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
+        card.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
     }
 
     public List<Card> GetCardsInHand() {

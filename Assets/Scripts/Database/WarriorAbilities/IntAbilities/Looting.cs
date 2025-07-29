@@ -10,7 +10,7 @@ public class Looting {
         if (GetValue(dealer.stats) > 0) {
             if (dealer.stats.alignment == CharacterSpawner.Alignment.Friend) {
                 GoldManager.AddGold(GetValue(dealer.stats));
-                await floatingText.CreateFloatingText(dealer.transform, $"+{GetValue(dealer.stats)} Gold", ColorPalette.ColorEnum.yellow);
+                await floatingText.CreateFloatingText(dealer.transform, $"+{GetValue(dealer.stats)} Gold", ColorPalette.ColorEnum.Yellow);
                 return true;
             }
         }

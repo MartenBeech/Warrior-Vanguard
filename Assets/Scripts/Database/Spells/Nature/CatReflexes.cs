@@ -7,13 +7,13 @@ public class CatReflexes {
             title = GetType().Name,
             cost = new int[] { 3, 2 },
             rarity = CardRarity.Rare,
-            spellTarget = SpellTarget.friend,
+            spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
             "Give a friendly warrior retaliate",
             "Give a friendly warrior retaliate"
             },
             race = Character.Race.Nature,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -21,6 +21,6 @@ public class CatReflexes {
 
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         target.stats.ability.retaliate.Add();
-        await floatingText.CreateFloatingText(target.transform, $"Cat Reflexes", ColorPalette.ColorEnum.green);
+        await floatingText.CreateFloatingText(target.transform, $"Cat Reflexes", ColorPalette.ColorEnum.Green);
     }
 }

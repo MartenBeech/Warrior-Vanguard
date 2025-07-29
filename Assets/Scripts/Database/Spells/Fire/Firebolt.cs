@@ -7,13 +7,13 @@ public class Firebolt {
             title = GetType().Name,
             cost = new int[] { 2, 2 },
             rarity = CardRarity.Common,
-            spellTarget = SpellTarget.warrior,
+            spellTarget = SpellTarget.Warrior,
             spellDescription = new string[] {
             "Deal 3 damage to a warrior",
             "Deal 4 damage to a warrior"
             },
             race = Character.Race.Fire,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;

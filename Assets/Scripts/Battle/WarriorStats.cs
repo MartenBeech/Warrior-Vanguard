@@ -2,15 +2,15 @@ using System;
 using System.Text.RegularExpressions;
 
 public enum CardType {
-    warrior,
-    spell
+    Warrior,
+    Spell
 }
 
 public enum SpellTarget {
-    none,
-    friend,
-    enemy,
-    warrior,
+    None,
+    Friend,
+    Enemy,
+    Warrior,
 }
 
 public enum CardRarity {
@@ -29,8 +29,8 @@ public class WarriorStats {
     public Character.Race race = Character.Race.None;
     public Character.Genre genre = Character.Genre.None;
     public CharacterSpawner.Alignment alignment;
-    public CardType cardType = CardType.warrior;
-    public SpellTarget spellTarget = SpellTarget.none;
+    public CardType cardType = CardType.Warrior;
+    public SpellTarget spellTarget = SpellTarget.None;
     public string[] spellDescription = new string[2];
 
     public int[] cost = new int[2];

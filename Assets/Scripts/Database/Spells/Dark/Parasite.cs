@@ -7,13 +7,13 @@ public class Parasite {
             title = GetType().Name,
             cost = new int[] { 10, 8 },
             rarity = CardRarity.Rare,
-            spellTarget = SpellTarget.enemy,
+            spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
             "Kill an enemy and summon an exact copy for your side",
             "Kill an enemy and summon an exact copy for your side"
             },
             race = Character.Race.Dark,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;

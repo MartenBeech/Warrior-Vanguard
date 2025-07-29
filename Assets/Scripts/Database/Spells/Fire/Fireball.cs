@@ -7,13 +7,13 @@ public class Fireball {
             title = GetType().Name,
             cost = new int[] { 5, 5 },
             rarity = CardRarity.Rare,
-            spellTarget = SpellTarget.warrior,
+            spellTarget = SpellTarget.Warrior,
             spellDescription = new string[] {
             "Deal 5 damage to a warrior and 2 damage to surrounding warriors",
             "Deal 6 damage to a warrior and 3 damage to surrounding warriors"
             },
             race = Character.Race.Fire,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;

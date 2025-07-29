@@ -7,13 +7,13 @@ public class Armageddon {
             title = GetType().Name,
             cost = new int[] { 7, 7 },
             rarity = CardRarity.Legendary,
-            spellTarget = SpellTarget.none,
+            spellTarget = SpellTarget.None,
             spellDescription = new string[] {
             "Deal 5 damage to ALL warriors",
             "Deal 5 damage to all enemies and 3 damage to all friends"
             },
             race = Character.Race.Fire,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;

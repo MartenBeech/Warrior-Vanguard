@@ -11,7 +11,7 @@ public class Seduce {
             if (Rng.Chance(50)) {
                 target.stats.ability.seduced.Add();
                 target.UpdateWarriorUI();
-                await floatingText.CreateFloatingText(target.transform, "Seduced", ColorPalette.ColorEnum.purple);
+                await floatingText.CreateFloatingText(target.transform, "Seduced", ColorPalette.ColorEnum.Purple);
             }
             return true;
         }

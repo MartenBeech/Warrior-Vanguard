@@ -25,14 +25,14 @@ public class GridCell : MonoBehaviour {
         Character character = gridManager.GetCellCharacter(gridIndex);
         if (character) {
             float currentTransparency = character.image.GetComponent<Image>().color.a;
-            Color newColor = ColorPalette.GetColor(ColorPalette.ColorEnum.tealMedium);
+            Color newColor = ColorPalette.GetColor(ColorPalette.ColorEnum.TealMedium);
             newColor.a = currentTransparency;
             character.image.GetComponent<Image>().color = newColor;
         }
 
         GetComponent<Outline>().enabled = true;
-        GetComponent<Outline>().effectColor = ColorPalette.GetColor(ColorPalette.ColorEnum.teal);
-        GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.tealWeak);
+        GetComponent<Outline>().effectColor = ColorPalette.GetColor(ColorPalette.ColorEnum.Teal);
+        GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.TealWeak);
     }
 
     public void ClearHighlight() {
@@ -41,14 +41,14 @@ public class GridCell : MonoBehaviour {
         Character character = gridManager.GetCellCharacter(gridIndex);
         if (character) {
             float currentTransparency = character.image.GetComponent<Image>().color.a;
-            Color newColor = ColorPalette.GetColor(ColorPalette.ColorEnum.white);
+            Color newColor = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
             newColor.a = currentTransparency;
             character.image.GetComponent<Image>().color = newColor;
         }
 
         GetComponent<Outline>().enabled = false;
 
-        GetComponent<Image>().color = ColorPalette.AddTransparency(ColorPalette.GetColor(ColorPalette.ColorEnum.white), 10);
+        GetComponent<Image>().color = ColorPalette.AddTransparency(ColorPalette.GetColor(ColorPalette.ColorEnum.White), 10);
     }
 
     public bool IsHighlighed() {

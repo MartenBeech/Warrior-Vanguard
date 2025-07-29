@@ -5,13 +5,13 @@ public class PoisonPotion {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 1, 1 },
-            spellTarget = SpellTarget.enemy,
+            spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
             "Apply 2 poison to an enemy",
             "Apply 3 poison to an enemy"
             },
             race = Character.Race.Dark,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -21,6 +21,6 @@ public class PoisonPotion {
         int value = cardLevel == 0 ? 2 : 3;
         target.stats.ability.poisoned.Add(value);
         target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, $"{value} poison", ColorPalette.ColorEnum.purple);
+        await floatingText.CreateFloatingText(target.transform, $"{value} poison", ColorPalette.ColorEnum.Purple);
     }
 }

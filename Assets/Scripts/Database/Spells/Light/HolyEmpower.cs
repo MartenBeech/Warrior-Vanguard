@@ -7,13 +7,13 @@ public class HolyEmpower {
             title = GetType().Name,
             cost = new int[] { 3, 2 },
             rarity = CardRarity.Common,
-            spellTarget = SpellTarget.friend,
+            spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
             "Give a friendly warrior +3/+2",
             "Give a friendly warrior +3/+2"
             },
             race = Character.Race.Light,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -23,6 +23,6 @@ public class HolyEmpower {
         target.stats.AddStrength(3);
         target.stats.AddHealth(2);
         target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Holy Empower", ColorPalette.ColorEnum.yellow);
+        await floatingText.CreateFloatingText(target.transform, "Holy Empower", ColorPalette.ColorEnum.Yellow);
     }
 }

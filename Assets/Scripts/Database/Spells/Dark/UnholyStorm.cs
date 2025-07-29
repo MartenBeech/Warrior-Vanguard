@@ -6,13 +6,13 @@ public class UnholyStorm {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 4, 4 },
-            spellTarget = SpellTarget.none,
+            spellTarget = SpellTarget.None,
             spellDescription = new string[] {
             "Reduce all enemies' strength by 2 (minimum 1)",
             "Reduce all enemies' strength by 3 (minimum 1)"
             },
             race = Character.Race.Dark,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -29,7 +29,7 @@ public class UnholyStorm {
                     enemy.stats.AddStrength(1 - enemy.stats.GetStrength());
                 }
                 enemy.UpdateWarriorUI();
-                asyncFunctions.Add(floatingText.CreateFloatingText(enemy.transform, $"-{value} Strength", ColorPalette.ColorEnum.purple));
+                asyncFunctions.Add(floatingText.CreateFloatingText(enemy.transform, $"-{value} Strength", ColorPalette.ColorEnum.Purple));
             }
         }
         await Task.WhenAll(asyncFunctions);

@@ -7,13 +7,13 @@ public class Blind {
             title = GetType().Name,
             cost = new int[] { 2, 1 },
             rarity = CardRarity.Rare,
-            spellTarget = SpellTarget.enemy,
+            spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
             "Reduce enemy range to 1",
             "Reduce enemy range to 1"
             },
             race = Character.Race.Nature,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -21,6 +21,6 @@ public class Blind {
 
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         target.stats.range = 1;
-        await floatingText.CreateFloatingText(target.transform, "Blind", ColorPalette.ColorEnum.red);
+        await floatingText.CreateFloatingText(target.transform, "Blind", ColorPalette.ColorEnum.Red);
     }
 }

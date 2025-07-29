@@ -7,13 +7,13 @@ public class GuidingStrength {
             title = GetType().Name,
             cost = new int[] { 1, 1 },
             rarity = CardRarity.Common,
-            spellTarget = SpellTarget.friend,
+            spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
             "Give a friendly warrior +2 strength",
             "Give a friendly warrior +3 strength"
             },
             race = Character.Race.Light,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -23,6 +23,6 @@ public class GuidingStrength {
         int value = cardLevel == 0 ? 2 : 3;
         target.stats.AddStrength(value);
         target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Guiding Strength", ColorPalette.ColorEnum.yellow);
+        await floatingText.CreateFloatingText(target.transform, "Guiding Strength", ColorPalette.ColorEnum.Yellow);
     }
 }

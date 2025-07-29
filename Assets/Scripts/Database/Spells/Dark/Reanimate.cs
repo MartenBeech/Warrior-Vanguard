@@ -5,13 +5,13 @@ public class Reanimate {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 4, 4 },
-            spellTarget = SpellTarget.friend,
+            spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
             "Give a friend 'Revive' and set its health to 1",
             "Give a friend 'Revive'"
             },
             race = Character.Race.Dark,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -23,6 +23,6 @@ public class Reanimate {
             target.stats.AddHealthCurrent(-(target.stats.GetHealth() - 1));
         }
         target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Reanimate", ColorPalette.ColorEnum.teal);
+        await floatingText.CreateFloatingText(target.transform, "Reanimate", ColorPalette.ColorEnum.Teal);
     }
 }

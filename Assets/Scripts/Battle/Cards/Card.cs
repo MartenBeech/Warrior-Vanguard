@@ -33,7 +33,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Icons/SilverBackground");
         }
 
-        if (stats.cardType == CardType.warrior) {
+        if (stats.cardType == CardType.Warrior) {
             attackText.text = $"{stats.GetStrength()}";
             healthText.text = $"{stats.GetHealth()}";
             raceText.text = $"{stats.race}";
@@ -52,7 +52,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             }
 
             abilityText.text = stats.ability.GetAbilityText(stats);
-        } else if (stats.cardType == CardType.spell) {
+        } else if (stats.cardType == CardType.Spell) {
             abilityText.text = stats.spellDescription[stats.level];
             rangeImage.SetActive(false);
             speedImage.SetActive(false);

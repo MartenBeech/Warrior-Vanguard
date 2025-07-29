@@ -6,13 +6,13 @@ public class SkinToBones {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 6, 6 },
-            spellTarget = SpellTarget.enemy,
+            spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
             "Kill an enemy and summon a skeleton for its owner",
             "Kill an enemy and summon a skeleton for you"
             },
             race = Character.Race.Dark,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -28,7 +28,7 @@ public class SkinToBones {
             asyncFunctions.Add(target.stats.ability.raiseDead.SummonSkeleton(target, target, characterSpawner, target.stats.alignment == CharacterSpawner.Alignment.Enemy ? CharacterSpawner.Alignment.Friend : CharacterSpawner.Alignment.Enemy));
         }
         target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Boned", ColorPalette.ColorEnum.purple);
+        await floatingText.CreateFloatingText(target.transform, "Boned", ColorPalette.ColorEnum.Purple);
         await Task.WhenAll(asyncFunctions);
     }
 }

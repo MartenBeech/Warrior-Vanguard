@@ -7,13 +7,13 @@ public class Thorns {
             title = GetType().Name,
             cost = new int[] { 2, 2 },
             rarity = CardRarity.Common,
-            spellTarget = SpellTarget.friend,
+            spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
             "Give a friendly warrior Spikes 2",
             "Give a friendly warrior Spikes 3"
             },
             race = Character.Race.Nature,
-            cardType = CardType.spell,
+            cardType = CardType.Spell,
         };
 
         return stats;
@@ -22,6 +22,6 @@ public class Thorns {
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
         int value = cardLevel == 0 ? 2 : 3;
         target.stats.ability.spikes.Add(value);
-        await floatingText.CreateFloatingText(target.transform, $"Thorns", ColorPalette.ColorEnum.green);
+        await floatingText.CreateFloatingText(target.transform, $"Thorns", ColorPalette.ColorEnum.Green);
     }
 }
