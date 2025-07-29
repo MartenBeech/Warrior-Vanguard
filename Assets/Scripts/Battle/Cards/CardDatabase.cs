@@ -3,13 +3,16 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new Sanctuary().GetStats(),
+        new DivineShield().GetStats(),
+        new Parasite().GetStats(),
+        new Mario().GetStats(),
         new SpiritualGrounds().GetStats(),
         new MountainDragon().GetStats(),
         new InternationalLibrary().GetStats(),
         new DragonLeader().GetStats(),
         new LightDragon().GetStats(),
         new Battlemonk().GetStats(),
-        new Mario().GetStats(),
         new LocalBookkeeper().GetStats(),
         new MarketingManager().GetStats(),
         new HRSusan().GetStats(),

@@ -114,6 +114,7 @@ public class WarriorAbility {
     public Burning burning = new();
     public Seduced seduced = new();
     public Vulnerable vulnerable = new();
+    public Immune immune = new();
 
     // Summoner abilities
     public SummonWisp summonWisp = new();

@@ -1,20 +1,15 @@
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-public class DragonRecruiter {
+public class Immune {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Add a random dragon to your hand";
+        return $"Cannot take any damage for 1 turn";
     }
 
-    public async Task<bool> Trigger(Character dealer, Hand hand) {
-        if (GetValue(dealer.stats)) {
-            WarriorStats randomDragon = CardDatabase.GetRandomWarriorWithSpecificRace(Character.Race.Dragon);
-            randomDragon.alignment = dealer.stats.alignment;
-
-            await hand.MoveNewCardToHand(randomDragon, dealer.transform.position);
-            return true;
+    public int Trigger(Character target, int damage) {
+        if (GetValue(target.stats)) {
+            damage = 0;
         }
-        return false;
+        return damage;
     }
 
     bool[] value = new bool[] { false, false };

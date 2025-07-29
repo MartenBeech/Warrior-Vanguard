@@ -244,6 +244,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         damage = stats.ability.stoneskin.Trigger(this, damage);
         damage = stats.ability.incorporeal.Trigger(this, damage, damageType);
 
+        damage = stats.ability.immune.Trigger(this, damage);
+
         List<Task> asyncFunctions = new();
 
         if (damage > 0) {

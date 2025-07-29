@@ -60,6 +60,10 @@ public class GameManager : MonoBehaviour {
         foreach (Item item in ItemManager.LoadItems()) {
             await item.UseStartOfTurn(friendSummonerObject.GetComponent<Summoner>(), friendDeck, enemyDeck, enemyHand);
         }
+
+        foreach (Character friend in friends) {
+            friend.stats.ability.immune.Remove();
+        }
     }
 
     public async void EndPlayerTurn() {
@@ -79,6 +83,10 @@ public class GameManager : MonoBehaviour {
         await enemyDeck.DrawCard(false);
 
         await ItemManager.enemyItem.UseStartOfTurn(enemySummonerObject.GetComponent<Summoner>(), enemyDeck, friendDeck, enemyHand);
+
+        foreach (Character enemy in enemies) {
+            enemy.stats.ability.immune.Remove();
+        }
 
         await TakeEnemyTurn();
     }

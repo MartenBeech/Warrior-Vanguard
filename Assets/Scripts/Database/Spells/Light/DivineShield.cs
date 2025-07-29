@@ -9,8 +9,8 @@ public class DivineShield {
             rarity = CardRarity.Rare,
             spellTarget = SpellTarget.friend,
             spellDescription = new string[] {
-            "Give warrior immune for 1 turn",
-            "Give warrior immune for 1 turn"
+            "Make a friend immune for 1 turn",
+            "Make a friend immune for 1 turn"
             },
             race = Character.Race.Light,
             cardType = CardType.spell,
@@ -19,9 +19,9 @@ public class DivineShield {
         return stats;
     }
 
-    //TODO: Implement immune ability
-    // public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-    // target.stats.ability.immune.Add(1);
-    // await floatingText.CreateFloatingText(target.transform, "Immune 1", ColorPalette.ColorEnum.yellow);
-    // }
+    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
+        target.stats.ability.immune.Add();
+        target.UpdateWarriorUI();
+        await floatingText.CreateFloatingText(target.transform, "Immune", ColorPalette.ColorEnum.yellow);
+    }
 }

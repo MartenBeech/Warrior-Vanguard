@@ -9,6 +9,7 @@ public class ScrollStudies {
     public async Task<bool> Trigger(Character dealer, Hand hand) {
         if (GetValue(dealer.stats)) {
             WarriorStats randomSpell = CardDatabase.GetRandomSpell();
+            randomSpell.alignment = dealer.stats.alignment;
 
             await hand.MoveNewCardToHand(randomSpell, dealer.transform.position);
             return true;
