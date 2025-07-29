@@ -152,6 +152,13 @@ public class Hand : MonoBehaviour {
         }
     }
 
+    public void IncreaseCostAllCards(int amount) {
+        foreach (var card in cardsInHand) {
+            card.stats.IncreaseCost(amount);
+            card.UpdateCardUI();
+        }
+    }
+
     public async Task MoveNewCardToHand(WarriorStats stats, Vector2 fromPos) {
         Vector2 handPos = handObject.transform.position;
 

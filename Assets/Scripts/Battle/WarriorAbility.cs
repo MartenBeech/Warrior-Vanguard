@@ -103,6 +103,7 @@ public class WarriorAbility {
     public LifeInDeath lifeInDeath = new();
     public DragonRecruiter dragonRecruiter = new();
     public ScrollStudies scrollStudies = new();
+    public SummoningSpirits summoningSpirits = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();

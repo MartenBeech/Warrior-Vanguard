@@ -31,11 +31,7 @@ public class Deck : MonoBehaviour {
     }
 
     public async Task DrawCard(bool highlightCard = true) {
-        List<Character> friends = gridManager.GetFriends(alignment);
-        foreach (var friend in friends) {
-            friend.stats.ability.enlighten.Trigger(friend);
-            friend.stats.ability.intelligence.Trigger(friend);
-        }
+        
 
         if (deck.Count == 0) {
             await BurnOut();
@@ -55,6 +51,13 @@ public class Deck : MonoBehaviour {
         GameObject cardInstance = Instantiate(cardPrefab, deckPos, Quaternion.identity, transform);
         ObjectAnimation objectAnimation = cardInstance.GetComponentInChildren<ObjectAnimation>();
         Card card = cardInstance.GetComponentInChildren<Card>();
+
+        List<Character> friends = gridManager.GetFriends(alignment);
+        foreach (var friend in friends) {
+            friend.stats.ability.enlighten.Trigger(friend);
+            friend.stats.ability.intelligence.Trigger(friend);
+            friend.stats.ability.summoningSpirits.TriggerDrawCard(drawnCard);
+        }
 
         card.SetStats(drawnCard);
         card.UpdateCardUI();
