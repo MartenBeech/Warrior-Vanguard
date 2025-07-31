@@ -1,14 +1,15 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 public class Reanimate {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 4, 4 },
+            cost = new int[] { 4, 3 },
             spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
-            "Give a friend 'Revive' and set its health to 1",
-            "Give a friend 'Revive'"
+            "Kill a friend and resummon it",
+            "Kill a friend and resummon it"
             },
             race = Character.Race.Dark,
             cardType = CardType.Spell,
@@ -18,11 +19,18 @@ public class Reanimate {
     }
 
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        target.stats.ability.revive.Add();
-        if (cardLevel == 0) {
-            target.stats.AddHealthCurrent(-(target.stats.GetHealth() - 1));
-        }
-        target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Reanimate", ColorPalette.ColorEnum.Teal);
+        List<Task> asyncFunctions = new();
+
+        WarriorStats stats = new() {
+            title = target.stats.title
+        };
+        stats.ResetStats();
+        stats.alignment = target.stats.alignment;
+
+        asyncFunctions.Add(target.Die(target));
+
+        asyncFunctions.Add(characterSpawner.SpawnRandomly(stats, target.transform.position));
+
+        await Task.WhenAll(asyncFunctions);
     }
 }

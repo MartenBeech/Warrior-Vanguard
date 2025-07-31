@@ -5,11 +5,11 @@ public class SkinToBones {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 6, 6 },
+            cost = new int[] { 7, 6 },
             spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
-            "Kill an enemy and summon a skeleton for its owner",
-            "Kill an enemy and summon a skeleton for you"
+            "Kill an enemy and summon a skeleton",
+            "Kill an enemy and summon 2 skeletons"
             },
             race = Character.Race.Dark,
             cardType = CardType.Spell,
@@ -19,15 +19,22 @@ public class SkinToBones {
     }
 
     public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        List<Task> asyncFunctions = new() {
-            target.Die(target)
-        };
-        if (cardLevel == 0) {
-            asyncFunctions.Add(target.stats.ability.raiseDead.SummonSkeleton(target, target, characterSpawner));
-        } else {
-            asyncFunctions.Add(target.stats.ability.raiseDead.SummonSkeleton(target, target, characterSpawner, target.stats.alignment == CharacterSpawner.Alignment.Enemy ? CharacterSpawner.Alignment.Friend : CharacterSpawner.Alignment.Enemy));
+        CharacterSpawner.Alignment alignment = CharacterSpawner.Alignment.Null;
+        if (target.stats.alignment == CharacterSpawner.Alignment.Enemy) {
+            alignment = CharacterSpawner.Alignment.Friend;
+        } else if (target.stats.alignment == CharacterSpawner.Alignment.Friend) {
+            alignment = CharacterSpawner.Alignment.Enemy;
         }
-        target.UpdateWarriorUI();
+
+        List<Task> asyncFunctions = new() {
+            target.Die(target),
+            target.stats.ability.raiseDead.SummonSkeleton(target, target, characterSpawner, alignment)
+        };
+
+        if (cardLevel == 1) {
+            asyncFunctions.Add(target.stats.ability.raiseDead.SummonSkeleton(target, target, characterSpawner, alignment));
+        }
+
         await floatingText.CreateFloatingText(target.transform, "Boned", ColorPalette.ColorEnum.Purple);
         await Task.WhenAll(asyncFunctions);
     }

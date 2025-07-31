@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 public class CharacterSpawner : MonoBehaviour {
     public enum Alignment {
@@ -116,6 +117,7 @@ public class CharacterSpawner : MonoBehaviour {
 
     public async Task SpawnRandomly(WarriorStats stats, Vector2 from) {
         GridCell randomCell = gridManager.GetRandomEmptyDeploy(stats.ability.construct.GetValue(stats), stats.alignment);
+        stats.displayTitle = Regex.Replace(stats.title, "(?<!^)([A-Z])", " $1");
 
         if (!randomCell) return;
 

@@ -73,6 +73,7 @@ public class WarriorStats {
         object instance = Activator.CreateInstance(type);
         WarriorStats defaultStats = (WarriorStats)type.GetMethod("GetStats")?.Invoke(instance, null);
 
+        displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");
         strength = defaultStats.strength;
         for (int i = 0; i < 2; i++) {
             cost[i] = defaultStats.cost[i];

@@ -8,8 +8,8 @@ public class UnholyStorm {
             cost = new int[] { 4, 4 },
             spellTarget = SpellTarget.None,
             spellDescription = new string[] {
-            "Reduce all enemies' strength by 2 (minimum 1)",
-            "Reduce all enemies' strength by 3 (minimum 1)"
+            "Reduce all enemies' strength by 2",
+            "Reduce all enemies' strength by 3"
             },
             race = Character.Race.Dark,
             cardType = CardType.Spell,
@@ -25,9 +25,7 @@ public class UnholyStorm {
             if (enemy.stats.GetStrength() > 0) {
                 int value = cardLevel == 0 ? 2 : 3;
                 enemy.stats.AddStrength(-value);
-                if (enemy.stats.GetStrength() < 1) {
-                    enemy.stats.AddStrength(1 - enemy.stats.GetStrength());
-                }
+
                 enemy.UpdateWarriorUI();
                 asyncFunctions.Add(floatingText.CreateFloatingText(enemy.transform, $"-{value} Strength", ColorPalette.ColorEnum.Purple));
             }
