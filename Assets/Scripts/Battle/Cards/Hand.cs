@@ -134,6 +134,7 @@ public class Hand : MonoBehaviour {
         int randomCard = UnityEngine.Random.Range(0, indexesWithCost.Count);
         int cardIndex = indexesWithCost[randomCard];
         cardsInHand[cardIndex].stats.ReduceCost(amount);
+        cardsInHand[cardIndex].UpdateCardUI();
     }
 
     public void ReduceCostAllCards(int amount) {

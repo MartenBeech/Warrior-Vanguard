@@ -90,6 +90,9 @@ public class CharacterSpawner : MonoBehaviour {
         stats.ability.massEnflame.TriggerSummon(character, gridManager);
         stats.ability.massImmolate.TriggerSummon(character, gridManager);
         stats.ability.summoningSpirits.TriggerSummon(character, gridManager);
+        await stats.ability.drawing.TriggerSummon(character, gameManager);
+        stats.ability.familyDiscount.TriggerSummon(character, gridManager);
+        stats.ability.raceDiscount.TriggerSummon(character, gridManager);
 
         List<Character> enemies = gridManager.GetEnemies(stats.alignment);
         foreach (Character enemy in enemies) {

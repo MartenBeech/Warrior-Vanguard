@@ -31,8 +31,6 @@ public class Deck : MonoBehaviour {
     }
 
     public async Task DrawCard(bool highlightCard = true) {
-        
-
         if (deck.Count == 0) {
             await BurnOut();
             return;

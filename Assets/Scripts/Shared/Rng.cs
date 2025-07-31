@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Rng : MonoBehaviour {
 
-
+    private static string raceKey = "raceKey";
     public static int Range(int min, int maxExclusive) {
         List<int> numbers = new();
 
@@ -43,5 +43,30 @@ public class Rng : MonoBehaviour {
 
         T randomEntry = list[randomIndex];
         return randomEntry;
+    }
+
+    // The race will be saved for the rest of the game
+    public static Character.Race GetRandomRace(Character.Genre genre) {
+        List<WarriorStats> warriors = CardDatabase.allCards.FindAll(card => card.genre == genre);
+
+        var uniqueRaces = new HashSet<Character.Race>();
+        foreach (var warrior in warriors) {
+            uniqueRaces.Add(warrior.race);
+        }
+        if (uniqueRaces.Count == 0)
+            return default;
+
+        var raceList = new List<Character.Race>(uniqueRaces);
+        int randomIndex;
+        if (PlayerPrefs.HasKey(raceKey)) {
+            randomIndex = PlayerPrefs.GetInt(raceKey);
+        } else {
+            randomIndex = Random.Range(0, raceList.Count);
+        }
+
+        PlayerPrefs.SetInt(raceKey, randomIndex);
+        PlayerPrefs.Save();
+
+        return raceList[randomIndex];
     }
 }

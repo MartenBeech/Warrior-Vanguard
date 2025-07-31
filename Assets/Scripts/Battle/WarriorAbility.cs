@@ -64,6 +64,10 @@ public class WarriorAbility {
     public Enflame enflame = new();
     public Immolate immolate = new();
     public Inspire inspire = new();
+    public Drawing drawing = new();
+    public Artist artist = new();
+    public FriendDiscount friendDiscount = new();
+    public FamilyDiscount familyDiscount = new();
 
     // Unique abilities
     public HydraSplit hydraSplit = new();
@@ -104,6 +108,7 @@ public class WarriorAbility {
     public DragonRecruiter dragonRecruiter = new();
     public ScrollStudies scrollStudies = new();
     public SummoningSpirits summoningSpirits = new();
+    public RaceDiscount raceDiscount = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();
