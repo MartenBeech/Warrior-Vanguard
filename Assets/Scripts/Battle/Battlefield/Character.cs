@@ -11,7 +11,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, //Undead
         Human, Pirate, Holyborn, Knight, Griffin, Sorcerer, Fencer, Librarian, //Human
         Unicorn, Elf, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Forest
-        Imp, Minotaur, Harpy, Pestilence, Cerberus, Succubus, //Underworld
+        Imp, Minotaur, Harpy, Pestilence, Cerberus, Succubus, Demon, //Underworld
         Dark, Fire, Light, Nature //Spells
     }
     public enum Genre {
@@ -150,7 +150,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                     gameManager.friendSummonerObject.GetComponent<Summoner>() :
                     gameManager.enemySummonerObject.GetComponent<Summoner>();
 
-                await summonerTarget.TakeDamage(this, stats.GetStrength(), gridManager, stats.damageType);
+                for (int nAttacks = 0; nAttacks < (stats.ability.doubleStrike.GetValue(stats) ? 2 : 1); nAttacks++) {
+                    await summonerTarget.TakeDamage(this, stats.GetStrength(), gridManager, stats.damageType);
+                }
                 break;
             }
         }
@@ -172,6 +174,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 stats.ability.splash.Trigger(this, target, gridManager),
                 stats.ability.cleave.Trigger(this, target, gridManager),
                 stats.ability.pierce.Trigger(this, target, gridManager),
+                stats.ability.selfHarm.Trigger(this),
                 Strike(target, damage)
             };
                 await Task.WhenAll(asyncFunctions);
@@ -307,6 +310,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         stats.ability.forestProtection.TriggerDeath(this, gridManager);
         stats.ability.massResistance.TriggerDeath(this, gridManager);
         stats.ability.massEnflame.TriggerDeath(this, gridManager);
+        stats.ability.massSelfHarm.TriggerDeath(this, gridManager);
         stats.ability.massImmolate.TriggerDeath(this, gridManager);
         stats.ability.summoningSpirits.TriggerDeath(this, gridManager);
 
@@ -375,6 +379,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await stats.ability.thunderstorm.Trigger(this, gridManager);
         await stats.ability.lightningBolt.Trigger(this, gridManager);
         await stats.ability.immolate.Trigger(this, gridManager, gameManager);
+        await stats.ability.bloodPact.Trigger(this, gridManager, summoner);
         await stats.ability.scrollStudies.Trigger(this, hand);
         stats.ability.seduced.Trigger(this);
         stats.ability.stunned.Trigger(this);

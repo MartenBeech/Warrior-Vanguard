@@ -34,6 +34,7 @@ public class WarriorAbility {
     public Vulnerability vulnerability = new();
     public Enlighten enlighten = new();
     public Intelligence intelligence = new();
+    public BloodPact bloodPact = new();
 
     // Common abilities
     public Armor armor = new();
@@ -64,6 +65,7 @@ public class WarriorAbility {
     public Enflame enflame = new();
     public Immolate immolate = new();
     public Inspire inspire = new();
+    public SelfHarm selfHarm = new();
 
     // Unique abilities
     public HydraSplit hydraSplit = new();
@@ -104,6 +106,7 @@ public class WarriorAbility {
     public DragonRecruiter dragonRecruiter = new();
     public ScrollStudies scrollStudies = new();
     public SummoningSpirits summoningSpirits = new();
+    public MassSelfHarm massSelfHarm = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();

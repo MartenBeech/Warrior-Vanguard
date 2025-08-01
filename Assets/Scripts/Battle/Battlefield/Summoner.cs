@@ -78,7 +78,13 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Red);
 
             FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-            await floatingText.CreateFloatingText(transform, damage.ToString());
+            List<Task> asyncFunctions = new() {
+                floatingText.CreateFloatingText(transform, damage.ToString()),
+                dealer.stats.ability.selfHarm.Trigger(dealer)
+            };
+            await Task.WhenAll(asyncFunctions);
+
+            if (!dealer) return;
 
             dealer.image.GetComponent<Image>().color = currentColor;
 
