@@ -88,6 +88,7 @@ public class CharacterSpawner : MonoBehaviour {
         stats.ability.forestProtection.TriggerSummon(character, gridManager);
         stats.ability.massResistance.TriggerSummon(character, gridManager);
         stats.ability.massEnflame.TriggerSummon(character, gridManager);
+        stats.ability.massSelfHarm.TriggerSummon(character, gridManager);
         stats.ability.massImmolate.TriggerSummon(character, gridManager);
         stats.ability.summoningSpirits.TriggerSummon(character, gridManager);
         await stats.ability.drawing.TriggerSummon(character, gameManager);
@@ -97,6 +98,7 @@ public class CharacterSpawner : MonoBehaviour {
         List<Character> enemies = gridManager.GetEnemies(stats.alignment);
         foreach (Character enemy in enemies) {
             await enemy.stats.ability.staticEntrance.Trigger(enemy, character);
+            enemy.stats.ability.massSelfHarm.TriggerSummonEnemy(enemy, stats);
         }
 
         foreach (Item item in ItemManager.LoadItems()) {
