@@ -1,4 +1,4 @@
-public class Conjuring {
+public class PactConjuring {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,

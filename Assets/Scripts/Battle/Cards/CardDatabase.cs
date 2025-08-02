@@ -9,7 +9,7 @@ public static class CardDatabase {
         new ArtProfessorArnold().GetStats(),
         new PencilCraftsman().GetStats(),
         new DrawfulHobbyist().GetStats(),
-        new Conjuring().GetStats(),
+        new PactConjuring().GetStats(),
         new PentagramEscapee().GetStats(),
         new DemonicAbomination().GetStats(),
         new ArchPainmaker().GetStats(),
