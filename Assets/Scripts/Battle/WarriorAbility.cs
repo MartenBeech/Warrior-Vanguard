@@ -35,6 +35,7 @@ public class WarriorAbility {
     public Enlighten enlighten = new();
     public Intelligence intelligence = new();
     public BloodPact bloodPact = new();
+    public CheatDeath cheatDeath = new();
 
     // Common abilities
     public Armor armor = new();
@@ -70,6 +71,7 @@ public class WarriorAbility {
     public FriendDiscount friendDiscount = new();
     public FamilyDiscount familyDiscount = new();
     public SelfHarm selfHarm = new();
+    public SoulSiphon soulSiphon = new();
 
     // Unique abilities
     public HydraSplit hydraSplit = new();

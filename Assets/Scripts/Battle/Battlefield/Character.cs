@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public enum Race {
         None, Construct, Dragon, //Common
-        Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, //Undead
+        Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Nightrider, //Undead
         Human, Pirate, Holyborn, Knight, Griffin, Sorcerer, Fencer, Librarian, //Human
         Unicorn, Elf, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Forest
         Imp, Minotaur, Harpy, Pestilence, Cerberus, Succubus, Demon, //Underworld
@@ -146,13 +146,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
 
             if (IsOutOfField(newGridIndex)) {
-                Summoner summonerTarget = stats.alignment == CharacterSpawner.Alignment.Enemy ?
-                    gameManager.friendSummonerObject.GetComponent<Summoner>() :
-                    gameManager.enemySummonerObject.GetComponent<Summoner>();
-
-                for (int nAttacks = 0; nAttacks < (stats.ability.doubleStrike.GetValue(stats) ? 2 : 1); nAttacks++) {
-                    await summonerTarget.TakeDamage(this, stats.GetStrength(), gridManager, stats.damageType);
-                }
+                await AttackSummoner();
                 break;
             }
         }
@@ -199,7 +193,27 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (target.stats.GetHealth() > 0) {
             await target.stats.ability.retaliate.Trigger(this, target, gridManager);
         }
+    }
 
+    public async Task AttackSummoner() {
+        Summoner summonerTarget = null;
+        if (stats.alignment == CharacterSpawner.Alignment.Friend) {
+            summonerTarget = gameManager.enemySummonerObject.GetComponent<Summoner>(); ;
+        } else if (stats.alignment == CharacterSpawner.Alignment.Enemy) {
+            summonerTarget = gameManager.friendSummonerObject.GetComponent<Summoner>();
+        }
+
+        Deck deck = null;
+        if (stats.alignment == CharacterSpawner.Alignment.Friend) {
+            deck = gameManager.friendDeck;
+        } else if (stats.alignment == CharacterSpawner.Alignment.Enemy) {
+            deck = gameManager.enemyDeck;
+        }
+
+        for (int nAttacks = 0; nAttacks < (stats.ability.doubleStrike.GetValue(stats) ? 2 : 1); nAttacks++) {
+            await summonerTarget.TakeDamage(this, stats.GetStrength(), gridManager, stats.damageType);
+            await stats.ability.soulSiphon.Trigger(this, deck);
+        }
     }
 
     public async Task Strike(Character target, int damage = -1) {
@@ -301,6 +315,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Die(Character dealer) {
+        if (stats.ability.cheatDeath.Trigger(this)) return;
+
         gameManager.RemoveCharacter(this);
         gridManager.RemoveCharacter(this);
 

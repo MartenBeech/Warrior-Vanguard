@@ -174,6 +174,12 @@ public class WarriorStats {
         }
     }
 
+    public void SetHealthCurrent(int amount) {
+        for (int i = 0; i < 2; i++) {
+            health[i] = amount;
+        }
+    }
+
     public void DoubleStats() {
         for (int i = 0; i < 2; i++) {
             healthMax[i] *= 2;
