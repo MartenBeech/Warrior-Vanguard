@@ -34,7 +34,6 @@ public class WarriorStats {
     public string[] spellDescription = new string[2];
 
     public int[] cost = new int[2];
-    public int[] negativeCost = new int[2]; // Used in case a card has been reduced to a negative cost. If it gets increased, it should still be at 0.
     public int[] strength = new int[2];
     public int[] health = new int[2];
     public int[] healthMax = new int[2];
@@ -87,33 +86,21 @@ public class WarriorStats {
     }
 
     public int GetCost() {
+        if (cost[level] < 0) {
+            return 0;
+        }
         return cost[level];
     }
 
     public void ReduceCost(int amount) {
         for (int i = 0; i < 2; i++) {
             cost[i] -= amount;
-            if (cost[i] < 0) {
-                negativeCost[i] += 0 - cost[i];
-                cost[i] = 0;
-            }
         }
     }
 
     public void IncreaseCost(int amount) {
         for (int i = 0; i < 2; i++) {
-            if (negativeCost[i] > 0) {
-                cost[i] += amount - negativeCost[i];
-                if (cost[i] < 0) {
-                    cost[i] = 0;
-                }
-                negativeCost[i] -= amount;
-                if (negativeCost[i] < 0) {
-                    negativeCost[i] = 0;
-                }
-            } else {
-                cost[i] += amount;
-            }
+            cost[i] += amount;
         }
     }
 

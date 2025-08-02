@@ -181,7 +181,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         target.stats.ability.weakeningAura.TriggerAttacked(this, target);
         target.stats.ability.poisoningAura.TriggerAttacked(this, target);
         target.stats.ability.firewall.TriggerAttacked(this, target);
-        stats.ability.bloodlust.TriggerAttacked(this);
+        stats.ability.bloodlust.TriggerAttack(this);
 
 
         if (target.stats.GetHealth() > 0) {
