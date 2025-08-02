@@ -5,7 +5,7 @@ public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
         new CreativeSoulbender().GetStats(),
         new CoalbeardSketcher().GetStats(),
-        new SketcySketcher().GetStats(),
+        new SketchySketcher().GetStats(),
         new ImpressiveArtist().GetStats(),
         new ForbiddenLibrary().GetStats(),
         new DarkRider().GetStats(),

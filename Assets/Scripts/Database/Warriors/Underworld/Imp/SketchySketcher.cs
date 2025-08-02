@@ -1,4 +1,4 @@
-public class SketcySketcher {
+public class SketchySketcher {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
