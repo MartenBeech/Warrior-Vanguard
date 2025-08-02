@@ -6,7 +6,7 @@ public class Bash {
         return $"{WarriorAbility.Keywords.Strike}: 50% chance to stun the target";
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, FloatingText floatingText) {
+    public async Task<bool> TriggerStrike(Character dealer, Character target, FloatingText floatingText) {
         if (GetValue(dealer.stats)) {
             if (Rng.Chance(50)) {
                 target.stats.ability.stunned.Add();

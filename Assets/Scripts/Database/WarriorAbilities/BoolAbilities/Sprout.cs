@@ -6,7 +6,7 @@ public class Sprout {
         return $"{WarriorAbility.Keywords.Overturn}: Summon a Sprout";
     }
 
-    public async Task<bool> Trigger(Character dealer, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerOverturn(Character dealer, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats)) {
             WarriorStats elderwoodRoot = new ElderwoodRoot().GetStats();
             elderwoodRoot.alignment = dealer.stats.alignment;

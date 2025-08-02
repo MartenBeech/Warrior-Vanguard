@@ -6,7 +6,7 @@ public class BoneSpread {
         if (!GetValue(stats)) return "";
         return $"{WarriorAbility.Keywords.Death}: Summon 3 random{(stats.level == 1 ? " upgraded" : "")} Skeletons";
     }
-    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerDeath(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
             RaiseDead raiseDead = new();
             List<Task> asyncFunctions = new();

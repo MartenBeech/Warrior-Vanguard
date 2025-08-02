@@ -7,7 +7,7 @@ public class HydraSplit {
         return $"{WarriorAbility.Keywords.Death}: Summon 3 {new HydraSerpent().GetStats().strength[stats.level]}/{new HydraSerpent().GetStats().health[stats.level]} Hydra Serpents";
     }
 
-    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerDeath(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
             List<Task> asyncFunctions = new();
             for (int i = 0; i < 3; i++) {

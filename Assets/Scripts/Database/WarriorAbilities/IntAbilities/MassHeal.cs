@@ -7,7 +7,7 @@ public class MassHeal {
         return $"{WarriorAbility.Keywords.Overturn}: Heal all other friends by {GetValue(stats)}";
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+    public async Task<bool> TriggerOverturn(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
             List<Character> damagedFriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
             damagedFriends.Remove(dealer);

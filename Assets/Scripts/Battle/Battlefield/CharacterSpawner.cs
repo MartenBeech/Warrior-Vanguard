@@ -49,7 +49,7 @@ public class CharacterSpawner : MonoBehaviour {
 
         List<Character> friends = gridManager.GetFriends(stats.alignment);
         foreach (Character friend in friends) {
-            friend.stats.ability.boneSculptor.Trigger(friend, stats);
+            friend.stats.ability.boneSculptor.TriggerSummonFriend(friend, stats);
             friend.stats.ability.forestStrength.TriggerSummonFriend(friend, stats);
             friend.stats.ability.evilInspiration.TriggerSummonFriend(friend, stats);
             friend.stats.ability.forestProtection.TriggerSummonFriend(friend, stats);
@@ -97,7 +97,7 @@ public class CharacterSpawner : MonoBehaviour {
 
         List<Character> enemies = gridManager.GetEnemies(stats.alignment);
         foreach (Character enemy in enemies) {
-            await enemy.stats.ability.staticEntrance.Trigger(enemy, character);
+            await enemy.stats.ability.staticEntrance.TriggerSummonEnemy(enemy, character);
             enemy.stats.ability.massSelfHarm.TriggerSummonEnemy(enemy, stats);
         }
 
@@ -115,9 +115,9 @@ public class CharacterSpawner : MonoBehaviour {
             await ItemManager.enemyItem.UseAfterEnemySpawn(stats, gridIndex);
         }
 
-        await stats.ability.spawn.Trigger(character, this);
-        await stats.ability.silence.Trigger(character, gridManager, floatingText);
-        await stats.ability.massSilence.Trigger(character, gridManager, floatingText);
+        await stats.ability.spawn.TriggerSummon(character, this);
+        await stats.ability.silence.TriggerSummon(character, gridManager, floatingText);
+        await stats.ability.massSilence.TriggerSummon(character, gridManager, floatingText);
     }
 
     public async Task SpawnRandomly(WarriorStats stats, Vector2 from) {

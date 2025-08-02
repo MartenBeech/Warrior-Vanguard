@@ -6,7 +6,7 @@ public class Burning {
         return $"{WarriorAbility.Keywords.Overturn}: Take {GetValue(stats)} magical damage and lose one Burning stack";
     }
 
-    public async Task<bool> Trigger(Character target) {
+    public async Task<bool> TriggerOverturn(Character target) {
         if (GetValue(target.stats) > 0) {
             await target.TakeDamage(target, GetValue(target.stats), Character.DamageType.Magical);
             target.stats.ability.burning.Add(-1);

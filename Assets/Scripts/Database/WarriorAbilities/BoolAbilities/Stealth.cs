@@ -6,7 +6,7 @@ public class Stealth {
         return $"{WarriorAbility.Keywords.Strike}: Deal double damage and break stealth";
     }
 
-    public int Trigger(Character dealer, int damage) {
+    public int TriggerStrike(Character dealer, int damage) {
         if (GetValue(dealer.stats)) {
             damage *= 2;
             if (!dealer.stats.ability.permaStealth.GetValue(dealer.stats)) {

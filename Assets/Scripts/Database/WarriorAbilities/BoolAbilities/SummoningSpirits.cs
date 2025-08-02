@@ -6,15 +6,6 @@ public class SummoningSpirits {
         return $"Your cards cost 1 less";
     }
 
-    public bool Trigger(Character character) {
-        if (GetValue(character.stats)) {
-            // Add trigger event here
-            character.UpdateWarriorUI();
-            return true;
-        }
-        return false;
-    }
-
     public bool TriggerSummon(Character character, GridManager gridManager) {
         if (GetValue(character.stats)) {
             gridManager.friendHand.ReduceCostAllCards(1);
@@ -31,7 +22,7 @@ public class SummoningSpirits {
         return false;
     }
 
-    public void TriggerDrawCard(WarriorStats stats) {
+    public void TriggerDraw(WarriorStats stats) {
             stats.ReduceCost(1);
     }
 

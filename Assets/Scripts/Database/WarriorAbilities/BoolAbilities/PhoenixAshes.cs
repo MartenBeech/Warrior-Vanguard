@@ -6,7 +6,7 @@ public class PhoenixAshes {
         return $"{WarriorAbility.Keywords.Death}: Turn into 0/1 ashes that resummon this next turn";
     }
 
-    public async Task<bool> Trigger(Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerDeath(Character target, CharacterSpawner characterSpawner) {
         if (GetValue(target.stats)) {
             WarriorStats ashes = new Ashes().GetStats();
             ashes.alignment = target.stats.alignment;

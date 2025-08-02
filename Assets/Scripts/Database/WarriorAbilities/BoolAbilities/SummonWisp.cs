@@ -9,7 +9,7 @@ public class SummonWisp {
         return $"{WarriorAbility.Keywords.Overturn}: Summon a 1/1 Wisp";
     }
 
-    public async Task<bool> Trigger(Summoner dealer, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerOverturn(Summoner dealer, CharacterSpawner characterSpawner) {
             WarriorStats wisp = new Wisp().GetStats();
             wisp.alignment = characterSpawner.spawningAlignment;
             wisp.level = 0;

@@ -8,7 +8,7 @@ public class SapEnergy {
         return $"{WarriorAbility.Keywords.Overturn}: Heal {GetValue(stats)} to your Elderwood Elder";
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+    public async Task<bool> TriggerOverturn(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
             List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
             List<Character> elderwoodElders = friends.Where(friend => friend.stats.title == "ElderwoodElder").ToList();

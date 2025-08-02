@@ -52,9 +52,9 @@ public class Deck : MonoBehaviour {
 
         List<Character> friends = gridManager.GetFriends(alignment);
         foreach (var friend in friends) {
-            friend.stats.ability.enlighten.Trigger(friend);
-            friend.stats.ability.intelligence.Trigger(friend);
-            friend.stats.ability.summoningSpirits.TriggerDrawCard(drawnCard);
+            friend.stats.ability.enlighten.TriggerDraw(friend);
+            friend.stats.ability.intelligence.TriggerDraw(friend);
+            friend.stats.ability.summoningSpirits.TriggerDraw(drawnCard);
         }
 
         card.SetStats(drawnCard);

@@ -7,7 +7,7 @@ public class Splash {
         return $"{WarriorAbility.Keywords.Attack}: Also {WarriorAbility.Keywords.Strike} all enemies around your target";
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
+    public async Task<bool> TriggerAttack(Character dealer, Character target, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
             List<Character> enemies = gridManager.GetNearbyFriends(target);
             List<Task> asyncFunctions = new();

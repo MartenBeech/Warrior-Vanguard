@@ -8,7 +8,7 @@ public class Spawn {
         return $"{WarriorAbility.Keywords.Summon}: Summon {value} extra {(value > 1 ? "copies" : "copy")} of this";
     }
 
-    public async Task<bool> Trigger(Character dealer, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerSummon(Character dealer, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats) > 0) {
 
             List<Task> asyncFunctions = new();

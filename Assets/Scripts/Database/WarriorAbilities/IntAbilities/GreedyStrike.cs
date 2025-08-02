@@ -6,7 +6,7 @@ public class GreedyStrike {
         return $"{WarriorAbility.Keywords.Kill}: Gain {GetValue(stats)} Gold";
     }
 
-    public async Task<bool> Trigger(Character dealer, FloatingText floatingText) {
+    public async Task<bool> TriggerKill(Character dealer, FloatingText floatingText) {
         if (GetValue(dealer.stats) > 0) {
             if (dealer.stats.alignment == CharacterSpawner.Alignment.Friend) {
                 GoldManager.AddGold(GetValue(dealer.stats));

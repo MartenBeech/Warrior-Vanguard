@@ -6,7 +6,7 @@ public class SelfHarm {
         return $"{WarriorAbility.Keywords.Attack}: Also strikes itself";
     }
 
-    public async Task<bool> Trigger(Character dealer) {
+    public async Task<bool> TriggerAttack(Character dealer) {
         if (GetValue(dealer.stats)) {
             await dealer.Strike(dealer);
             dealer.UpdateWarriorUI();

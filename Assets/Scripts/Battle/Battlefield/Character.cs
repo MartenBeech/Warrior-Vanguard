@@ -153,7 +153,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Attack(Character target, bool dealDoubleDamage = false) {
-        await target.stats.ability.firstStrike.Trigger(this, target, gridManager);
+        await target.stats.ability.firstStrike.TriggerAttacked(this, target, gridManager);
         if (stats.GetHealth() < 0) return;
 
         int damage = stats.GetStrength() + stats.tempStrength;
@@ -164,34 +164,34 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         for (int i = 0; i < (stats.ability.doubleStrike.GetValue(stats) ? 2 : 1); i++) {
             if (target.stats.GetHealth() > 0) {
                 List<Task> asyncFunctions = new() {
-                stats.ability.multishot.Trigger(this, target, gridManager),
-                stats.ability.splash.Trigger(this, target, gridManager),
-                stats.ability.cleave.Trigger(this, target, gridManager),
-                stats.ability.pierce.Trigger(this, target, gridManager),
-                stats.ability.selfHarm.Trigger(this),
+                stats.ability.multishot.TriggerAttack(this, target, gridManager),
+                stats.ability.splash.TriggerAttack(this, target, gridManager),
+                stats.ability.cleave.TriggerAttack(this, target, gridManager),
+                stats.ability.pierce.TriggerAttack(this, target, gridManager),
+                stats.ability.selfHarm.TriggerAttack(this),
                 Strike(target, damage)
             };
                 await Task.WhenAll(asyncFunctions);
-                await target.stats.ability.spikes.Trigger(this, target);
+                await target.stats.ability.spikes.TriggerAttacked(this, target);
             }
         }
 
         stats.tempStrength = 0;
 
-        target.stats.ability.weakeningAura.Trigger(this, target);
-        target.stats.ability.poisoningAura.Trigger(this, target);
-        target.stats.ability.firewall.Trigger(this, target);
-        stats.ability.bloodlust.Trigger(this);
+        target.stats.ability.weakeningAura.TriggerAttacked(this, target);
+        target.stats.ability.poisoningAura.TriggerAttacked(this, target);
+        target.stats.ability.firewall.TriggerAttacked(this, target);
+        stats.ability.bloodlust.TriggerAttacked(this);
 
 
         if (target.stats.GetHealth() > 0) {
-            if (stats.ability.darkTouch.Trigger(this, target)) {
+            if (stats.ability.darkTouch.TriggerAttack(this, target)) {
                 await target.Die(this);
             }
         }
 
         if (target.stats.GetHealth() > 0) {
-            await target.stats.ability.retaliate.Trigger(this, target, gridManager);
+            await target.stats.ability.retaliate.TriggerAttacked(this, target, gridManager);
         }
     }
 
@@ -212,7 +212,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         for (int nAttacks = 0; nAttacks < (stats.ability.doubleStrike.GetValue(stats) ? 2 : 1); nAttacks++) {
             await summonerTarget.TakeDamage(this, stats.GetStrength(), gridManager, stats.damageType);
-            await stats.ability.soulSiphon.Trigger(this, deck);
+            await stats.ability.soulSiphon.TriggerAttack(this, deck);
         }
     }
 
@@ -221,25 +221,25 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             damage = stats.GetStrength();
         }
 
-        damage = stats.ability.stealth.Trigger(this, damage);
-        damage = stats.ability.enflame.Trigger(this, target, damage);
+        damage = stats.ability.stealth.TriggerStrike(this, damage);
+        damage = stats.ability.enflame.TriggerStrike(this, target, damage);
 
-        stats.ability.poison.Trigger(this, target);
-        stats.ability.frozenTouch.Trigger(this, target);
-        stats.ability.weaken.Trigger(this, target);
-        stats.ability.bleed.Trigger(this, target);
+        stats.ability.poison.TriggerStrike(this, target);
+        stats.ability.frozenTouch.TriggerStrike(this, target);
+        stats.ability.weaken.TriggerStrike(this, target);
+        stats.ability.bleed.TriggerStrike(this, target);
 
         damage = await target.TakeDamage(this, damage, stats.damageType);
 
-        stats.ability.vulnerability.Trigger(this, target);
+        stats.ability.vulnerability.TriggerStrike(this, target);
 
         if (damage > 0) {
-            await stats.ability.lifeSteal.Trigger(this, damage);
-            await stats.ability.lifeTransfer.Trigger(this, damage, gridManager);
+            await stats.ability.lifeSteal.TriggerStrike(this, damage);
+            await stats.ability.lifeTransfer.TriggerStrike(this, damage, gridManager);
         }
-        await stats.ability.bash.Trigger(this, target, floatingText);
-        await stats.ability.seduce.Trigger(this, target, floatingText);
-        stats.ability.rooting.Trigger(this, target);
+        await stats.ability.bash.TriggerStrike(this, target, floatingText);
+        await stats.ability.seduce.TriggerStrike(this, target, floatingText);
+        stats.ability.rooting.TriggerStrike(this, target);
     }
 
     public async Task<int> TakeDamage(Character dealer, int damage, DamageType damageType) {
@@ -252,16 +252,16 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
         }
 
-        damage = stats.ability.vulnerable.Trigger(this, damage);
-        damage = stats.ability.sapPower.Trigger(dealer, this, damage);
-        damage = stats.ability.armor.Trigger(this, damage, damageType);
-        damage = stats.ability.resistance.Trigger(this, damage, damageType);
-        damage = stats.ability.thickSkin.Trigger(this, damage);
+        damage = stats.ability.vulnerable.TriggerDamaged(this, damage);
+        damage = stats.ability.sapPower.TriggerStrike(dealer, this, damage);
+        damage = stats.ability.armor.TriggerDamaged(this, damage, damageType);
+        damage = stats.ability.resistance.TriggerDamaged(this, damage, damageType);
+        damage = stats.ability.thickSkin.TriggerDamaged(this, damage);
 
-        damage = stats.ability.stoneskin.Trigger(this, damage);
-        damage = stats.ability.incorporeal.Trigger(this, damage, damageType);
+        damage = stats.ability.stoneskin.TriggerDamaged(this, damage);
+        damage = stats.ability.incorporeal.TriggerDamaged(this, damage, damageType);
 
-        damage = stats.ability.immune.Trigger(this, damage);
+        damage = stats.ability.immune.TriggerDamaged(this, damage);
 
         List<Task> asyncFunctions = new();
 
@@ -272,7 +272,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             if (stats.GetHealth() <= 0) {
                 asyncFunctions.Add(Die(dealer));
             } else {
-                stats.ability.vengeance.Trigger(this);
+                stats.ability.vengeance.TriggerDamaged(this);
             }
         }
 
@@ -315,7 +315,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Die(Character dealer) {
-        if (stats.ability.cheatDeath.Trigger(this)) return;
+        if (stats.ability.cheatDeath.TriggerDamaged(this)) return;
 
         gameManager.RemoveCharacter(this);
         gridManager.RemoveCharacter(this);
@@ -331,22 +331,22 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         stats.ability.summoningSpirits.TriggerDeath(this, gridManager);
 
         List<Task> asyncFunctions = new() {
-            stats.ability.explosion.Trigger(this, gridManager),
-            stats.ability.revive.Trigger(this, characterSpawner),
-            stats.ability.hydraSplit.Trigger(this, characterSpawner),
-            stats.ability.boneSpread.Trigger(this, characterSpawner),
-            stats.ability.phoenixAshes.Trigger(this, characterSpawner),
+            stats.ability.explosion.TriggerDeath(this, gridManager),
+            stats.ability.revive.TriggerDeath(this, characterSpawner),
+            stats.ability.hydraSplit.TriggerDeath(this, characterSpawner),
+            stats.ability.boneSpread.TriggerDeath(this, characterSpawner),
+            stats.ability.phoenixAshes.TriggerDeath(this, characterSpawner),
         };
 
         if (stats.ability.afterlife.GetValue(stats)) {
             GameObject clone = Instantiate(gameObject, transform.position, Quaternion.identity, transform.parent);
-            asyncFunctions.Add(stats.ability.afterlife.Trigger(this, hand, summonerObject, clone));
+            asyncFunctions.Add(stats.ability.afterlife.TriggerDeath(this, hand, summonerObject, clone));
         }
 
         if (dealer != this) {
-            dealer.stats.ability.cannibalism.Trigger(dealer);
-            asyncFunctions.Add(dealer.stats.ability.carnivore.Trigger(dealer, this));
-            asyncFunctions.Add(dealer.stats.ability.raiseDead.Trigger(dealer, this, characterSpawner));
+            dealer.stats.ability.cannibalism.TriggerKill(dealer);
+            asyncFunctions.Add(dealer.stats.ability.carnivore.TriggerKill(dealer, this));
+            asyncFunctions.Add(dealer.stats.ability.raiseDead.TriggerKill(dealer, this, characterSpawner));
 
             List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
             foreach (Character friend in friends) {
@@ -358,10 +358,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 asyncFunctions.Add(character.stats.ability.looting.Trigger(character, floatingText));
             }
 
-            asyncFunctions.Add(dealer.stats.ability.possess.Trigger(dealer, this, characterSpawner));
-            asyncFunctions.Add(dealer.stats.ability.greedyStrike.Trigger(dealer, floatingText));
-            asyncFunctions.Add(dealer.stats.ability.lifeInDeath.Trigger(dealer, gridManager));
-            asyncFunctions.Add(dealer.stats.ability.dragonRecruiter.Trigger(dealer, dealer.hand));
+            asyncFunctions.Add(dealer.stats.ability.possess.TriggerKill(dealer, this, characterSpawner));
+            asyncFunctions.Add(dealer.stats.ability.greedyStrike.TriggerKill(dealer, floatingText));
+            asyncFunctions.Add(dealer.stats.ability.lifeInDeath.TriggerKill(dealer, gridManager));
+            asyncFunctions.Add(dealer.stats.ability.dragonRecruiter.TriggerKill(dealer, dealer.hand));
         }
 
         gameObject.SetActive(false);
@@ -381,26 +381,26 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task EndTurn() {
-        await stats.ability.hitAndRun.Trigger(this);
-        stats.ability.poisonCloud.Trigger(this, gridManager);
-        await stats.ability.cemeteryGates.Trigger(this, characterSpawner);
-        await stats.ability.rebirth.Trigger(this, characterSpawner);
-        await stats.ability.regeneration.Trigger(this);
-        await stats.ability.sprout.Trigger(this, characterSpawner);
-        await stats.ability.sapEnergy.Trigger(this, gridManager);
-        await stats.ability.massHeal.Trigger(this, gridManager);
-        await stats.ability.lushGrounds.Trigger(this, gridManager);
-        await stats.ability.heal.Trigger(this, gridManager);
-        await stats.ability.faeMagic.Trigger(this, summoner);
-        await stats.ability.thunderstorm.Trigger(this, gridManager);
-        await stats.ability.lightningBolt.Trigger(this, gridManager);
-        await stats.ability.immolate.Trigger(this, gridManager, gameManager);
-        await stats.ability.bloodPact.Trigger(this, gridManager, summoner);
-        await stats.ability.scrollStudies.Trigger(this, hand);
+        await stats.ability.hitAndRun.TriggerOverturn(this);
+        stats.ability.poisonCloud.TriggerOverturn(this, gridManager);
+        await stats.ability.cemeteryGates.TriggerOverturn(this, characterSpawner);
+        await stats.ability.rebirth.TriggerOverturn(this, characterSpawner);
+        await stats.ability.regeneration.TriggerOverturn(this);
+        await stats.ability.sprout.TriggerOverturn(this, characterSpawner);
+        await stats.ability.sapEnergy.TriggerOverturn(this, gridManager);
+        await stats.ability.massHeal.TriggerOverturn(this, gridManager);
+        await stats.ability.lushGrounds.TriggerOverturn(this, gridManager);
+        await stats.ability.heal.TriggerOverturn(this, gridManager);
+        await stats.ability.faeMagic.TriggerOverturn(this, summoner);
+        await stats.ability.thunderstorm.TriggerOverturn(this, gridManager);
+        await stats.ability.lightningBolt.TriggerOverturn(this, gridManager);
+        await stats.ability.immolate.TriggerOverturn(this, gridManager, gameManager);
+        await stats.ability.bloodPact.TriggerOverturn(this, gridManager, summoner);
+        await stats.ability.scrollStudies.TriggerOverturn(this, hand);
         stats.ability.seduced.Trigger(this);
         stats.ability.stunned.Trigger(this);
-        await stats.ability.poisoned.Trigger(this);
-        await stats.ability.burning.Trigger(this);
+        await stats.ability.poisoned.TriggerOverturn(this);
+        await stats.ability.burning.TriggerOverturn(this);
         await stats.ability.artist.TriggerOverturn(this, gameManager);
         stats.ability.friendDiscount.TriggerOverturn(this, gridManager);
     }

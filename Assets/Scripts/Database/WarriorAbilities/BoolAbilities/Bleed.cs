@@ -5,7 +5,7 @@ public class Bleed {
         return $"{WarriorAbility.Keywords.Strike}: Apply Bleeding";
     }
 
-    public bool Trigger(Character dealer, Character target) {
+    public bool TriggerStrike(Character dealer, Character target) {
         if (GetValue(dealer.stats)) {
             target.stats.ability.bleeding.Add();
             target.UpdateWarriorUI();

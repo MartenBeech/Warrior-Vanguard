@@ -7,7 +7,7 @@ public class MassSilence {
         return $"{WarriorAbility.Keywords.Summon}: Remove all abilities from ALL other warriors";
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager, FloatingText floatingText) {
+    public async Task<bool> TriggerSummon(Character dealer, GridManager gridManager, FloatingText floatingText) {
         if (GetValue(dealer.stats)) {
             List<Character> warriors = gridManager.GetCharacters();
             warriors.Remove(dealer);

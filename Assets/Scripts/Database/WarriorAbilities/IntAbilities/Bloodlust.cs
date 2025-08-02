@@ -5,7 +5,7 @@ public class Bloodlust {
         return $"{WarriorAbility.Keywords.Attack}: Gain +{GetValue(stats)} Strength";
     }
 
-    public bool Trigger(Character dealer) {
+    public bool TriggerAttack(Character dealer) {
         if (GetValue(dealer.stats) > 0) {
             dealer.stats.AddStrength(GetValue(dealer.stats));
             dealer.UpdateWarriorUI();

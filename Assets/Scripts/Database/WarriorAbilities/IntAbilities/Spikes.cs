@@ -6,7 +6,7 @@ public class Spikes {
         return $"When attacked, deal {GetValue(stats)} damage back";
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target) {
+    public async Task<bool> TriggerAttacked(Character dealer, Character target) {
         if (GetValue(target.stats) > 0) {
             await dealer.TakeDamage(target, GetValue(target.stats), Character.DamageType.Physical);
             return true;

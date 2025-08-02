@@ -5,7 +5,7 @@ public class SapPower {
         return $"{WarriorAbility.Keywords.Strike}: Increase damage by target's strength";
     }
 
-    public int Trigger(Character dealer, Character target, int damage) {
+    public int TriggerStrike(Character dealer, Character target, int damage) {
         if (dealer.stats.ability.sapPower.GetValue(dealer.stats)) {
             damage += target.stats.GetStrength();
         }

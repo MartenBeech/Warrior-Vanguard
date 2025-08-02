@@ -6,7 +6,7 @@ public class LifeSteal {
         return $"{WarriorAbility.Keywords.Strike}: Heal equal to damage dealt";
     }
 
-    public async Task<bool> Trigger(Character dealer, int damage) {
+    public async Task<bool> TriggerStrike(Character dealer, int damage) {
         if (GetValue(dealer.stats)) {
             await dealer.Heal(dealer, damage);
             return true;

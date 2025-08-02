@@ -5,7 +5,7 @@ public class Resistance {
         return $"Reduce magical damage taken by {GetValue(stats)}";
     }
 
-    public int Trigger(Character target, int damage, Character.DamageType damageType) {
+    public int TriggerDamaged(Character target, int damage, Character.DamageType damageType) {
         if (GetValue(target.stats) > 0) {
             if (damageType == Character.DamageType.Magical) {
                 damage -= GetValue(target.stats);

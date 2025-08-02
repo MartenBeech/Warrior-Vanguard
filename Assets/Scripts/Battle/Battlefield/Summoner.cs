@@ -51,9 +51,9 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public async Task TakeDamage(Character dealer, int damage, GridManager gridManager, Character.DamageType damageType) {
         if (dealer) {
-            damage = dealer.stats.ability.stealth.Trigger(dealer, damage);
-            damage = stats.ability.armor.Trigger(dealer, damage, damageType);
-            damage = stats.ability.resistance.Trigger(dealer, damage, damageType);
+            damage = dealer.stats.ability.stealth.TriggerStrike(dealer, damage);
+            damage = stats.ability.armor.TriggerDamaged(dealer, damage, damageType);
+            damage = stats.ability.resistance.TriggerDamaged(dealer, damage, damageType);
         }
 
         int damageAfterShield = damage;
@@ -80,7 +80,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             FloatingText floatingText = FindFirstObjectByType<FloatingText>();
             List<Task> asyncFunctions = new() {
                 floatingText.CreateFloatingText(transform, damage.ToString()),
-                dealer.stats.ability.selfHarm.Trigger(dealer)
+                dealer.stats.ability.selfHarm.TriggerAttack(dealer)
             };
             await Task.WhenAll(asyncFunctions);
 
@@ -89,11 +89,11 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             dealer.image.GetComponent<Image>().color = currentColor;
 
             if (damageAfterShield > 0) {
-                await dealer.stats.ability.lifeSteal.Trigger(dealer, damageAfterShield);
-                await dealer.stats.ability.lifeTransfer.Trigger(dealer, damageAfterShield, gridManager);
+                await dealer.stats.ability.lifeSteal.TriggerStrike(dealer, damageAfterShield);
+                await dealer.stats.ability.lifeTransfer.TriggerStrike(dealer, damageAfterShield, gridManager);
             }
 
-            dealer.stats.ability.bloodlust.Trigger(dealer);
+            dealer.stats.ability.bloodlust.TriggerAttack(dealer);
         } else {
             FloatingText floatingText = FindFirstObjectByType<FloatingText>();
             await floatingText.CreateFloatingText(transform, damage.ToString());
@@ -130,7 +130,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public async Task EndTurn(CharacterSpawner characterSpawner) {
         if (stats.ability.summonWisp.GetValue(stats)) {
-            await stats.ability.summonWisp.Trigger(this, characterSpawner);
+            await stats.ability.summonWisp.TriggerOverturn(this, characterSpawner);
         }
     }
 }

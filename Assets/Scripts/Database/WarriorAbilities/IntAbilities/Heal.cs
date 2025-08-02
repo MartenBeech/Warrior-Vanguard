@@ -7,7 +7,7 @@ public class Heal {
         return $"{WarriorAbility.Keywords.Overturn}: Heal another random friend by {GetValue(stats)}";
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+    public async Task<bool> TriggerOverturn(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
             List<Character> damagedFriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
             damagedFriends.Remove(dealer);

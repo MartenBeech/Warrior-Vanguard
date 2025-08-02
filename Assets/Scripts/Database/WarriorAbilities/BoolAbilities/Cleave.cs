@@ -7,7 +7,7 @@ public class Cleave {
         return $"{WarriorAbility.Keywords.Attack}: Hit all enemies in the column";
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
+    public async Task<bool> TriggerAttack(Character dealer, Character target, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
             List<Character> enemies = gridManager.GetFriendsOnColumn(target);
             List<Task> asyncFunctions = new();

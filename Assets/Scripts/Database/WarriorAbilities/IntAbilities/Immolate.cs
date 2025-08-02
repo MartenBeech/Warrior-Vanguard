@@ -6,7 +6,7 @@ public class Immolate {
         return $"{WarriorAbility.Keywords.Overturn}: Deal {GetValue(stats)} damage to the enemy summoner";
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager, GameManager gameManager) {
+    public async Task<bool> TriggerOverturn(Character dealer, GridManager gridManager, GameManager gameManager) {
         if (GetValue(dealer.stats) > 0) {
             Summoner summonerTarget = dealer.stats.alignment == CharacterSpawner.Alignment.Enemy ?
                     gameManager.friendSummonerObject.GetComponent<Summoner>() :

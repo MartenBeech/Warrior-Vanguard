@@ -6,7 +6,7 @@ public class Vulnerable {
         return $"Take {GetValue(stats)} extra damage from all sources";
     }
 
-    public int Trigger(Character target, int damage) {
+    public int TriggerDamaged(Character target, int damage) {
         if (GetValue(target.stats) > 0) {
             damage += GetValue(target.stats);
         }

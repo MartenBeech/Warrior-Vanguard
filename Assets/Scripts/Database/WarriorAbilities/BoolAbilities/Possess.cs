@@ -6,7 +6,7 @@ public class Possess {
         return $"{WarriorAbility.Keywords.Kill}: Resummon the target on your side";
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerKill(Character dealer, Character target, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats)) {
             WarriorStats targetStats = new();
             targetStats.SetStats(target.stats);

@@ -6,7 +6,7 @@ public class Seduce {
         return $"{WarriorAbility.Keywords.Attack}: 50% chance to make the target fight for you next turn";
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, FloatingText floatingText) {
+    public async Task<bool> TriggerStrike(Character dealer, Character target, FloatingText floatingText) {
         if (GetValue(dealer.stats)) {
             if (Rng.Chance(50)) {
                 target.stats.ability.seduced.Add();

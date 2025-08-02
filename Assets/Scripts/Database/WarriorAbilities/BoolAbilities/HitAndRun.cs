@@ -6,7 +6,7 @@ public class HitAndRun {
         return $"{WarriorAbility.Keywords.Attack}: Run backwards";
     }
 
-    public async Task<bool> Trigger(Character dealer) {
+    public async Task<bool> TriggerOverturn(Character dealer) {
         if (GetValue(dealer.stats)) {
             await dealer.MoveWarrior(dealer.stats.alignment == CharacterSpawner.Alignment.Enemy ? Character.Direction.Right : Character.Direction.Left);
             return true;

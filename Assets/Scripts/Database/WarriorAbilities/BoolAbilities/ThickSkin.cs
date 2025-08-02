@@ -6,7 +6,7 @@ public class ThickSkin {
         return $"Take half damage";
     }
 
-    public int Trigger(Character target, int damage) {
+    public int TriggerDamaged(Character target, int damage) {
         if (GetValue(target.stats)) {
             damage = (int)Mathf.Ceil(damage / 2f);
         }

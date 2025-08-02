@@ -5,7 +5,7 @@ public class FrozenTouch {
         return $"{WarriorAbility.Keywords.Strike}: Reduce target's speed by 1 (minimum 1)";
     }
 
-    public bool Trigger(Character dealer, Character target) {
+    public bool TriggerStrike(Character dealer, Character target) {
         if (GetValue(dealer.stats)) {
             if (target.stats.speed > 0) {
                 target.stats.speed--;

@@ -6,7 +6,7 @@ public class BloodPact {
         return $"{WarriorAbility.Keywords.Overturn}: Deal {GetValue(stats)} damage to your summoner";
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager, Summoner summoner) {
+    public async Task<bool> TriggerOverturn(Character dealer, GridManager gridManager, Summoner summoner) {
         if (GetValue(dealer.stats) > 0) {
             await summoner.TakeDamage(dealer, GetValue(dealer.stats), gridManager, dealer.stats.damageType);
             return true;

@@ -6,7 +6,7 @@ public class DragonRecruiter {
         return $"{WarriorAbility.Keywords.Kill}: Add a random dragon to your hand";
     }
 
-    public async Task<bool> Trigger(Character dealer, Hand hand) {
+    public async Task<bool> TriggerKill(Character dealer, Hand hand) {
         if (GetValue(dealer.stats)) {
             WarriorStats randomDragon = CardDatabase.GetRandomWarriorWithSpecificRace(Character.Race.Dragon);
             randomDragon.alignment = dealer.stats.alignment;

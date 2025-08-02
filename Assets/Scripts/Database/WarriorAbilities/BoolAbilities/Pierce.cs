@@ -6,7 +6,7 @@ public class Pierce {
         return $"{WarriorAbility.Keywords.Attack}: Also strike the enemy behind the target";
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, GridManager gridManager) {
+    public async Task<bool> TriggerAttack(Character dealer, Character target, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
             Character neighbor = gridManager.GetCharacterBehindTarget(target);
 

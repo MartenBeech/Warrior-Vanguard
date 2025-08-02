@@ -5,7 +5,7 @@ public class Vengeance {
         return $"When taking damage, gain +{GetValue(stats)} strength";
     }
 
-    public bool Trigger(Character target) {
+    public bool TriggerDamaged(Character target) {
         if (GetValue(target.stats) > 0) {
             target.stats.AddStrength(GetValue(target.stats));
             target.UpdateWarriorUI();

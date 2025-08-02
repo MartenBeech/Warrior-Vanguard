@@ -6,7 +6,7 @@ public class RaiseDead {
         return $"{WarriorAbility.Keywords.Kill}: Summon a random{(stats.level == 1 ? " upgraded" : "")} Skeleton";
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerKill(Character dealer, Character target, CharacterSpawner characterSpawner) {
         if (GetValue(dealer.stats)) {
             await SummonSkeleton(dealer, target, characterSpawner);
             return true;

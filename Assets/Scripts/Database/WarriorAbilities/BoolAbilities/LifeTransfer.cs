@@ -7,7 +7,7 @@ public class LifeTransfer {
         return $"{WarriorAbility.Keywords.Strike}: Heal another damaged friend equal to damage dealt";
     }
 
-    public async Task<bool> Trigger(Character dealer, int damage, GridManager gridManager) {
+    public async Task<bool> TriggerStrike(Character dealer, int damage, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
             List<Character> damagedfriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
             damagedfriends.Remove(dealer);

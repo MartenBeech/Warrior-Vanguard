@@ -5,7 +5,7 @@ public class CheatDeath {
         return $"First time this would die, survive with 1 health instead";
     }
 
-    public bool Trigger(Character target) {
+    public bool TriggerDamaged(Character target) {
         if (GetValue(target.stats)) {
             target.stats.SetHealthCurrent(1);
             target.stats.ability.cheatDeath.Remove();

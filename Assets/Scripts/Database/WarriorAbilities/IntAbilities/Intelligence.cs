@@ -5,7 +5,7 @@ public class Intelligence {
         return $"When you draw a card, gain {GetValue(stats)} strength";
     }
 
-    public bool Trigger(Character dealer) {
+    public bool TriggerDraw(Character dealer) {
         if (GetValue(dealer.stats) > 0) {
             dealer.stats.AddStrength(GetValue(dealer.stats));
             dealer.UpdateWarriorUI();

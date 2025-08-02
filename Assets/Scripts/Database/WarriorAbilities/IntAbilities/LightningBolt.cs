@@ -6,7 +6,7 @@ public class LightningBolt {
         return $"{WarriorAbility.Keywords.Overturn}: Deal {GetValue(stats)} magical damage to a random enemy";
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+    public async Task<bool> TriggerOverturn(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
             Character enemy = gridManager.GetRandomEnemy(dealer);
             if (enemy) {

@@ -7,7 +7,7 @@ public class Thunderstorm {
         return $"{WarriorAbility.Keywords.Overturn}: Deal {GetValue(stats)} magical damage to all enemies";
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+    public async Task<bool> TriggerOverturn(Character dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
             List<Character> enemies = gridManager.GetEnemies(dealer.stats.alignment);
             List<Task> asyncFunctions = new();
