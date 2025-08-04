@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UpgradeCard {
@@ -14,21 +15,20 @@ public class UpgradeCard {
                 if (PlayerPrefs.HasKey(eventManager.eventCardsKey)) {
                     eventManager.LoadCardsEvent(eventManager.upgradeCardsOptions);
                 } else {
+                    List<Card> unupgradedCards = DeckManager.GetUnUpgradedCards();
                     for (int i = 0; i < eventManager.upgradeCardsOptions.Count; i++) {
-                        if (eventManager.cardIndexes.Count >= DeckManager.GetUnUpgradedCards().Count) {
+                        if (unupgradedCards.Count == 0) {
                             eventManager.upgradeCardsOptions[i].gameObject.SetActive(false);
                             break;
                         }
 
-                        // Get a random index from the un-upgraded cards, make sure we don't pick the same card twice
-                        int randomIndex;
-                        do {
-                            randomIndex = Rng.Range(0, DeckManager.GetUnUpgradedCards().Count);
-                        } while (eventManager.cardIndexes.Contains(randomIndex));
-                        eventManager.upgradeCardsOptions[i].SetStats(DeckManager.GetCard(DeckManager.GetUnUpgradedCards()[randomIndex]).stats);
+                        Card randomCard = Rng.Entry(unupgradedCards);
+
+                        eventManager.upgradeCardsOptions[i].SetStats(randomCard.stats);
                         eventManager.upgradeCardsOptions[i].SetHoverCardFromMap();
                         eventManager.upgradeCardsOptions[i].UpdateCardUI();
-                        eventManager.cardIndexes.Add(DeckManager.GetUnUpgradedCards()[randomIndex]);
+                        eventManager.cardIndexes.Add(randomCard);
+                        unupgradedCards.RemoveAll(card => card.stats.title == randomCard.stats.title);
                     }
 
                     eventManager.SaveCardsEvent(eventManager.upgradeCardsOptions);

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GainCard {
@@ -9,15 +10,15 @@ public class GainCard {
                 if (PlayerPrefs.HasKey(eventManager.eventCardsKey)) {
                     eventManager.LoadCardsEvent(eventManager.gainCardsOptions);
                 } else {
+                    List<WarriorStats> legendaryCards = CardDatabase.allCards.FindAll(card => card.rarity == CardRarity.Legendary);
                     foreach (Card card in eventManager.gainCardsOptions) {
-                        // Ensure we don't pick the same card twice
-                        WarriorStats stats;
-                        do {
-                            stats = CardDatabase.GetRandomWarriorStats(CardRarity.Legendary);
-                        } while (eventManager.gainCardsOptions.Exists(c => c.stats != null && c.stats.title == stats.title));
-                        card.SetStats(stats);
+
+                        WarriorStats randomStats = Rng.Entry(legendaryCards);
+
+                        card.SetStats(randomStats);
                         card.SetHoverCardFromMap();
                         card.UpdateCardUI();
+                        legendaryCards.RemoveAll(legendaryCard => legendaryCard.title == randomStats.title);
                     }
 
                     eventManager.SaveCardsEvent(eventManager.gainCardsOptions);

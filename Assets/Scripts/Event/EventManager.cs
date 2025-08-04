@@ -36,7 +36,7 @@ public class EventManager : MonoBehaviour {
         GainItemEvent,
     }
     Event currentEvent;
-    public List<int> cardIndexes = new();
+    public List<Card> cardIndexes = new();
     public Item item;
 
     void Start() {
@@ -61,7 +61,7 @@ public class EventManager : MonoBehaviour {
 
                 fileTitle = Path.GetFileName(filePath).Split(".")[0];
 
-                fileTitle = "GainCard"; // TODO: Hardcoded for testing purposes
+                fileTitle = "UpgradeCard"; // TODO: Hardcoded for testing purposes
 
                 Type type = Type.GetType(fileTitle);
                 object instance = Activator.CreateInstance(type);
@@ -117,10 +117,9 @@ public class EventManager : MonoBehaviour {
         FinishEvent();
     }
 
-    public void UpgradeCard(int index) {
+    public void UpgradeCard(Card card) {
         upgradeCardPanel.SetActive(false);
-        Card card = DeckManager.GetCard(cardIndexes[index]);
-        card.stats.level = 1;
+        deckBuilder.UpgradeCardInDeck(card);
         eventText.text = $"You upgraded {card.stats.displayTitle}!";
         card.SetHoverCardFromMap();
         card.HideCard();
@@ -128,10 +127,9 @@ public class EventManager : MonoBehaviour {
         FinishEvent();
     }
 
-    public void RemoveCard(int index) {
+    public void RemoveCard(Card card) {
         removeCardPanel.SetActive(false);
-        Card card = DeckManager.GetCard(cardIndexes[index]);
-        deckBuilder.RemoveCardFromDeck(cardIndexes[index]);
+        deckBuilder.RemoveCardFromDeck(card);
         eventText.text = $"You removed {card.stats.displayTitle} from your deck! We will not be seeing much more of them.";
         card.SetHoverCardFromMap();
         card.HideCard();

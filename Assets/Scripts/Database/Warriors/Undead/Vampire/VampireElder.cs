@@ -9,12 +9,12 @@ public class VampireElder {
             range = 2,
             damageType = Character.DamageType.Physical,
             race = Character.Race.Vampire,
+            rarity = CardRarity.Common,
             genre = Character.Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
         }
-        stats.rarity = CardRarity.Legendary;
 
         WarriorAbility ability = stats.ability;
         ability.lifeSteal.Add();

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class DeckManager {
     static string deckKey = "playerDeck";
@@ -19,20 +20,24 @@ public static class DeckManager {
         SaveDeck();
     }
 
+    public static void UpgradeCard(int index) {
+        deck = LoadDeck();
+        if (deck.Count > index) {
+            deck[index].stats.level = 1;
+        }
+        SaveDeck();
+    }
+
     public static Card GetCard(int index) {
         deck = LoadDeck();
         return deck[index];
     }
 
-    public static List<int> GetUnUpgradedCards() {
-        List<int> warriorStatsDeck = new();
-        for (int i = 0; i < LoadDeck().Count; i++) {
-            if (LoadDeck()[i].stats.level == 0) {
-                warriorStatsDeck.Add(i);
-            }
-        }
+    public static List<Card> GetUnUpgradedCards() {
+        List<Card> deck = LoadDeck();
+        List<Card> unupgradedCards = deck.Where(card => card.stats.level == 0).ToList();
 
-        return warriorStatsDeck;
+        return unupgradedCards;
     }
 
     public static List<int> GetDeckIndexes() {
@@ -46,7 +51,8 @@ public static class DeckManager {
 
     public static List<WarriorStats> GetDeck() {
         List<WarriorStats> warriorStatsDeck = new();
-        foreach (Card card in LoadDeck()) {
+        List<Card> deck = LoadDeck();
+        foreach (Card card in deck) {
             warriorStatsDeck.Add(card.stats);
         }
         return warriorStatsDeck;
@@ -62,7 +68,7 @@ public static class DeckManager {
         PlayerPrefs.Save();
     }
 
-    static List<Card> LoadDeck() {
+    public static List<Card> LoadDeck() {
         List<Card> tempDeck = new();
         if (!PlayerPrefs.HasKey(deckKey)) return tempDeck;
 

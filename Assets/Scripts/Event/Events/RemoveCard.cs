@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 public class RemoveCard {
     public Event GetEvent(EventManager eventManager) {
@@ -13,21 +14,20 @@ public class RemoveCard {
                 if (PlayerPrefs.HasKey(eventManager.eventCardsKey)) {
                     eventManager.LoadCardsEvent(eventManager.removeCardsOptions);
                 } else {
+                    List<Card> deck = DeckManager.LoadDeck();
                     for (int i = 0; i < eventManager.removeCardsOptions.Count; i++) {
-                        if (eventManager.cardIndexes.Count >= DeckManager.GetDeck().Count) {
+                        if (deck.Count == 0) {
                             eventManager.removeCardsOptions[i].gameObject.SetActive(false);
                             break;
                         }
 
-                        // Get a random index from the deck, make sure we don't pick the same card twice
-                        int randomIndex;
-                        do {
-                            randomIndex = Rng.Range(0, DeckManager.GetDeck().Count);
-                        } while (eventManager.cardIndexes.Contains(randomIndex));
-                        eventManager.removeCardsOptions[i].SetStats(DeckManager.GetCard(randomIndex).stats);
+                        Card randomCard = Rng.Entry(deck);
+
+                        eventManager.removeCardsOptions[i].SetStats(randomCard.stats);
                         eventManager.removeCardsOptions[i].SetHoverCardFromMap();
                         eventManager.removeCardsOptions[i].UpdateCardUI();
-                        eventManager.cardIndexes.Add(randomIndex);
+                        eventManager.cardIndexes.Add(randomCard);
+                        deck.RemoveAll(card => card.stats.title == randomCard.stats.title);
                     }
 
                     eventManager.SaveCardsEvent(eventManager.removeCardsOptions);

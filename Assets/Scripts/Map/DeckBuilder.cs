@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class DeckBuilder : MonoBehaviour {
     public GameObject textObject;
@@ -20,8 +21,15 @@ public class DeckBuilder : MonoBehaviour {
         UpdateDeckText();
     }
 
-    public void RemoveCardFromDeck(int index) {
-        DeckManager.RemoveCard(index);
+    public void RemoveCardFromDeck(Card card) {
+        List<WarriorStats> deck = DeckManager.GetDeck();
+        DeckManager.RemoveCard(deck.FindIndex(deckCard => deckCard.title == card.stats.title));
+        UpdateDeckText();
+    }
+
+    public void UpgradeCardInDeck(Card card) {
+        List<WarriorStats> deck = DeckManager.GetDeck();
+        DeckManager.UpgradeCard(deck.FindIndex(deckCard => deckCard.title == card.stats.title && deckCard.level == card.stats.level));
         UpdateDeckText();
     }
 

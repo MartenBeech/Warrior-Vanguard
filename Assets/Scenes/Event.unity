@@ -276,7 +276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -299,8 +299,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1952023752}
+    - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: Card, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_Name
@@ -736,7 +740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -759,8 +763,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1773970900}
+    - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: Card, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_Name
@@ -1639,7 +1647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1658,8 +1666,12 @@ PrefabInstance:
       value: EventManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 307223311}
+    - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: Card, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_Name
@@ -3503,7 +3515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3526,8 +3538,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1286808012}
+    - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: Card, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_Name
@@ -3661,6 +3677,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c08c20cedd4cd4ebb8202f110ef913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventKey: eventKey
+  eventGainItemKey: eventGainItem
+  eventCardsKey: eventCards
   eventText: {fileID: 884357800}
   upgradeCardsOptions:
   - {fileID: 307223311}
@@ -3684,6 +3703,8 @@ MonoBehaviour:
   itemDescription: {fileID: 455760509}
   deckBuilder: {fileID: 1042169205}
   summonerManager: {fileID: 861352659}
+  cardIndexes: []
+  item: {fileID: 0}
 --- !u!4 &1395030318
 Transform:
   m_ObjectHideFlags: 0
@@ -5139,7 +5160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5158,8 +5179,12 @@ PrefabInstance:
       value: EventManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1822466287}
+    - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: Card, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_Name
@@ -5278,7 +5303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5301,8 +5326,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 471984571}
+    - target: {fileID: -6877382601561718067, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: Card, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 60891471826456955, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
       propertyPath: m_Name
