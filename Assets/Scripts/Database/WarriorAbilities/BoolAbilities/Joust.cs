@@ -2,12 +2,13 @@ using System.Text.RegularExpressions;
 public class Joust {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Deal +1 damage for each cell moved this turn";
+        return $"For each tile moved, gain +1 strength this turn";
     }
 
-    public bool Trigger(Character dealer, int cellsMoved) {
+    public bool TriggerMove(Character dealer, int cellsMoved) {
         if (GetValue(dealer.stats)) {
             dealer.stats.tempStrength += cellsMoved;
+            dealer.UpdateWarriorUI();
             return true;
         }
         return false;

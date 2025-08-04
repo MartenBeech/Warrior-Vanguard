@@ -111,11 +111,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         if (stepsToMove > 0) {
             if (stats.ability.rooted.Trigger(this)) return;
-            stats.ability.joust.Trigger(this, stepsToMove);
 
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, stepsToMove);
             ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
             await objectAnimation.MoveObject(transform.position, gridManager.GetCellPosition(newGridIndex), 2);
+
+            stats.ability.joust.TriggerMove(this, stepsToMove);
             stats.ability.familiarGround.TriggerMove(this, gridIndex, newGridIndex, gridManager);
             gridIndex = newGridIndex;
         }
@@ -153,7 +154,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Attack(Character target, bool dealDoubleDamage = false) {
-        int damage = stats.GetStrength() + stats.tempStrength;
+        int damage = stats.GetStrength();
         if (dealDoubleDamage) {
             damage *= 2;
         }
@@ -187,8 +188,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 }
             }
         }
-
-        stats.tempStrength = 0;
     }
 
     public async Task AttackSummoner() {
@@ -399,6 +398,12 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await stats.ability.burning.TriggerOverturn(this);
         await stats.ability.artist.TriggerOverturn(this, gameManager);
         stats.ability.friendDiscount.TriggerOverturn(this, gridManager);
+
+        if (stats.tempStrength > 0) {
+            stats.tempStrength = 0;
+            UpdateWarriorUI();
+        }
+
     }
 
     private Vector2 GetFrontCellIndex(Vector2 gridIndex, Direction direction, int range = 1) {
