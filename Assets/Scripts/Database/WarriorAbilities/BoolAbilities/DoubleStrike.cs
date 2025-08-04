@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class DoubleStrike {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Strike the target twice";
+        return $"Can attack twice";
     }
 
     bool[] value = new bool[] { false, false };
