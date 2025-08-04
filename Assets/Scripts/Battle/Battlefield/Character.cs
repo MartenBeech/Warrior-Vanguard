@@ -153,9 +153,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Attack(Character target, bool dealDoubleDamage = false) {
-        await target.stats.ability.firstStrike.TriggerAttacked(this, target, gridManager);
-        if (stats.GetHealth() < 0) return;
-
         int damage = stats.GetStrength() + stats.tempStrength;
         if (dealDoubleDamage) {
             damage *= 2;
@@ -163,6 +160,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         for (int i = 0; i < (stats.ability.doubleStrike.GetValue(stats) ? 2 : 1); i++) {
             if (target.stats.GetHealth() > 0) {
+                await target.stats.ability.firstStrike.TriggerAttacked(this, target, gridManager);
+                if (stats.GetHealth() < 0) return;
+
                 List<Task> asyncFunctions = new() {
                 stats.ability.multishot.TriggerAttack(this, target, gridManager),
                 stats.ability.splash.TriggerAttack(this, target, gridManager),
@@ -171,28 +171,24 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 stats.ability.selfHarm.TriggerAttack(this),
                 Strike(target, damage)
             };
+                stats.ability.bloodlust.TriggerAttack(this);
                 await Task.WhenAll(asyncFunctions);
-                await target.stats.ability.spikes.TriggerAttacked(this, target);
+
+                if (target.stats.GetHealth() > 0) {
+                    target.stats.ability.firewall.TriggerAttacked(this, target);
+                    target.stats.ability.weakeningAura.TriggerAttacked(this, target);
+                    target.stats.ability.poisoningAura.TriggerAttacked(this, target);
+                    if (stats.ability.darkTouch.TriggerAttack(this, target)) {
+                        await target.Die(this);
+                        return;
+                    }
+                    await target.stats.ability.spikes.TriggerAttacked(this, target);
+                    await target.stats.ability.retaliate.TriggerAttacked(this, target, gridManager);
+                }
             }
         }
 
         stats.tempStrength = 0;
-
-        target.stats.ability.weakeningAura.TriggerAttacked(this, target);
-        target.stats.ability.poisoningAura.TriggerAttacked(this, target);
-        target.stats.ability.firewall.TriggerAttacked(this, target);
-        stats.ability.bloodlust.TriggerAttack(this);
-
-
-        if (target.stats.GetHealth() > 0) {
-            if (stats.ability.darkTouch.TriggerAttack(this, target)) {
-                await target.Die(this);
-            }
-        }
-
-        if (target.stats.GetHealth() > 0) {
-            await target.stats.ability.retaliate.TriggerAttacked(this, target, gridManager);
-        }
     }
 
     public async Task AttackSummoner() {
