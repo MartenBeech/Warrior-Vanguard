@@ -28,7 +28,7 @@ public class EventManager : MonoBehaviour {
     enum events {
         GainGoldEvent,
         LoseGoldEvent,
-        GainCardEvent,
+        GainLegendaryEvent,
         UpgradeCardEvent,
         RemoveCardEvent,
         LoseHealthEvent,
@@ -61,7 +61,7 @@ public class EventManager : MonoBehaviour {
 
                 fileTitle = Path.GetFileName(filePath).Split(".")[0];
 
-                fileTitle = "UpgradeCard"; // TODO: Hardcoded for testing purposes
+                fileTitle = "GainLegendary"; // TODO: Hardcoded for testing purposes
 
                 Type type = Type.GetType(fileTitle);
                 object instance = Activator.CreateInstance(type);

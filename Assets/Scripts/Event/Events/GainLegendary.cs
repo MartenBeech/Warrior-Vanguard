@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GainCard {
+public class GainLegendary {
     public Event GetEvent(EventManager eventManager) {
         Event newEvent = new() {
             OnSetup = () => {
