@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ColorPalette {
@@ -24,5 +25,9 @@ public class ColorPalette {
     public static Color AddTransparency(Color imgColor, int percentageVisible) {
         imgColor.a = percentageVisible / 100f;
         return imgColor;
+    }
+
+    public static string AddColorToText(string text, Color color) {
+        return $"<color=#{color.ToHexString()}>{text}</color>";
     }
 }

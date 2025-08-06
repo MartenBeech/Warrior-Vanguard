@@ -10,13 +10,13 @@ public class SummonWisp {
     }
 
     public async Task<bool> TriggerOverturn(Summoner dealer, CharacterSpawner characterSpawner) {
-            WarriorStats wisp = new Wisp().GetStats();
-            wisp.alignment = characterSpawner.spawningAlignment;
-            wisp.level = 0;
-            wisp.SetStats(wisp);
+        WarriorStats wisp = new Wisp().GetStats();
+        wisp.alignment = characterSpawner.spawningAlignment;
+        wisp.level = 0;
+        wisp.SetStats(wisp);
 
-            await characterSpawner.SpawnRandomly(wisp, dealer.transform.position);
-            return true;
+        await characterSpawner.SpawnRandomly(wisp, dealer.transform.position);
+        return true;
     }
 
     bool[] value = new bool[] { false, false };
@@ -54,4 +54,6 @@ public class SummonWisp {
         string abilityName = Regex.Replace(className, "(?<!^)([A-Z])", " $1");
         return abilityName;
     }
+
+    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
 }

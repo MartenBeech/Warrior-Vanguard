@@ -23,7 +23,7 @@ public class SummoningSpirits {
     }
 
     public void TriggerDraw(WarriorStats stats) {
-            stats.ReduceCost(1);
+        stats.ReduceCost(1);
     }
 
     bool[] value = new bool[] { false, false };
@@ -57,4 +57,6 @@ public class SummoningSpirits {
         string abilityName = Regex.Replace(className, "(?<!^)([A-Z])", " $1");
         return abilityName;
     }
+
+    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text attackText;
@@ -9,7 +10,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text costText;
     public GameObject image;
     public TMP_Text titleText;
-    public TMP_Text abilityText;
+    public Transform abilities;
+    public GameObject abilityTextPrefab;
+    public TMP_Text spellDescription;
     public GameObject racePanel;
     public TMP_Text raceText;
     public GameObject rangeImage;
@@ -33,7 +36,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Icons/SilverBackground");
         }
 
+        foreach (Transform child in abilities) {
+            Destroy(child.gameObject);
+        }
+
+
+
         if (stats.cardType == CardType.Warrior) {
+            spellDescription.text = "";
+
             attackText.text = $"{stats.GetStrength()}";
             healthText.text = $"{stats.GetHealth()}";
             raceText.text = $"{stats.race}";
@@ -51,9 +62,14 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
                 speedImage.GetComponentInChildren<TMP_Text>().text = stats.speed.ToString();
             }
 
-            abilityText.text = stats.ability.GetAbilityText(stats);
+            List<string> abilityTexts = stats.ability.GetAbilityText(stats);
+            foreach (var text in abilityTexts) {
+                GameObject abilityText = Instantiate(abilityTextPrefab, abilities);
+                abilityText.GetComponent<TMP_Text>().text = text;
+            }
+
         } else if (stats.cardType == CardType.Spell) {
-            abilityText.text = stats.spellDescription[stats.level];
+            spellDescription.text = stats.spellDescription[stats.level];
             rangeImage.SetActive(false);
             speedImage.SetActive(false);
             attackText.text = "";

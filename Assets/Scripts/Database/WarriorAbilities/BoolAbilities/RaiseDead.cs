@@ -46,6 +46,8 @@ public class RaiseDead {
         return abilityName;
     }
 
+    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+
     public async Task SummonSkeleton(Character dealer, Character target, CharacterSpawner characterSpawner, CharacterSpawner.Alignment alignment = CharacterSpawner.Alignment.Null) {
         int skeletonType = Rng.Range(0, 4);
 

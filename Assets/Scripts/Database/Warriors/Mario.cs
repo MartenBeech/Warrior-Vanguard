@@ -16,8 +16,8 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.soulSiphon.Add();
-        ability.doubleStrike.Add();
+        ability.poison.Add(1);
+        ability.enflame.Add();
 
         return stats;
     }

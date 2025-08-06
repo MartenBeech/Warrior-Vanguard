@@ -46,4 +46,6 @@ public class Seduced {
         string abilityName = Regex.Replace(className, "(?<!^)([A-Z])", " $1");
         return abilityName;
     }
+
+    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.Debuff;
 }

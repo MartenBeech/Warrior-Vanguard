@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 public class WarriorAbility {
     public enum Keywords {
@@ -9,6 +10,10 @@ public class WarriorAbility {
         Summon,     //after it is summoned
         Kill,       //After it kills a warrior
         Aura,       //Active while it is alive
+    }
+
+    public enum BuffType {
+        None, Buff, Debuff
     }
 
     // Identity abilities
@@ -72,6 +77,7 @@ public class WarriorAbility {
     public FamilyDiscount familyDiscount = new();
     public SelfHarm selfHarm = new();
     public SoulSiphon soulSiphon = new();
+    public Immune immune = new();
 
     // Unique abilities
     public HydraSplit hydraSplit = new();
@@ -124,13 +130,12 @@ public class WarriorAbility {
     public Burning burning = new();
     public Seduced seduced = new();
     public Vulnerable vulnerable = new();
-    public Immune immune = new();
 
     // Summoner abilities
     public SummonWisp summonWisp = new();
 
-    public string GetAbilityText(WarriorStats stats) {
-        string returnValue = "";
+    public List<string> GetAbilityText(WarriorStats stats) {
+        List<string> returnValue = new();
 
         FieldInfo[] fields = GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
 
@@ -139,7 +144,15 @@ public class WarriorAbility {
             object[] parameters = { stats };
             MethodInfo method = abilityInstance.GetType().GetMethod("GetTitle");
 
-            returnValue += (string)method.Invoke(abilityInstance, parameters);
+            string description = (string)method.Invoke(abilityInstance, parameters);
+            if (description != "") {
+                FieldInfo buffField = abilityInstance.GetType().GetField("buffType");
+                BuffType buffType = (BuffType)buffField.GetValue(abilityInstance);
+                if (buffType == BuffType.Debuff) {
+                    description = ColorPalette.AddColorToText(description, ColorPalette.GetColor(ColorPalette.ColorEnum.Red));
+                }
+                returnValue.Add(description);
+            }
         }
 
         return returnValue;
