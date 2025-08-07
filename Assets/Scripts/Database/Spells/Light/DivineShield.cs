@@ -19,9 +19,9 @@ public class DivineShield {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        target.stats.ability.immune.Add();
-        target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Immune", ColorPalette.ColorEnum.Yellow);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        parameters.target.stats.ability.immune.Add();
+        parameters.target.UpdateWarriorUI();
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Immune", ColorPalette.ColorEnum.Yellow);
     }
 }

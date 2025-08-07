@@ -19,19 +19,19 @@ public class Fireball {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
+    public async Task Trigger(SpellTriggerParams parameters) {
         List<Task> asyncFunctions = new();
 
-        int baseDamage = cardLevel == 0 ? 5 : 6;
-        int surroundingDamage = cardLevel == 0 ? 2 : 3;
+        int baseDamage = parameters.cardLevel == 0 ? 5 : 6;
+        int surroundingDamage = parameters.cardLevel == 0 ? 2 : 3;
 
-        await target.TakeDamage(target, baseDamage, Character.DamageType.Magical);
+        await parameters.target.TakeDamage(parameters.target, baseDamage, Character.DamageType.Magical);
 
-        List<Character> nearbyWarriors = gridManager.GetNearbyWarriors(target.gridIndex);
+        List<Character> nearbyWarriors = parameters.gridManager.GetNearbyWarriors(parameters.target.gridIndex);
         foreach (Character warrior in nearbyWarriors) {
             asyncFunctions.Add(warrior.TakeDamage(warrior, surroundingDamage, Character.DamageType.Magical));
         }
 
-        target.UpdateWarriorUI();
+        parameters.target.UpdateWarriorUI();
     }
 }

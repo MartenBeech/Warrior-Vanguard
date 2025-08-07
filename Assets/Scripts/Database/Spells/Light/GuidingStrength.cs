@@ -19,10 +19,10 @@ public class GuidingStrength {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        int value = cardLevel == 0 ? 2 : 3;
-        target.stats.AddStrength(value);
-        target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Guiding Strength", ColorPalette.ColorEnum.Yellow);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        int value = parameters.cardLevel == 0 ? 2 : 3;
+        parameters.target.stats.AddStrength(value);
+        parameters.target.UpdateWarriorUI();
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Guiding Strength", ColorPalette.ColorEnum.Yellow);
     }
 }

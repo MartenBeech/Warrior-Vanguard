@@ -18,18 +18,18 @@ public class Reanimate {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
+    public async Task Trigger(SpellTriggerParams parameters) {
         List<Task> asyncFunctions = new();
 
         WarriorStats stats = new() {
-            title = target.stats.title
+            title = parameters.target.stats.title
         };
         stats.ResetStats();
-        stats.alignment = target.stats.alignment;
+        stats.alignment = parameters.target.stats.alignment;
 
-        asyncFunctions.Add(target.Die(target));
+        asyncFunctions.Add(parameters.target.Die(parameters.target));
 
-        asyncFunctions.Add(characterSpawner.SpawnRandomly(stats, target.transform.position));
+        asyncFunctions.Add(parameters.characterSpawner.SpawnRandomly(stats, parameters.target.transform.position));
 
         await Task.WhenAll(asyncFunctions);
     }

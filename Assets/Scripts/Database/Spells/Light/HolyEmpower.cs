@@ -19,10 +19,10 @@ public class HolyEmpower {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        target.stats.AddStrength(3);
-        target.stats.AddHealth(2);
-        target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Holy Empower", ColorPalette.ColorEnum.Yellow);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        parameters.target.stats.AddStrength(3);
+        parameters.target.stats.AddHealth(2);
+        parameters.target.UpdateWarriorUI();
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Holy Empower", ColorPalette.ColorEnum.Yellow);
     }
 }

@@ -19,11 +19,11 @@ public class CLASSNAMESPELL {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
+    public async Task Trigger(SpellTriggerParams parameters) {
         List<Task> asyncFunctions = new();
 
-        target.UpdateWarriorUI();
-        asyncFunctions.Add(floatingText.CreateFloatingText(target.transform, "TEXT", ColorPalette.ColorEnum.Purple));
+        parameters.target.UpdateWarriorUI();
+        asyncFunctions.Add(parameters.floatingText.CreateFloatingText(parameters.target.transform, "TEXT", ColorPalette.ColorEnum.Purple));
         await Task.WhenAll(asyncFunctions);
     }
 }

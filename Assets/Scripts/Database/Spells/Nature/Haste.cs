@@ -19,9 +19,9 @@ public class Haste {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        int value = cardLevel == 0 ? 1 : 2;
-        target.stats.speed += value;
-        await floatingText.CreateFloatingText(target.transform, "Haste", ColorPalette.ColorEnum.Green);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        int value = parameters.cardLevel == 0 ? 1 : 2;
+        parameters.target.stats.speed += value;
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Haste", ColorPalette.ColorEnum.Green);
     }
 }

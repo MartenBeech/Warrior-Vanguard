@@ -19,14 +19,14 @@ public class Sanctuary {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        List<Character> friends = gridManager.GetFriends(target.stats.alignment);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        List<Character> friends = parameters.gridManager.GetFriends(parameters.target.stats.alignment);
 
         List<Task> asyncFunctions = new();
         foreach (var friend in friends) {
             friend.stats.ability.immune.Add();
             friend.UpdateWarriorUI();
-            asyncFunctions.Add(floatingText.CreateFloatingText(friend.transform, "Immune", ColorPalette.ColorEnum.Yellow));
+            asyncFunctions.Add(parameters.floatingText.CreateFloatingText(friend.transform, "Immune", ColorPalette.ColorEnum.Yellow));
         }
         await Task.WhenAll(asyncFunctions);
     }

@@ -19,9 +19,9 @@ public class RainOfFire {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        int value = cardLevel == 0 ? 1 : 2;
-        List<Character> enemies = gridManager.GetEnemies(GameManager.turn);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        int value = parameters.cardLevel == 0 ? 1 : 2;
+        List<Character> enemies = parameters.gridManager.GetEnemies(GameManager.turn);
         List<Task> asyncFunctions = new();
         foreach (Character enemy in enemies) {
             asyncFunctions.Add(enemy.TakeDamage(enemy, value, Character.DamageType.Magical));

@@ -19,15 +19,15 @@ public class HolyFlame {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        int value = cardLevel == 0 ? 3 : 4;
+    public async Task Trigger(SpellTriggerParams parameters) {
+        int value = parameters.cardLevel == 0 ? 3 : 4;
 
-        if (target.stats.genre == Character.Genre.Undead) {
-            int undeadValue = cardLevel == 0 ? 3 : 6;
+        if (parameters.target.stats.genre == Character.Genre.Undead) {
+            int undeadValue = parameters.cardLevel == 0 ? 3 : 6;
             value = undeadValue;
         }
 
-        await target.TakeDamage(target, value, Character.DamageType.Magical);
-        target.UpdateWarriorUI();
+        await parameters.target.TakeDamage(parameters.target, value, Character.DamageType.Magical);
+        parameters.target.UpdateWarriorUI();
     }
 }

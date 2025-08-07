@@ -19,9 +19,9 @@ public class Firebolt {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        int value = cardLevel == 0 ? 3 : 4;
-        await target.TakeDamage(target, value, Character.DamageType.Magical);
-        target.UpdateWarriorUI();
+    public async Task Trigger(SpellTriggerParams parameters) {
+        int value = parameters.cardLevel == 0 ? 3 : 4;
+        await parameters.target.TakeDamage(parameters.target, value, Character.DamageType.Magical);
+        parameters.target.UpdateWarriorUI();
     }
 }

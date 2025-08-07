@@ -17,9 +17,9 @@ public class Disarm {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        target.stats.AddStrength(-(target.stats.GetStrength() - 1));
-        target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Disarmed", ColorPalette.ColorEnum.Purple);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        parameters.target.stats.AddStrength(-(parameters.target.stats.GetStrength() - 1));
+        parameters.target.UpdateWarriorUI();
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Disarmed", ColorPalette.ColorEnum.Purple);
     }
 }

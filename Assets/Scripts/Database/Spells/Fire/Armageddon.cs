@@ -19,17 +19,17 @@ public class Armageddon {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
+    public async Task Trigger(SpellTriggerParams parameters) {
         List<Task> asyncFunctions = new();
 
-        List<Character> enemies = gridManager.GetEnemies(GameManager.turn);
+        List<Character> enemies = parameters.gridManager.GetEnemies(GameManager.turn);
         foreach (Character enemy in enemies) {
             asyncFunctions.Add(enemy.TakeDamage(enemy, 5, Character.DamageType.Magical));
         }
 
-        List<Character> friends = gridManager.GetFriends(GameManager.turn);
+        List<Character> friends = parameters.gridManager.GetFriends(GameManager.turn);
         foreach (Character friend in friends) {
-            asyncFunctions.Add(friend.TakeDamage(friend, cardLevel == 0 ? 5 : 3, Character.DamageType.Magical));
+            asyncFunctions.Add(friend.TakeDamage(friend, parameters.cardLevel == 0 ? 5 : 3, Character.DamageType.Magical));
         }
 
         await Task.WhenAll(asyncFunctions);

@@ -19,10 +19,10 @@ public class Embiggen {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        int value = cardLevel == 0 ? 2 : 3;
-        target.stats.AddHealth(value);
-        target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Embiggen", ColorPalette.ColorEnum.Green);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        int value = parameters.cardLevel == 0 ? 2 : 3;
+        parameters.target.stats.AddHealth(value);
+        parameters.target.UpdateWarriorUI();
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Embiggen", ColorPalette.ColorEnum.Green);
     }
 }

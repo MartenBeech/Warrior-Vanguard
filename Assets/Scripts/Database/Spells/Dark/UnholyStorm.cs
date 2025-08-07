@@ -18,16 +18,16 @@ public class UnholyStorm {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        List<Character> enemies = gridManager.GetEnemies(GameManager.turn);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        List<Character> enemies = parameters.gridManager.GetEnemies(GameManager.turn);
         List<Task> asyncFunctions = new();
         foreach (Character enemy in enemies) {
             if (enemy.stats.GetStrength() > 0) {
-                int value = cardLevel == 0 ? 2 : 3;
+                int value = parameters.cardLevel == 0 ? 2 : 3;
                 enemy.stats.AddStrength(-value);
 
                 enemy.UpdateWarriorUI();
-                asyncFunctions.Add(floatingText.CreateFloatingText(enemy.transform, $"-{value} Strength", ColorPalette.ColorEnum.Purple));
+                asyncFunctions.Add(parameters.floatingText.CreateFloatingText(enemy.transform, $"-{value} Strength", ColorPalette.ColorEnum.Purple));
             }
         }
         await Task.WhenAll(asyncFunctions);

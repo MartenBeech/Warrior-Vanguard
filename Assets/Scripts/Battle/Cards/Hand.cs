@@ -37,6 +37,7 @@ public class Hand : MonoBehaviour {
 
     public async Task PlayCardFromHand(CharacterSpawner characterSpawner, Vector2 selectedGridIndex) {
         GameManager gameManager = FindFirstObjectByType<GameManager>();
+
         Coin coin = null;
         GameObject summonerObject = null;
         if (selectedCard.stats.alignment == CharacterSpawner.Alignment.Friend) {
@@ -49,6 +50,15 @@ public class Hand : MonoBehaviour {
 
         if (!coin.SpendCoins(selectedCard.stats.GetCost())) return;
 
+        Deck deck = null;
+        if (selectedCard.stats.alignment == CharacterSpawner.Alignment.Friend) {
+            deck = gameManager.friendDeck;
+        } else if (selectedCard.stats.alignment == CharacterSpawner.Alignment.Enemy) {
+            deck = gameManager.enemyDeck;
+        }
+
+        Summoner summoner = summonerObject.GetComponent<Summoner>();
+
         List<Task> asyncFunctions = new();
         if (selectedCard.stats.cardType == CardType.Warrior) {
             asyncFunctions.Add(
@@ -58,7 +68,10 @@ public class Hand : MonoBehaviour {
             Type type = Type.GetType(selectedCard.stats.title);
             object instance = Activator.CreateInstance(type);
             Character target = gridManager.GetCellCharacter(selectedGridIndex);
-            asyncFunctions.Add((Task)type.GetMethod("Trigger")?.Invoke(instance, new object[] { gridManager, target, selectedCard.stats.level, floatingText, characterSpawner }));
+
+            var spellTriggerParams = new SpellTriggerParams(gridManager, target, cardLevel: selectedCard.stats.level, floatingText, characterSpawner, deck, summoner);
+
+            asyncFunctions.Add((Task)type.GetMethod("Trigger")?.Invoke(instance, new object[] { spellTriggerParams }));
         }
 
         cardsInHand.Remove(selectedCard);

@@ -19,7 +19,7 @@ public class Burnout {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
+    public async Task Trigger(SpellTriggerParams parameters) {
         List<Task> asyncFunctions = new();
         await Task.WhenAll(asyncFunctions);
     }

@@ -17,10 +17,10 @@ public class PoisonPotion {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        int value = cardLevel == 0 ? 2 : 3;
-        target.stats.ability.poisoned.Add(value);
-        target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, $"{value} poison", ColorPalette.ColorEnum.Purple);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        int value = parameters.cardLevel == 0 ? 2 : 3;
+        parameters.target.stats.ability.poisoned.Add(value);
+        parameters.target.UpdateWarriorUI();
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"{value} poison", ColorPalette.ColorEnum.Purple);
     }
 }

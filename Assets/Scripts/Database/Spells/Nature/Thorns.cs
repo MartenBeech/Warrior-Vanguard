@@ -19,9 +19,9 @@ public class Thorns {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        int value = cardLevel == 0 ? 2 : 3;
-        target.stats.ability.spikes.Add(value);
-        await floatingText.CreateFloatingText(target.transform, $"Thorns", ColorPalette.ColorEnum.Green);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        int value = parameters.cardLevel == 0 ? 2 : 3;
+        parameters.target.stats.ability.spikes.Add(value);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Thorns", ColorPalette.ColorEnum.Green);
     }
 }

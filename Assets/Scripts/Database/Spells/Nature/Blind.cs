@@ -19,8 +19,8 @@ public class Blind {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        target.stats.range = 1;
-        await floatingText.CreateFloatingText(target.transform, "Blind", ColorPalette.ColorEnum.Red);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        parameters.target.stats.range = 1;
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Blind", ColorPalette.ColorEnum.Red);
     }
 }

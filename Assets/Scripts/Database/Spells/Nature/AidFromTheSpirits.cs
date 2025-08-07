@@ -19,15 +19,15 @@ public class AidFromTheSpirits {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        target.stats.AddStrength(8);
-        target.stats.AddHealth(8);
-        target.UpdateWarriorUI();
+    public async Task Trigger(SpellTriggerParams parameters) {
+        parameters.target.stats.AddStrength(8);
+        parameters.target.stats.AddHealth(8);
+        parameters.target.UpdateWarriorUI();
 
-        if (cardLevel > 0) {
-            target.stats.ability.spikes.Add(2);
+        if (parameters.cardLevel > 0) {
+            parameters.target.stats.ability.spikes.Add(2);
         }
 
-        await floatingText.CreateFloatingText(target.transform, "Aid From The Spirits", ColorPalette.ColorEnum.Green);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Aid From The Spirits", ColorPalette.ColorEnum.Green);
     }
 }

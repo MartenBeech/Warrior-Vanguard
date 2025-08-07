@@ -19,9 +19,9 @@ public class MoltenBlade {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        target.stats.tempStrength += 5;
-        target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Molten Blade", ColorPalette.ColorEnum.Yellow);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        parameters.target.stats.tempStrength += 5;
+        parameters.target.UpdateWarriorUI();
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Molten Blade", ColorPalette.ColorEnum.Yellow);
     }
 }

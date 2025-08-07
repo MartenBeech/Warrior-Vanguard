@@ -18,13 +18,13 @@ public class LastBreath {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
+    public async Task Trigger(SpellTriggerParams parameters) {
         List<Task> asyncFunctions = new();
 
-        target.stats.AddHealthCurrent(-(target.stats.GetHealth() - 1));
-        target.UpdateWarriorUI();
+        parameters.target.stats.AddHealthCurrent(-(parameters.target.stats.GetHealth() - 1));
+        parameters.target.UpdateWarriorUI();
 
-        asyncFunctions.Add(floatingText.CreateFloatingText(target.transform, "Last Breath", ColorPalette.ColorEnum.Purple));
+        asyncFunctions.Add(parameters.floatingText.CreateFloatingText(parameters.target.transform, "Last Breath", ColorPalette.ColorEnum.Purple));
         await Task.WhenAll(asyncFunctions);
     }
 }

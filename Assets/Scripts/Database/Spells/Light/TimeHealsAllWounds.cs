@@ -19,9 +19,9 @@ public class TimeHealsAllWounds {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        int value = cardLevel == 0 ? 1 : 2;
-        target.stats.ability.regeneration.Add(value);
-        await floatingText.CreateFloatingText(target.transform, $"Regeneration {value}", ColorPalette.ColorEnum.Yellow);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        int value = parameters.cardLevel == 0 ? 1 : 2;
+        parameters.target.stats.ability.regeneration.Add(value);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Regeneration {value}", ColorPalette.ColorEnum.Yellow);
     }
 }

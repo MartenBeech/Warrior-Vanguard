@@ -18,24 +18,24 @@ public class SkinToBones {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
+    public async Task Trigger(SpellTriggerParams parameters) {
         CharacterSpawner.Alignment alignment = CharacterSpawner.Alignment.Null;
-        if (target.stats.alignment == CharacterSpawner.Alignment.Enemy) {
+        if (parameters.target.stats.alignment == CharacterSpawner.Alignment.Enemy) {
             alignment = CharacterSpawner.Alignment.Friend;
-        } else if (target.stats.alignment == CharacterSpawner.Alignment.Friend) {
+        } else if (parameters.target.stats.alignment == CharacterSpawner.Alignment.Friend) {
             alignment = CharacterSpawner.Alignment.Enemy;
         }
 
         List<Task> asyncFunctions = new() {
-            target.Die(target),
-            target.stats.ability.raiseDead.SummonSkeleton(target, target, characterSpawner, alignment)
+            parameters.target.Die(parameters.target),
+            parameters.target.stats.ability.raiseDead.SummonSkeleton(parameters.target, parameters.target, parameters.characterSpawner, alignment)
         };
 
-        if (cardLevel == 1) {
-            asyncFunctions.Add(target.stats.ability.raiseDead.SummonSkeleton(target, target, characterSpawner, alignment));
+        if (parameters.cardLevel == 1) {
+            asyncFunctions.Add(parameters.target.stats.ability.raiseDead.SummonSkeleton(parameters.target, parameters.target, parameters.characterSpawner, alignment));
         }
 
-        await floatingText.CreateFloatingText(target.transform, "Boned", ColorPalette.ColorEnum.Purple);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Boned", ColorPalette.ColorEnum.Purple);
         await Task.WhenAll(asyncFunctions);
     }
 }

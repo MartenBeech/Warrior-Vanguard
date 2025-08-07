@@ -19,8 +19,8 @@ public class CatReflexes {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        target.stats.ability.retaliate.Add();
-        await floatingText.CreateFloatingText(target.transform, $"Cat Reflexes", ColorPalette.ColorEnum.Green);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        parameters.target.stats.ability.retaliate.Add();
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Cat Reflexes", ColorPalette.ColorEnum.Green);
     }
 }

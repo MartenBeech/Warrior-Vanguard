@@ -19,21 +19,21 @@ public class Parasite {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
+    public async Task Trigger(SpellTriggerParams parameters) {
         List<Task> asyncFunctions = new();
 
         WarriorStats stats = new();
-        stats.SetStats(target.stats);
+        stats.SetStats(parameters.target.stats);
 
-        if (target.stats.alignment == CharacterSpawner.Alignment.Enemy) {
+        if (parameters.target.stats.alignment == CharacterSpawner.Alignment.Enemy) {
             stats.alignment = CharacterSpawner.Alignment.Friend;
-        } else if (target.stats.alignment == CharacterSpawner.Alignment.Friend) {
+        } else if (parameters.target.stats.alignment == CharacterSpawner.Alignment.Friend) {
             stats.alignment = CharacterSpawner.Alignment.Enemy;
         }
 
-        asyncFunctions.Add(target.Die(target));
+        asyncFunctions.Add(parameters.target.Die(parameters.target));
 
-        asyncFunctions.Add(characterSpawner.SpawnRandomly(stats, target.transform.position));
+        asyncFunctions.Add(parameters.characterSpawner.SpawnRandomly(stats, parameters.target.transform.position));
 
         await Task.WhenAll(asyncFunctions);
     }

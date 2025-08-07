@@ -19,13 +19,13 @@ public class Berserk {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
+    public async Task Trigger(SpellTriggerParams parameters) {
         List<Task> asyncFunctions = new();
 
-        List<Character> warriors = gridManager.GetCharacters();
-        warriors.Remove(target);
+        List<Character> warriors = parameters.gridManager.GetCharacters();
+        warriors.Remove(parameters.target);
         foreach (Character warrior in warriors) {
-            asyncFunctions.Add(target.Strike(warrior));
+            asyncFunctions.Add(parameters.target.Strike(warrior));
         }
 
         await Task.WhenAll(asyncFunctions);

@@ -19,12 +19,12 @@ public class Vampirism {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        target.stats.ability.lifeSteal.Add();
-        if (cardLevel == 0) {
-            target.stats.SetHealthCurrent(1);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        parameters.target.stats.ability.lifeSteal.Add();
+        if (parameters.cardLevel == 0) {
+            parameters.target.stats.SetHealthCurrent(1);
         }
-        target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Vampirism", ColorPalette.ColorEnum.Yellow);
+        parameters.target.UpdateWarriorUI();
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Vampirism", ColorPalette.ColorEnum.Yellow);
     }
 }

@@ -19,8 +19,8 @@ public class GuardianAngel {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        target.stats.ability.revive.Add();
-        await floatingText.CreateFloatingText(target.transform, "Guardian Angel", ColorPalette.ColorEnum.Yellow);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        parameters.target.stats.ability.revive.Add();
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Guardian Angel", ColorPalette.ColorEnum.Yellow);
     }
 }

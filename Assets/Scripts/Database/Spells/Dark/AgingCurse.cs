@@ -18,11 +18,11 @@ public class AgingCurse {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        target.stats.AddStrength(-Mathf.FloorToInt(target.stats.GetStrength() / 2));
-        target.stats.AddHealthCurrent(-Mathf.FloorToInt(target.stats.GetHealth() / 2));
-        target.stats.speed /= 2;
-        target.UpdateWarriorUI();
-        await floatingText.CreateFloatingText(target.transform, "Aging", ColorPalette.ColorEnum.Purple);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        parameters.target.stats.AddStrength(-Mathf.FloorToInt(parameters.target.stats.GetStrength() / 2));
+        parameters.target.stats.AddHealthCurrent(-Mathf.FloorToInt(parameters.target.stats.GetHealth() / 2));
+        parameters.target.stats.speed /= 2;
+        parameters.target.UpdateWarriorUI();
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Aging", ColorPalette.ColorEnum.Purple);
     }
 }

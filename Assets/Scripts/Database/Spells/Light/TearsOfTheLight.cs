@@ -19,9 +19,9 @@ public class TearsOfTheLight {
         return stats;
     }
 
-    public async Task Trigger(GridManager gridManager, Character target, int cardLevel, FloatingText floatingText, CharacterSpawner characterSpawner) {
-        int value = cardLevel == 0 ? 2 : 3;
-        List<Character> friends = gridManager.GetFriends(GameManager.turn);
+    public async Task Trigger(SpellTriggerParams parameters) {
+        int value = parameters.cardLevel == 0 ? 2 : 3;
+        List<Character> friends = parameters.gridManager.GetFriends(GameManager.turn);
         List<Task> asyncFunctions = new();
         foreach (Character friend in friends) {
             asyncFunctions.Add(friend.Heal(friend, value));
