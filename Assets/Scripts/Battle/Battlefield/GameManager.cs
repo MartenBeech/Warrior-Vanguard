@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour {
         enemySummoner = enemySummonerObject.GetComponent<Summoner>();
         Type type = Type.GetType(enemySummonerName);
         object instance = Activator.CreateInstance(type);
-        enemyDeck.deck = (List<WarriorStats>)type.GetMethod("GetDeck")?.Invoke(instance, null);
+        enemyDeck.deckList = (List<WarriorStats>)type.GetMethod("GetDeck")?.Invoke(instance, null);
         enemySummoner.SetStats((SummonerStats)type.GetMethod("GetSummoner")?.Invoke(instance, null));
         enemyItem.SetItem(ItemManager.enemyItem);
 

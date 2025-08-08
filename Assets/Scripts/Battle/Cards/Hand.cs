@@ -69,7 +69,7 @@ public class Hand : MonoBehaviour {
             object instance = Activator.CreateInstance(type);
             Character target = gridManager.GetCellCharacter(selectedGridIndex);
 
-            var spellTriggerParams = new SpellTriggerParams(gridManager, target, cardLevel: selectedCard.stats.level, floatingText, characterSpawner, deck, summoner);
+            var spellTriggerParams = new SpellTriggerParams(gridManager, target, cardLevel: selectedCard.stats.level, floatingText, characterSpawner, deck, summoner, hand: this);
 
             asyncFunctions.Add((Task)type.GetMethod("Trigger")?.Invoke(instance, new object[] { spellTriggerParams }));
         }
@@ -144,15 +144,15 @@ public class Hand : MonoBehaviour {
 
         if (indexesWithCost.Count == 0) return;
 
-        int randomCard = UnityEngine.Random.Range(0, indexesWithCost.Count);
+        int randomCard = Rng.Entry(indexesWithCost);
         int cardIndex = indexesWithCost[randomCard];
-        cardsInHand[cardIndex].stats.ReduceCost(amount);
+        cardsInHand[cardIndex].stats.AddCost(-amount);
         cardsInHand[cardIndex].UpdateCardUI();
     }
 
     public void ReduceCostAllCards(int amount) {
         foreach (var card in cardsInHand) {
-            card.stats.ReduceCost(amount);
+            card.stats.AddCost(-amount);
             card.UpdateCardUI();
         }
     }
@@ -160,7 +160,7 @@ public class Hand : MonoBehaviour {
     public void ReduceCostRace(int amount, Character.Race race) {
         foreach (var card in cardsInHand) {
             if (card.stats.race == race) {
-                card.stats.ReduceCost(amount);
+                card.stats.AddCost(-amount);
                 card.UpdateCardUI();
             }
         }
@@ -168,7 +168,7 @@ public class Hand : MonoBehaviour {
 
     public void IncreaseCostAllCards(int amount) {
         foreach (var card in cardsInHand) {
-            card.stats.IncreaseCost(amount);
+            card.stats.AddCost(amount);
             card.UpdateCardUI();
         }
     }

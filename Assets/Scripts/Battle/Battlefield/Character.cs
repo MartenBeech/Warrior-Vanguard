@@ -312,6 +312,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public async Task Die(Character dealer) {
         if (stats.ability.cheatDeath.TriggerDamaged(this)) return;
 
+        summoner.stats.graveyard.Add(stats.title);
         gameManager.RemoveCharacter(this);
         gridManager.RemoveCharacter(this);
 

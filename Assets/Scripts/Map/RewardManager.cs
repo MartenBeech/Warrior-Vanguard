@@ -33,7 +33,7 @@ public class RewardManager : MonoBehaviour {
             foreach (Card card in rewardedCards) {
                 WarriorStats stats;
                 do {
-                    stats = CardDatabase.GetRandomWarriorStats(rarity);
+                    stats = CardDatabase.GetRandomCardStats(rarity);
                 } while (usedStats.Contains(stats));
                 usedStats.Add(stats);
                 card.SetStats(stats);

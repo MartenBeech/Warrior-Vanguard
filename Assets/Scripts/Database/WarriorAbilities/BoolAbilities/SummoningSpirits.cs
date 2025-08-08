@@ -23,7 +23,7 @@ public class SummoningSpirits {
     }
 
     public void TriggerDraw(WarriorStats stats) {
-        stats.ReduceCost(1);
+        stats.AddCost(-1);
     }
 
     bool[] value = new bool[] { false, false };

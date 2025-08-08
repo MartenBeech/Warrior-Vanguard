@@ -3,7 +3,10 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
-        new DivineShield().GetStats(),
+        new FirePortal().GetStats(),
+        new SummonAid().GetStats(),
+        new Arise().GetStats(),
+        new Reinforcement().GetStats(),
         new Mario().GetStats(),
         new Mario().GetStats(),
         new Mario().GetStats(),
@@ -192,13 +195,18 @@ public static class CardDatabase {
         new Mortana().GetStats(),
     };
 
-    public static WarriorStats GetRandomWarriorStats(CardRarity rarity = CardRarity.None) {
-        if (rarity == CardRarity.None) {
-            return Rng.Entry(allCards);
+    public static WarriorStats GetRandomCardStats(CardRarity rarity = CardRarity.None, CardType cardType = CardType.None) {
+        List<WarriorStats> cards = allCards;
+
+        if (rarity != CardRarity.None) {
+            cards = cards.FindAll(card => card.rarity == rarity);
         }
 
-        List<WarriorStats> filteredCards = allCards.FindAll(card => card.rarity == rarity);
-        return Rng.Entry(filteredCards);
+        if (cardType != CardType.None) {
+            cards = cards.FindAll(card => card.cardType == cardType);
+        }
+
+        return Rng.Entry(cards);
     }
 
     public static WarriorStats GetStatsByTitleAndLevel(string titleAndLevel) {

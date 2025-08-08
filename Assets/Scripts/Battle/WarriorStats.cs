@@ -2,6 +2,7 @@ using System;
 using System.Text.RegularExpressions;
 
 public enum CardType {
+    None,
     Warrior,
     Spell
 }
@@ -92,13 +93,7 @@ public class WarriorStats {
         return cost[level];
     }
 
-    public void ReduceCost(int amount) {
-        for (int i = 0; i < 2; i++) {
-            cost[i] -= amount;
-        }
-    }
-
-    public void IncreaseCost(int amount) {
+    public void AddCost(int amount) {
         for (int i = 0; i < 2; i++) {
             cost[i] += amount;
         }

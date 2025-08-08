@@ -10,14 +10,14 @@ public class Deck : MonoBehaviour {
     public GameObject summonerObject;
     public GameObject cardPrefab;
     public CharacterSpawner.Alignment alignment;
-    public List<WarriorStats> deck = new();
+    public List<WarriorStats> deckList = new();
     public GridManager gridManager;
     private int burnoutDamage = 0;
 
     public void GetDeck() {
         //If accessing this page from the Map, convert the Deck.
-        deck = DeckManager.GetDeck();
-        if (deck.Count == 0) {
+        deckList = DeckManager.GetDeck();
+        if (deckList.Count == 0) {
             FillDeckWithRandomCards();
         }
 
@@ -26,19 +26,19 @@ public class Deck : MonoBehaviour {
 
     void FillDeckWithRandomCards() {
         for (int i = 0; i < CardDatabase.allCards.Count; i++) {
-            deck.Add(CardDatabase.allCards[i]);
+            deckList.Add(CardDatabase.allCards[i]);
         }
     }
 
     public async Task DrawCard(bool highlightCard = true) {
-        if (deck.Count == 0) {
+        if (deckList.Count == 0) {
             await BurnOut();
             return;
         }
 
-        WarriorStats drawnCard = deck[0];   //Todo: Make this a random number instead
+        WarriorStats drawnCard = deckList[0];
         drawnCard.alignment = alignment;
-        deck.RemoveAt(0);                   //Todo: Make this the same random number
+        deckList.RemoveAt(0);
 
         UpdateDeckUi();
 
@@ -76,7 +76,7 @@ public class Deck : MonoBehaviour {
     }
 
     void UpdateDeckUi() {
-        textObject.GetComponent<TMP_Text>().text = $"{deck.Count}";
+        textObject.GetComponent<TMP_Text>().text = $"{deckList.Count}";
     }
 
     public async void OnClick() {

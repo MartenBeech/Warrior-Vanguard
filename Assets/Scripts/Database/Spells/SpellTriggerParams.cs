@@ -6,6 +6,7 @@ public class SpellTriggerParams {
     public CharacterSpawner characterSpawner { get; set; }
     public Deck deck { get; set; }
     public Summoner summoner { get; set; }
+    public Hand hand { get; set; }
 
     public SpellTriggerParams(
         GridManager gridManager = null,
@@ -14,7 +15,8 @@ public class SpellTriggerParams {
         FloatingText floatingText = null,
         CharacterSpawner characterSpawner = null,
         Deck deck = null,
-        Summoner summoner = null
+        Summoner summoner = null,
+        Hand hand = null
     ) {
         this.gridManager = gridManager;
         this.target = target;
@@ -23,5 +25,6 @@ public class SpellTriggerParams {
         this.characterSpawner = characterSpawner;
         this.deck = deck;
         this.summoner = summoner;
+        this.hand = hand;
     }
 }
