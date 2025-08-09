@@ -2,13 +2,14 @@ public class PileOfBones {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 5, 5 },
+            cost = new int[] { 6, 6 },
             strength = new int[] { 0, 0 },
-            health = new int[] { 4, 5 },
+            health = new int[] { 4, 4 },
             speed = 0,
             range = 0,
             damageType = Character.DamageType.Physical,
             race = Character.Race.Construct,
+            rarity = CardRarity.Common,
             genre = Character.Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {

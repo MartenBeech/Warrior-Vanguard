@@ -9,6 +9,7 @@ public class EldritchSorcerer {
             range = 4,
             damageType = Character.DamageType.Magical,
             race = Character.Race.Lich,
+            rarity = CardRarity.Common,
             genre = Character.Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {

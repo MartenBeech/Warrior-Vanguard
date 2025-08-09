@@ -9,6 +9,7 @@ public class FrozenTombcarver {
             range = 4,
             damageType = Character.DamageType.Magical,
             race = Character.Race.Lich,
+            rarity = CardRarity.Rare,
             genre = Character.Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {

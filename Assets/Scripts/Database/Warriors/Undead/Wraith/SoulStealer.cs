@@ -9,6 +9,7 @@ public class SoulStealer {
             range = 2,
             damageType = Character.DamageType.Physical,
             race = Character.Race.Wraith,
+            rarity = CardRarity.Legendary,
             genre = Character.Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {

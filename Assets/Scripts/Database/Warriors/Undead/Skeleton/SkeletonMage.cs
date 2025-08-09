@@ -9,6 +9,7 @@ public class SkeletonMage {
             range = 4,
             damageType = Character.DamageType.Magical,
             race = Character.Race.Skeleton,
+            rarity = CardRarity.None,
             genre = Character.Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {

@@ -9,6 +9,7 @@ public class WailingWall {
             range = 0,
             damageType = Character.DamageType.Physical,
             race = Character.Race.Construct,
+            rarity = CardRarity.Common,
             genre = Character.Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
