@@ -17,6 +17,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text raceText;
     public GameObject rangeImage;
     public GameObject speedImage;
+    public GameObject rarityCrystal;
     public WarriorStats stats = new();
     HoverCard hoverCard;
     HoverCard hoverCardFromMap;
@@ -39,8 +40,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         foreach (Transform child in abilities) {
             Destroy(child.gameObject);
         }
-
-
 
         if (stats.cardType == CardType.Warrior) {
             spellDescription.text = "";
@@ -77,11 +76,23 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             raceText.text = $"{stats.race}";
         }
 
-        if (stats.race == Character.Race.None) {
-            racePanel.SetActive(false);
-            raceText.text = "";
-        } else {
+        if (stats.race != Character.Race.None) {
             racePanel.SetActive(true);
+        } else {
+            racePanel.SetActive(false);
+        }
+
+        if (stats.rarity != CardRarity.None) {
+            rarityCrystal.SetActive(true);
+            if (stats.rarity == CardRarity.Common) {
+                rarityCrystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
+            } else if (stats.rarity == CardRarity.Rare) {
+                rarityCrystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.TealMedium);
+            } else if (stats.rarity == CardRarity.Legendary) {
+                rarityCrystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Orange);
+            }
+        } else {
+            rarityCrystal.SetActive(false);
         }
 
         UpdateDisabledUI();

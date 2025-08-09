@@ -24,7 +24,7 @@ public enum CardRarity {
 public class WarriorStats {
     public string title;
     public string displayTitle;
-    public CardRarity rarity = CardRarity.Common;
+    public CardRarity rarity = CardRarity.None;
     public int level = 0;
     public Character.DamageType damageType = Character.DamageType.Physical;
     public Character.Race race = Character.Race.None;
@@ -54,6 +54,7 @@ public class WarriorStats {
         cardType = stats.cardType;
         spellTarget = stats.spellTarget;
         race = stats.race;
+        rarity = stats.rarity;
 
         for (int i = 0; i < 2; i++) {
             cost[i] = stats.cost[i];

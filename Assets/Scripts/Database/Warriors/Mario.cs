@@ -8,7 +8,7 @@ public class Mario : WarriorStats {
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,
-            race = Character.Race.Human,
+            race = Character.Race.None,
             genre = Character.Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
