@@ -15,7 +15,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Dark, Fire, Light, Nature //Spells
     }
     public enum Genre {
-        Human, Forest, Undead, Underworld, None
+        None, Human, Forest, Undead, Underworld,
+        Dark, Fire, Light, Nature,
     }
     public Vector2 gridIndex;
     private GridManager gridManager;

@@ -55,6 +55,7 @@ public class WarriorStats {
         spellTarget = stats.spellTarget;
         race = stats.race;
         rarity = stats.rarity;
+        genre = stats.genre;
 
         for (int i = 0; i < 2; i++) {
             cost[i] = stats.cost[i];
@@ -66,6 +67,7 @@ public class WarriorStats {
         speed = stats.speed;
         range = stats.range;
 
+        tempStrength = stats.tempStrength;
         ability.SetWarriorAbility(stats.ability);
     }
 

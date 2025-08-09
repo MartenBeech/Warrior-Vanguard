@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class AgingCurse {
             race = Character.Race.Dark,
             cardType = CardType.Spell,
         };
+        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
 
         return stats;
     }

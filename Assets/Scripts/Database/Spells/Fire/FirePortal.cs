@@ -17,6 +17,7 @@ public class FirePortal {
             race = Character.Race.Fire,
             cardType = CardType.Spell,
         };
+        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
 
         return stats;
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ public class LastBreath {
             race = Character.Race.Dark,
             cardType = CardType.Spell,
         };
+        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
 
         return stats;
     }

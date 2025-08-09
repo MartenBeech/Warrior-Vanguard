@@ -78,19 +78,38 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
         if (stats.race != Character.Race.None) {
             racePanel.SetActive(true);
+            racePanel.GetComponent<Image>().color = ColorPalette.AddTransparency(stats.genre switch {
+                Character.Genre.Human => ColorPalette.GetColor(ColorPalette.ColorEnum.Blue),
+                Character.Genre.Forest => ColorPalette.GetColor(ColorPalette.ColorEnum.GreenDark),
+                Character.Genre.Undead => ColorPalette.GetColor(ColorPalette.ColorEnum.Purple),
+                Character.Genre.Underworld => ColorPalette.GetColor(ColorPalette.ColorEnum.Orange),
+                Character.Genre.Light => ColorPalette.GetColor(ColorPalette.ColorEnum.Yellow),
+                Character.Genre.Dark => ColorPalette.GetColor(ColorPalette.ColorEnum.Gray),
+                Character.Genre.Fire => ColorPalette.GetColor(ColorPalette.ColorEnum.Red),
+                Character.Genre.Nature => ColorPalette.GetColor(ColorPalette.ColorEnum.Teal),
+                _ => ColorPalette.GetColor(ColorPalette.ColorEnum.Black),
+            }, 80);
+
+            if (stats.cardType == CardType.Spell) {
+                raceText.color = ColorPalette.GetColor(ColorPalette.ColorEnum.Black);
+            } else if (stats.cardType == CardType.Warrior) {
+                raceText.color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
+            }
+
         } else {
             racePanel.SetActive(false);
         }
 
         if (stats.rarity != CardRarity.None) {
             rarityCrystal.SetActive(true);
-            if (stats.rarity == CardRarity.Common) {
-                rarityCrystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
-            } else if (stats.rarity == CardRarity.Rare) {
-                rarityCrystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.TealMedium);
-            } else if (stats.rarity == CardRarity.Legendary) {
-                rarityCrystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Orange);
-            }
+
+            rarityCrystal.GetComponent<Image>().color = stats.rarity switch {
+                CardRarity.Common => ColorPalette.GetColor(ColorPalette.ColorEnum.White),
+                CardRarity.Rare => ColorPalette.GetColor(ColorPalette.ColorEnum.TealMedium),
+                CardRarity.Legendary => ColorPalette.GetColor(ColorPalette.ColorEnum.Orange),
+                _ => ColorPalette.GetColor(ColorPalette.ColorEnum.Black),
+            };
+
         } else {
             rarityCrystal.SetActive(false);
         }

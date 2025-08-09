@@ -3,7 +3,14 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
-        new GoldDragon().GetStats(),
+        new FencingRookie().GetStats(),
+        new Pinkxie().GetStats(),
+        new FrozenTombcarver().GetStats(),
+        new MinotaurKing().GetStats(),
+        new Vampirism().GetStats(),
+        new Haste().GetStats(),
+        new TearsOfTheLight().GetStats(),
+        new Armageddon().GetStats(),
         new FirePortal().GetStats(),
         new SummonAid().GetStats(),
         new Arise().GetStats(),
