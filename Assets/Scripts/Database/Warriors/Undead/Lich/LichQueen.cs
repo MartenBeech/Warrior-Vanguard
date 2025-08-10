@@ -4,7 +4,7 @@ public class LichQueen {
             title = GetType().Name,
             cost = new int[] { 9, 9 },
             strength = new int[] { 3, 4 },
-            health = new int[] { 14, 16 },
+            health = new int[] { 10, 12 },
             speed = 2,
             range = 4,
             damageType = Character.DamageType.Magical,

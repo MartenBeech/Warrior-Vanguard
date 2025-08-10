@@ -3,7 +3,7 @@ public class FrozenTombcarver {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 7, 7 },
-            strength = new int[] { 1, 3 },
+            strength = new int[] { 1, 2 },
             health = new int[] { 11, 11 },
             speed = 2,
             range = 4,

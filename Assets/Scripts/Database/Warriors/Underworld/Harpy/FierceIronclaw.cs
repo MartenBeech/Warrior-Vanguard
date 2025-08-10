@@ -4,7 +4,7 @@ public class FierceIronclaw {
             title = GetType().Name,
             cost = new int[] { 7, 7 },
             strength = new int[] { 5, 6 },
-            health = new int[] { 8, 11 },
+            health = new int[] { 8, 10 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,

@@ -4,7 +4,7 @@ public class RadiantProtector {
             title = GetType().Name,
             cost = new int[] { 8, 8 },
             strength = new int[] { 3, 3 },
-            health = new int[] { 17, 20 },
+            health = new int[] { 10, 11 },
             speed = 4,
             range = 2,
             damageType = Character.DamageType.Physical,

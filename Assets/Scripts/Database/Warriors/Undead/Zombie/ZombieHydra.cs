@@ -3,8 +3,8 @@ public class ZombieHydra {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 9, 9 },
-            strength = new int[] { 6, 9 },
-            health = new int[] { 6, 9 },
+            strength = new int[] { 6, 7 },
+            health = new int[] { 6, 7 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,

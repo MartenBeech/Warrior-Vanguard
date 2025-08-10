@@ -4,7 +4,7 @@ public class MidnightSoulburner {
             title = GetType().Name,
             cost = new int[] { 6, 6 },
             strength = new int[] { 5, 6 },
-            health = new int[] { 8, 11 },
+            health = new int[] { 7, 9 },
             speed = 4,
             range = 2,
             damageType = Character.DamageType.Physical,

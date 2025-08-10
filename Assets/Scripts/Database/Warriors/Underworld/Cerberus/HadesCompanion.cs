@@ -4,7 +4,7 @@ public class HadesCompanion {
             title = GetType().Name,
             cost = new int[] { 1, 1 },
             strength = new int[] { 5, 7 },
-            health = new int[] { 1, 4 },
+            health = new int[] { 1, 1 },
             speed = 3,
             range = 2,
             damageType = Character.DamageType.Magical,

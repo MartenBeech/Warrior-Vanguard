@@ -4,7 +4,7 @@ public class VampireApprentice {
             title = GetType().Name,
             cost = new int[] { 2, 2 },
             strength = new int[] { 1, 2 },
-            health = new int[] { 5, 6 },
+            health = new int[] { 4, 4 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,

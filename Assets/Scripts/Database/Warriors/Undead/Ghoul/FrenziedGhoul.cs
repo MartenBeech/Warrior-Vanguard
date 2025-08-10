@@ -4,7 +4,7 @@ public class FrenziedGhoul {
             title = GetType().Name,
             cost = new int[] { 3, 3 },
             strength = new int[] { 3, 3 },
-            health = new int[] { 7, 9 },
+            health = new int[] { 4, 5 },
             speed = 3,
             range = 2,
             damageType = Character.DamageType.Physical,

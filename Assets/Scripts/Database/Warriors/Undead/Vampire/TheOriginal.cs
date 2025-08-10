@@ -4,7 +4,7 @@ public class TheOriginal {
             title = GetType().Name,
             cost = new int[] { 8, 8 },
             strength = new int[] { 3, 4 },
-            health = new int[] { 13, 16 },
+            health = new int[] { 10, 12 },
             speed = 2,
             range = 2,
             damageType = Character.DamageType.Physical,

@@ -4,7 +4,7 @@ public class UnicornFoal {
             title = GetType().Name,
             cost = new int[] { 1, 1 },
             strength = new int[] { 2, 2 },
-            health = new int[] { 3, 5 },
+            health = new int[] { 3, 4 },
             speed = 4,
             range = 2,
             damageType = Character.DamageType.Physical,
