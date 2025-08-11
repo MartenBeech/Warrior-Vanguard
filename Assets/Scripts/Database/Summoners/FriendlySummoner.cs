@@ -1,6 +1,7 @@
 public static class FriendlySummoner {
     public static int maxHealth = 42;
     public static int currentHealth = 42;
+    public static SummonerData summonerData = new();
 
     public static void GainHealth(int health) {
         currentHealth += health;
@@ -8,7 +9,7 @@ public static class FriendlySummoner {
             currentHealth = maxHealth;
         }
     }
-    
+
     public static void LoseHealth(int health) {
         currentHealth -= health;
         if (currentHealth < 0) {

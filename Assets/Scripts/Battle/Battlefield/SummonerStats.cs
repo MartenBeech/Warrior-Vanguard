@@ -10,25 +10,18 @@ public class SummonerStats {
     public bool isFriendly;
     public int health;
     public int healthMax;
-    public int shield;
-    public int skeletonBones = 0;
+    public int shield = 0;
     public int difficulty = 1;
+    public int skeletonBones = 0;
     public List<string> graveyard = new();
     public WarriorAbility ability = new();
 
     public SummonerStats(string title, int health, int healthMax, bool isFriendly) {
         this.title = PlayerPrefs.GetString("SelectedSummoner");
         displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");
-        description = title switch {
-            "HumanSummoner" => "A Human Summoner with balanced stats.",
-            "ElvenSummoner" => "An Elven Summoner with agility and magic.",
-            "UndeadSummoner" => "An Undead Summoner with dark powers.",
-            "UnderworldSummoner" => "A Summoner from the Underworld with unique abilities.",
-            _ => "Just your friendly neighborhood Summoner.",
-        };
+        description = FriendlySummoner.summonerData.description;
         this.health = health;
         this.healthMax = healthMax;
-        shield = 0;
     }
 
     public SummonerStats() {
@@ -41,5 +34,7 @@ public class SummonerStats {
         health = stats.health;
         healthMax = stats.healthMax;
         shield = stats.shield;
+        difficulty = stats.difficulty;
+        skeletonBones = stats.skeletonBones;
     }
 }

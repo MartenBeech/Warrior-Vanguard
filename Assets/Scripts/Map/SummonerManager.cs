@@ -3,7 +3,7 @@ using UnityEngine;
 public class SummonerManager : MonoBehaviour {
     public GameObject summonerObject;
     Summoner summoner;
-    
+
     void Start() {
         summoner = summonerObject.GetComponent<Summoner>();
         UpdateSummonerUi();
