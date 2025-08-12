@@ -231,18 +231,24 @@ public static class CardDatabase {
         return stats;
     }
 
-    public static WarriorStats GetRandomWarriorWithSpecificCost(int cost) {
+    public static WarriorStats GetRandomWarriorWithSpecificCost(int cost, CharacterSpawner.Alignment alignment) {
         List<WarriorStats> warriors = allCards.Where(card => card.GetCost() == cost && card.cardType == CardType.Warrior).ToList();
-        return Rng.Entry(warriors);
+        WarriorStats randomWarrior = Rng.Entry(warriors);
+        randomWarrior.alignment = alignment;
+        return randomWarrior;
     }
 
-    public static WarriorStats GetRandomWarriorWithSpecificRace(Character.Race race) {
+    public static WarriorStats GetRandomWarriorWithSpecificRace(Character.Race race, CharacterSpawner.Alignment alignment) {
         List<WarriorStats> warriors = allCards.Where(card => card.race == race).ToList();
-        return Rng.Entry(warriors);
+        WarriorStats randomWarrior = Rng.Entry(warriors);
+        randomWarrior.alignment = alignment;
+        return randomWarrior;
     }
 
-    public static WarriorStats GetRandomSpell() {
-        List<WarriorStats> warriors = allCards.Where(card => card.cardType == CardType.Spell).ToList();
-        return Rng.Entry(warriors);
+    public static WarriorStats GetRandomSpell(CharacterSpawner.Alignment alignment) {
+        List<WarriorStats> spells = allCards.Where(card => card.cardType == CardType.Spell).ToList();
+        WarriorStats randomSpell = Rng.Entry(spells);
+        randomSpell.alignment = alignment;
+        return randomSpell;
     }
 }

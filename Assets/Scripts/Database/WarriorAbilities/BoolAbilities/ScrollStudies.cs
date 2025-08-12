@@ -8,8 +8,7 @@ public class ScrollStudies {
 
     public async Task<bool> TriggerOverturn(Character dealer, Hand hand) {
         if (GetValue(dealer.stats)) {
-            WarriorStats randomSpell = CardDatabase.GetRandomSpell();
-            randomSpell.alignment = dealer.stats.alignment;
+            WarriorStats randomSpell = CardDatabase.GetRandomSpell(dealer.stats.alignment);
 
             await hand.MoveNewCardToHand(randomSpell, dealer.transform.position);
             return true;

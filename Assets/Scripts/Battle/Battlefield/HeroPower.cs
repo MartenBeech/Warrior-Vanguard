@@ -10,10 +10,14 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     string description;
     int cost;
     Action<HeroPowerEffectParams> effect;
-    public GameManager gameManager;
     public Button heroPowerButton;
     public TMP_Text costText;
     public TooltipManager tooltipManager;
+    public GameManager gameManager;
+    public Hand friendHand;
+    public CharacterSpawner characterSpawner;
+    public Summoner friendSummoner;
+
 
     public void OnPointerEnter(PointerEventData eventData) {
         tooltipManager.transform.position = new Vector2(transform.position.x, transform.position.y + 100);
@@ -39,7 +43,7 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private async Task UseHeroPower() {
         gameManager.friendCoin.SpendCoins(cost);
         heroPowerButton.interactable = false;
-        effect(new(gameManager));
+        effect(new(gameManager, friendHand, characterSpawner, friendSummoner));
     }
 
     public bool CanActivateHeroPower() {

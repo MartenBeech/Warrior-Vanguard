@@ -11,6 +11,7 @@ public class Hand : MonoBehaviour {
     public GridManager gridManager;
     public FloatingText floatingText;
     public Transform warriors;
+    public CharacterSpawner.Alignment alignment;
     List<Card> cardsInHand = new();
 
     int handSize = 0;
@@ -132,6 +133,11 @@ public class Hand : MonoBehaviour {
         }
     }
 
+    public void ReduceCostCard(Card card, int amount) {
+        card.stats.AddCost(-amount);
+        card.UpdateCardUI();
+    }
+
     public void ReduceCostRandomCard(int amount) {
         if (cardsInHand.Count == 0) return;
         List<int> indexesWithCost = new();
@@ -179,6 +185,8 @@ public class Hand : MonoBehaviour {
         GameObject cardInstance = Instantiate(cardPrefab, fromPos, Quaternion.identity, warriors);
         ObjectAnimation objectAnimation = cardInstance.GetComponentInChildren<ObjectAnimation>();
         Card card = cardInstance.GetComponentInChildren<Card>();
+
+        stats.alignment = alignment;
 
         card.SetStats(stats);
         card.UpdateCardUI();

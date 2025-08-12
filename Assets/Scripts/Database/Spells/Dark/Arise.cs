@@ -11,8 +11,8 @@ public class Arise {
             rarity = CardRarity.Common,
             spellTarget = SpellTarget.None,
             spellDescription = new string[] {
-            "Add 2 warriors to your hand that died this game",
-            "Add 3 warriors to your hand that died this game"
+            "Add 2 friends to your hand that died this game",
+            "Add 3 friends to your hand that died this game"
             },
             race = Character.Race.Dark,
             cardType = CardType.Spell,

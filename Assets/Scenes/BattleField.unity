@@ -421,6 +421,7 @@ MonoBehaviour:
   gridManager: {fileID: 509353786}
   floatingText: {fileID: 189192889}
   warriors: {fileID: 41112488}
+  alignment: 2
 --- !u!114 &179982830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1847,6 +1848,7 @@ MonoBehaviour:
   gridManager: {fileID: 509353786}
   floatingText: {fileID: 189192889}
   warriors: {fileID: 41112488}
+  alignment: 1
 --- !u!114 &799138552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3293,10 +3295,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9892798cd2373d44294d7e2b028f1a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 2106477979}
   heroPowerButton: {fileID: 1685825232}
   costText: {fileID: 594751761}
   tooltipManager: {fileID: 598212541}
+  gameManager: {fileID: 2106477979}
+  friendHand: {fileID: 179982829}
+  characterSpawner: {fileID: 945783959}
+  friendSummoner: {fileID: 179236579471566886}
 --- !u!1 &1713116258
 GameObject:
   m_ObjectHideFlags: 0

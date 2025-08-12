@@ -8,8 +8,7 @@ public class DragonRecruiter {
 
     public async Task<bool> TriggerKill(Character dealer, Hand hand) {
         if (GetValue(dealer.stats)) {
-            WarriorStats randomDragon = CardDatabase.GetRandomWarriorWithSpecificRace(Character.Race.Dragon);
-            randomDragon.alignment = dealer.stats.alignment;
+            WarriorStats randomDragon = CardDatabase.GetRandomWarriorWithSpecificRace(Character.Race.Dragon, dealer.stats.alignment);
 
             await hand.MoveNewCardToHand(randomDragon, dealer.transform.position);
             return true;
