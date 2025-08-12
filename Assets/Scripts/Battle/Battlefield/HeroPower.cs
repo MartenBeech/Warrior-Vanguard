@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 
-public class HeroPowerManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     string title;
     string description;
     int cost;
@@ -14,8 +14,7 @@ public class HeroPowerManager : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public TooltipManager tooltipManager;
 
     public void OnPointerEnter(PointerEventData eventData) {
-        Debug.Log("Pointer entered hero power");
-        tooltipManager.transform.position = new Vector2(transform.position.x, transform.position.y + 200);
+        tooltipManager.transform.position = new Vector2(transform.position.x, transform.position.y + 100);
         tooltipManager.AddTooltip(title, description);
     }
 
@@ -31,7 +30,7 @@ public class HeroPowerManager : MonoBehaviour, IPointerEnterHandler, IPointerExi
     }
 
     //Button onClick can't access async methods directly, so we use this method to call the async method
-    public void ActivateHeroPower() {
+    public void HeroPowerClicked() {
         _ = UseHeroPower();
     }
 

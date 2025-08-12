@@ -12,7 +12,6 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject shieldImage;
     public GameObject itemImage;
     public TooltipManager tooltipManager;
-    public HeroPowerManager heroPowerManager;
     public void OnPointerEnter(PointerEventData eventData) {
         tooltipManager.transform.position = new Vector2(transform.position.x, transform.position.y + 200);
         tooltipManager.AddTooltip(stats.displayTitle, stats.description);

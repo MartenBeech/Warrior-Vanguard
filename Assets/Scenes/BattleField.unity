@@ -3159,6 +3159,7 @@ GameObject:
   - component: {fileID: 1685825234}
   - component: {fileID: 1685825233}
   - component: {fileID: 1685825232}
+  - component: {fileID: 1685825235}
   m_Layer: 5
   m_Name: HeroPower
   m_TagString: Untagged
@@ -3230,8 +3231,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1708136933}
-        m_TargetAssemblyTypeName: HeroPowerManager, Assembly-CSharp
+      - m_Target: {fileID: 1685825235}
+        m_TargetAssemblyTypeName: HeroPower, Assembly-CSharp
         m_MethodName: ActivateHeroPower
         m_Mode: 1
         m_Arguments:
@@ -3280,30 +3281,13 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685825230}
   m_CullTransparentMesh: 1
---- !u!1 &1708136932
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1708136934}
-  - component: {fileID: 1708136933}
-  m_Layer: 0
-  m_Name: HeroPowerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1708136933
+--- !u!114 &1685825235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708136932}
+  m_GameObject: {fileID: 1685825230}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9892798cd2373d44294d7e2b028f1a22, type: 3}
@@ -3313,21 +3297,6 @@ MonoBehaviour:
   heroPowerButton: {fileID: 1685825232}
   costText: {fileID: 594751761}
   tooltipManager: {fileID: 598212541}
---- !u!4 &1708136934
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708136932}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1713116258
 GameObject:
   m_ObjectHideFlags: 0
@@ -3750,8 +3719,8 @@ MonoBehaviour:
   enemyDeck: {fileID: 1651248352}
   enemyHand: {fileID: 799138551}
   enemyItem: {fileID: 1265140660}
-  friendSummoner: {fileID: 0}
-  heroPowerManager: {fileID: 1708136933}
+  friendSummoner: {fileID: 179236579471566886}
+  heroPower: {fileID: 1685825235}
 --- !u!4 &2106477980
 Transform:
   m_ObjectHideFlags: 0
@@ -3872,6 +3841,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c0329d652aee24498d7667ef54f3366, type: 3}
+--- !u!114 &179236579471566886 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 420113278869795455, guid: 6c0329d652aee24498d7667ef54f3366, type: 3}
+  m_PrefabInstance: {fileID: 179236579471566885}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039605222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07563b5f68e8d3647affc5a9a63fd976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2583329511606628087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4086,4 +4066,3 @@ SceneRoots:
   - {fileID: 945783958}
   - {fileID: 2106477980}
   - {fileID: 1326509023}
-  - {fileID: 1708136934}

@@ -19,15 +19,14 @@ public class GameManager : MonoBehaviour {
     public Summoner friendSummoner;
     Summoner enemySummoner;
     CharacterSpawner enemyCharacterSpawner;
-    public HeroPowerManager heroPowerManager;
+    public HeroPower heroPower;
     public static CharacterSpawner.Alignment turn;
     public static string enemySummonerName = "Devil";
 
     async void Awake() {
-        friendSummoner = friendSummonerObject.GetComponent<Summoner>();
         string summonerTitle = PlayerPrefs.GetString("SelectedSummoner");
         friendSummoner.SetStats(new SummonerStats(summonerTitle, FriendlySummoner.currentHealth, FriendlySummoner.maxHealth));
-        heroPowerManager.SetHeroPower(friendSummoner.stats.heroPowerTitle, friendSummoner.stats.heroPowerDescription, friendSummoner.stats.heroPowerCost);
+        heroPower.SetHeroPower(friendSummoner.stats.heroPowerTitle, friendSummoner.stats.heroPowerDescription, friendSummoner.stats.heroPowerCost);
         friendDeck.GetDeck();
 
         enemySummoner = enemySummonerObject.GetComponent<Summoner>();
@@ -57,7 +56,7 @@ public class GameManager : MonoBehaviour {
         turn = CharacterSpawner.Alignment.Friend;
         friendCoin.GainCoins();
         friendCoin.RefreshCoins();
-        heroPowerManager.RefreshHeroPower();
+        heroPower.RefreshHeroPower();
 
         await friendDeck.DrawCard();
 
