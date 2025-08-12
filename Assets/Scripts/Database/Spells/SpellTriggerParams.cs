@@ -1,12 +1,12 @@
 public class SpellTriggerParams {
-    public GridManager gridManager { get; set; }
-    public Character target { get; set; }
-    public int cardLevel { get; set; }
-    public FloatingText floatingText { get; set; }
-    public CharacterSpawner characterSpawner { get; set; }
-    public Deck deck { get; set; }
-    public Summoner summoner { get; set; }
-    public Hand hand { get; set; }
+    public GridManager gridManager;
+    public Character target;
+    public int cardLevel;
+    public FloatingText floatingText;
+    public CharacterSpawner characterSpawner;
+    public Deck deck;
+    public Summoner summoner;
+    public Hand hand;
 
     public SpellTriggerParams(
         GridManager gridManager = null,

@@ -1,11 +1,15 @@
 public class HumanSummoner {
     public SummonerData GetData() {
+        int armorGain = 1;
         SummonerData data = new() {
             title = GetType().Name,
             description = "A Human Summoner with balanced stats",
-            heroPowerTitle = "Human Armor Up",
-            heroPowerDescription = "Gain 1 armor",
-            heroPowerCost = 1
+            heroPowerTitle = "Armor Up",
+            heroPowerDescription = $"Gain {armorGain} armor",
+            heroPowerCost = 1,
+            heroPowerEffect = async parameters => {
+                await parameters.gameManager.friendSummoner.AddShield(armorGain);
+            }
         };
 
         return data;

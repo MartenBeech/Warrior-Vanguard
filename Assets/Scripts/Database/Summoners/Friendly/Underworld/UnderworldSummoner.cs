@@ -5,7 +5,7 @@ public class UnderworldSummoner {
             description = "A Summoner from the Underworld with unique abilities",
             heroPowerTitle = "Dragon Armor Up",
             heroPowerDescription = "Gain 4 armor",
-            heroPowerCost = 4
+            heroPowerCost = 4,
         };
 
         return data;

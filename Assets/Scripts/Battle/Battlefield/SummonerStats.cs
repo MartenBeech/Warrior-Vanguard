@@ -10,6 +10,7 @@ public class SummonerStats {
     public string heroPowerTitle;
     public string heroPowerDescription;
     public int heroPowerCost = 0;
+    public Action<HeroPowerEffectParams> heroPowerEffect;
     public bool isFriendly;
     public int health;
     public int healthMax;
@@ -26,6 +27,7 @@ public class SummonerStats {
         heroPowerTitle = FriendlySummoner.summonerData.heroPowerTitle;
         heroPowerDescription = FriendlySummoner.summonerData.heroPowerDescription;
         heroPowerCost = FriendlySummoner.summonerData.heroPowerCost;
+        heroPowerEffect = FriendlySummoner.summonerData.heroPowerEffect;
         this.health = health;
         this.healthMax = healthMax;
     }
@@ -40,6 +42,7 @@ public class SummonerStats {
         heroPowerTitle = stats.heroPowerTitle;
         heroPowerDescription = stats.heroPowerDescription;
         heroPowerCost = stats.heroPowerCost;
+        heroPowerEffect = stats.heroPowerEffect;
         health = stats.health;
         healthMax = stats.healthMax;
         shield = stats.shield;

@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
     async void Awake() {
         string summonerTitle = PlayerPrefs.GetString("SelectedSummoner");
         friendSummoner.SetStats(new SummonerStats(summonerTitle, FriendlySummoner.currentHealth, FriendlySummoner.maxHealth));
-        heroPower.SetHeroPower(friendSummoner.stats.heroPowerTitle, friendSummoner.stats.heroPowerDescription, friendSummoner.stats.heroPowerCost);
+        heroPower.SetHeroPower(friendSummoner.stats.heroPowerTitle, friendSummoner.stats.heroPowerDescription, friendSummoner.stats.heroPowerCost, friendSummoner.stats.heroPowerEffect);
         friendDeck.GetDeck();
 
         enemySummoner = enemySummonerObject.GetComponent<Summoner>();

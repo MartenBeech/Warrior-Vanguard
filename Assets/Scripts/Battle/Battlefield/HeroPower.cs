@@ -3,11 +3,13 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using System;
 
 public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     string title;
     string description;
     int cost;
+    Action<HeroPowerEffectParams> effect;
     public GameManager gameManager;
     public Button heroPowerButton;
     public TMP_Text costText;
@@ -22,14 +24,14 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         tooltipManager.RemoveTooltips();
     }
 
-    public void SetHeroPower(string title, string description, int cost) {
+    public void SetHeroPower(string title, string description, int cost, Action<HeroPowerEffectParams> effect) {
         this.title = title;
         this.description = description;
         this.cost = cost;
+        this.effect = effect;
         costText.text = $"{cost}";
     }
 
-    //Button onClick can't access async methods directly, so we use this method to call the async method
     public void HeroPowerClicked() {
         _ = UseHeroPower();
     }
@@ -37,7 +39,7 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private async Task UseHeroPower() {
         gameManager.friendCoin.SpendCoins(cost);
         heroPowerButton.interactable = false;
-        await gameManager.friendSummoner.AddShield(cost);
+        effect(new(gameManager));
     }
 
     public bool CanActivateHeroPower() {
