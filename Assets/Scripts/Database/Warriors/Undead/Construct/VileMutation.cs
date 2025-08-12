@@ -1,4 +1,5 @@
 public class VileMutation {
+
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
