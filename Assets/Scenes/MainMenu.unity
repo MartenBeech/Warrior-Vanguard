@@ -1961,6 +1961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   card: {fileID: 3458915321434544214, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
   collection: {fileID: 1702035821}
+  summonerSelectionManager: {fileID: 0}
 --- !u!1 &828471904
 GameObject:
   m_ObjectHideFlags: 0
