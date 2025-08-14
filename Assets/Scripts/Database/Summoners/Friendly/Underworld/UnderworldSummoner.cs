@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class UnderworldSummoner {
     public SummonerData GetData() {
         SummonerData data = new() {
@@ -11,6 +13,7 @@ public class UnderworldSummoner {
                 await parameters.characterSpawner.SpawnRandomly(randomWarrior, parameters.friendSummoner.transform.position);
             }
         };
+        data.heroPowerImage = Resources.Load<Sprite>($"Images/HeroPowers/{data.heroPowerTitle}");
 
         return data;
     }

@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
 
     async void Awake() {
         friendSummoner.SetStats(new SummonerStats(FriendlySummoner.summonerData.title, FriendlySummoner.currentHealth, FriendlySummoner.maxHealth));
-        heroPower.SetHeroPower(friendSummoner.stats.heroPowerTitle, friendSummoner.stats.heroPowerDescription, friendSummoner.stats.heroPowerCost, friendSummoner.stats.heroPowerEffect);
+        heroPower.SetHeroPower(friendSummoner.stats.heroPowerTitle, friendSummoner.stats.heroPowerDescription, friendSummoner.stats.heroPowerCost, friendSummoner.stats.heroPowerImage, friendSummoner.stats.heroPowerEffect);
         friendDeck.GetDeck();
 
         enemySummoner = enemySummonerObject.GetComponent<Summoner>();

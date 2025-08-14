@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class UndeadSummoner {
     public SummonerData GetData() {
@@ -21,6 +22,7 @@ public class UndeadSummoner {
 
             }
         };
+        data.heroPowerImage = Resources.Load<Sprite>($"Images/HeroPowers/{data.heroPowerTitle}");
 
         return data;
     }

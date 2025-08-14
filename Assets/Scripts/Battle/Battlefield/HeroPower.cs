@@ -28,12 +28,14 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         tooltipManager.RemoveTooltips();
     }
 
-    public void SetHeroPower(string title, string description, int cost, Action<HeroPowerEffectParams> effect) {
+    public void SetHeroPower(string title, string description, int cost, Sprite image, Action<HeroPowerEffectParams> effect) {
         this.title = title;
         this.description = description;
         this.cost = cost;
         this.effect = effect;
         costText.text = $"{cost}";
+        GetComponent<Image>().sprite = image;
+
     }
 
     public void HeroPowerClicked() {

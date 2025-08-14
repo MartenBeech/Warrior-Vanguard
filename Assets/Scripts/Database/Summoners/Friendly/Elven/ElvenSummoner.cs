@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ElvenSummoner {
     public SummonerData GetData() {
@@ -24,6 +25,7 @@ public class ElvenSummoner {
                 }
             }
         };
+        data.heroPowerImage = Resources.Load<Sprite>($"Images/HeroPowers/{data.heroPowerTitle}");
 
         return data;
     }

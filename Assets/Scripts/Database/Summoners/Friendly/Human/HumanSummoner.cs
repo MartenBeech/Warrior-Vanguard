@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class HumanSummoner {
     public SummonerData GetData() {
         int armorGain = 2;
@@ -11,6 +13,7 @@ public class HumanSummoner {
                 await parameters.gameManager.friendSummoner.AddShield(armorGain);
             }
         };
+        data.heroPowerImage = Resources.Load<Sprite>($"Images/HeroPowers/{data.heroPowerTitle}");
 
         return data;
     }
