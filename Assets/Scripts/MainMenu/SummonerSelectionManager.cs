@@ -15,7 +15,7 @@ public class SummonerSelectionManager : MonoBehaviour {
 
     void Start() {
         ToggleSummonerSelectionPanel(false);
-        
+
         availableSummoners = new SummonerData[] {
             new HumanSummoner().GetData(),
             new HumanSummoner2().GetData(),
@@ -46,19 +46,17 @@ public class SummonerSelectionManager : MonoBehaviour {
         availableSummoners[summoner1Index].description :
         availableSummoners[summoner2Index].description;
 
-        selectedSummoner = availableSummoners[index];
-        PlayerPrefs.SetInt("SummonerIndex", index);
+        selectedSummoner = availableSummoners[index + summoner1Index];
+        PlayerPrefs.SetInt("SummonerIndex", index + summoner1Index);
         PlayerPrefs.Save();
         FriendlySummoner.summonerData = selectedSummoner;
 
         // Set opacity of clicked button to 1 and the other to 0.5
         Button pressedButton = index == 0 ? summoner1Button : summoner2Button;
         Button otherButton = index == 0 ? summoner2Button : summoner1Button;
-        var color = pressedButton.image.color;
-        color.a = 1f;
-        pressedButton.image.color = color;
-        color.a = 0.5f;
-        otherButton.image.color = color;
+
+        pressedButton.image.color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
+        otherButton.image.color = ColorPalette.AddTransparency(otherButton.image.color, 50);
     }
 
     public void ClickStart() {

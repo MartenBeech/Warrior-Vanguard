@@ -4,8 +4,12 @@ public static class ContinueManager {
     public static void LoadSummoner() {
         SummonerData[] availableSummoners = new SummonerData[] {
             new HumanSummoner().GetData(),
+            new HumanSummoner2().GetData(),
+            new ElvenSummoner().GetData(),
             new ElvenSummoner().GetData(),
             new UndeadSummoner().GetData(),
+            new UndeadSummoner().GetData(),
+            new UnderworldSummoner().GetData(),
             new UnderworldSummoner().GetData(),
             };
 
