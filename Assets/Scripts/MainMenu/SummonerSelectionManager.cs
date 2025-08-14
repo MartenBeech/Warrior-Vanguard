@@ -19,9 +19,16 @@ public class SummonerSelectionManager : MonoBehaviour, IPointerEnterHandler, IPo
 
     public void SelectSummoner(int index) {
         selectedSummoner = availableSummoners[index];
-        PlayerPrefs.SetString("SelectedSummoner", selectedSummoner.title);
+        PlayerPrefs.SetInt("SummonerIndex", index);
+        PlayerPrefs.Save();
         FriendlySummoner.summonerData = selectedSummoner;
         SceneLoader.LoadMap();
+    }
+
+    public void LoadSummoner() {
+        int index = PlayerPrefs.GetInt("SummonerIndex", 0);
+        selectedSummoner = availableSummoners[index];
+        FriendlySummoner.summonerData = selectedSummoner;
     }
 
     public void ReturnToMainMenu() {

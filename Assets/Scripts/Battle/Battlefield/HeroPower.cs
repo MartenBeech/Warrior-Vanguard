@@ -37,10 +37,6 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public void HeroPowerClicked() {
-        _ = UseHeroPower();
-    }
-
-    private async Task UseHeroPower() {
         gameManager.friendCoin.SpendCoins(cost);
         heroPowerButton.interactable = false;
         effect(new(gameManager, friendHand, characterSpawner, friendSummoner));

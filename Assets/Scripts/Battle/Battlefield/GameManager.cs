@@ -24,8 +24,7 @@ public class GameManager : MonoBehaviour {
     public static string enemySummonerName = "Devil";
 
     async void Awake() {
-        string summonerTitle = PlayerPrefs.GetString("SelectedSummoner");
-        friendSummoner.SetStats(new SummonerStats(summonerTitle, FriendlySummoner.currentHealth, FriendlySummoner.maxHealth));
+        friendSummoner.SetStats(new SummonerStats(FriendlySummoner.summonerData.title, FriendlySummoner.currentHealth, FriendlySummoner.maxHealth));
         heroPower.SetHeroPower(friendSummoner.stats.heroPowerTitle, friendSummoner.stats.heroPowerDescription, friendSummoner.stats.heroPowerCost, friendSummoner.stats.heroPowerEffect);
         friendDeck.GetDeck();
 

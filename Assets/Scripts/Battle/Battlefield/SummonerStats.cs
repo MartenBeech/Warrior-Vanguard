@@ -21,7 +21,7 @@ public class SummonerStats {
     public WarriorAbility ability = new();
 
     public SummonerStats(string title, int health, int healthMax) {
-        this.title = PlayerPrefs.GetString("SelectedSummoner");
+        this.title = FriendlySummoner.summonerData.title;
         displayTitle = Regex.Replace(title, "(?<!^)([A-Z])", " $1");
         description = FriendlySummoner.summonerData.description;
         heroPowerTitle = FriendlySummoner.summonerData.heroPowerTitle;

@@ -3,6 +3,7 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour {
     public Card card;
     public GameObject collection;
+    public SummonerSelectionManager summonerSelectionManager;
     public void StartNewGame() {
         PlayerPrefs.DeleteAll();
 
@@ -19,6 +20,7 @@ public class MainMenu : MonoBehaviour {
 
     public void ContinueGame() {
         ItemManager.LoadAvailableItems();
+        summonerSelectionManager.LoadSummoner();
         SceneLoader.LoadMap();
     }
 
