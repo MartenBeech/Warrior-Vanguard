@@ -9,7 +9,7 @@ public class WiseMonk {
             range = 4,
             damageType = Character.DamageType.Magical,
             race = Character.Race.Holyborn,
-            rarity = CardRarity.Rare,
+            rarity = CardRarity.Common,
             genre = Character.Genre.Human,
         };
         for (int i = 0; i < 2; i++) {

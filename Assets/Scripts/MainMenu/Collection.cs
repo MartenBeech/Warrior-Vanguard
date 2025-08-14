@@ -6,6 +6,7 @@ using TMPro;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 public class Collection : MonoBehaviour {
     public Transform subcategories;
@@ -110,11 +111,12 @@ public class Collection : MonoBehaviour {
             selectedRace = title;
 
             string[] files = Directory.GetFiles(targetPath, "*.cs");
-            foreach (string filePath in files) {
-                string fileTitle = Path.GetFileName(filePath).Split(".")[0];
-                Type type = Type.GetType(fileTitle);
 
-                if (selectedClass == "Items") {
+            if (selectedClass == "Items") {
+                foreach (string filePath in files) {
+                    string fileTitle = Path.GetFileName(filePath).Split(".")[0];
+                    Type type = Type.GetType(fileTitle);
+
                     GameObject itemObj = Instantiate(itemPrefab, items);
 
                     GameObject tempItemObj = new();
@@ -124,11 +126,21 @@ public class Collection : MonoBehaviour {
 
                     itemObj.GetComponent<Item>().SetItem(item);
                     itemObj.transform.localScale = new Vector2(2, 2);
-                } else {
-                    GameObject cardObj = Instantiate(cardPrefab, items);
+                }
+            } else {
+                List<WarriorStats> statsList = new();
+                foreach (string filePath in files) {
+                    string fileTitle = Path.GetFileName(filePath).Split(".")[0];
+                    Type type = Type.GetType(fileTitle);
 
                     object instance = Activator.CreateInstance(type);
                     WarriorStats stats = (WarriorStats)type.GetMethod("GetStats")?.Invoke(instance, null);
+                    statsList.Add(stats);
+                }
+
+                statsList.Sort((a, b) => a.rarity.CompareTo(b.rarity));
+                foreach (var stats in statsList) {
+                    GameObject cardObj = Instantiate(cardPrefab, items);
 
                     cardObj.transform.localScale = new Vector2(2, 2);
                     cardObj.GetComponent<DragDrop>().enabled = false;
