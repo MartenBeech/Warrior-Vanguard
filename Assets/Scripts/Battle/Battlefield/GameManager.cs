@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     List<Character> friends = new();
@@ -14,16 +15,20 @@ public class GameManager : MonoBehaviour {
     public Coin enemyCoin;
     public Deck friendDeck;
     public Deck enemyDeck;
+    public Hand friendHand;
     public Hand enemyHand;
     public Item enemyItem;
     public Summoner friendSummoner;
     Summoner enemySummoner;
     CharacterSpawner enemyCharacterSpawner;
     public HeroPower heroPower;
+    public List<GameObject> interactableButtons;
     public static CharacterSpawner.Alignment turn;
-    public static string enemySummonerName = "Devil";
+    public static string enemySummonerName = "";
+    public static bool isLoading = false;
 
     async void Awake() {
+        SetLoading(true);
         friendSummoner.SetStats(new SummonerStats(FriendlySummoner.summonerData.title, FriendlySummoner.currentHealth, FriendlySummoner.maxHealth));
         heroPower.SetHeroPower(friendSummoner.stats.heroPowerTitle, friendSummoner.stats.heroPowerDescription, friendSummoner.stats.heroPowerCost, friendSummoner.stats.heroPowerImage, friendSummoner.stats.heroPowerEffect);
         friendDeck.GetDeck();
@@ -66,9 +71,12 @@ public class GameManager : MonoBehaviour {
         foreach (Character friend in friends) {
             friend.stats.ability.immune.Remove();
         }
+
+        SetLoading(false);
     }
 
     public async void EndPlayerTurn() {
+        SetLoading(true);
         List<Character> sortedFriends = friends.OrderByDescending(c => c.gridIndex.x).ToList();
         foreach (Character friend in sortedFriends) {
             await friend.MoveWarrior(Character.Direction.Right);
@@ -152,6 +160,17 @@ public class GameManager : MonoBehaviour {
             }
         }
         EndEnemyTurn();
+    }
+
+    public void SetLoading(bool value) {
+        isLoading = value;
+
+        foreach (var clickableButton in interactableButtons) {
+            clickableButton.GetComponent<Button>().interactable = !isLoading;
+        }
+        foreach (var card in friendHand.GetComponentsInChildren<Button>()) {
+            card.interactable = !isLoading;
+        }
     }
 }
 

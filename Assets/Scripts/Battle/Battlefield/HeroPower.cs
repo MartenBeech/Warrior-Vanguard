@@ -40,21 +40,29 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void HeroPowerClicked() {
         gameManager.friendCoin.SpendCoins(cost);
-        heroPowerButton.interactable = false;
+        heroPowerButton.enabled = false;
+        GetComponent<Image>().color = ColorPalette.AddTransparency(ColorPalette.GetColor(ColorPalette.ColorEnum.White), 25);
         effect(new(gameManager, friendHand, characterSpawner, friendSummoner));
     }
 
     public bool CanActivateHeroPower() {
         if (gameManager.friendCoin.CanAfford(cost)) {
-            heroPowerButton.interactable = true;
+            heroPowerButton.enabled = true;
             return true;
         }
 
-        heroPowerButton.interactable = false;
+        heroPowerButton.enabled = false;
         return false;
     }
 
     public void RefreshHeroPower() {
-        heroPowerButton.interactable = CanActivateHeroPower();
+        if (gameManager.friendCoin.CanAfford(cost)) {
+            heroPowerButton.enabled = true;
+            GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
+            return;
+        }
+
+        heroPowerButton.enabled = false;
+        GetComponent<Image>().color = ColorPalette.AddTransparency(ColorPalette.GetColor(ColorPalette.ColorEnum.White), 25);
     }
 }
