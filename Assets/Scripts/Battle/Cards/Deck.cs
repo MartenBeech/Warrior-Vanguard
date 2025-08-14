@@ -42,8 +42,9 @@ public class Deck : MonoBehaviour {
 
         UpdateDeckUi();
 
+        Vector2 handPos = hand.GetPositionOfNextCardInHand();
+
         Vector2 deckPos = transform.position;
-        Vector2 handPos = handObject.transform.position;
         Vector2 centerPos = new(920, 490);
 
         GameObject cardInstance = Instantiate(cardPrefab, deckPos, Quaternion.identity, transform);

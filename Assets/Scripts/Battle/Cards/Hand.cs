@@ -180,7 +180,7 @@ public class Hand : MonoBehaviour {
     }
 
     public async Task MoveNewCardToHand(WarriorStats stats, Vector2 fromPos) {
-        Vector2 handPos = handObject.transform.position;
+        Vector2 handPos = GetPositionOfNextCardInHand();
 
         GameObject cardInstance = Instantiate(cardPrefab, fromPos, Quaternion.identity, warriors);
         ObjectAnimation objectAnimation = cardInstance.GetComponentInChildren<ObjectAnimation>();
@@ -196,5 +196,14 @@ public class Hand : MonoBehaviour {
         Destroy(cardInstance);
 
         AddCardToHand(card.stats);
+    }
+
+    public Vector2 GetPositionOfNextCardInHand() {
+        GameObject tempCardInstance = Instantiate(cardPrefab, transform);
+        // This immediately gets the position of the newly created card in hand instead of waiting 1 frame
+        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+        Vector2 cardPos = tempCardInstance.transform.position;
+        Destroy(tempCardInstance);
+        return cardPos;
     }
 }
