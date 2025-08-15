@@ -48,7 +48,7 @@ public class GridCell : MonoBehaviour {
 
         GetComponent<Outline>().enabled = false;
 
-        GetComponent<Image>().color = ColorPalette.AddTransparency(ColorPalette.GetColor(ColorPalette.ColorEnum.White), 10);
+        GetComponent<Image>().color = ColorPalette.AddTransparency(ColorPalette.GetColor(ColorPalette.ColorEnum.White), 75);
     }
 
     public bool IsHighlighed() {
