@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UnderworldSummoner {
+public class UnderworldSummoner2 {
     public SummonerData GetData() {
         SummonerData data = new() {
             title = GetType().Name,

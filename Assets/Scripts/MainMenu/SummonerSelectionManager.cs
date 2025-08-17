@@ -8,6 +8,7 @@ public class SummonerSelectionManager : MonoBehaviour {
     public Button summoner1Button;
     public Button summoner2Button;
     public Button startButton;
+    public Card card;
     SummonerData[] availableSummoners;
     SummonerData selectedSummoner;
     int summoner1Index;
@@ -17,14 +18,14 @@ public class SummonerSelectionManager : MonoBehaviour {
         ToggleSummonerSelectionPanel(false);
 
         availableSummoners = new SummonerData[] {
-            new HumanSummoner().GetData(),
+            new HumanSummoner1().GetData(),
             new HumanSummoner2().GetData(),
-            new ElvenSummoner().GetData(),
-            new ElvenSummoner().GetData(),
-            new UndeadSummoner().GetData(),
-            new UndeadSummoner().GetData(),
-            new UnderworldSummoner().GetData(),
-            new UnderworldSummoner().GetData(),
+            new ElvenSummoner1().GetData(),
+            new ElvenSummoner2().GetData(),
+            new UndeadSummoner1().GetData(),
+            new UndeadSummoner2().GetData(),
+            new UnderworldSummoner1().GetData(),
+            new UnderworldSummoner2().GetData(),
             };
     }
 
@@ -60,6 +61,14 @@ public class SummonerSelectionManager : MonoBehaviour {
     }
 
     public void ClickStart() {
+        //TEST
+        // for (int i = 0; i < 20; i++) {
+        //     card.SetStats(CardDatabase.allCards[i]);
+        //     DeckManager.AddCard(card);
+        // }
+
+        StartingDecks.SetStartingDeck(selectedSummoner.title);
+        ItemManager.InitAvailableItems();
         SceneLoader.LoadMap();
     }
 

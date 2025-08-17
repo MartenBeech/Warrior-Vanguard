@@ -2469,6 +2469,7 @@ MonoBehaviour:
   summoner1Button: {fileID: 605074044}
   summoner2Button: {fileID: 1826058413}
   startButton: {fileID: 1355075914}
+  card: {fileID: 3458915321434544214, guid: d3cf564b131fdef45b67c72552f048cf, type: 3}
 --- !u!4 &1351199181
 Transform:
   m_ObjectHideFlags: 0

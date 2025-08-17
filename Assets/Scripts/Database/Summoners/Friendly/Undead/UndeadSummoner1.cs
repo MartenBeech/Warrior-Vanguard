@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class UndeadSummoner {
+public class UndeadSummoner1 {
     public SummonerData GetData() {
         SummonerData data = new() {
             title = GetType().Name,

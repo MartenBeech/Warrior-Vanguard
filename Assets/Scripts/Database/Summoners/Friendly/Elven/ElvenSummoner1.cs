@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElvenSummoner {
+public class ElvenSummoner1 {
     public SummonerData GetData() {
         SummonerData data = new() {
             title = GetType().Name,

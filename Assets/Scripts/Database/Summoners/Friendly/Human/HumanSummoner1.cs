@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HumanSummoner {
+public class HumanSummoner1 {
     public SummonerData GetData() {
         int armorGain = 2;
         SummonerData data = new() {
