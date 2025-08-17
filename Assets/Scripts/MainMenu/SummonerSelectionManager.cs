@@ -67,7 +67,7 @@ public class SummonerSelectionManager : MonoBehaviour {
         //     DeckManager.AddCard(card);
         // }
 
-        StartingDecks.SetStartingDeck(selectedSummoner.title);
+        StartingDecks.SetStartingDeck(selectedSummoner.title, card);
         ItemManager.InitAvailableItems();
         SceneLoader.LoadMap();
     }
