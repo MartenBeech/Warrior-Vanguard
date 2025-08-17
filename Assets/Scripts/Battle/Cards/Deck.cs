@@ -17,14 +17,15 @@ public class Deck : MonoBehaviour {
     public void GetDeck() {
         //If accessing this page from the Map, convert the Deck.
         deckList = DeckManager.GetDeck();
+        ShuffleDeck(deckList);
         if (deckList.Count == 0) {
-            FillDeckWithRandomCards();
+            FillDeckWithNewestCards();
         }
 
         UpdateDeckUi();
     }
 
-    void FillDeckWithRandomCards() {
+    void FillDeckWithNewestCards() {
         for (int i = 0; i < CardDatabase.allCards.Count; i++) {
             deckList.Add(CardDatabase.allCards[i]);
         }
@@ -111,5 +112,14 @@ public class Deck : MonoBehaviour {
 
         Summoner summoner = summonerObject.GetComponent<Summoner>();
         await summoner.TakeDamage(null, burnoutDamage, null, Character.DamageType.Physical);
+    }
+
+    private void ShuffleDeck(List<WarriorStats> deck) {
+        int n = deck.Count;
+        while (n > 1) {
+            n--;
+            int k = Random.Range(0, n + 1);
+            (deck[n], deck[k]) = (deck[k], deck[n]);
+        }
     }
 }
