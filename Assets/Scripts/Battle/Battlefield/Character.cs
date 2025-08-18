@@ -28,6 +28,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public TMP_Text attackText;
     public TMP_Text healthText;
     public GameObject image;
+    public GameObject border;
     public GameObject crystal;
     private GameManager gameManager;
     public enum DamageType {

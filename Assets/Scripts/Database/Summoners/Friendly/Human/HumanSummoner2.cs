@@ -4,6 +4,7 @@ public class HumanSummoner2 {
     public SummonerData GetData() {
         SummonerData data = new() {
             title = GetType().Name,
+            genre = Character.Genre.Human,
             description = "A Peasant with big dreams and big triforks!",
             heroPowerTitle = "Hold Pitch",
             heroPowerDescription = $"Summon a Peasant",

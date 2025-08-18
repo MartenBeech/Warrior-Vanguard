@@ -9,5 +9,6 @@ public class SummonerData {
     public int heroPowerCost;
     public Sprite heroPowerImage;
     public Action<HeroPowerEffectParams> heroPowerEffect;
+    public Character.Genre genre;
 }
 

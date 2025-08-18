@@ -5,6 +5,7 @@ public class ElvenSummoner1 {
     public SummonerData GetData() {
         SummonerData data = new() {
             title = GetType().Name,
+            genre = Character.Genre.Forest,
             description = "An Elven Summoner with agility and magic",
             heroPowerTitle = "Ancient Guidance",
             heroPowerDescription = "Your most expensive cards in hand cost 1 less",

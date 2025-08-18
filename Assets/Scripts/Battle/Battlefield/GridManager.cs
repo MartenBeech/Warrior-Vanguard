@@ -18,13 +18,9 @@ public class GridManager : MonoBehaviour {
     private GridLayoutGroup gridLayoutGroup;
     public Transform EnemySummonerObject;
 
-    enum Biome {
-        None, Undead, Forest, Human, Underworld
-    }
-
     void Start() {
         grid = new GridCell[columns, rows];
-        GenerateGrid(Biome.Human);
+        GenerateGrid(FriendlySummoner.summonerData.genre);
         ClearHighlightedCells();
     }
 
@@ -50,7 +46,7 @@ public class GridManager : MonoBehaviour {
         return pos;
     }
 
-    void GenerateGrid(Biome biome) {
+    void GenerateGrid(Character.Genre genre) {
         RectTransform rectTransform = GetComponent<RectTransform>();
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
         float cellSpacing = 150 / columns;
@@ -72,13 +68,13 @@ public class GridManager : MonoBehaviour {
                     transform
                 );
                 cell.name = $"Cell[{x},{y}]";
+                GridCell gridCell = cell.GetComponent<GridCell>();
 
-                if (biome != Biome.None) {
-                    int randomCell = Rng.Range(0, 16);
-                    cell.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cells/{biome}/{randomCell}");
+                if (genre != Character.Genre.None) {
+                    int randomCell = Rng.Range(0, 12);
+                    gridCell.image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cells/{genre}/{randomCell}");
                 }
 
-                GridCell gridCell = cell.GetComponent<GridCell>();
                 gridCell.Setup(this, new Vector2(x, y));
                 grid[x, y] = gridCell;
             }

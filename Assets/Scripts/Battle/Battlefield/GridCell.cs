@@ -6,11 +6,13 @@ public class GridCell : MonoBehaviour {
     private GridManager gridManager;
     private Button button;
     public Vector2 gridIndex;
+    public GameObject image;
+    public GameObject border;
     bool isHighlighed;
 
     public void Setup(GridManager manager, Vector2 gridIndex) {
         gridManager = manager;
-        button = GetComponent<Button>();
+        button = image.GetComponent<Button>();
         this.gridIndex = gridIndex;
         button.onClick.AddListener(async () => await OnClick());
     }
@@ -28,11 +30,10 @@ public class GridCell : MonoBehaviour {
             Color newColor = ColorPalette.GetColor(ColorPalette.ColorEnum.TealMedium);
             newColor.a = currentTransparency;
             character.image.GetComponent<Image>().color = newColor;
+            character.border.SetActive(true);
         }
 
-        GetComponent<Outline>().enabled = true;
-        GetComponent<Outline>().effectColor = ColorPalette.GetColor(ColorPalette.ColorEnum.Teal);
-        GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.TealWeak);
+        border.SetActive(true);
     }
 
     public void ClearHighlight() {
@@ -44,11 +45,10 @@ public class GridCell : MonoBehaviour {
             Color newColor = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
             newColor.a = currentTransparency;
             character.image.GetComponent<Image>().color = newColor;
+            character.border.SetActive(false);
         }
 
-        GetComponent<Outline>().enabled = false;
-
-        GetComponent<Image>().color = ColorPalette.AddTransparency(ColorPalette.GetColor(ColorPalette.ColorEnum.White), 75);
+        border.SetActive(false);
     }
 
     public bool IsHighlighed() {

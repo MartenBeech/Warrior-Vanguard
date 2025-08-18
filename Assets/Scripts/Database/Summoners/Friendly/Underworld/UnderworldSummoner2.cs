@@ -4,6 +4,7 @@ public class UnderworldSummoner2 {
     public SummonerData GetData() {
         SummonerData data = new() {
             title = GetType().Name,
+            genre = Character.Genre.Underworld,
             description = "A Summoner from the Underworld with unique abilities",
             heroPowerTitle = "Mystic Gate",
             heroPowerDescription = "Summon a random 2-cost warrior",
