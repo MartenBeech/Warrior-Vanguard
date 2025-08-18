@@ -114,7 +114,7 @@ public class Deck : MonoBehaviour {
         await summoner.TakeDamage(null, burnoutDamage, null, Character.DamageType.Physical);
     }
 
-    private void ShuffleDeck(List<WarriorStats> deck) {
+    public void ShuffleDeck(List<WarriorStats> deck) {
         int n = deck.Count;
         while (n > 1) {
             n--;

@@ -8,6 +8,7 @@ public class MapTile : MonoBehaviour {
     public Button tileButton;
     public GameObject checkmark;
     public TileType tileType;
+    public int level = 1;
     public EnemyType enemyType;
 
     public enum TileType {
@@ -65,11 +66,13 @@ public class MapTile : MonoBehaviour {
         LevelManager.SetCurrentTile(this);
         PlayerPrefs.SetInt($"RewardChosen", 0);
 
-        string enemySummonerName = gameObject.GetComponent<Image>().sprite.name;
-        GameManager.enemySummonerName = enemySummonerName;
+        //TEST - Get summoner with the same image as the tile
+        // string enemySummonerName = gameObject.GetComponent<Image>().sprite.name;
+        // GameManager.enemySummonerName = enemySummonerName;
 
         switch (tileType) {
             case TileType.Battlefield:
+                GameManager.enemySummonerName = EnemySummoner.GetWorthyEnemySummonerName(level);
                 SceneLoader.LoadBattlefield();
                 break;
             case TileType.Shop:
