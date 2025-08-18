@@ -6,8 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour {
-    public int rows;
-    public int columns;
+    public static int rows;
+    public static int columns;
     public GameObject cellPrefab;
     public CharacterSpawner characterSpawner;
     public Hand friendHand;
@@ -19,6 +19,8 @@ public class GridManager : MonoBehaviour {
     public Transform EnemySummonerObject;
 
     void Start() {
+        rows = Rng.Range(2, 5);
+        columns = Rng.Range(9, 12);
         grid = new GridCell[columns, rows];
         GenerateGrid(FriendlySummoner.summonerData.genre);
         ClearHighlightedCells();
@@ -49,7 +51,7 @@ public class GridManager : MonoBehaviour {
     void GenerateGrid(Character.Genre genre) {
         RectTransform rectTransform = GetComponent<RectTransform>();
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
-        float cellSpacing = 150 / columns;
+        float cellSpacing = 100 / columns;
 
         float cellWidth = (rectTransform.rect.width / columns) - cellSpacing;
         float cellHeight = (rectTransform.rect.height / rows) - cellSpacing;
@@ -69,6 +71,8 @@ public class GridManager : MonoBehaviour {
                 );
                 cell.name = $"Cell[{x},{y}]";
                 GridCell gridCell = cell.GetComponent<GridCell>();
+
+                gridCell.GetComponent<RectTransform>().localScale = GetCellDimension() / gridCell.GetComponent<RectTransform>().rect.width;
 
                 if (genre != Character.Genre.None) {
                     int randomCell = Rng.Range(0, 12);

@@ -119,13 +119,13 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             await objectAnimation.MoveObject(transform.position, gridManager.GetCellPosition(newGridIndex), 2);
 
             stats.ability.joust.TriggerMove(this, stepsToMove);
-            stats.ability.familiarGround.TriggerMove(this, gridIndex, newGridIndex, gridManager);
+            stats.ability.familiarGround.TriggerMove(this, gridIndex, newGridIndex);
             gridIndex = newGridIndex;
         }
     }
 
     public bool IsOutOfField(Vector2 gridIndex) {
-        return gridIndex.x < 0 || gridIndex.x >= gridManager.columns;
+        return gridIndex.x < 0 || gridIndex.x >= GridManager.columns;
     }
 
     public async Task StandAndAttack(Direction direction) {
