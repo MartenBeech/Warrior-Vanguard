@@ -124,7 +124,7 @@ public class ShopManager : MonoBehaviour {
     public void ReturnToMap() {
         PlayerPrefs.DeleteKey(shopCardsKey);
         PlayerPrefs.DeleteKey(shopItemsKey);
-        TileCompleter.MarkTileAsCompleted();
+        TileCompleter.MarkTileAsCompleted(true, TileCompleter.currentTileIndex);
         SceneLoader.LoadMap();
     }
 }

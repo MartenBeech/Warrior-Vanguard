@@ -149,7 +149,7 @@ public class EventManager : MonoBehaviour {
         PlayerPrefs.DeleteKey(eventKey);
         PlayerPrefs.DeleteKey(eventGainItemKey);
         PlayerPrefs.DeleteKey(eventCardsKey);
-        TileCompleter.MarkTileAsCompleted();
+        TileCompleter.MarkTileAsCompleted(true, TileCompleter.currentTileIndex);
         cardIndexes.Clear();
     }
 

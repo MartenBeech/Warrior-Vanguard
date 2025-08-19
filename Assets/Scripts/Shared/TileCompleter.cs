@@ -1,14 +1,14 @@
 using UnityEngine;
 
 public static class TileCompleter {
-    static int currentTileIndex = -1;
+    public static string currentTileIndex;
 
-    public static void MarkTileAsCompleted(bool isCompleted = true, int tileIndex = -1) {        
-        if (tileIndex > -1) {
+    public static void MarkTileAsCompleted(bool isCompleted, string tileIndex) {
+        if (tileIndex != null) {
             currentTileIndex = tileIndex;
         }
 
-        if (isCompleted) {            
+        if (isCompleted) {
             ClearLastCompleted();
             PlayerPrefs.SetInt($"TileCompleted_{currentTileIndex}", 1);
             PlayerPrefs.SetInt($"LastCompleted_{currentTileIndex}", 1);

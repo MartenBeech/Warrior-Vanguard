@@ -6,7 +6,7 @@ public static class LevelManager {
     public static bool isAlive = true;
 
     public static void CompleteLevel() {
-        TileCompleter.MarkTileAsCompleted();
+        TileCompleter.MarkTileAsCompleted(true, TileCompleter.currentTileIndex);
         GoldManager.AddGold(50);
         SceneLoader.LoadMap();
         ItemManager.enemyItem = null;

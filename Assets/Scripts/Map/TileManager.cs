@@ -1,64 +1,103 @@
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class TileManager : MonoBehaviour {
-    public List<MapTile> mapTiles;
+    public List<List<MapTile>> mapTiles = new();
     public RectTransform scrollViewPanel;
     public RewardManager rewardManager;
     public GameObject rewardPanel;
     public MapTile currentTile;
+    public GameObject mapTilePrefab;
 
     private void Start() {
+        CreateMapTiles();
         UpdateTileAccess();
     }
 
     private void UpdateTileAccess() {
-        LockAllTiles();
         bool isTileActive = PlayerPrefs.HasKey("TileActive");
 
-        for (int i = 0; i < mapTiles.Count; i++) {
-            bool isCompleted = PlayerPrefs.GetInt($"TileCompleted_{i}", 0) == 1;
-            bool isLastCompleted = PlayerPrefs.GetInt($"LastCompleted_{i}", 0) == 1;
+        for (int y = 0; y < mapTiles.Count; y++) {
+            for (int x = 0; x < mapTiles[y].Count; x++) {
 
-            if (isCompleted) {
-                mapTiles[i].MarkAsCompleted();
-            } else {
-                mapTiles[i].MarkAsIncompleted();
-            }
 
-            if (!isTileActive && isLastCompleted) {
-                mapTiles[i].UnlockNextTiles();
+                bool isCompleted = PlayerPrefs.GetInt($"TileCompleted_{y}", 0) == 1;
+                bool isLastCompleted = PlayerPrefs.GetInt($"LastCompleted_{y}", 0) == 1;
 
-                //TODO: Scroll to finished tile
+                mapTiles[y][x].MarkAsCompleted(isCompleted);
 
-                if (mapTiles[i].tileType == MapTile.TileType.Battlefield && PlayerPrefs.GetInt($"RewardChosen", 0) == 0) {
-                    rewardManager.ShowReward(mapTiles[i].enemyType);
+                if (!isTileActive && isLastCompleted) {
+                    mapTiles[y][x].UnlockNextTiles();
+
+                    //TODO: Scroll to finished tile
+
+                    if (mapTiles[y][x].tileType == MapTile.TileType.Battlefield && PlayerPrefs.GetInt($"RewardChosen", 0) == 0) {
+                        rewardManager.ShowReward(mapTiles[y][x].enemyType);
+                    }
                 }
             }
         }
 
         if (isTileActive) {
-            int activeTileIndex = PlayerPrefs.GetInt("TileActive", 0);
-            mapTiles[activeTileIndex].SetUnlocked(true);
+            string activeTileIndex = PlayerPrefs.GetString("TileActive", "");
+            string[] activeTileIndexSplit = activeTileIndex.Split("-");
+            Vector2Int activeTileIndexVector = new(int.Parse(activeTileIndexSplit[0]), int.Parse(activeTileIndexSplit[1]));
+            mapTiles[activeTileIndexVector.y][activeTileIndexVector.x].SetUnlocked(true);
         }
     }
 
     public void MarkTileAsCurrent(MapTile tile) {
         currentTile = tile;
-        int tileIndex = mapTiles.IndexOf(currentTile);
+        string tileIndex = $"{tile.gridIndex.y}-{tile.gridIndex.x}";
         TileCompleter.MarkTileAsCompleted(false, tileIndex);
-        PlayerPrefs.SetInt($"TileActive", tileIndex);
+        PlayerPrefs.SetString($"TileActive", tileIndex);
     }
 
-    private void LockAllTiles() {
-        for (int i = 0; i < mapTiles.Count; i++) {
-            bool isCompleted = PlayerPrefs.GetInt($"TileCompleted_{i}", 0) == 1;
+    private GameObject CreateMapTile(Vector2 tilePos, Vector2 gridIndex) {
+        GameObject mapTileObject = Instantiate(mapTilePrefab, tilePos, quaternion.identity, scrollViewPanel);
+        mapTileObject.name = $"MapTile {gridIndex.y}-{gridIndex.x}";
 
-            //Set the first tile default unlocked if it haven't been completed yet
-            if (i == 0 && !isCompleted) {
-                mapTiles[0].SetUnlocked(true);
-            } else {
-                mapTiles[i].SetUnlocked(false);
+        MapTile mapTile = mapTileObject.GetComponent<MapTile>();
+        mapTile.gridIndex = gridIndex;
+        mapTiles[(int)gridIndex.y].Add(mapTile);
+
+        return mapTileObject;
+    }
+
+    private void CreateMapTiles() {
+
+        for (int y = 0; y < 5; y++) {
+            mapTiles.Add(new List<MapTile>());
+
+            switch (y) {
+                case 0:
+                    for (int x = 0; x < 3; x++) {
+                        Vector2 tilePos = new(-400 + x * 400, 200);
+                        GameObject mapTileObject = CreateMapTile(tilePos, new(x, y));
+
+                        RectTransform rect = mapTileObject.GetComponent<RectTransform>();
+                        rect.anchoredPosition = tilePos;
+
+                        MapTile mapTile = mapTileObject.GetComponent<MapTile>();
+                        mapTile.SetUnlocked(true);
+                    }
+                    break;
+
+                case 1:
+                    foreach (var mapTile in mapTiles[y - 1]) {
+                        int nParents = Rng.Range(2, 3);
+
+                        for (int x = 0; x < nParents; x++) {
+                            int xPos = nParents == 1 ? (int)mapTile.transform.position.x : (int)mapTile.transform.position.x - 100 + (x * 200);
+                            Vector2 tilePos = new(xPos, mapTile.transform.position.y + 200);
+                            GameObject parentMapTileObject = CreateMapTile(tilePos, new(x, y));
+
+                            MapTile parentMapTile = parentMapTileObject.GetComponent<MapTile>();
+                            mapTile.nextTiles.Add(parentMapTile);
+                        }
+                    }
+                    break;
             }
         }
     }
