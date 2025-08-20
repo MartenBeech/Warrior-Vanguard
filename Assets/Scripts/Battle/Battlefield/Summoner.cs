@@ -56,17 +56,17 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             damage = stats.ability.resistance.TriggerDamaged(dealer, damage, damageType);
         }
 
-        int damageAfterShield = damage;
+        int damageAfterResistances = damage;
 
-        if (damageAfterShield > 0) {
-            damageAfterShield -= stats.shield;
+        if (damageAfterResistances > 0) {
+            damageAfterResistances -= stats.shield;
             stats.shield -= damage;
 
             if (stats.shield < 0) {
                 stats.shield = 0;
-                stats.health -= damageAfterShield;
+                stats.health -= damageAfterResistances;
                 if (stats.isFriendly) {
-                    FriendlySummoner.LoseHealth(damageAfterShield);
+                    FriendlySummoner.LoseHealth(damageAfterResistances);
                 }
             }
 
@@ -88,9 +88,9 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
             dealer.image.GetComponent<Image>().color = currentColor;
 
-            if (damageAfterShield > 0) {
-                await dealer.stats.ability.lifeSteal.TriggerStrike(dealer, damageAfterShield);
-                await dealer.stats.ability.lifeTransfer.TriggerStrike(dealer, damageAfterShield, gridManager);
+            if (damageAfterResistances > 0) {
+                await dealer.stats.ability.lifeSteal.TriggerStrike(dealer, damageAfterResistances);
+                await dealer.stats.ability.lifeTransfer.TriggerStrike(dealer, damageAfterResistances, gridManager);
             }
 
             dealer.stats.ability.bloodlust.TriggerAttack(dealer);

@@ -4,9 +4,10 @@ public class GainGold {
         Event newEvent = new() {
             OnSetup = () => {
                 eventManager.eventText.text = $"You found treasure! Inside is {goldAmount} gold! Do you take it?";
+                eventManager.option1Text.text = "Accept";
             },
 
-            OnAccept = () => {
+            OnClickOption1 = () => {
                 GoldManager.AddGold(goldAmount);
                 eventManager.eventText.text = "Congratulations! You are now a bit richer than before.";
             }

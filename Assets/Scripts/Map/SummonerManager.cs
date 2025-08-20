@@ -30,6 +30,6 @@ public class SummonerManager : MonoBehaviour {
     }
 
     private void UpdateSummonerUi() {
-        summoner.SetStats(new SummonerStats(FriendlySummoner.summonerData.title, FriendlySummoner.currentHealth, FriendlySummoner.maxHealth));
+        summoner.SetStats(new SummonerStats(FriendlySummoner.summonerData.title, FriendlySummoner.GetHealth(), FriendlySummoner.GetMaxHealth()));
     }
 }

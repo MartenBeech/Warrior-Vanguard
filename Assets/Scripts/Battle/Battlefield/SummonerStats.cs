@@ -12,7 +12,7 @@ public class SummonerStats {
     public int heroPowerCost = 0;
     public Sprite heroPowerImage;
     public Action<HeroPowerEffectParams> heroPowerEffect;
-    public bool isFriendly;
+    public bool isFriendly = true;
     public int health;
     public int healthMax;
     public int shield = 0;

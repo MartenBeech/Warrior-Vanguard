@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using System.IO;
 using System;
 using System.Linq;
@@ -18,7 +17,13 @@ public class EventManager : MonoBehaviour {
     public GameObject upgradeCardPanel;
     public GameObject removeCardPanel;
     public GameObject gainCardPanel;
-    public GameObject acceptButton;
+    public GameObject option1Button;
+    public GameObject option2Button;
+    public GameObject option3Button;
+    public TMP_Text option1Text;
+    public TMP_Text option2Text;
+    public TMP_Text option3Text;
+    public GameObject returnButton;
     public GameObject itemRewardPanel;
     public GameObject itemImage;
     public GameObject itemTitle;
@@ -27,13 +32,12 @@ public class EventManager : MonoBehaviour {
     public SummonerManager summonerManager;
     enum events {
         GainGoldEvent,
-        LoseGoldEvent,
+        GainItemEvent,
         GainLegendaryEvent,
+        GainMaxHealthEvent,
+        GamblerEvent,
         UpgradeCardEvent,
         RemoveCardEvent,
-        LoseHealthEvent,
-        GainMaxHealthEvent,
-        GainItemEvent,
     }
     Event currentEvent;
     public List<Card> cardIndexes = new();
@@ -43,7 +47,10 @@ public class EventManager : MonoBehaviour {
         upgradeCardPanel.SetActive(false);
         removeCardPanel.SetActive(false);
         gainCardPanel.SetActive(false);
-        acceptButton.SetActive(false);
+        option1Button.SetActive(false);
+        option2Button.SetActive(false);
+        option3Button.SetActive(false);
+        returnButton.SetActive(false);
         itemRewardPanel.SetActive(false);
         TriggerRandomEvent();
     }
@@ -61,7 +68,7 @@ public class EventManager : MonoBehaviour {
 
                 fileTitle = Path.GetFileName(filePath).Split(".")[0];
 
-                fileTitle = "GainLegendary"; // TODO: Hardcoded for testing purposes
+                fileTitle = "GainMaxHealth"; // TODO: Hardcoded for testing purposes
 
                 Type type = Type.GetType(fileTitle);
                 object instance = Activator.CreateInstance(type);
@@ -76,11 +83,16 @@ public class EventManager : MonoBehaviour {
 
         currentEvent.OnSetup();
 
-        if (currentEvent.OnAccept != null) {
-            acceptButton.SetActive(true);
-        } else {
+        if (currentEvent.OnClickOption1 == null && currentEvent.OnClickOption2 == null && currentEvent.OnClickOption3 == null) {
             FinishEvent();
         }
+
+        if (currentEvent.OnClickOption1 != null) option1Button.SetActive(true);
+        if (currentEvent.OnClickOption2 != null) option2Button.SetActive(true);
+        if (currentEvent.OnClickOption3 != null) option3Button.SetActive(true);
+        option1Button.GetComponent<UnityEngine.UI.Button>().interactable = currentEvent.enableOption1Button;
+        option2Button.GetComponent<UnityEngine.UI.Button>().interactable = currentEvent.enableOption2Button;
+        option3Button.GetComponent<UnityEngine.UI.Button>().interactable = currentEvent.enableOption3Button;
     }
 
     public void SaveCardsEvent(List<Card> cards) {
@@ -111,9 +123,18 @@ public class EventManager : MonoBehaviour {
         }
     }
 
-    public void AcceptEvent() {
-        currentEvent.OnAccept();
-        acceptButton.SetActive(false);
+    public void ClickOption1() {
+        currentEvent.OnClickOption1();
+        FinishEvent();
+    }
+
+    public void ClickOption2() {
+        currentEvent.OnClickOption2();
+        FinishEvent();
+    }
+
+    public void ClickOption3() {
+        currentEvent.OnClickOption3();
         FinishEvent();
     }
 
@@ -151,10 +172,32 @@ public class EventManager : MonoBehaviour {
         PlayerPrefs.DeleteKey(eventCardsKey);
         TileCompleter.MarkTileAsCompleted();
         cardIndexes.Clear();
+        option1Button.SetActive(false);
+        option2Button.SetActive(false);
+        option3Button.SetActive(false);
+        StartCoroutine(FadeInButton(returnButton, 1f));
     }
 
+    //Creates a smooth fade-in effect for the button
+    private System.Collections.IEnumerator FadeInButton(GameObject button, float duration) {
+        CanvasGroup canvasGroup = button.GetComponent<CanvasGroup>();
+        if (canvasGroup == null) {
+            canvasGroup = button.AddComponent<CanvasGroup>();
+        }
+        canvasGroup.alpha = 0f;
+        button.SetActive(true);
+
+        float elapsed = 0f;
+        while (elapsed < duration) {
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        canvasGroup.alpha = 1f;
+    }
+    
     public void ReturnToMap() {
-        FinishEvent();
         SceneManager.LoadScene("Map");
     }
 }
+

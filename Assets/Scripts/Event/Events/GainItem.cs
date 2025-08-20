@@ -26,11 +26,10 @@ public class GainItem {
                 eventManager.eventText.text = $"You find a mysterious item on the ground called {eventManager.item.displayTitle}. Do you want to pick it up?";
             },
 
-            OnAccept = () => {
+            OnClickOption1 = () => {
                 eventManager.item.UseImmediately();
                 ItemManager.AddItem(eventManager.item);
                 eventManager.eventText.text = $"You picked up {eventManager.item.displayTitle}!";
-                eventManager.acceptButton.SetActive(false);
                 eventManager.itemRewardPanel.SetActive(false);
             }
         };
