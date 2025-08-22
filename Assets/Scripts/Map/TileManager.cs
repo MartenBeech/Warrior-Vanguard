@@ -33,6 +33,10 @@ public class TileManager : MonoBehaviour {
                 if (!isTileActive && isLastCompleted) {
                     mapTiles[y][x].UnlockNextTiles();
 
+                    foreach (var mapTile in mapTiles[y]) {
+                        mapTile.SetUnlocked(false);
+                    }
+
                     //TODO: Scroll to finished tile
 
                     if (mapTiles[y][x].tileType == MapTile.TileType.Battlefield && PlayerPrefs.GetInt($"RewardChosen", 0) == 0) {
@@ -53,7 +57,8 @@ public class TileManager : MonoBehaviour {
     public void MarkTileAsCurrent(MapTile tile) {
         currentTile = tile;
         string tileIndex = $"{tile.gridIndex.y}-{tile.gridIndex.x}";
-        TileCompleter.MarkTileAsCompleted(false, tileIndex);
+        TileCompleter.ClearLastCompleted();
+        TileCompleter.currentTileIndex = tileIndex;
         PlayerPrefs.SetString($"TileActive", tileIndex);
     }
 
@@ -73,14 +78,16 @@ public class TileManager : MonoBehaviour {
 
     private void CreateStartTiles(int y) {
         for (int x = 0; x < 3; x++) {
-            Vector2 tilePos = new(-600 + x * 600, 200);
+            Vector2 tilePos = new(-480 + x * 480, 200);
             GameObject mapTileObject = CreateMapTile(tilePos, new(x, y), MapTile.TileType.Event);
 
             RectTransform rect = mapTileObject.GetComponent<RectTransform>();
             rect.anchoredPosition = tilePos;
 
             MapTile mapTile = mapTileObject.GetComponent<MapTile>();
-            mapTile.SetUnlocked(true);
+            if (TileCompleter.currentTileIndex == null) {
+                mapTile.SetUnlocked(true);
+            }
         }
     }
 
@@ -91,8 +98,8 @@ public class TileManager : MonoBehaviour {
 
             for (int x = 0; x < nParents; x++) {
                 int xOffset = largeGapBetweenParents ?
-                                -150 + (x * 300) :
-                                -75 + (x * 150);
+                                -120 + (x * 240) :
+                                -60 + (x * 120);
                 int xPos = nParents == 1 ? (int)childMapTile.transform.position.x : (int)childMapTile.transform.position.x + xOffset;
                 Vector2 tilePos = new(xPos, childMapTile.transform.position.y + 200);
                 GameObject parentMapTileObject = CreateMapTile(tilePos, new(mapTiles[y].Count, y), tileType);
@@ -109,8 +116,13 @@ public class TileManager : MonoBehaviour {
     private void CreateMergeTiles(int y, bool guaranteedMerge, MapTile.TileType tileType) {
         for (int i = 0; i < mapTiles[y - 1].Count; i++) {
             MapTile childMapTile = mapTiles[y - 1][i];
-            bool willMerge = i != mapTiles[y - 1].Count - 1 && (guaranteedMerge || Rng.Chance(50));
-            if (willMerge) {
+
+            bool willMergeRight = false;
+            if (i != mapTiles[y - 1].Count - 1) {
+                willMergeRight = guaranteedMerge || Rng.Chance(50);
+            }
+
+            if (willMergeRight) {
                 MapTile childMapTileNeighbor = mapTiles[y - 1][i + 1];
                 float xBetween = Math.Abs(childMapTile.transform.position.x - childMapTileNeighbor.transform.position.x) / 2;
                 Vector2 tilePos = new(childMapTile.transform.position.x + xBetween, childMapTile.transform.position.y + 200);
@@ -181,13 +193,16 @@ public class TileManager : MonoBehaviour {
                     CreateSplitTiles(y, true, true, MapTile.TileType.Battlefield);
                     break;
                 case 2:
-                    CreateMergeTiles(y, false, MapTile.TileType.Battlefield);
+                    // CreateMergeTiles(y, false, MapTile.TileType.Battlefield);
+                    CreateMergeTiles(y, true, MapTile.TileType.Battlefield);    //TODO: Use the line above to make the map random instead of static
                     break;
                 case 3:
-                    CreateSplitTiles(y, false, false, MapTile.TileType.Event);
+                    // CreateSplitTiles(y, false, false, MapTile.TileType.Event);
+                    CreateSplitTiles(y, true, false, MapTile.TileType.Event);   //TODO: Use the line above to make the map random instead of static
                     break;
                 case 4:
-                    CreateMergeTiles(y, false, MapTile.TileType.Battlefield);
+                    // CreateMergeTiles(y, false, MapTile.TileType.Battlefield);
+                    CreateMergeTiles(y, true, MapTile.TileType.Battlefield);    //TODO: Use the line above to make the map random instead of static
                     break;
                 case 5:
                     CreateMergeTiles(y, true, MapTile.TileType.Shop);
