@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1590510017951482679
 CanvasRenderer:
@@ -136,14 +136,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isUnlocked: 0
   isCompleted: 0
-  nextTiles:
-  - {fileID: 0}
-  - {fileID: 0}
+  nextTiles: []
   tileButton: {fileID: 4535678929766916198}
   checkmark: {fileID: 7704425921013709733}
   tileType: 0
   level: 1
   enemyType: 1
+  gridIndex: {x: 0, y: 0}
 --- !u!1 &7704425921013709733
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +178,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8755284072593281215
 CanvasRenderer:

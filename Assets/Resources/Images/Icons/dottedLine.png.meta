@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: d6ef45de5ea34674082928148f835b0d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2679821646092665236
+    second: dotted-line 1_0
+  - first:
+      213: -8999367709412636706
+    second: dotted-line 1_1
+  - first:
+      213: -8033340586442687595
+    second: dotted-line 1_2
+  - first:
+      213: 7918858998270179422
+    second: dotted-line 1_3
+  - first:
+      213: -5257707870674336034
+    second: dotted-line 1_4
+  - first:
+      213: -1197387576418260307
+    second: dotted-line 1_5
+  - first:
+      213: 1340446955516198844
+    second: dotted-line 1_6
+  - first:
+      213: 1299108839314808536
+    second: dotted-line 1_7
+  - first:
+      213: 9043632095524302114
+    second: dotted-line 1_8
+  - first:
+      213: -7352848609474043273
+    second: dotted-line 1_9
+  - first:
+      213: -6217228198263925423
+    second: dotted-line 1_10
+  - first:
+      213: 2475202801788094190
+    second: dotted-line 1_11
+  - first:
+      213: 2201280389889554271
+    second: dotted-line 1_12
+  - first:
+      213: 867826934809795994
+    second: dotted-line 1_13
+  - first:
+      213: 3921693380990462030
+    second: dotted-line 1_14
+  - first:
+      213: -9162587000937585688
+    second: dotted-line 1_15
+  - first:
+      213: 1486381901833504073
+    second: dotted-line 1_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dotted-line 1_0
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 566
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49181ccb693a03520800000000000000
+      internalID: 2679821646092665236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_1
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 529
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed7c65dbfb2db1380800000000000000
+      internalID: -8999367709412636706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_2
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 493
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59bfa519c47d38090800000000000000
+      internalID: -8033340586442687595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_3
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 458
+        width: 8
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e58bc429d4075ed60800000000000000
+      internalID: 7918858998270179422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_4
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 422
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed64ea35c8ed807b0800000000000000
+      internalID: -5257707870674336034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_5
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 387
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daaaf11e756026fe0800000000000000
+      internalID: -1197387576418260307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_6
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 352
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbffbcf67693a9210800000000000000
+      internalID: 1340446955516198844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_7
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 317
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8deddeb3b9c570210800000000000000
+      internalID: 1299108839314808536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_8
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 282
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22d2c05c97f618d70800000000000000
+      internalID: 9043632095524302114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_9
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 247
+        width: 8
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7722311952f65f990800000000000000
+      internalID: -7352848609474043273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_10
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 212
+        width: 8
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 155dfead4e7f7b9a0800000000000000
+      internalID: -6217228198263925423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_11
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 176
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee681a385dfa95220800000000000000
+      internalID: 2475202801788094190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_12
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 142
+        width: 8
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f57766a0ad48c8e10800000000000000
+      internalID: 2201280389889554271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_13
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 108
+        width: 8
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9d9adfcff32b0c00800000000000000
+      internalID: 867826934809795994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_14
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 74
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e48efeb1a57ac6630800000000000000
+      internalID: 3921693380990462030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_15
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 40
+        width: 8
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e3e0890ba3f7d080800000000000000
+      internalID: -9162587000937585688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotted-line 1_16
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 4
+        width: 8
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9450b5be670b0a410800000000000000
+      internalID: 1486381901833504073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dotted-line 1_0: 2679821646092665236
+      dotted-line 1_1: -8999367709412636706
+      dotted-line 1_10: -6217228198263925423
+      dotted-line 1_11: 2475202801788094190
+      dotted-line 1_12: 2201280389889554271
+      dotted-line 1_13: 867826934809795994
+      dotted-line 1_14: 3921693380990462030
+      dotted-line 1_15: -9162587000937585688
+      dotted-line 1_16: 1486381901833504073
+      dotted-line 1_2: -8033340586442687595
+      dotted-line 1_3: 7918858998270179422
+      dotted-line 1_4: -5257707870674336034
+      dotted-line 1_5: -1197387576418260307
+      dotted-line 1_6: 1340446955516198844
+      dotted-line 1_7: 1299108839314808536
+      dotted-line 1_8: 9043632095524302114
+      dotted-line 1_9: -7352848609474043273
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

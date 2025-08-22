@@ -14,9 +14,11 @@ public class MapTile : MonoBehaviour {
     public Vector2 gridIndex;
 
     public enum TileType {
+        None,
         Battlefield,
         Shop,
-        Event
+        Event,
+        MiniBoss,
     }
 
     public enum EnemyType {

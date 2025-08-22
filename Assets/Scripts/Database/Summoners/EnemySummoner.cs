@@ -3,7 +3,6 @@ using UnityEngine;
 
 public static class EnemySummoner {
     public static List<SummonerStats> allEnemySummoners = new() {
-        new BabyBoss().GetSummoner(),
         new BaronGlutton().GetSummoner(),
         new BonestackerBanya().GetSummoner(),
         new Devil().GetSummoner(),
