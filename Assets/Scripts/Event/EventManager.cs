@@ -11,12 +11,8 @@ public class EventManager : MonoBehaviour {
     public string eventGainItemKey = "eventGainItem";
     public string eventCardsKey = "eventCards";
     public TMP_Text eventText;
-    public List<Card> upgradeCardsOptions;
-    public List<Card> removeCardsOptions;
-    public List<Card> gainCardsOptions;
-    public GameObject upgradeCardPanel;
-    public GameObject removeCardPanel;
-    public GameObject gainCardPanel;
+    public List<Card> cardOption;
+    public GameObject cardOptionPanel;
     public GameObject option1Button;
     public GameObject option2Button;
     public GameObject option3Button;
@@ -44,9 +40,7 @@ public class EventManager : MonoBehaviour {
     public Item item;
 
     void Start() {
-        upgradeCardPanel.SetActive(false);
-        removeCardPanel.SetActive(false);
-        gainCardPanel.SetActive(false);
+        cardOptionPanel.SetActive(false);
         option1Button.SetActive(false);
         option2Button.SetActive(false);
         option3Button.SetActive(false);
@@ -56,7 +50,7 @@ public class EventManager : MonoBehaviour {
     }
 
     public void TriggerRandomEvent() {
-        string fileTitle;
+        string fileTitle = "";
         if (PlayerPrefs.HasKey(eventKey)) {
             fileTitle = PlayerPrefs.GetString(eventKey);
         } else {
@@ -67,25 +61,19 @@ public class EventManager : MonoBehaviour {
                 string filePath = Rng.Entry(filePaths);
 
                 fileTitle = Path.GetFileName(filePath).Split(".")[0];
-
-                fileTitle = "GainMaxHealth"; // TODO: Hardcoded for testing purposes
-
-                Type type = Type.GetType(fileTitle);
-                object instance = Activator.CreateInstance(type);
-                Event mapEvent = (Event)type.GetMethod("GetEvent")?.Invoke(instance, new object[] { this });
-
-                currentEvent = mapEvent;
+                fileTitle = "RemoveCard"; // TODO: Hardcoded for testing purposes
 
                 PlayerPrefs.SetString(eventKey, fileTitle);
                 PlayerPrefs.Save();
             }
         }
 
-        currentEvent.OnSetup();
+        Type type = Type.GetType(fileTitle);
+        object instance = Activator.CreateInstance(type);
+        Event mapEvent = (Event)type.GetMethod("GetEvent")?.Invoke(instance, new object[] { this });
+        currentEvent = mapEvent;
 
-        if (currentEvent.OnClickOption1 == null && currentEvent.OnClickOption2 == null && currentEvent.OnClickOption3 == null) {
-            FinishEvent();
-        }
+        currentEvent.OnSetup();
 
         if (currentEvent.OnClickOption1 != null) option1Button.SetActive(true);
         if (currentEvent.OnClickOption2 != null) option2Button.SetActive(true);
@@ -139,7 +127,6 @@ public class EventManager : MonoBehaviour {
     }
 
     public void UpgradeCard(Card card) {
-        upgradeCardPanel.SetActive(false);
         deckBuilder.UpgradeCardInDeck(card);
         eventText.text = $"You upgraded {card.stats.displayTitle}!";
         card.SetHoverCardFromMap();
@@ -149,16 +136,14 @@ public class EventManager : MonoBehaviour {
     }
 
     public void RemoveCard(Card card) {
-        removeCardPanel.SetActive(false);
         deckBuilder.RemoveCardFromDeck(card);
-        eventText.text = $"You removed {card.stats.displayTitle} from your deck! We will not be seeing much more of them.";
+        eventText.text = $"You removed {card.stats.displayTitle} from your deck!";
         card.SetHoverCardFromMap();
         card.HideCard();
         FinishEvent();
     }
 
     public void GainCard(Card card) {
-        gainCardPanel.SetActive(false);
         deckBuilder.AddCardToDeck(card);
         eventText.text = $"You added {card.stats.displayTitle} to your deck!";
         card.SetHoverCardFromMap();
@@ -175,6 +160,7 @@ public class EventManager : MonoBehaviour {
         option1Button.SetActive(false);
         option2Button.SetActive(false);
         option3Button.SetActive(false);
+        cardOptionPanel.SetActive(false);
         StartCoroutine(FadeInButton(returnButton, 1f));
     }
 
@@ -195,7 +181,7 @@ public class EventManager : MonoBehaviour {
         }
         canvasGroup.alpha = 1f;
     }
-    
+
     public void ReturnToMap() {
         SceneManager.LoadScene("Map");
     }

@@ -6,12 +6,17 @@ public class GainLegendary {
         Event newEvent = new() {
             OnSetup = () => {
                 eventManager.eventText.text = "You visited the friendly neighborhood papermaker.. He will give you one of his legendary cards for free.";
-                eventManager.gainCardPanel.SetActive(true);
+                eventManager.cardOptionPanel.SetActive(true);
+                foreach (var card in eventManager.cardOption) {
+                    var button = card.GetComponent<UnityEngine.UI.Button>();
+                    button.onClick.AddListener(() => eventManager.GainCard(card));
+                }
+                
                 if (PlayerPrefs.HasKey(eventManager.eventCardsKey)) {
-                    eventManager.LoadCardsEvent(eventManager.gainCardsOptions);
+                    eventManager.LoadCardsEvent(eventManager.cardOption);
                 } else {
                     List<WarriorStats> legendaryCards = CardDatabase.allCards.FindAll(card => card.rarity == CardRarity.Legendary);
-                    foreach (Card card in eventManager.gainCardsOptions) {
+                    foreach (Card card in eventManager.cardOption) {
 
                         WarriorStats randomStats = Rng.Entry(legendaryCards);
 
@@ -21,7 +26,7 @@ public class GainLegendary {
                         legendaryCards.RemoveAll(legendaryCard => legendaryCard.title == randomStats.title);
                     }
 
-                    eventManager.SaveCardsEvent(eventManager.gainCardsOptions);
+                    eventManager.SaveCardsEvent(eventManager.cardOption);
                 }
             },
         };

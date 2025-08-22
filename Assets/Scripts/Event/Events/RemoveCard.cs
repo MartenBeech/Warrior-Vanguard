@@ -4,33 +4,38 @@ public class RemoveCard {
     public Event GetEvent(EventManager eventManager) {
         Event newEvent = new() {
             OnSetup = () => {
-                eventManager.eventText.text = "You visited the friendly neighborhood barber.. He will cut one of your cards for free.";
+                eventManager.eventText.text = "A guard blocks your path. He will only let you pass if you give him one of the following cards.";
                 if (DeckManager.GetDeck().Count <= 0) {
-                    eventManager.eventText.text += " However it seems like you don't have any cards to cut sorry. You should probably get some cards..";
+                    eventManager.eventText.text += " However it seems like you don't have any cards to give him.. He will let you off with a warning.";
+                    eventManager.FinishEvent();
                     return;
                 }
-                eventManager.removeCardPanel.SetActive(true);
+                eventManager.cardOptionPanel.SetActive(true);
+                foreach (var card in eventManager.cardOption) {
+                    var button = card.GetComponent<UnityEngine.UI.Button>();
+                    button.onClick.AddListener(() => eventManager.RemoveCard(card));
+                }
 
                 if (PlayerPrefs.HasKey(eventManager.eventCardsKey)) {
-                    eventManager.LoadCardsEvent(eventManager.removeCardsOptions);
+                    eventManager.LoadCardsEvent(eventManager.cardOption);
                 } else {
                     List<Card> deck = DeckManager.LoadDeck();
-                    for (int i = 0; i < eventManager.removeCardsOptions.Count; i++) {
+                    for (int i = 0; i < eventManager.cardOption.Count; i++) {
                         if (deck.Count == 0) {
-                            eventManager.removeCardsOptions[i].gameObject.SetActive(false);
+                            eventManager.cardOption[i].gameObject.SetActive(false);
                             break;
                         }
 
                         Card randomCard = Rng.Entry(deck);
 
-                        eventManager.removeCardsOptions[i].SetStats(randomCard.stats);
-                        eventManager.removeCardsOptions[i].SetHoverCardFromMap();
-                        eventManager.removeCardsOptions[i].UpdateCardUI();
+                        eventManager.cardOption[i].SetStats(randomCard.stats);
+                        eventManager.cardOption[i].SetHoverCardFromMap();
+                        eventManager.cardOption[i].UpdateCardUI();
                         eventManager.cardIndexes.Add(randomCard);
                         deck.RemoveAll(card => card.stats.title == randomCard.stats.title);
                     }
 
-                    eventManager.SaveCardsEvent(eventManager.removeCardsOptions);
+                    eventManager.SaveCardsEvent(eventManager.cardOption);
                 }
             },
         };

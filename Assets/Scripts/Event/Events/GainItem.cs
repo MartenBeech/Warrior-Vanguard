@@ -15,6 +15,7 @@ public class GainItem {
 
                 if (eventManager.item.title == null) {
                     eventManager.eventText.text = "You find a hole where an item used to be. However, it seems like you already have all the items in the world.";
+                    eventManager.FinishEvent();
                     return;
                 }
 
