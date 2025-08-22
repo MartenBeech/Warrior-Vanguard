@@ -17,6 +17,7 @@ public class GridManager : MonoBehaviour {
     public Vector2Int? SelectedCell { get; private set; }
     private GridLayoutGroup gridLayoutGroup;
     public Transform EnemySummonerObject;
+    public Image backgroundImage;
 
     void Start() {
         rows = Rng.Range(2, 5);
@@ -60,6 +61,8 @@ public class GridManager : MonoBehaviour {
         gridLayoutGroup.cellSize = new Vector2(lowestCellDimension, lowestCellDimension);
         gridLayoutGroup.spacing = new Vector2(cellSpacing, cellSpacing);
         gridLayoutGroup.constraintCount = rows;
+
+        backgroundImage.sprite = Resources.Load<Sprite>($"Images/Backgrounds/{genre}");
 
         for (int x = 0; x < columns; x++) {
             for (int y = 0; y < rows; y++) {
