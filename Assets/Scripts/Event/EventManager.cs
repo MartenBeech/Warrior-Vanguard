@@ -38,6 +38,13 @@ public class EventManager : MonoBehaviour {
     Event currentEvent;
     public List<Card> cardIndexes = new();
     public Item item;
+    public GameObject cardItemRewardPanel;
+    public Card cardItemRewardCard;
+    public TMP_Text cardItemRewardAmountText;
+    public Item cardItemRewardItem;
+    public GameObject cardItemRewardItemImage;
+    public GameObject cardItemRewardItemTitle;
+    public GameObject cardItemRewardItemDescription;
 
     void Start() {
         cardOptionPanel.SetActive(false);
@@ -61,7 +68,7 @@ public class EventManager : MonoBehaviour {
                 string filePath = Rng.Entry(filePaths);
 
                 fileTitle = Path.GetFileName(filePath).Split(".")[0];
-                fileTitle = "RemoveCard"; // TODO: Hardcoded for testing purposes
+                fileTitle = "RecruitPeasants"; // TODO: Hardcoded for testing purposes
 
                 PlayerPrefs.SetString(eventKey, fileTitle);
                 PlayerPrefs.Save();
