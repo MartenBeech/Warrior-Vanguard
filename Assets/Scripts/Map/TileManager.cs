@@ -1,64 +1,215 @@
+using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TileManager : MonoBehaviour {
-    public List<MapTile> mapTiles;
+    private List<List<MapTile>> mapTiles = new();
     public RectTransform scrollViewPanel;
     public RewardManager rewardManager;
     public GameObject rewardPanel;
     public MapTile currentTile;
+    public GameObject mapTilePrefab;
+    public GameObject mapConnectorPrefab;
 
     private void Start() {
+        CreateMapTiles();
         UpdateTileAccess();
     }
 
     private void UpdateTileAccess() {
-        LockAllTiles();
         bool isTileActive = PlayerPrefs.HasKey("TileActive");
 
-        for (int i = 0; i < mapTiles.Count; i++) {
-            bool isCompleted = PlayerPrefs.GetInt($"TileCompleted_{i}", 0) == 1;
-            bool isLastCompleted = PlayerPrefs.GetInt($"LastCompleted_{i}", 0) == 1;
+        for (int y = 0; y < mapTiles.Count; y++) {
+            for (int x = 0; x < mapTiles[y].Count; x++) {
 
-            if (isCompleted) {
-                mapTiles[i].MarkAsCompleted();
-            } else {
-                mapTiles[i].MarkAsIncompleted();
-            }
 
-            if (!isTileActive && isLastCompleted) {
-                mapTiles[i].UnlockNextTiles();
+                bool isCompleted = PlayerPrefs.GetInt($"TileCompleted_{y}-{x}", 0) == 1;
+                bool isLastCompleted = PlayerPrefs.GetInt($"LastCompleted_{y}-{x}", 0) == 1;
 
-                //TODO: Scroll to finished tile
+                mapTiles[y][x].MarkAsCompleted(isCompleted);
 
-                if (mapTiles[i].tileType == MapTile.TileType.Battlefield && PlayerPrefs.GetInt($"RewardChosen", 0) == 0) {
-                    rewardManager.ShowReward(mapTiles[i].enemyType);
+                if (!isTileActive && isLastCompleted) {
+                    mapTiles[y][x].UnlockNextTiles();
+
+                    foreach (var mapTile in mapTiles[y]) {
+                        mapTile.SetUnlocked(false);
+                    }
+
+                    //TODO: Scroll to finished tile
+
+                    if (mapTiles[y][x].tileType == MapTile.TileType.Battlefield && PlayerPrefs.GetInt($"RewardChosen", 0) == 0) {
+                        rewardManager.ShowReward(mapTiles[y][x].enemyType);
+                    }
                 }
             }
         }
 
         if (isTileActive) {
-            int activeTileIndex = PlayerPrefs.GetInt("TileActive", 0);
-            mapTiles[activeTileIndex].SetUnlocked(true);
+            string activeTileIndex = PlayerPrefs.GetString("TileActive", "");
+            string[] activeTileIndexSplit = activeTileIndex.Split("-");
+            Vector2Int activeTileIndexVector = new(int.Parse(activeTileIndexSplit[0]), int.Parse(activeTileIndexSplit[1]));
+            mapTiles[activeTileIndexVector.y][activeTileIndexVector.x].SetUnlocked(true);
         }
     }
 
     public void MarkTileAsCurrent(MapTile tile) {
         currentTile = tile;
-        int tileIndex = mapTiles.IndexOf(currentTile);
-        TileCompleter.MarkTileAsCompleted(false, tileIndex);
-        PlayerPrefs.SetInt($"TileActive", tileIndex);
+        string tileIndex = $"{tile.gridIndex.y}-{tile.gridIndex.x}";
+        TileCompleter.ClearLastCompleted();
+        TileCompleter.currentTileIndex = tileIndex;
+        PlayerPrefs.SetString($"TileActive", tileIndex);
     }
 
-    private void LockAllTiles() {
-        for (int i = 0; i < mapTiles.Count; i++) {
-            bool isCompleted = PlayerPrefs.GetInt($"TileCompleted_{i}", 0) == 1;
+    private GameObject CreateMapTile(Vector2 tilePos, Vector2 gridIndex, MapTile.TileType tileType) {
+        GameObject mapTileObject = Instantiate(mapTilePrefab, tilePos, quaternion.identity, scrollViewPanel);
+        mapTileObject.name = $"MapTile {gridIndex.y}-{gridIndex.x}";
 
-            //Set the first tile default unlocked if it haven't been completed yet
-            if (i == 0 && !isCompleted) {
-                mapTiles[0].SetUnlocked(true);
+        MapTile mapTile = mapTileObject.GetComponent<MapTile>();
+        mapTile.tileType = tileType;
+        mapTileObject.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/MapTiles/{tileType}");
+        mapTile.gridIndex = gridIndex;
+
+        mapTiles[(int)gridIndex.y].Add(mapTile);
+
+        return mapTileObject;
+    }
+
+    private void CreateStartTiles(int y) {
+        for (int x = 0; x < 3; x++) {
+            Vector2 tilePos = new(-480 + x * 480, 200);
+            GameObject mapTileObject = CreateMapTile(tilePos, new(x, y), MapTile.TileType.Event);
+
+            RectTransform rect = mapTileObject.GetComponent<RectTransform>();
+            rect.anchoredPosition = tilePos;
+
+            MapTile mapTile = mapTileObject.GetComponent<MapTile>();
+            if (TileCompleter.currentTileIndex == null) {
+                mapTile.SetUnlocked(true);
+            }
+        }
+    }
+
+    // Can split the path into 1 or 2 parents
+    private void CreateSplitTiles(int y, bool guaranteedSplit, bool largeGapBetweenParents, MapTile.TileType tileType) {
+        foreach (var childMapTile in mapTiles[y - 1]) {
+            int nParents = guaranteedSplit ? 2 : Rng.Range(1, 3);
+
+            for (int x = 0; x < nParents; x++) {
+                int xOffset = largeGapBetweenParents ?
+                                -120 + (x * 240) :
+                                -60 + (x * 120);
+                int xPos = nParents == 1 ? (int)childMapTile.transform.position.x : (int)childMapTile.transform.position.x + xOffset;
+                Vector2 tilePos = new(xPos, childMapTile.transform.position.y + 200);
+                GameObject parentMapTileObject = CreateMapTile(tilePos, new(mapTiles[y].Count, y), tileType);
+
+                MapTile parentMapTile = parentMapTileObject.GetComponent<MapTile>();
+                childMapTile.nextTiles.Add(parentMapTile);
+
+                CreateMapConnector(parentMapTile, childMapTile);
+            }
+        }
+    }
+
+    // Can merge with the neighbor tile to share the parent instead of having 1 each
+    private void CreateMergeTiles(int y, bool guaranteedMerge, MapTile.TileType tileType) {
+        for (int i = 0; i < mapTiles[y - 1].Count; i++) {
+            MapTile childMapTile = mapTiles[y - 1][i];
+
+            bool willMergeRight = false;
+            if (i != mapTiles[y - 1].Count - 1) {
+                willMergeRight = guaranteedMerge || Rng.Chance(50);
+            }
+
+            if (willMergeRight) {
+                MapTile childMapTileNeighbor = mapTiles[y - 1][i + 1];
+                float xBetween = Math.Abs(childMapTile.transform.position.x - childMapTileNeighbor.transform.position.x) / 2;
+                Vector2 tilePos = new(childMapTile.transform.position.x + xBetween, childMapTile.transform.position.y + 200);
+                GameObject parentMapTileObject = CreateMapTile(tilePos, new(mapTiles[y].Count, y), tileType);
+
+                MapTile parentMapTile = parentMapTileObject.GetComponent<MapTile>();
+                childMapTile.nextTiles.Add(parentMapTile);
+                childMapTileNeighbor.nextTiles.Add(parentMapTile);
+                i++;
+
+                CreateMapConnector(parentMapTile, childMapTile);
+                CreateMapConnector(parentMapTile, childMapTileNeighbor);
             } else {
-                mapTiles[i].SetUnlocked(false);
+                Vector2 tilePos = new(childMapTile.transform.position.x, childMapTile.transform.position.y + 200);
+                GameObject parentMapTileObject = CreateMapTile(tilePos, new(mapTiles[y].Count, y), tileType);
+
+                MapTile parentMapTile = parentMapTileObject.GetComponent<MapTile>();
+                childMapTile.nextTiles.Add(parentMapTile);
+
+                CreateMapConnector(parentMapTile, childMapTile);
+            }
+        }
+    }
+
+    private void CreateBossTile(int y) {
+        float xPosSum = 0;
+        foreach (var childMapTile in mapTiles[y - 1]) {
+            xPosSum += childMapTile.transform.position.x;
+        }
+        float xPosAverage = xPosSum / mapTiles[y - 1].Count;
+
+        Vector2 tilePos = new(xPosAverage, mapTiles[y - 1][0].transform.position.y + 200);
+        GameObject parentMapTileObject = CreateMapTile(tilePos, new(mapTiles[y].Count, y), MapTile.TileType.MiniBoss);
+
+        foreach (var childMapTile in mapTiles[y - 1]) {
+            MapTile parentMapTile = parentMapTileObject.GetComponent<MapTile>();
+            childMapTile.nextTiles.Add(parentMapTile);
+
+            CreateMapConnector(parentMapTile, childMapTile);
+        }
+    }
+
+    private void CreateMapConnector(MapTile parentMapTile, MapTile childMapTile) {
+        // Just some random math on how to calculate position, rotation and length of each MapConnector
+
+        Vector2 posDiff = parentMapTile.transform.position - childMapTile.transform.position;
+        float xBetween = childMapTile.transform.position.x + (posDiff.x / 2);
+        float yBetween = childMapTile.transform.position.y + (posDiff.y / 2);
+        Vector2 mapConnectorPos = new(xBetween, yBetween);
+
+        float angleX = Mathf.Atan2(posDiff.y, posDiff.x) * Mathf.Rad2Deg;
+        float zRotation = angleX - 90f;
+        Quaternion rotation = Quaternion.Euler(0f, 0f, zRotation);
+
+        GameObject mapConnector = Instantiate(mapConnectorPrefab, mapConnectorPos, rotation, scrollViewPanel);
+        mapConnector.GetComponent<RectTransform>().sizeDelta = new Vector2(150, posDiff.magnitude - 100) * 4;
+    }
+
+    private void CreateMapTiles() {
+        for (int y = 0; y < 7; y++) {
+            mapTiles.Add(new List<MapTile>());
+
+            switch (y) {
+                case 0:
+                    CreateStartTiles(y);
+                    break;
+                case 1:
+                    CreateSplitTiles(y, true, true, MapTile.TileType.Battlefield);
+                    break;
+                case 2:
+                    // CreateMergeTiles(y, false, MapTile.TileType.Battlefield);
+                    CreateMergeTiles(y, true, MapTile.TileType.Battlefield);    //TODO: Use the line above to make the map random instead of static
+                    break;
+                case 3:
+                    // CreateSplitTiles(y, false, false, MapTile.TileType.Event);
+                    CreateSplitTiles(y, true, false, MapTile.TileType.Event);   //TODO: Use the line above to make the map random instead of static
+                    break;
+                case 4:
+                    // CreateMergeTiles(y, false, MapTile.TileType.Battlefield);
+                    CreateMergeTiles(y, true, MapTile.TileType.Battlefield);    //TODO: Use the line above to make the map random instead of static
+                    break;
+                case 5:
+                    CreateMergeTiles(y, true, MapTile.TileType.Shop);
+                    break;
+                case 6:
+                    CreateBossTile(y);
+                    break;
             }
         }
     }

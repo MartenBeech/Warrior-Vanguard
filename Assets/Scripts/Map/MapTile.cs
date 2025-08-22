@@ -1,21 +1,24 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MapTile : MonoBehaviour {
     public bool isUnlocked = false;
     public bool isCompleted = false;
-    public MapTile[] nextTiles;
+    public List<MapTile> nextTiles;
     public Button tileButton;
     public GameObject checkmark;
     public TileType tileType;
     public int level = 1;
     public EnemyType enemyType;
+    public Vector2 gridIndex;
 
     public enum TileType {
+        None,
         Battlefield,
         Shop,
-
-        Event
+        Event,
+        MiniBoss,
     }
 
     public enum EnemyType {
@@ -35,14 +38,9 @@ public class MapTile : MonoBehaviour {
         tileButton.interactable = state;
     }
 
-    public void MarkAsCompleted() {
-        isCompleted = true;
-        checkmark.SetActive(true);
-    }
-
-    public void MarkAsIncompleted() {
-        isCompleted = false;
-        checkmark.SetActive(false);
+    public void MarkAsCompleted(bool state) {
+        isCompleted = state;
+        checkmark.SetActive(state);
     }
 
     public void UnlockNextTiles() {
@@ -53,10 +51,7 @@ public class MapTile : MonoBehaviour {
     }
 
     public void UpdateTileAccess() {
-        if (isUnlocked)
-            tileButton.interactable = true;
-        else
-            tileButton.interactable = false;
+        tileButton.interactable = isUnlocked;
     }
 
     private void TileClicked() {
