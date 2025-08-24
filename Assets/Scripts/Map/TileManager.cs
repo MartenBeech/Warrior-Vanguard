@@ -94,7 +94,11 @@ public class TileManager : MonoBehaviour {
     // Can split the path into 1 or 2 parents
     private void CreateSplitTiles(int y, bool guaranteedSplit, bool largeGapBetweenParents, MapTile.TileType tileType) {
         foreach (var childMapTile in mapTiles[y - 1]) {
-            int nParents = guaranteedSplit ? 2 : Rng.Range(1, 3);
+            int nParents = PlayerPrefs.HasKey($"SplitTilesKey_{y - 1}")
+                ? PlayerPrefs.GetInt($"SplitTilesKey_{y - 1}") 
+                : guaranteedSplit ? 2 : Rng.Range(1, 3);
+                PlayerPrefs.SetInt($"SplitTilesKey_{y - 1}", nParents);
+                PlayerPrefs.Save();
 
             for (int x = 0; x < nParents; x++) {
                 int xOffset = largeGapBetweenParents ?
@@ -119,7 +123,11 @@ public class TileManager : MonoBehaviour {
 
             bool willMergeRight = false;
             if (i != mapTiles[y - 1].Count - 1) {
-                willMergeRight = guaranteedMerge || Rng.Chance(50);
+                willMergeRight = PlayerPrefs.HasKey($"MergeTilesKey_{y - 1}_{i}")
+                    ? Convert.ToBoolean(PlayerPrefs.GetInt($"MergeTilesKey_{y - 1}_{i}"))
+                    : guaranteedMerge || Rng.Chance(50);
+                PlayerPrefs.SetInt($"MergeTilesKey_{y - 1}_{i}", willMergeRight ? 1 : 0);
+                PlayerPrefs.Save();
             }
 
             if (willMergeRight) {
@@ -193,16 +201,13 @@ public class TileManager : MonoBehaviour {
                     CreateSplitTiles(y, true, true, MapTile.TileType.Battlefield);
                     break;
                 case 2:
-                    // CreateMergeTiles(y, false, MapTile.TileType.Battlefield);
-                    CreateMergeTiles(y, true, MapTile.TileType.Battlefield);    //TODO: Use the line above to make the map random instead of static
+                    CreateMergeTiles(y, false, MapTile.TileType.Battlefield);
                     break;
                 case 3:
-                    // CreateSplitTiles(y, false, false, MapTile.TileType.Event);
-                    CreateSplitTiles(y, true, false, MapTile.TileType.Event);   //TODO: Use the line above to make the map random instead of static
+                    CreateSplitTiles(y, false, false, MapTile.TileType.Event);
                     break;
                 case 4:
-                    // CreateMergeTiles(y, false, MapTile.TileType.Battlefield);
-                    CreateMergeTiles(y, true, MapTile.TileType.Battlefield);    //TODO: Use the line above to make the map random instead of static
+                    CreateMergeTiles(y, false, MapTile.TileType.Battlefield);
                     break;
                 case 5:
                     CreateMergeTiles(y, true, MapTile.TileType.Shop);
