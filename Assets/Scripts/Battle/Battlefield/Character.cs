@@ -40,6 +40,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private Transform summonerObject;
     private Summoner summoner;
     private FloatingText floatingText;
+    private bool isDying = false;
 
     public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner, Transform summonerObject, Summoner summoner, HoverCard hoverCard, FloatingText floatingText) {
         this.gameManager = gameManager;
@@ -316,6 +317,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public async Task Die(Character dealer) {
         if (stats.ability.cheatDeath.TriggerDamaged(this)) return;
 
+        if (isDying) return;
+        isDying = true;
+
         summoner.stats.graveyard.Add(stats.title);
         gameManager.RemoveCharacter(this);
         gridManager.RemoveCharacter(this);
@@ -344,7 +348,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             asyncFunctions.Add(stats.ability.afterlife.TriggerDeath(this, hand, summonerObject, clone));
         }
 
-        if (dealer != this) {
+        if (dealer && dealer != this) {
             dealer.stats.ability.cannibalism.TriggerKill(dealer);
             asyncFunctions.Add(dealer.stats.ability.carnivore.TriggerKill(dealer, this));
             asyncFunctions.Add(dealer.stats.ability.raiseDead.TriggerKill(dealer, this, characterSpawner));
@@ -368,13 +372,17 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         gameObject.SetActive(false);
 
         if (stats.alignment == CharacterSpawner.Alignment.Friend) {
+            await ItemManager.enemyItem.UseOnWarriorDeath(summoner, gridIndex);
             foreach (Item item in ItemManager.LoadItems()) {
-                await item.UseOnWarriorDeath(summoner);
+                await item.UseOnWarriorDeath(summoner, gridIndex);
             }
         }
 
         if (stats.alignment == CharacterSpawner.Alignment.Enemy) {
-            await ItemManager.enemyItem.UseOnWarriorDeath(summoner);
+            await ItemManager.enemyItem.UseOnWarriorDeath(summoner, gridIndex);
+            foreach (Item item in ItemManager.LoadItems()) {
+                await item.UseOnWarriorDeath(summoner, gridIndex);
+            }
         }
 
         Destroy(gameObject);

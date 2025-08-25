@@ -3882,11 +3882,11 @@ MonoBehaviour:
   deckBuilder: {fileID: 1042169205}
   summonerManager: {fileID: 861352659}
   cardIndexes: []
-  item: {fileID: 0}
+  item: {fileID: -8160817191698793338, guid: f4ac1b238fcfad24b80fb39796b23aae, type: 3}
   cardItemRewardPanel: {fileID: 1816960441}
   cardItemRewardCard: {fileID: 478535960}
   cardItemRewardAmountText: {fileID: 382079356}
-  cardItemRewardItem: {fileID: 0}
+  cardItemRewardItem: {fileID: -8160817191698793338, guid: f4ac1b238fcfad24b80fb39796b23aae, type: 3}
   cardItemRewardItemImage: {fileID: 431224860}
   cardItemRewardItemTitle: {fileID: 1615025768}
   cardItemRewardItemDescription: {fileID: 1615025767}

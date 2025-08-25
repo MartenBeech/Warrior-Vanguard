@@ -6,7 +6,7 @@ public class SapPower {
     }
 
     public int TriggerStrike(Character dealer, Character target, int damage) {
-        if (dealer.stats.ability.sapPower.GetValue(dealer.stats)) {
+        if (dealer && dealer.stats.ability.sapPower.GetValue(dealer.stats)) {
             damage += target.stats.GetStrength();
         }
         return damage;

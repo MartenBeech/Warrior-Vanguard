@@ -14,6 +14,7 @@ public static class ItemManager {
     private static List<Item> LoadAllItems() {
         List<Item> allItems = new();
         Type[] itemTypes = new Type[] {
+            typeof(ExplosiveDevice),
             typeof(VampireRing),
             typeof(HumanRing),
             typeof(HolyLight),
@@ -55,7 +56,8 @@ public static class ItemManager {
     public static Item GetRandomItem() {
         availableItems = LoadAvailableItems();
 
-        Item randomItem = Rng.Entry(availableItems);
+        // Item randomItem = Rng.Entry(availableItems);
+        Item randomItem = availableItems[0]; //TODO: Hardcoded for testing purposes
         return randomItem;
     }
 
@@ -72,7 +74,7 @@ public static class ItemManager {
     private static void SaveItems() {
         List<string> itemTitles = new();
         foreach (Item item in items) {
-            if (item == null || item.title == null) continue;
+            if (item.title == null) continue;
             itemTitles.Add(item.title);
         }
 
@@ -86,6 +88,8 @@ public static class ItemManager {
         if (!PlayerPrefs.HasKey(itemKey)) return tempItems;
 
         string itemData = PlayerPrefs.GetString(itemKey);
+        if (itemData == "") return tempItems;
+
         string[] itemTitles = itemData.Split(',');
 
         foreach (string title in itemTitles) {

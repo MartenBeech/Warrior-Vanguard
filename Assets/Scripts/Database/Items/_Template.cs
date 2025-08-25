@@ -36,7 +36,7 @@ public class CLASSNAME : Item {
         await Task.Delay(0);
     }
 
-    public override async Task UseOnWarriorDeath(Summoner summoner) {
+    public override async Task UseOnWarriorDeath(Summoner summoner, Vector2 gridIndex) {
         await Task.Delay(0);
     }
 }

@@ -1,3 +1,4 @@
+using UnityEngine;
 using System.Threading.Tasks;
 
 public class Recycle : Item {
@@ -7,7 +8,7 @@ public class Recycle : Item {
         return this;
     }
 
-    public override async Task UseOnWarriorDeath(Summoner summoner) {
+    public override async Task UseOnWarriorDeath(Summoner summoner, Vector2 gridIndex) {
         await summoner.AddShield(2);
     }
 }

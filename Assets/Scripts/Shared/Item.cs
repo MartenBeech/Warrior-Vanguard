@@ -58,7 +58,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         // This metod should be overridden by each item
     }
 
-    public virtual async Task UseOnWarriorDeath(Summoner summoner) {
+    public virtual async Task UseOnWarriorDeath(Summoner summoner, Vector2 gridIndex) {
         await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }
