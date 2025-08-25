@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Reflection;
 public class WarriorAbility {
     public enum Keywords {
-        Attack,     //After it makes an attack move
-        Death,      //After it dies
-        Overturn,   //At the end of its turns
-        Strike,     //After it strikes a warrior
-        Summon,     //after it is summoned
-        Kill,       //After it kills a warrior
-        Aura,       //Active while it is alive
+        Attack,         //After it makes an attack move
+        Death,          //After it dies
+        Overturn,       //At the end of its turns
+        Strike,         //After it strikes a warrior
+        Summon,         //after it is summoned
+        Kill,           //After it kills a warrior
+        Aura,           //Active while it is alive
+        StartOfCombat,  //At the start of combat
     }
 
     public enum BuffType {
@@ -120,6 +121,7 @@ public class WarriorAbility {
     public SummoningSpirits summoningSpirits = new();
     public RaceDiscount raceDiscount = new();
     public MassSelfHarm massSelfHarm = new();
+    public Whalecome whalecome = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();
@@ -133,6 +135,8 @@ public class WarriorAbility {
 
     // Summoner abilities
     public SummonWisp summonWisp = new();
+    public SummonMobyRichard summonMobyRichard = new();
+    public SummonFlotSam summonFlotSam = new();
 
     public List<string> GetAbilityText(WarriorStats stats) {
         List<string> returnValue = new();

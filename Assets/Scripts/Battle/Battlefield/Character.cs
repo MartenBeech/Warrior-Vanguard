@@ -329,6 +329,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         stats.ability.massSelfHarm.TriggerDeath(this, gridManager);
         stats.ability.massImmolate.TriggerDeath(this, gridManager);
         stats.ability.summoningSpirits.TriggerDeath(this, gridManager);
+        stats.ability.whalecome.TriggerDeath(this);
 
         List<Task> asyncFunctions = new() {
             stats.ability.explosion.TriggerDeath(this, gridManager),

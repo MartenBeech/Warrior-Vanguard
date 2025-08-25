@@ -45,6 +45,13 @@ public static class ItemManager {
         ItemsPanel.UpdateUI();
     }
 
+    public static void RemoveItem(Item item) {
+        items = LoadItems();
+        items.RemoveAll(i => i.title == item.title);
+        SaveItems();
+        ItemsPanel.UpdateUI();
+    }
+
     public static Item GetRandomItem() {
         availableItems = LoadAvailableItems();
 
@@ -65,6 +72,7 @@ public static class ItemManager {
     private static void SaveItems() {
         List<string> itemTitles = new();
         foreach (Item item in items) {
+            if (item == null || item.title == null) continue;
             itemTitles.Add(item.title);
         }
 

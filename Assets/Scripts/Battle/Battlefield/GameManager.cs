@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
     public Item enemyItem;
     public Summoner friendSummoner;
     Summoner enemySummoner;
+    CharacterSpawner friendCharacterSpawner;
     CharacterSpawner enemyCharacterSpawner;
     public HeroPower heroPower;
     public List<GameObject> interactableButtons;
@@ -50,6 +51,19 @@ public class GameManager : MonoBehaviour {
 
         foreach (Item item in ItemManager.LoadItems()) {
             await item.UseStartOfCombat(friendSummoner);
+            await item.UseStartOfEnemyCombat(enemySummoner);
+        }
+
+        if (enemySummoner.stats.ability.summonMobyRichard.GetValue(enemySummoner.stats)) {
+            enemyCharacterSpawner = FindFirstObjectByType<CharacterSpawner>();
+            enemyCharacterSpawner.spawningAlignment = CharacterSpawner.Alignment.Enemy;
+            await enemySummoner.stats.ability.summonMobyRichard.TriggerStartOfCombat(enemySummoner, enemyCharacterSpawner);
+        }
+
+        if (friendSummoner.stats.ability.summonFlotSam.GetValue(friendSummoner.stats)) {
+            friendCharacterSpawner = FindFirstObjectByType<CharacterSpawner>();
+            friendCharacterSpawner.spawningAlignment = CharacterSpawner.Alignment.Friend;
+            await friendSummoner.stats.ability.summonFlotSam.TriggerStartOfCombat(friendSummoner, friendCharacterSpawner);
         }
 
         await ItemManager.enemyItem.UseStartOfCombat(enemySummoner);
@@ -84,6 +98,8 @@ public class GameManager : MonoBehaviour {
             await friend.StandAndAttack(Character.Direction.Right);
             await friend.EndTurn();
         }
+
+        await friendSummoner.EndTurn(friendCharacterSpawner);
         await StartEnemyTurn();
     }
 
