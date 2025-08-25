@@ -53,6 +53,7 @@ public class EventManager : MonoBehaviour {
         option3Button.SetActive(false);
         returnButton.SetActive(false);
         itemRewardPanel.SetActive(false);
+        cardItemRewardPanel.SetActive(false);
         TriggerRandomEvent();
     }
 
@@ -68,7 +69,7 @@ public class EventManager : MonoBehaviour {
                 string filePath = Rng.Entry(filePaths);
 
                 fileTitle = Path.GetFileName(filePath).Split(".")[0];
-                fileTitle = "RecruitPeasants"; // TODO: Hardcoded for testing purposes
+                fileTitle = "RingsBlessing"; // TODO: Hardcoded for testing purposes
 
                 PlayerPrefs.SetString(eventKey, fileTitle);
                 PlayerPrefs.Save();
