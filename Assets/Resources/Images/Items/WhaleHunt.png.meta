@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WhaleHunt_0: 4399119754016343942
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
