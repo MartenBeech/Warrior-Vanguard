@@ -12,31 +12,43 @@ public class CLASSNAME : Item {
 
     }
 
-    public override void UseOnFriendSpawn(WarriorStats stats) {
+    public override void UseOnWarriorSpawn(ItemTriggerParams parameters) {
 
     }
 
-    public override async Task UseAfterFriendSpawn(WarriorStats stats, Vector2 gridIndex) {
+    public override void UseOnFriendSpawn(ItemTriggerParams parameters) {
+
+    }
+
+    public override void UseOnEnemySpawn(ItemTriggerParams parameters) {
+
+    }
+    public override async Task UseAfterFriendSpawn(ItemTriggerParams parameters) {
         await Task.Delay(0);
     }
 
-    public override void UseOnEnemySpawn(WarriorStats stats) {
 
-    }
-
-    public override async Task UseAfterEnemySpawn(WarriorStats stats, Vector2 gridIndex) {
+    public override async Task UseAfterEnemySpawn(ItemTriggerParams parameters) {
         await Task.Delay(0);
     }
 
-    public override async Task UseStartOfCombat(Summoner summoner) {
+    public override async Task UseStartOfCombat(ItemTriggerParams parameters) {
         await Task.Delay(0);
     }
 
-    public override async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck, Hand enemyHand) {
+    public override async Task UseStartOfTurn(ItemTriggerParams parameters) {
         await Task.Delay(0);
     }
 
-    public override async Task UseOnWarriorDeath(Summoner summoner, Vector2 gridIndex) {
+    public override async Task UseOnWarriorDeath(ItemTriggerParams parameters) {
+        await Task.Delay(0);
+    }
+
+    public override async Task UseOnFriendDeath(ItemTriggerParams parameters) {
+        await Task.Delay(0);
+    }
+
+    public override async Task UseOnEnemyDeath(ItemTriggerParams parameters) {
         await Task.Delay(0);
     }
 }

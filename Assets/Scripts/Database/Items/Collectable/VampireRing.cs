@@ -5,9 +5,9 @@ public class VampireRing : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(WarriorStats stats) {
-        if (stats.race == Character.Race.Vampire) {
-            stats.AddHealth(2);
+    public override void UseOnFriendSpawn(ItemTriggerParams parameters) {
+        if (parameters.stats.race == Character.Race.Vampire) {
+            parameters.stats.AddHealth(2);
         }
     }
 }

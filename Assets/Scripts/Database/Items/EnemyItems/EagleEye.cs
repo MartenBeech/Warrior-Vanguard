@@ -8,7 +8,7 @@ public class EagleEye : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(WarriorStats stats) {
-        stats.range += 2;
+    public override void UseOnFriendSpawn(ItemTriggerParams parameters) {
+        parameters.stats.range += 2;
     }
 }

@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour {
         await Task.WhenAll(asyncFunctions);
 
         foreach (Item item in ItemManager.LoadItems()) {
-            await item.UseStartOfCombat(friendSummoner);
-            await item.UseStartOfEnemyCombat(enemySummoner);
+            await item.UseStartOfCombat(new(summoner: friendSummoner));
+            await item.UseStartOfEnemyCombat(new(summoner: enemySummoner));
         }
 
         if (enemySummoner.stats.ability.summonMobyRichard.GetValue(enemySummoner.stats)) {
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour {
             await friendSummoner.stats.ability.summonFlotSam.TriggerStartOfCombat(friendSummoner, friendCharacterSpawner);
         }
 
-        await ItemManager.enemyItem.UseStartOfCombat(enemySummoner);
+        await ItemManager.enemyItem.UseStartOfCombat(new(summoner: enemySummoner));
 
         await StartPlayerTurn();
     }
@@ -80,7 +80,11 @@ public class GameManager : MonoBehaviour {
         await friendDeck.DrawCard();
 
         foreach (Item item in ItemManager.LoadItems()) {
-            await item.UseStartOfTurn(friendSummonerObject.GetComponent<Summoner>(), friendDeck, enemyDeck, enemyHand);
+            await item.UseStartOfTurn(new(
+                summoner: friendSummonerObject.GetComponent<Summoner>(),
+                ownDeck: friendDeck,
+                enemyDeck: enemyDeck,
+                enemyHand: enemyHand));
         }
 
         foreach (Character friend in friends) {
@@ -109,7 +113,11 @@ public class GameManager : MonoBehaviour {
         enemyCoin.RefreshCoins();
         await enemyDeck.DrawCard(false);
 
-        await ItemManager.enemyItem.UseStartOfTurn(enemySummonerObject.GetComponent<Summoner>(), enemyDeck, friendDeck, enemyHand);
+        await ItemManager.enemyItem.UseStartOfTurn(new(
+                summoner: friendSummonerObject.GetComponent<Summoner>(),
+                ownDeck: enemyDeck,
+                enemyDeck: friendDeck,
+                enemyHand: enemyHand));
 
         foreach (Character enemy in enemies) {
             enemy.stats.ability.immune.Remove();

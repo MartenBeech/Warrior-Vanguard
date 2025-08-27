@@ -9,10 +9,10 @@ public class ExcitingBook : Item {
         return this;
     }
 
-    public override async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck, Hand enemyHand) {
+    public override async Task UseStartOfTurn(ItemTriggerParams parameters) {
         List<Task> asyncFunctions = new() {
-            ownDeck.DrawCard(),
-            enemyDeck.DrawCard()
+            parameters.ownDeck.DrawCard(),
+            parameters.enemyDeck.DrawCard()
         };
         await Task.WhenAll(asyncFunctions);
     }

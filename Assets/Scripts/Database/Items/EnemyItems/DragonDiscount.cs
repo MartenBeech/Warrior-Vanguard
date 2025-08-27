@@ -8,8 +8,8 @@ public class DragonDiscount : Item {
         return this;
     }
 
-    public override async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck, Hand enemyHand) {
-        enemyHand.ReduceCostRace(1, Character.Race.Dragon);
+    public override async Task UseStartOfTurn(ItemTriggerParams parameters) {
+        parameters.enemyHand.ReduceCostRace(1, Character.Race.Dragon);
         await Task.CompletedTask;
     }
 }

@@ -9,9 +9,9 @@ public class CharmOfPeasants : Item {
         return this;
     }
 
-    public override async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck, Hand enemyHand) {
+    public override async Task UseStartOfTurn(ItemTriggerParams parameters) {
         List<Task> asyncFunctions = new() {
-            ownDeck.DrawCard(),
+            parameters.ownDeck.DrawCard(),
         };
         await Task.WhenAll(asyncFunctions);
     }

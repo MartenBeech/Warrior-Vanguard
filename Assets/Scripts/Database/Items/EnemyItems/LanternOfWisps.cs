@@ -8,8 +8,8 @@ public class LanternOfWisps : Item {
         return this;
     }
 
-    public override async Task UseStartOfCombat(Summoner summoner) {
+    public override async Task UseStartOfCombat(ItemTriggerParams parameters) {
         await Task.Delay(0);
-        summoner.stats.ability.summonWisp.Add();
+        parameters.summoner.stats.ability.summonWisp.Add();
     }
 }

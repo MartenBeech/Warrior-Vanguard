@@ -25,40 +25,53 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         // This metod should be overridden by each item
     }
 
-    public virtual void UseOnFriendSpawn(WarriorStats stats) {
+    public virtual void UseOnWarriorSpawn(ItemTriggerParams parameters) {
         // This metod should be overridden by each item
     }
 
-    public virtual async Task UseAfterFriendSpawn(WarriorStats stats, Vector2 gridIndex) {
+    public virtual void UseOnFriendSpawn(ItemTriggerParams parameters) {
+        // This metod should be overridden by each item
+    }
+
+    public virtual void UseOnEnemySpawn(ItemTriggerParams parameters) {
+        // This metod should be overridden by each item
+    }
+    public virtual async Task UseAfterFriendSpawn(ItemTriggerParams parameters) {
         await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }
 
-    public virtual void UseOnEnemySpawn(WarriorStats stats) {
-        // This metod should be overridden by each item
-    }
-
-    public virtual async Task UseAfterEnemySpawn(WarriorStats stats, Vector2 gridIndex) {
+    public virtual async Task UseAfterEnemySpawn(ItemTriggerParams parameters) {
         await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }
 
-    public virtual async Task UseStartOfCombat(Summoner summoner) {
+    public virtual async Task UseStartOfCombat(ItemTriggerParams parameters) {
         await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }
 
-    public virtual async Task UseStartOfEnemyCombat(Summoner summoner) {
+    public virtual async Task UseStartOfEnemyCombat(ItemTriggerParams parameters) {
         await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }
 
-    public virtual async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck, Hand enemyHand) {
+    public virtual async Task UseStartOfTurn(ItemTriggerParams parameters) {
         await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }
 
-    public virtual async Task UseOnWarriorDeath(Summoner summoner, Vector2 gridIndex) {
+    public virtual async Task UseOnWarriorDeath(ItemTriggerParams parameters) {
+        await Task.Delay(0); // This removes the CS1998 warning
+        // This metod should be overridden by each item
+    }
+
+    public virtual async Task UseOnFriendDeath(ItemTriggerParams parameters) {
+        await Task.Delay(0); // This removes the CS1998 warning
+        // This metod should be overridden by each item
+    }
+
+    public virtual async Task UseOnEnemyDeath(ItemTriggerParams parameters) {
         await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }

@@ -8,9 +8,9 @@ public class BigArmor : Item {
         return this;
     }
 
-    public override async Task UseStartOfCombat(Summoner summoner) {
+    public override async Task UseStartOfCombat(ItemTriggerParams parameters) {
         await Task.Delay(0);
-        summoner.stats.ability.armor.Add(1);
-        summoner.stats.ability.resistance.Add(1);
+        parameters.summoner.stats.ability.armor.Add(1);
+        parameters.summoner.stats.ability.resistance.Add(1);
     }
 }

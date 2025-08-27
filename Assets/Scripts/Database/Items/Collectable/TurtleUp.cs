@@ -7,7 +7,7 @@ public class TurtleUp : Item {
         return this;
     }
 
-    public override async Task UseStartOfCombat(Summoner summoner) {
-        await summoner.AddShield(10);
+    public override async Task UseStartOfCombat(ItemTriggerParams parameters) {
+        await parameters.summoner.AddShield(10);
     }
 }

@@ -8,9 +8,9 @@ public class WarmWelcome : Item {
         return this;
     }
 
-    public override async Task UseAfterEnemySpawn(WarriorStats stats, Vector2 gridIndex) {
+    public override async Task UseAfterEnemySpawn(ItemTriggerParams parameters) {
         GridManager gridManager = FindFirstObjectByType<GridManager>();
-        Character character = gridManager.GetCellCharacter(gridIndex);
+        Character character = gridManager.GetCellCharacter(parameters.gridIndex);
         character.stats.ability.burning.Add(1);
         await Task.Delay(0);
     }

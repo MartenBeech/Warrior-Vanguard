@@ -8,7 +8,7 @@ public class Recycle : Item {
         return this;
     }
 
-    public override async Task UseOnWarriorDeath(Summoner summoner, Vector2 gridIndex) {
-        await summoner.AddShield(2);
+    public override async Task UseOnFriendDeath(ItemTriggerParams parameters) {
+        await parameters.summoner.AddShield(2);
     }
 }

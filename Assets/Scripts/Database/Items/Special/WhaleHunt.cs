@@ -8,8 +8,8 @@ public class WhaleHunt : Item {
         return this;
     }
 
-    public override async Task UseStartOfEnemyCombat(Summoner summoner) {
+    public override async Task UseStartOfEnemyCombat(ItemTriggerParams parameters) {
         await Task.Delay(0);
-        summoner.stats.ability.summonMobyRichard.Add();
+        parameters.summoner.stats.ability.summonMobyRichard.Add();
     }
 }

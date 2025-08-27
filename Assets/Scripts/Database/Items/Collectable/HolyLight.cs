@@ -8,7 +8,7 @@ public class HolyLight : Item {
         return this;
     }
 
-    public override async Task UseStartOfTurn(Summoner summoner, Deck ownDeck, Deck enemyDeck, Hand enemyHand) {
+    public override async Task UseStartOfTurn(ItemTriggerParams parameters) {
         GridManager gridManager = FindFirstObjectByType<GridManager>();
         List<Character> damagedFriends = gridManager.GetDamagedFriends(GameManager.turn);
 

@@ -9,13 +9,13 @@ public class ExplosiveDevice : Item {
         return this;
     }
 
-    public override async Task UseOnWarriorDeath(Summoner summoner, Vector2 gridIndex) {
+    public override async Task UseOnWarriorDeath(ItemTriggerParams parameters) {
         GridManager gridManager = FindFirstObjectByType<GridManager>();
-        List<Character> nearbyWarriors = gridManager.GetNearbyWarriors(gridIndex);
+        List<Character> nearbyWarriors = gridManager.GetNearbyWarriors(parameters.gridIndex);
 
         List<Task> asyncFunctions = new();
         foreach (var nearbyWarrior in nearbyWarriors) {
-            asyncFunctions.Add(nearbyWarrior.TakeDamage(gridManager.GetCellCharacter(gridIndex), 2, Character.DamageType.Magical));
+            asyncFunctions.Add(nearbyWarrior.TakeDamage(gridManager.GetCellCharacter(parameters.gridIndex), 2, Character.DamageType.Magical));
         }
         await Task.WhenAll(asyncFunctions);
     }

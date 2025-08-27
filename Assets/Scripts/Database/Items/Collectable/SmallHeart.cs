@@ -5,7 +5,7 @@ public class SmallHeart : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(WarriorStats stats) {
-        stats.AddHealth(1);
+    public override void UseOnFriendSpawn(ItemTriggerParams parameters) {
+        parameters.stats.AddHealth(1);
     }
 }

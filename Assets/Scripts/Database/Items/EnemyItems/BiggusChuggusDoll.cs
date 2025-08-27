@@ -8,11 +8,7 @@ public class BiggusChuggusDoll : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(WarriorStats stats) {
-        stats.DoubleStats();
-    }
-
-    public override void UseOnEnemySpawn(WarriorStats stats) {
-        stats.DoubleStats();
+    public override void UseOnWarriorSpawn(ItemTriggerParams parameters) {
+        parameters.stats.DoubleStats();
     }
 }

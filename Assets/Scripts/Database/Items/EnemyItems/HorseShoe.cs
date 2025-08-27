@@ -8,11 +8,7 @@ public class HorseShoe : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(WarriorStats stats) {
-        stats.speed++;
-    }
-
-    public override void UseOnEnemySpawn(WarriorStats stats) {
-        stats.speed++;
+    public override void UseOnWarriorSpawn(ItemTriggerParams parameters) {
+        parameters.stats.speed++;
     }
 }

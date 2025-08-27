@@ -8,13 +8,8 @@ public class Hourglass : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(WarriorStats stats) {
-        stats.speed = 1;
-        stats.range = 1;
-    }
-
-    public override void UseOnEnemySpawn(WarriorStats stats) {
-        stats.speed = 1;
-        stats.range = 1;
+    public override void UseOnWarriorSpawn(ItemTriggerParams parameters) {
+        parameters.stats.speed = 1;
+        parameters.stats.range = 1;
     }
 }

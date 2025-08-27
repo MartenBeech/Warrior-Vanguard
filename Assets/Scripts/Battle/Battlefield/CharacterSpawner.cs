@@ -28,17 +28,19 @@ public class CharacterSpawner : MonoBehaviour {
 
     public async Task Spawn(Vector2 gridIndex, WarriorStats stats, Vector2 from) {
         foreach (Item item in ItemManager.LoadItems()) {
+            item.UseOnWarriorSpawn(new(stats));
             if (stats.alignment == Alignment.Friend) {
-                item.UseOnFriendSpawn(stats);
+                item.UseOnFriendSpawn(new(stats));
             } else if (stats.alignment == Alignment.Enemy) {
-                item.UseOnEnemySpawn(stats);
+                item.UseOnEnemySpawn(new(stats));
             }
         }
 
+        ItemManager.enemyItem.UseOnWarriorSpawn(new(stats));
         if (stats.alignment == Alignment.Enemy) {
-            ItemManager.enemyItem.UseOnFriendSpawn(stats);
+            ItemManager.enemyItem.UseOnFriendSpawn(new(stats));
         } else if (stats.alignment == Alignment.Friend) {
-            ItemManager.enemyItem.UseOnEnemySpawn(stats);
+            ItemManager.enemyItem.UseOnEnemySpawn(new(stats));
         }
 
         GameObject warriorObject = Instantiate(warriorPrefab, from, Quaternion.identity, warriorsObject);
@@ -103,16 +105,16 @@ public class CharacterSpawner : MonoBehaviour {
 
         foreach (Item item in ItemManager.LoadItems()) {
             if (stats.alignment == Alignment.Friend) {
-                await item.UseAfterFriendSpawn(stats, gridIndex);
+                await item.UseAfterFriendSpawn(new(stats, gridIndex));
             } else if (stats.alignment == Alignment.Enemy) {
-                await item.UseAfterEnemySpawn(stats, gridIndex);
+                await item.UseAfterEnemySpawn(new(stats, gridIndex));
             }
         }
 
         if (stats.alignment == Alignment.Enemy) {
-            await ItemManager.enemyItem.UseAfterFriendSpawn(stats, gridIndex);
+            await ItemManager.enemyItem.UseAfterFriendSpawn(new(stats, gridIndex));
         } else if (stats.alignment == Alignment.Friend) {
-            await ItemManager.enemyItem.UseAfterEnemySpawn(stats, gridIndex);
+            await ItemManager.enemyItem.UseAfterEnemySpawn(new(stats, gridIndex));
         }
 
         await stats.ability.spawn.TriggerSummon(character, this);

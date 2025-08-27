@@ -372,16 +372,20 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         gameObject.SetActive(false);
 
         if (stats.alignment == CharacterSpawner.Alignment.Friend) {
-            await ItemManager.enemyItem.UseOnWarriorDeath(summoner, gridIndex);
+            await ItemManager.enemyItem.UseOnWarriorDeath(new(summoner: summoner, gridIndex: gridIndex));
+            await ItemManager.enemyItem.UseOnEnemyDeath(new(summoner: summoner, gridIndex: gridIndex));
             foreach (Item item in ItemManager.LoadItems()) {
-                await item.UseOnWarriorDeath(summoner, gridIndex);
+                await item.UseOnWarriorDeath(new(summoner: summoner, gridIndex: gridIndex));
+                await item.UseOnFriendDeath(new(summoner: summoner, gridIndex: gridIndex));
             }
         }
 
         if (stats.alignment == CharacterSpawner.Alignment.Enemy) {
-            await ItemManager.enemyItem.UseOnWarriorDeath(summoner, gridIndex);
+            await ItemManager.enemyItem.UseOnWarriorDeath(new(summoner: summoner, gridIndex: gridIndex));
+            await ItemManager.enemyItem.UseOnFriendDeath(new(summoner: summoner, gridIndex: gridIndex));
             foreach (Item item in ItemManager.LoadItems()) {
-                await item.UseOnWarriorDeath(summoner, gridIndex);
+                await item.UseOnWarriorDeath(new(summoner: summoner, gridIndex: gridIndex));
+                await item.UseOnEnemyDeath(new(summoner: summoner, gridIndex: gridIndex));
             }
         }
 

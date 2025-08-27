@@ -9,8 +9,8 @@ public class PairOfBones : Item {
     }
 
 
-    public override async Task UseStartOfCombat(Summoner summoner) {
+    public override async Task UseStartOfCombat(ItemTriggerParams parameters) {
         await Task.Delay(0);
-        summoner.stats.skeletonBones = 2;
+        parameters.summoner.stats.skeletonBones = 2;
     }
 }

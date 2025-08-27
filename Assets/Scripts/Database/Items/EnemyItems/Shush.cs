@@ -8,11 +8,11 @@ public class Shush : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(WarriorStats stats) {
-        stats.ability = new();
+    public override void UseOnFriendSpawn(ItemTriggerParams parameters) {
+        parameters.stats.ability = new();
     }
 
-    public override void UseOnEnemySpawn(WarriorStats stats) {
-        stats.ability = new();
+    public override void UseOnEnemySpawn(ItemTriggerParams parameters) {
+        parameters.stats.ability = new();
     }
 }
