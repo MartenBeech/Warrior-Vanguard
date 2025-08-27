@@ -15,6 +15,7 @@ public static class ItemManager {
         List<Item> allItems = new();
         Type[] itemTypes = new Type[] {
             typeof(ExplosiveDevice),
+            typeof(Tactics),
             typeof(VampireRing),
             typeof(HumanRing),
             typeof(HolyLight),

@@ -123,7 +123,17 @@ public class CharacterSpawner : MonoBehaviour {
     }
 
     public async Task SpawnRandomly(WarriorStats stats, Vector2 from) {
-        GridCell randomCell = gridManager.GetRandomEmptyDeploy(stats.ability.construct.GetValue(stats), stats.alignment);
+        GameManager gameManager = FindFirstObjectByType<GameManager>();
+
+        GameObject summonerObject = null;
+        if (stats.alignment == Alignment.Friend) {
+            summonerObject = gameManager.friendSummonerObject;
+        } else if (stats.alignment == Alignment.Enemy) {
+            summonerObject = gameManager.enemySummonerObject;
+        }
+        Summoner summoner = summonerObject.GetComponent<Summoner>();
+
+        GridCell randomCell = gridManager.GetRandomEmptyDeploy(stats.ability.construct.GetValue(stats), stats.alignment, summoner);
         stats.displayTitle = Regex.Replace(stats.title, "(?<!^)([A-Z])", " $1");
 
         if (!randomCell) return;

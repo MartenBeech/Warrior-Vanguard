@@ -21,7 +21,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{title}");
     }
 
-    public virtual void UseImmediately() {
+    public virtual void UseImmediately(ItemTriggerParams parameters) {
         // This metod should be overridden by each item
     }
 

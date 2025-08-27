@@ -8,7 +8,7 @@ public class CLASSNAME : Item {
         return this;
     }
 
-    public override void UseImmediately() {
+    public override void UseImmediately(ItemTriggerParams parameters) {
 
     }
 

@@ -28,7 +28,7 @@ public class GainItem {
             },
 
             OnClickOption1 = () => {
-                eventManager.item.UseImmediately();
+                eventManager.item.UseImmediately(new(summoner: eventManager.summonerManager.summoner));
                 ItemManager.AddItem(eventManager.item);
                 eventManager.eventText.text = $"You picked up {eventManager.item.displayTitle}!";
                 eventManager.itemRewardPanel.SetActive(false);

@@ -5,7 +5,7 @@ public class MoneyBag : Item {
         return this;
     }
 
-    public override void UseImmediately() {
+    public override void UseImmediately(ItemTriggerParams parameters) {
         GoldManager.AddGold(200);
     }
 }

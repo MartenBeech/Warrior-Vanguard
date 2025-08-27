@@ -88,9 +88,18 @@ public class Hand : MonoBehaviour {
         characterSpawner.ActivateSpawn(CharacterSpawner.Alignment.Friend);
 
         GridManager gridManager = FindFirstObjectByType<GridManager>();
+        GameManager gameManager = FindFirstObjectByType<GameManager>();
+
+        GameObject summonerObject = null;
+        if (selectedCard.stats.alignment == CharacterSpawner.Alignment.Friend) {
+            summonerObject = gameManager.friendSummonerObject;
+        } else if (selectedCard.stats.alignment == CharacterSpawner.Alignment.Enemy) {
+            summonerObject = gameManager.enemySummonerObject;
+        }
+        Summoner summoner = summonerObject.GetComponent<Summoner>();
 
         if (card.stats.cardType == CardType.Warrior) {
-            gridManager.HighlightDeploys(card.stats.ability.construct.GetValue(card.stats), card.stats.alignment);
+            gridManager.HighlightDeploys(card.stats.ability.construct.GetValue(card.stats), card.stats.alignment, summoner);
         } else if (card.stats.cardType == CardType.Spell) {
             switch (card.stats.spellTarget) {
                 case SpellTarget.None:
