@@ -18,7 +18,6 @@ public class SummonerStats {
     public int shield = 0;
     public int difficulty = 1;
     public int skeletonBones = 0;
-    public int deploymentArea = 3;
     public List<string> graveyard = new();
     public WarriorAbility ability = new();
 
@@ -52,6 +51,5 @@ public class SummonerStats {
         shield = stats.shield;
         difficulty = stats.difficulty;
         skeletonBones = stats.skeletonBones;
-        deploymentArea = stats.deploymentArea;
     }
 }

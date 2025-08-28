@@ -133,7 +133,7 @@ public class GridManager : MonoBehaviour {
     public List<GridCell> GetEmptyDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment, Summoner summoner) {
         List<GridCell> cells = new();
         if (alignment == CharacterSpawner.Alignment.Friend) {
-            for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) : summoner.stats.deploymentArea); x++) {
+            for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) : FriendlySummoner.deploymentArea); x++) {
                 for (int y = 0; y < rows; y++) {
                     if (!GetCellCharacter(new Vector2(x, y))) {
                         cells.Add(grid[x, y]);
@@ -141,7 +141,7 @@ public class GridManager : MonoBehaviour {
                 }
             }
         } else if (alignment == CharacterSpawner.Alignment.Enemy) {
-            for (int x = columns - 1; x >= (largeDeployArea ? columns - Mathf.Floor(columns / 2) : columns - summoner.stats.deploymentArea); x--) {
+            for (int x = columns - 1; x >= (largeDeployArea ? columns - Mathf.Floor(columns / 2) : columns - FriendlySummoner.deploymentArea); x--) {
                 for (int y = 0; y < rows; y++) {
                     if (!GetCellCharacter(new Vector2(x, y))) {
                         cells.Add(grid[x, y]);

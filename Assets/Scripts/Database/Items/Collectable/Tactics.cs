@@ -9,6 +9,6 @@ public class Tactics : Item {
     }
 
     public override void UseImmediately(ItemTriggerParams parameters) {
-        parameters.summoner.stats.deploymentArea++;
+        FriendlySummoner.deploymentArea += 1;
     }
 }
