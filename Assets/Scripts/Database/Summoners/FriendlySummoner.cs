@@ -3,7 +3,7 @@ using UnityEngine;
 public static class FriendlySummoner {
     public static int maxHealth = 42;
     public static int currentHealth = 42;
-    public static int deploymentArea = 3;
+    public static int extraDeploymentArea = 0;
     public static SummonerData summonerData = new();
     private static string healthKey = "healthKey";
     private static string maxHealthKey = "maxHealthKey";

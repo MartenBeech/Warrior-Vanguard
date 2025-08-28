@@ -130,10 +130,10 @@ public class GridManager : MonoBehaviour {
         return null;
     }
 
-    public List<GridCell> GetEmptyDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment, Summoner summoner) {
+    public List<GridCell> GetEmptyDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment) {
         List<GridCell> cells = new();
         if (alignment == CharacterSpawner.Alignment.Friend) {
-            for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) : FriendlySummoner.deploymentArea); x++) {
+            for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) : 3 + FriendlySummoner.extraDeploymentArea); x++) {
                 for (int y = 0; y < rows; y++) {
                     if (!GetCellCharacter(new Vector2(x, y))) {
                         cells.Add(grid[x, y]);
@@ -141,7 +141,7 @@ public class GridManager : MonoBehaviour {
                 }
             }
         } else if (alignment == CharacterSpawner.Alignment.Enemy) {
-            for (int x = columns - 1; x >= (largeDeployArea ? columns - Mathf.Floor(columns / 2) : columns - FriendlySummoner.deploymentArea); x--) {
+            for (int x = columns - 1; x >= (largeDeployArea ? columns - Mathf.Floor(columns / 2) : columns - 3); x--) {
                 for (int y = 0; y < rows; y++) {
                     if (!GetCellCharacter(new Vector2(x, y))) {
                         cells.Add(grid[x, y]);
@@ -152,15 +152,15 @@ public class GridManager : MonoBehaviour {
         return cells;
     }
 
-    public GridCell GetRandomEmptyDeploy(bool largeDeployArea, CharacterSpawner.Alignment alignment, Summoner summoner) {
-        List<GridCell> cells = GetEmptyDeploys(largeDeployArea, alignment, summoner);
+    public GridCell GetRandomEmptyDeploy(bool largeDeployArea, CharacterSpawner.Alignment alignment) {
+        List<GridCell> cells = GetEmptyDeploys(largeDeployArea, alignment);
         if (cells.Count == 0) return null;
 
         return Rng.Entry(cells);
     }
 
-    public void HighlightDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment, Summoner summoner) {
-        List<GridCell> cells = GetEmptyDeploys(largeDeployArea, alignment, summoner);
+    public void HighlightDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment) {
+        List<GridCell> cells = GetEmptyDeploys(largeDeployArea, alignment);
         for (int i = 0; i < cells.Count; i++) {
             cells[i].Highlight();
         }

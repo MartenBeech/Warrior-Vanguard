@@ -19,10 +19,10 @@ public class FamiliarGround {
     public bool TriggerMove(Character dealer, Vector2 moveFrom, Vector2 moveTo) {
         if (GetValue(dealer.stats) > 0) {
             if (dealer.stats.alignment == CharacterSpawner.Alignment.Friend) {
-                if (moveFrom.x < 3 && moveTo.x >= 3) {
+                if (moveFrom.x < 3 + FriendlySummoner.extraDeploymentArea && moveTo.x >= 3 + FriendlySummoner.extraDeploymentArea) {
                     dealer.stats.AddStrength(-GetValue(dealer.stats));
                     dealer.stats.AddHealth(-GetValue(dealer.stats));
-                } else if (moveFrom.x >= 3 && moveTo.x < 3) {
+                } else if (moveFrom.x >= 3 + FriendlySummoner.extraDeploymentArea && moveTo.x < 3 + FriendlySummoner.extraDeploymentArea) {
                     dealer.stats.AddStrength(GetValue(dealer.stats));
                     dealer.stats.AddHealth(GetValue(dealer.stats));
                 }
