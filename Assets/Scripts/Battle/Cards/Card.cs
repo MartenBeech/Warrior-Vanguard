@@ -45,7 +45,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             spellDescription.text = "";
 
             attackText.text = $"{stats.GetStrength()}";
-            healthText.text = $"{stats.GetHealth()}";
+            healthText.text = $"{stats.GetHealthCurrent()}";
             raceText.text = $"{stats.race}";
 
             if (stats.range == 2) {

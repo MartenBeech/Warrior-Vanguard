@@ -23,7 +23,7 @@ public class LastBreath {
     public async Task Trigger(SpellTriggerParams parameters) {
         List<Task> asyncFunctions = new();
 
-        parameters.target.stats.AddHealthCurrent(-(parameters.target.stats.GetHealth() - 1));
+        parameters.target.stats.AddHealthCurrent(-(parameters.target.stats.GetHealthCurrent() - 1));
         parameters.target.UpdateWarriorUI();
 
         asyncFunctions.Add(parameters.floatingText.CreateFloatingText(parameters.target.transform, "Last Breath", ColorPalette.ColorEnum.Purple));

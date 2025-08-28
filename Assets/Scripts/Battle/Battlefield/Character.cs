@@ -57,7 +57,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (this == null) return;
 
         attackText.text = $"{stats.GetStrength()}";
-        healthText.text = $"{stats.GetHealth()}";
+        healthText.text = $"{stats.GetHealthCurrent()}";
 
         Sprite sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
         image.GetComponent<Image>().sprite = sprite != null ? sprite : Resources.Load<Sprite>($"Images/Icons/Red Cross");
@@ -86,7 +86,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task MoveWarrior(Direction direction) {
-        if (stats.GetHealth() <= 0) return;
+        if (stats.GetHealthCurrent() <= 0) return;
         if (stats.ability.stunned.GetValue(stats)) return;
 
         if (stats.ability.seduced.GetValue(stats)) {
@@ -130,7 +130,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task StandAndAttack(Direction direction) {
-        if (stats.GetHealth() <= 0) return;
+        if (stats.GetHealthCurrent() <= 0) return;
         if (stats.ability.stunned.GetValue(stats)) return;
 
         if (stats.ability.seduced.GetValue(stats)) {
@@ -165,9 +165,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
 
         for (int i = 0; i < (stats.ability.doubleStrike.GetValue(stats) ? 2 : 1); i++) {
-            if (target.stats.GetHealth() > 0) {
+            if (target.stats.GetHealthCurrent() > 0) {
                 await target.stats.ability.firstStrike.TriggerAttacked(this, target, gridManager);
-                if (stats.GetHealth() < 0) return;
+                if (stats.GetHealthCurrent() < 0) return;
 
                 List<Task> asyncFunctions = new() {
                 stats.ability.multishot.TriggerAttack(this, target, gridManager),
@@ -179,7 +179,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             };
                 await Task.WhenAll(asyncFunctions);
 
-                if (target.stats.GetHealth() > 0) {
+                if (target.stats.GetHealthCurrent() > 0) {
                     target.stats.ability.firewall.TriggerAttacked(this, target);
                     target.stats.ability.weakeningAura.TriggerAttacked(this, target);
                     target.stats.ability.poisoningAura.TriggerAttacked(this, target);
@@ -270,7 +270,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             stats.AddHealthCurrent(-damage);
             UpdateWarriorUI();
 
-            if (stats.GetHealth() <= 0) {
+            if (stats.GetHealthCurrent() <= 0) {
                 asyncFunctions.Add(Die(dealer));
             } else {
                 stats.ability.vengeance.TriggerDamaged(this);
@@ -295,7 +295,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public async Task Heal(Character dealer, int amount) {
         if (!this || !dealer) return;
 
-        if (stats.GetHealth() < stats.GetHealthMax()) {
+        if (stats.GetHealthCurrent() < stats.GetHealthMax()) {
             if (stats.ability.bleeding.GetValue(stats)) {
                 amount = 0;
             }

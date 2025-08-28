@@ -105,14 +105,14 @@ public class CharacterSpawner : MonoBehaviour {
 
         foreach (Item item in ItemManager.LoadItems()) {
             if (stats.alignment == Alignment.Friend) {
-                await item.UseAfterFriendSpawn(new(stats, gridIndex));
+                await item.UseAfterFriendSpawn(new(stats, gridIndex, coin: gameManager.friendCoin, ownDeck: gameManager.friendDeck));
             } else if (stats.alignment == Alignment.Enemy) {
                 await item.UseAfterEnemySpawn(new(stats, gridIndex));
             }
         }
 
         if (stats.alignment == Alignment.Enemy) {
-            await ItemManager.enemyItem.UseAfterFriendSpawn(new(stats, gridIndex));
+            await ItemManager.enemyItem.UseAfterFriendSpawn(new(stats, gridIndex, coin: gameManager.enemyCoin, ownDeck: gameManager.enemyDeck));
         } else if (stats.alignment == Alignment.Friend) {
             await ItemManager.enemyItem.UseAfterEnemySpawn(new(stats, gridIndex));
         }

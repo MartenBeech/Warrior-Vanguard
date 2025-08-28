@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class Coin : MonoBehaviour {
     public GameObject coinPrefab;
-    int coins = 0;
-    int coinsTotal = 0;
+    public int coins = 0;
+    public int coinsTotal = 0;
     public Hand hand;
 
     public void GainCoins(int amount = 1) {

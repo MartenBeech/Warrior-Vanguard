@@ -7,7 +7,7 @@ public class DarkTouch {
 
     public bool TriggerAttack(Character dealer, Character target) {
         if (GetValue(dealer.stats) > 0) {
-            if (target.stats.GetHealth() <= GetValue(dealer.stats)) {
+            if (target.stats.GetHealthCurrent() <= GetValue(dealer.stats)) {
                 return true;
             }
         }

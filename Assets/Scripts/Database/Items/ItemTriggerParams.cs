@@ -7,6 +7,7 @@ public class ItemTriggerParams {
     public Deck ownDeck;
     public Deck enemyDeck;
     public Hand enemyHand;
+    public Coin coin;
 
     public ItemTriggerParams(
         WarriorStats stats = null,
@@ -14,7 +15,8 @@ public class ItemTriggerParams {
         Summoner summoner = null,
         Deck ownDeck = null,
         Deck enemyDeck = null,
-        Hand enemyHand = null
+        Hand enemyHand = null,
+        Coin coin = null
     ) {
         this.stats = stats;
         this.gridIndex = gridIndex;
@@ -22,5 +24,6 @@ public class ItemTriggerParams {
         this.ownDeck = ownDeck;
         this.enemyDeck = enemyDeck;
         this.enemyHand = enemyHand;
+        this.coin = coin;
     }
 }

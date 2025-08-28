@@ -129,7 +129,21 @@ public class WarriorStats {
         }
     }
 
-    public int GetHealth() {
+    public void AddHealth(int amount) {
+        for (int i = 0; i < 2; i++) {
+            healthMax[i] += amount;
+            health[i] += amount;
+        }
+    }
+
+    public void SetHealth(int amount) {
+        for (int i = 0; i < 2; i++) {
+            healthMax[i] = amount;
+            health[i] = amount;
+        }
+    }
+
+    public int GetHealthCurrent() {
         return health[level];
     }
 
@@ -146,17 +160,9 @@ public class WarriorStats {
         return healthMax[level];
     }
 
-    public void AddHealth(int amount) {
+    public void AddHealthMax(int amount) {
         for (int i = 0; i < 2; i++) {
             healthMax[i] += amount;
-            health[i] += amount;
-        }
-    }
-
-    public void SetHealth(int amount) {
-        for (int i = 0; i < 2; i++) {
-            healthMax[i] = amount;
-            health[i] = amount;
         }
     }
 

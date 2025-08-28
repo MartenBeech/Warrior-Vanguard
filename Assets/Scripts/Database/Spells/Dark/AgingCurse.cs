@@ -22,7 +22,7 @@ public class AgingCurse {
 
     public async Task Trigger(SpellTriggerParams parameters) {
         parameters.target.stats.AddStrength(-Mathf.FloorToInt(parameters.target.stats.GetStrength() / 2));
-        parameters.target.stats.AddHealthCurrent(-Mathf.FloorToInt(parameters.target.stats.GetHealth() / 2));
+        parameters.target.stats.AddHealthCurrent(-Mathf.FloorToInt(parameters.target.stats.GetHealthCurrent() / 2));
         parameters.target.stats.speed /= 2;
         parameters.target.UpdateWarriorUI();
         await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Aging", ColorPalette.ColorEnum.Purple);

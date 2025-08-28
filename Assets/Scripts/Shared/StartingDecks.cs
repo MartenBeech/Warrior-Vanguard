@@ -133,7 +133,7 @@ public static class StartingDecks {
                 AddCardToDeck(new RainOfFire().GetStats(), card);
                 break;
             case "UnderworldSummoner2":
-                AddCardToDeck(new SpiritualGrounds().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
                 AddCardToDeck(new Mario().GetStats(), card);
                 AddCardToDeck(new Mario().GetStats(), card);
                 AddCardToDeck(new Mario().GetStats(), card);

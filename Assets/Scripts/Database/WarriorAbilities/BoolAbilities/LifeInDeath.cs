@@ -15,7 +15,7 @@ public class LifeInDeath {
             List<Task> asyncFunctions = new() { };
 
             foreach (var friend in damagedFriends) {
-                asyncFunctions.Add(friend.Heal(dealer, friend.stats.GetHealthMax() - friend.stats.GetHealth()));
+                asyncFunctions.Add(friend.Heal(dealer, friend.stats.GetHealthMax() - friend.stats.GetHealthCurrent()));
             }
 
             await Task.WhenAll(asyncFunctions);

@@ -40,7 +40,7 @@ public class EvilInspiration {
         return false;
     }
 
-    public int[] value = new int[] { 0, 0 };
+    int[] value = new int[] { 0, 0 };
 
     public int GetValue(WarriorStats stats) {
         return value[stats.level];

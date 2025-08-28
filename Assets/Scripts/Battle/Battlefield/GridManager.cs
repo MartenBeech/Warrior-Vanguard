@@ -293,7 +293,7 @@ public class GridManager : MonoBehaviour {
 
     public List<Character> GetDamagedFriends(CharacterSpawner.Alignment alignment) {
         List<Character> friends = GetFriends(alignment);
-        List<Character> damagedfriends = friends.Where(friend => friend.stats.GetHealth() < friend.stats.GetHealthMax()).ToList();
+        List<Character> damagedfriends = friends.Where(friend => friend.stats.GetHealthCurrent() < friend.stats.GetHealthMax()).ToList();
         return damagedfriends;
     }
 
