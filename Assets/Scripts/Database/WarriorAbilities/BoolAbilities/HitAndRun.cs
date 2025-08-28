@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class HitAndRun {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Run backwards";
+        return $"{WarriorAbility.Keywords.Overturn}: If you attacked this turn, run backwards";
     }
 
     public async Task<bool> TriggerOverturn(Character dealer) {

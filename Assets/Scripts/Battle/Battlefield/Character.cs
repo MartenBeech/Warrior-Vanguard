@@ -157,7 +157,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task Attack(Character target, bool dealDoubleDamage = false) {
+        stats.attackedThisTurn = true;
         int damage = stats.GetStrength();
+
         if (dealDoubleDamage) {
             damage *= 2;
         }
@@ -175,7 +177,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 stats.ability.selfHarm.TriggerAttack(this),
                 Strike(target, damage)
             };
-                stats.ability.bloodlust.TriggerAttack(this);
                 await Task.WhenAll(asyncFunctions);
 
                 if (target.stats.GetHealth() > 0) {
@@ -194,6 +195,8 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public async Task AttackSummoner() {
+        stats.attackedThisTurn = true;
+
         Summoner summonerTarget = null;
         if (stats.alignment == CharacterSpawner.Alignment.Friend) {
             summonerTarget = gameManager.enemySummonerObject.GetComponent<Summoner>(); ;
@@ -393,8 +396,17 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         await Task.WhenAll(asyncFunctions);
     }
 
+    public void StartTurn() {
+        stats.ability.immune.Remove();
+
+        stats.attackedThisTurn = false;
+    }
+
     public async Task EndTurn() {
-        await stats.ability.hitAndRun.TriggerOverturn(this);
+        if (stats.attackedThisTurn) {
+            stats.ability.bloodlust.TriggerOverturn(this);
+            await stats.ability.hitAndRun.TriggerOverturn(this);
+        }
         stats.ability.poisonCloud.TriggerOverturn(this, gridManager);
         await stats.ability.cemeteryGates.TriggerOverturn(this, characterSpawner);
         await stats.ability.rebirth.TriggerOverturn(this, characterSpawner);
@@ -421,7 +433,6 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             stats.tempStrength = 0;
             UpdateWarriorUI();
         }
-
     }
 
     private Vector2 GetFrontCellIndex(Vector2 gridIndex, Direction direction, int range = 1) {

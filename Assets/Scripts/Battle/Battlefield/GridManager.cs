@@ -133,7 +133,7 @@ public class GridManager : MonoBehaviour {
     public List<GridCell> GetEmptyDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment) {
         List<GridCell> cells = new();
         if (alignment == CharacterSpawner.Alignment.Friend) {
-            for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) : 3 + FriendlySummoner.extraDeploymentArea); x++) {
+            for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) + FriendlySummoner.extraDeploymentArea : 3 + FriendlySummoner.extraDeploymentArea); x++) {
                 for (int y = 0; y < rows; y++) {
                     if (!GetCellCharacter(new Vector2(x, y))) {
                         cells.Add(grid[x, y]);

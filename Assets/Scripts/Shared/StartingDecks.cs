@@ -133,21 +133,16 @@ public static class StartingDecks {
                 AddCardToDeck(new RainOfFire().GetStats(), card);
                 break;
             case "UnderworldSummoner2":
-                AddCardToDeck(new FlameWarden().GetStats(), card);
-                AddCardToDeck(new FriendlyFiend().GetStats(), card);
-                AddCardToDeck(new RockThrower().GetStats(), card);
-                AddCardToDeck(new RockThrower().GetStats(), card);
-                AddCardToDeck(new SketchySketcher().GetStats(), card);
-                AddCardToDeck(new HappyHarpy().GetStats(), card);
-                AddCardToDeck(new IntrusiveTermite().GetStats(), card);
-                AddCardToDeck(new IntrusiveTermite().GetStats(), card);
-                AddCardToDeck(new CrispRat().GetStats(), card);
-                AddCardToDeck(new HellHound().GetStats(), card);
-                AddCardToDeck(new HellHound().GetStats(), card);
-                AddCardToDeck(new Firebolt().GetStats(), card);
-                AddCardToDeck(new Firebolt().GetStats(), card);
-                AddCardToDeck(new MoltenBlade().GetStats(), card);
-                AddCardToDeck(new RainOfFire().GetStats(), card);
+                AddCardToDeck(new SpiritualGrounds().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
                 break;
         }
     }

@@ -2,10 +2,10 @@ using System.Text.RegularExpressions;
 public class Bloodlust {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Gain +{GetValue(stats)} Strength";
+        return $"{WarriorAbility.Keywords.Overturn}: If you attacked this turn, gain +{GetValue(stats)} strength";
     }
 
-    public bool TriggerAttack(Character dealer) {
+    public bool TriggerOverturn(Character dealer) {
         if (GetValue(dealer.stats) > 0) {
             dealer.stats.AddStrength(GetValue(dealer.stats));
             dealer.UpdateWarriorUI();

@@ -92,8 +92,6 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 await dealer.stats.ability.lifeSteal.TriggerStrike(dealer, damageAfterResistances);
                 await dealer.stats.ability.lifeTransfer.TriggerStrike(dealer, damageAfterResistances, gridManager);
             }
-
-            dealer.stats.ability.bloodlust.TriggerAttack(dealer);
         } else {
             FloatingText floatingText = FindFirstObjectByType<FloatingText>();
             await floatingText.CreateFloatingText(transform, damage.ToString());

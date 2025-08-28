@@ -42,6 +42,7 @@ public class WarriorStats {
     public int range = 2;
 
     public int tempStrength = 0;
+    public bool attackedThisTurn = false;
 
     public WarriorAbility ability = new();
 

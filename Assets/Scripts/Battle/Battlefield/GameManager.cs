@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour {
         }
 
         foreach (Character friend in friends) {
-            friend.stats.ability.immune.Remove();
+            friend.StartTurn();
         }
 
         SetLoading(false);
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour {
                 enemyHand: enemyHand));
 
         foreach (Character enemy in enemies) {
-            enemy.stats.ability.immune.Remove();
+            enemy.StartTurn();
         }
 
         await TakeEnemyTurn();
