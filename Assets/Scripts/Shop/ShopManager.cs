@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour {
     string shopCardsKey = "shopCards";
@@ -8,6 +9,11 @@ public class ShopManager : MonoBehaviour {
     public List<Card> cardsForSale = new List<Card>();
     public List<Item> itemsForSale = new List<Item>();
     public TMP_Text actionInfoText;
+    public TMP_Text removeCardButtonText;
+    public Button removeCardButton;
+    public GameObject removeCardPanel;
+    public Transform deckListContainer;
+    public GameObject cardPrefab;
     public DeckBuilder deckBuilder;
 
     private void Start() {
@@ -38,6 +44,14 @@ public class ShopManager : MonoBehaviour {
 
             SaveShop();
         }
+
+        UpdateRemoveCardButton();
+        removeCardPanel.SetActive(false);
+    }
+
+    private void UpdateRemoveCardButton() {
+        removeCardButton.interactable = DeckManager.GetDeck().Count > 1 && GoldManager.gold >= GoldManager.RemoveCardCost;
+        removeCardButtonText.text = $"Remove Card ({GoldManager.RemoveCardCost} Gold)";
     }
 
     public void BuyCard(Card card) {
@@ -69,6 +83,37 @@ public class ShopManager : MonoBehaviour {
         } else {
             actionInfoText.text = $"Not enough gold!";
         }
+    }
+
+    public void RemoveCardButtonClicked() {
+        removeCardPanel.SetActive(true);
+        foreach (Transform child in deckListContainer) {
+            Destroy(child.gameObject);
+        }
+
+        foreach (WarriorStats stats in DeckManager.GetDeck()) {
+            GameObject cardItem = Instantiate(cardPrefab, deckListContainer);
+            cardItem.transform.localScale = new Vector2(1.5f, 1.5f);
+            cardItem.GetComponent<DragDrop>().enabled = false;
+            cardItem.GetComponent<ObjectAnimation>().enabled = false;
+            Card cardComponent = cardItem.GetComponent<Card>();
+            cardComponent.SetStats(stats);
+            cardComponent.UpdateCardUI();
+            cardComponent.GetComponent<Button>().onClick.AddListener(() => RemoveCard(cardComponent));
+        }
+    }
+
+    private void RemoveCard(Card card) {
+        deckBuilder.RemoveCardFromDeck(card);
+        GoldManager.SpendGold(GoldManager.RemoveCardCost);
+        GoldManager.RemoveCardCost += 25;
+        UpdateRemoveCardButton();
+        removeCardPanel.SetActive(false);
+        actionInfoText.text = $"Removed {card.stats.displayTitle} from your deck";
+    }
+
+    public void CloseRemoveCardPanel() {
+        removeCardPanel.SetActive(false);
     }
 
     private void SaveShop() {
