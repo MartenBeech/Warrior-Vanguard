@@ -45,6 +45,7 @@ public class EventManager : MonoBehaviour {
     public GameObject cardItemRewardItemImage;
     public GameObject cardItemRewardItemTitle;
     public GameObject cardItemRewardItemDescription;
+    public int eventPanels = 0;
 
     void Start() {
         cardOptionPanel.SetActive(false);
@@ -69,7 +70,7 @@ public class EventManager : MonoBehaviour {
                 string filePath = Rng.Entry(filePaths);
 
                 fileTitle = Path.GetFileName(filePath).Split(".")[0];
-                fileTitle = "GainLegendary"; // TODO: Hardcoded for testing purposes
+                fileTitle = "CursedAlter"; // TODO: Hardcoded for testing purposes
 
                 PlayerPrefs.SetString(eventKey, fileTitle);
                 PlayerPrefs.Save();
@@ -121,17 +122,17 @@ public class EventManager : MonoBehaviour {
 
     public void ClickOption1() {
         currentEvent.OnClickOption1();
-        FinishEvent();
+        if (eventPanels <= 0) FinishEvent();
     }
 
     public void ClickOption2() {
         currentEvent.OnClickOption2();
-        FinishEvent();
+        if (eventPanels <= 0) FinishEvent();
     }
 
     public void ClickOption3() {
         currentEvent.OnClickOption3();
-        FinishEvent();
+        if (eventPanels <= 0) FinishEvent();
     }
 
     public void UpgradeCard(Card card) {
