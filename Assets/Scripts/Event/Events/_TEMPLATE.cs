@@ -1,4 +1,3 @@
-using UnityEngine;
 public class EVENTCLASSNAME {
     public Event GetEvent(EventManager eventManager) {
         Event newEvent = new() {

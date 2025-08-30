@@ -1,4 +1,3 @@
-using UnityEngine;
 public class WhaleHunter {
     public Event GetEvent(EventManager eventManager) {
         Event newEvent = new() {

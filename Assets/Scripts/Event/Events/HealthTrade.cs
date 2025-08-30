@@ -1,4 +1,3 @@
-using UnityEngine;
 public class HealthTrade {
     public Event GetEvent(EventManager eventManager) {
         int loseHealthAmount = 25;
