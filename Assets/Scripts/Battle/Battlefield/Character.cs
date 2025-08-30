@@ -264,6 +264,13 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         damage = stats.ability.immune.TriggerDamaged(this, damage);
 
+        if (stats.alignment == CharacterSpawner.Alignment.Enemy && damage == 1) {
+            Underdog underdog = new GameObject().AddComponent<Underdog>();
+            if (ItemManager.LoadItems().Find(item => item.name == underdog.GetItem().name)) {
+                damage = 2;
+            }
+        }
+
         List<Task> asyncFunctions = new();
 
         if (damage > 0) {

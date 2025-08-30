@@ -51,5 +51,6 @@ public class SummonerStats {
         shield = stats.shield;
         difficulty = stats.difficulty;
         skeletonBones = stats.skeletonBones;
+        isFriendly = stats.isFriendly;
     }
 }

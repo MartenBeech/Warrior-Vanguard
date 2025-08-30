@@ -21,6 +21,6 @@ public static class EnemySummoner {
 
     public static string GetWorthyEnemySummonerName(int level) {
         List<SummonerStats> worthySummoners = allEnemySummoners.FindAll(summoner => summoner.difficulty == level);
-        return worthySummoners[Random.Range(0, worthySummoners.Count)].title;
+        return Rng.Entry(worthySummoners).title;
     }
 }

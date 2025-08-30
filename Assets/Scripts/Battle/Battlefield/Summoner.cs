@@ -56,7 +56,15 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             damage = stats.ability.resistance.TriggerDamaged(dealer, damage, damageType);
         }
 
+        if (!stats.isFriendly && damage == 1) {
+            Underdog underdog = new GameObject().AddComponent<Underdog>();
+            if (ItemManager.LoadItems().Find(item => item.name == underdog.GetItem().name)) {
+                damage = 2;
+            }
+        }
+
         int damageAfterResistances = damage;
+
 
         if (damageAfterResistances > 0) {
             damageAfterResistances -= stats.shield;
