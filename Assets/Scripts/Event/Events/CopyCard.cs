@@ -6,7 +6,8 @@ public class CopyCard {
 
             OnSetup = () => {
                 eventManager.eventText.text = "A large mirror appears in front of you. It’s mirroring all your movements, but with a delay. It even repeats what you say back to you.";
-                eventManager.option1Text.text = "Skip";
+                eventManager.option1Text.text = "Return";
+                
                 if (DeckManager.GetDeck().Count <= 0) {
                     eventManager.eventText.text += " However it seems like you don't have any cards to give him.. He will let you off with a warning.";
                     eventManager.FinishEvent();

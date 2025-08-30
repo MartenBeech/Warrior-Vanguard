@@ -69,7 +69,7 @@ public class EventManager : MonoBehaviour {
                 string filePath = Rng.Entry(filePaths);
 
                 fileTitle = Path.GetFileName(filePath).Split(".")[0];
-                fileTitle = "CopyCard"; // TODO: Hardcoded for testing purposes
+                fileTitle = "HealthTrade"; // TODO: Hardcoded for testing purposes
 
                 PlayerPrefs.SetString(eventKey, fileTitle);
                 PlayerPrefs.Save();
