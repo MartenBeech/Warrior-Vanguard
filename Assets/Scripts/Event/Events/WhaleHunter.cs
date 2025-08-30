@@ -5,7 +5,7 @@ public class WhaleHunter {
             OnSetup = () => {
                 eventManager.eventText.text = "From the coastline you see a large whale in the waters which have been terrorizing the local surfers. You can choose to take on this monstrosity during your next battle. If you refuse… I don’t think the whale cares";
                 eventManager.option2Text.text = "Go on the whale hunt";
-                eventManager.option1Text.text = "Refuse";
+                eventManager.option1Text.text = "Return";
             },
 
             OnClickOption2 = () => {

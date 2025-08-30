@@ -6,6 +6,8 @@ public class UpgradeCard {
         Event newEvent = new() {
             OnSetup = () => {
                 eventManager.eventText.text = "You visited the friendly neighborhood smith.. He will upgrade one of your cards for free.";
+                eventManager.option1Text.text = "Return";
+                
                 if (DeckManager.GetDeck().Count <= 0) {
                     eventManager.eventText.text += " However it seems like you don't have any cards to upgrade sorry";
                     eventManager.FinishEvent();
@@ -38,6 +40,10 @@ public class UpgradeCard {
 
                     eventManager.SaveCardsEvent(eventManager.cardOption);
                 }
+            },
+
+            OnClickOption1 = () => {
+                eventManager.eventText.text = "Apparently you don't want to be stronger.";
             },
         };
 
