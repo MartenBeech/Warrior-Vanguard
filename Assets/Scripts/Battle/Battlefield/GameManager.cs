@@ -27,12 +27,14 @@ public class GameManager : MonoBehaviour {
     public static CharacterSpawner.Alignment turn;
     public static string enemySummonerName = "";
     public static bool isLoading = false;
+    private FloatingText floatingText;
 
     async void Awake() {
         SetLoading(true);
         friendSummoner.SetStats(new SummonerStats(FriendlySummoner.summonerData.title, FriendlySummoner.GetHealth(), FriendlySummoner.GetMaxHealth()));
         heroPower.SetHeroPower(friendSummoner.stats.heroPowerTitle, friendSummoner.stats.heroPowerDescription, friendSummoner.stats.heroPowerCost, friendSummoner.stats.heroPowerImage, friendSummoner.stats.heroPowerEffect);
         friendDeck.GetDeck();
+        floatingText = FindFirstObjectByType<FloatingText>();
 
         enemySummoner = enemySummonerObject.GetComponent<Summoner>();
         Type type = Type.GetType(enemySummonerName);
@@ -85,7 +87,8 @@ public class GameManager : MonoBehaviour {
                 ownDeck: friendDeck,
                 enemyDeck: enemyDeck,
                 enemyHand: enemyHand,
-                gridManager: gridManager));
+                gridManager: gridManager,
+                floatingText: floatingText));
         }
 
         foreach (Character friend in friends) {
@@ -119,7 +122,8 @@ public class GameManager : MonoBehaviour {
                 ownDeck: enemyDeck,
                 enemyDeck: friendDeck,
                 enemyHand: enemyHand,
-                gridManager: gridManager));
+                gridManager: gridManager,
+                floatingText: floatingText));
 
         foreach (Character enemy in enemies) {
             enemy.StartTurn();

@@ -16,6 +16,6 @@ public class ForgeHammer : Item {
         Character randomFriend = Rng.Entry(friends);
         randomFriend.stats.AddStrength(1);
         randomFriend.UpdateWarriorUI();
-        await Task.Delay(0);
+        await parameters.floatingText.CreateFloatingText(randomFriend.transform, "+1 strength", ColorPalette.ColorEnum.Green);
     }
 }
