@@ -6,6 +6,7 @@ public class ExplosiveDevice : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "When any warriors dies, deal 2 damage to all nearby warriors";
+        rarity = ItemManager.Rarity.Normal;
         return this;
     }
 

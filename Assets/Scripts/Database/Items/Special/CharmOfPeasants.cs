@@ -6,6 +6,7 @@ public class CharmOfPeasants : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = $"{WarriorAbility.Keywords.Initiate}: Draw an extra card";
+        rarity = ItemManager.Rarity.Special;
         return this;
     }
 

@@ -5,6 +5,7 @@ public class ForbiddenLifeElixir : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Your warriors with Revive or Afterlife have both";
+        rarity = ItemManager.Rarity.None;
         return this;
     }
 

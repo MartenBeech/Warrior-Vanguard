@@ -6,6 +6,7 @@ public class ForgeHammer : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = $"{WarriorAbility.Keywords.Initiate}: Give a random friend +1 strength";
+        rarity = ItemManager.Rarity.Normal;
         return this;
     }
 

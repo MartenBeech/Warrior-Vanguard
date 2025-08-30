@@ -5,6 +5,7 @@ public class CLASSNAME : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "DESCRIPTION";
+        rarity = ItemManager.Rarity.None;
         return this;
     }
 

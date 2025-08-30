@@ -5,6 +5,7 @@ public class YouAreWhalecome : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Start of combat: Summon a 2/3 Flot Sam";
+        rarity = ItemManager.Rarity.Special;
         return this;
     }
 

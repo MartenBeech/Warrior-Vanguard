@@ -5,6 +5,7 @@ public class HolyLight : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = $"{WarriorAbility.Keywords.Initiate}: Heal a random friend by 2";
+        rarity = ItemManager.Rarity.Normal;
         return this;
     }
 

@@ -2,6 +2,7 @@ public class WoodenSword : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "All friendly warriors gain +1 strength";
+        rarity = ItemManager.Rarity.Normal;
         return this;
     }
 

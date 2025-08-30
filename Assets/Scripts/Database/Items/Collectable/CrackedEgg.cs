@@ -5,6 +5,7 @@ public class CrackedEgg : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "When you summon a 5+ cost warrior, it summons a 1 cost warrior";
+        rarity = ItemManager.Rarity.Normal;
         return this;
     }
 

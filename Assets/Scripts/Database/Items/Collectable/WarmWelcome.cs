@@ -5,6 +5,7 @@ public class WarmWelcome : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Apply 1 Burning to summoned enemies";
+        rarity = ItemManager.Rarity.Normal;
         return this;
     }
 

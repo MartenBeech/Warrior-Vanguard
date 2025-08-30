@@ -5,6 +5,7 @@ public class HorseShoe : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "All warriors have +1 speed";
+        rarity = ItemManager.Rarity.None;
         return this;
     }
 

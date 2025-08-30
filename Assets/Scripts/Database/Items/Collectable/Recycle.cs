@@ -5,6 +5,7 @@ public class Recycle : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "When a friend dies, gain 2 shield";
+        rarity = ItemManager.Rarity.Normal;
         return this;
     }
 

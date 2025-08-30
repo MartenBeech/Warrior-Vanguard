@@ -5,6 +5,7 @@ public class BiggusChuggusDoll : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Double the stats on all warriors";
+        rarity = ItemManager.Rarity.None;
         return this;
     }
 

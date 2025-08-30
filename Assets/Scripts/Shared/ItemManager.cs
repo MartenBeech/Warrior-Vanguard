@@ -10,6 +10,9 @@ public static class ItemManager {
     public static Item enemyItem = null;
     public static List<Item> availableItems = new();
     public static ItemsPanel ItemsPanel;
+    public enum Rarity {
+        None, Normal, Special, Boss
+    }
 
     private static List<Item> LoadAllItems() {
         List<Item> allItems = new();

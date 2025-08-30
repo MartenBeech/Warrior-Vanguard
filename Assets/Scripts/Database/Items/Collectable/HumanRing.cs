@@ -2,6 +2,7 @@ public class HumanRing : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "All friendly humans gain 2 health";
+        rarity = ItemManager.Rarity.Normal;
         return this;
     }
 

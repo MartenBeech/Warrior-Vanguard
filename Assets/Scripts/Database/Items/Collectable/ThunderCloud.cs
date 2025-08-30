@@ -5,6 +5,7 @@ public class ThunderCloud : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = $"{WarriorAbility.Keywords.Initiate}: Deal 1 magical damage to all warriors";
+        rarity = ItemManager.Rarity.Normal;
         return this;
     }
 

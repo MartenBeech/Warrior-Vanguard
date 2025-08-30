@@ -6,6 +6,7 @@ public class RingOfRace : Item {
         title = GetType().Name;
         string race = PlayerPrefs.GetString(raceKey, "NoRace");
         description = $"Every friendly {race} gain 2 health";
+        rarity = ItemManager.Rarity.Special;
         return this;
     }
 

@@ -5,6 +5,7 @@ public class Hourglass : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "All warriors have 1 speed and 1 range";
+        rarity = ItemManager.Rarity.None;
         return this;
     }
 

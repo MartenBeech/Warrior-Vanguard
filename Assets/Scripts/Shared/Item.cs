@@ -7,6 +7,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public string title;
     public string displayTitle;
     public string description;
+    public ItemManager.Rarity rarity;
     public GameObject image;
     private TooltipManager tooltipManager;
 
@@ -14,6 +15,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         title = item.title;
         displayTitle = item.displayTitle;
         description = item.description;
+        rarity = item.rarity;
         UpdateItemUI();
     }
 

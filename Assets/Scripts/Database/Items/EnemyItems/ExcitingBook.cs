@@ -6,6 +6,7 @@ public class ExcitingBook : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = $"{WarriorAbility.Keywords.Initiate}: Both summoners draw a card";
+        rarity = ItemManager.Rarity.None;
         return this;
     }
 

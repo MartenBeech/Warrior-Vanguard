@@ -2,6 +2,7 @@ public class MoneyBag : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Immediately gain 200 gold";
+        rarity = ItemManager.Rarity.Normal;
         return this;
     }
 
