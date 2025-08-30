@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharmOfPeasants : Item {
     public override Item GetItem() {
         title = GetType().Name;
-        description = "Start of turn: draw an extra card";
+        description = $"{WarriorAbility.Keywords.Initiate}: Draw an extra card";
         return this;
     }
 

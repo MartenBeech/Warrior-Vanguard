@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class ThunderCloud : Item {
     public override Item GetItem() {
         title = GetType().Name;
-        description = "Deal 1 magical damage to all warriors each turn";
+        description = $"{WarriorAbility.Keywords.Initiate}: Deal 1 magical damage to all warriors";
         return this;
     }
 

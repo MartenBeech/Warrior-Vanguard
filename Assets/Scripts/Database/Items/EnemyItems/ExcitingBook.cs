@@ -5,7 +5,7 @@ using UnityEngine;
 public class ExcitingBook : Item {
     public override Item GetItem() {
         title = GetType().Name;
-        description = "Start of turn: Both summoners draw a card";
+        description = $"{WarriorAbility.Keywords.Initiate}: Both summoners draw a card";
         return this;
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 public class DragonDiscount : Item {
     public override Item GetItem() {
         title = GetType().Name;
-        description = "Overturn: Reduce the cost of your dragons by 1";
+        description = $"{WarriorAbility.Keywords.Initiate}: Reduce the cost of your dragons by 1";
         return this;
     }
 
