@@ -69,7 +69,7 @@ public class EventManager : MonoBehaviour {
                 string filePath = Rng.Entry(filePaths);
 
                 fileTitle = Path.GetFileName(filePath).Split(".")[0];
-                fileTitle = "GainItem"; // TODO: Hardcoded for testing purposes
+                fileTitle = "CopyCard"; // TODO: Hardcoded for testing purposes
 
                 PlayerPrefs.SetString(eventKey, fileTitle);
                 PlayerPrefs.Save();
@@ -154,6 +154,14 @@ public class EventManager : MonoBehaviour {
     public void GainCard(Card card) {
         deckBuilder.AddCardToDeck(card);
         eventText.text = $"You added {card.stats.displayTitle} to your deck!";
+        card.SetHoverCardFromMap();
+        card.HideCard();
+        FinishEvent();
+    }
+
+    public void CopyCard(Card card) {
+        deckBuilder.AddCardToDeck(card);
+        eventText.text = $"'Great choice' you mumble. 'Great choice' the mirror mumbles back.";
         card.SetHoverCardFromMap();
         card.HideCard();
         FinishEvent();
