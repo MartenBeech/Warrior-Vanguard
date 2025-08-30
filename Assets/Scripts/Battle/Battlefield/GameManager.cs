@@ -84,7 +84,8 @@ public class GameManager : MonoBehaviour {
                 summoner: friendSummonerObject.GetComponent<Summoner>(),
                 ownDeck: friendDeck,
                 enemyDeck: enemyDeck,
-                enemyHand: enemyHand));
+                enemyHand: enemyHand,
+                gridManager: gridManager));
         }
 
         foreach (Character friend in friends) {
@@ -117,7 +118,8 @@ public class GameManager : MonoBehaviour {
                 summoner: friendSummonerObject.GetComponent<Summoner>(),
                 ownDeck: enemyDeck,
                 enemyDeck: friendDeck,
-                enemyHand: enemyHand));
+                enemyHand: enemyHand,
+                gridManager: gridManager));
 
         foreach (Character enemy in enemies) {
             enemy.StartTurn();

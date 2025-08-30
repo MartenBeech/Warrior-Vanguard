@@ -11,6 +11,7 @@ public class WarriorAbility {
         Summon,         //after it is summoned
         Kill,           //After it kills a warrior
         Aura,           //Active while it is alive
+        Initiate,       //At the start of your turn
         StartOfCombat,  //At the start of combat
     }
 
