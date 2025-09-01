@@ -1,5 +1,5 @@
 using UnityEngine;
-public class CursedAlter {
+public class CursedAltar {
     public Event GetEvent(EventManager eventManager) {
         int loseHealthAmount = 10;
         Event newEvent = new() {

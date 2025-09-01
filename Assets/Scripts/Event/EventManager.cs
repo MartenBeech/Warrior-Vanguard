@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -45,7 +46,9 @@ public class EventManager : MonoBehaviour {
     public GameObject cardItemRewardItemImage;
     public GameObject cardItemRewardItemTitle;
     public GameObject cardItemRewardItemDescription;
+    public GameObject eventImage;
     public int eventPanels = 0;
+    readonly AnimationHelper animationHelper = new();
 
     void Start() {
         cardOptionPanel.SetActive(false);
@@ -71,6 +74,10 @@ public class EventManager : MonoBehaviour {
 
                 fileTitle = Path.GetFileName(filePath).Split(".")[0];
                 fileTitle = "GainItem"; // TODO: Hardcoded for testing purposes
+
+                Sprite sprite = Resources.Load<Sprite>($"Images/Events/{fileTitle}");
+                eventImage.GetComponent<Image>().sprite = sprite != null ? sprite : Resources.Load<Sprite>($"Images/Icons/Red Cross");
+                StartCoroutine(animationHelper.FadeInObject(eventImage, 1f));
 
                 PlayerPrefs.SetString(eventKey, fileTitle);
                 PlayerPrefs.Save();
@@ -178,26 +185,8 @@ public class EventManager : MonoBehaviour {
         option2Button.SetActive(false);
         option3Button.SetActive(false);
         cardOptionPanel.SetActive(false);
-        StartCoroutine(FadeInButton(returnButton, 1f));
-    }
-
-    //Creates a smooth fade-in effect for the button
-    private System.Collections.IEnumerator FadeInButton(GameObject button, float duration) {
-        CanvasGroup canvasGroup = button.GetComponent<CanvasGroup>();
-        if (canvasGroup == null) {
-            canvasGroup = button.AddComponent<CanvasGroup>();
-        }
-        canvasGroup.alpha = 0f;
-        button.SetActive(true);
-
-        float elapsed = 0f;
-        while (elapsed < duration) {
-            canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        canvasGroup.alpha = 1f;
-    }
+        StartCoroutine(animationHelper.FadeInObject(returnButton, 1f));
+    }    
 
     public void ReturnToMap() {
         SceneManager.LoadScene("Map");

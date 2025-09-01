@@ -722,6 +722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   summonerObject: {fileID: 508920834}
+  summoner: {fileID: 0}
 --- !u!4 &184656664
 Transform:
   m_ObjectHideFlags: 0
@@ -1167,11 +1168,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 344046115080938787, guid: 6c0329d652aee24498d7667ef54f3366, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -811.5
+      value: -810
       objectReference: {fileID: 0}
     - target: {fileID: 344046115080938787, guid: 6c0329d652aee24498d7667ef54f3366, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -155
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 344046115080938787, guid: 6c0329d652aee24498d7667ef54f3366, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

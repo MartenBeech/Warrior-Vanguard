@@ -15,18 +15,18 @@ public class GainItem {
                 eventManager.option2Text.text = "Pick up the item";
                 eventManager.option1Text.text = "Leave it alone";
 
-                if (eventManager.item.title == null) {
-                    eventManager.eventText.text = "You find a hole where an item used to be. However, it seems like you already have all the items in the world.";
-                    eventManager.FinishEvent();
-                    return;
-                }
-
                 eventManager.itemRewardPanel.SetActive(true);
                 eventManager.itemImage.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{eventManager.item.title}");
                 eventManager.itemTitle.GetComponent<TMP_Text>().text = eventManager.item.displayTitle;
                 eventManager.itemDescription.GetComponent<TMP_Text>().text = eventManager.item.description;
 
-                eventManager.eventText.text = $"You find a mysterious item on the ground called {eventManager.item.displayTitle}. Do you want to pick it up?";
+                eventManager.eventText.text = $"On your long journey, you find a mysterious item on the ground called {eventManager.item.displayTitle}. Do you want to pick it up?";
+                
+                if (eventManager.item.title == null) {
+                    eventManager.eventText.text = "You find a hole where an item used to be. However, it seems like you already have all the items in the world.";
+                    eventManager.FinishEvent();
+                    return;
+                }
             },
 
             OnClickOption2 = () => {
