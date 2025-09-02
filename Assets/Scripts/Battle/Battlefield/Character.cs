@@ -266,7 +266,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         if (stats.alignment == CharacterSpawner.Alignment.Enemy && damage == 1) {
             Underdog underdog = new GameObject().AddComponent<Underdog>();
-            if (ItemManager.LoadItems().Find(item => item.name == underdog.GetItem().name)) {
+            if (ItemManager.items.Find(item => item.title == underdog.GetItem().title)) {
                 damage = 2;
             }
         }
@@ -384,7 +384,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (stats.alignment == CharacterSpawner.Alignment.Friend) {
             await ItemManager.enemyItem.UseOnWarriorDeath(new(summoner: summoner, gridIndex: gridIndex));
             await ItemManager.enemyItem.UseOnEnemyDeath(new(summoner: summoner, gridIndex: gridIndex));
-            foreach (Item item in ItemManager.LoadItems()) {
+            foreach (Item item in ItemManager.items) {
                 await item.UseOnWarriorDeath(new(summoner: summoner, gridIndex: gridIndex));
                 await item.UseOnFriendDeath(new(summoner: summoner, gridIndex: gridIndex));
             }
@@ -393,7 +393,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (stats.alignment == CharacterSpawner.Alignment.Enemy) {
             await ItemManager.enemyItem.UseOnWarriorDeath(new(summoner: summoner, gridIndex: gridIndex));
             await ItemManager.enemyItem.UseOnFriendDeath(new(summoner: summoner, gridIndex: gridIndex));
-            foreach (Item item in ItemManager.LoadItems()) {
+            foreach (Item item in ItemManager.items) {
                 await item.UseOnWarriorDeath(new(summoner: summoner, gridIndex: gridIndex));
                 await item.UseOnEnemyDeath(new(summoner: summoner, gridIndex: gridIndex));
             }

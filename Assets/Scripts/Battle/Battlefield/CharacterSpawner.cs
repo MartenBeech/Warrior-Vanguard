@@ -27,7 +27,7 @@ public class CharacterSpawner : MonoBehaviour {
     }
 
     public async Task Spawn(Vector2 gridIndex, WarriorStats stats, Vector2 from) {
-        foreach (Item item in ItemManager.LoadItems()) {
+        foreach (Item item in ItemManager.items) {
             item.UseOnWarriorSpawn(new(stats));
             if (stats.alignment == Alignment.Friend) {
                 item.UseOnFriendSpawn(new(stats));
@@ -103,7 +103,7 @@ public class CharacterSpawner : MonoBehaviour {
             enemy.stats.ability.massSelfHarm.TriggerSummonEnemy(enemy, stats);
         }
 
-        foreach (Item item in ItemManager.LoadItems()) {
+        foreach (Item item in ItemManager.items) {
             if (stats.alignment == Alignment.Friend) {
                 await item.UseAfterFriendSpawn(new(stats, gridIndex, coin: gameManager.friendCoin, ownDeck: gameManager.friendDeck));
             } else if (stats.alignment == Alignment.Enemy) {

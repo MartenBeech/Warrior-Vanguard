@@ -8,8 +8,10 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public string displayTitle;
     public string description;
     public ItemManager.Rarity rarity;
+    public bool triggeredThisCombat = false;
     public GameObject image;
     private TooltipManager tooltipManager;
+
 
     public void SetItem(Item item) {
         title = item.title;

@@ -58,7 +58,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (!stats.isFriendly && damage == 1) {
             Underdog underdog = new GameObject().AddComponent<Underdog>();
-            if (ItemManager.LoadItems().Find(item => item.name == underdog.GetItem().name)) {
+            if (ItemManager.items.Find(item => item.title == underdog.GetItem().title)) {
                 damage = 2;
             }
         }

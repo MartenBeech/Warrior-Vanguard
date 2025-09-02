@@ -17,6 +17,10 @@ public static class ItemManager {
     private static List<Item> LoadAllItems() {
         List<Item> allItems = new();
         Type[] itemTypes = new Type[] {
+            typeof(ShieldOfEnven),
+            typeof(AmuletOfEnven),
+            typeof(CopyCat),
+            typeof(GoldenCape),
             typeof(ForgeHammer),
             typeof(Underdog),
             typeof(UnfinishedPuzzle),
@@ -47,7 +51,7 @@ public static class ItemManager {
     }
 
     public static void AddItem(Item item) {
-        items = LoadItems();
+        LoadItems();
         items.Add(item);
         RemoveItemFromAvailable(item);
         SaveItems();
@@ -55,7 +59,7 @@ public static class ItemManager {
     }
 
     public static void RemoveItem(Item item) {
-        items = LoadItems();
+        LoadItems();
         items.RemoveAll(i => i.title == item.title);
         SaveItems();
         ItemsPanel.UpdateUI();
@@ -92,20 +96,20 @@ public static class ItemManager {
     }
 
     public static List<Item> LoadItems() {
-        List<Item> tempItems = new();
-        if (!PlayerPrefs.HasKey(itemKey)) return tempItems;
+        items = new();
+        if (!PlayerPrefs.HasKey(itemKey)) return items;
 
         string itemData = PlayerPrefs.GetString(itemKey);
-        if (itemData == "") return tempItems;
+        if (itemData == "") return items;
 
         string[] itemTitles = itemData.Split(',');
 
         foreach (string title in itemTitles) {
             Item item = GetItemByTitle(title);
-            tempItems.Add(item);
+            items.Add(item);
         }
 
-        return tempItems;
+        return items;
     }
 
     private static void SaveAvailableItems() {

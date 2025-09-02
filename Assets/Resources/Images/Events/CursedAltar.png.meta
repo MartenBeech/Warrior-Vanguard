@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CursedAltar_0: -7480660814921419635
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

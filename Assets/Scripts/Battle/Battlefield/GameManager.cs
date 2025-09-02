@@ -51,7 +51,8 @@ public class GameManager : MonoBehaviour {
         }
         await Task.WhenAll(asyncFunctions);
 
-        foreach (Item item in ItemManager.LoadItems()) {
+        foreach (Item item in ItemManager.items) {
+            item.triggeredThisCombat = false;
             await item.UseStartOfCombat(new(summoner: friendSummoner));
             await item.UseStartOfEnemyCombat(new(summoner: enemySummoner));
         }
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour {
 
         await friendDeck.DrawCard();
 
-        foreach (Item item in ItemManager.LoadItems()) {
+        foreach (Item item in ItemManager.items) {
             await item.UseStartOfTurn(new(
                 summoner: friendSummonerObject.GetComponent<Summoner>(),
                 ownDeck: friendDeck,

@@ -73,7 +73,7 @@ public class EventManager : MonoBehaviour {
                 string filePath = Rng.Entry(filePaths);
 
                 fileTitle = Path.GetFileName(filePath).Split(".")[0];
-                fileTitle = "UpgradeCard"; // TODO: Hardcoded for testing purposes
+                fileTitle = "GainItem"; // TODO: Hardcoded for testing purposes
 
                 Sprite sprite = Resources.Load<Sprite>($"Images/Events/{fileTitle}");
                 eventImage.GetComponent<Image>().sprite = sprite != null ? sprite : Resources.Load<Sprite>($"Images/Icons/Red Cross");
@@ -186,7 +186,7 @@ public class EventManager : MonoBehaviour {
         option3Button.SetActive(false);
         cardOptionPanel.SetActive(false);
         StartCoroutine(animationHelper.FadeInObject(returnButton, 1f));
-    }    
+    }
 
     public void ReturnToMap() {
         SceneManager.LoadScene("Map");
