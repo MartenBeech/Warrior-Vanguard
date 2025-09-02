@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class Pierce {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Also strike the enemy behind the target";
+        return $"{Keyword.Attack}: Also strike the enemy behind the target";
     }
 
     public async Task<bool> TriggerAttack(Warrior dealer, Warrior target, GridManager gridManager) {
@@ -50,5 +50,5 @@ public class Pierce {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

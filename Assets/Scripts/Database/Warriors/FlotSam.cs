@@ -7,9 +7,9 @@ public class FlotSam : WarriorStats {
             cost = new int[] { 2, 2 },
             speed = 2,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.None,
-            genre = Warrior.Genre.None,
+            damageType = DamageType.Physical,
+            race = Race.None,
+            genre = Genre.None,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

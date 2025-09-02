@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 public class HitAndRun {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: If you attacked this turn, run backwards";
+        return $"{Keyword.Overturn}: If you attacked this turn, run backwards";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer) {
         if (GetValue(dealer.stats)) {
-            await dealer.MoveWarrior(dealer.stats.alignment == WarriorSummoner.Alignment.Enemy ? Warrior.Direction.Right : Warrior.Direction.Left);
+            await dealer.MoveWarrior(dealer.stats.alignment == Alignment.Enemy ? Direction.Right : Direction.Left);
             return true;
         }
         return false;
@@ -46,5 +46,5 @@ public class HitAndRun {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

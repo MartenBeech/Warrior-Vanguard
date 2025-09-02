@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class Enflame {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Instead of dealing damage, apply Burning stacks";
+        return $"{Keyword.Strike}: Instead of dealing damage, apply Burning stacks";
     }
 
     public int TriggerStrike(Warrior dealer, Warrior target, int damage) {
@@ -46,5 +46,5 @@ public class Enflame {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

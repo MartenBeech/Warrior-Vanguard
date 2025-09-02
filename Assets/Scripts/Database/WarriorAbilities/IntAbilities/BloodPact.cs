@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 public class BloodPact {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Deal {GetValue(stats)} damage to your summoner";
+        return $"{Keyword.Overturn}: Deal {GetValue(stats)} damage to your summoner";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer, GridManager gridManager, Summoner summoner) {
         if (GetValue(dealer.stats) > 0) {
-            await summoner.TakeDamage(dealer, GetValue(dealer.stats), gridManager, Warrior.DamageType.Magical);
+            await summoner.TakeDamage(dealer, GetValue(dealer.stats), gridManager, DamageType.Magical);
             return true;
         }
         return false;
@@ -51,5 +51,5 @@ public class BloodPact {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

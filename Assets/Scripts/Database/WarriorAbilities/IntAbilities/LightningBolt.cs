@@ -3,14 +3,14 @@ using System.Threading.Tasks;
 public class LightningBolt {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Deal {GetValue(stats)} magical damage to a random enemy";
+        return $"{Keyword.Overturn}: Deal {GetValue(stats)} magical damage to a random enemy";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
             Warrior enemy = gridManager.GetRandomEnemy(dealer);
             if (enemy) {
-                await enemy.TakeDamage(dealer, GetValue(dealer.stats), Warrior.DamageType.Magical);
+                await enemy.TakeDamage(dealer, GetValue(dealer.stats), DamageType.Magical);
             }
             return true;
         }
@@ -54,5 +54,5 @@ public class LightningBolt {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

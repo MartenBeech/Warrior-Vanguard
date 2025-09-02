@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class Splash {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Also {WarriorAbility.Keywords.Strike} all enemies around your target";
+        return $"{Keyword.Attack}: Also {Keyword.Strike} all enemies around your target";
     }
 
     public async Task<bool> TriggerAttack(Warrior dealer, Warrior target, GridManager gridManager) {
@@ -53,5 +53,5 @@ public class Splash {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

@@ -1,35 +1,15 @@
 using System;
 using System.Text.RegularExpressions;
 
-public enum CardType {
-    None,
-    Warrior,
-    Spell
-}
-
-public enum SpellTarget {
-    None,
-    Friend,
-    Enemy,
-    Warrior,
-}
-
-public enum CardRarity {
-    None,
-    Common,
-    Rare,
-    Legendary
-}
-
 public class WarriorStats {
     public string title;
     public string displayTitle;
     public CardRarity rarity = CardRarity.None;
     public int level = 0;
-    public Warrior.DamageType damageType = Warrior.DamageType.Physical;
-    public Warrior.Race race = Warrior.Race.None;
-    public Warrior.Genre genre = Warrior.Genre.None;
-    public WarriorSummoner.Alignment alignment;
+    public DamageType damageType = DamageType.Physical;
+    public Race race = Race.None;
+    public Genre genre = Genre.None;
+    public Alignment alignment;
     public CardType cardType = CardType.Warrior;
     public SpellTarget spellTarget = SpellTarget.None;
     public string[] spellDescription = new string[2];

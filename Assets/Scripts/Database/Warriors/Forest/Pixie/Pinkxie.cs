@@ -7,10 +7,10 @@ public class Pinkxie {
             health = new int[] { 4, 6 },
             speed = 2,
             range = 2,
-            damageType = Warrior.DamageType.Magical,
-            race = Warrior.Race.Pixie,
+            damageType = DamageType.Magical,
+            race = Race.Pixie,
             rarity = CardRarity.Common,
-            genre = Warrior.Genre.Forest
+            genre = Genre.Forest
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

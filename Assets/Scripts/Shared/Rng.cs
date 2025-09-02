@@ -46,18 +46,18 @@ public class Rng : MonoBehaviour {
     }
 
     // The race will be saved for the rest of the game
-    public static Warrior.Race GetRandomRace(Warrior.Genre genre, bool forceNew = false) {
+    public static Race GetRandomRace(Genre genre, bool forceNew = false) {
         List<WarriorStats> warriors = CardDatabase.allCards.FindAll(card => card.genre == genre);
 
-        var uniqueRaces = new HashSet<Warrior.Race>();
+        var uniqueRaces = new HashSet<Race>();
         foreach (var warrior in warriors) {
-            if (warrior.race == Warrior.Race.None) continue;
+            if (warrior.race == Race.None) continue;
             uniqueRaces.Add(warrior.race);
         }
         if (uniqueRaces.Count == 0)
             return default;
 
-        var raceList = new List<Warrior.Race>(uniqueRaces);
+        var raceList = new List<Race>(uniqueRaces);
         int randomIndex;
         if (PlayerPrefs.HasKey(raceKey) && !forceNew) {
             randomIndex = PlayerPrefs.GetInt(raceKey);

@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class Cannibalism {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Gain +{GetValue(stats)}/+{GetValue(stats)}";
+        return $"{Keyword.Kill}: Gain +{GetValue(stats)}/+{GetValue(stats)}";
     }
 
     public bool TriggerKill(Warrior dealer) {
@@ -52,5 +52,5 @@ public class Cannibalism {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

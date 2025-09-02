@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class LifeSteal {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Heal equal to damage dealt";
+        return $"{Keyword.Strike}: Heal equal to damage dealt";
     }
 
     public async Task<bool> TriggerStrike(Warrior dealer, int damage) {
@@ -46,5 +46,5 @@ public class LifeSteal {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

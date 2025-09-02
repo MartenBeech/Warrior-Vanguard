@@ -12,20 +12,20 @@ public class SkinToBones {
             "Kill an enemy and summon a skeleton",
             "Kill an enemy and summon 2 skeletons"
             },
-            race = Warrior.Race.Dark,
+            race = Race.Dark,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }
 
     public async Task Trigger(SpellTriggerParams parameters) {
-        WarriorSummoner.Alignment alignment = WarriorSummoner.Alignment.Null;
-        if (parameters.target.stats.alignment == WarriorSummoner.Alignment.Enemy) {
-            alignment = WarriorSummoner.Alignment.Friend;
-        } else if (parameters.target.stats.alignment == WarriorSummoner.Alignment.Friend) {
-            alignment = WarriorSummoner.Alignment.Enemy;
+        Alignment alignment = Alignment.Null;
+        if (parameters.target.stats.alignment == Alignment.Enemy) {
+            alignment = Alignment.Friend;
+        } else if (parameters.target.stats.alignment == Alignment.Friend) {
+            alignment = Alignment.Enemy;
         }
 
         List<Task> asyncFunctions = new() {

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class Sprout {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Summon a Sprout";
+        return $"{Keyword.Overturn}: Summon a Sprout";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer, WarriorSummoner warriorSummoner) {
@@ -51,5 +51,5 @@ public class Sprout {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

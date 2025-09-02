@@ -13,10 +13,10 @@ public class Sanctuary {
             "Make all friends immune for 1 turn",
             "Make all friends immune for 1 turn"
             },
-            race = Warrior.Race.Light,
+            race = Race.Light,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }

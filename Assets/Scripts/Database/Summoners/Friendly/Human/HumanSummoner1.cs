@@ -5,7 +5,7 @@ public class HumanSummoner1 {
         int armorGain = 2;
         SummonerData data = new() {
             title = GetType().Name,
-            genre = Warrior.Genre.Human,
+            genre = Genre.Human,
             description = "A Human Summoner focused on defense and resilience",
             heroPowerTitle = "Armor Up",
             heroPowerDescription = $"Gain {armorGain} armor",

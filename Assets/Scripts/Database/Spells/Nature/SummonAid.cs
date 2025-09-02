@@ -13,10 +13,10 @@ public class SummonAid {
             "Draw 2 cards. Reduce their cost by 1",
             "Draw 2 cards. Reduce their cost by 2"
             },
-            race = Warrior.Race.Nature,
+            race = Race.Nature,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }

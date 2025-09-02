@@ -13,10 +13,10 @@ public class Parasite {
             "Kill an enemy and summon an exact copy for your side",
             "Kill an enemy and summon an exact copy for your side"
             },
-            race = Warrior.Race.Dark,
+            race = Race.Dark,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }
@@ -27,10 +27,10 @@ public class Parasite {
         WarriorStats stats = new();
         stats.SetStats(parameters.target.stats);
 
-        if (parameters.target.stats.alignment == WarriorSummoner.Alignment.Enemy) {
-            stats.alignment = WarriorSummoner.Alignment.Friend;
-        } else if (parameters.target.stats.alignment == WarriorSummoner.Alignment.Friend) {
-            stats.alignment = WarriorSummoner.Alignment.Enemy;
+        if (parameters.target.stats.alignment == Alignment.Enemy) {
+            stats.alignment = Alignment.Friend;
+        } else if (parameters.target.stats.alignment == Alignment.Friend) {
+            stats.alignment = Alignment.Enemy;
         }
 
         asyncFunctions.Add(parameters.target.Die(parameters.target));

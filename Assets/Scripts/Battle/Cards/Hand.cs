@@ -11,7 +11,7 @@ public class Hand : MonoBehaviour {
     public GridManager gridManager;
     public FloatingText floatingText;
     public Transform warriors;
-    public WarriorSummoner.Alignment alignment;
+    public Alignment alignment;
     List<Card> cardsInHand = new();
 
     int handSize = 0;
@@ -41,10 +41,10 @@ public class Hand : MonoBehaviour {
 
         Coin coin = null;
         GameObject summonerObject = null;
-        if (selectedCard.stats.alignment == WarriorSummoner.Alignment.Friend) {
+        if (selectedCard.stats.alignment == Alignment.Friend) {
             coin = gameManager.friendCoin;
             summonerObject = gameManager.friendSummonerObject;
-        } else if (selectedCard.stats.alignment == WarriorSummoner.Alignment.Enemy) {
+        } else if (selectedCard.stats.alignment == Alignment.Enemy) {
             coin = gameManager.enemyCoin;
             summonerObject = gameManager.enemySummonerObject;
         }
@@ -52,9 +52,9 @@ public class Hand : MonoBehaviour {
         if (!coin.SpendCoins(selectedCard.stats.GetCost())) return;
 
         Deck deck = null;
-        if (selectedCard.stats.alignment == WarriorSummoner.Alignment.Friend) {
+        if (selectedCard.stats.alignment == Alignment.Friend) {
             deck = gameManager.friendDeck;
-        } else if (selectedCard.stats.alignment == WarriorSummoner.Alignment.Enemy) {
+        } else if (selectedCard.stats.alignment == Alignment.Enemy) {
             deck = gameManager.enemyDeck;
         }
 
@@ -85,7 +85,7 @@ public class Hand : MonoBehaviour {
     public void SelectCard(Card card) {
         selectedCard = card;
         WarriorSummoner warriorSummoner = FindFirstObjectByType<WarriorSummoner>();
-        warriorSummoner.ActivateSummon(WarriorSummoner.Alignment.Friend);
+        warriorSummoner.ActivateSummon(Alignment.Friend);
 
         GridManager gridManager = FindFirstObjectByType<GridManager>();
 
@@ -163,7 +163,7 @@ public class Hand : MonoBehaviour {
         }
     }
 
-    public void ReduceCostRace(int amount, Warrior.Race race) {
+    public void ReduceCostRace(int amount, Race race) {
         foreach (var card in cardsInHand) {
             if (card.stats.race == race) {
                 card.stats.AddCost(-amount);

@@ -7,10 +7,10 @@ public class BoneGnawer {
             health = new int[] { 3, 3 },
             speed = 3,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Ghoul,
+            damageType = DamageType.Physical,
+            race = Race.Ghoul,
             rarity = CardRarity.Common,
-            genre = Warrior.Genre.Undead,
+            genre = Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

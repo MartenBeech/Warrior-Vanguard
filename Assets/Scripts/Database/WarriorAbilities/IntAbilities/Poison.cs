@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class Poison {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Apply {GetValue(stats)} Poisoned";
+        return $"{Keyword.Strike}: Apply {GetValue(stats)} Poisoned";
     }
 
     public bool TriggerStrike(Warrior dealer, Warrior target) {
@@ -51,5 +51,5 @@ public class Poison {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

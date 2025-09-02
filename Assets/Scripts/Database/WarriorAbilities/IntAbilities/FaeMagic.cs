@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class FaeMagic {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Give your summoner +{GetValue(stats)} shield";
+        return $"{Keyword.Overturn}: Give your summoner +{GetValue(stats)} shield";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer, Summoner summoner) {
@@ -51,5 +51,5 @@ public class FaeMagic {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

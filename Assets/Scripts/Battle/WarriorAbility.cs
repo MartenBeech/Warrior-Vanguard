@@ -3,21 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 public class WarriorAbility {
-    public enum Keywords {
-        Attack,         //After it makes an attack move
-        Death,          //After it dies
-        Overturn,       //At the end of its turns
-        Strike,         //After it strikes a warrior
-        Summon,         //after it is summoned
-        Kill,           //After it kills a warrior
-        Aura,           //Active while it is alive
-        Initiate,       //At the start of your turn
-        StartOfCombat,  //At the start of combat
-    }
 
-    public enum BuffType {
-        None, Buff, Debuff
-    }
 
     // Identity abilities
     public Construct construct = new();

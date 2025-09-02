@@ -49,7 +49,7 @@ public class GridManager : MonoBehaviour {
         return pos;
     }
 
-    void GenerateGrid(Warrior.Genre genre) {
+    void GenerateGrid(Genre genre) {
         RectTransform rectTransform = GetComponent<RectTransform>();
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
         float cellSpacing = 100 / columns;
@@ -77,7 +77,7 @@ public class GridManager : MonoBehaviour {
 
                 gridCell.GetComponent<RectTransform>().localScale = GetCellDimension() / gridCell.GetComponent<RectTransform>().rect.width;
 
-                if (genre != Warrior.Genre.None) {
+                if (genre != Genre.None) {
                     int randomCell = Rng.Range(0, 12);
                     gridCell.image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cells/{genre}/{randomCell}");
                 }
@@ -91,18 +91,18 @@ public class GridManager : MonoBehaviour {
     public async Task<bool> SelectCell(Vector2 selectedGridIndex) {
         if (!grid[(int)selectedGridIndex.x, (int)selectedGridIndex.y].IsHighlighed()) return false;
 
-        if (warriorSummoner.getIsSummoning(WarriorSummoner.Alignment.Enemy)) {
+        if (warriorSummoner.getIsSummoning(Alignment.Enemy)) {
             WarriorStats luigiStats = new Luigi().GetStats();
-            luigiStats.alignment = WarriorSummoner.Alignment.Enemy;
+            luigiStats.alignment = Alignment.Enemy;
 
             await warriorSummoner.Summon(selectedGridIndex, luigiStats, EnemySummonerObject.position);
             return true;
         }
 
-        if (GameManager.turn == WarriorSummoner.Alignment.Friend) {
+        if (GameManager.turn == Alignment.Friend) {
             if (friendHand.selectedCard == null) return false;
             await friendHand.PlayCardFromHand(warriorSummoner, selectedGridIndex);
-        } else if (GameManager.turn == WarriorSummoner.Alignment.Enemy) {
+        } else if (GameManager.turn == Alignment.Enemy) {
             if (enemyHand.selectedCard == null) return false;
             await enemyHand.PlayCardFromHand(warriorSummoner, selectedGridIndex);
         }
@@ -130,9 +130,9 @@ public class GridManager : MonoBehaviour {
         return null;
     }
 
-    public List<GridCell> GetEmptyDeploys(bool largeDeployArea, WarriorSummoner.Alignment alignment) {
+    public List<GridCell> GetEmptyDeploys(bool largeDeployArea, Alignment alignment) {
         List<GridCell> cells = new();
-        if (alignment == WarriorSummoner.Alignment.Friend) {
+        if (alignment == Alignment.Friend) {
             for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) + FriendlySummoner.extraDeploymentArea : 3 + FriendlySummoner.extraDeploymentArea); x++) {
                 for (int y = 0; y < rows; y++) {
                     if (!GetCellWarrior(new Vector2(x, y))) {
@@ -140,7 +140,7 @@ public class GridManager : MonoBehaviour {
                     }
                 }
             }
-        } else if (alignment == WarriorSummoner.Alignment.Enemy) {
+        } else if (alignment == Alignment.Enemy) {
             for (int x = columns - 1; x >= (largeDeployArea ? columns - Mathf.Floor(columns / 2) : columns - 3); x--) {
                 for (int y = 0; y < rows; y++) {
                     if (!GetCellWarrior(new Vector2(x, y))) {
@@ -152,21 +152,21 @@ public class GridManager : MonoBehaviour {
         return cells;
     }
 
-    public GridCell GetRandomEmptyDeploy(bool largeDeployArea, WarriorSummoner.Alignment alignment) {
+    public GridCell GetRandomEmptyDeploy(bool largeDeployArea, Alignment alignment) {
         List<GridCell> cells = GetEmptyDeploys(largeDeployArea, alignment);
         if (cells.Count == 0) return null;
 
         return Rng.Entry(cells);
     }
 
-    public void HighlightDeploys(bool largeDeployArea, WarriorSummoner.Alignment alignment) {
+    public void HighlightDeploys(bool largeDeployArea, Alignment alignment) {
         List<GridCell> cells = GetEmptyDeploys(largeDeployArea, alignment);
         for (int i = 0; i < cells.Count; i++) {
             cells[i].Highlight();
         }
     }
 
-    public void HighlightEnemies(WarriorSummoner.Alignment alignment, bool withSpell = false) {
+    public void HighlightEnemies(Alignment alignment, bool withSpell = false) {
         List<Warrior> enemies = GetEnemies(alignment);
         foreach (var enemy in enemies) {
             if (withSpell && enemy.stats.ability.spellImmunity.GetValue(enemy.stats)) continue;
@@ -176,7 +176,7 @@ public class GridManager : MonoBehaviour {
         }
     }
 
-    public void HighlightFriends(WarriorSummoner.Alignment alignment, bool withSpell = false) {
+    public void HighlightFriends(Alignment alignment, bool withSpell = false) {
         List<Warrior> friends = GetFriends(alignment);
         foreach (var friend in friends) {
             if (withSpell && friend.stats.ability.spellImmunity.GetValue(friend.stats)) continue;
@@ -271,7 +271,7 @@ public class GridManager : MonoBehaviour {
         return warriors;
     }
 
-    public List<Warrior> GetFriends(WarriorSummoner.Alignment alignment) {
+    public List<Warrior> GetFriends(Alignment alignment) {
         List<Warrior> friends = new();
         foreach (Warrior warrior in allWarriors) {
             if (warrior.stats.alignment == alignment) {
@@ -281,7 +281,7 @@ public class GridManager : MonoBehaviour {
         return friends;
     }
 
-    public List<Warrior> GetEnemies(WarriorSummoner.Alignment alignment) {
+    public List<Warrior> GetEnemies(Alignment alignment) {
         List<Warrior> enemies = new();
         foreach (Warrior warrior in allWarriors) {
             if (warrior.stats.alignment != alignment) {
@@ -291,7 +291,7 @@ public class GridManager : MonoBehaviour {
         return enemies;
     }
 
-    public List<Warrior> GetDamagedFriends(WarriorSummoner.Alignment alignment) {
+    public List<Warrior> GetDamagedFriends(Alignment alignment) {
         List<Warrior> friends = GetFriends(alignment);
         List<Warrior> damagedfriends = friends.Where(friend => friend.stats.GetHealthCurrent() < friend.stats.GetHealthMax()).ToList();
         return damagedfriends;
@@ -306,9 +306,9 @@ public class GridManager : MonoBehaviour {
 
     public Warrior GetWarriorBehindTarget(Warrior target) {
         Warrior warrior = null;
-        if (target.stats.alignment == WarriorSummoner.Alignment.Enemy) {
+        if (target.stats.alignment == Alignment.Enemy) {
             warrior = GetCellWarrior(target.gridIndex + new Vector2(1, 0));
-        } else if (target.stats.alignment == WarriorSummoner.Alignment.Friend) {
+        } else if (target.stats.alignment == Alignment.Friend) {
             warrior = GetCellWarrior(target.gridIndex - new Vector2(1, 0));
         }
 
@@ -318,9 +318,9 @@ public class GridManager : MonoBehaviour {
     public List<Warrior> GetEnemiesInRange(Vector2 gridIndex) {
         Warrior dealer = GetCellWarrior(gridIndex);
         List<Warrior> enemiesInRange = new();
-        int xIncrement = dealer.stats.alignment == WarriorSummoner.Alignment.Friend
+        int xIncrement = dealer.stats.alignment == Alignment.Friend
             ? 1
-            : dealer.stats.alignment == WarriorSummoner.Alignment.Enemy
+            : dealer.stats.alignment == Alignment.Enemy
             ? -1
             : 0;
 

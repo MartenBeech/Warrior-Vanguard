@@ -8,7 +8,7 @@ public class Seduced {
     public bool Trigger(Warrior dealer) {
         if (GetValue(dealer.stats)) {
             dealer.stats.ability.seduced.Remove();
-            dealer.stats.alignment = dealer.stats.alignment == WarriorSummoner.Alignment.Enemy ? WarriorSummoner.Alignment.Friend : WarriorSummoner.Alignment.Enemy;
+            dealer.stats.alignment = dealer.stats.alignment == Alignment.Enemy ? Alignment.Friend : Alignment.Enemy;
             dealer.UpdateWarriorUI();
             return true;
         }
@@ -47,5 +47,5 @@ public class Seduced {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.Debuff;
+    public BuffType buffType = BuffType.Debuff;
 }

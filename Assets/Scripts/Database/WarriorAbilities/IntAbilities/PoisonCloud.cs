@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 public class PoisonCloud {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Apply {GetValue(stats)} Poisoned to nearby enemies";
+        return $"{Keyword.Overturn}: Apply {GetValue(stats)} Poisoned to nearby enemies";
     }
 
     public bool TriggerOverturn(Warrior dealer, GridManager gridManager) {
@@ -57,5 +57,5 @@ public class PoisonCloud {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

@@ -7,10 +7,10 @@ public class FlameWarden {
             health = new int[] { 2, 3 },
             speed = 2,
             range = 4,
-            damageType = Warrior.DamageType.Magical,
-            race = Warrior.Race.Succubus,
+            damageType = DamageType.Magical,
+            race = Race.Succubus,
             rarity = CardRarity.Common,
-            genre = Warrior.Genre.Underworld,
+            genre = Genre.Underworld,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

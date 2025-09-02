@@ -5,7 +5,7 @@ public class BigArmor : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Your summoner has 1 armor and 1 resistance";
-        rarity = ItemManager.Rarity.None;
+        rarity = ItemRarity.None;
         return this;
     }
 

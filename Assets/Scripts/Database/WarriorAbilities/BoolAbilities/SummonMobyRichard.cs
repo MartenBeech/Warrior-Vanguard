@@ -6,7 +6,7 @@ using UnityEngine;
 public class SummonMobyRichard {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.StartOfCombat}: Summon a 10/10 Moby Richard";
+        return $"{Keyword.StartOfCombat}: Summon a 10/10 Moby Richard";
     }
 
     public async Task<bool> TriggerStartOfCombat(Summoner dealer, WarriorSummoner warriorSummoner) {
@@ -55,5 +55,5 @@ public class SummonMobyRichard {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

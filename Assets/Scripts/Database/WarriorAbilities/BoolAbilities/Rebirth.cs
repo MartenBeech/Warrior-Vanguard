@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class Rebirth {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Turn into a new Phoenix";
+        return $"{Keyword.Overturn}: Turn into a new Phoenix";
     }
 
     public async Task<bool> TriggerOverturn(Warrior target, WarriorSummoner warriorSummoner) {
@@ -56,5 +56,5 @@ public class Rebirth {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

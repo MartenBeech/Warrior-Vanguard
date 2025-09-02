@@ -4,13 +4,13 @@ public class UnderworldSummoner2 {
     public SummonerData GetData() {
         SummonerData data = new() {
             title = GetType().Name,
-            genre = Warrior.Genre.Underworld,
+            genre = Genre.Underworld,
             description = "A Summoner from the Underworld with unique abilities",
             heroPowerTitle = "Mystic Gate",
             heroPowerDescription = "Summon a random 2-cost warrior",
             heroPowerCost = 4,
             heroPowerEffect = async parameters => {
-                WarriorStats randomWarrior = CardDatabase.GetRandomWarriorWithSpecificCost(2, WarriorSummoner.Alignment.Friend);
+                WarriorStats randomWarrior = CardDatabase.GetRandomWarriorWithSpecificCost(2, Alignment.Friend);
                 await parameters.warriorSummoner.SummonRandomly(randomWarrior, parameters.friendSummoner.transform.position);
             }
         };

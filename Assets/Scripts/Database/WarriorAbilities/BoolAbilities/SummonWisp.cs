@@ -6,7 +6,7 @@ using UnityEngine;
 public class SummonWisp {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Summon a 1/1 Wisp";
+        return $"{Keyword.Overturn}: Summon a 1/1 Wisp";
     }
 
     public async Task<bool> TriggerOverturn(Summoner dealer, WarriorSummoner warriorSummoner) {
@@ -55,5 +55,5 @@ public class SummonWisp {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

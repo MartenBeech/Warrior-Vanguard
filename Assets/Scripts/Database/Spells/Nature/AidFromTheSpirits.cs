@@ -13,10 +13,10 @@ public class AidFromTheSpirits {
             "Give a friendly warrior +8/+8",
             "Give a friendly warrior +8/+8 and spikes 2"
             },
-            race = Warrior.Race.Nature,
+            race = Race.Nature,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class SelfHarm {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Also strikes itself";
+        return $"{Keyword.Attack}: Also strikes itself";
     }
 
     public async Task<bool> TriggerAttack(Warrior dealer) {
@@ -47,5 +47,5 @@ public class SelfHarm {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

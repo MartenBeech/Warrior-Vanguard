@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class Revive {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Resummon this warrior (once)";
+        return $"{Keyword.Death}: Resummon this warrior (once)";
     }
 
     public async Task<bool> TriggerDeath(Warrior target, WarriorSummoner warriorSummoner) {
@@ -49,5 +49,5 @@ public class Revive {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

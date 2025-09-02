@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 public class DragonRecruiter {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Add a random dragon to your hand";
+        return $"{Keyword.Kill}: Add a random dragon to your hand";
     }
 
     public async Task<bool> TriggerKill(Warrior dealer, Hand hand) {
         if (GetValue(dealer.stats)) {
-            WarriorStats randomDragon = CardDatabase.GetRandomWarriorWithSpecificRace(Warrior.Race.Dragon, dealer.stats.alignment);
+            WarriorStats randomDragon = CardDatabase.GetRandomWarriorWithSpecificRace(Race.Dragon, dealer.stats.alignment);
 
             await hand.MoveNewCardToHand(randomDragon, dealer.transform.position);
             return true;
@@ -48,5 +48,5 @@ public class DragonRecruiter {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

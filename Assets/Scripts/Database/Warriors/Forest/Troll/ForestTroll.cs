@@ -7,10 +7,10 @@ public class ForestTroll {
             health = new int[] { 6, 7 },
             speed = 2,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Troll,
+            damageType = DamageType.Physical,
+            race = Race.Troll,
             rarity = CardRarity.Rare,
-            genre = Warrior.Genre.Forest
+            genre = Genre.Forest
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

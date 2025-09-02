@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class BoneSpread {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Summon 3 random{(stats.level == 1 ? " upgraded" : "")} Skeletons";
+        return $"{Keyword.Death}: Summon 3 random{(stats.level == 1 ? " upgraded" : "")} Skeletons";
     }
     public async Task<bool> TriggerDeath(Warrior target, WarriorSummoner warriorSummoner) {
         if (GetValue(target.stats)) {
@@ -51,5 +51,5 @@ public class BoneSpread {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

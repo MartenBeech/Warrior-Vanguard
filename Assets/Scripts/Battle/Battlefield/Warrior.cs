@@ -6,34 +6,18 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 
 public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
-    public enum Race {
-        None, Construct, Dragon, //Common
-        Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Nightrider, //Undead
-        Human, Pirate, Holyborn, Knight, Griffin, Sorcerer, Fencer, Librarian, //Human
-        Unicorn, Elf, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Forest
-        Imp, Minotaur, Harpy, Pestilence, Cerberus, Succubus, Demon, //Underworld
-        Dark, Fire, Light, Nature //Spells
-    }
-    public enum Genre {
-        None, Human, Forest, Undead, Underworld,
-        Dark, Fire, Light, Nature,
-    }
     public Vector2 gridIndex;
     private GridManager gridManager;
     public WarriorStats stats;
     private HoverCard hoverCard;
-    public enum Direction {
-        Left, Right
-    };
+
     public TMP_Text attackText;
     public TMP_Text healthText;
     public GameObject image;
     public GameObject border;
     public GameObject crystal;
     private GameManager gameManager;
-    public enum DamageType {
-        Physical, Magical
-    };
+
 
     private Hand hand;
     public WarriorSummoner warriorSummoner;
@@ -64,9 +48,9 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         Sprite sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
         image.GetComponent<Image>().sprite = sprite != null ? sprite : Resources.Load<Sprite>($"Images/Icons/Red Cross");
 
-        if (stats.alignment == WarriorSummoner.Alignment.Friend) {
+        if (stats.alignment == Alignment.Friend) {
             crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Green);
-        } else if (stats.alignment == WarriorSummoner.Alignment.Enemy) {
+        } else if (stats.alignment == Alignment.Enemy) {
             crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Red);
         }
 
@@ -92,7 +76,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         if (stats.ability.stunned.GetValue(stats)) return;
 
         if (stats.ability.seduced.GetValue(stats)) {
-            stats.alignment = stats.alignment == WarriorSummoner.Alignment.Enemy ? WarriorSummoner.Alignment.Friend : WarriorSummoner.Alignment.Enemy;
+            stats.alignment = stats.alignment == Alignment.Enemy ? Alignment.Friend : Alignment.Enemy;
             direction = direction == Direction.Left ? Direction.Right : Direction.Left;
         }
 
@@ -200,16 +184,16 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         stats.attackedThisTurn = true;
 
         Summoner summonerTarget = null;
-        if (stats.alignment == WarriorSummoner.Alignment.Friend) {
+        if (stats.alignment == Alignment.Friend) {
             summonerTarget = gameManager.enemySummonerObject.GetComponent<Summoner>(); ;
-        } else if (stats.alignment == WarriorSummoner.Alignment.Enemy) {
+        } else if (stats.alignment == Alignment.Enemy) {
             summonerTarget = gameManager.friendSummonerObject.GetComponent<Summoner>();
         }
 
         Deck deck = null;
-        if (stats.alignment == WarriorSummoner.Alignment.Friend) {
+        if (stats.alignment == Alignment.Friend) {
             deck = gameManager.friendDeck;
-        } else if (stats.alignment == WarriorSummoner.Alignment.Enemy) {
+        } else if (stats.alignment == Alignment.Enemy) {
             deck = gameManager.enemyDeck;
         }
 
@@ -266,7 +250,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
         damage = stats.ability.immune.TriggerDamaged(this, damage);
 
-        if (stats.alignment == WarriorSummoner.Alignment.Enemy && damage == 1) {
+        if (stats.alignment == Alignment.Enemy && damage == 1) {
             Underdog underdog = new GameObject().AddComponent<Underdog>();
             if (ItemManager.items.Find(item => item.title == underdog.GetItem().title)) {
                 damage = 2;
@@ -383,7 +367,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
         gameObject.SetActive(false);
 
-        if (stats.alignment == WarriorSummoner.Alignment.Friend) {
+        if (stats.alignment == Alignment.Friend) {
             await ItemManager.enemyItem.UseOnWarriorDeath(new(summoner: summoner, gridIndex: gridIndex));
             await ItemManager.enemyItem.UseOnEnemyDeath(new(summoner: summoner, gridIndex: gridIndex));
             foreach (Item item in ItemManager.items) {
@@ -392,7 +376,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
             }
         }
 
-        if (stats.alignment == WarriorSummoner.Alignment.Enemy) {
+        if (stats.alignment == Alignment.Enemy) {
             await ItemManager.enemyItem.UseOnWarriorDeath(new(summoner: summoner, gridIndex: gridIndex));
             await ItemManager.enemyItem.UseOnFriendDeath(new(summoner: summoner, gridIndex: gridIndex));
             foreach (Item item in ItemManager.items) {

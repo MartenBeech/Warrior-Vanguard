@@ -7,9 +7,9 @@ public class LightPiercer {
             health = new int[] { 6, 7 },
             speed = 4,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Unicorn,
-            genre = Warrior.Genre.Forest
+            damageType = DamageType.Physical,
+            race = Race.Unicorn,
+            genre = Genre.Forest
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

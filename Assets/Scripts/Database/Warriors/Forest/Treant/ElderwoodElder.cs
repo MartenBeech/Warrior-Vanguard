@@ -7,10 +7,10 @@ public class ElderwoodElder {
             health = new int[] { 16, 19 },
             speed = 1,
             range = 1,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Treant,
+            damageType = DamageType.Physical,
+            race = Race.Treant,
             rarity = CardRarity.Common,
-            genre = Warrior.Genre.Forest
+            genre = Genre.Forest
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

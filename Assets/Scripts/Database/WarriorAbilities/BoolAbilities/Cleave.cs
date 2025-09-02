@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class Cleave {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Hit all enemies in the column";
+        return $"{Keyword.Attack}: Hit all enemies in the column";
     }
 
     public async Task<bool> TriggerAttack(Warrior dealer, Warrior target, GridManager gridManager) {
@@ -53,5 +53,5 @@ public class Cleave {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

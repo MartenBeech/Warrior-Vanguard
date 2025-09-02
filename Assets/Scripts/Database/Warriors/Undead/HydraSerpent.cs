@@ -7,10 +7,10 @@ public class HydraSerpent {
             health = new int[] { 2, 3 },
             speed = 2,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.None,
+            damageType = DamageType.Physical,
+            race = Race.None,
             rarity = CardRarity.None,
-            genre = Warrior.Genre.Undead,
+            genre = Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

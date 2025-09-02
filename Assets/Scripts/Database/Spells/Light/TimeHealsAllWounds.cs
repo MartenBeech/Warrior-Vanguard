@@ -13,10 +13,10 @@ public class TimeHealsAllWounds {
             "Give a friendly warrior: Regeneration 1",
             "Give a friendly warrior: Regeneration 2"
             },
-            race = Warrior.Race.Light,
+            race = Race.Light,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }

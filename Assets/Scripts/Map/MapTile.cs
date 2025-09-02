@@ -13,21 +13,6 @@ public class MapTile : MonoBehaviour {
     public EnemyType enemyType;
     public Vector2 gridIndex;
 
-    public enum TileType {
-        None,
-        Battlefield,
-        Shop,
-        Event,
-        MiniBoss,
-        Campfire
-    }
-
-    public enum EnemyType {
-        Normal,
-        Miniboss,
-        Boss
-    }
-
     private void Start() {
         tileButton = GetComponent<Button>();
         UpdateTileAccess();

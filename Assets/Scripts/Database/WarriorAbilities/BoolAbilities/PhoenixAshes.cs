@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class PhoenixAshes {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Turn into 0/1 ashes that resummon this next turn";
+        return $"{Keyword.Death}: Turn into 0/1 ashes that resummon this next turn";
     }
 
     public async Task<bool> TriggerDeath(Warrior target, WarriorSummoner warriorSummoner) {
@@ -50,5 +50,5 @@ public class PhoenixAshes {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

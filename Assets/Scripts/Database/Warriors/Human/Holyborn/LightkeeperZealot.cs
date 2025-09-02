@@ -7,10 +7,10 @@ public class LightkeeperZealot {
             health = new int[] { 7, 9 },
             speed = 2,
             range = 4,
-            damageType = Warrior.DamageType.Magical,
-            race = Warrior.Race.Holyborn,
+            damageType = DamageType.Magical,
+            race = Race.Holyborn,
             rarity = CardRarity.Legendary,
-            genre = Warrior.Genre.Human,
+            genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

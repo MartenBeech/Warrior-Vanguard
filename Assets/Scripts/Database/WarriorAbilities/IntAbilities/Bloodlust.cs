@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class Bloodlust {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: If you attacked this turn, gain +{GetValue(stats)} strength";
+        return $"{Keyword.Overturn}: If you attacked this turn, gain +{GetValue(stats)} strength";
     }
 
     public bool TriggerOverturn(Warrior dealer) {
@@ -51,5 +51,5 @@ public class Bloodlust {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

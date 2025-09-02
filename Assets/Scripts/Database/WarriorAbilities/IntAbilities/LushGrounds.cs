@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class LushGrounds {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Heal nearby friends by {GetValue(stats)}";
+        return $"{Keyword.Overturn}: Heal nearby friends by {GetValue(stats)}";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer, GridManager gridManager) {
@@ -59,5 +59,5 @@ public class LushGrounds {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

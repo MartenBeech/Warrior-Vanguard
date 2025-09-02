@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
     WarriorSummoner enemyWarriorSummoner;
     public HeroPower heroPower;
     public List<GameObject> interactableButtons;
-    public static WarriorSummoner.Alignment turn;
+    public static Alignment turn;
     public static string enemySummonerName = "";
     public static bool isLoading = false;
     private FloatingText floatingText;
@@ -59,13 +59,13 @@ public class GameManager : MonoBehaviour {
 
         if (enemySummoner.stats.ability.summonMobyRichard.GetValue(enemySummoner.stats)) {
             enemyWarriorSummoner = FindFirstObjectByType<WarriorSummoner>();
-            enemyWarriorSummoner.summoningAlignment = WarriorSummoner.Alignment.Enemy;
+            enemyWarriorSummoner.summoningAlignment = Alignment.Enemy;
             await enemySummoner.stats.ability.summonMobyRichard.TriggerStartOfCombat(enemySummoner, enemyWarriorSummoner);
         }
 
         if (friendSummoner.stats.ability.summonFlotSam.GetValue(friendSummoner.stats)) {
             friendWarriorSummoner = FindFirstObjectByType<WarriorSummoner>();
-            friendWarriorSummoner.summoningAlignment = WarriorSummoner.Alignment.Friend;
+            friendWarriorSummoner.summoningAlignment = Alignment.Friend;
             await friendSummoner.stats.ability.summonFlotSam.TriggerStartOfCombat(friendSummoner, friendWarriorSummoner);
         }
 
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public async Task StartPlayerTurn() {
-        turn = WarriorSummoner.Alignment.Friend;
+        turn = Alignment.Friend;
         friendCoin.GainCoins();
         friendCoin.RefreshCoins();
         heroPower.RefreshHeroPower();
@@ -103,8 +103,8 @@ public class GameManager : MonoBehaviour {
         SetLoading(true);
         List<Warrior> sortedFriends = friends.OrderByDescending(c => c.gridIndex.x).ToList();
         foreach (Warrior friend in sortedFriends) {
-            await friend.MoveWarrior(Warrior.Direction.Right);
-            await friend.StandAndAttack(Warrior.Direction.Right);
+            await friend.MoveWarrior(Direction.Right);
+            await friend.StandAndAttack(Direction.Right);
             await friend.EndTurn();
         }
 
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public async Task StartEnemyTurn() {
-        turn = WarriorSummoner.Alignment.Enemy;
+        turn = Alignment.Enemy;
         enemyCoin.GainCoins();
         enemyCoin.RefreshCoins();
         await enemyDeck.DrawCard(false);
@@ -136,22 +136,22 @@ public class GameManager : MonoBehaviour {
     public async void EndEnemyTurn() {
         List<Warrior> sortedEnemies = enemies.OrderBy(c => c.gridIndex.x).ToList();
         foreach (Warrior enemy in sortedEnemies) {
-            await enemy.MoveWarrior(Warrior.Direction.Left);
-            await enemy.StandAndAttack(Warrior.Direction.Left);
+            await enemy.MoveWarrior(Direction.Left);
+            await enemy.StandAndAttack(Direction.Left);
             await enemy.EndTurn();
         }
 
-        enemyWarriorSummoner.summoningAlignment = WarriorSummoner.Alignment.Enemy;
+        enemyWarriorSummoner.summoningAlignment = Alignment.Enemy;
         await enemySummoner.EndTurn(enemyWarriorSummoner);
         await StartPlayerTurn();
     }
 
-    public void RegisterWarrior(Warrior warrior, WarriorSummoner.Alignment alignment) {
-        if (alignment == WarriorSummoner.Alignment.Enemy) {
+    public void RegisterWarrior(Warrior warrior, Alignment alignment) {
+        if (alignment == Alignment.Enemy) {
             if (!enemies.Contains(warrior)) {
                 enemies.Add(warrior);
             }
-        } else if (alignment == WarriorSummoner.Alignment.Friend) {
+        } else if (alignment == Alignment.Friend) {
             if (!friends.Contains(warrior)) {
                 friends.Add(warrior);
             }

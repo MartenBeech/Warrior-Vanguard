@@ -7,10 +7,10 @@ public class CrispRat {
             health = new int[] { 1, 1 },
             speed = 2,
             range = 2,
-            damageType = Warrior.DamageType.Magical,
-            race = Warrior.Race.Pestilence,
+            damageType = DamageType.Magical,
+            race = Race.Pestilence,
             rarity = CardRarity.Common,
-            genre = Warrior.Genre.Underworld,
+            genre = Genre.Underworld,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

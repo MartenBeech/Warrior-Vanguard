@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class Thunderstorm {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Deal {GetValue(stats)} magical damage to all enemies";
+        return $"{Keyword.Overturn}: Deal {GetValue(stats)} magical damage to all enemies";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer, GridManager gridManager) {
@@ -12,7 +12,7 @@ public class Thunderstorm {
             List<Warrior> enemies = gridManager.GetEnemies(dealer.stats.alignment);
             List<Task> asyncFunctions = new();
             foreach (Warrior enemy in enemies) {
-                asyncFunctions.Add(enemy.TakeDamage(dealer, GetValue(dealer.stats), Warrior.DamageType.Magical));
+                asyncFunctions.Add(enemy.TakeDamage(dealer, GetValue(dealer.stats), DamageType.Magical));
             }
 
             await Task.WhenAll(asyncFunctions);
@@ -58,5 +58,5 @@ public class Thunderstorm {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

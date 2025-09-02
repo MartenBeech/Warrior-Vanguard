@@ -5,7 +5,7 @@ public class GoldenCape : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "When a friend is summoned, give it Immune for 1 turn";
-        rarity = ItemManager.Rarity.Boss;
+        rarity = ItemRarity.Boss;
         return this;
     }
 

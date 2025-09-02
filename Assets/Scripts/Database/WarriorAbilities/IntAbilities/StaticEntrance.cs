@@ -8,7 +8,7 @@ public class StaticEntrance {
 
     public async Task<bool> TriggerSummonEnemy(Warrior dealer, Warrior target) {
         if (GetValue(dealer.stats) > 0) {
-            await target.TakeDamage(dealer, GetValue(dealer.stats), Warrior.DamageType.Magical);
+            await target.TakeDamage(dealer, GetValue(dealer.stats), DamageType.Magical);
             return true;
         }
         return false;
@@ -51,5 +51,5 @@ public class StaticEntrance {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

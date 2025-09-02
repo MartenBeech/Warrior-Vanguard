@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 public class GreedyStrike {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Gain {GetValue(stats)} Gold";
+        return $"{Keyword.Kill}: Gain {GetValue(stats)} Gold";
     }
 
     public async Task<bool> TriggerKill(Warrior dealer, FloatingText floatingText) {
         if (GetValue(dealer.stats) > 0) {
-            if (dealer.stats.alignment == WarriorSummoner.Alignment.Friend) {
+            if (dealer.stats.alignment == Alignment.Friend) {
                 GoldManager.AddGold(GetValue(dealer.stats));
                 await floatingText.CreateFloatingText(dealer.transform, $"+{GetValue(dealer.stats)} Gold", ColorPalette.ColorEnum.Yellow);
                 return true;
@@ -54,5 +54,5 @@ public class GreedyStrike {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

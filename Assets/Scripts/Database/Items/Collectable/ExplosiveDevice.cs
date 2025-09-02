@@ -6,7 +6,7 @@ public class ExplosiveDevice : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "When any warriors dies, deal 2 damage to all nearby warriors";
-        rarity = ItemManager.Rarity.Normal;
+        rarity = ItemRarity.Normal;
         return this;
     }
 
@@ -16,7 +16,7 @@ public class ExplosiveDevice : Item {
 
         List<Task> asyncFunctions = new();
         foreach (var nearbyWarrior in nearbyWarriors) {
-            asyncFunctions.Add(nearbyWarrior.TakeDamage(gridManager.GetCellWarrior(parameters.gridIndex), 2, Warrior.DamageType.Magical));
+            asyncFunctions.Add(nearbyWarrior.TakeDamage(gridManager.GetCellWarrior(parameters.gridIndex), 2, DamageType.Magical));
         }
         await Task.WhenAll(asyncFunctions);
     }

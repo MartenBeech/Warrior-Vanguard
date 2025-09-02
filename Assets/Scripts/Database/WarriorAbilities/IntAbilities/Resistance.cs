@@ -5,9 +5,9 @@ public class Resistance {
         return $"Reduce magical damage taken by {GetValue(stats)}";
     }
 
-    public int TriggerDamaged(Warrior target, int damage, Warrior.DamageType damageType) {
+    public int TriggerDamaged(Warrior target, int damage, DamageType damageType) {
         if (GetValue(target.stats) > 0) {
-            if (damageType == Warrior.DamageType.Magical) {
+            if (damageType == DamageType.Magical) {
                 damage -= GetValue(target.stats);
             }
         }
@@ -51,5 +51,5 @@ public class Resistance {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

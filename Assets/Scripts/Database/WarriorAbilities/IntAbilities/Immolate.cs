@@ -3,15 +3,15 @@ using System.Threading.Tasks;
 public class Immolate {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Deal {GetValue(stats)} damage to the enemy summoner";
+        return $"{Keyword.Overturn}: Deal {GetValue(stats)} damage to the enemy summoner";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer, GridManager gridManager, GameManager gameManager) {
         if (GetValue(dealer.stats) > 0) {
-            Summoner summonerTarget = dealer.stats.alignment == WarriorSummoner.Alignment.Enemy ?
+            Summoner summonerTarget = dealer.stats.alignment == Alignment.Enemy ?
                     gameManager.friendSummonerObject.GetComponent<Summoner>() :
                     gameManager.enemySummonerObject.GetComponent<Summoner>();
-            await summonerTarget.TakeDamage(dealer, GetValue(dealer.stats), gridManager, Warrior.DamageType.Magical);
+            await summonerTarget.TakeDamage(dealer, GetValue(dealer.stats), gridManager, DamageType.Magical);
             return true;
         }
         return false;
@@ -54,5 +54,5 @@ public class Immolate {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

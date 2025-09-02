@@ -3,7 +3,7 @@ using UnityEngine;
 public class Stealth {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Deal double damage and break stealth";
+        return $"{Keyword.Strike}: Deal double damage and break stealth";
     }
 
     public int TriggerStrike(Warrior dealer, int damage) {
@@ -49,5 +49,5 @@ public class Stealth {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

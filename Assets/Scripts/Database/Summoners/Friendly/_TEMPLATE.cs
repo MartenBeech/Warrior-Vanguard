@@ -5,7 +5,7 @@ public class TEMPLATE_SUMMONER {
     public SummonerData GetData() {
         SummonerData data = new() {
             title = GetType().Name,
-            genre = Warrior.Genre.None,
+            genre = Genre.None,
             description = "DESCRIPTION",
             heroPowerTitle = "HP_TITLE",
             heroPowerDescription = "HP_DESCRIPTION",

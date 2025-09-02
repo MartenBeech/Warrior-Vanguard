@@ -5,7 +5,7 @@ public class MicDrop : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "When you play a warrior with cost equal to your max coins, draw a card";
-        rarity = ItemManager.Rarity.Normal;
+        rarity = ItemRarity.Normal;
         return this;
     }
 

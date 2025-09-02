@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class SapPower {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Increase damage by target's strength";
+        return $"{Keyword.Strike}: Increase damage by target's strength";
     }
 
     public int TriggerStrike(Warrior dealer, Warrior target, int damage) {
@@ -44,5 +44,5 @@ public class SapPower {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class Explosion {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Death}: Deal {GetValue(stats)} magical damage to all nearby enemies";
+        return $"{Keyword.Death}: Deal {GetValue(stats)} magical damage to all nearby enemies";
     }
 
     public async Task<bool> TriggerDeath(Warrior target, GridManager gridManager) {
@@ -12,7 +12,7 @@ public class Explosion {
             List<Warrior> enemies = gridManager.GetNearbyEnemies(target);
             List<Task> asyncFunctions = new();
             foreach (Warrior enemy in enemies) {
-                asyncFunctions.Add(enemy.TakeDamage(target, GetValue(target.stats), Warrior.DamageType.Magical));
+                asyncFunctions.Add(enemy.TakeDamage(target, GetValue(target.stats), DamageType.Magical));
             }
 
             await Task.WhenAll(asyncFunctions);
@@ -58,5 +58,5 @@ public class Explosion {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

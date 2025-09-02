@@ -5,7 +5,7 @@ public class Shush : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "All warriors are summoned with no abilities";
-        rarity = ItemManager.Rarity.None;
+        rarity = ItemRarity.None;
         return this;
     }
 

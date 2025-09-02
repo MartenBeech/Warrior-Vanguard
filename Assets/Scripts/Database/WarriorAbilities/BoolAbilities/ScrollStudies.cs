@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class ScrollStudies {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Add a random spell to your hand";
+        return $"{Keyword.Overturn}: Add a random spell to your hand";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer, Hand hand) {
@@ -48,5 +48,5 @@ public class ScrollStudies {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

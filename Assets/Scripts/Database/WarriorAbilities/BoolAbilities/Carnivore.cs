@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class Carnivore {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Heal equal to the target's health";
+        return $"{Keyword.Kill}: Heal equal to the target's health";
     }
 
     public async Task<bool> TriggerKill(Warrior dealer, Warrior target) {
@@ -47,5 +47,5 @@ public class Carnivore {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

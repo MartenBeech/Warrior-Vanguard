@@ -7,10 +7,10 @@ public class Youngling {
             health = new int[] { 3, 4 },
             speed = 1,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Dwarf,
+            damageType = DamageType.Physical,
+            race = Race.Dwarf,
             rarity = CardRarity.Common,
-            genre = Warrior.Genre.Forest,
+            genre = Genre.Forest,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

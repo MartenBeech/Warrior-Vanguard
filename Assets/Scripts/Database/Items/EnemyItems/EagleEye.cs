@@ -5,7 +5,7 @@ public class EagleEye : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Friendly warriors have +2 range";
-        rarity = ItemManager.Rarity.None;
+        rarity = ItemRarity.None;
         return this;
     }
 

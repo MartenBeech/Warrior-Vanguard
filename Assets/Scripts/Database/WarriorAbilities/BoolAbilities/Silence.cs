@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class Silence {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Summon}: Remove all abilities from a random enemy";
+        return $"{Keyword.Summon}: Remove all abilities from a random enemy";
     }
 
     public async Task<bool> TriggerSummon(Warrior dealer, GridManager gridManager, FloatingText floatingText) {
@@ -54,5 +54,5 @@ public class Silence {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

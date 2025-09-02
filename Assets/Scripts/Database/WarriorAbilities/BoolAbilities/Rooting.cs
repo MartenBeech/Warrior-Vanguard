@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class Rooting {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Cancel next time the target moves";
+        return $"{Keyword.Strike}: Cancel next time the target moves";
     }
 
     public bool TriggerStrike(Warrior dealer, Warrior target) {
@@ -46,5 +46,5 @@ public class Rooting {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

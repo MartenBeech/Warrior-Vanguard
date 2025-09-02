@@ -6,7 +6,7 @@ using UnityEngine;
 public class Whalecome {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Give the player amazing loot";
+        return $"{Keyword.Death}: Give the player amazing loot";
     }
 
     public void TriggerDeath(Warrior target) {
@@ -52,5 +52,5 @@ public class Whalecome {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

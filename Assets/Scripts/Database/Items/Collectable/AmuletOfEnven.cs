@@ -5,7 +5,7 @@ public class AmuletOfEnven : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Your summoner gains 2 Resistance";
-        rarity = ItemManager.Rarity.Normal;
+        rarity = ItemRarity.Normal;
         return this;
     }
 

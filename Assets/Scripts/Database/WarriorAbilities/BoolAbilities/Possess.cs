@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class Possess {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Resummon the target on your side";
+        return $"{Keyword.Kill}: Resummon the target on your side";
     }
 
     public async Task<bool> TriggerKill(Warrior dealer, Warrior target, WarriorSummoner warriorSummoner) {
@@ -52,5 +52,5 @@ public class Possess {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

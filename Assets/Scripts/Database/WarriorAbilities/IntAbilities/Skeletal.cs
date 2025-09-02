@@ -3,7 +3,7 @@ public class Skeletal {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         int value = GetValue(stats);
-        return $"{WarriorAbility.Keywords.Death}: Gain {value} {(value > 1 ? "bones" : "bone")} to make future skeletons stronger";
+        return $"{Keyword.Death}: Gain {value} {(value > 1 ? "bones" : "bone")} to make future skeletons stronger";
     }
 
     public void TriggerDeath(Warrior target, Summoner summoner) {
@@ -85,5 +85,5 @@ public class Skeletal {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

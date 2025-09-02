@@ -49,7 +49,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdateItem();
     }
 
-    public async Task TakeDamage(Warrior dealer, int damage, GridManager gridManager, Warrior.DamageType damageType) {
+    public async Task TakeDamage(Warrior dealer, int damage, GridManager gridManager, DamageType damageType) {
         if (dealer) {
             damage = dealer.stats.ability.stealth.TriggerStrike(dealer, damage);
             damage = stats.ability.armor.TriggerDamaged(dealer, damage, damageType);

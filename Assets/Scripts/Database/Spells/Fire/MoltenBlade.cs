@@ -13,10 +13,10 @@ public class MoltenBlade {
             "Give a friend +5 strength this turn",
             "Give a friend +5 strength this turn"
             },
-            race = Warrior.Race.Fire,
+            race = Race.Fire,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }

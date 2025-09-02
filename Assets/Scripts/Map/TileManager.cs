@@ -39,7 +39,7 @@ public class TileManager : MonoBehaviour {
 
                     //TODO: Scroll to finished tile
 
-                    if (mapTiles[y][x].tileType == MapTile.TileType.Battlefield && PlayerPrefs.GetInt($"RewardChosen", 0) == 0) {
+                    if (mapTiles[y][x].tileType == TileType.Battlefield && PlayerPrefs.GetInt($"RewardChosen", 0) == 0) {
                         rewardManager.ShowReward(mapTiles[y][x].enemyType);
                     }
                 }
@@ -62,7 +62,7 @@ public class TileManager : MonoBehaviour {
         PlayerPrefs.SetString($"TileActive", tileIndex);
     }
 
-    private GameObject CreateMapTile(Vector2 tilePos, Vector2 gridIndex, MapTile.TileType tileType) {
+    private GameObject CreateMapTile(Vector2 tilePos, Vector2 gridIndex, TileType tileType) {
         GameObject mapTileObject = Instantiate(mapTilePrefab, tilePos, quaternion.identity, scrollViewPanel);
         mapTileObject.name = $"MapTile {gridIndex.y}-{gridIndex.x}";
 
@@ -79,7 +79,7 @@ public class TileManager : MonoBehaviour {
     private void CreateStartTiles(int y) {
         for (int x = 0; x < 3; x++) {
             Vector2 tilePos = new(-480 + x * 480, 200);
-            GameObject mapTileObject = CreateMapTile(tilePos, new(x, y), MapTile.TileType.Event);
+            GameObject mapTileObject = CreateMapTile(tilePos, new(x, y), TileType.Event);
 
             RectTransform rect = mapTileObject.GetComponent<RectTransform>();
             rect.anchoredPosition = tilePos;
@@ -92,13 +92,13 @@ public class TileManager : MonoBehaviour {
     }
 
     // Can split the path into 1 or 2 parents
-    private void CreateSplitTiles(int y, bool guaranteedSplit, bool largeGapBetweenParents, MapTile.TileType tileType) {
+    private void CreateSplitTiles(int y, bool guaranteedSplit, bool largeGapBetweenParents, TileType tileType) {
         foreach (var childMapTile in mapTiles[y - 1]) {
             int nParents = PlayerPrefs.HasKey($"SplitTilesKey_{y - 1}")
-                ? PlayerPrefs.GetInt($"SplitTilesKey_{y - 1}") 
+                ? PlayerPrefs.GetInt($"SplitTilesKey_{y - 1}")
                 : guaranteedSplit ? 2 : Rng.Range(1, 3);
-                PlayerPrefs.SetInt($"SplitTilesKey_{y - 1}", nParents);
-                PlayerPrefs.Save();
+            PlayerPrefs.SetInt($"SplitTilesKey_{y - 1}", nParents);
+            PlayerPrefs.Save();
 
             for (int x = 0; x < nParents; x++) {
                 int xOffset = largeGapBetweenParents ?
@@ -117,7 +117,7 @@ public class TileManager : MonoBehaviour {
     }
 
     // Can merge with the neighbor tile to share the parent instead of having 1 each
-    private void CreateMergeTiles(int y, bool guaranteedMerge, MapTile.TileType tileType) {
+    private void CreateMergeTiles(int y, bool guaranteedMerge, TileType tileType) {
         for (int i = 0; i < mapTiles[y - 1].Count; i++) {
             MapTile childMapTile = mapTiles[y - 1][i];
 
@@ -163,7 +163,7 @@ public class TileManager : MonoBehaviour {
         float xPosAverage = xPosSum / mapTiles[y - 1].Count;
 
         Vector2 tilePos = new(xPosAverage, mapTiles[y - 1][0].transform.position.y + 200);
-        GameObject parentMapTileObject = CreateMapTile(tilePos, new(mapTiles[y].Count, y), MapTile.TileType.MiniBoss);
+        GameObject parentMapTileObject = CreateMapTile(tilePos, new(mapTiles[y].Count, y), TileType.MiniBoss);
 
         foreach (var childMapTile in mapTiles[y - 1]) {
             MapTile parentMapTile = parentMapTileObject.GetComponent<MapTile>();
@@ -198,19 +198,19 @@ public class TileManager : MonoBehaviour {
                     CreateStartTiles(y);
                     break;
                 case 1:
-                    CreateSplitTiles(y, true, true, MapTile.TileType.Campfire);
+                    CreateSplitTiles(y, true, true, TileType.Campfire);
                     break;
                 case 2:
-                    CreateMergeTiles(y, false, MapTile.TileType.Battlefield);
+                    CreateMergeTiles(y, false, TileType.Battlefield);
                     break;
                 case 3:
-                    CreateSplitTiles(y, false, false, MapTile.TileType.Event);
+                    CreateSplitTiles(y, false, false, TileType.Event);
                     break;
                 case 4:
-                    CreateMergeTiles(y, false, MapTile.TileType.Battlefield);
+                    CreateMergeTiles(y, false, TileType.Battlefield);
                     break;
                 case 5:
-                    CreateMergeTiles(y, true, MapTile.TileType.Shop);
+                    CreateMergeTiles(y, true, TileType.Shop);
                     break;
                 case 6:
                     CreateBossTile(y);

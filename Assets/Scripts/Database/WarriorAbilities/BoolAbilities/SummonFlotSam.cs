@@ -6,7 +6,7 @@ using UnityEngine;
 public class SummonFlotSam {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.StartOfCombat}: Summon a 2/3 Flot Sam";
+        return $"{Keyword.StartOfCombat}: Summon a 2/3 Flot Sam";
     }
 
     public async Task<bool> TriggerStartOfCombat(Summoner dealer, WarriorSummoner warriorSummoner) {
@@ -55,5 +55,5 @@ public class SummonFlotSam {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

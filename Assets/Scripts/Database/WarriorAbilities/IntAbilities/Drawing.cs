@@ -4,7 +4,7 @@ using UnityEngine;
 public class Drawing {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Summon}: Draw {GetValue(stats)} cards";
+        return $"{Keyword.Summon}: Draw {GetValue(stats)} cards";
     }
 
     public async Task<bool> TriggerSummon(Warrior warrior, GameManager gameManager) {
@@ -54,5 +54,5 @@ public class Drawing {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class HydraSplit {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Summon 3 {new HydraSerpent().GetStats().strength[stats.level]}/{new HydraSerpent().GetStats().health[stats.level]} Hydra Serpents";
+        return $"{Keyword.Death}: Summon 3 {new HydraSerpent().GetStats().strength[stats.level]}/{new HydraSerpent().GetStats().health[stats.level]} Hydra Serpents";
     }
 
     public async Task<bool> TriggerDeath(Warrior target, WarriorSummoner warriorSummoner) {
@@ -55,5 +55,5 @@ public class HydraSplit {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

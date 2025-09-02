@@ -49,5 +49,5 @@ public class Vulnerable {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.Debuff;
+    public BuffType buffType = BuffType.Debuff;
 }

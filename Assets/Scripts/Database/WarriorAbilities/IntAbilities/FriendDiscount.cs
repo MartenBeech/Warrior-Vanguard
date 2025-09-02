@@ -3,7 +3,7 @@ using UnityEngine;
 public class FriendDiscount {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: reduce the cost of a random friendly card by {GetValue(stats)}";
+        return $"{Keyword.Overturn}: reduce the cost of a random friendly card by {GetValue(stats)}";
     }
 
     public bool TriggerOverturn(Warrior warrior, GridManager gridManager) {
@@ -51,5 +51,5 @@ public class FriendDiscount {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

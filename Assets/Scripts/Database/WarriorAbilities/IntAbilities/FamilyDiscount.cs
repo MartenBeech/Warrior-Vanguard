@@ -3,7 +3,7 @@ using UnityEngine;
 public class FamilyDiscount {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Summon}: reduce the cost of all your cards by {GetValue(stats)}";
+        return $"{Keyword.Summon}: reduce the cost of all your cards by {GetValue(stats)}";
     }
 
     public bool TriggerSummon(Warrior warrior, GridManager gridManager) {
@@ -51,5 +51,5 @@ public class FamilyDiscount {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

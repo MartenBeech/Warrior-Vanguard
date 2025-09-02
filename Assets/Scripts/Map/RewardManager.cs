@@ -14,8 +14,8 @@ public class RewardManager : MonoBehaviour {
         rewardPanel.SetActive(false);
     }
 
-    public void ShowReward(MapTile.EnemyType enemyType) {
-        if (!LevelManager.isAlive || enemyType == MapTile.EnemyType.Boss) {
+    public void ShowReward(EnemyType enemyType) {
+        if (!LevelManager.isAlive || enemyType == EnemyType.Boss) {
             SceneLoader.LoadGameOver();
             return;
         }
@@ -26,7 +26,7 @@ public class RewardManager : MonoBehaviour {
         if (PlayerPrefs.HasKey(rewardedCardsKey)) {
             LoadRewardOptions();
         } else {
-            CardRarity rarity = enemyType == MapTile.EnemyType.Miniboss ? CardRarity.Legendary :
+            CardRarity rarity = enemyType == EnemyType.Miniboss ? CardRarity.Legendary :
                                         CardRarity.Common;
 
             List<WarriorStats> usedStats = new List<WarriorStats>();

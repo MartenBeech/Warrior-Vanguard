@@ -7,7 +7,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public string title;
     public string displayTitle;
     public string description;
-    public ItemManager.Rarity rarity;
+    public ItemRarity rarity;
     public bool triggeredThisCombat = false;
     public GameObject image;
     private TooltipManager tooltipManager;

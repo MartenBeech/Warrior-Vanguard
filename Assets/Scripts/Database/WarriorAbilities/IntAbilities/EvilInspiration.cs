@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 public class EvilInspiration {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Aura}: Your other warriors have +{GetValue(stats)} strength";
+        return $"{Keyword.Aura}: Your other warriors have +{GetValue(stats)} strength";
     }
 
     public bool TriggerSummon(Warrior dealer, GridManager gridManager) {
@@ -77,5 +77,5 @@ public class EvilInspiration {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

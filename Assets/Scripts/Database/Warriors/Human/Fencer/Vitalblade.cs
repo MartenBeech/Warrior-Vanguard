@@ -7,10 +7,10 @@ public class Vitalblade {
             health = new int[] { 6, 8 },
             speed = 2,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Fencer,
+            damageType = DamageType.Physical,
+            race = Race.Fencer,
             rarity = CardRarity.Common,
-            genre = Warrior.Genre.Human,
+            genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

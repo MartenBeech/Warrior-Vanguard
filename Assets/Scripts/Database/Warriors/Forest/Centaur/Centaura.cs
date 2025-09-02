@@ -7,10 +7,10 @@ public class Centaura {
             health = new int[] { 7, 7 },
             speed = 4,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Centaur,
+            damageType = DamageType.Physical,
+            race = Race.Centaur,
             rarity = CardRarity.Legendary,
-            genre = Warrior.Genre.Forest,
+            genre = Genre.Forest,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

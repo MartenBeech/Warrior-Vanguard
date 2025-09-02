@@ -13,10 +13,10 @@ public class Armageddon {
             "Deal 5 damage to ALL warriors",
             "Deal 5 damage to all enemies and 3 damage to all friends"
             },
-            race = Warrior.Race.Fire,
+            race = Race.Fire,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }
@@ -26,12 +26,12 @@ public class Armageddon {
 
         List<Warrior> enemies = parameters.gridManager.GetEnemies(GameManager.turn);
         foreach (Warrior enemy in enemies) {
-            asyncFunctions.Add(enemy.TakeDamage(enemy, 5, Warrior.DamageType.Magical));
+            asyncFunctions.Add(enemy.TakeDamage(enemy, 5, DamageType.Magical));
         }
 
         List<Warrior> friends = parameters.gridManager.GetFriends(GameManager.turn);
         foreach (Warrior friend in friends) {
-            asyncFunctions.Add(friend.TakeDamage(friend, parameters.cardLevel == 0 ? 5 : 3, Warrior.DamageType.Magical));
+            asyncFunctions.Add(friend.TakeDamage(friend, parameters.cardLevel == 0 ? 5 : 3, DamageType.Magical));
         }
 
         await Task.WhenAll(asyncFunctions);

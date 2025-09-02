@@ -5,7 +5,7 @@ using UnityEngine;
 public class Afterlife {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Death}: Return to your hand without this ability";
+        return $"{Keyword.Death}: Return to your hand without this ability";
     }
 
     public async Task<bool> TriggerDeath(Warrior target, Hand hand, Transform summonerObject, GameObject clone) {
@@ -55,5 +55,5 @@ public class Afterlife {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

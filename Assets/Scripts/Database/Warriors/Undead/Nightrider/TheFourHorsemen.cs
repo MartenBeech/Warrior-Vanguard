@@ -7,10 +7,10 @@ public class TheFourHorsemen {
             health = new int[] { 4, 5 },
             speed = 4,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Nightrider,
+            damageType = DamageType.Physical,
+            race = Race.Nightrider,
             rarity = CardRarity.Legendary,
-            genre = Warrior.Genre.Undead,
+            genre = Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

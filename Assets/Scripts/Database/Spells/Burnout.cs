@@ -13,10 +13,10 @@ public class Burnout {
             "Your deck is empty! Your summoner takes damage instead",
             "Your deck is empty! Your summoner takes damage instead"
             },
-            race = Warrior.Race.None,
+            race = Race.None,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }

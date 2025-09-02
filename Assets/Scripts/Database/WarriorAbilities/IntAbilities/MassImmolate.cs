@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 public class MassImmolate {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Aura}: Friends have +{GetValue(stats)} Immolate";
+        return $"{Keyword.Aura}: Friends have +{GetValue(stats)} Immolate";
     }
 
     public bool TriggerSummon(Warrior dealer, GridManager gridManager) {
@@ -77,5 +77,5 @@ public class MassImmolate {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

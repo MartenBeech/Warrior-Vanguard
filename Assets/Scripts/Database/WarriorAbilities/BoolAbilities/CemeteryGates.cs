@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class CemeteryGates {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Summon a random{(stats.level == 1 ? " upgraded" : "")} Skeleton";
+        return $"{Keyword.Overturn}: Summon a random{(stats.level == 1 ? " upgraded" : "")} Skeleton";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer, WarriorSummoner warriorSummoner) {
@@ -47,5 +47,5 @@ public class CemeteryGates {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

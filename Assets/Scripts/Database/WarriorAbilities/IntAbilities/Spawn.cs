@@ -5,7 +5,7 @@ public class Spawn {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         int value = GetValue(stats);
-        return $"{WarriorAbility.Keywords.Summon}: Summon {value} extra {(value > 1 ? "copies" : "copy")} of this";
+        return $"{Keyword.Summon}: Summon {value} extra {(value > 1 ? "copies" : "copy")} of this";
     }
 
     public async Task<bool> TriggerSummon(Warrior dealer, WarriorSummoner warriorSummoner) {
@@ -64,5 +64,5 @@ public class Spawn {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

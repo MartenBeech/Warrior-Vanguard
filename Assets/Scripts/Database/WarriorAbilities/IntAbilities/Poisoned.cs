@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 public class Poisoned {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Take {GetValue(stats)} magical damage";
+        return $"{Keyword.Overturn}: Take {GetValue(stats)} magical damage";
     }
 
     public async Task<bool> TriggerOverturn(Warrior target) {
         if (GetValue(target.stats) > 0) {
-            await target.TakeDamage(target, GetValue(target.stats), Warrior.DamageType.Magical);
+            await target.TakeDamage(target, GetValue(target.stats), DamageType.Magical);
             return true;
         }
         return false;
@@ -50,5 +50,5 @@ public class Poisoned {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.Debuff;
+    public BuffType buffType = BuffType.Debuff;
 }

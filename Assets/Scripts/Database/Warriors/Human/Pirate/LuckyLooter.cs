@@ -7,10 +7,10 @@ public class LuckyLooter {
             health = new int[] { 3, 4 },
             speed = 2,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Pirate,
+            damageType = DamageType.Physical,
+            race = Race.Pirate,
             rarity = CardRarity.Legendary,
-            genre = Warrior.Genre.Human,
+            genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

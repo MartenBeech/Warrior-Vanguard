@@ -5,9 +5,9 @@ public class Incorporeal {
         return $"Can max take 1 physical damage at a time";
     }
 
-    public int TriggerDamaged(Warrior target, int damage, Warrior.DamageType damageType) {
+    public int TriggerDamaged(Warrior target, int damage, DamageType damageType) {
         if (GetValue(target.stats)) {
-            if (damageType == Warrior.DamageType.Physical) {
+            if (damageType == DamageType.Physical) {
                 if (damage > 1) {
                     damage = 1;
                 }
@@ -48,5 +48,5 @@ public class Incorporeal {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

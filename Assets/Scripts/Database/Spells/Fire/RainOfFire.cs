@@ -13,10 +13,10 @@ public class RainOfFire {
             "Deal 1 damage to all enemies",
             "Deal 2 damage to all enemies"
             },
-            race = Warrior.Race.Fire,
+            race = Race.Fire,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }
@@ -26,7 +26,7 @@ public class RainOfFire {
         List<Warrior> enemies = parameters.gridManager.GetEnemies(GameManager.turn);
         List<Task> asyncFunctions = new();
         foreach (Warrior enemy in enemies) {
-            asyncFunctions.Add(enemy.TakeDamage(enemy, value, Warrior.DamageType.Magical));
+            asyncFunctions.Add(enemy.TakeDamage(enemy, value, DamageType.Magical));
         }
         await Task.WhenAll(asyncFunctions);
     }

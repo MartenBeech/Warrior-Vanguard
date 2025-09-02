@@ -8,7 +8,7 @@ public class Spikes {
 
     public async Task<bool> TriggerAttacked(Warrior dealer, Warrior target) {
         if (GetValue(target.stats) > 0) {
-            await dealer.TakeDamage(target, GetValue(target.stats), Warrior.DamageType.Physical);
+            await dealer.TakeDamage(target, GetValue(target.stats), DamageType.Physical);
             return true;
         }
         return false;
@@ -51,5 +51,5 @@ public class Spikes {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 public class SapEnergy {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Heal {GetValue(stats)} to your Elderwood Elder";
+        return $"{Keyword.Overturn}: Heal {GetValue(stats)} to your Elderwood Elder";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer, GridManager gridManager) {
@@ -60,5 +60,5 @@ public class SapEnergy {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

@@ -7,10 +7,10 @@ public class HardshellPest {
             health = new int[] { 4, 5 },
             speed = 2,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Pestilence,
+            damageType = DamageType.Physical,
+            race = Race.Pestilence,
             rarity = CardRarity.Rare,
-            genre = Warrior.Genre.Underworld,
+            genre = Genre.Underworld,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

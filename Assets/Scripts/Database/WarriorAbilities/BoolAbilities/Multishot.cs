@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class Multishot {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Strike all enemies within range";
+        return $"{Keyword.Attack}: Strike all enemies within range";
     }
 
     public async Task<bool> TriggerAttack(Warrior dealer, Warrior target, GridManager gridManager) {
@@ -54,5 +54,5 @@ public class Multishot {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

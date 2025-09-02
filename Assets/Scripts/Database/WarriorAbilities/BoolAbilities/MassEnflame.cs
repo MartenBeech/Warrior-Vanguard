@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 public class MassEnflame {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Aura}: Friends have Enflame";
+        return $"{Keyword.Aura}: Friends have Enflame";
     }
 
     public bool TriggerSummon(Warrior dealer, GridManager gridManager) {
@@ -72,5 +72,5 @@ public class MassEnflame {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

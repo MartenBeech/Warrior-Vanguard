@@ -5,7 +5,7 @@ public class ShieldOfEnven : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Your summoner gains 1 Armor";
-        rarity = ItemManager.Rarity.Normal;
+        rarity = ItemRarity.Normal;
         return this;
     }
 

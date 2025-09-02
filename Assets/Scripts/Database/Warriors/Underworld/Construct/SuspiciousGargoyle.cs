@@ -7,10 +7,10 @@ public class SuspiciousGargoyle {
             health = new int[] { 6, 7 },
             speed = 0,
             range = 1,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Construct,
+            damageType = DamageType.Physical,
+            race = Race.Construct,
             rarity = CardRarity.Common,
-            genre = Warrior.Genre.Underworld,
+            genre = Genre.Underworld,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class LifeInDeath {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Kill}: Fully heal all other friends";
+        return $"{Keyword.Kill}: Fully heal all other friends";
     }
 
     public async Task<bool> TriggerKill(Warrior dealer, GridManager gridManager) {
@@ -56,5 +56,5 @@ public class LifeInDeath {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

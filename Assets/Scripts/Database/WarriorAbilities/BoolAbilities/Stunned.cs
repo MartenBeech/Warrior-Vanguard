@@ -46,5 +46,5 @@ public class Stunned {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.Debuff;
+    public BuffType buffType = BuffType.Debuff;
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class LifeTransfer {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Heal another damaged friend equal to damage dealt";
+        return $"{Keyword.Strike}: Heal another damaged friend equal to damage dealt";
     }
 
     public async Task<bool> TriggerStrike(Warrior dealer, int damage, GridManager gridManager) {
@@ -52,5 +52,5 @@ public class LifeTransfer {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

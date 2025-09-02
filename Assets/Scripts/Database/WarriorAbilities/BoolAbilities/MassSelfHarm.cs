@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 public class MassSelfHarm {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Aura}: Enemies have Self Harm";
+        return $"{Keyword.Aura}: Enemies have Self Harm";
     }
 
     public bool TriggerSummon(Warrior dealer, GridManager gridManager) {
@@ -70,5 +70,5 @@ public class MassSelfHarm {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

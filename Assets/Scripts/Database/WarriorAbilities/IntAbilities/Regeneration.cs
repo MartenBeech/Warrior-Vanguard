@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class Regeneration {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Heal {GetValue(stats)} to self";
+        return $"{Keyword.Overturn}: Heal {GetValue(stats)} to self";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer) {
@@ -51,5 +51,5 @@ public class Regeneration {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

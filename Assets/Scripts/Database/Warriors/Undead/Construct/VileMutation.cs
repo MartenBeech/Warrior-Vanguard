@@ -8,10 +8,10 @@ public class VileMutation {
             health = new int[] { 9, 11 },
             speed = 0,
             range = 0,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Construct,
+            damageType = DamageType.Physical,
+            race = Race.Construct,
             rarity = CardRarity.Rare,
-            genre = Warrior.Genre.Undead,
+            genre = Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

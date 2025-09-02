@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class Weaken {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Apply {GetValue(stats)} Weakened which reduces target's strength";
+        return $"{Keyword.Strike}: Apply {GetValue(stats)} Weakened which reduces target's strength";
     }
 
     public bool TriggerStrike(Warrior dealer, Warrior target) {
@@ -51,5 +51,5 @@ public class Weaken {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

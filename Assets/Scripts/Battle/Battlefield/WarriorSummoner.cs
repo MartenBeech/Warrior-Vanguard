@@ -4,9 +4,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 public class WarriorSummoner : MonoBehaviour {
-    public enum Alignment {
-        Null, Enemy, Friend
-    };
+
     public GameObject warriorPrefab;
     public Alignment summoningAlignment;
     public GridManager gridManager;

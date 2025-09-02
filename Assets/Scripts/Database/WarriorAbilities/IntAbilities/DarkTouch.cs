@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class DarkTouch {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Attack}: Instantly kill targets left with max {GetValue(stats)} health";
+        return $"{Keyword.Attack}: Instantly kill targets left with max {GetValue(stats)} health";
     }
 
     public bool TriggerAttack(Warrior dealer, Warrior target) {
@@ -51,5 +51,5 @@ public class DarkTouch {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

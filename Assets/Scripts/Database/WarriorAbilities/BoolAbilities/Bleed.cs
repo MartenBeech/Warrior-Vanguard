@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class Bleed {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Apply Bleeding";
+        return $"{Keyword.Strike}: Apply Bleeding";
     }
 
     public bool TriggerStrike(Warrior dealer, Warrior target) {
@@ -46,5 +46,5 @@ public class Bleed {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

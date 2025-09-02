@@ -7,10 +7,10 @@ public class MargeTheCharged {
             health = new int[] { 3, 3 },
             speed = 2,
             range = 4,
-            damageType = Warrior.DamageType.Magical,
-            race = Warrior.Race.Sorcerer,
+            damageType = DamageType.Magical,
+            race = Race.Sorcerer,
             rarity = CardRarity.Rare,
-            genre = Warrior.Genre.Human,
+            genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

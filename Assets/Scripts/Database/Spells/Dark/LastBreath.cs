@@ -12,10 +12,10 @@ public class LastBreath {
             "Set an enemy's health to 1",
             "Set an enemy's health to 1"
             },
-            race = Warrior.Race.Dark,
+            race = Race.Dark,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }

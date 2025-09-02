@@ -7,10 +7,10 @@ public class SpiritualGrounds {
             health = new int[] { 4, 4 },
             speed = 0,
             range = 0,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Construct,
+            damageType = DamageType.Physical,
+            race = Race.Construct,
             rarity = CardRarity.Rare,
-            genre = Warrior.Genre.Forest,
+            genre = Genre.Forest,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

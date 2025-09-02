@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class Bash {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: 50% chance to stun the target";
+        return $"{Keyword.Strike}: 50% chance to stun the target";
     }
 
     public async Task<bool> TriggerStrike(Warrior dealer, Warrior target, FloatingText floatingText) {
@@ -50,5 +50,5 @@ public class Bash {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

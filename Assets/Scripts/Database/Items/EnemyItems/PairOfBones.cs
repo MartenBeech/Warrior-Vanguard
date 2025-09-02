@@ -5,7 +5,7 @@ public class PairOfBones : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Starts with 2 Skeleton Bones";
-        rarity = ItemManager.Rarity.None;
+        rarity = ItemRarity.None;
         return this;
     }
 

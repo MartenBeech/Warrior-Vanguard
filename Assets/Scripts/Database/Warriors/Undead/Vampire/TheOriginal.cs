@@ -7,10 +7,10 @@ public class TheOriginal {
             health = new int[] { 10, 12 },
             speed = 2,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Vampire,
+            damageType = DamageType.Physical,
+            race = Race.Vampire,
             rarity = CardRarity.Legendary,
-            genre = Warrior.Genre.Undead,
+            genre = Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

@@ -5,13 +5,13 @@ using UnityEngine;
 public class ForgeHammer : Item {
     public override Item GetItem() {
         title = GetType().Name;
-        description = $"{WarriorAbility.Keywords.Initiate}: Give a random friend +1 strength";
-        rarity = ItemManager.Rarity.Normal;
+        description = $"{Keyword.Initiate}: Give a random friend +1 strength";
+        rarity = ItemRarity.Normal;
         return this;
     }
 
     public override async Task UseStartOfTurn(ItemTriggerParams parameters) {
-        List<Warrior> friends = parameters.gridManager.GetFriends(parameters.summoner.stats.isFriendly ? WarriorSummoner.Alignment.Friend : WarriorSummoner.Alignment.Enemy);
+        List<Warrior> friends = parameters.gridManager.GetFriends(parameters.summoner.stats.isFriendly ? Alignment.Friend : Alignment.Enemy);
         if (friends.Count == 0) return;
 
         Warrior randomFriend = Rng.Entry(friends);

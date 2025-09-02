@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 public class HolyLight : Item {
     public override Item GetItem() {
         title = GetType().Name;
-        description = $"{WarriorAbility.Keywords.Initiate}: Heal a random friend by 2";
-        rarity = ItemManager.Rarity.Normal;
+        description = $"{Keyword.Initiate}: Heal a random friend by 2";
+        rarity = ItemRarity.Normal;
         return this;
     }
 

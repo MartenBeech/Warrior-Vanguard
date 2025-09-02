@@ -5,7 +5,7 @@ public class Tactics : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Friends have +1 deployment area";
-        rarity = ItemManager.Rarity.Normal;
+        rarity = ItemRarity.Normal;
         return this;
     }
 

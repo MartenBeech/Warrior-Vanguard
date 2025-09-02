@@ -5,7 +5,7 @@ public class UnfinishedPuzzle : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "When a friend is summoned, double its max health";
-        rarity = ItemManager.Rarity.Normal;
+        rarity = ItemRarity.Normal;
         return this;
     }
 

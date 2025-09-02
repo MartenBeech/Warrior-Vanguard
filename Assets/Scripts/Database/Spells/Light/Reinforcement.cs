@@ -13,10 +13,10 @@ public class Reinforcement {
             "Draw 2 cards",
             "Draw 3 cards"
             },
-            race = Warrior.Race.Light,
+            race = Race.Light,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }

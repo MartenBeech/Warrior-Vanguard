@@ -12,10 +12,10 @@ public class Reanimate {
             "Kill a friend and resummon it",
             "Kill a friend and resummon it"
             },
-            race = Warrior.Race.Dark,
+            race = Race.Dark,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }

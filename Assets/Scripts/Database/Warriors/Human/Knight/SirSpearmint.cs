@@ -7,10 +7,10 @@ public class SirSpearmint {
             health = new int[] { 12, 14 },
             speed = 4,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Knight,
+            damageType = DamageType.Physical,
+            race = Race.Knight,
             rarity = CardRarity.Legendary,
-            genre = Warrior.Genre.Human,
+            genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

@@ -13,10 +13,10 @@ public class Thorns {
             "Give a friendly warrior Spikes 2",
             "Give a friendly warrior Spikes 3"
             },
-            race = Warrior.Race.Nature,
+            race = Race.Nature,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }

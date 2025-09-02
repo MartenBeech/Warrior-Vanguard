@@ -13,10 +13,10 @@ public class HolyFlame {
             "Deal 3 damage to a warrior",
             "Deal 4 damage to a warrior or 6 against undead"
             },
-            race = Warrior.Race.Light,
+            race = Race.Light,
             cardType = CardType.Spell,
         };
-        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
+        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
 
         return stats;
     }
@@ -24,12 +24,12 @@ public class HolyFlame {
     public async Task Trigger(SpellTriggerParams parameters) {
         int value = parameters.cardLevel == 0 ? 3 : 4;
 
-        if (parameters.target.stats.genre == Warrior.Genre.Undead) {
+        if (parameters.target.stats.genre == Genre.Undead) {
             int undeadValue = parameters.cardLevel == 0 ? 3 : 6;
             value = undeadValue;
         }
 
-        await parameters.target.TakeDamage(parameters.target, value, Warrior.DamageType.Magical);
+        await parameters.target.TakeDamage(parameters.target, value, DamageType.Magical);
         parameters.target.UpdateWarriorUI();
     }
 }

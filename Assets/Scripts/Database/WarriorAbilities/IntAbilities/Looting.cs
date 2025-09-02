@@ -8,7 +8,7 @@ public class Looting {
 
     public async Task<bool> Trigger(Warrior dealer, FloatingText floatingText) {
         if (GetValue(dealer.stats) > 0) {
-            if (dealer.stats.alignment == WarriorSummoner.Alignment.Friend) {
+            if (dealer.stats.alignment == Alignment.Friend) {
                 GoldManager.AddGold(GetValue(dealer.stats));
                 await floatingText.CreateFloatingText(dealer.transform, $"+{GetValue(dealer.stats)} Gold", ColorPalette.ColorEnum.Yellow);
                 return true;
@@ -54,5 +54,5 @@ public class Looting {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

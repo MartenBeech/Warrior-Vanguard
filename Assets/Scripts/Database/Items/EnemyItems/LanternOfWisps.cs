@@ -5,7 +5,7 @@ public class LanternOfWisps : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "Your summoner has “Overturn: summon a 1/1 wisp”";
-        rarity = ItemManager.Rarity.None;
+        rarity = ItemRarity.None;
         return this;
     }
 

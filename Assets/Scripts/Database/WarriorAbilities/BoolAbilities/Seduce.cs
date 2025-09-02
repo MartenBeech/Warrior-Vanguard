@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 public class Seduce {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Attack}: 50% chance to make the target fight for you next turn";
+        return $"{Keyword.Attack}: 50% chance to make the target fight for you next turn";
     }
 
     public async Task<bool> TriggerStrike(Warrior dealer, Warrior target, FloatingText floatingText) {
@@ -50,5 +50,5 @@ public class Seduce {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

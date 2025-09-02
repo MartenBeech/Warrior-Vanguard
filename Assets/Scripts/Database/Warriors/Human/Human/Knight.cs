@@ -7,10 +7,10 @@ public class Knight {
             health = new int[] { 4, 4 },
             speed = 2,
             range = 2,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Human,
+            damageType = DamageType.Physical,
+            race = Race.Human,
             rarity = CardRarity.Rare,
-            genre = Warrior.Genre.Human,
+            genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

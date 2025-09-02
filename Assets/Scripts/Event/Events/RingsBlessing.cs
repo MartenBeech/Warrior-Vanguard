@@ -2,9 +2,9 @@ using UnityEngine;
 public class RingsBlessing {
     public Event GetEvent(EventManager eventManager) {
         string raceKey = "RingsBlessingRaceKey";
-        Warrior.Race race1 = Rng.GetRandomRace(FriendlySummoner.summonerData.genre, true);
-        Warrior.Race race2 = Rng.GetRandomRace(FriendlySummoner.summonerData.genre, true);
-        Warrior.Race race3 = Rng.GetRandomRace(FriendlySummoner.summonerData.genre, true);
+        Race race1 = Rng.GetRandomRace(FriendlySummoner.summonerData.genre, true);
+        Race race2 = Rng.GetRandomRace(FriendlySummoner.summonerData.genre, true);
+        Race race3 = Rng.GetRandomRace(FriendlySummoner.summonerData.genre, true);
         Item ringOfRace = ItemManager.GetItemByTitle("RingOfRace");
 
         // Ensure we don't get duplicates

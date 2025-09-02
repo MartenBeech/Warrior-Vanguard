@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 public class Burning {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Overturn}: Take {GetValue(stats)} magical damage and lose one Burning stack";
+        return $"{Keyword.Overturn}: Take {GetValue(stats)} magical damage and lose one Burning stack";
     }
 
     public async Task<bool> TriggerOverturn(Warrior target) {
         if (GetValue(target.stats) > 0) {
-            await target.TakeDamage(target, GetValue(target.stats), Warrior.DamageType.Magical);
+            await target.TakeDamage(target, GetValue(target.stats), DamageType.Magical);
             target.stats.ability.burning.Add(-1);
             target.UpdateWarriorUI();
             return true;
@@ -53,5 +53,5 @@ public class Burning {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.Debuff;
+    public BuffType buffType = BuffType.Debuff;
 }

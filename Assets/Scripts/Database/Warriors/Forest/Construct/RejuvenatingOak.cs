@@ -7,10 +7,10 @@ public class RejuvenatingOak {
             health = new int[] { 12, 15 },
             speed = 0,
             range = 0,
-            damageType = Warrior.DamageType.Physical,
-            race = Warrior.Race.Construct,
+            damageType = DamageType.Physical,
+            race = Race.Construct,
             rarity = CardRarity.None,
-            genre = Warrior.Genre.Forest,
+            genre = Genre.Forest,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

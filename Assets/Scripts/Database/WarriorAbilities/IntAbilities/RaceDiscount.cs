@@ -3,12 +3,12 @@ using UnityEngine;
 public class RaceDiscount {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{WarriorAbility.Keywords.Summon}: reduce the cost of every {Rng.GetRandomRace(Warrior.Genre.Underworld)} in your hand by {GetValue(stats)}. (Changes every game)";
+        return $"{Keyword.Summon}: reduce the cost of every {Rng.GetRandomRace(Genre.Underworld)} in your hand by {GetValue(stats)}. (Changes every game)";
     }
 
     public bool TriggerSummon(Warrior warrior, GridManager gridManager) {
         if (GetValue(warrior.stats) > 0) {
-            gridManager.friendHand.ReduceCostRace(GetValue(warrior.stats), Rng.GetRandomRace(Warrior.Genre.Underworld));
+            gridManager.friendHand.ReduceCostRace(GetValue(warrior.stats), Rng.GetRandomRace(Genre.Underworld));
             return true;
         }
         return false;
@@ -51,5 +51,5 @@ public class RaceDiscount {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }

@@ -7,10 +7,10 @@ public class Apprentice {
             health = new int[] { 1, 1 },
             speed = 2,
             range = 4,
-            damageType = Warrior.DamageType.Magical,
-            race = Warrior.Race.Sorcerer,
+            damageType = DamageType.Magical,
+            race = Race.Sorcerer,
             rarity = CardRarity.Common,
-            genre = Warrior.Genre.Human,
+            genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

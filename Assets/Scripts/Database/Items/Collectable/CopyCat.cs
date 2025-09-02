@@ -5,7 +5,7 @@ public class CopyCat : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "When your opponent summons their first warrior, you summon a copy";
-        rarity = ItemManager.Rarity.None;
+        rarity = ItemRarity.None;
         return this;
     }
 
@@ -18,7 +18,7 @@ public class CopyCat : Item {
 
         WarriorStats clone = new();
         clone.SetStats(parameters.stats);
-        clone.alignment = parameters.stats.alignment == WarriorSummoner.Alignment.Friend ? WarriorSummoner.Alignment.Enemy : WarriorSummoner.Alignment.Friend;
+        clone.alignment = parameters.stats.alignment == Alignment.Friend ? Alignment.Enemy : Alignment.Friend;
         await warriorSummoner.SummonRandomly(clone, gridManager.GetCellPosition(parameters.gridIndex));
     }
 }

@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class FrozenTouch {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{WarriorAbility.Keywords.Strike}: Reduce target's speed by 1 (minimum 1)";
+        return $"{Keyword.Strike}: Reduce target's speed by 1 (minimum 1)";
     }
 
     public bool TriggerStrike(Warrior dealer, Warrior target) {
@@ -51,5 +51,5 @@ public class FrozenTouch {
         return abilityName;
     }
 
-    public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
+    public BuffType buffType = BuffType.None;
 }
