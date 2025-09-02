@@ -198,7 +198,7 @@ public class TileManager : MonoBehaviour {
                     CreateStartTiles(y);
                     break;
                 case 1:
-                    CreateSplitTiles(y, true, true, MapTile.TileType.Shop);
+                    CreateSplitTiles(y, true, true, MapTile.TileType.Campfire);
                     break;
                 case 2:
                     CreateMergeTiles(y, false, MapTile.TileType.Battlefield);

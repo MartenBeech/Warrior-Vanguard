@@ -11,8 +11,8 @@ public class DeckBuilder : MonoBehaviour {
     public Transform deckListContainer;
 
     private void Start() {
-        deckViewPanel.SetActive(false);
-        hideDeckViewButton.SetActive(false);
+        if (deckViewPanel) deckViewPanel.SetActive(false);
+        if (hideDeckViewButton) hideDeckViewButton.SetActive(false);
         UpdateDeckText();
     }
 
@@ -23,7 +23,7 @@ public class DeckBuilder : MonoBehaviour {
 
     public void RemoveCardFromDeck(Card card) {
         List<WarriorStats> deck = DeckManager.GetDeck();
-        DeckManager.RemoveCard(deck.FindIndex(deckCard => deckCard.title == card.stats.title));
+        DeckManager.RemoveCard(deck.FindIndex(deckCard => deckCard.title == card.stats.title && deckCard.level == card.stats.level));
         UpdateDeckText();
     }
 

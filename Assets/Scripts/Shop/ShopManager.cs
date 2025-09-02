@@ -96,10 +96,10 @@ public class ShopManager : MonoBehaviour {
             cardItem.transform.localScale = new Vector2(1.5f, 1.5f);
             cardItem.GetComponent<DragDrop>().enabled = false;
             cardItem.GetComponent<ObjectAnimation>().enabled = false;
-            Card cardComponent = cardItem.GetComponent<Card>();
-            cardComponent.SetStats(stats);
-            cardComponent.UpdateCardUI();
-            cardComponent.GetComponent<Button>().onClick.AddListener(() => RemoveCard(cardComponent));
+            Card card = cardItem.GetComponent<Card>();
+            card.SetStats(stats);
+            card.UpdateCardUI();
+            card.GetComponent<Button>().onClick.AddListener(() => RemoveCard(card));
         }
     }
 

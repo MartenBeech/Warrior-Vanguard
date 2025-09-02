@@ -19,6 +19,7 @@ public class MapTile : MonoBehaviour {
         Shop,
         Event,
         MiniBoss,
+        Campfire
     }
 
     public enum EnemyType {
@@ -75,6 +76,9 @@ public class MapTile : MonoBehaviour {
                 break;
             case TileType.Event:
                 SceneLoader.LoadEvent();
+                break;
+            case TileType.Campfire:
+                SceneLoader.LoadCampfire();
                 break;
         }
     }

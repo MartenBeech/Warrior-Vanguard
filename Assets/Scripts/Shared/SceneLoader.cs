@@ -34,6 +34,10 @@ public static class SceneLoader {
         SceneManager.LoadScene("GameOver");
     }
 
+    public static void LoadCampfire() {
+        SceneManager.LoadScene("Campfire");
+    }
+
     public static void ExitGame() {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false; // Stops play mode in Unity
