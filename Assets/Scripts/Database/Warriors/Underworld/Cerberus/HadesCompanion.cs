@@ -7,10 +7,10 @@ public class HadesCompanion {
             health = new int[] { 1, 1 },
             speed = 3,
             range = 2,
-            damageType = Character.DamageType.Magical,
-            race = Character.Race.Cerberus,
+            damageType = Warrior.DamageType.Magical,
+            race = Warrior.Race.Cerberus,
             rarity = CardRarity.Legendary,
-            genre = Character.Genre.Underworld,
+            genre = Warrior.Genre.Underworld,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

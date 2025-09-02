@@ -7,9 +7,9 @@ public class UnicornFoal {
             health = new int[] { 3, 4 },
             speed = 4,
             range = 2,
-            damageType = Character.DamageType.Physical,
-            race = Character.Race.Unicorn,
-            genre = Character.Genre.Forest
+            damageType = Warrior.DamageType.Physical,
+            race = Warrior.Race.Unicorn,
+            genre = Warrior.Genre.Forest
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

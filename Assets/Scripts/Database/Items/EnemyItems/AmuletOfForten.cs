@@ -9,7 +9,7 @@ public class AmuletOfForten : Item {
         return this;
     }
 
-    public override void UseOnWarriorSpawn(ItemTriggerParams parameters) {
+    public override void UseOnWarriorSummon(ItemTriggerParams parameters) {
         parameters.stats.SetStrength(4);
         parameters.stats.SetHealth(10);
     }

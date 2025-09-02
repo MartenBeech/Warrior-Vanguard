@@ -7,12 +7,12 @@ public class Multishot {
         return $"{WarriorAbility.Keywords.Attack}: Strike all enemies within range";
     }
 
-    public async Task<bool> TriggerAttack(Character dealer, Character target, GridManager gridManager) {
+    public async Task<bool> TriggerAttack(Warrior dealer, Warrior target, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            List<Character> enemies = gridManager.GetEnemiesInRange(dealer.gridIndex);
+            List<Warrior> enemies = gridManager.GetEnemiesInRange(dealer.gridIndex);
             enemies.Remove(target);
             List<Task> asyncFunctions = new();
-            foreach (Character enemy in enemies) {
+            foreach (Warrior enemy in enemies) {
                 asyncFunctions.Add(dealer.Strike(enemy));
             }
 

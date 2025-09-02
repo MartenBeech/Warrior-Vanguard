@@ -7,10 +7,10 @@ public class EldritchSorcerer {
             health = new int[] { 2, 2 },
             speed = 2,
             range = 4,
-            damageType = Character.DamageType.Magical,
-            race = Character.Race.Lich,
+            damageType = Warrior.DamageType.Magical,
+            race = Warrior.Race.Lich,
             rarity = CardRarity.Common,
-            genre = Character.Genre.Undead,
+            genre = Warrior.Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

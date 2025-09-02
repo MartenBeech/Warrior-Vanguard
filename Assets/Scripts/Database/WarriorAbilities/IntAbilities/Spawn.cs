@@ -8,7 +8,7 @@ public class Spawn {
         return $"{WarriorAbility.Keywords.Summon}: Summon {value} extra {(value > 1 ? "copies" : "copy")} of this";
     }
 
-    public async Task<bool> TriggerSummon(Character dealer, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerSummon(Warrior dealer, WarriorSummoner warriorSummoner) {
         if (GetValue(dealer.stats) > 0) {
 
             List<Task> asyncFunctions = new();
@@ -18,7 +18,7 @@ public class Spawn {
                 WarriorStats clone = new();
                 clone.SetStats(dealer.stats);
                 clone.ability.spawn.Remove();
-                asyncFunctions.Add(characterSpawner.SpawnRandomly(clone, dealer.transform.position));
+                asyncFunctions.Add(warriorSummoner.SummonRandomly(clone, dealer.transform.position));
             }
 
             await Task.WhenAll(asyncFunctions);

@@ -6,7 +6,7 @@ public class FamiliarGround {
         return $"Has +{GetValue(stats)}/+{GetValue(stats)} while inside your deployment area";
     }
 
-    public bool TriggerSummon(Character dealer) {
+    public bool TriggerSummon(Warrior dealer) {
         if (GetValue(dealer.stats) > 0) {
             dealer.stats.AddStrength(GetValue(dealer.stats));
             dealer.stats.AddHealth(GetValue(dealer.stats));
@@ -16,9 +16,9 @@ public class FamiliarGround {
         return false;
     }
 
-    public bool TriggerMove(Character dealer, Vector2 moveFrom, Vector2 moveTo) {
+    public bool TriggerMove(Warrior dealer, Vector2 moveFrom, Vector2 moveTo) {
         if (GetValue(dealer.stats) > 0) {
-            if (dealer.stats.alignment == CharacterSpawner.Alignment.Friend) {
+            if (dealer.stats.alignment == WarriorSummoner.Alignment.Friend) {
                 if (moveFrom.x < 3 + FriendlySummoner.extraDeploymentArea && moveTo.x >= 3 + FriendlySummoner.extraDeploymentArea) {
                     dealer.stats.AddStrength(-GetValue(dealer.stats));
                     dealer.stats.AddHealth(-GetValue(dealer.stats));
@@ -28,7 +28,7 @@ public class FamiliarGround {
                 }
             }
 
-            if (dealer.stats.alignment == CharacterSpawner.Alignment.Enemy) {
+            if (dealer.stats.alignment == WarriorSummoner.Alignment.Enemy) {
                 if (moveFrom.x >= GridManager.columns - 3 && moveTo.x < GridManager.columns - 3) {
                     dealer.stats.AddStrength(-GetValue(dealer.stats));
                     dealer.stats.AddHealth(-GetValue(dealer.stats));

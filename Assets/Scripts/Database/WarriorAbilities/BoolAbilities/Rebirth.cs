@@ -7,14 +7,14 @@ public class Rebirth {
         return $"{WarriorAbility.Keywords.Overturn}: Turn into a new Phoenix";
     }
 
-    public async Task<bool> TriggerOverturn(Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerOverturn(Warrior target, WarriorSummoner warriorSummoner) {
         if (GetValue(target.stats)) {
             WarriorStats phoenix = new Phoenix().GetStats();
             phoenix.alignment = target.stats.alignment;
             phoenix.level = target.stats.level;
 
             List<Task> asyncFunctions = new() {
-                characterSpawner.SpawnRandomly(phoenix, target.transform.position),
+                warriorSummoner.SummonRandomly(phoenix, target.transform.position),
                 target.Die(target)
             };
 

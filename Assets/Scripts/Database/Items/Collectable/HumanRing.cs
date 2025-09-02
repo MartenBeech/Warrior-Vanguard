@@ -6,8 +6,8 @@ public class HumanRing : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(ItemTriggerParams parameters) {
-        if (parameters.stats.race == Character.Race.Human) {
+    public override void UseOnFriendSummon(ItemTriggerParams parameters) {
+        if (parameters.stats.race == Warrior.Race.Human) {
             parameters.stats.AddHealth(2);
         }
     }

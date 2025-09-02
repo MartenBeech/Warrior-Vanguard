@@ -6,9 +6,9 @@ public class Poisoned {
         return $"{WarriorAbility.Keywords.Overturn}: Take {GetValue(stats)} magical damage";
     }
 
-    public async Task<bool> TriggerOverturn(Character target) {
+    public async Task<bool> TriggerOverturn(Warrior target) {
         if (GetValue(target.stats) > 0) {
-            await target.TakeDamage(target, GetValue(target.stats), Character.DamageType.Magical);
+            await target.TakeDamage(target, GetValue(target.stats), Warrior.DamageType.Magical);
             return true;
         }
         return false;

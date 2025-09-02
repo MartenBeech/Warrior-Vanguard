@@ -6,9 +6,9 @@ public class StaticEntrance {
         return $"When an enemy is summoned, deal {GetValue(stats)} magic damage to it";
     }
 
-    public async Task<bool> TriggerSummonEnemy(Character dealer, Character target) {
+    public async Task<bool> TriggerSummonEnemy(Warrior dealer, Warrior target) {
         if (GetValue(dealer.stats) > 0) {
-            await target.TakeDamage(dealer, GetValue(dealer.stats), Character.DamageType.Magical);
+            await target.TakeDamage(dealer, GetValue(dealer.stats), Warrior.DamageType.Magical);
             return true;
         }
         return false;

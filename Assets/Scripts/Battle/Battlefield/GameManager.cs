@@ -6,8 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
-    List<Character> friends = new();
-    List<Character> enemies = new();
+    List<Warrior> friends = new();
+    List<Warrior> enemies = new();
     public GridManager gridManager;
     public GameObject friendSummonerObject;
     public GameObject enemySummonerObject;
@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour {
     public Item enemyItem;
     public Summoner friendSummoner;
     Summoner enemySummoner;
-    CharacterSpawner friendCharacterSpawner;
-    CharacterSpawner enemyCharacterSpawner;
+    WarriorSummoner friendWarriorSummoner;
+    WarriorSummoner enemyWarriorSummoner;
     public HeroPower heroPower;
     public List<GameObject> interactableButtons;
-    public static CharacterSpawner.Alignment turn;
+    public static WarriorSummoner.Alignment turn;
     public static string enemySummonerName = "";
     public static bool isLoading = false;
     private FloatingText floatingText;
@@ -58,15 +58,15 @@ public class GameManager : MonoBehaviour {
         }
 
         if (enemySummoner.stats.ability.summonMobyRichard.GetValue(enemySummoner.stats)) {
-            enemyCharacterSpawner = FindFirstObjectByType<CharacterSpawner>();
-            enemyCharacterSpawner.spawningAlignment = CharacterSpawner.Alignment.Enemy;
-            await enemySummoner.stats.ability.summonMobyRichard.TriggerStartOfCombat(enemySummoner, enemyCharacterSpawner);
+            enemyWarriorSummoner = FindFirstObjectByType<WarriorSummoner>();
+            enemyWarriorSummoner.summoningAlignment = WarriorSummoner.Alignment.Enemy;
+            await enemySummoner.stats.ability.summonMobyRichard.TriggerStartOfCombat(enemySummoner, enemyWarriorSummoner);
         }
 
         if (friendSummoner.stats.ability.summonFlotSam.GetValue(friendSummoner.stats)) {
-            friendCharacterSpawner = FindFirstObjectByType<CharacterSpawner>();
-            friendCharacterSpawner.spawningAlignment = CharacterSpawner.Alignment.Friend;
-            await friendSummoner.stats.ability.summonFlotSam.TriggerStartOfCombat(friendSummoner, friendCharacterSpawner);
+            friendWarriorSummoner = FindFirstObjectByType<WarriorSummoner>();
+            friendWarriorSummoner.summoningAlignment = WarriorSummoner.Alignment.Friend;
+            await friendSummoner.stats.ability.summonFlotSam.TriggerStartOfCombat(friendSummoner, friendWarriorSummoner);
         }
 
         await ItemManager.enemyItem.UseStartOfCombat(new(summoner: enemySummoner));
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public async Task StartPlayerTurn() {
-        turn = CharacterSpawner.Alignment.Friend;
+        turn = WarriorSummoner.Alignment.Friend;
         friendCoin.GainCoins();
         friendCoin.RefreshCoins();
         heroPower.RefreshHeroPower();
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour {
                 floatingText: floatingText));
         }
 
-        foreach (Character friend in friends) {
+        foreach (Warrior friend in friends) {
             friend.StartTurn();
         }
 
@@ -101,19 +101,19 @@ public class GameManager : MonoBehaviour {
 
     public async void EndPlayerTurn() {
         SetLoading(true);
-        List<Character> sortedFriends = friends.OrderByDescending(c => c.gridIndex.x).ToList();
-        foreach (Character friend in sortedFriends) {
-            await friend.MoveWarrior(Character.Direction.Right);
-            await friend.StandAndAttack(Character.Direction.Right);
+        List<Warrior> sortedFriends = friends.OrderByDescending(c => c.gridIndex.x).ToList();
+        foreach (Warrior friend in sortedFriends) {
+            await friend.MoveWarrior(Warrior.Direction.Right);
+            await friend.StandAndAttack(Warrior.Direction.Right);
             await friend.EndTurn();
         }
 
-        await friendSummoner.EndTurn(friendCharacterSpawner);
+        await friendSummoner.EndTurn(friendWarriorSummoner);
         await StartEnemyTurn();
     }
 
     public async Task StartEnemyTurn() {
-        turn = CharacterSpawner.Alignment.Enemy;
+        turn = WarriorSummoner.Alignment.Enemy;
         enemyCoin.GainCoins();
         enemyCoin.RefreshCoins();
         await enemyDeck.DrawCard(false);
@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour {
                 gridManager: gridManager,
                 floatingText: floatingText));
 
-        foreach (Character enemy in enemies) {
+        foreach (Warrior enemy in enemies) {
             enemy.StartTurn();
         }
 
@@ -134,36 +134,36 @@ public class GameManager : MonoBehaviour {
     }
 
     public async void EndEnemyTurn() {
-        List<Character> sortedEnemies = enemies.OrderBy(c => c.gridIndex.x).ToList();
-        foreach (Character enemy in sortedEnemies) {
-            await enemy.MoveWarrior(Character.Direction.Left);
-            await enemy.StandAndAttack(Character.Direction.Left);
+        List<Warrior> sortedEnemies = enemies.OrderBy(c => c.gridIndex.x).ToList();
+        foreach (Warrior enemy in sortedEnemies) {
+            await enemy.MoveWarrior(Warrior.Direction.Left);
+            await enemy.StandAndAttack(Warrior.Direction.Left);
             await enemy.EndTurn();
         }
 
-        enemyCharacterSpawner.spawningAlignment = CharacterSpawner.Alignment.Enemy;
-        await enemySummoner.EndTurn(enemyCharacterSpawner);
+        enemyWarriorSummoner.summoningAlignment = WarriorSummoner.Alignment.Enemy;
+        await enemySummoner.EndTurn(enemyWarriorSummoner);
         await StartPlayerTurn();
     }
 
-    public void RegisterCharacter(Character character, CharacterSpawner.Alignment alignment) {
-        if (alignment == CharacterSpawner.Alignment.Enemy) {
-            if (!enemies.Contains(character)) {
-                enemies.Add(character);
+    public void RegisterWarrior(Warrior warrior, WarriorSummoner.Alignment alignment) {
+        if (alignment == WarriorSummoner.Alignment.Enemy) {
+            if (!enemies.Contains(warrior)) {
+                enemies.Add(warrior);
             }
-        } else if (alignment == CharacterSpawner.Alignment.Friend) {
-            if (!friends.Contains(character)) {
-                friends.Add(character);
+        } else if (alignment == WarriorSummoner.Alignment.Friend) {
+            if (!friends.Contains(warrior)) {
+                friends.Add(warrior);
             }
         }
-        gridManager.RegisterCharacter(character);
+        gridManager.RegisterWarrior(warrior);
     }
 
-    public void RemoveCharacter(Character character) {
-        if (friends.Contains(character))
-            friends.Remove(character);
-        else if (enemies.Contains(character))
-            enemies.Remove(character);
+    public void RemoveWarrior(Warrior warrior) {
+        if (friends.Contains(warrior))
+            friends.Remove(warrior);
+        else if (enemies.Contains(warrior))
+            enemies.Remove(warrior);
     }
 
     public void WinFight() {
@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour {
 
     async Task TakeEnemyTurn() {
         await Task.Delay(1000 / Settings.gameSpeed);
-        enemyCharacterSpawner = FindFirstObjectByType<CharacterSpawner>();
+        enemyWarriorSummoner = FindFirstObjectByType<WarriorSummoner>();
         List<Card> cardsInHand = new(enemyHand.GetCardsInHand());
         cardsInHand.Sort((a, b) => b.stats.GetCost() - a.stats.GetCost());
         foreach (Card card in cardsInHand) {
@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour {
                     enemyHand.DeselectCard(card);
                     break;
                 }
-                await enemyHand.PlayCardFromHand(enemyCharacterSpawner, randomCell.gridIndex);
+                await enemyHand.PlayCardFromHand(enemyWarriorSummoner, randomCell.gridIndex);
                 await Task.Delay(1000 / Settings.gameSpeed);
             }
         }

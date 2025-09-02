@@ -6,14 +6,14 @@ public class Possess {
         return $"{WarriorAbility.Keywords.Kill}: Resummon the target on your side";
     }
 
-    public async Task<bool> TriggerKill(Character dealer, Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerKill(Warrior dealer, Warrior target, WarriorSummoner warriorSummoner) {
         if (GetValue(dealer.stats)) {
             WarriorStats targetStats = new();
             targetStats.SetStats(target.stats);
             targetStats.ResetStats();
             targetStats.alignment = dealer.stats.alignment;
 
-            await characterSpawner.SpawnRandomly(targetStats, target.transform.position);
+            await warriorSummoner.SummonRandomly(targetStats, target.transform.position);
 
             return true;
         }

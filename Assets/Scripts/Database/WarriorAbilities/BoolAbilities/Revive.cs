@@ -6,12 +6,12 @@ public class Revive {
         return $"{WarriorAbility.Keywords.Death}: Resummon this warrior (once)";
     }
 
-    public async Task<bool> TriggerDeath(Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerDeath(Warrior target, WarriorSummoner warriorSummoner) {
         if (GetValue(target.stats)) {
             target.stats.ResetStats();
             target.stats.ability.revive.Remove();
 
-            await characterSpawner.SpawnRandomly(target.stats, target.transform.position);
+            await warriorSummoner.SummonRandomly(target.stats, target.transform.position);
             return true;
         }
         return false;

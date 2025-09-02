@@ -9,11 +9,11 @@ public class GridManager : MonoBehaviour {
     public static int rows;
     public static int columns;
     public GameObject cellPrefab;
-    public CharacterSpawner characterSpawner;
+    public WarriorSummoner warriorSummoner;
     public Hand friendHand;
     public Hand enemyHand;
     private GridCell[,] grid;
-    private List<Character> allCharacters = new();
+    private List<Warrior> allWarriors = new();
     public Vector2Int? SelectedCell { get; private set; }
     private GridLayoutGroup gridLayoutGroup;
     public Transform EnemySummonerObject;
@@ -49,7 +49,7 @@ public class GridManager : MonoBehaviour {
         return pos;
     }
 
-    void GenerateGrid(Character.Genre genre) {
+    void GenerateGrid(Warrior.Genre genre) {
         RectTransform rectTransform = GetComponent<RectTransform>();
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
         float cellSpacing = 100 / columns;
@@ -77,7 +77,7 @@ public class GridManager : MonoBehaviour {
 
                 gridCell.GetComponent<RectTransform>().localScale = GetCellDimension() / gridCell.GetComponent<RectTransform>().rect.width;
 
-                if (genre != Character.Genre.None) {
+                if (genre != Warrior.Genre.None) {
                     int randomCell = Rng.Range(0, 12);
                     gridCell.image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Cells/{genre}/{randomCell}");
                 }
@@ -91,59 +91,59 @@ public class GridManager : MonoBehaviour {
     public async Task<bool> SelectCell(Vector2 selectedGridIndex) {
         if (!grid[(int)selectedGridIndex.x, (int)selectedGridIndex.y].IsHighlighed()) return false;
 
-        if (characterSpawner.getIsSpawning(CharacterSpawner.Alignment.Enemy)) {
+        if (warriorSummoner.getIsSummoning(WarriorSummoner.Alignment.Enemy)) {
             WarriorStats luigiStats = new Luigi().GetStats();
-            luigiStats.alignment = CharacterSpawner.Alignment.Enemy;
+            luigiStats.alignment = WarriorSummoner.Alignment.Enemy;
 
-            await characterSpawner.Spawn(selectedGridIndex, luigiStats, EnemySummonerObject.position);
+            await warriorSummoner.Summon(selectedGridIndex, luigiStats, EnemySummonerObject.position);
             return true;
         }
 
-        if (GameManager.turn == CharacterSpawner.Alignment.Friend) {
+        if (GameManager.turn == WarriorSummoner.Alignment.Friend) {
             if (friendHand.selectedCard == null) return false;
-            await friendHand.PlayCardFromHand(characterSpawner, selectedGridIndex);
-        } else if (GameManager.turn == CharacterSpawner.Alignment.Enemy) {
+            await friendHand.PlayCardFromHand(warriorSummoner, selectedGridIndex);
+        } else if (GameManager.turn == WarriorSummoner.Alignment.Enemy) {
             if (enemyHand.selectedCard == null) return false;
-            await enemyHand.PlayCardFromHand(characterSpawner, selectedGridIndex);
+            await enemyHand.PlayCardFromHand(warriorSummoner, selectedGridIndex);
         }
         return true;
     }
 
-    public void RegisterCharacter(Character character) {
-        if (!allCharacters.Contains(character)) {
-            allCharacters.Add(character);
+    public void RegisterWarrior(Warrior warrior) {
+        if (!allWarriors.Contains(warrior)) {
+            allWarriors.Add(warrior);
         }
     }
 
-    public void RemoveCharacter(Character character) {
-        if (allCharacters.Contains(character)) {
-            allCharacters.Remove(character);
+    public void RemoveWarrior(Warrior warrior) {
+        if (allWarriors.Contains(warrior)) {
+            allWarriors.Remove(warrior);
         }
     }
 
-    public Character GetCellCharacter(Vector2 gridIndex) {
-        foreach (Character character in allCharacters) {
-            if (character.gridIndex == gridIndex) {
-                return character;
+    public Warrior GetCellWarrior(Vector2 gridIndex) {
+        foreach (Warrior warrior in allWarriors) {
+            if (warrior.gridIndex == gridIndex) {
+                return warrior;
             }
         }
         return null;
     }
 
-    public List<GridCell> GetEmptyDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment) {
+    public List<GridCell> GetEmptyDeploys(bool largeDeployArea, WarriorSummoner.Alignment alignment) {
         List<GridCell> cells = new();
-        if (alignment == CharacterSpawner.Alignment.Friend) {
+        if (alignment == WarriorSummoner.Alignment.Friend) {
             for (int x = 0; x < (largeDeployArea ? Mathf.Floor(columns / 2) + FriendlySummoner.extraDeploymentArea : 3 + FriendlySummoner.extraDeploymentArea); x++) {
                 for (int y = 0; y < rows; y++) {
-                    if (!GetCellCharacter(new Vector2(x, y))) {
+                    if (!GetCellWarrior(new Vector2(x, y))) {
                         cells.Add(grid[x, y]);
                     }
                 }
             }
-        } else if (alignment == CharacterSpawner.Alignment.Enemy) {
+        } else if (alignment == WarriorSummoner.Alignment.Enemy) {
             for (int x = columns - 1; x >= (largeDeployArea ? columns - Mathf.Floor(columns / 2) : columns - 3); x--) {
                 for (int y = 0; y < rows; y++) {
-                    if (!GetCellCharacter(new Vector2(x, y))) {
+                    if (!GetCellWarrior(new Vector2(x, y))) {
                         cells.Add(grid[x, y]);
                     }
                 }
@@ -152,22 +152,22 @@ public class GridManager : MonoBehaviour {
         return cells;
     }
 
-    public GridCell GetRandomEmptyDeploy(bool largeDeployArea, CharacterSpawner.Alignment alignment) {
+    public GridCell GetRandomEmptyDeploy(bool largeDeployArea, WarriorSummoner.Alignment alignment) {
         List<GridCell> cells = GetEmptyDeploys(largeDeployArea, alignment);
         if (cells.Count == 0) return null;
 
         return Rng.Entry(cells);
     }
 
-    public void HighlightDeploys(bool largeDeployArea, CharacterSpawner.Alignment alignment) {
+    public void HighlightDeploys(bool largeDeployArea, WarriorSummoner.Alignment alignment) {
         List<GridCell> cells = GetEmptyDeploys(largeDeployArea, alignment);
         for (int i = 0; i < cells.Count; i++) {
             cells[i].Highlight();
         }
     }
 
-    public void HighlightEnemies(CharacterSpawner.Alignment alignment, bool withSpell = false) {
-        List<Character> enemies = GetEnemies(alignment);
+    public void HighlightEnemies(WarriorSummoner.Alignment alignment, bool withSpell = false) {
+        List<Warrior> enemies = GetEnemies(alignment);
         foreach (var enemy in enemies) {
             if (withSpell && enemy.stats.ability.spellImmunity.GetValue(enemy.stats)) continue;
 
@@ -176,8 +176,8 @@ public class GridManager : MonoBehaviour {
         }
     }
 
-    public void HighlightFriends(CharacterSpawner.Alignment alignment, bool withSpell = false) {
-        List<Character> friends = GetFriends(alignment);
+    public void HighlightFriends(WarriorSummoner.Alignment alignment, bool withSpell = false) {
+        List<Warrior> friends = GetFriends(alignment);
         foreach (var friend in friends) {
             if (withSpell && friend.stats.ability.spellImmunity.GetValue(friend.stats)) continue;
 
@@ -187,7 +187,7 @@ public class GridManager : MonoBehaviour {
     }
 
     public void HighlightWarriors(bool withSpell = false) {
-        List<Character> warriors = GetCharacters();
+        List<Warrior> warriors = GetWarriors();
         foreach (var warrior in warriors) {
             if (withSpell && warrior.stats.ability.spellImmunity.GetValue(warrior.stats)) continue;
 
@@ -231,8 +231,8 @@ public class GridManager : MonoBehaviour {
         return Rng.Entry(cells);
     }
 
-    public List<Character> GetNearbyWarriors(Vector2 gridIndex) {
-        List<Character> warriors = new();
+    public List<Warrior> GetNearbyWarriors(Vector2 gridIndex) {
+        List<Warrior> warriors = new();
         for (int x = (int)gridIndex.x - 1; x <= (int)gridIndex.x + 1; x++) {
             if (x < 0 || x >= columns) continue;
 
@@ -240,116 +240,116 @@ public class GridManager : MonoBehaviour {
                 if (y < 0 || y >= rows) continue;
                 if (gridIndex == new Vector2(x, y)) continue;
 
-                Character character = GetCellCharacter(new Vector2(x, y));
-                if (character != null) {
-                    warriors.Add(character);
+                Warrior warrior = GetCellWarrior(new Vector2(x, y));
+                if (warrior != null) {
+                    warriors.Add(warrior);
                 }
             }
         }
         return warriors;
     }
 
-    public List<Character> GetNearbyFriends(Character warrior) {
-        List<Character> nearbyWarriors = GetNearbyWarriors(warrior.gridIndex);
-        List<Character> nearbyFriends = nearbyWarriors.Where(a => a.stats.alignment == warrior.stats.alignment).ToList();
+    public List<Warrior> GetNearbyFriends(Warrior warrior) {
+        List<Warrior> nearbyWarriors = GetNearbyWarriors(warrior.gridIndex);
+        List<Warrior> nearbyFriends = nearbyWarriors.Where(a => a.stats.alignment == warrior.stats.alignment).ToList();
 
         return nearbyFriends;
     }
 
-    public List<Character> GetNearbyEnemies(Character warrior) {
-        List<Character> nearbyWarriors = GetNearbyWarriors(warrior.gridIndex);
-        List<Character> nearbyFriends = nearbyWarriors.Where(a => a.stats.alignment != warrior.stats.alignment).ToList();
+    public List<Warrior> GetNearbyEnemies(Warrior warrior) {
+        List<Warrior> nearbyWarriors = GetNearbyWarriors(warrior.gridIndex);
+        List<Warrior> nearbyFriends = nearbyWarriors.Where(a => a.stats.alignment != warrior.stats.alignment).ToList();
 
         return nearbyFriends;
     }
 
-    public List<Character> GetCharacters() {
-        List<Character> characters = new();
-        foreach (var character in allCharacters) {
-            characters.Add(character);
+    public List<Warrior> GetWarriors() {
+        List<Warrior> warriors = new();
+        foreach (var warrior in allWarriors) {
+            warriors.Add(warrior);
         }
-        return characters;
+        return warriors;
     }
 
-    public List<Character> GetFriends(CharacterSpawner.Alignment alignment) {
-        List<Character> friends = new();
-        foreach (Character character in allCharacters) {
-            if (character.stats.alignment == alignment) {
-                friends.Add(character);
+    public List<Warrior> GetFriends(WarriorSummoner.Alignment alignment) {
+        List<Warrior> friends = new();
+        foreach (Warrior warrior in allWarriors) {
+            if (warrior.stats.alignment == alignment) {
+                friends.Add(warrior);
             }
         }
         return friends;
     }
 
-    public List<Character> GetEnemies(CharacterSpawner.Alignment alignment) {
-        List<Character> enemies = new();
-        foreach (Character character in allCharacters) {
-            if (character.stats.alignment != alignment) {
-                enemies.Add(character);
+    public List<Warrior> GetEnemies(WarriorSummoner.Alignment alignment) {
+        List<Warrior> enemies = new();
+        foreach (Warrior warrior in allWarriors) {
+            if (warrior.stats.alignment != alignment) {
+                enemies.Add(warrior);
             }
         }
         return enemies;
     }
 
-    public List<Character> GetDamagedFriends(CharacterSpawner.Alignment alignment) {
-        List<Character> friends = GetFriends(alignment);
-        List<Character> damagedfriends = friends.Where(friend => friend.stats.GetHealthCurrent() < friend.stats.GetHealthMax()).ToList();
+    public List<Warrior> GetDamagedFriends(WarriorSummoner.Alignment alignment) {
+        List<Warrior> friends = GetFriends(alignment);
+        List<Warrior> damagedfriends = friends.Where(friend => friend.stats.GetHealthCurrent() < friend.stats.GetHealthMax()).ToList();
         return damagedfriends;
     }
 
-    public int GetDistanceBetweenCharacters(Character character1, Character character2) {
-        if (character1.gridIndex.y != character2.gridIndex.y) return -1;
+    public int GetDistanceBetweenWarriors(Warrior warrior1, Warrior warrior2) {
+        if (warrior1.gridIndex.y != warrior2.gridIndex.y) return -1;
 
-        float dist = Mathf.Abs(character1.gridIndex.x - character2.gridIndex.x);
+        float dist = Mathf.Abs(warrior1.gridIndex.x - warrior2.gridIndex.x);
         return (int)dist;
     }
 
-    public Character GetCharacterBehindTarget(Character target) {
-        Character character = null;
-        if (target.stats.alignment == CharacterSpawner.Alignment.Enemy) {
-            character = GetCellCharacter(target.gridIndex + new Vector2(1, 0));
-        } else if (target.stats.alignment == CharacterSpawner.Alignment.Friend) {
-            character = GetCellCharacter(target.gridIndex - new Vector2(1, 0));
+    public Warrior GetWarriorBehindTarget(Warrior target) {
+        Warrior warrior = null;
+        if (target.stats.alignment == WarriorSummoner.Alignment.Enemy) {
+            warrior = GetCellWarrior(target.gridIndex + new Vector2(1, 0));
+        } else if (target.stats.alignment == WarriorSummoner.Alignment.Friend) {
+            warrior = GetCellWarrior(target.gridIndex - new Vector2(1, 0));
         }
 
-        return character;
+        return warrior;
     }
 
-    public List<Character> GetEnemiesInRange(Vector2 gridIndex) {
-        Character dealer = GetCellCharacter(gridIndex);
-        List<Character> enemiesInRange = new();
-        int xIncrement = dealer.stats.alignment == CharacterSpawner.Alignment.Friend
+    public List<Warrior> GetEnemiesInRange(Vector2 gridIndex) {
+        Warrior dealer = GetCellWarrior(gridIndex);
+        List<Warrior> enemiesInRange = new();
+        int xIncrement = dealer.stats.alignment == WarriorSummoner.Alignment.Friend
             ? 1
-            : dealer.stats.alignment == CharacterSpawner.Alignment.Enemy
+            : dealer.stats.alignment == WarriorSummoner.Alignment.Enemy
             ? -1
             : 0;
 
         for (int i = 1; i <= dealer.stats.range; i++) {
-            Character character = GetCellCharacter(new Vector2(gridIndex.x + (xIncrement * i), gridIndex.y));
-            if (character && character.stats.alignment != dealer.stats.alignment) {
-                enemiesInRange.Add(character);
+            Warrior warrior = GetCellWarrior(new Vector2(gridIndex.x + (xIncrement * i), gridIndex.y));
+            if (warrior && warrior.stats.alignment != dealer.stats.alignment) {
+                enemiesInRange.Add(warrior);
             }
         }
 
         return enemiesInRange;
     }
 
-    public Character GetRandomEnemy(Character dealer) {
-        List<Character> enemies = GetEnemies(dealer.stats.alignment);
+    public Warrior GetRandomEnemy(Warrior dealer) {
+        List<Warrior> enemies = GetEnemies(dealer.stats.alignment);
 
-        Character enemy = Rng.Entry(enemies);
+        Warrior enemy = Rng.Entry(enemies);
         return enemy;
     }
 
-    public List<Character> GetFriendsOnColumn(Character warrior) {
-        List<Character> friends = new();
+    public List<Warrior> GetFriendsOnColumn(Warrior warrior) {
+        List<Warrior> friends = new();
 
         for (int y = 0; y <= rows; y++) {
             if (y == warrior.gridIndex.y) continue;
 
-            Character character = GetCellCharacter(new Vector2(warrior.gridIndex.x, y));
-            if (character != null && character.stats.alignment == warrior.stats.alignment) {
-                friends.Add(character);
+            Warrior friend = GetCellWarrior(new Vector2(warrior.gridIndex.x, y));
+            if (friend != null && friend.stats.alignment == warrior.stats.alignment) {
+                friends.Add(friend);
             }
         }
 

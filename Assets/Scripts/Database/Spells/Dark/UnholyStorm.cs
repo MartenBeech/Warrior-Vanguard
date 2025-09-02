@@ -12,18 +12,18 @@ public class UnholyStorm {
             "Reduce all enemies' strength by 2",
             "Reduce all enemies' strength by 3"
             },
-            race = Character.Race.Dark,
+            race = Warrior.Race.Dark,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }
 
     public async Task Trigger(SpellTriggerParams parameters) {
-        List<Character> enemies = parameters.gridManager.GetEnemies(GameManager.turn);
+        List<Warrior> enemies = parameters.gridManager.GetEnemies(GameManager.turn);
         List<Task> asyncFunctions = new();
-        foreach (Character enemy in enemies) {
+        foreach (Warrior enemy in enemies) {
             if (enemy.stats.GetStrength() > 0) {
                 int value = parameters.cardLevel == 0 ? 2 : 3;
                 enemy.stats.AddStrength(-value);

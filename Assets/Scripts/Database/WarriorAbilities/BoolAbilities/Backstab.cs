@@ -6,9 +6,9 @@ public class Backstab {
         return $"Can attack backwards, dealing double damage (even without moving)";
     }
 
-    public Character GetEnemyBehind(Character dealer, GridManager gridManager) {
+    public Warrior GetEnemyBehind(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            Character neighbor = gridManager.GetCharacterBehindTarget(dealer);
+            Warrior neighbor = gridManager.GetWarriorBehindTarget(dealer);
 
             if (neighbor && neighbor.stats.alignment != dealer.stats.alignment) {
                 return neighbor;
@@ -17,9 +17,9 @@ public class Backstab {
         return null;
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+    public async Task<bool> Trigger(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            Character neighbor = GetEnemyBehind(dealer, gridManager);
+            Warrior neighbor = GetEnemyBehind(dealer, gridManager);
 
             if (neighbor) {
                 await dealer.Attack(neighbor, true);

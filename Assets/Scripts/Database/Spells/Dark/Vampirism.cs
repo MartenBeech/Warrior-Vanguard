@@ -13,10 +13,10 @@ public class Vampirism {
             "Give a friend: Lifesteal. Set its health to 1",
             "Give a friend: Lifesteal"
             },
-            race = Character.Race.Dark,
+            race = Warrior.Race.Dark,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }

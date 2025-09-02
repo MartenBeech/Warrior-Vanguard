@@ -13,10 +13,10 @@ public class Fireball {
             "Deal 5 damage to a warrior and 2 damage to surrounding warriors",
             "Deal 6 damage to a warrior and 3 damage to surrounding warriors"
             },
-            race = Character.Race.Fire,
+            race = Warrior.Race.Fire,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }
@@ -27,11 +27,11 @@ public class Fireball {
         int baseDamage = parameters.cardLevel == 0 ? 5 : 6;
         int surroundingDamage = parameters.cardLevel == 0 ? 2 : 3;
 
-        await parameters.target.TakeDamage(parameters.target, baseDamage, Character.DamageType.Magical);
+        await parameters.target.TakeDamage(parameters.target, baseDamage, Warrior.DamageType.Magical);
 
-        List<Character> nearbyWarriors = parameters.gridManager.GetNearbyWarriors(parameters.target.gridIndex);
-        foreach (Character warrior in nearbyWarriors) {
-            asyncFunctions.Add(warrior.TakeDamage(warrior, surroundingDamage, Character.DamageType.Magical));
+        List<Warrior> nearbyWarriors = parameters.gridManager.GetNearbyWarriors(parameters.target.gridIndex);
+        foreach (Warrior warrior in nearbyWarriors) {
+            asyncFunctions.Add(warrior.TakeDamage(warrior, surroundingDamage, Warrior.DamageType.Magical));
         }
 
         parameters.target.UpdateWarriorUI();

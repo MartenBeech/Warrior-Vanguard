@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 6368626171914487445, guid: c3d4d9d377f063f4e9967e3d8363a23a, type: 3}
-  characterSpawner: {fileID: 945783959}
+  warriorSummoner: {fileID: 945783959}
   friendHand: {fileID: 179982829}
   enemyHand: {fileID: 799138551}
   EnemySummonerObject: {fileID: 1267235796}
@@ -2285,7 +2285,7 @@ GameObject:
   - component: {fileID: 945783958}
   - component: {fileID: 945783959}
   m_Layer: 0
-  m_Name: CharacterSpawner
+  m_Name: WarriorSummoner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2319,7 +2319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warriorPrefab: {fileID: 6368626171914487445, guid: 999e48af28db63949b2afa51811a0bdf, type: 3}
-  spawningAlignment: 0
+  summoningAlignment: 0
   gridManager: {fileID: 509353786}
   warriorsObject: {fileID: 41112488}
   gameManager: {fileID: 2106477979}
@@ -2328,8 +2328,6 @@ MonoBehaviour:
   enemyHand: {fileID: 799138551}
   friendSummonerObject: {fileID: 2039605223}
   enemySummonerObject: {fileID: 1267235796}
-  friendCoin: {fileID: 389797182}
-  enemyCoin: {fileID: 114908479}
 --- !u!1001 &1265140658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3305,7 +3303,7 @@ MonoBehaviour:
   tooltipManager: {fileID: 598212541}
   gameManager: {fileID: 2106477979}
   friendHand: {fileID: 179982829}
-  characterSpawner: {fileID: 945783959}
+  warriorSummoner: {fileID: 945783959}
   friendSummoner: {fileID: 179236579471566886}
 --- !u!1 &1713116258
 GameObject:

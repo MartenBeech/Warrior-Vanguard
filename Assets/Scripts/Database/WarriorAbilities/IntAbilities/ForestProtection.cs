@@ -6,9 +6,9 @@ public class ForestProtection {
         return $"{WarriorAbility.Keywords.Aura}: Your other warriors have +{GetValue(stats)} health";
     }
 
-    public bool TriggerSummon(Character dealer, GridManager gridManager) {
+    public bool TriggerSummon(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
+            List<Warrior> friends = gridManager.GetFriends(dealer.stats.alignment);
             friends.Remove(dealer);
             foreach (var friend in friends) {
                 friend.stats.AddHealth(GetValue(dealer.stats));
@@ -19,9 +19,9 @@ public class ForestProtection {
         return false;
     }
 
-    public bool TriggerDeath(Character dealer, GridManager gridManager) {
+    public bool TriggerDeath(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
+            List<Warrior> friends = gridManager.GetFriends(dealer.stats.alignment);
             friends.Remove(dealer);
             foreach (var friend in friends) {
                 friend.stats.AddHealth(-GetValue(dealer.stats));
@@ -32,7 +32,7 @@ public class ForestProtection {
         return false;
     }
 
-    public bool TriggerSummonFriend(Character dealer, WarriorStats targetStats) {
+    public bool TriggerSummonFriend(Warrior dealer, WarriorStats targetStats) {
         if (GetValue(dealer.stats) > 0) {
             targetStats.AddHealth(GetValue(dealer.stats));
             return true;

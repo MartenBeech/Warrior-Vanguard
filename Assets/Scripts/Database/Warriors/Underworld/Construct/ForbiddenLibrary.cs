@@ -7,10 +7,10 @@ public class ForbiddenLibrary {
             health = new int[] { 5, 6 },
             speed = 0,
             range = 0,
-            damageType = Character.DamageType.Physical,
-            race = Character.Race.Construct,
+            damageType = Warrior.DamageType.Physical,
+            race = Warrior.Race.Construct,
             rarity = CardRarity.Common,
-            genre = Character.Genre.Underworld,
+            genre = Warrior.Genre.Underworld,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

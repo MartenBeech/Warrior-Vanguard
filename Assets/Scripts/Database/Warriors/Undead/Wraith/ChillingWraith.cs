@@ -7,10 +7,10 @@ public class ChillingWraith {
             health = new int[] { 3, 3 },
             speed = 2,
             range = 4,
-            damageType = Character.DamageType.Physical,
-            race = Character.Race.Wraith,
+            damageType = Warrior.DamageType.Physical,
+            race = Warrior.Race.Wraith,
             rarity = CardRarity.Common,
-            genre = Character.Genre.Undead,
+            genre = Warrior.Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

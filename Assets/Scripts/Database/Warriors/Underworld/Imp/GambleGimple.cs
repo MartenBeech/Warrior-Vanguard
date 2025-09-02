@@ -7,10 +7,10 @@ public class GambleGimple {
             health = new int[] { 3, 3 },
             speed = 2,
             range = 4,
-            damageType = Character.DamageType.Magical,
-            race = Character.Race.Imp,
+            damageType = Warrior.DamageType.Magical,
+            race = Warrior.Race.Imp,
             rarity = CardRarity.Legendary,
-            genre = Character.Genre.Underworld,
+            genre = Warrior.Genre.Underworld,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

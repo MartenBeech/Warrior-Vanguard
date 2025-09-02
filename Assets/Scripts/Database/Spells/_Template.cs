@@ -13,10 +13,10 @@ public class CLASSNAMESPELL {
             "UNUPGRADED_DESCRIPTION",
             "UPGRADED_DESCRIPTION"
             },
-            race = Character.Race.None,
+            race = Warrior.Race.None,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }

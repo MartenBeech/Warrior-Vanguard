@@ -6,11 +6,11 @@ public class LightningBolt {
         return $"{WarriorAbility.Keywords.Overturn}: Deal {GetValue(stats)} magical damage to a random enemy";
     }
 
-    public async Task<bool> TriggerOverturn(Character dealer, GridManager gridManager) {
+    public async Task<bool> TriggerOverturn(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            Character enemy = gridManager.GetRandomEnemy(dealer);
+            Warrior enemy = gridManager.GetRandomEnemy(dealer);
             if (enemy) {
-                await enemy.TakeDamage(dealer, GetValue(dealer.stats), Character.DamageType.Magical);
+                await enemy.TakeDamage(dealer, GetValue(dealer.stats), Warrior.DamageType.Magical);
             }
             return true;
         }

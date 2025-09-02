@@ -6,9 +6,9 @@ public class Retaliate {
         return $"After getting attacked, strike back";
     }
 
-    public async Task<bool> TriggerAttacked(Character dealer, Character target, GridManager gridManager) {
+    public async Task<bool> TriggerAttacked(Warrior dealer, Warrior target, GridManager gridManager) {
         if (GetValue(target.stats)) {
-            int dist = gridManager.GetDistanceBetweenCharacters(dealer, target);
+            int dist = gridManager.GetDistanceBetweenWarriors(dealer, target);
             if (dist > 0 && dist <= target.stats.range) {
                 await target.Strike(dealer);
                 return true;

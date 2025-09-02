@@ -9,7 +9,7 @@ public class MicDrop : Item {
         return this;
     }
 
-    public override async Task UseAfterFriendSpawn(ItemTriggerParams parameters) {
+    public override async Task UseAfterFriendSummon(ItemTriggerParams parameters) {
         if (parameters.stats.GetCost() == parameters.coin.coinsTotal) {
             await parameters.ownDeck.DrawCard(false);
         }

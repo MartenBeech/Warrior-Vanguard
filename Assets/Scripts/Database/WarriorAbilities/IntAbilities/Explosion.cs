@@ -7,12 +7,12 @@ public class Explosion {
         return $"{WarriorAbility.Keywords.Death}: Deal {GetValue(stats)} magical damage to all nearby enemies";
     }
 
-    public async Task<bool> TriggerDeath(Character target, GridManager gridManager) {
+    public async Task<bool> TriggerDeath(Warrior target, GridManager gridManager) {
         if (GetValue(target.stats) > 0) {
-            List<Character> enemies = gridManager.GetNearbyEnemies(target);
+            List<Warrior> enemies = gridManager.GetNearbyEnemies(target);
             List<Task> asyncFunctions = new();
-            foreach (Character enemy in enemies) {
-                asyncFunctions.Add(enemy.TakeDamage(target, GetValue(target.stats), Character.DamageType.Magical));
+            foreach (Warrior enemy in enemies) {
+                asyncFunctions.Add(enemy.TakeDamage(target, GetValue(target.stats), Warrior.DamageType.Magical));
             }
 
             await Task.WhenAll(asyncFunctions);

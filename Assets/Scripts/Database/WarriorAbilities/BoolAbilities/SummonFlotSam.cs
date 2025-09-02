@@ -9,13 +9,13 @@ public class SummonFlotSam {
         return $"{WarriorAbility.Keywords.StartOfCombat}: Summon a 2/3 Flot Sam";
     }
 
-    public async Task<bool> TriggerStartOfCombat(Summoner dealer, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerStartOfCombat(Summoner dealer, WarriorSummoner warriorSummoner) {
         WarriorStats flotSam = new FlotSam().GetStats();
-        flotSam.alignment = characterSpawner.spawningAlignment;
+        flotSam.alignment = warriorSummoner.summoningAlignment;
         flotSam.level = 0;
         flotSam.SetStats(flotSam);
 
-        await characterSpawner.SpawnRandomly(flotSam, dealer.transform.position);
+        await warriorSummoner.SummonRandomly(flotSam, dealer.transform.position);
         return true;
     }
 

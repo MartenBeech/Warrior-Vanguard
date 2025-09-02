@@ -9,10 +9,10 @@ public class WarmWelcome : Item {
         return this;
     }
 
-    public override async Task UseAfterEnemySpawn(ItemTriggerParams parameters) {
+    public override async Task UseAfterEnemySummon(ItemTriggerParams parameters) {
         GridManager gridManager = FindFirstObjectByType<GridManager>();
-        Character character = gridManager.GetCellCharacter(parameters.gridIndex);
-        character.stats.ability.burning.Add(1);
+        Warrior warrior = gridManager.GetCellWarrior(parameters.gridIndex);
+        warrior.stats.ability.burning.Add(1);
         await Task.Delay(0);
     }
 }

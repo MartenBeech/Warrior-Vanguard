@@ -7,9 +7,9 @@ public class LifeInDeath {
         return $"{WarriorAbility.Keywords.Kill}: Fully heal all other friends";
     }
 
-    public async Task<bool> TriggerKill(Character dealer, GridManager gridManager) {
+    public async Task<bool> TriggerKill(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            List<Character> damagedFriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
+            List<Warrior> damagedFriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
             damagedFriends.Remove(dealer);
 
             List<Task> asyncFunctions = new() { };

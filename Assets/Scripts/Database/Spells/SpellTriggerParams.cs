@@ -1,19 +1,19 @@
 public class SpellTriggerParams {
     public GridManager gridManager;
-    public Character target;
+    public Warrior target;
     public int cardLevel;
     public FloatingText floatingText;
-    public CharacterSpawner characterSpawner;
+    public WarriorSummoner warriorSummoner;
     public Deck deck;
     public Summoner summoner;
     public Hand hand;
 
     public SpellTriggerParams(
         GridManager gridManager = null,
-        Character target = null,
+        Warrior target = null,
         int cardLevel = 0,
         FloatingText floatingText = null,
-        CharacterSpawner characterSpawner = null,
+        WarriorSummoner warriorSummoner = null,
         Deck deck = null,
         Summoner summoner = null,
         Hand hand = null
@@ -22,7 +22,7 @@ public class SpellTriggerParams {
         this.target = target;
         this.cardLevel = cardLevel;
         this.floatingText = floatingText;
-        this.characterSpawner = characterSpawner;
+        this.warriorSummoner = warriorSummoner;
         this.deck = deck;
         this.summoner = summoner;
         this.hand = hand;

@@ -7,10 +7,10 @@ public class Archer {
             health = new int[] { 2, 2 },
             speed = 2,
             range = 5,
-            damageType = Character.DamageType.Physical,
-            race = Character.Race.Human,
+            damageType = Warrior.DamageType.Physical,
+            race = Warrior.Race.Human,
             rarity = CardRarity.Common,
-            genre = Character.Genre.Human,
+            genre = Warrior.Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

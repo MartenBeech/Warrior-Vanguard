@@ -10,7 +10,7 @@ public class DragonDiscount : Item {
     }
 
     public override async Task UseStartOfTurn(ItemTriggerParams parameters) {
-        parameters.enemyHand.ReduceCostRace(1, Character.Race.Dragon);
+        parameters.enemyHand.ReduceCostRace(1, Warrior.Race.Dragon);
         await Task.CompletedTask;
     }
 }

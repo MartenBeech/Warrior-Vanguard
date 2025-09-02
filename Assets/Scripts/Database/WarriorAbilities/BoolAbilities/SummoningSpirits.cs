@@ -6,16 +6,16 @@ public class SummoningSpirits {
         return $"Your cards cost 1 less";
     }
 
-    public bool TriggerSummon(Character character, GridManager gridManager) {
-        if (GetValue(character.stats)) {
+    public bool TriggerSummon(Warrior warrior, GridManager gridManager) {
+        if (GetValue(warrior.stats)) {
             gridManager.friendHand.ReduceCostAllCards(1);
             return true;
         }
         return false;
     }
 
-    public bool TriggerDeath(Character character, GridManager gridManager) {
-        if (GetValue(character.stats)) {
+    public bool TriggerDeath(Warrior warrior, GridManager gridManager) {
+        if (GetValue(warrior.stats)) {
             gridManager.friendHand.IncreaseCostAllCards(1);
             return true;
         }

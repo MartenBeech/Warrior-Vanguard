@@ -7,10 +7,10 @@ public class SinisterHowler {
             health = new int[] { 5, 5 },
             speed = 3,
             range = 2,
-            damageType = Character.DamageType.Physical,
-            race = Character.Race.Ghoul,
+            damageType = Warrior.DamageType.Physical,
+            race = Warrior.Race.Ghoul,
             rarity = CardRarity.Rare,
-            genre = Character.Genre.Undead,
+            genre = Warrior.Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

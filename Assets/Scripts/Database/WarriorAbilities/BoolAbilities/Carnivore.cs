@@ -6,7 +6,7 @@ public class Carnivore {
         return $"{WarriorAbility.Keywords.Kill}: Heal equal to the target's health";
     }
 
-    public async Task<bool> TriggerKill(Character dealer, Character target) {
+    public async Task<bool> TriggerKill(Warrior dealer, Warrior target) {
         if (GetValue(dealer.stats)) {
             await dealer.Heal(dealer, target.stats.GetHealthMax());
             dealer.UpdateWarriorUI();

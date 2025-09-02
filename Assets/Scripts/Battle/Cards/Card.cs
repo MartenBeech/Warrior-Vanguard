@@ -76,17 +76,17 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             raceText.text = $"{stats.race}";
         }
 
-        if (stats.race != Character.Race.None) {
+        if (stats.race != Warrior.Race.None) {
             racePanel.SetActive(true);
             racePanel.GetComponent<Image>().color = ColorPalette.AddTransparency(stats.genre switch {
-                Character.Genre.Human => ColorPalette.GetColor(ColorPalette.ColorEnum.Blue),
-                Character.Genre.Forest => ColorPalette.GetColor(ColorPalette.ColorEnum.GreenDark),
-                Character.Genre.Undead => ColorPalette.GetColor(ColorPalette.ColorEnum.Purple),
-                Character.Genre.Underworld => ColorPalette.GetColor(ColorPalette.ColorEnum.Orange),
-                Character.Genre.Light => ColorPalette.GetColor(ColorPalette.ColorEnum.Yellow),
-                Character.Genre.Dark => ColorPalette.GetColor(ColorPalette.ColorEnum.Gray),
-                Character.Genre.Fire => ColorPalette.GetColor(ColorPalette.ColorEnum.Red),
-                Character.Genre.Nature => ColorPalette.GetColor(ColorPalette.ColorEnum.Teal),
+                Warrior.Genre.Human => ColorPalette.GetColor(ColorPalette.ColorEnum.Blue),
+                Warrior.Genre.Forest => ColorPalette.GetColor(ColorPalette.ColorEnum.GreenDark),
+                Warrior.Genre.Undead => ColorPalette.GetColor(ColorPalette.ColorEnum.Purple),
+                Warrior.Genre.Underworld => ColorPalette.GetColor(ColorPalette.ColorEnum.Orange),
+                Warrior.Genre.Light => ColorPalette.GetColor(ColorPalette.ColorEnum.Yellow),
+                Warrior.Genre.Dark => ColorPalette.GetColor(ColorPalette.ColorEnum.Gray),
+                Warrior.Genre.Fire => ColorPalette.GetColor(ColorPalette.ColorEnum.Red),
+                Warrior.Genre.Nature => ColorPalette.GetColor(ColorPalette.ColorEnum.Teal),
                 _ => ColorPalette.GetColor(ColorPalette.ColorEnum.Black),
             }, 80);
 
@@ -181,7 +181,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
     public void UpdateDisabledUI() {
         isDisabled = false;
-        if (gameManager && stats.alignment == CharacterSpawner.Alignment.Friend) {
+        if (gameManager && stats.alignment == WarriorSummoner.Alignment.Friend) {
             isDisabled = !gameManager.friendCoin.CanAfford(stats.GetCost());
         }
 

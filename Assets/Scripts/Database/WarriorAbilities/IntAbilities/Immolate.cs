@@ -6,12 +6,12 @@ public class Immolate {
         return $"{WarriorAbility.Keywords.Overturn}: Deal {GetValue(stats)} damage to the enemy summoner";
     }
 
-    public async Task<bool> TriggerOverturn(Character dealer, GridManager gridManager, GameManager gameManager) {
+    public async Task<bool> TriggerOverturn(Warrior dealer, GridManager gridManager, GameManager gameManager) {
         if (GetValue(dealer.stats) > 0) {
-            Summoner summonerTarget = dealer.stats.alignment == CharacterSpawner.Alignment.Enemy ?
+            Summoner summonerTarget = dealer.stats.alignment == WarriorSummoner.Alignment.Enemy ?
                     gameManager.friendSummonerObject.GetComponent<Summoner>() :
                     gameManager.enemySummonerObject.GetComponent<Summoner>();
-            await summonerTarget.TakeDamage(dealer, GetValue(dealer.stats), gridManager, dealer.stats.damageType);
+            await summonerTarget.TakeDamage(dealer, GetValue(dealer.stats), gridManager, Warrior.DamageType.Magical);
             return true;
         }
         return false;

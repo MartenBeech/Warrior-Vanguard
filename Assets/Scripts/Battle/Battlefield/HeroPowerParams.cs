@@ -22,18 +22,18 @@ public class HeroPowerParams {
 public class HeroPowerEffectParams {
     public GameManager gameManager;
     public Hand friendHand;
-    public CharacterSpawner characterSpawner;
+    public WarriorSummoner warriorSummoner;
     public Summoner friendSummoner;
 
     public HeroPowerEffectParams(
         GameManager gameManager = null,
         Hand friendHand = null,
-        CharacterSpawner characterSpawner = null,
+        WarriorSummoner warriorSummoner = null,
         Summoner friendSummoner = null
     ) {
         this.gameManager = gameManager;
         this.friendHand = friendHand;
-        this.characterSpawner = characterSpawner;
+        this.warriorSummoner = warriorSummoner;
         this.friendSummoner = friendSummoner;
     }
 }

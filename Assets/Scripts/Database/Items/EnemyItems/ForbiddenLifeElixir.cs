@@ -9,7 +9,7 @@ public class ForbiddenLifeElixir : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(ItemTriggerParams parameters) {
+    public override void UseOnFriendSummon(ItemTriggerParams parameters) {
         if (parameters.stats.ability.GetAbilityText(parameters.stats).Contains("Revive") && !parameters.stats.ability.GetAbilityText(parameters.stats).Contains("Afterlife")) {
             parameters.stats.ability.afterlife.Add();
         } else if (parameters.stats.ability.GetAbilityText(parameters.stats).Contains("Afterlife") && !parameters.stats.ability.GetAbilityText(parameters.stats).Contains("Revive")) {

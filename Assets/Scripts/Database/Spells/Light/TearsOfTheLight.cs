@@ -13,19 +13,19 @@ public class TearsOfTheLight {
             "Heal all friendly warriors for 2 health",
             "Heal all friendly warriors for 3 health"
             },
-            race = Character.Race.Light,
+            race = Warrior.Race.Light,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }
 
     public async Task Trigger(SpellTriggerParams parameters) {
         int value = parameters.cardLevel == 0 ? 2 : 3;
-        List<Character> friends = parameters.gridManager.GetFriends(GameManager.turn);
+        List<Warrior> friends = parameters.gridManager.GetFriends(GameManager.turn);
         List<Task> asyncFunctions = new();
-        foreach (Character friend in friends) {
+        foreach (Warrior friend in friends) {
             asyncFunctions.Add(friend.Heal(friend, value));
         }
         await Task.WhenAll(asyncFunctions);

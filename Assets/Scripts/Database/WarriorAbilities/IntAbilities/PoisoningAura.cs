@@ -5,7 +5,7 @@ public class PoisoningAura {
         return $"When attacked: Apply {GetValue(stats)} Poison to the attacker";
     }
 
-    public bool TriggerAttacked(Character dealer, Character target) {
+    public bool TriggerAttacked(Warrior dealer, Warrior target) {
         if (GetValue(target.stats) > 0) {
             dealer.stats.ability.poisoned.Add(GetValue(target.stats));
             dealer.UpdateWarriorUI();

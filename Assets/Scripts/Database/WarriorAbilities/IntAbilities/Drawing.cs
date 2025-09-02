@@ -7,9 +7,9 @@ public class Drawing {
         return $"{WarriorAbility.Keywords.Summon}: Draw {GetValue(stats)} cards";
     }
 
-    public async Task<bool> TriggerSummon(Character character, GameManager gameManager) {
-        if (GetValue(character.stats) > 0) {
-            for (int i = 0; i < GetValue(character.stats); i++) {
+    public async Task<bool> TriggerSummon(Warrior warrior, GameManager gameManager) {
+        if (GetValue(warrior.stats) > 0) {
+            for (int i = 0; i < GetValue(warrior.stats); i++) {
                 await gameManager.friendDeck.DrawCard();
             }
             return true;

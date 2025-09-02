@@ -6,7 +6,7 @@ public class Regeneration {
         return $"{WarriorAbility.Keywords.Overturn}: Heal {GetValue(stats)} to self";
     }
 
-    public async Task<bool> TriggerOverturn(Character dealer) {
+    public async Task<bool> TriggerOverturn(Warrior dealer) {
         if (GetValue(dealer.stats) > 0) {
             await dealer.Heal(dealer, GetValue(dealer.stats));
             return true;

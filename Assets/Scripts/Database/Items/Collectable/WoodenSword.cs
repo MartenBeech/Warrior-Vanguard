@@ -6,7 +6,7 @@ public class WoodenSword : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(ItemTriggerParams parameters) {
+    public override void UseOnFriendSummon(ItemTriggerParams parameters) {
         parameters.stats.AddStrength(1);
     }
 }

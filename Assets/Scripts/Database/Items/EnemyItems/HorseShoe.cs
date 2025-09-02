@@ -9,7 +9,7 @@ public class HorseShoe : Item {
         return this;
     }
 
-    public override void UseOnWarriorSpawn(ItemTriggerParams parameters) {
+    public override void UseOnWarriorSummon(ItemTriggerParams parameters) {
         parameters.stats.speed++;
     }
 }

@@ -5,7 +5,7 @@ public class Joust {
         return $"For each tile moved, gain +1 strength this turn";
     }
 
-    public bool TriggerMove(Character dealer, int cellsMoved) {
+    public bool TriggerMove(Warrior dealer, int cellsMoved) {
         if (GetValue(dealer.stats)) {
             dealer.stats.tempStrength += cellsMoved;
             dealer.UpdateWarriorUI();

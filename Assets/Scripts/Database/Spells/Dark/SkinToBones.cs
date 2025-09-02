@@ -12,29 +12,29 @@ public class SkinToBones {
             "Kill an enemy and summon a skeleton",
             "Kill an enemy and summon 2 skeletons"
             },
-            race = Character.Race.Dark,
+            race = Warrior.Race.Dark,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }
 
     public async Task Trigger(SpellTriggerParams parameters) {
-        CharacterSpawner.Alignment alignment = CharacterSpawner.Alignment.Null;
-        if (parameters.target.stats.alignment == CharacterSpawner.Alignment.Enemy) {
-            alignment = CharacterSpawner.Alignment.Friend;
-        } else if (parameters.target.stats.alignment == CharacterSpawner.Alignment.Friend) {
-            alignment = CharacterSpawner.Alignment.Enemy;
+        WarriorSummoner.Alignment alignment = WarriorSummoner.Alignment.Null;
+        if (parameters.target.stats.alignment == WarriorSummoner.Alignment.Enemy) {
+            alignment = WarriorSummoner.Alignment.Friend;
+        } else if (parameters.target.stats.alignment == WarriorSummoner.Alignment.Friend) {
+            alignment = WarriorSummoner.Alignment.Enemy;
         }
 
         List<Task> asyncFunctions = new() {
             parameters.target.Die(parameters.target),
-            parameters.target.stats.ability.raiseDead.SummonSkeleton(parameters.target, parameters.target, parameters.characterSpawner, alignment)
+            parameters.target.stats.ability.raiseDead.SummonSkeleton(parameters.target, parameters.target, parameters.warriorSummoner, alignment)
         };
 
         if (parameters.cardLevel == 1) {
-            asyncFunctions.Add(parameters.target.stats.ability.raiseDead.SummonSkeleton(parameters.target, parameters.target, parameters.characterSpawner, alignment));
+            asyncFunctions.Add(parameters.target.stats.ability.raiseDead.SummonSkeleton(parameters.target, parameters.target, parameters.warriorSummoner, alignment));
         }
 
         await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Boned", ColorPalette.ColorEnum.Purple);

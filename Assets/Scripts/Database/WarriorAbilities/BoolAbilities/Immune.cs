@@ -5,7 +5,7 @@ public class Immune {
         return $"Cannot take any damage for 1 turn";
     }
 
-    public int TriggerDamaged(Character target, int damage) {
+    public int TriggerDamaged(Warrior target, int damage) {
         if (GetValue(target.stats)) {
             damage = 0;
         }

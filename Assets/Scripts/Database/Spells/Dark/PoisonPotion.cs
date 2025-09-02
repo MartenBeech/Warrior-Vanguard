@@ -11,10 +11,10 @@ public class PoisonPotion {
             "Apply 2 poison to an enemy",
             "Apply 3 poison to an enemy"
             },
-            race = Character.Race.Dark,
+            race = Warrior.Race.Dark,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }

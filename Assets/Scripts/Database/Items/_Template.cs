@@ -13,23 +13,23 @@ public class CLASSNAME : Item {
 
     }
 
-    public override void UseOnWarriorSpawn(ItemTriggerParams parameters) {
+    public override void UseOnWarriorSummon(ItemTriggerParams parameters) {
 
     }
 
-    public override void UseOnFriendSpawn(ItemTriggerParams parameters) {
+    public override void UseOnFriendSummon(ItemTriggerParams parameters) {
 
     }
 
-    public override void UseOnEnemySpawn(ItemTriggerParams parameters) {
+    public override void UseOnEnemySummon(ItemTriggerParams parameters) {
 
     }
-    public override async Task UseAfterFriendSpawn(ItemTriggerParams parameters) {
+    public override async Task UseAfterFriendSummon(ItemTriggerParams parameters) {
         await Task.Delay(0);
     }
 
 
-    public override async Task UseAfterEnemySpawn(ItemTriggerParams parameters) {
+    public override async Task UseAfterEnemySummon(ItemTriggerParams parameters) {
         await Task.Delay(0);
     }
 

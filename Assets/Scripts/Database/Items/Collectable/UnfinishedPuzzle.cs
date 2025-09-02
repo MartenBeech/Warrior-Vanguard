@@ -9,7 +9,7 @@ public class UnfinishedPuzzle : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(ItemTriggerParams parameters) {
+    public override void UseOnFriendSummon(ItemTriggerParams parameters) {
         parameters.stats.AddHealthMax(parameters.stats.GetHealthMax());
     }
 }

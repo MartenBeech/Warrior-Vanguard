@@ -6,12 +6,12 @@ public class BoneSpread {
         if (!GetValue(stats)) return "";
         return $"{WarriorAbility.Keywords.Death}: Summon 3 random{(stats.level == 1 ? " upgraded" : "")} Skeletons";
     }
-    public async Task<bool> TriggerDeath(Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerDeath(Warrior target, WarriorSummoner warriorSummoner) {
         if (GetValue(target.stats)) {
             RaiseDead raiseDead = new();
             List<Task> asyncFunctions = new();
             for (int i = 0; i < 3; i++) {
-                asyncFunctions.Add(raiseDead.SummonSkeleton(target, target, characterSpawner));
+                asyncFunctions.Add(raiseDead.SummonSkeleton(target, target, warriorSummoner));
             }
             await Task.WhenAll(asyncFunctions);
             return true;

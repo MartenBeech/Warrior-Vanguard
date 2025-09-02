@@ -6,13 +6,13 @@ public class Skeletal {
         return $"{WarriorAbility.Keywords.Death}: Gain {value} {(value > 1 ? "bones" : "bone")} to make future skeletons stronger";
     }
 
-    public void TriggerDeath(Character target, Summoner summoner) {
+    public void TriggerDeath(Warrior target, Summoner summoner) {
         if (GetValue(target.stats) > 0) {
             summoner.stats.skeletonBones += GetValue(target.stats);
         }
     }
 
-    public void TriggerSummon(Character target, Summoner summoner) {
+    public void TriggerSummon(Warrior target, Summoner summoner) {
         if (GetValue(target.stats) > 0) {
 
             for (int i = 0; i < summoner.stats.skeletonBones; i++) {

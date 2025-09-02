@@ -6,7 +6,7 @@ public class SoulSiphon {
         return $"When attacking a summoner, draw a card";
     }
 
-    public async Task<bool> TriggerAttack(Character dealer, Deck deck) {
+    public async Task<bool> TriggerAttack(Warrior dealer, Deck deck) {
         if (GetValue(dealer.stats)) {
             await deck.DrawCard(false);
             return true;

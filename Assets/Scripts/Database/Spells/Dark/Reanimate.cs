@@ -12,10 +12,10 @@ public class Reanimate {
             "Kill a friend and resummon it",
             "Kill a friend and resummon it"
             },
-            race = Character.Race.Dark,
+            race = Warrior.Race.Dark,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }
@@ -31,7 +31,7 @@ public class Reanimate {
 
         asyncFunctions.Add(parameters.target.Die(parameters.target));
 
-        asyncFunctions.Add(parameters.characterSpawner.SpawnRandomly(stats, parameters.target.transform.position));
+        asyncFunctions.Add(parameters.warriorSummoner.SummonRandomly(stats, parameters.target.transform.position));
 
         await Task.WhenAll(asyncFunctions);
     }

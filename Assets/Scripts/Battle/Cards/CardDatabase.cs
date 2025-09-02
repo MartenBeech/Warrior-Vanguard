@@ -232,21 +232,21 @@ public static class CardDatabase {
         return stats;
     }
 
-    public static WarriorStats GetRandomWarriorWithSpecificCost(int cost, CharacterSpawner.Alignment alignment) {
+    public static WarriorStats GetRandomWarriorWithSpecificCost(int cost, WarriorSummoner.Alignment alignment) {
         List<WarriorStats> warriors = allCards.Where(card => card.GetCost() == cost && card.cardType == CardType.Warrior).ToList();
         WarriorStats randomWarrior = Rng.Entry(warriors);
         randomWarrior.alignment = alignment;
         return randomWarrior;
     }
 
-    public static WarriorStats GetRandomWarriorWithSpecificRace(Character.Race race, CharacterSpawner.Alignment alignment) {
+    public static WarriorStats GetRandomWarriorWithSpecificRace(Warrior.Race race, WarriorSummoner.Alignment alignment) {
         List<WarriorStats> warriors = allCards.Where(card => card.race == race).ToList();
         WarriorStats randomWarrior = Rng.Entry(warriors);
         randomWarrior.alignment = alignment;
         return randomWarrior;
     }
 
-    public static WarriorStats GetRandomSpell(CharacterSpawner.Alignment alignment) {
+    public static WarriorStats GetRandomSpell(WarriorSummoner.Alignment alignment) {
         List<WarriorStats> spells = allCards.Where(card => card.cardType == CardType.Spell).ToList();
         WarriorStats randomSpell = Rng.Entry(spells);
         randomSpell.alignment = alignment;

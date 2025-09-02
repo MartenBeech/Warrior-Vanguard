@@ -5,7 +5,7 @@ public class Inspire {
         return $"Whenever this heals someone, gain +1/+1";
     }
 
-    public bool Trigger(Character dealer) {
+    public bool Trigger(Warrior dealer) {
         if (GetValue(dealer.stats)) {
             dealer.stats.AddStrength(1);
             dealer.stats.AddHealth(1);

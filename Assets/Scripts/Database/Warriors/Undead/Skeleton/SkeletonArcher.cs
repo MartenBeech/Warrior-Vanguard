@@ -7,10 +7,10 @@ public class SkeletonArcher {
             health = new int[] { 1, 1 },
             speed = 2,
             range = 4,
-            damageType = Character.DamageType.Physical,
-            race = Character.Race.Skeleton,
+            damageType = Warrior.DamageType.Physical,
+            race = Warrior.Race.Skeleton,
             rarity = CardRarity.Common,
-            genre = Character.Genre.Undead,
+            genre = Warrior.Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

@@ -6,9 +6,9 @@ public class Armor {
         return $"Reduce physical damage taken by {GetValue(stats)}";
     }
 
-    public int TriggerDamaged(Character target, int damage, Character.DamageType damageType) {
+    public int TriggerDamaged(Warrior target, int damage, Warrior.DamageType damageType) {
         if (GetValue(target.stats) > 0) {
-            if (damageType == Character.DamageType.Physical) {
+            if (damageType == Warrior.DamageType.Physical) {
                 damage -= GetValue(target.stats);
             }
         }

@@ -5,7 +5,7 @@ public class DarkTouch {
         return $"{WarriorAbility.Keywords.Attack}: Instantly kill targets left with max {GetValue(stats)} health";
     }
 
-    public bool TriggerAttack(Character dealer, Character target) {
+    public bool TriggerAttack(Warrior dealer, Warrior target) {
         if (GetValue(dealer.stats) > 0) {
             if (target.stats.GetHealthCurrent() <= GetValue(dealer.stats)) {
                 return true;

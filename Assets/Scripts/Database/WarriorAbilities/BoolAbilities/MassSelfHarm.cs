@@ -6,9 +6,9 @@ public class MassSelfHarm {
         return $"{WarriorAbility.Keywords.Aura}: Enemies have Self Harm";
     }
 
-    public bool TriggerSummon(Character dealer, GridManager gridManager) {
+    public bool TriggerSummon(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            List<Character> enemies = gridManager.GetEnemies(dealer.stats.alignment);
+            List<Warrior> enemies = gridManager.GetEnemies(dealer.stats.alignment);
             foreach (var enemy in enemies) {
                 enemy.stats.ability.selfHarm.Add();
                 enemy.UpdateWarriorUI();
@@ -18,9 +18,9 @@ public class MassSelfHarm {
         return false;
     }
 
-    public bool TriggerDeath(Character dealer, GridManager gridManager) {
+    public bool TriggerDeath(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            List<Character> enemies = gridManager.GetEnemies(dealer.stats.alignment);
+            List<Warrior> enemies = gridManager.GetEnemies(dealer.stats.alignment);
             foreach (var enemy in enemies) {
                 enemy.stats.ability.selfHarm.Remove();
                 enemy.UpdateWarriorUI();
@@ -30,7 +30,7 @@ public class MassSelfHarm {
         return false;
     }
 
-    public bool TriggerSummonEnemy(Character dealer, WarriorStats targetStats) {
+    public bool TriggerSummonEnemy(Warrior dealer, WarriorStats targetStats) {
         if (GetValue(dealer.stats)) {
             targetStats.ability.selfHarm.Add();
             return true;

@@ -13,10 +13,10 @@ public class Berserk {
             "A warrior strikes all other warriors",
             "A warrior strikes all other warriors"
             },
-            race = Character.Race.Fire,
+            race = Warrior.Race.Fire,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }
@@ -24,9 +24,9 @@ public class Berserk {
     public async Task Trigger(SpellTriggerParams parameters) {
         List<Task> asyncFunctions = new();
 
-        List<Character> warriors = parameters.gridManager.GetCharacters();
+        List<Warrior> warriors = parameters.gridManager.GetWarriors();
         warriors.Remove(parameters.target);
-        foreach (Character warrior in warriors) {
+        foreach (Warrior warrior in warriors) {
             asyncFunctions.Add(parameters.target.Strike(warrior));
         }
 

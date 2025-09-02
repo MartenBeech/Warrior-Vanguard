@@ -7,9 +7,9 @@ public class LushGrounds {
         return $"{WarriorAbility.Keywords.Overturn}: Heal nearby friends by {GetValue(stats)}";
     }
 
-    public async Task<bool> TriggerOverturn(Character dealer, GridManager gridManager) {
+    public async Task<bool> TriggerOverturn(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            List<Character> friends = gridManager.GetNearbyFriends(dealer);
+            List<Warrior> friends = gridManager.GetNearbyFriends(dealer);
 
             List<Task> asyncFunctions = new();
             foreach (var friend in friends) {

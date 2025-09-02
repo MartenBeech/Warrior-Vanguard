@@ -6,9 +6,9 @@ public class FriendDiscount {
         return $"{WarriorAbility.Keywords.Overturn}: reduce the cost of a random friendly card by {GetValue(stats)}";
     }
 
-    public bool TriggerOverturn(Character character, GridManager gridManager) {
-        if (GetValue(character.stats) > 0) {
-            gridManager.friendHand.ReduceCostRandomCard(GetValue(character.stats));
+    public bool TriggerOverturn(Warrior warrior, GridManager gridManager) {
+        if (GetValue(warrior.stats) > 0) {
+            gridManager.friendHand.ReduceCostRandomCard(GetValue(warrior.stats));
             return true;
         }
         return false;

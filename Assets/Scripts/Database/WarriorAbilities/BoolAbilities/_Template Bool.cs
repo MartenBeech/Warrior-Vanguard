@@ -5,10 +5,10 @@ public class CLASSNAMEBOOL {
         return $"DESCRIPTION";
     }
 
-    public bool Trigger(Character character) {
-        if (GetValue(character.stats)) {
+    public bool Trigger(Warrior warrior) {
+        if (GetValue(warrior.stats)) {
             // Add trigger event here
-            character.UpdateWarriorUI();
+            warrior.UpdateWarriorUI();
             return true;
         }
         return false;

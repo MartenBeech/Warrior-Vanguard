@@ -6,10 +6,10 @@ public class CemeteryGates {
         return $"{WarriorAbility.Keywords.Overturn}: Summon a random{(stats.level == 1 ? " upgraded" : "")} Skeleton";
     }
 
-    public async Task<bool> TriggerOverturn(Character dealer, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerOverturn(Warrior dealer, WarriorSummoner warriorSummoner) {
         if (GetValue(dealer.stats)) {
             RaiseDead raiseDead = new();
-            await raiseDead.SummonSkeleton(dealer, dealer, characterSpawner);
+            await raiseDead.SummonSkeleton(dealer, dealer, warriorSummoner);
             return true;
         }
         return false;

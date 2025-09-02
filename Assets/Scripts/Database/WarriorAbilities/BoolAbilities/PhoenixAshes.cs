@@ -6,13 +6,13 @@ public class PhoenixAshes {
         return $"{WarriorAbility.Keywords.Death}: Turn into 0/1 ashes that resummon this next turn";
     }
 
-    public async Task<bool> TriggerDeath(Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerDeath(Warrior target, WarriorSummoner warriorSummoner) {
         if (GetValue(target.stats)) {
             WarriorStats ashes = new Ashes().GetStats();
             ashes.alignment = target.stats.alignment;
             ashes.level = target.stats.level;
 
-            await characterSpawner.Spawn(target.gridIndex, ashes, target.transform.position);
+            await warriorSummoner.Summon(target.gridIndex, ashes, target.transform.position);
             return true;
         }
         return false;

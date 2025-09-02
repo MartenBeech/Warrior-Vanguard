@@ -7,9 +7,9 @@ public class Luigi : WarriorStats {
             cost = new int[] { 1, 1 },
             speed = 2,
             range = 2,
-            damageType = Character.DamageType.Physical,
-            race = Character.Race.Human,
-            genre = Character.Genre.Human,
+            damageType = Warrior.DamageType.Physical,
+            race = Warrior.Race.Human,
+            genre = Warrior.Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

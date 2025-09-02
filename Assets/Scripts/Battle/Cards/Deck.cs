@@ -9,7 +9,7 @@ public class Deck : MonoBehaviour {
     public GameObject handObject;
     public GameObject summonerObject;
     public GameObject cardPrefab;
-    public CharacterSpawner.Alignment alignment;
+    public WarriorSummoner.Alignment alignment;
     public List<WarriorStats> deckList = new();
     public GridManager gridManager;
     private int burnoutDamage = 0;
@@ -52,7 +52,7 @@ public class Deck : MonoBehaviour {
         ObjectAnimation objectAnimation = cardInstance.GetComponentInChildren<ObjectAnimation>();
         Card card = cardInstance.GetComponentInChildren<Card>();
 
-        List<Character> friends = gridManager.GetFriends(alignment);
+        List<Warrior> friends = gridManager.GetFriends(alignment);
         foreach (var friend in friends) {
             friend.stats.ability.enlighten.TriggerDraw(friend);
             friend.stats.ability.intelligence.TriggerDraw(friend);
@@ -111,7 +111,7 @@ public class Deck : MonoBehaviour {
         Destroy(cardInstance);
 
         Summoner summoner = summonerObject.GetComponent<Summoner>();
-        await summoner.TakeDamage(null, burnoutDamage, null, Character.DamageType.Physical);
+        await summoner.TakeDamage(null, burnoutDamage, null, Warrior.DamageType.Physical);
     }
 
     public void ShuffleDeck(List<WarriorStats> deck) {

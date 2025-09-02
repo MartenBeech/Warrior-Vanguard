@@ -11,7 +11,7 @@ public class Hand : MonoBehaviour {
     public GridManager gridManager;
     public FloatingText floatingText;
     public Transform warriors;
-    public CharacterSpawner.Alignment alignment;
+    public WarriorSummoner.Alignment alignment;
     List<Card> cardsInHand = new();
 
     int handSize = 0;
@@ -36,15 +36,15 @@ public class Hand : MonoBehaviour {
         handSize++;
     }
 
-    public async Task PlayCardFromHand(CharacterSpawner characterSpawner, Vector2 selectedGridIndex) {
+    public async Task PlayCardFromHand(WarriorSummoner warriorSummoner, Vector2 selectedGridIndex) {
         GameManager gameManager = FindFirstObjectByType<GameManager>();
 
         Coin coin = null;
         GameObject summonerObject = null;
-        if (selectedCard.stats.alignment == CharacterSpawner.Alignment.Friend) {
+        if (selectedCard.stats.alignment == WarriorSummoner.Alignment.Friend) {
             coin = gameManager.friendCoin;
             summonerObject = gameManager.friendSummonerObject;
-        } else if (selectedCard.stats.alignment == CharacterSpawner.Alignment.Enemy) {
+        } else if (selectedCard.stats.alignment == WarriorSummoner.Alignment.Enemy) {
             coin = gameManager.enemyCoin;
             summonerObject = gameManager.enemySummonerObject;
         }
@@ -52,9 +52,9 @@ public class Hand : MonoBehaviour {
         if (!coin.SpendCoins(selectedCard.stats.GetCost())) return;
 
         Deck deck = null;
-        if (selectedCard.stats.alignment == CharacterSpawner.Alignment.Friend) {
+        if (selectedCard.stats.alignment == WarriorSummoner.Alignment.Friend) {
             deck = gameManager.friendDeck;
-        } else if (selectedCard.stats.alignment == CharacterSpawner.Alignment.Enemy) {
+        } else if (selectedCard.stats.alignment == WarriorSummoner.Alignment.Enemy) {
             deck = gameManager.enemyDeck;
         }
 
@@ -63,14 +63,14 @@ public class Hand : MonoBehaviour {
         List<Task> asyncFunctions = new();
         if (selectedCard.stats.cardType == CardType.Warrior) {
             asyncFunctions.Add(
-                characterSpawner.Spawn(selectedGridIndex, selectedCard.stats, summonerObject.transform.position)
+                warriorSummoner.Summon(selectedGridIndex, selectedCard.stats, summonerObject.transform.position)
             );
         } else if (selectedCard.stats.cardType == CardType.Spell) {
             Type type = Type.GetType(selectedCard.stats.title);
             object instance = Activator.CreateInstance(type);
-            Character target = gridManager.GetCellCharacter(selectedGridIndex);
+            Warrior target = gridManager.GetCellWarrior(selectedGridIndex);
 
-            var spellTriggerParams = new SpellTriggerParams(gridManager, target, cardLevel: selectedCard.stats.level, floatingText, characterSpawner, deck, summoner, hand: this);
+            var spellTriggerParams = new SpellTriggerParams(gridManager, target, cardLevel: selectedCard.stats.level, floatingText, warriorSummoner, deck, summoner, hand: this);
 
             asyncFunctions.Add((Task)type.GetMethod("Trigger")?.Invoke(instance, new object[] { spellTriggerParams }));
         }
@@ -84,8 +84,8 @@ public class Hand : MonoBehaviour {
 
     public void SelectCard(Card card) {
         selectedCard = card;
-        CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
-        characterSpawner.ActivateSpawn(CharacterSpawner.Alignment.Friend);
+        WarriorSummoner warriorSummoner = FindFirstObjectByType<WarriorSummoner>();
+        warriorSummoner.ActivateSummon(WarriorSummoner.Alignment.Friend);
 
         GridManager gridManager = FindFirstObjectByType<GridManager>();
 
@@ -163,7 +163,7 @@ public class Hand : MonoBehaviour {
         }
     }
 
-    public void ReduceCostRace(int amount, Character.Race race) {
+    public void ReduceCostRace(int amount, Warrior.Race race) {
         foreach (var card in cardsInHand) {
             if (card.stats.race == race) {
                 card.stats.AddCost(-amount);

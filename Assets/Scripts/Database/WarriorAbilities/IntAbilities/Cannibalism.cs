@@ -5,7 +5,7 @@ public class Cannibalism {
         return $"{WarriorAbility.Keywords.Kill}: Gain +{GetValue(stats)}/+{GetValue(stats)}";
     }
 
-    public bool TriggerKill(Character dealer) {
+    public bool TriggerKill(Warrior dealer) {
         if (GetValue(dealer.stats) > 0) {
             dealer.stats.AddStrength(GetValue(dealer.stats));
             dealer.stats.AddHealth(GetValue(dealer.stats));

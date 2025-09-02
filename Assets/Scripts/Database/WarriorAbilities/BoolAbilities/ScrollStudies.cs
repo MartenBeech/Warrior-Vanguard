@@ -6,7 +6,7 @@ public class ScrollStudies {
         return $"{WarriorAbility.Keywords.Overturn}: Add a random spell to your hand";
     }
 
-    public async Task<bool> TriggerOverturn(Character dealer, Hand hand) {
+    public async Task<bool> TriggerOverturn(Warrior dealer, Hand hand) {
         if (GetValue(dealer.stats)) {
             WarriorStats randomSpell = CardDatabase.GetRandomSpell(dealer.stats.alignment);
 

@@ -5,7 +5,7 @@ public class Rooted {
         return $"Cancel next time this moves";
     }
 
-    public bool Trigger(Character dealer) {
+    public bool Trigger(Warrior dealer) {
         if (GetValue(dealer.stats)) {
             dealer.stats.ability.rooted.Remove();
             dealer.UpdateWarriorUI();

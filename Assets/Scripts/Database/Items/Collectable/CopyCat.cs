@@ -9,16 +9,16 @@ public class CopyCat : Item {
         return this;
     }
 
-    public override async Task UseAfterEnemySpawn(ItemTriggerParams parameters) {
+    public override async Task UseAfterEnemySummon(ItemTriggerParams parameters) {
         if (triggeredThisCombat) return;
         triggeredThisCombat = true;
 
-        CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
+        WarriorSummoner warriorSummoner = FindFirstObjectByType<WarriorSummoner>();
         GridManager gridManager = FindFirstObjectByType<GridManager>();
 
         WarriorStats clone = new();
         clone.SetStats(parameters.stats);
-        clone.alignment = parameters.stats.alignment == CharacterSpawner.Alignment.Friend ? CharacterSpawner.Alignment.Enemy : CharacterSpawner.Alignment.Friend;
-        await characterSpawner.SpawnRandomly(clone, gridManager.GetCellPosition(parameters.gridIndex));
+        clone.alignment = parameters.stats.alignment == WarriorSummoner.Alignment.Friend ? WarriorSummoner.Alignment.Enemy : WarriorSummoner.Alignment.Friend;
+        await warriorSummoner.SummonRandomly(clone, gridManager.GetCellPosition(parameters.gridIndex));
     }
 }

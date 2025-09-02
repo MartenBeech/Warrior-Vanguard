@@ -6,9 +6,9 @@ public class RaiseDead {
         return $"{WarriorAbility.Keywords.Kill}: Summon a random{(stats.level == 1 ? " upgraded" : "")} Skeleton";
     }
 
-    public async Task<bool> TriggerKill(Character dealer, Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerKill(Warrior dealer, Warrior target, WarriorSummoner warriorSummoner) {
         if (GetValue(dealer.stats)) {
-            await SummonSkeleton(dealer, target, characterSpawner);
+            await SummonSkeleton(dealer, target, warriorSummoner);
             return true;
         }
         return false;
@@ -48,7 +48,7 @@ public class RaiseDead {
 
     public WarriorAbility.BuffType buffType = WarriorAbility.BuffType.None;
 
-    public async Task SummonSkeleton(Character dealer, Character target, CharacterSpawner characterSpawner, CharacterSpawner.Alignment alignment = CharacterSpawner.Alignment.Null) {
+    public async Task SummonSkeleton(Warrior dealer, Warrior target, WarriorSummoner warriorSummoner, WarriorSummoner.Alignment alignment = WarriorSummoner.Alignment.Null) {
         int skeletonType = Rng.Range(0, 4);
 
         WarriorStats stats =
@@ -57,8 +57,8 @@ public class RaiseDead {
             skeletonType == 3 ? new SkeletonMage().GetStats() :
             new SkeletonRider().GetStats();
         stats.level = dealer.stats.level;
-        stats.alignment = alignment == CharacterSpawner.Alignment.Null ? dealer.stats.alignment : alignment;
+        stats.alignment = alignment == WarriorSummoner.Alignment.Null ? dealer.stats.alignment : alignment;
 
-        await characterSpawner.SpawnRandomly(stats, target.transform.position);
+        await warriorSummoner.SummonRandomly(stats, target.transform.position);
     }
 }

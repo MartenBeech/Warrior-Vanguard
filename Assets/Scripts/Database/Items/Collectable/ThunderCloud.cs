@@ -11,10 +11,10 @@ public class ThunderCloud : Item {
 
     public override async Task UseStartOfTurn(ItemTriggerParams parameters) {
         GridManager gridManager = FindFirstObjectByType<GridManager>();
-        List<Character> characters = gridManager.GetCharacters();
+        List<Warrior> warriors = gridManager.GetWarriors();
         List<Task> asyncFunctions = new();
-        foreach (var character in characters) {
-            asyncFunctions.Add(character.TakeDamage(character, 1, Character.DamageType.Magical));
+        foreach (var warrior in warriors) {
+            asyncFunctions.Add(warrior.TakeDamage(warrior, 1, Warrior.DamageType.Magical));
         }
         await Task.WhenAll(asyncFunctions);
     }

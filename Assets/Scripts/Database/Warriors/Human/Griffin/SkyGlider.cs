@@ -7,10 +7,10 @@ public class SkyGlider {
             health = new int[] { 5, 6 },
             speed = 4,
             range = 2,
-            damageType = Character.DamageType.Physical,
-            race = Character.Race.Griffin,
+            damageType = Warrior.DamageType.Physical,
+            race = Warrior.Race.Griffin,
             rarity = CardRarity.Common,
-            genre = Character.Genre.Human,
+            genre = Warrior.Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

@@ -9,14 +9,14 @@ public class CrackedEgg : Item {
         return this;
     }
 
-    public override async Task UseAfterFriendSpawn(ItemTriggerParams parameters) {
+    public override async Task UseAfterFriendSummon(ItemTriggerParams parameters) {
         if (parameters.stats.GetCost() >= 5) {
-            CharacterSpawner characterSpawner = FindFirstObjectByType<CharacterSpawner>();
+            WarriorSummoner warriorSummoner = FindFirstObjectByType<WarriorSummoner>();
             WarriorStats random1Cost = CardDatabase.GetRandomWarriorWithSpecificCost(1, parameters.stats.alignment);
             GridManager gridManager = FindFirstObjectByType<GridManager>();
             Vector2 from = gridManager.GetCellPosition(parameters.gridIndex);
 
-            await characterSpawner.SpawnRandomly(random1Cost, from);
+            await warriorSummoner.SummonRandomly(random1Cost, from);
         }
     }
 }

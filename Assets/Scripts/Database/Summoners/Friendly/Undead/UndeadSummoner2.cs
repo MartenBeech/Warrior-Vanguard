@@ -5,7 +5,7 @@ public class UndeadSummoner2 {
     public SummonerData GetData() {
         SummonerData data = new() {
             title = GetType().Name,
-            genre = Character.Genre.Undead,
+            genre = Warrior.Genre.Undead,
             description = "An Undead Summoner with dark powers",
             heroPowerTitle = "Rising Up",
             heroPowerDescription = "Add a friend to your hand that died this game",

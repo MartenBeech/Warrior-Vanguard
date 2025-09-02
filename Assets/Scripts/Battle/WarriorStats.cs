@@ -26,10 +26,10 @@ public class WarriorStats {
     public string displayTitle;
     public CardRarity rarity = CardRarity.None;
     public int level = 0;
-    public Character.DamageType damageType = Character.DamageType.Physical;
-    public Character.Race race = Character.Race.None;
-    public Character.Genre genre = Character.Genre.None;
-    public CharacterSpawner.Alignment alignment;
+    public Warrior.DamageType damageType = Warrior.DamageType.Physical;
+    public Warrior.Race race = Warrior.Race.None;
+    public Warrior.Genre genre = Warrior.Genre.None;
+    public WarriorSummoner.Alignment alignment;
     public CardType cardType = CardType.Warrior;
     public SpellTarget spellTarget = SpellTarget.None;
     public string[] spellDescription = new string[2];

@@ -5,7 +5,7 @@ public class BoneSculptor {
         return $"When you summon a Skeleton, give it +{GetValue(stats)}/+{GetValue(stats)}";
     }
 
-    public bool TriggerSummonFriend(Character dealer, WarriorStats targetStats) {
+    public bool TriggerSummonFriend(Warrior dealer, WarriorStats targetStats) {
         if (GetValue(dealer.stats) > 0) {
             if (targetStats.ability.skeletal.GetValue(targetStats) > 0) {
                 targetStats.AddStrength(GetValue(dealer.stats));

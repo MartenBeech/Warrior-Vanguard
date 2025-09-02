@@ -13,10 +13,10 @@ public class Parasite {
             "Kill an enemy and summon an exact copy for your side",
             "Kill an enemy and summon an exact copy for your side"
             },
-            race = Character.Race.Dark,
+            race = Warrior.Race.Dark,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }
@@ -27,15 +27,15 @@ public class Parasite {
         WarriorStats stats = new();
         stats.SetStats(parameters.target.stats);
 
-        if (parameters.target.stats.alignment == CharacterSpawner.Alignment.Enemy) {
-            stats.alignment = CharacterSpawner.Alignment.Friend;
-        } else if (parameters.target.stats.alignment == CharacterSpawner.Alignment.Friend) {
-            stats.alignment = CharacterSpawner.Alignment.Enemy;
+        if (parameters.target.stats.alignment == WarriorSummoner.Alignment.Enemy) {
+            stats.alignment = WarriorSummoner.Alignment.Friend;
+        } else if (parameters.target.stats.alignment == WarriorSummoner.Alignment.Friend) {
+            stats.alignment = WarriorSummoner.Alignment.Enemy;
         }
 
         asyncFunctions.Add(parameters.target.Die(parameters.target));
 
-        asyncFunctions.Add(parameters.characterSpawner.SpawnRandomly(stats, parameters.target.transform.position));
+        asyncFunctions.Add(parameters.warriorSummoner.SummonRandomly(stats, parameters.target.transform.position));
 
         await Task.WhenAll(asyncFunctions);
     }

@@ -5,7 +5,7 @@ public class Bloodlust {
         return $"{WarriorAbility.Keywords.Overturn}: If you attacked this turn, gain +{GetValue(stats)} strength";
     }
 
-    public bool TriggerOverturn(Character dealer) {
+    public bool TriggerOverturn(Warrior dealer) {
         if (GetValue(dealer.stats) > 0) {
             dealer.stats.AddStrength(GetValue(dealer.stats));
             dealer.UpdateWarriorUI();

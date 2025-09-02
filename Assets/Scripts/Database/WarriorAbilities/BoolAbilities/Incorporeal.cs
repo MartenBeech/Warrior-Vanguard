@@ -5,9 +5,9 @@ public class Incorporeal {
         return $"Can max take 1 physical damage at a time";
     }
 
-    public int TriggerDamaged(Character target, int damage, Character.DamageType damageType) {
+    public int TriggerDamaged(Warrior target, int damage, Warrior.DamageType damageType) {
         if (GetValue(target.stats)) {
-            if (damageType == Character.DamageType.Physical) {
+            if (damageType == Warrior.DamageType.Physical) {
                 if (damage > 1) {
                     damage = 1;
                 }

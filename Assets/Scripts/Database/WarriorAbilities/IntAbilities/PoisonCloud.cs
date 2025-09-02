@@ -7,10 +7,10 @@ public class PoisonCloud {
         return $"{WarriorAbility.Keywords.Overturn}: Apply {GetValue(stats)} Poisoned to nearby enemies";
     }
 
-    public bool TriggerOverturn(Character dealer, GridManager gridManager) {
+    public bool TriggerOverturn(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
-            List<Character> nearbyEnemies = gridManager.GetNearbyEnemies(dealer);
-            foreach (Character enemy in nearbyEnemies) {
+            List<Warrior> nearbyEnemies = gridManager.GetNearbyEnemies(dealer);
+            foreach (Warrior enemy in nearbyEnemies) {
                 enemy.stats.ability.poisoned.Add(GetValue(dealer.stats));
                 enemy.UpdateWarriorUI();
             }

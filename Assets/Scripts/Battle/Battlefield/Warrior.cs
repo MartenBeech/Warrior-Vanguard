@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public enum Race {
         None, Construct, Dragon, //Common
         Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Nightrider, //Undead
@@ -36,17 +36,17 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     };
 
     private Hand hand;
-    public CharacterSpawner characterSpawner;
+    public WarriorSummoner warriorSummoner;
     private Transform summonerObject;
     private Summoner summoner;
     private FloatingText floatingText;
     private bool isDying = false;
 
-    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, CharacterSpawner characterSpawner, Transform summonerObject, Summoner summoner, HoverCard hoverCard, FloatingText floatingText) {
+    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, WarriorSummoner warriorSummoner, Transform summonerObject, Summoner summoner, HoverCard hoverCard, FloatingText floatingText) {
         this.gameManager = gameManager;
         this.gridManager = gridManager;
         this.hand = hand;
-        this.characterSpawner = characterSpawner;
+        this.warriorSummoner = warriorSummoner;
         this.summonerObject = summonerObject;
         this.summoner = summoner;
         this.hoverCard = hoverCard;
@@ -59,12 +59,14 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         attackText.text = $"{stats.GetStrength()}";
         healthText.text = $"{stats.GetHealthCurrent()}";
 
+
+
         Sprite sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
         image.GetComponent<Image>().sprite = sprite != null ? sprite : Resources.Load<Sprite>($"Images/Icons/Red Cross");
 
-        if (stats.alignment == CharacterSpawner.Alignment.Friend) {
+        if (stats.alignment == WarriorSummoner.Alignment.Friend) {
             crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Green);
-        } else if (stats.alignment == CharacterSpawner.Alignment.Enemy) {
+        } else if (stats.alignment == WarriorSummoner.Alignment.Enemy) {
             crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Red);
         }
 
@@ -90,7 +92,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (stats.ability.stunned.GetValue(stats)) return;
 
         if (stats.ability.seduced.GetValue(stats)) {
-            stats.alignment = stats.alignment == CharacterSpawner.Alignment.Enemy ? CharacterSpawner.Alignment.Friend : CharacterSpawner.Alignment.Enemy;
+            stats.alignment = stats.alignment == WarriorSummoner.Alignment.Enemy ? WarriorSummoner.Alignment.Friend : WarriorSummoner.Alignment.Enemy;
             direction = direction == Direction.Left ? Direction.Right : Direction.Left;
         }
 
@@ -103,11 +105,11 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
             if (IsOutOfField(newGridIndex)) break;
 
-            Character frontCellCharacter = gridManager.GetCellCharacter(newGridIndex);
-            if (!frontCellCharacter) {
+            Warrior frontCellWarrior = gridManager.GetCellWarrior(newGridIndex);
+            if (!frontCellWarrior) {
                 stepsToMove = i;
-            } else if (frontCellCharacter && frontCellCharacter.stats.alignment != stats.alignment) {
-                if (!stats.ability.flying.GetValue(stats) || frontCellCharacter.stats.ability.flying.GetValue(frontCellCharacter.stats))
+            } else if (frontCellWarrior && frontCellWarrior.stats.alignment != stats.alignment) {
+                if (!stats.ability.flying.GetValue(stats) || frontCellWarrior.stats.ability.flying.GetValue(frontCellWarrior.stats))
                     break;
             }
         }
@@ -142,10 +144,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         for (int i = 1; i <= stats.range; i++) {
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
-            Character characterOnCell = gridManager.GetCellCharacter(newGridIndex);
+            Warrior warriorOnCell = gridManager.GetCellWarrior(newGridIndex);
 
-            if (characterOnCell && characterOnCell.stats.alignment != stats.alignment) {
-                await Attack(characterOnCell);
+            if (warriorOnCell && warriorOnCell.stats.alignment != stats.alignment) {
+                await Attack(warriorOnCell);
                 break;
             }
 
@@ -156,7 +158,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
     }
 
-    public async Task Attack(Character target, bool dealDoubleDamage = false) {
+    public async Task Attack(Warrior target, bool dealDoubleDamage = false) {
         stats.attackedThisTurn = true;
         int damage = stats.GetStrength();
 
@@ -198,16 +200,16 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         stats.attackedThisTurn = true;
 
         Summoner summonerTarget = null;
-        if (stats.alignment == CharacterSpawner.Alignment.Friend) {
+        if (stats.alignment == WarriorSummoner.Alignment.Friend) {
             summonerTarget = gameManager.enemySummonerObject.GetComponent<Summoner>(); ;
-        } else if (stats.alignment == CharacterSpawner.Alignment.Enemy) {
+        } else if (stats.alignment == WarriorSummoner.Alignment.Enemy) {
             summonerTarget = gameManager.friendSummonerObject.GetComponent<Summoner>();
         }
 
         Deck deck = null;
-        if (stats.alignment == CharacterSpawner.Alignment.Friend) {
+        if (stats.alignment == WarriorSummoner.Alignment.Friend) {
             deck = gameManager.friendDeck;
-        } else if (stats.alignment == CharacterSpawner.Alignment.Enemy) {
+        } else if (stats.alignment == WarriorSummoner.Alignment.Enemy) {
             deck = gameManager.enemyDeck;
         }
 
@@ -217,7 +219,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
     }
 
-    public async Task Strike(Character target, int damage = -1) {
+    public async Task Strike(Warrior target, int damage = -1) {
         if (damage == -1) {
             damage = stats.GetStrength();
         }
@@ -243,9 +245,9 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         stats.ability.rooting.TriggerStrike(this, target);
     }
 
-    public async Task<int> TakeDamage(Character dealer, int damage, DamageType damageType) {
+    public async Task<int> TakeDamage(Warrior dealer, int damage, DamageType damageType) {
         if (!stats.ability.humanShield.GetValue(stats)) {
-            List<Character> nearbyFriends = gridManager.GetNearbyFriends(this);
+            List<Warrior> nearbyFriends = gridManager.GetNearbyFriends(this);
             foreach (var nearbyFriend in nearbyFriends) {
                 if (nearbyFriend.stats.ability.humanShield.GetValue(nearbyFriend.stats)) {
                     return await nearbyFriend.TakeDamage(dealer, damage, damageType);
@@ -264,7 +266,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         damage = stats.ability.immune.TriggerDamaged(this, damage);
 
-        if (stats.alignment == CharacterSpawner.Alignment.Enemy && damage == 1) {
+        if (stats.alignment == WarriorSummoner.Alignment.Enemy && damage == 1) {
             Underdog underdog = new GameObject().AddComponent<Underdog>();
             if (ItemManager.items.Find(item => item.title == underdog.GetItem().title)) {
                 damage = 2;
@@ -299,7 +301,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         return damage;
     }
 
-    public async Task Heal(Character dealer, int amount) {
+    public async Task Heal(Warrior dealer, int amount) {
         if (!this || !dealer) return;
 
         if (stats.GetHealthCurrent() < stats.GetHealthMax()) {
@@ -324,15 +326,15 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
     }
 
-    public async Task Die(Character dealer) {
+    public async Task Die(Warrior dealer) {
         if (stats.ability.cheatDeath.TriggerDamaged(this)) return;
 
         if (isDying) return;
         isDying = true;
 
         summoner.stats.graveyard.Add(stats.title);
-        gameManager.RemoveCharacter(this);
-        gridManager.RemoveCharacter(this);
+        gameManager.RemoveWarrior(this);
+        gridManager.RemoveWarrior(this);
 
         stats.ability.skeletal.TriggerDeath(this, summoner);
         stats.ability.forestStrength.TriggerDeath(this, gridManager);
@@ -347,10 +349,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         List<Task> asyncFunctions = new() {
             stats.ability.explosion.TriggerDeath(this, gridManager),
-            stats.ability.revive.TriggerDeath(this, characterSpawner),
-            stats.ability.hydraSplit.TriggerDeath(this, characterSpawner),
-            stats.ability.boneSpread.TriggerDeath(this, characterSpawner),
-            stats.ability.phoenixAshes.TriggerDeath(this, characterSpawner),
+            stats.ability.revive.TriggerDeath(this, warriorSummoner),
+            stats.ability.hydraSplit.TriggerDeath(this, warriorSummoner),
+            stats.ability.boneSpread.TriggerDeath(this, warriorSummoner),
+            stats.ability.phoenixAshes.TriggerDeath(this, warriorSummoner),
         };
 
         if (stats.ability.afterlife.GetValue(stats)) {
@@ -361,19 +363,19 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (dealer && dealer != this) {
             dealer.stats.ability.cannibalism.TriggerKill(dealer);
             asyncFunctions.Add(dealer.stats.ability.carnivore.TriggerKill(dealer, this));
-            asyncFunctions.Add(dealer.stats.ability.raiseDead.TriggerKill(dealer, this, characterSpawner));
+            asyncFunctions.Add(dealer.stats.ability.raiseDead.TriggerKill(dealer, this, warriorSummoner));
 
-            List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
-            foreach (Character friend in friends) {
-                asyncFunctions.Add(friend.stats.ability.deathCall.Trigger(friend, this, characterSpawner));
+            List<Warrior> friends = gridManager.GetFriends(dealer.stats.alignment);
+            foreach (Warrior friend in friends) {
+                asyncFunctions.Add(friend.stats.ability.deathCall.Trigger(friend, this, warriorSummoner));
             }
 
-            List<Character> characters = gridManager.GetCharacters();
-            foreach (Character character in characters) {
-                asyncFunctions.Add(character.stats.ability.looting.Trigger(character, floatingText));
+            List<Warrior> warriors = gridManager.GetWarriors();
+            foreach (Warrior warrior in warriors) {
+                asyncFunctions.Add(warrior.stats.ability.looting.Trigger(warrior, floatingText));
             }
 
-            asyncFunctions.Add(dealer.stats.ability.possess.TriggerKill(dealer, this, characterSpawner));
+            asyncFunctions.Add(dealer.stats.ability.possess.TriggerKill(dealer, this, warriorSummoner));
             asyncFunctions.Add(dealer.stats.ability.greedyStrike.TriggerKill(dealer, floatingText));
             asyncFunctions.Add(dealer.stats.ability.lifeInDeath.TriggerKill(dealer, gridManager));
             asyncFunctions.Add(dealer.stats.ability.dragonRecruiter.TriggerKill(dealer, dealer.hand));
@@ -381,7 +383,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         gameObject.SetActive(false);
 
-        if (stats.alignment == CharacterSpawner.Alignment.Friend) {
+        if (stats.alignment == WarriorSummoner.Alignment.Friend) {
             await ItemManager.enemyItem.UseOnWarriorDeath(new(summoner: summoner, gridIndex: gridIndex));
             await ItemManager.enemyItem.UseOnEnemyDeath(new(summoner: summoner, gridIndex: gridIndex));
             foreach (Item item in ItemManager.items) {
@@ -390,7 +392,7 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
         }
 
-        if (stats.alignment == CharacterSpawner.Alignment.Enemy) {
+        if (stats.alignment == WarriorSummoner.Alignment.Enemy) {
             await ItemManager.enemyItem.UseOnWarriorDeath(new(summoner: summoner, gridIndex: gridIndex));
             await ItemManager.enemyItem.UseOnFriendDeath(new(summoner: summoner, gridIndex: gridIndex));
             foreach (Item item in ItemManager.items) {
@@ -415,10 +417,10 @@ public class Character : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             await stats.ability.hitAndRun.TriggerOverturn(this);
         }
         stats.ability.poisonCloud.TriggerOverturn(this, gridManager);
-        await stats.ability.cemeteryGates.TriggerOverturn(this, characterSpawner);
-        await stats.ability.rebirth.TriggerOverturn(this, characterSpawner);
+        await stats.ability.cemeteryGates.TriggerOverturn(this, warriorSummoner);
+        await stats.ability.rebirth.TriggerOverturn(this, warriorSummoner);
         await stats.ability.regeneration.TriggerOverturn(this);
-        await stats.ability.sprout.TriggerOverturn(this, characterSpawner);
+        await stats.ability.sprout.TriggerOverturn(this, warriorSummoner);
         await stats.ability.sapEnergy.TriggerOverturn(this, gridManager);
         await stats.ability.massHeal.TriggerOverturn(this, gridManager);
         await stats.ability.lushGrounds.TriggerOverturn(this, gridManager);

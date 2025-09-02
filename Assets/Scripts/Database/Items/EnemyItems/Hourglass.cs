@@ -9,7 +9,7 @@ public class Hourglass : Item {
         return this;
     }
 
-    public override void UseOnWarriorSpawn(ItemTriggerParams parameters) {
+    public override void UseOnWarriorSummon(ItemTriggerParams parameters) {
         parameters.stats.speed = 1;
         parameters.stats.range = 1;
     }

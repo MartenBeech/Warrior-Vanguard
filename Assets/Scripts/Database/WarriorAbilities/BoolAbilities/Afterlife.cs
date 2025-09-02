@@ -8,7 +8,7 @@ public class Afterlife {
         return $"{WarriorAbility.Keywords.Death}: Return to your hand without this ability";
     }
 
-    public async Task<bool> TriggerDeath(Character target, Hand hand, Transform summonerObject, GameObject clone) {
+    public async Task<bool> TriggerDeath(Warrior target, Hand hand, Transform summonerObject, GameObject clone) {
         if (GetValue(target.stats)) {
             ObjectAnimation objectAnimation = clone.GetComponent<ObjectAnimation>();
             await objectAnimation.MoveObject(target.transform.position, summonerObject.position, 1, true);

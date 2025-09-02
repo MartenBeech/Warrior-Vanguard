@@ -7,10 +7,10 @@ public class SuccubusSeducer {
             health = new int[] { 5, 7 },
             speed = 2,
             range = 4,
-            damageType = Character.DamageType.Magical,
-            race = Character.Race.Succubus,
+            damageType = Warrior.DamageType.Magical,
+            race = Warrior.Race.Succubus,
             rarity = CardRarity.Rare,
-            genre = Character.Genre.Underworld,
+            genre = Warrior.Genre.Underworld,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

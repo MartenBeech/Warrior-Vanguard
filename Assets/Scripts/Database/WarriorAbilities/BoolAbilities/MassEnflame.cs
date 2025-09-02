@@ -6,9 +6,9 @@ public class MassEnflame {
         return $"{WarriorAbility.Keywords.Aura}: Friends have Enflame";
     }
 
-    public bool TriggerSummon(Character dealer, GridManager gridManager) {
+    public bool TriggerSummon(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
+            List<Warrior> friends = gridManager.GetFriends(dealer.stats.alignment);
             friends.Remove(dealer);
             foreach (var friend in friends) {
                 friend.stats.ability.enflame.Add();
@@ -19,9 +19,9 @@ public class MassEnflame {
         return false;
     }
 
-    public bool TriggerDeath(Character dealer, GridManager gridManager) {
+    public bool TriggerDeath(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            List<Character> friends = gridManager.GetFriends(dealer.stats.alignment);
+            List<Warrior> friends = gridManager.GetFriends(dealer.stats.alignment);
             friends.Remove(dealer);
             foreach (var friend in friends) {
                 friend.stats.ability.enflame.Remove();
@@ -32,7 +32,7 @@ public class MassEnflame {
         return false;
     }
 
-    public bool TriggerSummonFriend(Character dealer, WarriorStats targetStats) {
+    public bool TriggerSummonFriend(Warrior dealer, WarriorStats targetStats) {
         if (GetValue(dealer.stats)) {
             targetStats.ability.enflame.Add();
             return true;

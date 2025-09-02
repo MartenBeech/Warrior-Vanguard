@@ -24,13 +24,13 @@ public class GridCell : MonoBehaviour {
     public void Highlight() {
         isHighlighed = true;
 
-        Character character = gridManager.GetCellCharacter(gridIndex);
-        if (character) {
-            float currentTransparency = character.image.GetComponent<Image>().color.a;
+        Warrior warrior = gridManager.GetCellWarrior(gridIndex);
+        if (warrior) {
+            float currentTransparency = warrior.image.GetComponent<Image>().color.a;
             Color newColor = ColorPalette.GetColor(ColorPalette.ColorEnum.TealMedium);
             newColor.a = currentTransparency;
-            character.image.GetComponent<Image>().color = newColor;
-            character.border.SetActive(true);
+            warrior.image.GetComponent<Image>().color = newColor;
+            warrior.border.SetActive(true);
         }
 
         border.SetActive(true);
@@ -39,13 +39,13 @@ public class GridCell : MonoBehaviour {
     public void ClearHighlight() {
         isHighlighed = false;
 
-        Character character = gridManager.GetCellCharacter(gridIndex);
-        if (character) {
-            float currentTransparency = character.image.GetComponent<Image>().color.a;
+        Warrior warrior = gridManager.GetCellWarrior(gridIndex);
+        if (warrior) {
+            float currentTransparency = warrior.image.GetComponent<Image>().color.a;
             Color newColor = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
             newColor.a = currentTransparency;
-            character.image.GetComponent<Image>().color = newColor;
-            character.border.SetActive(false);
+            warrior.image.GetComponent<Image>().color = newColor;
+            warrior.border.SetActive(false);
         }
 
         border.SetActive(false);

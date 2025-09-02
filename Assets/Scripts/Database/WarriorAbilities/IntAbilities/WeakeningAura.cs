@@ -5,7 +5,7 @@ public class WeakeningAura {
         return $"When attacked: Apply {GetValue(stats)} Weakened which reduces target's strength";
     }
 
-    public bool TriggerAttacked(Character dealer, Character target) {
+    public bool TriggerAttacked(Warrior dealer, Warrior target) {
         if (GetValue(target.stats) > 0) {
             dealer.stats.ability.weakened.Add(GetValue(target.stats));
             dealer.UpdateWarriorUI();

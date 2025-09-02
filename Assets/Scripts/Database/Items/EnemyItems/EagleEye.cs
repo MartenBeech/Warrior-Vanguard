@@ -9,7 +9,7 @@ public class EagleEye : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(ItemTriggerParams parameters) {
+    public override void UseOnFriendSummon(ItemTriggerParams parameters) {
         parameters.stats.range += 2;
     }
 }

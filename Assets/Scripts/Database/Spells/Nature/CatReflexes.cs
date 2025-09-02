@@ -13,10 +13,10 @@ public class CatReflexes {
             "Give a friendly warrior retaliate",
             "Give a friendly warrior retaliate"
             },
-            race = Character.Race.Nature,
+            race = Warrior.Race.Nature,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }

@@ -13,17 +13,17 @@ public class Firebolt {
             "Deal 3 damage to a warrior",
             "Deal 4 damage to a warrior"
             },
-            race = Character.Race.Fire,
+            race = Warrior.Race.Fire,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }
 
     public async Task Trigger(SpellTriggerParams parameters) {
         int value = parameters.cardLevel == 0 ? 3 : 4;
-        await parameters.target.TakeDamage(parameters.target, value, Character.DamageType.Magical);
+        await parameters.target.TakeDamage(parameters.target, value, Warrior.DamageType.Magical);
         parameters.target.UpdateWarriorUI();
     }
 }

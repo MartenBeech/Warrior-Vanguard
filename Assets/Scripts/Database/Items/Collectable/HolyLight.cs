@@ -11,11 +11,11 @@ public class HolyLight : Item {
 
     public override async Task UseStartOfTurn(ItemTriggerParams parameters) {
         GridManager gridManager = FindFirstObjectByType<GridManager>();
-        List<Character> damagedFriends = gridManager.GetDamagedFriends(GameManager.turn);
+        List<Warrior> damagedFriends = gridManager.GetDamagedFriends(GameManager.turn);
 
         if (damagedFriends.Count == 0) return;
 
-        Character damagedFriend = Rng.Entry(damagedFriends);
+        Warrior damagedFriend = Rng.Entry(damagedFriends);
 
         await damagedFriend.Heal(damagedFriend, 2);
     }

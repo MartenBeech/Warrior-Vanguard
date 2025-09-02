@@ -13,10 +13,10 @@ public class Armageddon {
             "Deal 5 damage to ALL warriors",
             "Deal 5 damage to all enemies and 3 damage to all friends"
             },
-            race = Character.Race.Fire,
+            race = Warrior.Race.Fire,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }
@@ -24,14 +24,14 @@ public class Armageddon {
     public async Task Trigger(SpellTriggerParams parameters) {
         List<Task> asyncFunctions = new();
 
-        List<Character> enemies = parameters.gridManager.GetEnemies(GameManager.turn);
-        foreach (Character enemy in enemies) {
-            asyncFunctions.Add(enemy.TakeDamage(enemy, 5, Character.DamageType.Magical));
+        List<Warrior> enemies = parameters.gridManager.GetEnemies(GameManager.turn);
+        foreach (Warrior enemy in enemies) {
+            asyncFunctions.Add(enemy.TakeDamage(enemy, 5, Warrior.DamageType.Magical));
         }
 
-        List<Character> friends = parameters.gridManager.GetFriends(GameManager.turn);
-        foreach (Character friend in friends) {
-            asyncFunctions.Add(friend.TakeDamage(friend, parameters.cardLevel == 0 ? 5 : 3, Character.DamageType.Magical));
+        List<Warrior> friends = parameters.gridManager.GetFriends(GameManager.turn);
+        foreach (Warrior friend in friends) {
+            asyncFunctions.Add(friend.TakeDamage(friend, parameters.cardLevel == 0 ? 5 : 3, Warrior.DamageType.Magical));
         }
 
         await Task.WhenAll(asyncFunctions);

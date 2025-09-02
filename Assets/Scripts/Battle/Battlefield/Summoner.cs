@@ -49,7 +49,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdateItem();
     }
 
-    public async Task TakeDamage(Character dealer, int damage, GridManager gridManager, Character.DamageType damageType) {
+    public async Task TakeDamage(Warrior dealer, int damage, GridManager gridManager, Warrior.DamageType damageType) {
         if (dealer) {
             damage = dealer.stats.ability.stealth.TriggerStrike(dealer, damage);
             damage = stats.ability.armor.TriggerDamaged(dealer, damage, damageType);
@@ -134,9 +134,9 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         await floatingText.CreateFloatingText(transform, $"+{amount} shield", ColorPalette.ColorEnum.Gray);
     }
 
-    public async Task EndTurn(CharacterSpawner characterSpawner) {
+    public async Task EndTurn(WarriorSummoner warriorSummoner) {
         if (stats.ability.summonWisp.GetValue(stats)) {
-            await stats.ability.summonWisp.TriggerOverturn(this, characterSpawner);
+            await stats.ability.summonWisp.TriggerOverturn(this, warriorSummoner);
         }
     }
 }

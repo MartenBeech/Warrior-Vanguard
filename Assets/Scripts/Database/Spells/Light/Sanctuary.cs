@@ -13,16 +13,16 @@ public class Sanctuary {
             "Make all friends immune for 1 turn",
             "Make all friends immune for 1 turn"
             },
-            race = Character.Race.Light,
+            race = Warrior.Race.Light,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }
 
     public async Task Trigger(SpellTriggerParams parameters) {
-        List<Character> friends = parameters.gridManager.GetFriends(parameters.target.stats.alignment);
+        List<Warrior> friends = parameters.gridManager.GetFriends(parameters.target.stats.alignment);
 
         List<Task> asyncFunctions = new();
         foreach (var friend in friends) {

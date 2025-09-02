@@ -29,23 +29,23 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         // This metod should be overridden by each item
     }
 
-    public virtual void UseOnWarriorSpawn(ItemTriggerParams parameters) {
+    public virtual void UseOnWarriorSummon(ItemTriggerParams parameters) {
         // This metod should be overridden by each item
     }
 
-    public virtual void UseOnFriendSpawn(ItemTriggerParams parameters) {
+    public virtual void UseOnFriendSummon(ItemTriggerParams parameters) {
         // This metod should be overridden by each item
     }
 
-    public virtual void UseOnEnemySpawn(ItemTriggerParams parameters) {
+    public virtual void UseOnEnemySummon(ItemTriggerParams parameters) {
         // This metod should be overridden by each item
     }
-    public virtual async Task UseAfterFriendSpawn(ItemTriggerParams parameters) {
+    public virtual async Task UseAfterFriendSummon(ItemTriggerParams parameters) {
         await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }
 
-    public virtual async Task UseAfterEnemySpawn(ItemTriggerParams parameters) {
+    public virtual async Task UseAfterEnemySummon(ItemTriggerParams parameters) {
         await Task.Delay(0); // This removes the CS1998 warning
         // This metod should be overridden by each item
     }

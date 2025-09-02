@@ -13,10 +13,10 @@ public class Haste {
             "Give a friendly warrior +1 speed",
             "Give a friendly warrior +2 speed"
             },
-            race = Character.Race.Nature,
+            race = Warrior.Race.Nature,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }

@@ -7,10 +7,10 @@ public class GrandDualist {
             health = new int[] { 10, 11 },
             speed = 2,
             range = 2,
-            damageType = Character.DamageType.Physical,
-            race = Character.Race.Fencer,
+            damageType = Warrior.DamageType.Physical,
+            race = Warrior.Race.Fencer,
             rarity = CardRarity.Rare,
-            genre = Character.Genre.Human,
+            genre = Warrior.Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

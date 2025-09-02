@@ -5,7 +5,7 @@ public class Stoneskin {
         return $"Can max take 3 damage at a time";
     }
 
-    public int TriggerDamaged(Character target, int damage) {
+    public int TriggerDamaged(Warrior target, int damage) {
         if (GetValue(target.stats)) {
             if (damage > 3) {
                 damage = 3;

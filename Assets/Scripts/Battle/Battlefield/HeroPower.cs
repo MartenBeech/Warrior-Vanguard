@@ -15,7 +15,7 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public TooltipManager tooltipManager;
     public GameManager gameManager;
     public Hand friendHand;
-    public CharacterSpawner characterSpawner;
+    public WarriorSummoner warriorSummoner;
     public Summoner friendSummoner;
 
 
@@ -42,7 +42,7 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         gameManager.friendCoin.SpendCoins(cost);
         heroPowerButton.enabled = false;
         GetComponent<Image>().color = ColorPalette.AddTransparency(ColorPalette.GetColor(ColorPalette.ColorEnum.White), 25);
-        effect(new(gameManager, friendHand, characterSpawner, friendSummoner));
+        effect(new(gameManager, friendHand, warriorSummoner, friendSummoner));
     }
 
     public bool CanActivateHeroPower() {

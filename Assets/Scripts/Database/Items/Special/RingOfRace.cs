@@ -10,9 +10,9 @@ public class RingOfRace : Item {
         return this;
     }
 
-    public override void UseOnFriendSpawn(ItemTriggerParams parameters) {
+    public override void UseOnFriendSummon(ItemTriggerParams parameters) {
         string race = PlayerPrefs.GetString(raceKey, "NoRace");
-        if (parameters.stats.race == (Character.Race)System.Enum.Parse(typeof(Character.Race), race)) {
+        if (parameters.stats.race == (Warrior.Race)System.Enum.Parse(typeof(Warrior.Race), race)) {
             parameters.stats.AddHealth(2);
         }
     }

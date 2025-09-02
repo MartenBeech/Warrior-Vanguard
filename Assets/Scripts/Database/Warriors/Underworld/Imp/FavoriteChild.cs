@@ -7,10 +7,10 @@ public class FavoriteChild {
             health = new int[] { 2, 2 },
             speed = 2,
             range = 4,
-            damageType = Character.DamageType.Magical,
-            race = Character.Race.Imp,
+            damageType = Warrior.DamageType.Magical,
+            race = Warrior.Race.Imp,
             rarity = CardRarity.Rare,
-            genre = Character.Genre.Underworld,
+            genre = Warrior.Genre.Underworld,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

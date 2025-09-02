@@ -6,7 +6,7 @@ public class FaeMagic {
         return $"{WarriorAbility.Keywords.Overturn}: Give your summoner +{GetValue(stats)} shield";
     }
 
-    public async Task<bool> TriggerOverturn(Character dealer, Summoner summoner) {
+    public async Task<bool> TriggerOverturn(Warrior dealer, Summoner summoner) {
         if (GetValue(dealer.stats) > 0) {
             await summoner.AddShield(GetValue(dealer.stats));
             return true;

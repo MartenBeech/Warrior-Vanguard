@@ -5,10 +5,10 @@ public class Seduced {
         return $"Fight for your opponent next turn";
     }
 
-    public bool Trigger(Character dealer) {
+    public bool Trigger(Warrior dealer) {
         if (GetValue(dealer.stats)) {
             dealer.stats.ability.seduced.Remove();
-            dealer.stats.alignment = dealer.stats.alignment == CharacterSpawner.Alignment.Enemy ? CharacterSpawner.Alignment.Friend : CharacterSpawner.Alignment.Enemy;
+            dealer.stats.alignment = dealer.stats.alignment == WarriorSummoner.Alignment.Enemy ? WarriorSummoner.Alignment.Friend : WarriorSummoner.Alignment.Enemy;
             dealer.UpdateWarriorUI();
             return true;
         }

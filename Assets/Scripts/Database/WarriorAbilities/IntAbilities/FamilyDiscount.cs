@@ -6,9 +6,9 @@ public class FamilyDiscount {
         return $"{WarriorAbility.Keywords.Summon}: reduce the cost of all your cards by {GetValue(stats)}";
     }
 
-    public bool TriggerSummon(Character character, GridManager gridManager) {
-        if (GetValue(character.stats) > 0) {
-            gridManager.friendHand.ReduceCostAllCards(GetValue(character.stats));
+    public bool TriggerSummon(Warrior warrior, GridManager gridManager) {
+        if (GetValue(warrior.stats) > 0) {
+            gridManager.friendHand.ReduceCostAllCards(GetValue(warrior.stats));
             return true;
         }
         return false;

@@ -5,7 +5,7 @@ public class EternalNightmare {
         return $"This has permanent Afterlife";
     }
 
-    public bool Trigger(Character target) {
+    public bool Trigger(Warrior target) {
         if (GetValue(target.stats)) {
             target.stats.ability.afterlife.Add();
             target.UpdateWarriorUI();

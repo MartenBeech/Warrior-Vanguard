@@ -9,13 +9,13 @@ public class SummonMobyRichard {
         return $"{WarriorAbility.Keywords.StartOfCombat}: Summon a 10/10 Moby Richard";
     }
 
-    public async Task<bool> TriggerStartOfCombat(Summoner dealer, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerStartOfCombat(Summoner dealer, WarriorSummoner warriorSummoner) {
         WarriorStats mobyRichard = new MobyRichard().GetStats();
-        mobyRichard.alignment = characterSpawner.spawningAlignment;
+        mobyRichard.alignment = warriorSummoner.summoningAlignment;
         mobyRichard.level = 0;
         mobyRichard.SetStats(mobyRichard);
 
-        await characterSpawner.SpawnRandomly(mobyRichard, dealer.transform.position);
+        await warriorSummoner.SummonRandomly(mobyRichard, dealer.transform.position);
         return true;
     }
 

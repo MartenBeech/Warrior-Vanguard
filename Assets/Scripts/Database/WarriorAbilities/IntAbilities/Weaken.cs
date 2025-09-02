@@ -5,7 +5,7 @@ public class Weaken {
         return $"{WarriorAbility.Keywords.Strike}: Apply {GetValue(stats)} Weakened which reduces target's strength";
     }
 
-    public bool TriggerStrike(Character dealer, Character target) {
+    public bool TriggerStrike(Warrior dealer, Warrior target) {
         if (GetValue(dealer.stats) > 0) {
             target.stats.ability.weakened.Add(GetValue(dealer.stats));
             target.UpdateWarriorUI();

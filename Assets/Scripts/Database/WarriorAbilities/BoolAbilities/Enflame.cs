@@ -5,7 +5,7 @@ public class Enflame {
         return $"{WarriorAbility.Keywords.Strike}: Instead of dealing damage, apply Burning stacks";
     }
 
-    public int TriggerStrike(Character dealer, Character target, int damage) {
+    public int TriggerStrike(Warrior dealer, Warrior target, int damage) {
         if (GetValue(dealer.stats)) {
             target.stats.ability.burning.Add(damage);
             damage = 0;

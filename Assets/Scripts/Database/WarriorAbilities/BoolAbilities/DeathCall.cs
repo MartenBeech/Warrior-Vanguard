@@ -6,10 +6,10 @@ public class DeathCall {
         return $"When an enemy dies, Summon a random{(stats.level == 1 ? " upgraded" : "")} Skeleton";
     }
 
-    public async Task<bool> Trigger(Character dealer, Character target, CharacterSpawner characterSpawner) {
+    public async Task<bool> Trigger(Warrior dealer, Warrior target, WarriorSummoner warriorSummoner) {
         if (GetValue(dealer.stats)) {
             RaiseDead raiseDead = new();
-            await raiseDead.SummonSkeleton(dealer, target, characterSpawner);
+            await raiseDead.SummonSkeleton(dealer, target, warriorSummoner);
             return true;
         }
         return false;

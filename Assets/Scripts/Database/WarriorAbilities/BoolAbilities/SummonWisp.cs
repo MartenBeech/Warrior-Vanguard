@@ -9,13 +9,13 @@ public class SummonWisp {
         return $"{WarriorAbility.Keywords.Overturn}: Summon a 1/1 Wisp";
     }
 
-    public async Task<bool> TriggerOverturn(Summoner dealer, CharacterSpawner characterSpawner) {
+    public async Task<bool> TriggerOverturn(Summoner dealer, WarriorSummoner warriorSummoner) {
         WarriorStats wisp = new Wisp().GetStats();
-        wisp.alignment = characterSpawner.spawningAlignment;
+        wisp.alignment = warriorSummoner.summoningAlignment;
         wisp.level = 0;
         wisp.SetStats(wisp);
 
-        await characterSpawner.SpawnRandomly(wisp, dealer.transform.position);
+        await warriorSummoner.SummonRandomly(wisp, dealer.transform.position);
         return true;
     }
 

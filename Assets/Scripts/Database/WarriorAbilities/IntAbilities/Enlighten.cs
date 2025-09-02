@@ -5,7 +5,7 @@ public class Enlighten {
         return $"When you draw a card, gain {GetValue(stats)} health";
     }
 
-    public bool TriggerDraw(Character dealer) {
+    public bool TriggerDraw(Warrior dealer) {
         if (GetValue(dealer.stats) > 0) {
             dealer.stats.AddHealth(GetValue(dealer.stats));
             dealer.UpdateWarriorUI();

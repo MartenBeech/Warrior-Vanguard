@@ -7,20 +7,20 @@ public class Guard {
         return $"Can attack a random nearby enemy (even without moving)";
     }
 
-    public Character GetRandomNearbyEnemy(Character dealer, GridManager gridManager) {
+    public Warrior GetRandomNearbyEnemy(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            List<Character> enemies = gridManager.GetNearbyEnemies(dealer);
+            List<Warrior> enemies = gridManager.GetNearbyEnemies(dealer);
             if (enemies.Count == 0) return null;
 
-            Character randomEnemy = Rng.Entry(enemies);
+            Warrior randomEnemy = Rng.Entry(enemies);
             return randomEnemy;
         }
         return null;
     }
 
-    public async Task<bool> Trigger(Character dealer, GridManager gridManager) {
+    public async Task<bool> Trigger(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            Character nearbyEnemy = GetRandomNearbyEnemy(dealer, gridManager);
+            Warrior nearbyEnemy = GetRandomNearbyEnemy(dealer, gridManager);
 
             if (nearbyEnemy) {
                 await dealer.Attack(nearbyEnemy);

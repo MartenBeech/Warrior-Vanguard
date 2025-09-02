@@ -7,10 +7,10 @@ public class Silence {
         return $"{WarriorAbility.Keywords.Summon}: Remove all abilities from a random enemy";
     }
 
-    public async Task<bool> TriggerSummon(Character dealer, GridManager gridManager, FloatingText floatingText) {
+    public async Task<bool> TriggerSummon(Warrior dealer, GridManager gridManager, FloatingText floatingText) {
         if (GetValue(dealer.stats)) {
-            List<Character> enemies = gridManager.GetEnemies(dealer.stats.alignment);
-            Character randomEnemy = Rng.Entry(enemies);
+            List<Warrior> enemies = gridManager.GetEnemies(dealer.stats.alignment);
+            Warrior randomEnemy = Rng.Entry(enemies);
 
             if (randomEnemy) {
                 randomEnemy.stats.ability = new();

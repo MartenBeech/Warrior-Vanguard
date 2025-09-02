@@ -11,10 +11,10 @@ public class ForgeHammer : Item {
     }
 
     public override async Task UseStartOfTurn(ItemTriggerParams parameters) {
-        List<Character> friends = parameters.gridManager.GetFriends(parameters.summoner.stats.isFriendly ? CharacterSpawner.Alignment.Friend : CharacterSpawner.Alignment.Enemy);
+        List<Warrior> friends = parameters.gridManager.GetFriends(parameters.summoner.stats.isFriendly ? WarriorSummoner.Alignment.Friend : WarriorSummoner.Alignment.Enemy);
         if (friends.Count == 0) return;
 
-        Character randomFriend = Rng.Entry(friends);
+        Warrior randomFriend = Rng.Entry(friends);
         randomFriend.stats.AddStrength(1);
         randomFriend.UpdateWarriorUI();
         await parameters.floatingText.CreateFloatingText(randomFriend.transform, "+1 strength", ColorPalette.ColorEnum.Green);

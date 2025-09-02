@@ -9,7 +9,7 @@ public class Whalecome {
         return $"{WarriorAbility.Keywords.Death}: Give the player amazing loot";
     }
 
-    public void TriggerDeath(Character target) {
+    public void TriggerDeath(Warrior target) {
         if (GetValue(target.stats)) {
             ItemManager.RemoveItem(ItemManager.GetItemByTitle("WhaleHunt").GetItem());
             ItemManager.AddItem(ItemManager.GetItemByTitle("YouAreWhalecome").GetItem());

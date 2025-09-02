@@ -7,10 +7,10 @@ public class Gunslinger {
             health = new int[] { 3, 3 },
             speed = 2,
             range = 4,
-            damageType = Character.DamageType.Physical,
-            race = Character.Race.Pirate,
+            damageType = Warrior.DamageType.Physical,
+            race = Warrior.Race.Pirate,
             rarity = CardRarity.Common,
-            genre = Character.Genre.Human,
+            genre = Warrior.Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

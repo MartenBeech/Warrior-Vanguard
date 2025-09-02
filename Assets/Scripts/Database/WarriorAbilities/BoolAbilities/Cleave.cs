@@ -7,11 +7,11 @@ public class Cleave {
         return $"{WarriorAbility.Keywords.Attack}: Hit all enemies in the column";
     }
 
-    public async Task<bool> TriggerAttack(Character dealer, Character target, GridManager gridManager) {
+    public async Task<bool> TriggerAttack(Warrior dealer, Warrior target, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            List<Character> enemies = gridManager.GetFriendsOnColumn(target);
+            List<Warrior> enemies = gridManager.GetFriendsOnColumn(target);
             List<Task> asyncFunctions = new();
-            foreach (Character enemy in enemies) {
+            foreach (Warrior enemy in enemies) {
                 asyncFunctions.Add(dealer.Strike(enemy));
             }
 

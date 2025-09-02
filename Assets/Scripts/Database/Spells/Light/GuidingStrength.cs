@@ -13,10 +13,10 @@ public class GuidingStrength {
             "Give a friendly warrior +2 strength",
             "Give a friendly warrior +3 strength"
             },
-            race = Character.Race.Light,
+            race = Warrior.Race.Light,
             cardType = CardType.Spell,
         };
-        stats.genre = (Character.Genre)Enum.Parse(typeof(Character.Genre), stats.race.ToString());
+        stats.genre = (Warrior.Genre)Enum.Parse(typeof(Warrior.Genre), stats.race.ToString());
 
         return stats;
     }

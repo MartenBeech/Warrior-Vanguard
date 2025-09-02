@@ -5,7 +5,7 @@ public class Rooting {
         return $"{WarriorAbility.Keywords.Strike}: Cancel next time the target moves";
     }
 
-    public bool TriggerStrike(Character dealer, Character target) {
+    public bool TriggerStrike(Warrior dealer, Warrior target) {
         if (GetValue(dealer.stats)) {
             target.stats.ability.rooted.Add();
             target.UpdateWarriorUI();
