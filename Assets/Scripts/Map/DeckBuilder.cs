@@ -11,8 +11,8 @@ public class DeckBuilder : MonoBehaviour {
     public Transform deckListContainer;
 
     private void Start() {
-        deckViewPanel.SetActive(false);
-        hideDeckViewButton.SetActive(false);
+        if (deckViewPanel) deckViewPanel.SetActive(false);
+        if (hideDeckViewButton) hideDeckViewButton.SetActive(false);
         UpdateDeckText();
     }
 

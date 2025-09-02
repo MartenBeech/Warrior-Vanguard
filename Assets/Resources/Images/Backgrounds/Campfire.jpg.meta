@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 64a264c67ddab3648b11d425a0e97b60
+guid: 1c4e50a02e018d04db959c41088b9cbb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7255890156148424633
-    second: ForgeHammer_0
+      213: -4109412795537874883
+    second: Fireplace_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ForgeHammer_0
+      name: Fireplace_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 2
-        width: 346
-        height: 461
+        x: 0
+        y: 0
+        width: 254
+        height: 198
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9bffa7657a912b460800000000000000
-      internalID: 7255890156148424633
+      spriteID: d302586c5de68f6c0800000000000000
+      internalID: -4109412795537874883
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ForgeHammer_0: 7255890156148424633
+      Fireplace_0: -4109412795537874883
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
