@@ -6,14 +6,20 @@ public class CampfireManager : MonoBehaviour {
     public GameObject restButton;
     public GameObject upgradeCardButton;
     public GameObject upgradeCardPanel;
+    public GameObject cardUpgradeView;
+    public Card unUpgradedCardView;
+    public Card upgradedCardView;
     public GameObject cardPrefab;
     public TMP_Text infoText;
+    public TMP_Text upgradeCardText;
     public Transform deckListContainer;
     public DeckBuilder deckBuilder;
     public TMP_Text restButtonText;
     private int healAmount;
+    private Card cardToUpgrade;
     private void Start() {
         upgradeCardPanel.SetActive(false);
+        cardUpgradeView.SetActive(false);
         healAmount = (int)(FriendlySummoner.GetMaxHealth() * 0.3);
         restButtonText.text = $"Rest - Heal {healAmount} HP";
     }
@@ -39,19 +45,37 @@ public class CampfireManager : MonoBehaviour {
             Card card = cardItem.GetComponent<Card>();
             card.SetStats(stats);
             card.UpdateCardUI();
-            card.GetComponent<Button>().onClick.AddListener(() => UpgradeCard(card));
+            card.GetComponent<Button>().onClick.AddListener(() => ClickCardToUpgrade(card));
         }
+    }
+
+    private void ClickCardToUpgrade(Card card) {
+        cardToUpgrade = card;
+        unUpgradedCardView.SetStats(card.stats);
+        unUpgradedCardView.UpdateCardUI();
+
+        upgradedCardView.SetStats(card.stats);
+        upgradedCardView.stats.level += 1;
+        upgradedCardView.UpdateCardUI();
+
+        upgradeCardText.text = $"Upgrade {card.stats.title}?";
+        cardUpgradeView.SetActive(true);
+    }
+
+    public void UpgradeCard() {
+        deckBuilder.UpgradeCardInDeck(cardToUpgrade);
+        upgradeCardPanel.SetActive(false);
+        cardUpgradeView.SetActive(false);
+        infoText.text = $"{cardToUpgrade.stats.title} has been upgraded!";
+        FinishResting();
     }
 
     public void CloseUpgradeCardPanel() {
         upgradeCardPanel.SetActive(false);
     }
 
-    private void UpgradeCard(Card card) {
-        deckBuilder.UpgradeCardInDeck(card);
-        upgradeCardPanel.SetActive(false);
-        infoText.text = $"{card.stats.title} has been upgraded!";
-        FinishResting();
+    public void CloseCardUpgradeView() {
+        cardUpgradeView.SetActive(false);
     }
 
     public void ReturnButtonClicked() {

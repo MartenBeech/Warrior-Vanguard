@@ -218,7 +218,9 @@ public static class CardDatabase {
         string title = titleAndLevel.Split('_')[0];
         string level = titleAndLevel.Split('_')[1];
 
-        WarriorStats stats = allCards.Find(stats => stats.title == title);
+        WarriorStats stats = new();
+        stats.SetStats(allCards.Find(stats => stats.title == title));
+
         if (stats == null) {
             return null;
         }

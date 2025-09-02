@@ -23,7 +23,7 @@ public class DeckBuilder : MonoBehaviour {
 
     public void RemoveCardFromDeck(Card card) {
         List<WarriorStats> deck = DeckManager.GetDeck();
-        DeckManager.RemoveCard(deck.FindIndex(deckCard => deckCard.title == card.stats.title));
+        DeckManager.RemoveCard(deck.FindIndex(deckCard => deckCard.title == card.stats.title && deckCard.level == card.stats.level));
         UpdateDeckText();
     }
 
