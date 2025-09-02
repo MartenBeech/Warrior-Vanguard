@@ -25,6 +25,6 @@ public class GuidingStrength {
         int value = parameters.cardLevel == 0 ? 2 : 3;
         parameters.target.stats.AddStrength(value);
         parameters.target.UpdateWarriorUI();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Guiding Strength", ColorPalette.ColorEnum.Yellow);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Guiding Strength", ColorEnum.Yellow);
     }
 }

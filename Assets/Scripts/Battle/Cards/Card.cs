@@ -46,6 +46,13 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
             attackText.text = $"{stats.GetStrength()}";
             healthText.text = $"{stats.GetHealthCurrent()}";
+
+            if (stats.damageType == DamageType.Physical) {
+                attackText.color = ColorPalette.GetColor(ColorEnum.White);
+            } else if (stats.damageType == DamageType.Magical) {
+                attackText.color = ColorPalette.GetColor(ColorEnum.Teal);
+            }
+
             raceText.text = $"{stats.race}";
 
             if (stats.range == 2) {
@@ -79,21 +86,21 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         if (stats.race != Race.None) {
             racePanel.SetActive(true);
             racePanel.GetComponent<Image>().color = ColorPalette.AddTransparency(stats.genre switch {
-                Genre.Human => ColorPalette.GetColor(ColorPalette.ColorEnum.Blue),
-                Genre.Forest => ColorPalette.GetColor(ColorPalette.ColorEnum.GreenDark),
-                Genre.Undead => ColorPalette.GetColor(ColorPalette.ColorEnum.Purple),
-                Genre.Underworld => ColorPalette.GetColor(ColorPalette.ColorEnum.Orange),
-                Genre.Light => ColorPalette.GetColor(ColorPalette.ColorEnum.Yellow),
-                Genre.Dark => ColorPalette.GetColor(ColorPalette.ColorEnum.Gray),
-                Genre.Fire => ColorPalette.GetColor(ColorPalette.ColorEnum.Red),
-                Genre.Nature => ColorPalette.GetColor(ColorPalette.ColorEnum.Teal),
-                _ => ColorPalette.GetColor(ColorPalette.ColorEnum.Black),
+                Genre.Human => ColorPalette.GetColor(ColorEnum.Blue),
+                Genre.Forest => ColorPalette.GetColor(ColorEnum.GreenDark),
+                Genre.Undead => ColorPalette.GetColor(ColorEnum.Purple),
+                Genre.Underworld => ColorPalette.GetColor(ColorEnum.Orange),
+                Genre.Light => ColorPalette.GetColor(ColorEnum.Yellow),
+                Genre.Dark => ColorPalette.GetColor(ColorEnum.Gray),
+                Genre.Fire => ColorPalette.GetColor(ColorEnum.Red),
+                Genre.Nature => ColorPalette.GetColor(ColorEnum.Teal),
+                _ => ColorPalette.GetColor(ColorEnum.Black),
             }, 80);
 
             if (stats.cardType == CardType.Spell) {
-                raceText.color = ColorPalette.GetColor(ColorPalette.ColorEnum.Black);
+                raceText.color = ColorPalette.GetColor(ColorEnum.Black);
             } else if (stats.cardType == CardType.Warrior) {
-                raceText.color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
+                raceText.color = ColorPalette.GetColor(ColorEnum.White);
             }
 
         } else {
@@ -104,10 +111,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             rarityCrystal.SetActive(true);
 
             rarityCrystal.GetComponent<Image>().color = stats.rarity switch {
-                CardRarity.Common => ColorPalette.GetColor(ColorPalette.ColorEnum.White),
-                CardRarity.Rare => ColorPalette.GetColor(ColorPalette.ColorEnum.TealMedium),
-                CardRarity.Legendary => ColorPalette.GetColor(ColorPalette.ColorEnum.Orange),
-                _ => ColorPalette.GetColor(ColorPalette.ColorEnum.Black),
+                CardRarity.Common => ColorPalette.GetColor(ColorEnum.White),
+                CardRarity.Rare => ColorPalette.GetColor(ColorEnum.TealMedium),
+                CardRarity.Legendary => ColorPalette.GetColor(ColorEnum.Orange),
+                _ => ColorPalette.GetColor(ColorEnum.Black),
             };
 
         } else {

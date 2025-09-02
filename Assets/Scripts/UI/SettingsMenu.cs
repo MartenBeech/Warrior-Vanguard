@@ -46,9 +46,9 @@ public class SettingsMenu : MonoBehaviour {
 
         for (int i = 0; i < 5; i++) {
             if (volumePercentage >= (i * 20) + 20) {
-                musicPlayerBars[i].GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Black);
+                musicPlayerBars[i].GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Black);
             } else {
-                musicPlayerBars[i].GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Gray);
+                musicPlayerBars[i].GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Gray);
             }
         }
     }

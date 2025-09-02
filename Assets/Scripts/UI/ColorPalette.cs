@@ -1,11 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ColorPalette {
-    public enum ColorEnum {
-        Red, Green, GreenDark, Gray, Yellow, Black, White, Teal, TealMedium, TealWeak, Purple, Orange, Blue
-    }
+public enum ColorEnum {
+    Red, Green, GreenDark, Gray, Yellow, Black, White, Teal, TealMedium, TealWeak, Purple, Orange, Blue
+}
 
+public class ColorPalette {
     public static Color GetColor(ColorEnum color) {
         return color switch {
             ColorEnum.Red => Color.HSVToRGB(0 / 360f, 1f, 1f),

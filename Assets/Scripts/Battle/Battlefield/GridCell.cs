@@ -27,7 +27,7 @@ public class GridCell : MonoBehaviour {
         Warrior warrior = gridManager.GetCellWarrior(gridIndex);
         if (warrior) {
             float currentTransparency = warrior.image.GetComponent<Image>().color.a;
-            Color newColor = ColorPalette.GetColor(ColorPalette.ColorEnum.TealMedium);
+            Color newColor = ColorPalette.GetColor(ColorEnum.TealMedium);
             newColor.a = currentTransparency;
             warrior.image.GetComponent<Image>().color = newColor;
             warrior.border.SetActive(true);
@@ -42,7 +42,7 @@ public class GridCell : MonoBehaviour {
         Warrior warrior = gridManager.GetCellWarrior(gridIndex);
         if (warrior) {
             float currentTransparency = warrior.image.GetComponent<Image>().color.a;
-            Color newColor = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
+            Color newColor = ColorPalette.GetColor(ColorEnum.White);
             newColor.a = currentTransparency;
             warrior.image.GetComponent<Image>().color = newColor;
             warrior.border.SetActive(false);

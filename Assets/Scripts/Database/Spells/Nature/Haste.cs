@@ -24,6 +24,6 @@ public class Haste {
     public async Task Trigger(SpellTriggerParams parameters) {
         int value = parameters.cardLevel == 0 ? 1 : 2;
         parameters.target.stats.speed += value;
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Haste", ColorPalette.ColorEnum.Green);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Haste", ColorEnum.Green);
     }
 }

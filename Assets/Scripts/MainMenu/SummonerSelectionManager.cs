@@ -56,7 +56,7 @@ public class SummonerSelectionManager : MonoBehaviour {
         Button pressedButton = index == 0 ? summoner1Button : summoner2Button;
         Button otherButton = index == 0 ? summoner2Button : summoner1Button;
 
-        pressedButton.image.color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
+        pressedButton.image.color = ColorPalette.GetColor(ColorEnum.White);
         otherButton.image.color = ColorPalette.AddTransparency(otherButton.image.color, 50);
     }
 

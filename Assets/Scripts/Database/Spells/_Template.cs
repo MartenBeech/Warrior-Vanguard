@@ -25,7 +25,7 @@ public class CLASSNAMESPELL {
         List<Task> asyncFunctions = new();
 
         parameters.target.UpdateWarriorUI();
-        asyncFunctions.Add(parameters.floatingText.CreateFloatingText(parameters.target.transform, "TEXT", ColorPalette.ColorEnum.Purple));
+        asyncFunctions.Add(parameters.floatingText.CreateFloatingText(parameters.target.transform, "TEXT", ColorEnum.Purple));
         await Task.WhenAll(asyncFunctions);
     }
 }

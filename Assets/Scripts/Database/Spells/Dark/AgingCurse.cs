@@ -25,6 +25,6 @@ public class AgingCurse {
         parameters.target.stats.AddHealthCurrent(-Mathf.FloorToInt(parameters.target.stats.GetHealthCurrent() / 2));
         parameters.target.stats.speed /= 2;
         parameters.target.UpdateWarriorUI();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Aging", ColorPalette.ColorEnum.Purple);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Aging", ColorEnum.Purple);
     }
 }

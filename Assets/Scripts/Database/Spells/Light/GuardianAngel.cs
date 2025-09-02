@@ -23,6 +23,6 @@ public class GuardianAngel {
 
     public async Task Trigger(SpellTriggerParams parameters) {
         parameters.target.stats.ability.revive.Add();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Guardian Angel", ColorPalette.ColorEnum.Yellow);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Guardian Angel", ColorEnum.Yellow);
     }
 }

@@ -22,6 +22,6 @@ public class Disarm {
     public async Task Trigger(SpellTriggerParams parameters) {
         parameters.target.stats.AddStrength(-(parameters.target.stats.GetStrength() - 1));
         parameters.target.UpdateWarriorUI();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Disarmed", ColorPalette.ColorEnum.Purple);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Disarmed", ColorEnum.Purple);
     }
 }

@@ -23,6 +23,6 @@ public class CatReflexes {
 
     public async Task Trigger(SpellTriggerParams parameters) {
         parameters.target.stats.ability.retaliate.Add();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Cat Reflexes", ColorPalette.ColorEnum.Green);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Cat Reflexes", ColorEnum.Green);
     }
 }

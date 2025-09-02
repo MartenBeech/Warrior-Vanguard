@@ -138,11 +138,11 @@ public static class StartingDecks {
                 AddCardToDeck(new Mario().GetStats(), card);
                 AddCardToDeck(new Mario().GetStats(), card);
                 AddCardToDeck(new Mario().GetStats(), card);
-                AddCardToDeck(new Mario().GetStats(), card);
-                AddCardToDeck(new Mario().GetStats(), card);
-                AddCardToDeck(new Mario().GetStats(), card);
-                AddCardToDeck(new Mario().GetStats(), card);
-                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Luigi().GetStats(), card);
+                AddCardToDeck(new Luigi().GetStats(), card);
+                AddCardToDeck(new Luigi().GetStats(), card);
+                AddCardToDeck(new Luigi().GetStats(), card);
+                AddCardToDeck(new Luigi().GetStats(), card);
                 break;
         }
     }

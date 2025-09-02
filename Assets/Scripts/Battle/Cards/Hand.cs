@@ -109,7 +109,7 @@ public class Hand : MonoBehaviour {
         }
 
         card.GetComponent<Outline>().enabled = true;
-        card.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.TealWeak);
+        card.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.TealWeak);
     }
 
     public void DeselectCard(Card card) {
@@ -120,7 +120,7 @@ public class Hand : MonoBehaviour {
 
         selectedCard = null;
         card.GetComponent<Outline>().enabled = false;
-        card.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
+        card.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.White);
     }
 
     public List<Card> GetCardsInHand() {

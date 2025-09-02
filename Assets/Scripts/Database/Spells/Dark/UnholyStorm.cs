@@ -29,7 +29,7 @@ public class UnholyStorm {
                 enemy.stats.AddStrength(-value);
 
                 enemy.UpdateWarriorUI();
-                asyncFunctions.Add(parameters.floatingText.CreateFloatingText(enemy.transform, $"-{value} Strength", ColorPalette.ColorEnum.Purple));
+                asyncFunctions.Add(parameters.floatingText.CreateFloatingText(enemy.transform, $"-{value} Strength", ColorEnum.Purple));
             }
         }
         await Task.WhenAll(asyncFunctions);

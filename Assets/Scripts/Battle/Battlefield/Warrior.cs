@@ -10,15 +10,12 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
     private GridManager gridManager;
     public WarriorStats stats;
     private HoverCard hoverCard;
-
     public TMP_Text attackText;
     public TMP_Text healthText;
     public GameObject image;
     public GameObject border;
     public GameObject crystal;
     private GameManager gameManager;
-
-
     private Hand hand;
     public WarriorSummoner warriorSummoner;
     private Transform summonerObject;
@@ -43,15 +40,25 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         attackText.text = $"{stats.GetStrength()}";
         healthText.text = $"{stats.GetHealthCurrent()}";
 
+        if (stats.damageType == DamageType.Physical) {
+            attackText.color = ColorPalette.GetColor(ColorEnum.White);
+        } else if (stats.damageType == DamageType.Magical) {
+            attackText.color = ColorPalette.GetColor(ColorEnum.Teal);
+        }
 
+        if (stats.GetHealthCurrent() == stats.GetHealthMax()) {
+            healthText.color = ColorPalette.GetColor(ColorEnum.White);
+        } else {
+            healthText.color = ColorPalette.GetColor(ColorEnum.Red);
+        }
 
         Sprite sprite = Resources.Load<Sprite>($"Images/Cards/{stats.title}");
         image.GetComponent<Image>().sprite = sprite != null ? sprite : Resources.Load<Sprite>($"Images/Icons/Red Cross");
 
         if (stats.alignment == Alignment.Friend) {
-            crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Green);
+            crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Green);
         } else if (stats.alignment == Alignment.Enemy) {
-            crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Red);
+            crystal.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Red);
         }
 
         if (stats.ability.stealth.GetValue(stats)) {
@@ -250,6 +257,10 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
         damage = stats.ability.immune.TriggerDamaged(this, damage);
 
+        if (damage < 0) {
+            damage = 0;
+        }
+
         if (stats.alignment == Alignment.Enemy && damage == 1) {
             Underdog underdog = new GameObject().AddComponent<Underdog>();
             if (ItemManager.items.Find(item => item.title == underdog.GetItem().title)) {
@@ -271,15 +282,15 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         }
 
         if (dealer) {
-            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Red);
+            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Red);
         }
 
-        asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString(), ColorPalette.ColorEnum.Red, true));
+        asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString(), ColorEnum.Red, true));
 
         await Task.WhenAll(asyncFunctions);
 
         if (dealer) {
-            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
+            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.White);
         }
 
         return damage;
@@ -302,11 +313,11 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
 
 
-            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Green);
+            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Green);
 
-            await floatingText.CreateFloatingText(transform, amount.ToString(), ColorPalette.ColorEnum.Green, true);
+            await floatingText.CreateFloatingText(transform, amount.ToString(), ColorEnum.Green, true);
 
-            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
+            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.White);
         }
     }
 

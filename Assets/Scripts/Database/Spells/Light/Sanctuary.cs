@@ -28,7 +28,7 @@ public class Sanctuary {
         foreach (var friend in friends) {
             friend.stats.ability.immune.Add();
             friend.UpdateWarriorUI();
-            asyncFunctions.Add(parameters.floatingText.CreateFloatingText(friend.transform, "Immune", ColorPalette.ColorEnum.Yellow));
+            asyncFunctions.Add(parameters.floatingText.CreateFloatingText(friend.transform, "Immune", ColorEnum.Yellow));
         }
         await Task.WhenAll(asyncFunctions);
     }

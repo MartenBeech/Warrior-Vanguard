@@ -27,6 +27,6 @@ public class Vampirism {
             parameters.target.stats.SetHealthCurrent(1);
         }
         parameters.target.UpdateWarriorUI();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Vampirism", ColorPalette.ColorEnum.Yellow);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Vampirism", ColorEnum.Yellow);
     }
 }

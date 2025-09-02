@@ -7,7 +7,7 @@ public class Luigi : WarriorStats {
             cost = new int[] { 1, 1 },
             speed = 2,
             range = 2,
-            damageType = DamageType.Physical,
+            damageType = DamageType.Magical,
             race = Race.Human,
             genre = Genre.Human,
         };

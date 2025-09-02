@@ -24,6 +24,6 @@ public class SharpSight {
     public async Task Trigger(SpellTriggerParams parameters) {
         int value = parameters.cardLevel == 0 ? 1 : 2;
         parameters.target.stats.range += value;
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Eagle Eye", ColorPalette.ColorEnum.Green);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Eagle Eye", ColorEnum.Green);
     }
 }

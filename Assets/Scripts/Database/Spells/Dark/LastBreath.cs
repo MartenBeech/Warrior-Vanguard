@@ -26,7 +26,7 @@ public class LastBreath {
         parameters.target.stats.AddHealthCurrent(-(parameters.target.stats.GetHealthCurrent() - 1));
         parameters.target.UpdateWarriorUI();
 
-        asyncFunctions.Add(parameters.floatingText.CreateFloatingText(parameters.target.transform, "Last Breath", ColorPalette.ColorEnum.Purple));
+        asyncFunctions.Add(parameters.floatingText.CreateFloatingText(parameters.target.transform, "Last Breath", ColorEnum.Purple));
         await Task.WhenAll(asyncFunctions);
     }
 }

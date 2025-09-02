@@ -37,7 +37,7 @@ public class SkinToBones {
             asyncFunctions.Add(parameters.target.stats.ability.raiseDead.SummonSkeleton(parameters.target, parameters.target, parameters.warriorSummoner, alignment));
         }
 
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Boned", ColorPalette.ColorEnum.Purple);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Boned", ColorEnum.Purple);
         await Task.WhenAll(asyncFunctions);
     }
 }

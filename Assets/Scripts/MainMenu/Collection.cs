@@ -81,9 +81,9 @@ public class Collection : MonoBehaviour {
         if (title == selectedRace) return;
 
         if (lastClickedRaceButton != null) {
-            lastClickedRaceButton.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.White);
+            lastClickedRaceButton.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.White);
         }
-        buttonClicked.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.TealMedium);
+        buttonClicked.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.TealMedium);
         lastClickedRaceButton = buttonClicked;
 
         string targetPath;

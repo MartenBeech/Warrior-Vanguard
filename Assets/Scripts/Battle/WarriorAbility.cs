@@ -141,7 +141,7 @@ public class WarriorAbility {
                 FieldInfo buffField = abilityInstance.GetType().GetField("buffType");
                 BuffType buffType = (BuffType)buffField.GetValue(abilityInstance);
                 if (buffType == BuffType.Debuff) {
-                    description = ColorPalette.AddColorToText(description, ColorPalette.GetColor(ColorPalette.ColorEnum.Red));
+                    description = ColorPalette.AddColorToText(description, ColorPalette.GetColor(ColorEnum.Red));
                 }
                 returnValue.Add(description);
             }

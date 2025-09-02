@@ -24,6 +24,6 @@ public class DivineShield {
     public async Task Trigger(SpellTriggerParams parameters) {
         parameters.target.stats.ability.immune.Add();
         parameters.target.UpdateWarriorUI();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Immune", ColorPalette.ColorEnum.Yellow);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Immune", ColorEnum.Yellow);
     }
 }

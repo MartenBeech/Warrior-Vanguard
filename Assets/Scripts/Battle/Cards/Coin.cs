@@ -28,7 +28,7 @@ public class Coin : MonoBehaviour {
         if (CanAfford(amount)) {
             for (int i = coins - amount; i < coins; i++) {
                 GameObject child = transform.GetChild(i).gameObject;
-                child.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Gray);
+                child.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Gray);
             }
             coins -= amount;
 
@@ -42,7 +42,7 @@ public class Coin : MonoBehaviour {
     public void RefreshCoins() {
         for (int i = 0; i < coinsTotal; i++) {
             GameObject child = transform.GetChild(i).gameObject;
-            child.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Yellow);
+            child.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Yellow);
         }
         coins = coinsTotal;
 

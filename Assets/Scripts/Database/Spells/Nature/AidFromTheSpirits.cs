@@ -30,6 +30,6 @@ public class AidFromTheSpirits {
             parameters.target.stats.ability.spikes.Add(2);
         }
 
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Aid From The Spirits", ColorPalette.ColorEnum.Green);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Aid From The Spirits", ColorEnum.Green);
     }
 }

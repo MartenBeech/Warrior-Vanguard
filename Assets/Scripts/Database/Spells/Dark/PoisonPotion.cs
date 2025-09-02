@@ -23,6 +23,6 @@ public class PoisonPotion {
         int value = parameters.cardLevel == 0 ? 2 : 3;
         parameters.target.stats.ability.poisoned.Add(value);
         parameters.target.UpdateWarriorUI();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"{value} poison", ColorPalette.ColorEnum.Purple);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"{value} poison", ColorEnum.Purple);
     }
 }

@@ -24,6 +24,6 @@ public class TimeHealsAllWounds {
     public async Task Trigger(SpellTriggerParams parameters) {
         int value = parameters.cardLevel == 0 ? 1 : 2;
         parameters.target.stats.ability.regeneration.Add(value);
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Regeneration {value}", ColorPalette.ColorEnum.Yellow);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Regeneration {value}", ColorEnum.Yellow);
     }
 }

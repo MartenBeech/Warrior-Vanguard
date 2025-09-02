@@ -15,7 +15,7 @@ public class Silence {
             if (randomEnemy) {
                 randomEnemy.stats.ability = new();
                 randomEnemy.UpdateWarriorUI();
-                await floatingText.CreateFloatingText(randomEnemy.transform, "Sileced", ColorPalette.ColorEnum.Purple);
+                await floatingText.CreateFloatingText(randomEnemy.transform, "Sileced", ColorEnum.Purple);
             }
             return true;
         }

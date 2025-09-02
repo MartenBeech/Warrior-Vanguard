@@ -25,6 +25,6 @@ public class Embiggen {
         int value = parameters.cardLevel == 0 ? 2 : 3;
         parameters.target.stats.AddHealth(value);
         parameters.target.UpdateWarriorUI();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Embiggen", ColorPalette.ColorEnum.Green);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Embiggen", ColorEnum.Green);
     }
 }

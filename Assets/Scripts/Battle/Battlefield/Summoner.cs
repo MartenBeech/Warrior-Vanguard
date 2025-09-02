@@ -83,7 +83,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (dealer) {
             Color currentColor = dealer.image.GetComponent<Image>().color;
-            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorPalette.ColorEnum.Red);
+            dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Red);
 
             FloatingText floatingText = FindFirstObjectByType<FloatingText>();
             List<Task> asyncFunctions = new() {
@@ -131,7 +131,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdateSummonerUI();
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-        await floatingText.CreateFloatingText(transform, $"+{amount} shield", ColorPalette.ColorEnum.Gray);
+        await floatingText.CreateFloatingText(transform, $"+{amount} shield", ColorEnum.Gray);
     }
 
     public async Task EndTurn(WarriorSummoner warriorSummoner) {

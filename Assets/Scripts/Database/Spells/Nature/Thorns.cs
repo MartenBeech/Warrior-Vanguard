@@ -24,6 +24,6 @@ public class Thorns {
     public async Task Trigger(SpellTriggerParams parameters) {
         int value = parameters.cardLevel == 0 ? 2 : 3;
         parameters.target.stats.ability.spikes.Add(value);
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Thorns", ColorPalette.ColorEnum.Green);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Thorns", ColorEnum.Green);
     }
 }

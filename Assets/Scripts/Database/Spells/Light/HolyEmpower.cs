@@ -25,6 +25,6 @@ public class HolyEmpower {
         parameters.target.stats.AddStrength(3);
         parameters.target.stats.AddHealth(2);
         parameters.target.UpdateWarriorUI();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Holy Empower", ColorPalette.ColorEnum.Yellow);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Holy Empower", ColorEnum.Yellow);
     }
 }

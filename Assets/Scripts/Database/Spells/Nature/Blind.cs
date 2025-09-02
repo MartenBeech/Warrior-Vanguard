@@ -23,6 +23,6 @@ public class Blind {
 
     public async Task Trigger(SpellTriggerParams parameters) {
         parameters.target.stats.range = 1;
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Blind", ColorPalette.ColorEnum.Red);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Blind", ColorEnum.Red);
     }
 }
