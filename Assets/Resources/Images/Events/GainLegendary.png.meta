@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c012d9ecff8012642a726849480b8a23
+guid: 37e669530906c3141b870f14205c1049
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1085993152615175148
-    second: CopyCat_0
+      213: -4726171561962017059
+    second: GainLegendary_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CopyCat_0
+      name: GainLegendary_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
-        width: 1019
-        height: 1019
+        width: 1024
+        height: 1536
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ce3522ab409321f00800000000000000
-      internalID: 1085993152615175148
+      spriteID: dde63b53104496eb0800000000000000
+      internalID: -4726171561962017059
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      CopyCat_0: 1085993152615175148
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
