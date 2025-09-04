@@ -15,6 +15,7 @@ public class CampfireManager : MonoBehaviour {
     public Transform deckListContainer;
     public DeckBuilder deckBuilder;
     public TMP_Text restButtonText;
+    public SummonerManager summonerManager;
     private int healAmount;
     private Card cardToUpgrade;
     private void Start() {
