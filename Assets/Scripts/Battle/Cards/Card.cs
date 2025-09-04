@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
-    public TMP_Text attackText;
+    public TMP_Text strengthText;
     public TMP_Text healthText;
     public TMP_Text costText;
     public GameObject image;
@@ -17,6 +17,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public TMP_Text raceText;
     public GameObject rangeImage;
     public GameObject speedImage;
+    public GameObject strengthImage;
+    public GameObject healthImage;
     public GameObject rarityCrystal;
     public WarriorStats stats = new();
     HoverCard hoverCard;
@@ -43,14 +45,22 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
         if (stats.cardType == CardType.Warrior) {
             spellDescription.text = "";
+            strengthImage.SetActive(true);
+            healthImage.SetActive(true);
 
-            attackText.text = $"{stats.GetStrength()}";
+            strengthText.text = $"{stats.GetStrength()}";
             healthText.text = $"{stats.GetHealthCurrent()}";
 
             if (stats.damageType == DamageType.Physical) {
-                attackText.color = ColorPalette.GetColor(ColorEnum.White);
+                strengthText.color = ColorPalette.GetColor(ColorEnum.White);
             } else if (stats.damageType == DamageType.Magical) {
-                attackText.color = ColorPalette.GetColor(ColorEnum.Teal);
+                strengthText.color = ColorPalette.GetColor(ColorEnum.Teal);
+            }
+
+            if (stats.GetHealthCurrent() == stats.GetHealthMax()) {
+                healthText.color = ColorPalette.GetColor(ColorEnum.White);
+            } else {
+                healthText.color = ColorPalette.GetColor(ColorEnum.Red);
             }
 
             raceText.text = $"{stats.race}";
@@ -78,7 +88,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             spellDescription.text = stats.spellDescription[stats.level];
             rangeImage.SetActive(false);
             speedImage.SetActive(false);
-            attackText.text = "";
+            strengthImage.SetActive(false);
+            healthImage.SetActive(false);
+            strengthText.text = "";
             healthText.text = "";
             raceText.text = $"{stats.race}";
         }
