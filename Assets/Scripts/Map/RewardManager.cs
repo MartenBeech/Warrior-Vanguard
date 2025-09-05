@@ -16,7 +16,7 @@ public class RewardManager : MonoBehaviour {
 
     public void ShowReward(EnemyType enemyType) {
         if (!LevelManager.isAlive || enemyType == EnemyType.Boss) {
-            SceneLoader.LoadGameOver();
+            SceneLoader.LoadScene(SceneLoader.Scene.GameOver);
             return;
         }
 

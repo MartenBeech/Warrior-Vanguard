@@ -81,7 +81,7 @@ public class CampfireManager : MonoBehaviour {
 
     public void ReturnButtonClicked() {
         TileCompleter.MarkTileAsCompleted();
-        SceneLoader.LoadMap();
+        SceneLoader.LoadScene(SceneLoader.Scene.Map);
     }
 
     private void FinishResting() {

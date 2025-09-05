@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.SearchService;
 
 public class SettingsMenu : MonoBehaviour {
     public TextMeshProUGUI gameSpeedText;
@@ -51,5 +52,9 @@ public class SettingsMenu : MonoBehaviour {
                 musicPlayerBars[i].GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Gray);
             }
         }
+    }
+
+    public void ExitGame() {
+        SceneLoader.LoadScene(SceneLoader.Scene.MainMenu);
     }
 }

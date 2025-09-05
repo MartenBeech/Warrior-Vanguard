@@ -19,6 +19,6 @@ public static class ContinueManager {
     }
 
     public static void ReturnToMainMenu() {
-        SceneLoader.LoadMainMenu();
+        SceneLoader.LoadScene(SceneLoader.Scene.MainMenu);
     }
 }

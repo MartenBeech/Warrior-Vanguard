@@ -8,13 +8,13 @@ public static class LevelManager {
     public static void CompleteLevel() {
         TileCompleter.MarkTileAsCompleted();
         GoldManager.AddGold(50);
-        SceneLoader.LoadMap();
+        SceneLoader.LoadScene(SceneLoader.Scene.Map);
         ItemManager.enemyItem = null;
     }
 
     public static void LoseLevel() {
         isAlive = false;
-        SceneLoader.LoadMap();
+        SceneLoader.LoadScene(SceneLoader.Scene.Map);
     }
 
     public static void SetCurrentTile(MapTile tile) {

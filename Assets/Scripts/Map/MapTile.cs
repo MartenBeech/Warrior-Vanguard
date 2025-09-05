@@ -54,16 +54,16 @@ public class MapTile : MonoBehaviour {
         switch (tileType) {
             case TileType.Battlefield:
                 GameManager.enemySummonerName = EnemySummoner.GetWorthyEnemySummonerName(level);
-                SceneLoader.LoadBattlefield();
+                SceneLoader.LoadScene(SceneLoader.Scene.Battlefield);
                 break;
             case TileType.Shop:
-                SceneLoader.LoadShop();
+                SceneLoader.LoadScene(SceneLoader.Scene.Shop);
                 break;
             case TileType.Event:
-                SceneLoader.LoadEvent();
+                SceneLoader.LoadScene(SceneLoader.Scene.Event);
                 break;
             case TileType.Campfire:
-                SceneLoader.LoadCampfire();
+                SceneLoader.LoadScene(SceneLoader.Scene.Campfire);
                 break;
         }
     }

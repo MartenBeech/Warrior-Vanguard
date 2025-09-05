@@ -4,13 +4,13 @@ public class MainMenu : MonoBehaviour {
     public GameObject collection;
     public void StartNewGame() {
         PlayerPrefs.DeleteAll();
-        SceneLoader.LoadSummonerSelector();
+        SceneLoader.LoadScene(SceneLoader.Scene.SummonerSelector);
     }
 
     public void ContinueGame() {
         ItemManager.LoadAvailableItems();
         ContinueManager.LoadSummoner();
-        SceneLoader.LoadMap();
+        SceneLoader.LoadScene(SceneLoader.Scene.Map);
     }
 
     public void ExitGame() {
@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void LoadCredits() {
-        SceneLoader.LoadCredits();
+        SceneLoader.LoadScene(SceneLoader.Scene.Credits);
     }
 
     public void ToggleCollection() {

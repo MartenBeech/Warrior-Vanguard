@@ -69,7 +69,7 @@ public class SummonerSelectionManager : MonoBehaviour {
 
         StartingDecks.SetStartingDeck(selectedSummoner.title, card);
         ItemManager.InitAvailableItems();
-        SceneLoader.LoadMap();
+        SceneLoader.LoadScene(SceneLoader.Scene.Map);
     }
 
     public void ToggleSummonerSelectionPanel(bool shouldShow) {
@@ -77,6 +77,6 @@ public class SummonerSelectionManager : MonoBehaviour {
     }
 
     public void ReturnToMainMenu() {
-        SceneLoader.LoadMainMenu();
+        SceneLoader.LoadScene(SceneLoader.Scene.MainMenu);
     }
 }
