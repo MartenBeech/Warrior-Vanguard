@@ -17,7 +17,7 @@ public class GainLegendary {
                 if (PlayerPrefs.HasKey(eventManager.eventCardsKey)) {
                     eventManager.LoadCardsEvent(eventManager.cardOption);
                 } else {
-                    List<WarriorStats> legendaryCards = CardDatabase.allCards.FindAll(card => card.rarity == CardRarity.Legendary);
+                    List<WarriorStats> legendaryCards = CardDatabase.GetAvailableCards().FindAll(card => card.rarity == CardRarity.Legendary);
                     foreach (Card card in eventManager.cardOption) {
 
                         WarriorStats randomStats = Rng.Entry(legendaryCards);

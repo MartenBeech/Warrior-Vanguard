@@ -24,7 +24,7 @@ public class ShopManager : MonoBehaviour {
         if (PlayerPrefs.HasKey(shopCardsKey) && PlayerPrefs.HasKey(shopItemsKey)) {
             LoadShop();
         } else {
-            List<WarriorStats> tempCards = new List<WarriorStats>(CardDatabase.allCards);
+            List<WarriorStats> tempCards = new List<WarriorStats>(CardDatabase.GetAvailableCards());
             foreach (Card card in cardsForSale) {
                 int randomIndex = Random.Range(0, tempCards.Count);
                 WarriorStats stats = tempCards[randomIndex];

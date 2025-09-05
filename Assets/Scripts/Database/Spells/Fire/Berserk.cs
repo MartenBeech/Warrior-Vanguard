@@ -14,9 +14,10 @@ public class Berserk {
             "A warrior strikes all other warriors"
             },
             race = Race.Fire,
+            genre = Genre.Underworld,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

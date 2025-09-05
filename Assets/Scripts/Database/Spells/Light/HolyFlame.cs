@@ -14,9 +14,10 @@ public class HolyFlame {
             "Deal 4 damage to a warrior or 6 against undead"
             },
             race = Race.Light,
+            genre = Genre.Human,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

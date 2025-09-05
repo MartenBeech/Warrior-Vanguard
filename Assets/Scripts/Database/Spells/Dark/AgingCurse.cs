@@ -13,9 +13,10 @@ public class AgingCurse {
             "Reduce an enemy's strength, health and speed to half"
             },
             race = Race.Dark,
+            genre = Genre.Undead,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

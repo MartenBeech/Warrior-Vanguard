@@ -14,9 +14,10 @@ public class RainOfFire {
             "Deal 2 damage to all enemies"
             },
             race = Race.Fire,
+            genre = Genre.Underworld,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

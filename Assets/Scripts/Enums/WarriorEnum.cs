@@ -8,8 +8,7 @@ public enum Race {
 }
 
 public enum Genre {
-    None, Human, Forest, Undead, Underworld,
-    Dark, Fire, Light, Nature,
+    None, Human, Forest, Undead, Underworld
 }
 
 public enum Direction {

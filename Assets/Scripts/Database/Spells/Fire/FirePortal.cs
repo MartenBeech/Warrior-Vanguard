@@ -15,9 +15,10 @@ public class FirePortal {
             "Add 4 random warriors to your hand"
             },
             race = Race.Fire,
+            genre = Genre.Underworld,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

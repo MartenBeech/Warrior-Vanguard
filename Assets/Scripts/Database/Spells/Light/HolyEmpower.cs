@@ -14,9 +14,10 @@ public class HolyEmpower {
             "Give a friendly warrior +3/+2"
             },
             race = Race.Light,
+            genre = Genre.Human,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

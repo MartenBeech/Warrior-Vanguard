@@ -16,7 +16,7 @@ public class CLASSNAMESPELL {
             race = Race.None,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

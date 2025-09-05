@@ -14,9 +14,10 @@ public class Blind {
             "Reduce enemy range to 1"
             },
             race = Race.Nature,
+            genre = Genre.Forest,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

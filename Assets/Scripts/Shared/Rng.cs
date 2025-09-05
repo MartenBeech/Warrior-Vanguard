@@ -47,7 +47,7 @@ public class Rng : MonoBehaviour {
 
     // The race will be saved for the rest of the game
     public static Race GetRandomRace(Genre genre, bool forceNew = false) {
-        List<WarriorStats> warriors = CardDatabase.allCards.FindAll(card => card.genre == genre);
+        List<WarriorStats> warriors = CardDatabase.GetAvailableCards();
 
         var uniqueRaces = new HashSet<Race>();
         foreach (var warrior in warriors) {

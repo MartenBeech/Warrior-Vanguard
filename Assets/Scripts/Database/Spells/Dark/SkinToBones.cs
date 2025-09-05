@@ -13,9 +13,10 @@ public class SkinToBones {
             "Kill an enemy and summon 2 skeletons"
             },
             race = Race.Dark,
+            genre = Genre.Undead,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

@@ -14,9 +14,10 @@ public class Fireball {
             "Deal 6 damage to a warrior and 3 damage to surrounding warriors"
             },
             race = Race.Fire,
+            genre = Genre.Underworld,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

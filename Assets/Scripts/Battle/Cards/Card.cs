@@ -98,14 +98,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         if (stats.race != Race.None) {
             racePanel.SetActive(true);
             racePanel.GetComponent<Image>().color = ColorPalette.AddTransparency(stats.genre switch {
-                Genre.Human => ColorPalette.GetColor(ColorEnum.Blue),
-                Genre.Forest => ColorPalette.GetColor(ColorEnum.GreenDark),
-                Genre.Undead => ColorPalette.GetColor(ColorEnum.Purple),
-                Genre.Underworld => ColorPalette.GetColor(ColorEnum.Orange),
-                Genre.Light => ColorPalette.GetColor(ColorEnum.Yellow),
-                Genre.Dark => ColorPalette.GetColor(ColorEnum.Gray),
-                Genre.Fire => ColorPalette.GetColor(ColorEnum.Red),
-                Genre.Nature => ColorPalette.GetColor(ColorEnum.Teal),
+                Genre.Human => stats.cardType == CardType.Warrior ? ColorPalette.GetColor(ColorEnum.Blue) : ColorPalette.GetColor(ColorEnum.Yellow),
+                Genre.Forest => stats.cardType == CardType.Warrior ? ColorPalette.GetColor(ColorEnum.GreenDark) : ColorPalette.GetColor(ColorEnum.Teal),
+                Genre.Undead => stats.cardType == CardType.Warrior ? ColorPalette.GetColor(ColorEnum.Purple) : ColorPalette.GetColor(ColorEnum.Gray),
+                Genre.Underworld => stats.cardType == CardType.Warrior ? ColorPalette.GetColor(ColorEnum.Orange) : ColorPalette.GetColor(ColorEnum.Red),
                 _ => ColorPalette.GetColor(ColorEnum.Black),
             }, 80);
 

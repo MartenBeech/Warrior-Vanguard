@@ -14,9 +14,10 @@ public class TearsOfTheLight {
             "Heal all friendly warriors for 3 health"
             },
             race = Race.Light,
+            genre = Genre.Human,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

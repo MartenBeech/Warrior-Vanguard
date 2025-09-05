@@ -14,9 +14,10 @@ public class Armageddon {
             "Deal 5 damage to all enemies and 3 damage to all friends"
             },
             race = Race.Fire,
+            genre = Genre.Underworld,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

@@ -14,9 +14,10 @@ public class SharpSight {
             "Give a friendly warrior +2 range"
             },
             race = Race.Nature,
+            genre = Genre.Forest,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

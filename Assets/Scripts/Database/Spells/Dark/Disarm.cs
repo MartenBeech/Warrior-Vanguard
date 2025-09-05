@@ -12,9 +12,10 @@ public class Disarm {
             "Set an enemy's strength to 1"
             },
             race = Race.Dark,
+            genre = Genre.Undead,
             cardType = CardType.Spell,
         };
-        stats.genre = (Genre)Enum.Parse(typeof(Genre), stats.race.ToString());
+        
 
         return stats;
     }

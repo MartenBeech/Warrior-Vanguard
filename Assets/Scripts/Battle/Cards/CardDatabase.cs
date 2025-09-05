@@ -200,8 +200,12 @@ public static class CardDatabase {
         new Mortana().GetStats(),
     };
 
+    public static List<WarriorStats> GetAvailableCards() {
+        return allCards.FindAll(card => card.genre == FriendlySummoner.summonerData.genre);
+    }
+
     public static WarriorStats GetRandomCardStats(CardRarity rarity = CardRarity.None, CardType cardType = CardType.None) {
-        List<WarriorStats> cards = allCards;
+        List<WarriorStats> cards = GetAvailableCards();
 
         if (rarity != CardRarity.None) {
             cards = cards.FindAll(card => card.rarity == rarity);
@@ -233,7 +237,7 @@ public static class CardDatabase {
     }
 
     public static WarriorStats GetRandomWarriorWithSpecificCost(int cost, Alignment alignment) {
-        List<WarriorStats> warriors = allCards.Where(card => card.GetCost() == cost && card.cardType == CardType.Warrior).ToList();
+        List<WarriorStats> warriors = GetAvailableCards().Where(card => card.GetCost() == cost && card.cardType == CardType.Warrior).ToList();
         WarriorStats randomWarrior = Rng.Entry(warriors);
         randomWarrior.alignment = alignment;
         return randomWarrior;
@@ -247,7 +251,7 @@ public static class CardDatabase {
     }
 
     public static WarriorStats GetRandomSpell(Alignment alignment) {
-        List<WarriorStats> spells = allCards.Where(card => card.cardType == CardType.Spell).ToList();
+        List<WarriorStats> spells = GetAvailableCards().Where(card => card.cardType == CardType.Spell).ToList();
         WarriorStats randomSpell = Rng.Entry(spells);
         randomSpell.alignment = alignment;
         return randomSpell;
