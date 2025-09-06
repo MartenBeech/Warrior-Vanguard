@@ -5,7 +5,7 @@ public class CopyCat : Item {
     public override Item GetItem() {
         title = GetType().Name;
         description = "When your opponent summons their first warrior, you summon a copy";
-        rarity = ItemRarity.None;
+        rarity = ItemRarity.Normal;
         return this;
     }
 

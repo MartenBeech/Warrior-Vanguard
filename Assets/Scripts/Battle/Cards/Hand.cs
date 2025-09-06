@@ -28,6 +28,11 @@ public class Hand : MonoBehaviour {
         card.SetGameManager();
         card.UpdateCardUI();
 
+        foreach (Item item in ItemManager.items) {
+            item.UseOnCardDrawn(new(card: card));
+        }
+        ItemManager.enemyItem.UseOnCardDrawn(new(card: card));
+
         cardsInHand.Add(card);
 
         Button cardButton = cardInstance.GetComponent<Button>();

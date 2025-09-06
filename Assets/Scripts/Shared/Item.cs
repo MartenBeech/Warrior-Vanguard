@@ -80,6 +80,10 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         // This metod should be overridden by each item
     }
 
+    public virtual void UseOnCardDrawn(ItemTriggerParams parameters) {
+        // This metod should be overridden by each item
+    }
+
     public void OnPointerEnter(PointerEventData eventData) {
         tooltipManager = FindFirstObjectByType<TooltipManager>();
         float tooltipWidth = tooltipManager.gameObject.GetComponent<RectTransform>().rect.width;

@@ -103,14 +103,14 @@ public class WarriorSummoner : MonoBehaviour {
 
         foreach (Item item in ItemManager.items) {
             if (stats.alignment == Alignment.Friend) {
-                await item.UseAfterFriendSummon(new(stats, gridIndex, coin: gameManager.friendCoin, ownDeck: gameManager.friendDeck));
+                await item.UseAfterFriendSummon(new(stats, gridIndex, coin: gameManager.friendCoin, ownDeck: gameManager.friendDeck, warrior: warrior));
             } else if (stats.alignment == Alignment.Enemy) {
                 await item.UseAfterEnemySummon(new(stats, gridIndex));
             }
         }
 
         if (stats.alignment == Alignment.Enemy) {
-            await ItemManager.enemyItem.UseAfterFriendSummon(new(stats, gridIndex, coin: gameManager.enemyCoin, ownDeck: gameManager.enemyDeck));
+            await ItemManager.enemyItem.UseAfterFriendSummon(new(stats, gridIndex, coin: gameManager.enemyCoin, ownDeck: gameManager.enemyDeck, warrior: warrior));
         } else if (stats.alignment == Alignment.Friend) {
             await ItemManager.enemyItem.UseAfterEnemySummon(new(stats, gridIndex));
         }

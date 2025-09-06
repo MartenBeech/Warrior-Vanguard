@@ -10,6 +10,8 @@ public class ItemTriggerParams {
     public Coin coin;
     public GridManager gridManager;
     public FloatingText floatingText;
+    public Warrior warrior;
+    public Card card;
 
     public ItemTriggerParams(
         WarriorStats stats = null,
@@ -20,7 +22,9 @@ public class ItemTriggerParams {
         Hand enemyHand = null,
         Coin coin = null,
         GridManager gridManager = null,
-        FloatingText floatingText = null
+        FloatingText floatingText = null,
+        Warrior warrior = null,
+        Card card = null
     ) {
         this.stats = stats;
         this.gridIndex = gridIndex;
@@ -31,5 +35,7 @@ public class ItemTriggerParams {
         this.coin = coin;
         this.gridManager = gridManager;
         this.floatingText = floatingText;
+        this.warrior = warrior;
+        this.card = card;
     }
 }

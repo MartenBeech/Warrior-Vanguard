@@ -24,10 +24,10 @@ public class CLASSNAME : Item {
     public override void UseOnEnemySummon(ItemTriggerParams parameters) {
 
     }
+
     public override async Task UseAfterFriendSummon(ItemTriggerParams parameters) {
         await Task.Delay(0);
     }
-
 
     public override async Task UseAfterEnemySummon(ItemTriggerParams parameters) {
         await Task.Delay(0);
@@ -51,5 +51,9 @@ public class CLASSNAME : Item {
 
     public override async Task UseOnEnemyDeath(ItemTriggerParams parameters) {
         await Task.Delay(0);
+    }
+
+    public override void UseOnCardDrawn(ItemTriggerParams parameters) {
+
     }
 }

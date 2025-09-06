@@ -407,6 +407,8 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
     }
 
     public async Task EndTurn() {
+        if (stats.ability.stunned.Trigger(this)) return;
+
         if (stats.attackedThisTurn) {
             stats.ability.bloodlust.TriggerOverturn(this);
             await stats.ability.hitAndRun.TriggerOverturn(this);
@@ -427,7 +429,6 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         await stats.ability.bloodPact.TriggerOverturn(this, gridManager, summoner);
         await stats.ability.scrollStudies.TriggerOverturn(this, hand);
         stats.ability.seduced.Trigger(this);
-        stats.ability.stunned.Trigger(this);
         await stats.ability.poisoned.TriggerOverturn(this);
         await stats.ability.burning.TriggerOverturn(this);
         await stats.ability.artist.TriggerOverturn(this, gameManager);

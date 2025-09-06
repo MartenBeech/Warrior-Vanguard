@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour {
 
         foreach (Item item in ItemManager.items) {
             item.triggeredThisCombat = false;
-            await item.UseStartOfCombat(new(summoner: friendSummoner));
+            await item.UseStartOfCombat(new(summoner: friendSummoner, coin: friendCoin));
             await item.UseStartOfEnemyCombat(new(summoner: enemySummoner));
         }
 
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour {
             await friendSummoner.stats.ability.summonFlotSam.TriggerStartOfCombat(friendSummoner, friendWarriorSummoner);
         }
 
-        await ItemManager.enemyItem.UseStartOfCombat(new(summoner: enemySummoner));
+        await ItemManager.enemyItem.UseStartOfCombat(new(summoner: enemySummoner, coin: enemyCoin));
 
         await StartPlayerTurn();
     }
