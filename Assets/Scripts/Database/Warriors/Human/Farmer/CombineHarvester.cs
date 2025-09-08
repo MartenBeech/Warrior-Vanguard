@@ -1,14 +1,14 @@
-public class LegionOfPeasants {
+public class CombineHarvester {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 5, 5 },
-            strength = new int[] { 15, 18 },
-            health = new int[] { 5, 6 },
+            cost = new int[] { 7, 7 },
+            strength = new int[] { 3, 3 },
+            health = new int[] { 12, 15 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
-            race = Race.Human,
+            race = Race.Farmer,
             rarity = CardRarity.Legendary,
             genre = Genre.Human,
         };
@@ -17,6 +17,7 @@ public class LegionOfPeasants {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.farming.Add(3, 4);
 
         return stats;
     }

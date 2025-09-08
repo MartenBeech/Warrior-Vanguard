@@ -1,14 +1,15 @@
-public class Mario : WarriorStats {
+public class CherryPicker {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Mario",
-            strength = new int[] { 1, 4 },
-            health = new int[] { 5, 4 },
-            cost = new int[] { 0, 0 },
+            title = GetType().Name,
+            cost = new int[] { 3, 3 },
+            strength = new int[] { 2, 2 },
+            health = new int[] { 5, 7 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
-            race = Race.Human,
+            race = Race.Farmer,
+            rarity = CardRarity.Rare,
             genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {

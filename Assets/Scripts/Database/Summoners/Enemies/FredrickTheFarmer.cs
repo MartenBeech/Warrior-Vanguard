@@ -20,9 +20,9 @@ public class FredrickTheFarmer : SummonerStats {
             new Peasant().GetStats(),
             new Peasant().GetStats(),
             new Peasant().GetStats(),
-            new Peasant().GetStats(),
-            new Peasant().GetStats(),
-            new Peasant().GetStats(),
+            new AngryMob().GetStats(),
+            new AngryMob().GetStats(),
+            new AngryMob().GetStats(),
             new MultibowNovice().GetStats(),
             new MultibowNovice().GetStats(),
             new Youngling().GetStats(),
@@ -32,11 +32,11 @@ public class FredrickTheFarmer : SummonerStats {
             new Archer().GetStats(),
             new Archer().GetStats(),
             new Archer().GetStats(),
-            new Archer().GetStats(),
             new Watchtower().GetStats(),
             new Watchtower().GetStats(),
-            new LegionOfPeasants().GetStats(),
-            new LegionOfPeasants().GetStats(),
+            new CherryPicker().GetStats(),
+            new CherryPicker().GetStats(),
+            new CombineHarvester().GetStats(),
        };
     }
 

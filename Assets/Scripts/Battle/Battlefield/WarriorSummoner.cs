@@ -60,16 +60,20 @@ public class WarriorSummoner : MonoBehaviour {
 
         Hand hand = null;
         Transform summonerObject = null;
+        Coin coin = null;
+
         if (stats.alignment == Alignment.Friend) {
             hand = friendHand;
             summonerObject = friendSummonerObject;
+            coin = gameManager.friendCoin;
         } else if (stats.alignment == Alignment.Enemy) {
             hand = enemyHand;
             summonerObject = enemySummonerObject;
+            coin = gameManager.enemyCoin;
         }
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         Summoner summoner = summonerObject.GetComponent<Summoner>();
-        warrior.Initiate(gameManager, gridManager, hand, this, summonerObject, summoner, hoverCard, floatingText);
+        warrior.Initiate(gameManager, gridManager, hand, this, summonerObject, summoner, hoverCard, floatingText, coin);
 
         warrior.gridIndex = gridIndex;
         warrior.SetStats(stats);

@@ -30,6 +30,7 @@ public class WarriorAbility {
     public Intelligence intelligence = new();
     public BloodPact bloodPact = new();
     public CheatDeath cheatDeath = new();
+    public Farming farming = new();
 
     // Common abilities
     public Armor armor = new();

@@ -1,14 +1,14 @@
-public class Peasant {
+public class AngryMob {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 1, 1 },
-            strength = new int[] { 3, 4 },
-            health = new int[] { 1, 1 },
+            cost = new int[] { 5, 5 },
+            strength = new int[] { 5, 5 },
+            health = new int[] { 10, 15 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
-            race = Race.Human,
+            race = Race.Farmer,
             rarity = CardRarity.Common,
             genre = Genre.Human,
         };

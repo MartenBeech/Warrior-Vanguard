@@ -21,9 +21,10 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
     private Transform summonerObject;
     private Summoner summoner;
     private FloatingText floatingText;
+    private Coin coin;
     private bool isDying = false;
 
-    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, WarriorSummoner warriorSummoner, Transform summonerObject, Summoner summoner, HoverCard hoverCard, FloatingText floatingText) {
+    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, WarriorSummoner warriorSummoner, Transform summonerObject, Summoner summoner, HoverCard hoverCard, FloatingText floatingText, Coin coin) {
         this.gameManager = gameManager;
         this.gridManager = gridManager;
         this.hand = hand;
@@ -32,6 +33,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         this.summoner = summoner;
         this.hoverCard = hoverCard;
         this.floatingText = floatingText;
+        this.coin = coin;
     }
 
     public void UpdateWarriorUI() {
@@ -402,6 +404,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
     public void StartTurn() {
         stats.ability.immune.Remove();
+        stats.ability.farming.TriggerInitiate(this, coin);
 
         stats.attackedThisTurn = false;
     }

@@ -17,9 +17,18 @@ public class Coin : MonoBehaviour {
             coinsTotal = 10;
         }
         coins += amount;
-        if (coinsTotal > 10) {
+        if (coins > 10) {
             coins = 10;
         }
+
+        hand.UpdateDisabledCardsUI();
+    }
+
+    public void GainCoinsTemporary(int amount = 1) {
+        for (int i = 0; i < amount; i++) {
+            Instantiate(coinPrefab, transform);
+        }
+        coins += amount;
 
         hand.UpdateDisabledCardsUI();
     }
@@ -45,6 +54,12 @@ public class Coin : MonoBehaviour {
             child.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Yellow);
         }
         coins = coinsTotal;
+
+        int nCoinObjects = transform.childCount;
+        for (int i = coinsTotal; i < nCoinObjects; i++) {
+            GameObject child = transform.GetChild(i).gameObject;
+            Destroy(child);
+        }
 
         hand.UpdateDisabledCardsUI();
     }
