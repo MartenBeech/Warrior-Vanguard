@@ -1,15 +1,15 @@
-public class HoodyRobin {
+public class Archer {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 5, 5 },
+            cost = new int[] { 3, 3 },
             strength = new int[] { 3, 4 },
-            health = new int[] { 3, 3 },
+            health = new int[] { 2, 2 },
             speed = 2,
             range = 5,
             damageType = DamageType.Physical,
-            race = Race.Human,
-            rarity = CardRarity.Rare,
+            race = Race.Marksman,
+            rarity = CardRarity.Common,
             genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
@@ -17,7 +17,6 @@ public class HoodyRobin {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.multishot.Add();
 
         return stats;
     }

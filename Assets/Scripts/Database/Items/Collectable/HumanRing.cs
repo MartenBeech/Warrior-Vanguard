@@ -7,7 +7,7 @@ public class HumanRing : Item {
     }
 
     public override void UseOnFriendSummon(ItemTriggerParams parameters) {
-        if (parameters.stats.race == Race.Human) {
+        if (parameters.stats.genre == Genre.Human) {
             parameters.stats.AddHealth(2);
         }
     }

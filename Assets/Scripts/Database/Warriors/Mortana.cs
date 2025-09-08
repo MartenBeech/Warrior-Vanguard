@@ -8,7 +8,7 @@ public class Mortana : WarriorStats {
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
-            race = Race.Human,
+            race = Race.None,
             genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {

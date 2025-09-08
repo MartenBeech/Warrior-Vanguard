@@ -1,14 +1,14 @@
-public class Archer {
+public class PoiSonRogue {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 3, 3 },
-            strength = new int[] { 3, 4 },
-            health = new int[] { 2, 2 },
+            cost = new int[] { 2, 2 },
+            strength = new int[] { 3, 3 },
+            health = new int[] { 2, 3 },
             speed = 2,
-            range = 5,
+            range = 2,
             damageType = DamageType.Physical,
-            race = Race.Human,
+            race = Race.Pirate,
             rarity = CardRarity.Common,
             genre = Genre.Human,
         };
@@ -17,6 +17,8 @@ public class Archer {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.poison.Add(1, 2);
+        ability.backstab.Add();
 
         return stats;
     }
