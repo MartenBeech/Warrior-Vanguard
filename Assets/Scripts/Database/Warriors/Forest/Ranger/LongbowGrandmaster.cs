@@ -1,14 +1,14 @@
-public class MultibowNovice {
+public class LongbowGrandmaster {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 1, 1 },
-            strength = new int[] { 1, 2 },
-            health = new int[] { 1, 1 },
+            cost = new int[] { 7, 7 },
+            strength = new int[] { 3, 4 },
+            health = new int[] { 4, 4 },
             speed = 2,
-            range = 5,
+            range = 9,
             damageType = DamageType.Physical,
-            race = Race.Elf,
+            race = Race.Ranger,
             genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {

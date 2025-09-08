@@ -1,14 +1,14 @@
-public class WoodElf {
+public class ElvenArcher {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 3, 3 },
-            strength = new int[] { 3, 4 },
-            health = new int[] { 2, 3 },
+            cost = new int[] { 4, 4 },
+            strength = new int[] { 2, 3 },
+            health = new int[] { 2, 2 },
             speed = 2,
             range = 5,
             damageType = DamageType.Physical,
-            race = Race.Elf,
+            race = Race.Ranger,
             genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {
@@ -16,6 +16,7 @@ public class WoodElf {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.doubleStrike.Add();
 
         return stats;
     }

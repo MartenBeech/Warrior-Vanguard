@@ -1,14 +1,14 @@
-public class ElvenArcher {
+public class MultibowNovice {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 4, 4 },
-            strength = new int[] { 2, 3 },
-            health = new int[] { 2, 2 },
+            cost = new int[] { 1, 1 },
+            strength = new int[] { 1, 2 },
+            health = new int[] { 1, 1 },
             speed = 2,
             range = 5,
             damageType = DamageType.Physical,
-            race = Race.Elf,
+            race = Race.Ranger,
             genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {
@@ -16,7 +16,7 @@ public class ElvenArcher {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.doubleStrike.Add();
+        ability.multishot.Add();
 
         return stats;
     }
