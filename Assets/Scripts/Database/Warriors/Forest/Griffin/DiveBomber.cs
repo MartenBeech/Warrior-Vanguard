@@ -1,16 +1,16 @@
-public class GriffinCombatant {
+public class DiveBomber {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 6, 6 },
-            strength = new int[] { 3, 3 },
-            health = new int[] { 9, 10 },
+            cost = new int[] { 3, 3 },
+            strength = new int[] { 3, 4 },
+            health = new int[] { 3, 4 },
             speed = 4,
             range = 2,
             damageType = DamageType.Physical,
             race = Race.Griffin,
-            rarity = CardRarity.Rare,
-            genre = Genre.Human,
+            rarity = CardRarity.Legendary,
+            genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
@@ -18,8 +18,8 @@ public class GriffinCombatant {
 
         WarriorAbility ability = stats.ability;
         ability.flying.Add();
-        ability.retaliate.Add();
-        ability.vengeance.Add(1, 2);
+        ability.stealth.Add();
+        ability.firstStrike.Add();
 
         return stats;
     }

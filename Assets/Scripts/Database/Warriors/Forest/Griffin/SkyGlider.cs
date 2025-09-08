@@ -1,16 +1,16 @@
-public class EarlyBird {
+public class SkyGlider {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 1, 1 },
+            cost = new int[] { 2, 2 },
             strength = new int[] { 2, 3 },
-            health = new int[] { 3, 4 },
+            health = new int[] { 5, 6 },
             speed = 4,
             range = 2,
             damageType = DamageType.Physical,
             race = Race.Griffin,
             rarity = CardRarity.Common,
-            genre = Genre.Human,
+            genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
@@ -18,6 +18,7 @@ public class EarlyBird {
 
         WarriorAbility ability = stats.ability;
         ability.flying.Add();
+        ability.retaliate.Add();
 
         return stats;
     }
