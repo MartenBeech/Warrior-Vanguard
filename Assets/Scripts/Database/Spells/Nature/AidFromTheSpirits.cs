@@ -14,7 +14,7 @@ public class AidFromTheSpirits {
             "Give a friendly warrior +8/+8 and spikes 2"
             },
             race = Race.Nature,
-            genre = Genre.Forest,
+            genre = Genre.Elves,
             cardType = CardType.Spell,
         };
         

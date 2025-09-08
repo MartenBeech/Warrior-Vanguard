@@ -14,7 +14,7 @@ public class Blind {
             "Reduce enemy range to 1"
             },
             race = Race.Nature,
-            genre = Genre.Forest,
+            genre = Genre.Elves,
             cardType = CardType.Spell,
         };
         

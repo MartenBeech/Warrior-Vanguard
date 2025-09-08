@@ -99,7 +99,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             racePanel.SetActive(true);
             racePanel.GetComponent<Image>().color = ColorPalette.AddTransparency(stats.genre switch {
                 Genre.Human => stats.cardType == CardType.Warrior ? ColorPalette.GetColor(ColorEnum.Blue) : ColorPalette.GetColor(ColorEnum.Yellow),
-                Genre.Forest => stats.cardType == CardType.Warrior ? ColorPalette.GetColor(ColorEnum.GreenDark) : ColorPalette.GetColor(ColorEnum.Teal),
+                Genre.Elves => stats.cardType == CardType.Warrior ? ColorPalette.GetColor(ColorEnum.GreenDark) : ColorPalette.GetColor(ColorEnum.Teal),
                 Genre.Undead => stats.cardType == CardType.Warrior ? ColorPalette.GetColor(ColorEnum.Purple) : ColorPalette.GetColor(ColorEnum.Gray),
                 Genre.Underworld => stats.cardType == CardType.Warrior ? ColorPalette.GetColor(ColorEnum.Orange) : ColorPalette.GetColor(ColorEnum.Red),
                 _ => ColorPalette.GetColor(ColorEnum.Black),

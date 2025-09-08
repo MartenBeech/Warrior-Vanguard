@@ -8,6 +8,7 @@ public static class LevelManager {
     public static void CompleteLevel() {
         TileCompleter.MarkTileAsCompleted();
         GoldManager.AddGold(50);
+        ExperienceManager.AddExperience(FriendlySummoner.summonerData.genre, 25);
         SceneLoader.LoadScene(SceneLoader.Scene.Map);
         ItemManager.enemyItem = null;
     }

@@ -14,7 +14,7 @@ public class CatReflexes {
             "Give a friendly warrior retaliate"
             },
             race = Race.Nature,
-            genre = Genre.Forest,
+            genre = Genre.Elves,
             cardType = CardType.Spell,
         };
         

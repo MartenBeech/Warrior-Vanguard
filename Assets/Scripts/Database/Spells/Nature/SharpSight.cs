@@ -14,7 +14,7 @@ public class SharpSight {
             "Give a friendly warrior +2 range"
             },
             race = Race.Nature,
-            genre = Genre.Forest,
+            genre = Genre.Elves,
             cardType = CardType.Spell,
         };
         

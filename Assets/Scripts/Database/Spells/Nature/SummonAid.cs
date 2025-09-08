@@ -14,7 +14,7 @@ public class SummonAid {
             "Draw 2 cards. Reduce their cost by 2"
             },
             race = Race.Nature,
-            genre = Genre.Forest,
+            genre = Genre.Elves,
             cardType = CardType.Spell,
         };
         

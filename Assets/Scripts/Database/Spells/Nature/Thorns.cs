@@ -14,7 +14,7 @@ public class Thorns {
             "Give a friendly warrior Spikes 3"
             },
             race = Race.Nature,
-            genre = Genre.Forest,
+            genre = Genre.Elves,
             cardType = CardType.Spell,
         };
         

@@ -14,7 +14,7 @@ public class Haste {
             "Give a friendly warrior +2 speed"
             },
             race = Race.Nature,
-            genre = Genre.Forest,
+            genre = Genre.Elves,
             cardType = CardType.Spell,
         };
         

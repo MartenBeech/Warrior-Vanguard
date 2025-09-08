@@ -14,7 +14,7 @@ public class Embiggen {
             "Give a friendly warrior +3 health"
             },
             race = Race.Nature,
-            genre = Genre.Forest,
+            genre = Genre.Elves,
             cardType = CardType.Spell,
         };
         

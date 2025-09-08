@@ -9,6 +9,14 @@ public class SummonerSelectionManager : MonoBehaviour {
     public Button summoner2Button;
     public Button startButton;
     public Card card;
+    public Slider humanExpSlider;
+    public TMP_Text humanExpText;
+    public Slider elvesExpSlider;
+    public TMP_Text elvesExpText;
+    public Slider undeadExpSlider;
+    public TMP_Text undeadExpText;
+    public Slider underworldExpSlider;
+    public TMP_Text underworldExpText;
     SummonerData[] availableSummoners;
     SummonerData selectedSummoner;
     int summoner1Index;
@@ -16,6 +24,10 @@ public class SummonerSelectionManager : MonoBehaviour {
 
     void Start() {
         ToggleSummonerSelectionPanel(false);
+        UpdateExpSliders(Genre.Human);
+        UpdateExpSliders(Genre.Elves);
+        UpdateExpSliders(Genre.Undead);
+        UpdateExpSliders(Genre.Underworld);
 
         availableSummoners = new SummonerData[] {
             new HumanSummoner1().GetData(),
@@ -27,6 +39,37 @@ public class SummonerSelectionManager : MonoBehaviour {
             new UnderworldSummoner1().GetData(),
             new UnderworldSummoner2().GetData(),
             };
+    }
+
+    void UpdateExpSliders(Genre genre) {
+        Slider expSlider = humanExpSlider;
+        TMP_Text expText = humanExpText;
+        switch (genre) {
+            case Genre.Human:
+                expSlider = humanExpSlider;
+                expText = humanExpText;
+                break;
+            case Genre.Elves:
+                expSlider = elvesExpSlider;
+                expText = elvesExpText;
+                break;
+            case Genre.Undead:
+                expSlider = undeadExpSlider;
+                expText = undeadExpText;
+                break;
+            case Genre.Underworld:
+                expSlider = underworldExpSlider;
+                expText = underworldExpText;
+                break;
+        }
+
+        expSlider.maxValue = ExperienceManager.GetXpForNextLevel(genre);
+        expSlider.value = ExperienceManager.GetExperience(genre);
+        if (ExperienceManager.GetLevel(genre) >= 5) {
+            expText.text = $"Level {ExperienceManager.GetLevel(genre)} - MAX";
+        } else {
+            expText.text = $"Level {ExperienceManager.GetLevel(genre)} - {expSlider.value}/{expSlider.maxValue} XP";
+        }
     }
 
     public void SelectClass(int index) {
