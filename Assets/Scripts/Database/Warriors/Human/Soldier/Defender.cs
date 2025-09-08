@@ -1,14 +1,14 @@
-public class WatchfulGuard {
+public class Defender {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 4, 4 },
-            strength = new int[] { 4, 5 },
-            health = new int[] { 4, 4 },
+            cost = new int[] { 2, 2 },
+            strength = new int[] { 2, 3 },
+            health = new int[] { 3, 4 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
-            race = Race.Human,
+            race = Race.Soldier,
             rarity = CardRarity.Common,
             genre = Genre.Human,
         };
@@ -17,7 +17,6 @@ public class WatchfulGuard {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.armor.Add(1, 2);
         ability.guard.Add();
 
         return stats;

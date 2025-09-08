@@ -1,14 +1,14 @@
-public class Bodyguard {
+public class Squire {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            cost = new int[] { 6, 6 },
-            strength = new int[] { 6, 7 },
-            health = new int[] { 6, 7 },
+            cost = new int[] { 2, 2 },
+            strength = new int[] { 2, 2 },
+            health = new int[] { 2, 3 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
-            race = Race.Human,
+            race = Race.Soldier,
             rarity = CardRarity.Common,
             genre = Genre.Human,
         };
@@ -17,8 +17,7 @@ public class Bodyguard {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.armor.Add(3, 4);
-        ability.humanShield.Add();
+        ability.armor.Add(1);
 
         return stats;
     }

@@ -1,14 +1,14 @@
-public class Knight {
+public class KingsGuard {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             cost = new int[] { 4, 4 },
             strength = new int[] { 4, 4 },
-            health = new int[] { 4, 4 },
+            health = new int[] { 4, 5 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
-            race = Race.Human,
+            race = Race.Soldier,
             rarity = CardRarity.Rare,
             genre = Genre.Human,
         };
@@ -17,7 +17,8 @@ public class Knight {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.armor.Add(2, 3);
+        ability.armor.Add(1, 2);
+        ability.guard.Add();
 
         return stats;
     }
