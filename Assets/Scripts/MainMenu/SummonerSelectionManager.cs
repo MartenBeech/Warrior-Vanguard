@@ -122,4 +122,24 @@ public class SummonerSelectionManager : MonoBehaviour {
     public void ReturnToMainMenu() {
         SceneLoader.LoadScene(SceneLoader.Scene.MainMenu);
     }
+
+    public void ResetLevelsClicked() {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        UpdateExpSliders(Genre.Human);
+        UpdateExpSliders(Genre.Elves);
+        UpdateExpSliders(Genre.Undead);
+        UpdateExpSliders(Genre.Underworld);
+    }
+
+    public void AddExpClicked() {
+        ExperienceManager.AddExperience(Genre.Human, 100);
+        ExperienceManager.AddExperience(Genre.Elves, 100);
+        ExperienceManager.AddExperience(Genre.Undead, 100);
+        ExperienceManager.AddExperience(Genre.Underworld, 100);
+        UpdateExpSliders(Genre.Human);
+        UpdateExpSliders(Genre.Elves);
+        UpdateExpSliders(Genre.Undead);
+        UpdateExpSliders(Genre.Underworld);
+    }
 }

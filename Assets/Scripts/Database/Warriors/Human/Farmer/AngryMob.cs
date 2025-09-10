@@ -2,6 +2,7 @@ public class AngryMob {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 2,
             cost = new int[] { 5, 5 },
             strength = new int[] { 5, 5 },
             health = new int[] { 10, 15 },

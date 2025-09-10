@@ -2,6 +2,7 @@ public class Stormseer {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 7, 7 },
             strength = new int[] { 2, 2 },
             health = new int[] { 8, 8 },

@@ -2,6 +2,7 @@ public class SpiritualGrounds {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 3, 3 },
             strength = new int[] { 0, 0 },
             health = new int[] { 4, 4 },

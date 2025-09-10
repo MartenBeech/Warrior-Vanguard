@@ -2,6 +2,7 @@ public class MobyRichard : WarriorStats {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             strength = new int[] { 10, 10 },
             health = new int[] { 10, 10 },
             cost = new int[] { 10, 10 },

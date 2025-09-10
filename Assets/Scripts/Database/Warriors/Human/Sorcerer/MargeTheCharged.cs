@@ -2,6 +2,7 @@ public class MargeTheCharged {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 5, 5 },
             strength = new int[] { 2, 2 },
             health = new int[] { 3, 3 },

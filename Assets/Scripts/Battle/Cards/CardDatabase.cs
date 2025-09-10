@@ -202,7 +202,7 @@ public static class CardDatabase {
     };
 
     public static List<WarriorStats> GetAvailableCards() {
-        return allCards.FindAll(card => card.genre == FriendlySummoner.summonerData.genre);
+        return allCards.FindAll(card => card.genre == FriendlySummoner.summonerData.genre && card.levelUnlocked <= ExperienceManager.GetLevel(FriendlySummoner.summonerData.genre));
     }
 
     public static WarriorStats GetRandomCardStats(CardRarity rarity = CardRarity.None, CardType cardType = CardType.None) {

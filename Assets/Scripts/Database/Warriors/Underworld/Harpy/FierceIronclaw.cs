@@ -2,6 +2,7 @@ public class FierceIronclaw {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 7, 7 },
             strength = new int[] { 5, 6 },
             health = new int[] { 8, 10 },

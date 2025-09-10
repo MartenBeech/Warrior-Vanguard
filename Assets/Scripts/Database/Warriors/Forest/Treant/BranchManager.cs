@@ -2,6 +2,7 @@ public class BranchManager {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 4, 4 },
             strength = new int[] { 2, 2 },
             health = new int[] { 9, 9 },

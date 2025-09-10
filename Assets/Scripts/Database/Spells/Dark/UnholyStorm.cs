@@ -6,6 +6,7 @@ public class UnholyStorm {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 4, 4 },
             spellTarget = SpellTarget.None,
             spellDescription = new string[] {

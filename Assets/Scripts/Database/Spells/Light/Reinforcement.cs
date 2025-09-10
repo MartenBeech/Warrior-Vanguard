@@ -6,6 +6,7 @@ public class Reinforcement {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 3, 3 },
             rarity = CardRarity.Common,
             spellTarget = SpellTarget.None,

@@ -6,6 +6,7 @@ public class Burnout {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 0, 0 },
             rarity = CardRarity.None,
             spellTarget = SpellTarget.None,

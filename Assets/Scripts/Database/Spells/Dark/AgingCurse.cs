@@ -6,6 +6,7 @@ public class AgingCurse {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 4, 3 },
             spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {

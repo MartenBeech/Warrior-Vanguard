@@ -2,6 +2,7 @@ public class CherryPicker {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 2,
             cost = new int[] { 3, 3 },
             strength = new int[] { 2, 2 },
             health = new int[] { 5, 7 },

@@ -6,6 +6,7 @@ public class LastBreath {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 5, 4 },
             spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {

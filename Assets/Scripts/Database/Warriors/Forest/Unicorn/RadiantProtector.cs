@@ -2,6 +2,7 @@ public class RadiantProtector {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 8, 8 },
             strength = new int[] { 3, 3 },
             health = new int[] { 10, 11 },

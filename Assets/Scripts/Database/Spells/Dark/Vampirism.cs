@@ -6,6 +6,7 @@ public class Vampirism {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 5, 5 },
             rarity = CardRarity.Common,
             spellTarget = SpellTarget.Friend,

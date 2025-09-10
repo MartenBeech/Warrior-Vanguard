@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 public class WarriorStats {
     public string title;
     public string displayTitle;
+    public int levelUnlocked = 1;
     public CardRarity rarity = CardRarity.None;
     public int level = 0;
     public DamageType damageType = DamageType.Physical;

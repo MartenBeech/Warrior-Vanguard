@@ -2,6 +2,7 @@ public class ZombieHydra {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 9, 9 },
             strength = new int[] { 6, 7 },
             health = new int[] { 6, 7 },

@@ -2,6 +2,7 @@ public class Peasant {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 2,
             cost = new int[] { 0, 0 },
             strength = new int[] { 1, 1 },
             health = new int[] { 2, 3 },

@@ -6,6 +6,7 @@ public class Fireball {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 5, 5 },
             rarity = CardRarity.Rare,
             spellTarget = SpellTarget.Warrior,

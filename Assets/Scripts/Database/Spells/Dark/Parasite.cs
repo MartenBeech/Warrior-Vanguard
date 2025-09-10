@@ -6,6 +6,7 @@ public class Parasite {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 10, 8 },
             rarity = CardRarity.Rare,
             spellTarget = SpellTarget.Enemy,

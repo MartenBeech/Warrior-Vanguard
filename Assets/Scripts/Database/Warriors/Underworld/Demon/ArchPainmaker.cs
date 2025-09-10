@@ -2,6 +2,7 @@ public class ArchPainmaker {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 10, 10 },
             strength = new int[] { 6, 8 },
             health = new int[] { 24, 32 },

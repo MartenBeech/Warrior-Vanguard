@@ -2,6 +2,7 @@ public class TrollKing {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 9, 9 },
             strength = new int[] { 7, 8 },
             health = new int[] { 7, 8 },

@@ -2,6 +2,7 @@ public class FencingRookie {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 1, 1 },
             strength = new int[] { 2, 2 },
             health = new int[] { 2, 4 },

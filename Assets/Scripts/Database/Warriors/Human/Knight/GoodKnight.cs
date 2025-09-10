@@ -2,6 +2,7 @@ public class GoodKnight {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 2, 2 },
             strength = new int[] { 0, 1 },
             health = new int[] { 3, 4 },

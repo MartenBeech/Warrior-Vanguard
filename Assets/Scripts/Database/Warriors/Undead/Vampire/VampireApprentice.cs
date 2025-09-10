@@ -2,6 +2,7 @@ public class VampireApprentice {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 2, 2 },
             strength = new int[] { 1, 2 },
             health = new int[] { 4, 4 },

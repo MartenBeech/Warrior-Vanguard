@@ -2,6 +2,7 @@ public class CombineHarvester {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 2,
             cost = new int[] { 7, 7 },
             strength = new int[] { 3, 3 },
             health = new int[] { 12, 15 },

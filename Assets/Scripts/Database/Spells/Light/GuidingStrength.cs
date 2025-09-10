@@ -6,6 +6,7 @@ public class GuidingStrength {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 1, 1 },
             rarity = CardRarity.Common,
             spellTarget = SpellTarget.Friend,

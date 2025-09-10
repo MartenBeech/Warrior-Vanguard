@@ -3,6 +3,7 @@ public class VileMutation {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 7, 7 },
             strength = new int[] { 0, 0 },
             health = new int[] { 9, 11 },

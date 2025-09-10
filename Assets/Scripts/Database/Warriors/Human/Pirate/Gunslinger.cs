@@ -2,6 +2,7 @@ public class Gunslinger {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
+            levelUnlocked = 1,
             cost = new int[] { 3, 3 },
             strength = new int[] { 3, 4 },
             health = new int[] { 3, 3 },
