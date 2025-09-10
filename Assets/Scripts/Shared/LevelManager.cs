@@ -8,14 +8,14 @@ public static class LevelManager {
     public static void CompleteLevel() {
         TileCompleter.MarkTileAsCompleted();
         GoldManager.AddGold(50);
-        ExperienceManager.AddExperience(FriendlySummoner.summonerData.genre, 25);
+        ExperienceManager.AddTempExperience(25);
         SceneLoader.LoadScene(SceneLoader.Scene.Map);
         ItemManager.enemyItem = null;
     }
 
     public static void LoseLevel() {
         isAlive = false;
-        SceneLoader.LoadScene(SceneLoader.Scene.Map);
+        SceneLoader.LoadScene(SceneLoader.Scene.GameOver);
     }
 
     public static void SetCurrentTile(MapTile tile) {

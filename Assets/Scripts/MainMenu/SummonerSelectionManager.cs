@@ -63,13 +63,9 @@ public class SummonerSelectionManager : MonoBehaviour {
                 break;
         }
 
-        expSlider.maxValue = ExperienceManager.GetXpForNextLevel(genre);
-        expSlider.value = ExperienceManager.GetExperience(genre);
-        if (ExperienceManager.GetLevel(genre) >= 5) {
-            expText.text = $"Level {ExperienceManager.GetLevel(genre)} - MAX";
-        } else {
-            expText.text = $"Level {ExperienceManager.GetLevel(genre)} - {expSlider.value}/{expSlider.maxValue} XP";
-        }
+        expSlider.maxValue = ExperienceManager.IsMaxLevel(genre) ? 1 : ExperienceManager.GetXpForNextLevel(genre);
+        expSlider.value = ExperienceManager.IsMaxLevel(genre) ? 1 : ExperienceManager.GetExperience(genre);
+        expText.text = $"Level {ExperienceManager.GetLevel(genre)}";
     }
 
     public void SelectClass(int index) {
