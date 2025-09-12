@@ -2,7 +2,7 @@ public class Battlemonk {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            levelUnlocked = 1,
+            levelUnlocked = 4,
             cost = new int[] { 6, 6 },
             strength = new int[] { 2, 3 },
             health = new int[] { 7, 8 },

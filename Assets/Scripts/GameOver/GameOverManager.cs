@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class GameOver : MonoBehaviour {
     public TMP_Text GameOverText;
@@ -8,8 +10,12 @@ public class GameOver : MonoBehaviour {
     public Slider expSlider;
     public TMP_Text expText;
     public GameObject levelUpPanel;
+    public Card cardUnlocked1;
+    public Card cardUnlocked2;
+    public Card cardUnlocked3;
 
     private void Start() {
+        ExperienceManager.AddTempExperience(10000);
         levelUpPanel.SetActive(false);
         if (LevelManager.isAlive) {
             GameOverText.text = "You Win! Good job!";
@@ -47,14 +53,27 @@ public class GameOver : MonoBehaviour {
             float newValue = Mathf.Lerp(startValue, targetValue, elapsedTime / animationTime);
             expSlider.value = newValue;
 
-            await System.Threading.Tasks.Task.Yield();
+            await Task.Yield();
         }
 
         expSlider.value = targetValue;
         if (targetValue >= ExperienceManager.GetXpForNextLevel(genre) && !ExperienceManager.IsMaxLevel(genre)) {
-            levelUpPanel.SetActive(true);
+            ExperienceManager.AddExperience(genre, targetValue - startValue);
+            ShowLevelUpPanel();
+        } else {
+            ExperienceManager.AddExperience(genre, targetValue - startValue);
         }
-        ExperienceManager.AddExperience(genre, targetValue - startValue);
+    }
+
+    private void ShowLevelUpPanel() {
+        levelUpPanel.SetActive(true);
+        List<WarriorStats> unlockedCardsStats = CardDatabase.allCards.FindAll(card => card.genre == FriendlySummoner.summonerData.genre && card.levelUnlocked == ExperienceManager.GetLevel(FriendlySummoner.summonerData.genre));
+        cardUnlocked1.SetStats(unlockedCardsStats[0]);
+        cardUnlocked2.SetStats(unlockedCardsStats[1]);
+        cardUnlocked3.SetStats(unlockedCardsStats[2]);
+        cardUnlocked1.UpdateCardUI();
+        cardUnlocked2.UpdateCardUI();
+        cardUnlocked3.UpdateCardUI();
     }
 
     public void LevelUpContinueButtonPressed() {

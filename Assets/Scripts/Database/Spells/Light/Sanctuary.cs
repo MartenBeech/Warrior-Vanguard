@@ -6,7 +6,7 @@ public class Sanctuary {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            levelUnlocked = 3,
+            levelUnlocked = 1,
             cost = new int[] { 8, 7 },
             rarity = CardRarity.Legendary,
             spellTarget = SpellTarget.Friend,

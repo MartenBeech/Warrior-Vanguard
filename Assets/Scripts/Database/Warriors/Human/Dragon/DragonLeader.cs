@@ -2,7 +2,7 @@ public class DragonLeader {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
-            levelUnlocked = 1,
+            levelUnlocked = 5,
             cost = new int[] { 8, 8 },
             strength = new int[] { 6, 6 },
             health = new int[] { 8, 10 },
