@@ -48,6 +48,14 @@ public static class ExperienceManager {
         PlayerPrefs.Save();
     }
 
+    public static void ResetAllLevels() {
+        foreach (Genre genre in System.Enum.GetValues(typeof(Genre))) {
+            PlayerPrefs.SetInt(ExpKey(genre), 0);
+            PlayerPrefs.SetInt(LevelKey(genre), 1);
+        }
+        PlayerPrefs.Save();
+    }
+
     public static void WinGame(Genre summonerName) {
         PlayerPrefs.SetInt(WinsKey(summonerName), PlayerPrefs.GetInt(WinsKey(summonerName), 0) + 1);
         PlayerPrefs.Save();

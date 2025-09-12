@@ -7,6 +7,7 @@ public class SummonerSelectionManager : MonoBehaviour {
     public GameObject summonerSelectionPanel;
     public Button summoner1Button;
     public Button summoner2Button;
+    public GameObject summoner2LockPanel;
     public Button startButton;
     public Card card;
     public Slider humanExpSlider;
@@ -87,6 +88,7 @@ public class SummonerSelectionManager : MonoBehaviour {
 
         summoner1Button.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Summoners/{availableSummoners[summoner1Index].title}");
         summoner2Button.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Summoners/{availableSummoners[summoner2Index].title}");
+        summoner2LockPanel.SetActive(ExperienceManager.GetLevel(availableSummoners[summoner2Index].genre) < 3);
     }
 
     public void ClickSummoner(int index) {
@@ -130,8 +132,7 @@ public class SummonerSelectionManager : MonoBehaviour {
     }
 
     public void ResetLevelsClicked() {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
+        ExperienceManager.ResetAllLevels();
         UpdateExpSliders(Genre.Human);
         UpdateExpSliders(Genre.Elves);
         UpdateExpSliders(Genre.Undead);
