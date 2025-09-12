@@ -10,7 +10,6 @@ public class MapTile : MonoBehaviour {
     public GameObject checkmark;
     public TileType tileType;
     public int level = 1;
-    public EnemyType enemyType;
     public Vector2 gridIndex;
 
     private void Start() {
@@ -53,6 +52,8 @@ public class MapTile : MonoBehaviour {
 
         switch (tileType) {
             case TileType.Battlefield:
+            case TileType.MiniBoss:
+            case TileType.Boss:
                 GameManager.enemySummonerName = EnemySummoner.GetWorthyEnemySummonerName(level);
                 SceneLoader.LoadScene(SceneLoader.Scene.Battlefield);
                 break;

@@ -15,10 +15,10 @@ public class GameOver : MonoBehaviour {
     public Card cardUnlocked3;
 
     private void Start() {
-        ExperienceManager.AddTempExperience(10000);
         levelUpPanel.SetActive(false);
         if (LevelManager.isAlive) {
             GameOverText.text = "You Win! Good job!";
+            ExperienceManager.WinGame(FriendlySummoner.summonerData.genre);
         } else {
             GameOverText.text = "You Lost! Sucks to be you..";
         }

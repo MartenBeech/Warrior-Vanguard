@@ -1,14 +1,9 @@
 public enum TileType {
     None,
     Battlefield,
+    MiniBoss,
+    Boss,
     Shop,
     Event,
-    MiniBoss,
     Campfire
-}
-
-public enum EnemyType {
-    Normal,
-    Miniboss,
-    Boss
 }

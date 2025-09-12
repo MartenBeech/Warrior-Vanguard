@@ -10,13 +10,16 @@ public class SummonerSelectionManager : MonoBehaviour {
     public Button startButton;
     public Card card;
     public Slider humanExpSlider;
-    public TMP_Text humanExpText;
     public Slider elvesExpSlider;
-    public TMP_Text elvesExpText;
     public Slider undeadExpSlider;
-    public TMP_Text undeadExpText;
     public Slider underworldExpSlider;
+    public TMP_Text humanExpText;
+    public TMP_Text elvesExpText;
+    public TMP_Text undeadExpText;
     public TMP_Text underworldExpText;
+    public GameObject elvesLockPanel;
+    public GameObject undeadLockPanel;
+    public GameObject underworldLockPanel;
     SummonerData[] availableSummoners;
     SummonerData selectedSummoner;
     int summoner1Index;
@@ -24,6 +27,7 @@ public class SummonerSelectionManager : MonoBehaviour {
 
     void Start() {
         ToggleSummonerSelectionPanel(false);
+        UpdateLockedSummoners();
         UpdateExpSliders(Genre.Human);
         UpdateExpSliders(Genre.Elves);
         UpdateExpSliders(Genre.Undead);
@@ -39,6 +43,12 @@ public class SummonerSelectionManager : MonoBehaviour {
             new UnderworldSummoner1().GetData(),
             new UnderworldSummoner2().GetData(),
             };
+    }
+
+    void UpdateLockedSummoners() {
+        elvesLockPanel.SetActive(ExperienceManager.GetWins(Genre.Human) <= 0);
+        undeadLockPanel.SetActive(ExperienceManager.GetWins(Genre.Elves) <= 0);
+        underworldLockPanel.SetActive(ExperienceManager.GetWins(Genre.Undead) <= 0);
     }
 
     void UpdateExpSliders(Genre genre) {

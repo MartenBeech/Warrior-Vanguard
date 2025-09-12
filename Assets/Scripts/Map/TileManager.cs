@@ -38,9 +38,9 @@ public class TileManager : MonoBehaviour {
                     }
 
                     //TODO: Scroll to finished tile
-
-                    if (mapTiles[y][x].tileType == TileType.Battlefield && PlayerPrefs.GetInt($"RewardChosen", 0) == 0) {
-                        rewardManager.ShowReward(mapTiles[y][x].enemyType);
+                    TileType tileType = mapTiles[y][x].tileType;
+                    if ((tileType == TileType.Battlefield || tileType == TileType.MiniBoss || tileType == TileType.Boss) && PlayerPrefs.GetInt($"RewardChosen", 0) == 0) {
+                        rewardManager.ShowReward(mapTiles[y][x].tileType);
                     }
                 }
             }
@@ -163,7 +163,7 @@ public class TileManager : MonoBehaviour {
         float xPosAverage = xPosSum / mapTiles[y - 1].Count;
 
         Vector2 tilePos = new(xPosAverage, mapTiles[y - 1][0].transform.position.y + 200);
-        GameObject parentMapTileObject = CreateMapTile(tilePos, new(mapTiles[y].Count, y), TileType.MiniBoss);
+        GameObject parentMapTileObject = CreateMapTile(tilePos, new(mapTiles[y].Count, y), TileType.Boss);
 
         foreach (var childMapTile in mapTiles[y - 1]) {
             MapTile parentMapTile = parentMapTileObject.GetComponent<MapTile>();

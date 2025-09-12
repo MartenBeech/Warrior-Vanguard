@@ -4,6 +4,7 @@ public static class ExperienceManager {
     public static string TempExpKey = "TempExpKey";
     public static string ExpKey(Genre summonerName) => $"{summonerName}_EXP";
     public static string LevelKey(Genre summonerName) => $"{summonerName}_LEVEL";
+    public static string WinsKey(Genre summonerName) => $"{summonerName}_WINS";
     public static int maxLevel = 5;
 
     public static int GetExperience(Genre summonerName) {
@@ -13,6 +14,7 @@ public static class ExperienceManager {
     public static int GetLevel(Genre summonerName) {
         return PlayerPrefs.GetInt(LevelKey(summonerName), 1);
     }
+
     public static bool IsMaxLevel(Genre summonerName) {
         return GetLevel(summonerName) >= maxLevel;
     }
@@ -44,5 +46,14 @@ public static class ExperienceManager {
         PlayerPrefs.SetInt(ExpKey(summonerName), exp);
         PlayerPrefs.SetInt(LevelKey(summonerName), level);
         PlayerPrefs.Save();
+    }
+
+    public static void WinGame(Genre summonerName) {
+        PlayerPrefs.SetInt(WinsKey(summonerName), PlayerPrefs.GetInt(WinsKey(summonerName), 0) + 1);
+        PlayerPrefs.Save();
+    }
+
+    public static int GetWins(Genre summonerName) {
+        return PlayerPrefs.GetInt(WinsKey(summonerName), 0);
     }
 }
