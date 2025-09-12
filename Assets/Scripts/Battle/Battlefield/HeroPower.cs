@@ -42,7 +42,20 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         gameManager.friendCoin.SpendCoins(cost);
         heroPowerButton.enabled = false;
         GetComponent<Image>().color = ColorPalette.AddTransparency(ColorPalette.GetColor(ColorEnum.White), 25);
-        effect(new(gameManager, friendHand, warriorSummoner, friendSummoner));
+
+        int nTriggers = 1;
+
+        HeroParrot heroParrot = new GameObject().AddComponent<HeroParrot>();
+        foreach (var item in ItemManager.items) {
+            if (item.title == heroParrot.GetItem().title) {
+                nTriggers++;
+            }
+        }
+
+        for (int i = 0; i < nTriggers; i++) {
+            effect(new(gameManager, friendHand, warriorSummoner, friendSummoner));
+        }
+
     }
 
     public bool CanActivateHeroPower() {

@@ -71,13 +71,35 @@ public class Hand : MonoBehaviour {
                 warriorSummoner.Summon(selectedGridIndex, selectedCard.stats, summonerObject.transform.position)
             );
         } else if (selectedCard.stats.cardType == CardType.Spell) {
-            Type type = Type.GetType(selectedCard.stats.title);
-            object instance = Activator.CreateInstance(type);
-            Warrior target = gridManager.GetCellWarrior(selectedGridIndex);
+            Warrior targetWarrior = gridManager.GetCellWarrior(selectedGridIndex);
 
-            var spellTriggerParams = new SpellTriggerParams(gridManager, target, cardLevel: selectedCard.stats.level, floatingText, warriorSummoner, deck, summoner, hand: this);
+            List<Warrior> targetList = new() {
+                targetWarrior
+            };
 
-            asyncFunctions.Add((Task)type.GetMethod("Trigger")?.Invoke(instance, new object[] { spellTriggerParams }));
+            HolyBook holyBook = new GameObject().AddComponent<HolyBook>();
+            UnholyBook unholyBook = new GameObject().AddComponent<UnholyBook>();
+            foreach (Item item in ItemManager.items) {
+                if (item.title == holyBook.GetItem().title && alignment == targetWarrior.stats.alignment ||
+                    item.title == unholyBook.GetItem().title && alignment != targetWarrior.stats.alignment) {
+
+                    List<Warrior> friendsOfTarget = gridManager.GetFriends(targetWarrior.stats.alignment);
+                    friendsOfTarget.Remove(targetWarrior);
+
+                    Warrior randomFriend = Rng.Entry(friendsOfTarget);
+                    if (randomFriend == null) continue;
+                    targetList.Add(randomFriend);
+                }
+            }
+
+            foreach (var target in targetList) {
+                Type type = Type.GetType(selectedCard.stats.title);
+                object instance = Activator.CreateInstance(type);
+
+                var spellTriggerParams = new SpellTriggerParams(gridManager, target, selectedCard.stats.level, floatingText, warriorSummoner, deck, summoner, this);
+
+                asyncFunctions.Add((Task)type.GetMethod("Trigger")?.Invoke(instance, new object[] { spellTriggerParams }));
+            }
         }
 
         cardsInHand.Remove(selectedCard);

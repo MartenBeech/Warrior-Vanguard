@@ -14,6 +14,9 @@ public static class ItemManager {
     private static List<Item> LoadAllItems() {
         List<Item> allItems = new();
         Type[] itemTypes = new Type[] {
+            typeof(UnholyBook),
+            typeof(HolyBook),
+            typeof(HeroParrot),
             typeof(SlotMachine),
             typeof(BindingShackles),
             typeof(DisposableGun),

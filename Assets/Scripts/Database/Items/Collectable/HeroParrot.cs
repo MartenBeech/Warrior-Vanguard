@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Underdog : Item {
+public class HeroParrot : Item {
     public override Item GetItem() {
         title = GetType().Name;
-        description = "When an enemy takes exactly 1 damage, it takes 1 more";
-        rarity = ItemRarity.Normal;
+        description = "Your hero power trigger an additional time";
+        rarity = ItemRarity.Boss;
         return this;
     }
 }
