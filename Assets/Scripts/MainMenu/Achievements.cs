@@ -7,10 +7,10 @@ public class Achievements : MonoBehaviour {
     public Achievement achievement;
 
     void Awake() {
-        CreateAchievementInstance("Win 10 games", ExperienceManager.GetWins(), 10);
-        CreateAchievementInstance("Win 20 games", ExperienceManager.GetWins(), 20);
-        CreateAchievementInstance("Win 50 games", ExperienceManager.GetWins(), 50);
-        CreateAchievementInstance("Win 100 games", ExperienceManager.GetWins(), 100);
+        CreateAchievementInstance("Win 10 games", ProgressHelper.GetWins(), 10);
+        CreateAchievementInstance("Win 20 games", ProgressHelper.GetWins(), 20);
+        CreateAchievementInstance("Win 50 games", ProgressHelper.GetWins(), 50);
+        CreateAchievementInstance("Win 100 games", ProgressHelper.GetWins(), 100);
     }
 
     void CreateAchievementInstance(string description, int currentValue, int maxValue) {

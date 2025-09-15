@@ -4,7 +4,7 @@ public static class ExperienceManager {
     public static string TempExpKey = "TempExpKey";
     public static string ExpKey(Genre summonerName) => $"{summonerName}_EXP";
     public static string LevelKey(Genre summonerName) => $"{summonerName}_LEVEL";
-    public static string WinsKey(Genre summonerName) => $"{summonerName}_WINS";
+
     public static int maxLevel = 5;
 
     public static int GetExperience(Genre summonerName) {
@@ -54,22 +54,5 @@ public static class ExperienceManager {
             PlayerPrefs.SetInt(LevelKey(genre), 1);
         }
         PlayerPrefs.Save();
-    }
-
-    public static void WinGame(Genre summonerName) {
-        PlayerPrefs.SetInt(WinsKey(summonerName), PlayerPrefs.GetInt(WinsKey(summonerName), 0) + 1);
-        PlayerPrefs.Save();
-    }
-
-    public static int GetWins(Genre summonerName) {
-        return PlayerPrefs.GetInt(WinsKey(summonerName), 0);
-    }
-
-    public static int GetWins() {
-        int wins = 0;
-        foreach (Genre genre in System.Enum.GetValues(typeof(Genre))) {
-            wins += GetWins(genre);
-        }
-        return wins;
     }
 }

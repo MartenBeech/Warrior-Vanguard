@@ -18,7 +18,7 @@ public class GameOver : MonoBehaviour {
         levelUpPanel.SetActive(false);
         if (LevelManager.isAlive) {
             GameOverText.text = "You Win! Good job!";
-            ExperienceManager.WinGame(FriendlySummoner.summonerData.genre);
+            ProgressHelper.WinGame(FriendlySummoner.summonerData.genre);
         } else {
             GameOverText.text = "You Lost! Sucks to be you..";
         }
