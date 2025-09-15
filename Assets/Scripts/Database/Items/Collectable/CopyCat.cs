@@ -21,4 +21,9 @@ public class CopyCat : Item {
         clone.alignment = parameters.stats.alignment == Alignment.Friend ? Alignment.Enemy : Alignment.Friend;
         await warriorSummoner.SummonRandomly(clone, gridManager.GetCellPosition(parameters.gridIndex));
     }
+
+    public override async Task UseStartOfCombat(ItemTriggerParams parameters) {
+        triggeredThisCombat = false;
+        await Task.Delay(0);
+    }
 }

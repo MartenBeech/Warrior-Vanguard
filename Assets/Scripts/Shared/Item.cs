@@ -9,6 +9,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public string description;
     public ItemRarity rarity;
     public bool triggeredThisCombat = false;
+    public bool triggeredThisTurn = false;
     public GameObject image;
     private TooltipManager tooltipManager;
 

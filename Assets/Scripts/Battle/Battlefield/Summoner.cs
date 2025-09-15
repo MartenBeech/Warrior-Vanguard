@@ -65,6 +65,26 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         }
 
+        if (!stats.isFriendly) {
+            PeacefulPigeon peacefulPigeon = new GameObject().AddComponent<PeacefulPigeon>();
+            foreach (var item in ItemManager.items) {
+                if (item.title == peacefulPigeon.GetItem().title) {
+                    item.triggeredThisTurn = true;
+                }
+            }
+        }
+
+        if (stats.isFriendly && damage >= 2) {
+            RuneStone runeStone = new GameObject().AddComponent<RuneStone>();
+            foreach (var item in ItemManager.items) {
+                if (item.title == runeStone.GetItem().title) {
+                    if (item.triggeredThisTurn) continue;
+                    damage = 1;
+                    item.triggeredThisTurn = true;
+                }
+            }
+        }
+
         int damageAfterResistances = damage;
 
 
@@ -112,6 +132,20 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 LevelManager.LoseLevel();
             } else {
                 LevelManager.CompleteLevel();
+            }
+        }
+
+        if (stats.isFriendly && damageType == DamageType.Physical) {
+            VoodooDoll voodooDoll = new GameObject().AddComponent<VoodooDoll>();
+            int voodooDollDamage = 0;
+            foreach (var item in ItemManager.items) {
+                if (item.title == voodooDoll.GetItem().title) {
+                    voodooDollDamage++;
+                }
+            }
+            if (voodooDollDamage > 0) {
+                GameManager gameManager = FindFirstObjectByType<GameManager>();
+                await gameManager.enemySummoner.TakeDamage(null, 1, gridManager, DamageType.Magical);
             }
         }
     }

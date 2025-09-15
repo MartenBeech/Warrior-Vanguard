@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
     public Hand enemyHand;
     public Item enemyItem;
     public Summoner friendSummoner;
-    Summoner enemySummoner;
+    public Summoner enemySummoner;
     WarriorSummoner friendWarriorSummoner;
     WarriorSummoner enemyWarriorSummoner;
     public HeroPower heroPower;
@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour {
         await Task.WhenAll(asyncFunctions);
 
         foreach (Item item in ItemManager.items) {
-            item.triggeredThisCombat = false;
             await item.UseStartOfCombat(new(summoner: friendSummoner, coin: friendCoin));
             await item.UseStartOfEnemyCombat(new(summoner: enemySummoner));
         }
