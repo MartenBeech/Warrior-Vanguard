@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
     public GameObject collection;
+    public GameObject achievements;
     public void StartNewGame() {
         DeleteTemporaryPlayerPrefs();
         SceneLoader.LoadScene(SceneLoader.Scene.SummonerSelector);
@@ -23,6 +24,10 @@ public class MainMenu : MonoBehaviour {
 
     public void ToggleCollection() {
         collection.SetActive(!collection.activeSelf);
+    }
+
+    public void ToggleAchievements() {
+        achievements.SetActive(!achievements.activeSelf);
     }
 
     void DeleteTemporaryPlayerPrefs() {

@@ -64,4 +64,12 @@ public static class ExperienceManager {
     public static int GetWins(Genre summonerName) {
         return PlayerPrefs.GetInt(WinsKey(summonerName), 0);
     }
+
+    public static int GetWins() {
+        int wins = 0;
+        foreach (Genre genre in System.Enum.GetValues(typeof(Genre))) {
+            wins += GetWins(genre);
+        }
+        return wins;
+    }
 }
