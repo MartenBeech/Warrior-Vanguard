@@ -7,7 +7,7 @@ public class DrakSmag : SummonerStats {
             title = GetType().Name,
             description = "Buuuuurn!",
             health = 20,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 3,
         };
         stats.healthMax = stats.health;

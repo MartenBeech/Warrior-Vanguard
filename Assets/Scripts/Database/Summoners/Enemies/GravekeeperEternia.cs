@@ -7,7 +7,7 @@ public class GravekeeperEternia : SummonerStats {
             title = GetType().Name,
             description = "What is dead may never die",
             health = 20,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 3,
         };
         stats.healthMax = stats.health;

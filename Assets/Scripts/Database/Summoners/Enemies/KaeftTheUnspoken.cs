@@ -7,7 +7,7 @@ public class KaeftTheUnspoken : SummonerStats {
             title = GetType().Name,
             description = "Shhhhhhh",
             health = 20,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 1,
         };
         stats.healthMax = stats.health;

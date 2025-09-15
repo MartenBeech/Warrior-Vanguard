@@ -12,7 +12,7 @@ public class SummonerStats {
     public int heroPowerCost = 0;
     public Sprite heroPowerImage;
     public Action<HeroPowerEffectParams> heroPowerEffect;
-    public bool isFriendly = true;
+    public Alignment alignment = Alignment.Friend;
     public int health;
     public int healthMax;
     public int shield = 0;
@@ -51,6 +51,6 @@ public class SummonerStats {
         shield = stats.shield;
         difficulty = stats.difficulty;
         skeletonBones = stats.skeletonBones;
-        isFriendly = stats.isFriendly;
+        alignment = stats.alignment;
     }
 }

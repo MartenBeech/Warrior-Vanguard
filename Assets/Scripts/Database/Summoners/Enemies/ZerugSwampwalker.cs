@@ -7,7 +7,7 @@ public class ZerugSwampwalker : SummonerStats {
             title = GetType().Name,
             description = "Tread carefully",
             health = 30,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 2,
         };
         stats.healthMax = stats.health;

@@ -7,7 +7,7 @@ public class ProfessorForten : SummonerStats {
             title = GetType().Name,
             description = "My warriors are a perfect 4/10!",
             health = 20,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 1,
         };
         stats.healthMax = stats.health;

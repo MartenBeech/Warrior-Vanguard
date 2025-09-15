@@ -7,7 +7,7 @@ public class QuillinFarsight : SummonerStats {
             title = GetType().Name,
             description = "I see you!",
             health = 20,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 2,
         };
         stats.healthMax = stats.health;

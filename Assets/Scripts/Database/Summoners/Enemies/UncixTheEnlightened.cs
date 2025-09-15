@@ -7,7 +7,7 @@ public class UncixTheEnlightened : SummonerStats {
             title = GetType().Name,
             description = "Draw your best art",
             health = 20,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 1,
         };
         stats.healthMax = stats.health;

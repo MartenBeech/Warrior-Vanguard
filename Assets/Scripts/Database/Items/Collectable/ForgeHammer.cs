@@ -11,7 +11,7 @@ public class ForgeHammer : Item {
     }
 
     public override async Task UseStartOfTurn(ItemTriggerParams parameters) {
-        List<Warrior> friends = parameters.gridManager.GetFriends(parameters.summoner.stats.isFriendly ? Alignment.Friend : Alignment.Enemy);
+        List<Warrior> friends = parameters.gridManager.GetFriends(parameters.summoner.stats.alignment);
         if (friends.Count == 0) return;
 
         Warrior randomFriend = Rng.Entry(friends);

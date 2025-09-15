@@ -34,7 +34,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void UpdateItem() {
         if (itemImage != null) {
-            if (!stats.isFriendly && ItemManager.enemyItem != null) {
+            if (stats.alignment == Alignment.Enemy && ItemManager.enemyItem != null) {
                 itemImage.SetActive(true);
                 itemImage.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{ItemManager.enemyItem.title}");
             } else {
@@ -56,7 +56,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             damage = stats.ability.resistance.TriggerDamaged(dealer, damage, damageType);
         }
 
-        if (!stats.isFriendly && damage == 1) {
+        if (stats.alignment == Alignment.Enemy && damage == 1) {
             Underdog underdog = new GameObject().AddComponent<Underdog>();
             foreach (var item in ItemManager.items) {
                 if (item.title == underdog.GetItem().title) {
@@ -65,7 +65,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         }
 
-        if (!stats.isFriendly) {
+        if (stats.alignment == Alignment.Enemy) {
             PeacefulPigeon peacefulPigeon = new GameObject().AddComponent<PeacefulPigeon>();
             foreach (var item in ItemManager.items) {
                 if (item.title == peacefulPigeon.GetItem().title) {
@@ -74,7 +74,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         }
 
-        if (stats.isFriendly && damage >= 2) {
+        if (stats.alignment == Alignment.Friend && damage >= 2) {
             RuneStone runeStone = new GameObject().AddComponent<RuneStone>();
             foreach (var item in ItemManager.items) {
                 if (item.title == runeStone.GetItem().title) {
@@ -95,7 +95,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if (stats.shield < 0) {
                 stats.shield = 0;
                 stats.health -= damageAfterResistances;
-                if (stats.isFriendly) {
+                if (stats.alignment == Alignment.Friend) {
                     FriendlySummoner.LoseHealth(damageAfterResistances);
                 }
             }
@@ -128,14 +128,14 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
 
         if (stats.health <= 0) {
-            if (stats.isFriendly) {
+            if (stats.alignment == Alignment.Friend) {
                 LevelManager.LoseLevel();
             } else {
                 LevelManager.CompleteLevel();
             }
         }
 
-        if (stats.isFriendly && damageType == DamageType.Physical) {
+        if (stats.alignment == Alignment.Friend && damageType == DamageType.Physical) {
             VoodooDoll voodooDoll = new GameObject().AddComponent<VoodooDoll>();
             int voodooDollDamage = 0;
             foreach (var item in ItemManager.items) {
@@ -151,7 +151,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public void Heal(int amount) {
-        if (stats.isFriendly) {
+        if (stats.alignment == Alignment.Friend) {
             FriendlySummoner.GainHealth(amount);
         }
 

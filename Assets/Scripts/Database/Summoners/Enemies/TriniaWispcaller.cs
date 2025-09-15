@@ -7,7 +7,7 @@ public class TriniaWispcaller : SummonerStats {
             title = GetType().Name,
             description = "I hear the 'wispers' of the forest",
             health = 30,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 2,
         };
         stats.healthMax = stats.health;

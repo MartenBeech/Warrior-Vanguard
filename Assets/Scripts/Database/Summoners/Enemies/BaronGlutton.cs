@@ -7,7 +7,7 @@ public class BaronGlutton : SummonerStats {
             title = GetType().Name,
             description = "I like big Warriors and I cannot lie!",
             health = 40,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 2,
         };
         stats.healthMax = stats.health;

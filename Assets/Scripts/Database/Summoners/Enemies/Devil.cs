@@ -7,7 +7,7 @@ public class Devil : SummonerStats {
             title = GetType().Name,
             description = "He's a baaaaaad guy, duh!",
             health = 66,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 1,
         };
         stats.healthMax = stats.health;

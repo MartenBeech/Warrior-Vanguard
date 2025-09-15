@@ -7,7 +7,7 @@ public class KeiraTheCavalier : SummonerStats {
             title = GetType().Name,
             description = "Chaarge!",
             health = 20,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 1,
         };
         stats.healthMax = stats.health;

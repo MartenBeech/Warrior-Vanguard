@@ -7,7 +7,7 @@ public class BonestackerBanya : SummonerStats {
             title = GetType().Name,
             description = "Lovely Boooones!",
             health = 20,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 3,
         };
         stats.healthMax = stats.health;

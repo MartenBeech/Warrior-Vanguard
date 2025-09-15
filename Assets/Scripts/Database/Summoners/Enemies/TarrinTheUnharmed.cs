@@ -7,7 +7,7 @@ public class TarrinTheUnharmed : SummonerStats {
             title = GetType().Name,
             description = "I will defend the realm",
             health = 30,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 1,
         };
         stats.healthMax = stats.health;

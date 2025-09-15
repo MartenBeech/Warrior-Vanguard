@@ -12,7 +12,7 @@ public class PeacefulPigeon : Item {
 
     public override async Task UseStartOfTurn(ItemTriggerParams parameters) {
         if (!triggeredThisTurn) {
-            List<Warrior> friends = parameters.gridManager.GetFriends(parameters.summoner.stats.isFriendly ? Alignment.Friend : Alignment.Enemy);
+            List<Warrior> friends = parameters.gridManager.GetFriends(parameters.summoner.stats.alignment);
             List<Task> asyncFunctions = new();
 
             foreach (var friend in friends) {

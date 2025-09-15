@@ -7,7 +7,7 @@ public class SUMMONERTEMPLATE : SummonerStats {
             title = GetType().Name,
             description = "DESCRIPTION",
             health = 20,
-            isFriendly = false,
+            alignment = Alignment.Enemy,
             difficulty = 1,
         };
         stats.healthMax = stats.health;
