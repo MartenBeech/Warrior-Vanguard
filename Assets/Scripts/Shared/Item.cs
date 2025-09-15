@@ -23,7 +23,8 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     }
 
     public void UpdateItemUI() {
-        image.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/Items/{title}");
+        Sprite sprite = Resources.Load<Sprite>($"Images/Items/{title}");
+        image.GetComponent<Image>().sprite = sprite != null ? sprite : Resources.Load<Sprite>($"Images/Icons/Red Cross");
     }
 
     public virtual void UseImmediately(ItemTriggerParams parameters) {
