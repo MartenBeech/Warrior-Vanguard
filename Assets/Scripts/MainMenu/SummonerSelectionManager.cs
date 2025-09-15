@@ -47,9 +47,10 @@ public class SummonerSelectionManager : MonoBehaviour {
     }
 
     void UpdateLockedSummoners() {
-        elvesLockPanel.SetActive(ExperienceManager.GetWins(Genre.Human) <= 0);
-        undeadLockPanel.SetActive(ExperienceManager.GetWins(Genre.Elves) <= 0);
-        underworldLockPanel.SetActive(ExperienceManager.GetWins(Genre.Undead) <= 0);
+        // TODO: This gives an error
+        // elvesLockPanel.SetActive(ExperienceManager.GetWins(Genre.Human) <= 0);
+        // undeadLockPanel.SetActive(ExperienceManager.GetWins(Genre.Elves) <= 0);
+        // underworldLockPanel.SetActive(ExperienceManager.GetWins(Genre.Undead) <= 0);
     }
 
     void UpdateExpSliders(Genre genre) {
