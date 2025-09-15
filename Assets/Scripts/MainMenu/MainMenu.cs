@@ -41,11 +41,10 @@ public class MainMenu : MonoBehaviour {
         int underworldExp = ExperienceManager.GetExperience(Genre.Underworld);
         int underworldLevel = ExperienceManager.GetLevel(Genre.Underworld);
 
-        // TODO: This gives an error
-        // int humanWins = ExperienceManager.GetWins(Genre.Human);
-        // int elvesWins = ExperienceManager.GetWins(Genre.Elves);
-        // int undeadWins = ExperienceManager.GetWins(Genre.Undead);
-        // int underworldWins = ExperienceManager.GetWins(Genre.Underworld);
+        int humanWins = ProgressHelper.GetWins(Genre.Human);
+        int elvesWins = ProgressHelper.GetWins(Genre.Elves);
+        int undeadWins = ProgressHelper.GetWins(Genre.Undead);
+        int underworldWins = ProgressHelper.GetWins(Genre.Underworld);
 
         PlayerPrefs.DeleteAll();
 
@@ -59,11 +58,10 @@ public class MainMenu : MonoBehaviour {
         PlayerPrefs.SetInt(ExperienceManager.LevelKey(Genre.Undead), undeadLevel);
         PlayerPrefs.SetInt(ExperienceManager.LevelKey(Genre.Underworld), underworldLevel);
 
-        // TODO: This gives an error
-        // PlayerPrefs.SetInt(ExperienceManager.WinsKey(Genre.Human), humanWins);
-        // PlayerPrefs.SetInt(ExperienceManager.WinsKey(Genre.Elves), elvesWins);
-        // PlayerPrefs.SetInt(ExperienceManager.WinsKey(Genre.Undead), undeadWins);
-        // PlayerPrefs.SetInt(ExperienceManager.WinsKey(Genre.Underworld), underworldWins);
+        PlayerPrefs.SetInt(ProgressHelper.WinsKey(Genre.Human), humanWins);
+        PlayerPrefs.SetInt(ProgressHelper.WinsKey(Genre.Elves), elvesWins);
+        PlayerPrefs.SetInt(ProgressHelper.WinsKey(Genre.Undead), undeadWins);
+        PlayerPrefs.SetInt(ProgressHelper.WinsKey(Genre.Underworld), underworldWins);
         PlayerPrefs.Save();
     }
 }
