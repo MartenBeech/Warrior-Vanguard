@@ -25,6 +25,12 @@ public class WarriorSummoner : MonoBehaviour {
     }
 
     public async Task Summon(Vector2 gridIndex, WarriorStats stats, Vector2 from) {
+        //Achievement
+        if (gridManager.GetFriends(Alignment.Friend).Count >= 10) {
+            PlayerPrefs.SetInt(PlayerPrefsKeys.tenOrMoreFriends, 1);
+            PlayerPrefs.Save();
+        }
+        
         foreach (Item item in ItemManager.items) {
             item.UseOnWarriorSummon(new(stats));
             if (stats.alignment == Alignment.Friend) {

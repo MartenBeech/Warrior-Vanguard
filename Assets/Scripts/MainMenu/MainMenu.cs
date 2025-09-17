@@ -33,18 +33,22 @@ public class MainMenu : MonoBehaviour {
     void DeleteTemporaryPlayerPrefs() {
         //Delete all keys, and reassign the permanent keys afterwards
         int humanExp = ExperienceManager.GetExperience(Genre.Human);
-        int humanLevel = ExperienceManager.GetLevel(Genre.Human);
         int elvesExp = ExperienceManager.GetExperience(Genre.Elves);
-        int elvesLevel = ExperienceManager.GetLevel(Genre.Elves);
         int undeadExp = ExperienceManager.GetExperience(Genre.Undead);
-        int undeadLevel = ExperienceManager.GetLevel(Genre.Undead);
         int underworldExp = ExperienceManager.GetExperience(Genre.Underworld);
+
+        int humanLevel = ExperienceManager.GetLevel(Genre.Human);
+        int elvesLevel = ExperienceManager.GetLevel(Genre.Elves);
+        int undeadLevel = ExperienceManager.GetLevel(Genre.Undead);
         int underworldLevel = ExperienceManager.GetLevel(Genre.Underworld);
 
         int humanWins = ProgressHelper.GetWins(Genre.Human);
         int elvesWins = ProgressHelper.GetWins(Genre.Elves);
         int undeadWins = ProgressHelper.GetWins(Genre.Undead);
         int underworldWins = ProgressHelper.GetWins(Genre.Underworld);
+
+        int survivedWith1Hp = PlayerPrefs.GetInt(PlayerPrefsKeys.survivedWith1Hp, 0);
+        int tenOrMoreFriends = PlayerPrefs.GetInt(PlayerPrefsKeys.tenOrMoreFriends, 0);
 
         PlayerPrefs.DeleteAll();
 
@@ -62,6 +66,9 @@ public class MainMenu : MonoBehaviour {
         PlayerPrefs.SetInt(ProgressHelper.WinsKey(Genre.Elves), elvesWins);
         PlayerPrefs.SetInt(ProgressHelper.WinsKey(Genre.Undead), undeadWins);
         PlayerPrefs.SetInt(ProgressHelper.WinsKey(Genre.Underworld), underworldWins);
+
+        PlayerPrefs.SetInt(PlayerPrefsKeys.survivedWith1Hp, survivedWith1Hp);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.tenOrMoreFriends, tenOrMoreFriends);
         PlayerPrefs.Save();
     }
 }

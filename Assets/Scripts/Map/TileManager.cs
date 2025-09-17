@@ -19,7 +19,7 @@ public class TileManager : MonoBehaviour {
     }
 
     private void UpdateTileAccess() {
-        bool isTileActive = PlayerPrefs.HasKey("TileActive");
+        bool isTileActive = PlayerPrefs.HasKey(PlayerPrefsKeys.tileActive);
 
         for (int y = 0; y < mapTiles.Count; y++) {
             for (int x = 0; x < mapTiles[y].Count; x++) {
@@ -39,7 +39,7 @@ public class TileManager : MonoBehaviour {
 
                     //TODO: Scroll to finished tile
                     TileType tileType = mapTiles[y][x].tileType;
-                    if ((tileType == TileType.Battlefield || tileType == TileType.MiniBoss || tileType == TileType.Boss) && PlayerPrefs.GetInt($"RewardChosen", 0) == 0) {
+                    if ((tileType == TileType.Battlefield || tileType == TileType.MiniBoss || tileType == TileType.Boss) && PlayerPrefs.GetInt(PlayerPrefsKeys.rewardChosen, 0) == 0) {
                         rewardManager.ShowReward(mapTiles[y][x].tileType);
                     }
                 }
@@ -47,7 +47,7 @@ public class TileManager : MonoBehaviour {
         }
 
         if (isTileActive) {
-            string activeTileIndex = PlayerPrefs.GetString("TileActive", "");
+            string activeTileIndex = PlayerPrefs.GetString(PlayerPrefsKeys.tileActive, "");
             string[] activeTileIndexSplit = activeTileIndex.Split("-");
             Vector2Int activeTileIndexVector = new(int.Parse(activeTileIndexSplit[0]), int.Parse(activeTileIndexSplit[1]));
             mapTiles[activeTileIndexVector.y][activeTileIndexVector.x].SetUnlocked(true);
@@ -59,7 +59,7 @@ public class TileManager : MonoBehaviour {
         string tileIndex = $"{tile.gridIndex.y}-{tile.gridIndex.x}";
         TileCompleter.ClearLastCompleted();
         TileCompleter.currentTileIndex = tileIndex;
-        PlayerPrefs.SetString($"TileActive", tileIndex);
+        PlayerPrefs.SetString(PlayerPrefsKeys.tileActive, tileIndex);
     }
 
     private GameObject CreateMapTile(Vector2 tilePos, Vector2 gridIndex, TileType tileType) {

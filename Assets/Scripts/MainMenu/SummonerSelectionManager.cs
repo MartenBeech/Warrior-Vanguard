@@ -99,7 +99,7 @@ public class SummonerSelectionManager : MonoBehaviour {
         availableSummoners[summoner2Index].description;
 
         selectedSummoner = availableSummoners[index + summoner1Index];
-        PlayerPrefs.SetInt("SummonerIndex", index + summoner1Index);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.summonerIndex, index + summoner1Index);
         PlayerPrefs.Save();
         FriendlySummoner.summonerData = selectedSummoner;
 

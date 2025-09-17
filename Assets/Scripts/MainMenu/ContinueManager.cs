@@ -13,7 +13,7 @@ public static class ContinueManager {
             new UnderworldSummoner2().GetData(),
             };
 
-        int index = PlayerPrefs.GetInt("SummonerIndex", 0);
+        int index = PlayerPrefs.GetInt(PlayerPrefsKeys.summonerIndex, 0);
         SummonerData selectedSummoner = availableSummoners[index];
         FriendlySummoner.summonerData = selectedSummoner;
     }

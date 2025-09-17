@@ -6,9 +6,17 @@ public static class LevelManager {
     public static bool isAlive = true;
 
     public static void CompleteLevel() {
+        //Achievement
+        if (FriendlySummoner.currentHealth == 1) {
+            PlayerPrefs.SetInt(PlayerPrefsKeys.survivedWith1Hp, 1);
+            PlayerPrefs.Save();
+        } 
+
         TileCompleter.MarkTileAsCompleted();
         GoldManager.AddGold(50);
         ExperienceManager.AddTempExperience(25);
+        
+
         SceneLoader.LoadScene(SceneLoader.Scene.Map);
         ItemManager.enemyItem = null;
     }

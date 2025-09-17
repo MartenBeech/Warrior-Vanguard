@@ -12,7 +12,7 @@ public class Achievement : MonoBehaviour {
         progressSlider.maxValue = maxValue;
         progressSlider.value = currentValue;
 
-        if (currentValue > maxValue) {
+        if (currentValue >= maxValue) {
             sliderText.text = "Completed";
         } else {
             sliderText.text = $"{currentValue}/{maxValue}";

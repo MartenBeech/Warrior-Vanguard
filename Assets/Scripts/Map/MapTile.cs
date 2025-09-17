@@ -44,7 +44,7 @@ public class MapTile : MonoBehaviour {
         tileManager.MarkTileAsCurrent(this);
 
         LevelManager.SetCurrentTile(this);
-        PlayerPrefs.SetInt($"RewardChosen", 0);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.rewardChosen, 0);
 
         //TEST - Get summoner with the same image as the tile
         // string enemySummonerName = gameObject.GetComponent<Image>().sprite.name;
