@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour {
     public Hand friendHand;
     public Hand enemyHand;
     public Item enemyItem;
+    public TMP_Text roundCounter;
     public Summoner friendSummoner;
     public Summoner enemySummoner;
     WarriorSummoner friendWarriorSummoner;
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour {
     public static string enemySummonerName = "";
     public static bool isLoading = false;
     private FloatingText floatingText;
+    private int round = 0;
 
     async void Awake() {
         SetLoading(true);
@@ -74,6 +77,15 @@ public class GameManager : MonoBehaviour {
     }
 
     public async Task StartPlayerTurn() {
+        round++;
+        roundCounter.text = $"Round {round}";
+
+        //Achievement
+        if (round == 20) {
+            PlayerPrefs.SetInt(PlayerPrefsKeys.controllingTheBattlefield, 1);
+            PlayerPrefs.Save();
+        }
+
         turn = Alignment.Friend;
         friendCoin.GainCoins();
         friendCoin.RefreshCoins();
