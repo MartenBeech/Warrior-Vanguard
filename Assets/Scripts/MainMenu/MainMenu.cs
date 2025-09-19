@@ -47,8 +47,11 @@ public class MainMenu : MonoBehaviour {
         int undeadWins = ProgressHelper.GetWins(Genre.Undead);
         int underworldWins = ProgressHelper.GetWins(Genre.Underworld);
 
-        int survivedWith1Hp = PlayerPrefs.GetInt(PlayerPrefsKeys.survivedWith1Hp, 0);
-        int tenOrMoreFriends = PlayerPrefs.GetInt(PlayerPrefsKeys.tenOrMoreFriends, 0);
+        int adrenalineRush = PlayerPrefs.GetInt(PlayerPrefsKeys.adrenalineRush, 0);
+        int swarm = PlayerPrefs.GetInt(PlayerPrefsKeys.swarm, 0);
+        int controllingTheBattlefield = PlayerPrefs.GetInt(PlayerPrefsKeys.controllingTheBattlefield, 0);
+        int triFlame = PlayerPrefs.GetInt(PlayerPrefsKeys.triFlame, 0);
+        int safetyFirst = PlayerPrefs.GetInt(PlayerPrefsKeys.safetyFirst, 0);
 
         PlayerPrefs.DeleteAll();
 
@@ -67,8 +70,11 @@ public class MainMenu : MonoBehaviour {
         PlayerPrefs.SetInt(ProgressHelper.WinsKey(Genre.Undead), undeadWins);
         PlayerPrefs.SetInt(ProgressHelper.WinsKey(Genre.Underworld), underworldWins);
 
-        PlayerPrefs.SetInt(PlayerPrefsKeys.survivedWith1Hp, survivedWith1Hp);
-        PlayerPrefs.SetInt(PlayerPrefsKeys.tenOrMoreFriends, tenOrMoreFriends);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.adrenalineRush, adrenalineRush);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.swarm, swarm);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.controllingTheBattlefield, controllingTheBattlefield);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.triFlame, triFlame);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.safetyFirst, safetyFirst);
         PlayerPrefs.Save();
     }
 }
