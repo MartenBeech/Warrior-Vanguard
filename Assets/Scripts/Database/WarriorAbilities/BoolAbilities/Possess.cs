@@ -3,17 +3,16 @@ using System.Threading.Tasks;
 public class Possess {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{Keyword.Kill}: Resummon the target on your side";
+        return $"{Keyword.Kill}: Add the target to your hand";
     }
 
-    public async Task<bool> TriggerKill(Warrior dealer, Warrior target, WarriorSummoner warriorSummoner) {
+    public async Task<bool> TriggerKill(Warrior dealer, Warrior target, Hand hand) {
         if (GetValue(dealer.stats)) {
             WarriorStats targetStats = new();
             targetStats.SetStats(target.stats);
             targetStats.ResetStats();
-            targetStats.alignment = dealer.stats.alignment;
 
-            await warriorSummoner.SummonRandomly(targetStats, target.transform.position);
+            await hand.MoveNewCardToHand(targetStats, target.transform.position);
 
             return true;
         }

@@ -374,7 +374,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
                 asyncFunctions.Add(warrior.stats.ability.looting.Trigger(warrior, floatingText));
             }
 
-            asyncFunctions.Add(dealer.stats.ability.possess.TriggerKill(dealer, this, warriorSummoner));
+            asyncFunctions.Add(dealer.stats.ability.possess.TriggerKill(dealer, this, dealer.hand));
             asyncFunctions.Add(dealer.stats.ability.greedyStrike.TriggerKill(dealer, floatingText));
             asyncFunctions.Add(dealer.stats.ability.lifeInDeath.TriggerKill(dealer, gridManager));
             asyncFunctions.Add(dealer.stats.ability.dragonRecruiter.TriggerKill(dealer, dealer.hand));
