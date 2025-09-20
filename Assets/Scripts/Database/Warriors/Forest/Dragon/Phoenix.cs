@@ -18,6 +18,7 @@ public class Phoenix {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.flying.Add();
         ability.pierce.Add();
         ability.phoenixAshes.Add();
 

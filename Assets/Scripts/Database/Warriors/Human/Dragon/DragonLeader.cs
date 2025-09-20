@@ -18,6 +18,7 @@ public class DragonLeader {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.flying.Add();
         ability.pierce.Add();
         ability.armor.Add(2);
         ability.dragonRecruiter.Add();

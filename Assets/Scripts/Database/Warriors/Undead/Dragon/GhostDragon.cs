@@ -18,6 +18,7 @@ public class GhostDragon {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.flying.Add();
         ability.pierce.Add();
         ability.afterlife.Add();
         ability.eternalNightmare.Add();

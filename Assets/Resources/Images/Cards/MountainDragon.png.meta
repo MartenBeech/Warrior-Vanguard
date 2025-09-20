@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7ed5194e024a8334d854940d2559c6b9
+guid: 57b09754f48de6e42b4c83ea4888dba5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 276423691152520158
-    second: Centarcher 1_0
+      213: -8837313975111085518
+    second: MountainDragon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Centarcher 1_0
+      name: MountainDragon_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ed3f5aee1ed06d300800000000000000
-      internalID: 276423691152520158
+      spriteID: 23298e003cd8b5580800000000000000
+      internalID: -8837313975111085518
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Centarcher 1_0: 276423691152520158
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

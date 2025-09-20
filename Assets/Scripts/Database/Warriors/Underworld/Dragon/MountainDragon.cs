@@ -18,6 +18,7 @@ public class MountainDragon {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.flying.Add();
         ability.pierce.Add();
         ability.regeneration.Add(3);
         ability.greedyStrike.Add(50);

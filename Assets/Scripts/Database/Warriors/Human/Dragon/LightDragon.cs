@@ -18,6 +18,7 @@ public class LightDragon {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.flying.Add();
         ability.pierce.Add();
         ability.inspire.Add();
         ability.lifeInDeath.Add();

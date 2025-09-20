@@ -18,6 +18,7 @@ public class GoldDragon {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.flying.Add();
         ability.pierce.Add();
         ability.thickSkin.Add();
 

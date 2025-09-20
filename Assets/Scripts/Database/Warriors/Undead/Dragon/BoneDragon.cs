@@ -18,6 +18,7 @@ public class BoneDragon {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.flying.Add();
         ability.pierce.Add();
         ability.revive.Add();
         ability.skeletal.Add(2, 3);

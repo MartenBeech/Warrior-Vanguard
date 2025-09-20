@@ -18,6 +18,7 @@ public class BlackDragon {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.flying.Add();
         ability.pierce.Add();
         ability.spellImmunity.Add();
 
