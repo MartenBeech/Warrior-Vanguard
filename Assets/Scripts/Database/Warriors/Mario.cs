@@ -2,9 +2,9 @@ public class Mario : WarriorStats {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = "Mario",
-            strength = new int[] { 1, 4 },
-            health = new int[] { 5, 4 },
             cost = new int[] { 0, 0 },
+            strength = new int[] { 5, 4 },
+            health = new int[] { 5, 4 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
@@ -17,6 +17,7 @@ public class Mario : WarriorStats {
 
         WarriorAbility ability = stats.ability;
         ability.farming.Add(1);
+        ability.enflame.Add();
 
         return stats;
     }
