@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class SummonerSelectionManager : MonoBehaviour {
     public TMP_Text summonerDescriptionText;
@@ -21,7 +22,7 @@ public class SummonerSelectionManager : MonoBehaviour {
     public GameObject elvesLockPanel;
     public GameObject undeadLockPanel;
     public GameObject underworldLockPanel;
-    SummonerData[] availableSummoners;
+    List<SummonerData> availableSummoners;
     SummonerData selectedSummoner;
     int summoner1Index;
     int summoner2Index;
@@ -34,16 +35,7 @@ public class SummonerSelectionManager : MonoBehaviour {
         UpdateExpSliders(Genre.Undead);
         UpdateExpSliders(Genre.Underworld);
 
-        availableSummoners = new SummonerData[] {
-            new HumanSummoner1().GetData(),
-            new HumanSummoner2().GetData(),
-            new ElvenSummoner1().GetData(),
-            new ElvenSummoner2().GetData(),
-            new UndeadSummoner1().GetData(),
-            new UndeadSummoner2().GetData(),
-            new UnderworldSummoner1().GetData(),
-            new UnderworldSummoner2().GetData(),
-            };
+        availableSummoners = SummonerManager.GetAvailableSummoners();
     }
 
     void UpdateLockedSummoners() {
