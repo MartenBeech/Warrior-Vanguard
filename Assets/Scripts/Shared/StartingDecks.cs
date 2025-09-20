@@ -32,21 +32,16 @@ public static class StartingDecks {
                 AddCardToDeck(new HolyEmpower().GetStats(), card);
                 break;
             case "HumanSummoner2":
-                AddCardToDeck(new Peasant().GetStats(), card);
-                AddCardToDeck(new Peasant().GetStats(), card);
-                AddCardToDeck(new Defender().GetStats(), card);
-                AddCardToDeck(new Defender().GetStats(), card);
-                AddCardToDeck(new Squire().GetStats(), card);
-                AddCardToDeck(new Archer().GetStats(), card);
-                AddCardToDeck(new Archer().GetStats(), card);
-                AddCardToDeck(new YoungPriestess().GetStats(), card);
-                AddCardToDeck(new HeavyRider().GetStats(), card);
-                AddCardToDeck(new DrawfulHobbyist().GetStats(), card);
-                AddCardToDeck(new MarketingManager().GetStats(), card);
-                AddCardToDeck(new HolyFlame().GetStats(), card);
-                AddCardToDeck(new HolyFlame().GetStats(), card);
-                AddCardToDeck(new GuidingStrength().GetStats(), card);
-                AddCardToDeck(new HolyEmpower().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Mario().GetStats(), card);
+                AddCardToDeck(new Luigi().GetStats(), card);
+                AddCardToDeck(new Luigi().GetStats(), card);
+                AddCardToDeck(new Luigi().GetStats(), card);
+                AddCardToDeck(new Luigi().GetStats(), card);
+                AddCardToDeck(new Luigi().GetStats(), card);
                 break;
             case "ElvenSummoner1":
                 AddCardToDeck(new Youngling().GetStats(), card);
@@ -134,16 +129,21 @@ public static class StartingDecks {
                 AddCardToDeck(new RainOfFire().GetStats(), card);
                 break;
             case "UnderworldSummoner2":
-                AddCardToDeck(new Mario().GetStats(), card);
-                AddCardToDeck(new Mario().GetStats(), card);
-                AddCardToDeck(new Mario().GetStats(), card);
-                AddCardToDeck(new Mario().GetStats(), card);
-                AddCardToDeck(new Mario().GetStats(), card);
-                AddCardToDeck(new Luigi().GetStats(), card);
-                AddCardToDeck(new Luigi().GetStats(), card);
-                AddCardToDeck(new Luigi().GetStats(), card);
-                AddCardToDeck(new Luigi().GetStats(), card);
-                AddCardToDeck(new Luigi().GetStats(), card);
+                AddCardToDeck(new FlameWarden().GetStats(), card);
+                AddCardToDeck(new FriendlyFiend().GetStats(), card);
+                AddCardToDeck(new RockThrower().GetStats(), card);
+                AddCardToDeck(new RockThrower().GetStats(), card);
+                AddCardToDeck(new SketchySketcher().GetStats(), card);
+                AddCardToDeck(new HappyHarpy().GetStats(), card);
+                AddCardToDeck(new IntrusiveTermite().GetStats(), card);
+                AddCardToDeck(new IntrusiveTermite().GetStats(), card);
+                AddCardToDeck(new CrispRat().GetStats(), card);
+                AddCardToDeck(new HellHound().GetStats(), card);
+                AddCardToDeck(new HellHound().GetStats(), card);
+                AddCardToDeck(new Firebolt().GetStats(), card);
+                AddCardToDeck(new Firebolt().GetStats(), card);
+                AddCardToDeck(new MoltenBlade().GetStats(), card);
+                AddCardToDeck(new RainOfFire().GetStats(), card);
                 break;
         }
     }
