@@ -1,17 +1,15 @@
 using UnityEngine;
 using TMPro;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 public class TextAnimation : MonoBehaviour {
     Vector2 fromVector;
     Vector2 toVector;
     float duration;
     float counter = 0;
-    TMP_Text text;
-
-    void Awake() {
-        text = GetComponent<TMP_Text>();
-    }
+    public TMP_Text textObject;
+    public GameObject backgroundImage;
 
     private void Update() {
         if (counter > 0) {
@@ -22,7 +20,11 @@ public class TextAnimation : MonoBehaviour {
             transform.Translate(dist * Time.deltaTime * dir.normalized / duration * Settings.gameSpeed);
             counter -= Time.deltaTime * Settings.gameSpeed;
 
-            text.color = ColorPalette.AddTransparency(text.color, (int)(counter * 150));
+            float transparency = counter * 150;
+            textObject.color = ColorPalette.AddTransparency(textObject.color, transparency);
+            if (backgroundImage) {
+                backgroundImage.GetComponent<Image>().color = ColorPalette.AddTransparency(ColorPalette.GetColor(ColorEnum.White), transparency);
+            }
 
             if (counter <= 0) {
                 Destroy(gameObject);
@@ -30,11 +32,16 @@ public class TextAnimation : MonoBehaviour {
         }
     }
 
-    public async Task SetupFloatingText(Vector2 pos, float durationInSec = 1) {
+    public async Task SetupFloatingText(Vector2 pos, Sprite image) {
         fromVector = pos;
         toVector = new Vector2(pos.x, pos.y + 100);
-        duration = durationInSec;
-        counter = durationInSec;
+        duration = 1;
+        counter = duration;
+        if (image == null) {
+            backgroundImage = null;
+        } else {
+            backgroundImage.GetComponent<Image>().sprite = image;
+        }
 
         await Task.Run(async () => {
             while (counter > 0) {

@@ -289,7 +289,11 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
             dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Red);
         }
 
-        asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString(), ColorEnum.Red, true));
+        if (dealer && dealer.stats.ability.enflame.GetValue(dealer.stats)) {
+            asyncFunctions.Add(floatingText.CreateFloatingText(transform, dealer.stats.GetStrength().ToString(), ColorEnum.White, true, Resources.Load<Sprite>("Images/Icons/Enflame")));
+        } else {
+            asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString(), ColorEnum.Red, true));
+        }
 
         await Task.WhenAll(asyncFunctions);
 
