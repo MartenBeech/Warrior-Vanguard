@@ -3,7 +3,7 @@ public class Farming {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         int value = GetValue(stats);
-        return $"{Keyword.Initiate}: Gain {GetValue(stats)} extra {(GetValue(stats) == 1 ? "coin" : "coins")}";
+        return $"{Keyword.Initiate}: Gain {GetValue(stats)} temporary {(GetValue(stats) == 1 ? "coin" : "coins")}";
     }
 
     public bool TriggerInitiate(Warrior warrior, Coin coin) {
