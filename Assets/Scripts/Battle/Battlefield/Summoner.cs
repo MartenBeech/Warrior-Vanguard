@@ -27,6 +27,9 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (stats.shield > 0) {
             shieldImage.SetActive(true);
             shieldText.GetComponent<TMP_Text>().text = stats.shield.ToString();
+            if (stats.shield >= 20 && stats.alignment == Alignment.Friend) {
+                PlayerPrefs.SetInt(PlayerPrefsKeys.safetyFirst, 1);
+            }
         } else {
             shieldImage.SetActive(false);
         }

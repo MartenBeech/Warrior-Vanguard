@@ -8,7 +8,7 @@ public static class LevelManager {
     public static void CompleteLevel() {
         //Achievement
         if (FriendlySummoner.currentHealth == 1) {
-            PlayerPrefs.SetInt(PlayerPrefsKeys.survivedWith1Hp, 1);
+            PlayerPrefs.SetInt(PlayerPrefsKeys.adrenalineRush, 1);
             PlayerPrefs.Save();
         } 
 

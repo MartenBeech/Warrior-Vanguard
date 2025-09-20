@@ -25,12 +25,6 @@ public class WarriorSummoner : MonoBehaviour {
     }
 
     public async Task Summon(Vector2 gridIndex, WarriorStats stats, Vector2 from) {
-        //Achievement
-        if (gridManager.GetFriends(Alignment.Friend).Count >= 10) {
-            PlayerPrefs.SetInt(PlayerPrefsKeys.tenOrMoreFriends, 1);
-            PlayerPrefs.Save();
-        }
-        
         foreach (Item item in ItemManager.items) {
             item.UseOnWarriorSummon(new(stats));
             if (stats.alignment == Alignment.Friend) {
@@ -89,6 +83,20 @@ public class WarriorSummoner : MonoBehaviour {
         stats.ability.familiarGround.TriggerSummon(warrior);
 
         gameManager.RegisterWarrior(warrior, stats.alignment);
+
+        //Achievements
+        if (stats.alignment == Alignment.Friend) {
+            if (gridManager.GetFriends(Alignment.Friend).Count >= 10) {
+                PlayerPrefs.SetInt(PlayerPrefsKeys.swarm, 1);
+                PlayerPrefs.Save();
+            }
+
+            if (stats.race == Race.Dragon && gridManager.GetFriends(Alignment.Friend).FindAll((warrior) => warrior.stats.race == Race.Dragon).Count >= 3) {
+                PlayerPrefs.SetInt(PlayerPrefsKeys.triFlame, 1);
+                PlayerPrefs.Save();
+            }
+        }
+
         await objectAnimation.MoveObject(from, gridManager.GetCellPosition(gridIndex));
 
         warrior.SetPosition(gridIndex);

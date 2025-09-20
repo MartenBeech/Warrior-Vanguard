@@ -14,6 +14,7 @@ public static class StartingDecks {
     public static void SetStartingDeck(string summonerType, Card card) {
         switch (summonerType) {
             case "HumanSummoner1":
+                AddCardToDeck(new LightDragon().GetStats(), card);
                 AddCardToDeck(new Peasant().GetStats(), card);
                 AddCardToDeck(new Peasant().GetStats(), card);
                 AddCardToDeck(new Defender().GetStats(), card);

@@ -54,7 +54,7 @@ public class SettingsMenu : MonoBehaviour {
         }
     }
 
-    public void ExitGame() {
+    public void GoToMainMenu() {
         SceneLoader.LoadScene(SceneLoader.Scene.MainMenu);
     }
 }
