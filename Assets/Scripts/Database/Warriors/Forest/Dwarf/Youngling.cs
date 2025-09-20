@@ -18,6 +18,7 @@ public class Youngling {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.bash.Add();
         ability.resistance.Add(1);
 
         return stats;

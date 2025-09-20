@@ -18,6 +18,7 @@ public class GreedyDwarf {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.bash.Add();
         ability.resistance.Add(2);
         ability.greedyStrike.Add(25, 50);
 

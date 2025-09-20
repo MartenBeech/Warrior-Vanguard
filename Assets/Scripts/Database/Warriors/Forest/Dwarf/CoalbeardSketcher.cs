@@ -18,6 +18,7 @@ public class CoalbeardSketcher {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.bash.Add();
         ability.resistance.Add(1);
         ability.drawing.Add(2);
 
