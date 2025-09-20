@@ -3,7 +3,7 @@ using UnityEngine;
 public class Stealth {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{Keyword.Strike}: Deal double damage and break stealth";
+        return $"Your first {Keyword.Strike} deals double damage";
     }
 
     public int TriggerStrike(Warrior dealer, int damage) {
