@@ -9,4 +9,7 @@ public static class PlayerPrefsKeys {
     public static string controllingTheBattlefield = "ControllingTheBattlefield";
     public static string triFlame = "TriFlame";
     public static string safetyFirst = "SafetyFirst";
+    public static string spookyScarySkeletons = "SpookyScarySkeletons";
+    public static string poorLooter = "PoorLooter";
+    public static string theseWereEasierToFind = "TheseWereEasierToFind";
 }

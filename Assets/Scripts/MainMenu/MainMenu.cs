@@ -52,6 +52,9 @@ public class MainMenu : MonoBehaviour {
         int controllingTheBattlefield = PlayerPrefs.GetInt(PlayerPrefsKeys.controllingTheBattlefield, 0);
         int triFlame = PlayerPrefs.GetInt(PlayerPrefsKeys.triFlame, 0);
         int safetyFirst = PlayerPrefs.GetInt(PlayerPrefsKeys.safetyFirst, 0);
+        int spookyScarySkeletons = PlayerPrefs.GetInt(PlayerPrefsKeys.spookyScarySkeletons, 0);
+        int poorLooter = PlayerPrefs.GetInt(PlayerPrefsKeys.poorLooter, 0);
+        int theseWereEasierToFind = PlayerPrefs.GetInt(PlayerPrefsKeys.theseWereEasierToFind, 0);
 
         PlayerPrefs.DeleteAll();
 
@@ -75,6 +78,9 @@ public class MainMenu : MonoBehaviour {
         PlayerPrefs.SetInt(PlayerPrefsKeys.controllingTheBattlefield, controllingTheBattlefield);
         PlayerPrefs.SetInt(PlayerPrefsKeys.triFlame, triFlame);
         PlayerPrefs.SetInt(PlayerPrefsKeys.safetyFirst, safetyFirst);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.spookyScarySkeletons, spookyScarySkeletons);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.poorLooter, poorLooter);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.theseWereEasierToFind, theseWereEasierToFind);
         PlayerPrefs.Save();
     }
 }

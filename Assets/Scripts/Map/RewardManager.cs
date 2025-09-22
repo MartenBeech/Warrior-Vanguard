@@ -16,6 +16,17 @@ public class RewardManager : MonoBehaviour {
 
     public void ShowReward(TileType tileType) {
         if (!LevelManager.isAlive || tileType == TileType.Boss) {
+
+            //Achievement
+            if (ItemManager.items.Count <= 0) {
+                PlayerPrefs.SetInt(PlayerPrefsKeys.poorLooter, 1);
+            }
+
+            //Achievement
+            if (DeckManager.deck.FindAll((card) => card.stats.rarity == CardRarity.Rare || card.stats.rarity == CardRarity.Legendary).Count == 0) {
+                PlayerPrefs.SetInt(PlayerPrefsKeys.theseWereEasierToFind, 1);
+            }
+
             SceneLoader.LoadScene(SceneLoader.Scene.GameOver);
             return;
         }

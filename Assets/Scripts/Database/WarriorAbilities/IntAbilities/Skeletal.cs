@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using UnityEngine;
 public class Skeletal {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
@@ -9,6 +10,11 @@ public class Skeletal {
     public void TriggerDeath(Warrior target, Summoner summoner) {
         if (GetValue(target.stats) > 0) {
             summoner.stats.skeletonBones += GetValue(target.stats);
+
+            //Achievement
+            if (summoner.stats.skeletonBones >= 10 && summoner.stats.alignment == Alignment.Friend) {
+                PlayerPrefs.SetInt(PlayerPrefsKeys.spookyScarySkeletons, 1);
+            }
         }
     }
 
