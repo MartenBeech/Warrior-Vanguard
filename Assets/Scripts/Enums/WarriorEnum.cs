@@ -20,5 +20,9 @@ public enum DamageType {
 };
 
 public enum Alignment {
-    Null, Enemy, Friend
+    None, Enemy, Friend
 };
+
+public enum DamageSource {
+    Normal, Burning, Poisoned
+}

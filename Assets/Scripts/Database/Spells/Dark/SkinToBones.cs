@@ -17,13 +17,13 @@ public class SkinToBones {
             genre = Genre.Undead,
             cardType = CardType.Spell,
         };
-        
+
 
         return stats;
     }
 
     public async Task Trigger(SpellTriggerParams parameters) {
-        Alignment alignment = Alignment.Null;
+        Alignment alignment = Alignment.None;
         if (parameters.target.stats.alignment == Alignment.Enemy) {
             alignment = Alignment.Friend;
         } else if (parameters.target.stats.alignment == Alignment.Friend) {

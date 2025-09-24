@@ -48,7 +48,7 @@ public class RaiseDead {
 
     public BuffType buffType = BuffType.None;
 
-    public async Task SummonSkeleton(Warrior dealer, Warrior target, WarriorSummoner warriorSummoner, Alignment alignment = Alignment.Null) {
+    public async Task SummonSkeleton(Warrior dealer, Warrior target, WarriorSummoner warriorSummoner, Alignment alignment = Alignment.None) {
         int skeletonType = Rng.Range(0, 4);
 
         WarriorStats stats =
@@ -57,7 +57,7 @@ public class RaiseDead {
             skeletonType == 3 ? new SkeletonMage().GetStats() :
             new SkeletonRider().GetStats();
         stats.level = dealer.stats.level;
-        stats.alignment = alignment == Alignment.Null ? dealer.stats.alignment : alignment;
+        stats.alignment = alignment == Alignment.None ? dealer.stats.alignment : alignment;
 
         await warriorSummoner.SummonRandomly(stats, target.transform.position);
     }

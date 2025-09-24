@@ -8,7 +8,7 @@ public class Burning {
 
     public async Task<bool> TriggerOverturn(Warrior target) {
         if (GetValue(target.stats) > 0) {
-            await target.TakeDamage(target, GetValue(target.stats), DamageType.Magical);
+            await target.TakeDamage(target, GetValue(target.stats), DamageType.Magical, DamageSource.Burning);
             target.stats.ability.burning.Add(-1);
             target.UpdateWarriorUI();
             return true;

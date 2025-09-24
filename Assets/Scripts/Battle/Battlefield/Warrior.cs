@@ -238,7 +238,9 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         stats.ability.rooting.TriggerStrike(this, target);
     }
 
-    public async Task<int> TakeDamage(Warrior dealer, int damage, DamageType damageType) {
+    public async Task<int> TakeDamage(Warrior dealer, int damage, DamageType damageType, DamageSource damageSource = DamageSource.Normal) {
+        if (stats.GetHealthCurrent() <= 0) return 0;
+
         if (!stats.ability.humanShield.GetValue(stats)) {
             List<Warrior> nearbyFriends = gridManager.GetNearbyFriends(this);
             foreach (var nearbyFriend in nearbyFriends) {
@@ -292,7 +294,17 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         if (dealer && dealer.stats.ability.enflame.GetValue(dealer.stats)) {
             asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{dealer.stats.GetStrength()}", ColorEnum.White, true, Resources.Load<Sprite>("Images/Icons/Enflame")));
         } else {
-            asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{damage}", ColorEnum.Red, true));
+            switch (damageSource) {
+                case DamageSource.Normal:
+                    asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{damage}", ColorEnum.Red, true, Resources.Load<Sprite>("Images/Icons/WarriorStrength")));
+                    break;
+                case DamageSource.Burning:
+                    asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{damage}", ColorEnum.Red, true, Resources.Load<Sprite>("Images/Icons/Enflame")));
+                    break;
+                case DamageSource.Poisoned:
+                    asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{damage}", ColorEnum.Red, true, Resources.Load<Sprite>("Images/Icons/Poisoned")));
+                    break;
+            }
         }
 
         await Task.WhenAll(asyncFunctions);
