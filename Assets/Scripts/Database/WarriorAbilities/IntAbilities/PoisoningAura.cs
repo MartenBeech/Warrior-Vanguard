@@ -1,14 +1,17 @@
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using UnityEngine;
 public class PoisoningAura {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         return $"When attacked: Apply {GetValue(stats)} Poison to the attacker";
     }
 
-    public bool TriggerAttacked(Warrior dealer, Warrior target) {
+    public async Task<bool> TriggerAttacked(Warrior dealer, Warrior target, FloatingText floatingText) {
         if (GetValue(target.stats) > 0) {
             dealer.stats.ability.poisoned.Add(GetValue(target.stats));
             dealer.UpdateWarriorUI();
+            await floatingText.CreateFloatingText(dealer.transform, $"{GetValue(target.stats)}", ColorEnum.White, true, Resources.Load<Sprite>("Images/Icons/Poisoned"));
             return true;
         }
         return false;

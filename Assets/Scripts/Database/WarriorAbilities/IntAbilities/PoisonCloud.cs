@@ -1,20 +1,23 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using UnityEngine;
 public class PoisonCloud {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
         return $"{Keyword.Overturn}: Apply {GetValue(stats)} Poisoned to nearby enemies";
     }
 
-    public bool TriggerOverturn(Warrior dealer, GridManager gridManager) {
+    public async Task<bool> TriggerOverturn(Warrior dealer, GridManager gridManager, FloatingText floatingText) {
         if (GetValue(dealer.stats) > 0) {
             List<Warrior> nearbyEnemies = gridManager.GetNearbyEnemies(dealer);
+            List<Task> asyncFunctions = new();
             foreach (Warrior enemy in nearbyEnemies) {
                 enemy.stats.ability.poisoned.Add(GetValue(dealer.stats));
                 enemy.UpdateWarriorUI();
+                asyncFunctions.Add(floatingText.CreateFloatingText(enemy.transform, $"{GetValue(dealer.stats)}", ColorEnum.White, true, Resources.Load<Sprite>("Images/Icons/Poisoned")));
             }
-
+            await Task.WhenAll(asyncFunctions);
             return true;
         }
         return false;

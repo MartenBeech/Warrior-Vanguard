@@ -177,7 +177,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
                 if (target.stats.GetHealthCurrent() > 0) {
                     target.stats.ability.firewall.TriggerAttacked(this, target);
                     target.stats.ability.weakeningAura.TriggerAttacked(this, target);
-                    target.stats.ability.poisoningAura.TriggerAttacked(this, target);
+                    await target.stats.ability.poisoningAura.TriggerAttacked(this, target, floatingText);
                     if (stats.ability.darkTouch.TriggerAttack(this, target)) {
                         await target.Die(this);
                         return;
@@ -290,12 +290,16 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         }
 
         if (dealer && dealer.stats.ability.enflame.GetValue(dealer.stats)) {
-            asyncFunctions.Add(floatingText.CreateFloatingText(transform, dealer.stats.GetStrength().ToString(), ColorEnum.White, true, Resources.Load<Sprite>("Images/Icons/Enflame")));
+            asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{dealer.stats.GetStrength()}", ColorEnum.White, true, Resources.Load<Sprite>("Images/Icons/Enflame")));
         } else {
-            asyncFunctions.Add(floatingText.CreateFloatingText(transform, damage.ToString(), ColorEnum.Red, true));
+            asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{damage}", ColorEnum.Red, true));
         }
 
         await Task.WhenAll(asyncFunctions);
+
+        if (dealer && dealer.stats.ability.poison.GetValue(dealer.stats) > 0) {
+            await floatingText.CreateFloatingText(transform, $"{dealer.stats.ability.poison.GetValue(dealer.stats)}", ColorEnum.White, true, Resources.Load<Sprite>("Images/Icons/Poisoned"));
+        }
 
         if (dealer) {
             dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.White);
@@ -422,7 +426,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
             stats.ability.bloodlust.TriggerOverturn(this);
             await stats.ability.hitAndRun.TriggerOverturn(this);
         }
-        stats.ability.poisonCloud.TriggerOverturn(this, gridManager);
+        await stats.ability.poisonCloud.TriggerOverturn(this, gridManager, floatingText);
         await stats.ability.cemeteryGates.TriggerOverturn(this, warriorSummoner);
         await stats.ability.rebirth.TriggerOverturn(this, warriorSummoner);
         await stats.ability.regeneration.TriggerOverturn(this);

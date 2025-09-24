@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class PoisonPotion {
     public WarriorStats GetStats() {
@@ -16,7 +17,7 @@ public class PoisonPotion {
             genre = Genre.Undead,
             cardType = CardType.Spell,
         };
-        
+
 
         return stats;
     }
@@ -25,6 +26,6 @@ public class PoisonPotion {
         int value = parameters.cardLevel == 0 ? 2 : 3;
         parameters.target.stats.ability.poisoned.Add(value);
         parameters.target.UpdateWarriorUI();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"{value} poison", ColorEnum.Purple);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"{value}", ColorEnum.White, true, Resources.Load<Sprite>("Images/Icons/Poisoned"));
     }
 }
