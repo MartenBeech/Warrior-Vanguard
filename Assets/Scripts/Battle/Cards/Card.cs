@@ -52,9 +52,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
             healthText.text = $"{stats.GetHealthCurrent()}";
 
             if (stats.damageType == DamageType.Physical) {
-                strengthText.color = ColorPalette.GetColor(ColorEnum.White);
+                strengthImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/Icons/WarriorStrength");
             } else if (stats.damageType == DamageType.Magical) {
-                strengthText.color = ColorPalette.GetColor(ColorEnum.Teal);
+                strengthImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/Icons/WarriorMagical");
             }
 
             if (stats.GetHealthCurrent() == stats.GetHealthMax()) {

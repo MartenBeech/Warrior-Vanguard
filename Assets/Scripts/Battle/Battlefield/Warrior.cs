@@ -10,8 +10,9 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
     private GridManager gridManager;
     public WarriorStats stats;
     private HoverCard hoverCard;
-    public TMP_Text attackText;
+    public TMP_Text strengthText;
     public TMP_Text healthText;
+    public Image strengthImage;
     public GameObject image;
     public GameObject border;
     public GameObject crystal;
@@ -39,13 +40,13 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
     public void UpdateWarriorUI() {
         if (this == null) return;
 
-        attackText.text = $"{stats.GetStrength()}";
+        strengthText.text = $"{stats.GetStrength()}";
         healthText.text = $"{stats.GetHealthCurrent()}";
 
         if (stats.damageType == DamageType.Physical) {
-            attackText.color = ColorPalette.GetColor(ColorEnum.White);
+            strengthImage.sprite = Resources.Load<Sprite>("Images/Icons/WarriorStrength");
         } else if (stats.damageType == DamageType.Magical) {
-            attackText.color = ColorPalette.GetColor(ColorEnum.Teal);
+            strengthImage.sprite = Resources.Load<Sprite>("Images/Icons/WarriorMagical");
         }
 
         if (stats.GetHealthCurrent() == stats.GetHealthMax()) {
@@ -194,7 +195,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
         Summoner summonerTarget = null;
         if (stats.alignment == Alignment.Friend) {
-            summonerTarget = gameManager.enemySummonerObject.GetComponent<Summoner>(); ;
+            summonerTarget = gameManager.enemySummonerObject.GetComponent<Summoner>();
         } else if (stats.alignment == Alignment.Enemy) {
             summonerTarget = gameManager.friendSummonerObject.GetComponent<Summoner>();
         }
@@ -296,7 +297,11 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         } else {
             switch (damageSource) {
                 case DamageSource.Normal:
-                    asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{damage}", ColorEnum.Red, true, Resources.Load<Sprite>("Images/Icons/WarriorStrength")));
+                    if (damageType == DamageType.Physical) {
+                        asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{damage}", ColorEnum.Red, true, Resources.Load<Sprite>("Images/Icons/WarriorStrength")));
+                    } else if (damageType == DamageType.Magical) {
+                        asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{damage}", ColorEnum.Red, true, Resources.Load<Sprite>("Images/Icons/WarriorMagical")));
+                    }
                     break;
                 case DamageSource.Burning:
                     asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{damage}", ColorEnum.Red, true, Resources.Load<Sprite>("Images/Icons/Enflame")));

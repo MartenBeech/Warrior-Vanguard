@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 3821567563359223476}
   - component: {fileID: 6944611933223991102}
   m_Layer: 5
-  m_Name: Health Background
+  m_Name: Image Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 1952920579463509931}
   - component: {fileID: 1224358540268641666}
   m_Layer: 5
-  m_Name: Text Attack
+  m_Name: Text Strength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,8 +579,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridIndex: {x: 0, y: 0}
-  attackText: {fileID: 1224358540268641666}
+  strengthText: {fileID: 1224358540268641666}
   healthText: {fileID: 8699503686999248439}
+  strengthImage: {fileID: 4980369935741553748}
   image: {fileID: 2619659621084207209}
   border: {fileID: 5292770241272595290}
   crystal: {fileID: 6720626804077759114}
@@ -740,7 +741,7 @@ GameObject:
   - component: {fileID: 51687772864405490}
   - component: {fileID: 4980369935741553748}
   m_Layer: 5
-  m_Name: Attack Background
+  m_Name: Image Strength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
