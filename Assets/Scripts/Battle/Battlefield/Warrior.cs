@@ -208,7 +208,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         }
 
         for (int nAttacks = 0; nAttacks < (stats.ability.doubleStrike.GetValue(stats) ? 2 : 1); nAttacks++) {
-            await summonerTarget.TakeDamage(this, stats.GetStrength(), gridManager, stats.damageType);
+            await summonerTarget.TakeDamage(this, stats.GetStrength(), gridManager, stats.damageType, gameManager);
             await stats.ability.soulSiphon.TriggerAttack(this, deck);
         }
     }

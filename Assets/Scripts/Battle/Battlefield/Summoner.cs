@@ -52,7 +52,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdateItem();
     }
 
-    public async Task TakeDamage(Warrior dealer, int damage, GridManager gridManager, DamageType damageType) {
+    public async Task TakeDamage(Warrior dealer, int damage, GridManager gridManager, DamageType damageType, GameManager gameManager = null) {
         if (dealer) {
             damage = dealer.stats.ability.stealth.TriggerStrike(dealer, damage);
             damage = stats.ability.armor.TriggerDamaged(dealer, damage, damageType);
@@ -100,6 +100,10 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 stats.health -= damageAfterResistances;
                 if (stats.alignment == Alignment.Friend) {
                     FriendlySummoner.LoseHealth(damageAfterResistances);
+
+                    //Achievement
+                    PlayerPrefs.SetInt(PlayerPrefsKeys.flawless_helper, 0);
+                    PlayerPrefs.Save();
                 }
             }
 
@@ -134,6 +138,31 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if (stats.alignment == Alignment.Friend) {
                 LevelManager.LoseLevel();
             } else {
+                //Achievement
+                if (gameManager && gameManager.friendlyDeaths == 0) {
+                    PlayerPrefs.SetInt(PlayerPrefsKeys.saveEveryResource, 1);
+                }
+
+                //Achievement
+                if (PlayerPrefs.GetInt(PlayerPrefsKeys.livingOnTheEdge_helper, 0) == 1) {
+                    PlayerPrefs.SetInt(PlayerPrefsKeys.livingOnTheEdge, 1);
+                }
+
+                //Achievement
+                if (PlayerPrefs.GetInt(PlayerPrefsKeys.flawless_helper, 0) == 1) {
+                    PlayerPrefs.SetInt(PlayerPrefsKeys.flawless, 1);
+                }
+
+                //Achievement
+                if (PlayerPrefs.GetInt(PlayerPrefsKeys.heroPowerDeactivated_helper, 0) == 1) {
+                    PlayerPrefs.SetInt(PlayerPrefsKeys.heroPowerDeactivated, 1);
+                }
+
+                PlayerPrefs.SetInt(PlayerPrefsKeys.livingOnTheEdge_helper, 0);
+                PlayerPrefs.SetInt(PlayerPrefsKeys.flawless_helper, 0);
+                PlayerPrefs.SetInt(PlayerPrefsKeys.heroPowerDeactivated_helper, 0);
+                PlayerPrefs.Save();
+
                 LevelManager.CompleteLevel();
             }
         }
@@ -147,7 +176,6 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 }
             }
             if (voodooDollDamage > 0) {
-                GameManager gameManager = FindFirstObjectByType<GameManager>();
                 await gameManager.enemySummoner.TakeDamage(null, 1, gridManager, DamageType.Magical);
             }
         }

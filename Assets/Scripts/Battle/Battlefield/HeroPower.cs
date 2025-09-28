@@ -46,16 +46,14 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         int nTriggers = 1;
 
         HeroParrot heroParrot = new GameObject().AddComponent<HeroParrot>();
-        foreach (var item in ItemManager.items) {
-            if (item.title == heroParrot.GetItem().title) {
-                nTriggers++;
-            }
-        }
+        bool hasHeroParrot = ItemManager.items.Find(item => item.title == heroParrot.GetItem().title);
+        if (hasHeroParrot) nTriggers++;
 
         for (int i = 0; i < nTriggers; i++) {
             effect(new(gameManager, friendHand, warriorSummoner, friendSummoner));
         }
 
+        PlayerPrefs.SetInt(PlayerPrefsKeys.heroPowerDeactivated_helper, 0);
     }
 
     public bool CanActivateHeroPower() {

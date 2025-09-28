@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
     public static Alignment turn;
     public static string enemySummonerName = "";
     public static bool isLoading = false;
+    public int friendlyDeaths = 0;
     private FloatingText floatingText;
     private int round = 0;
 
@@ -112,6 +113,13 @@ public class GameManager : MonoBehaviour {
 
     public async void EndPlayerTurn() {
         SetLoading(true);
+
+        //Achievement
+        if (friendCoin.coins >= 10) {
+            PlayerPrefs.SetInt(PlayerPrefsKeys.carefulSpender, PlayerPrefs.GetInt(PlayerPrefsKeys.carefulSpender, 0) + 1);
+            PlayerPrefs.Save();
+        }
+
         List<Warrior> sortedFriends = friends.OrderByDescending(c => c.gridIndex.x).ToList();
         foreach (Warrior friend in sortedFriends) {
             await friend.MoveWarrior(Direction.Right);
@@ -171,9 +179,10 @@ public class GameManager : MonoBehaviour {
     }
 
     public void RemoveWarrior(Warrior warrior) {
-        if (friends.Contains(warrior))
+        if (friends.Contains(warrior)) {
             friends.Remove(warrior);
-        else if (enemies.Contains(warrior))
+            friendlyDeaths++;
+        } else if (enemies.Contains(warrior))
             enemies.Remove(warrior);
     }
 

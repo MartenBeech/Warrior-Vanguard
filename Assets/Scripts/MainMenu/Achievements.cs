@@ -24,17 +24,17 @@ public class Achievements : MonoBehaviour {
         CreateAchievementInstance("Spooky Scary Skeletons", "Have 10 or more skeleton bones during combat", PlayerPrefs.GetInt(PlayerPrefsKeys.spookyScarySkeletons), 1);
         CreateAchievementInstance("Poor Looter", "Beat the game with no items", PlayerPrefs.GetInt(PlayerPrefsKeys.poorLooter), 1);
         CreateAchievementInstance("These Were Easier To Find", "Beat the game with no rare or legendary cards", PlayerPrefs.GetInt(PlayerPrefsKeys.theseWereEasierToFind), 1);
+        CreateAchievementInstance("Careful Spender", "End 10 turns with at least 10 coins remaining", PlayerPrefs.GetInt(PlayerPrefsKeys.carefulSpender), 10);
+        CreateAchievementInstance("Save Every Resource", "Win a battle without losing a single warrior", PlayerPrefs.GetInt(PlayerPrefsKeys.saveEveryResource), 1);
+        CreateAchievementInstance("Living On The Edge", "Win a battle after taking fatigue damage 5 times", PlayerPrefs.GetInt(PlayerPrefsKeys.livingOnTheEdge), 1);
+        CreateAchievementInstance("Flawless", "Defeat a boss without taking any damage", PlayerPrefs.GetInt(PlayerPrefsKeys.flawless), 1);
+        CreateAchievementInstance("Hero Power Deactivated", "Defeat a boss without using your hero power", PlayerPrefs.GetInt(PlayerPrefsKeys.heroPowerDeactivated), 1);
 
 
         CreateAchievementInstance("PLACEHOLDER", "ALL ACHIEVEMENTS AFTER THIS ARE NOT IMPLEMENTED", 0, 1);
 
 
         //TODO: Implement these ideas (Or remove them if they suck!)
-        CreateAchievementInstance("Careful Spender", "End 10 turns with at least 10 coins remaining", 0, 10);
-        CreateAchievementInstance("Save Every Resource", "Win a battle without losing a single warrior", 0, 1);
-        CreateAchievementInstance("Living On The Edge", "Win a battle after taking fatigue damage 5 times", 0, 1);
-        CreateAchievementInstance("Flawless", "Defeat a boss without taking any damage", 0, 1);
-        CreateAchievementInstance("Hero Power Deactivated", "Defeat a boss without using your hero power", 0, 1);
         CreateAchievementInstance("Warriors All The Way", "Defeat a boss without using any spells", 0, 1);
         CreateAchievementInstance("", "Defeat (insert boss or miniboss here)", 0, 1);
         
