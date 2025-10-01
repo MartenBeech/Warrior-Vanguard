@@ -220,6 +220,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
         damage = stats.ability.stealth.TriggerStrike(this, damage);
         damage = stats.ability.enflame.TriggerStrike(this, target, damage);
+        damage = stats.ability.demolish.TriggerStrike(this, target, damage);
 
         stats.ability.poison.TriggerStrike(this, target);
         stats.ability.frozenTouch.TriggerStrike(this, target);

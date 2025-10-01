@@ -68,6 +68,7 @@ public class WarriorAbility {
     public SelfHarm selfHarm = new();
     public SoulSiphon soulSiphon = new();
     public Immune immune = new();
+    public Demolish demolish = new();
 
     // Unique abilities
     public HydraSplit hydraSplit = new();

@@ -3,6 +3,9 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new StatueOfValor().GetStats(),
+        new CastleGate().GetStats(),
+        new CannonTower().GetStats(),
         new CherryPicker().GetStats(),
         new CombineHarvester().GetStats(),
         new FirePortal().GetStats(),
