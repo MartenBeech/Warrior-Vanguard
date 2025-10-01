@@ -35,7 +35,6 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         this.effect = effect;
         costText.text = $"{cost}";
         GetComponent<Image>().sprite = image;
-
     }
 
     public void HeroPowerClicked() {
@@ -46,8 +45,10 @@ public class HeroPower : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         int nTriggers = 1;
 
         HeroParrot heroParrot = new GameObject().AddComponent<HeroParrot>();
-        bool hasHeroParrot = ItemManager.items.Find(item => item.title == heroParrot.GetItem().title);
-        if (hasHeroParrot) nTriggers++;
+        Item item = ItemManager.items.Find(item => item.title == heroParrot.GetItem().title);
+        if (item) {
+            nTriggers++;
+        }
 
         for (int i = 0; i < nTriggers; i++) {
             effect(new(gameManager, friendHand, warriorSummoner, friendSummoner));

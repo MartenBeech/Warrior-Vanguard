@@ -268,10 +268,9 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
         if (stats.alignment == Alignment.Enemy && damage == 1) {
             Underdog underdog = new GameObject().AddComponent<Underdog>();
-            foreach (var item in ItemManager.items) {
-                if (item.title == underdog.GetItem().title) {
-                    damage++;
-                }
+            bool hasUnderdog = ItemManager.items.Find(item => item.title == underdog.GetItem().title);
+            if (hasUnderdog) {
+                damage++;
             }
         }
 

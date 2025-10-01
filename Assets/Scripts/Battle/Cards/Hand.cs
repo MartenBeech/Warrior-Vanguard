@@ -79,15 +79,16 @@ public class Hand : MonoBehaviour {
 
             HolyBook holyBook = new GameObject().AddComponent<HolyBook>();
             UnholyBook unholyBook = new GameObject().AddComponent<UnholyBook>();
-            foreach (Item item in ItemManager.items) {
-                if (item.title == holyBook.GetItem().title && alignment == targetWarrior.stats.alignment ||
-                    item.title == unholyBook.GetItem().title && alignment != targetWarrior.stats.alignment) {
+            Item item = ItemManager.items.Find(item =>
+                item.title == holyBook.GetItem().title && alignment == targetWarrior.stats.alignment ||
+                item.title == unholyBook.GetItem().title && alignment != targetWarrior.stats.alignment);
 
-                    List<Warrior> friendsOfTarget = gridManager.GetFriends(targetWarrior.stats.alignment);
-                    friendsOfTarget.Remove(targetWarrior);
+            if (item) {
+                List<Warrior> friendsOfTarget = gridManager.GetFriends(targetWarrior.stats.alignment);
+                friendsOfTarget.Remove(targetWarrior);
 
-                    Warrior randomFriend = Rng.Entry(friendsOfTarget);
-                    if (randomFriend == null) continue;
+                Warrior randomFriend = Rng.Entry(friendsOfTarget);
+                if (randomFriend != null) {
                     targetList.Add(randomFriend);
                 }
             }

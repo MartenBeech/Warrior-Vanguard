@@ -61,31 +61,28 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (stats.alignment == Alignment.Enemy && damage == 1) {
             Underdog underdog = new GameObject().AddComponent<Underdog>();
-            foreach (var item in ItemManager.items) {
-                if (item.title == underdog.GetItem().title) {
-                    damage++;
-                }
+            Item item = ItemManager.items.Find(item => item.title == underdog.GetItem().title);
+            if (item) {
+                damage++;
             }
         }
 
         if (stats.alignment == Alignment.Enemy) {
             PeacefulPigeon peacefulPigeon = new GameObject().AddComponent<PeacefulPigeon>();
-            foreach (var item in ItemManager.items) {
-                if (item.title == peacefulPigeon.GetItem().title) {
-                    item.triggeredThisTurn = true;
-                }
+            Item item = ItemManager.items.Find(item => item.title == peacefulPigeon.GetItem().title);
+            if (item) {
+                item.triggeredThisTurn = true;
             }
         }
 
         if (stats.alignment == Alignment.Friend && damage >= 2) {
             RuneStone runeStone = new GameObject().AddComponent<RuneStone>();
-            foreach (var item in ItemManager.items) {
-                if (item.title == runeStone.GetItem().title) {
-                    if (item.triggeredThisTurn) continue;
-                    damage = 1;
-                    item.triggeredThisTurn = true;
-                }
+            Item item = ItemManager.items.Find(item => item.title == runeStone.GetItem().title);
+            if (item && !item.triggeredThisTurn) {
+                damage = 1;
+                item.triggeredThisTurn = true;
             }
+
         }
 
         int damageAfterResistances = damage;
@@ -169,13 +166,8 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (stats.alignment == Alignment.Friend && damageType == DamageType.Physical) {
             VoodooDoll voodooDoll = new GameObject().AddComponent<VoodooDoll>();
-            int voodooDollDamage = 0;
-            foreach (var item in ItemManager.items) {
-                if (item.title == voodooDoll.GetItem().title) {
-                    voodooDollDamage++;
-                }
-            }
-            if (voodooDollDamage > 0) {
+            Item item = ItemManager.items.Find(item => item.title == voodooDoll.GetItem().title);
+            if (item) {
                 await gameManager.enemySummoner.TakeDamage(null, 1, gridManager, DamageType.Magical);
             }
         }
