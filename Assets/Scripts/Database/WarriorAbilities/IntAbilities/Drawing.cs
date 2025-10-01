@@ -4,7 +4,8 @@ using UnityEngine;
 public class Drawing {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{Keyword.Summon}: Draw {GetValue(stats)} cards";
+        int value = GetValue(stats);
+        return $"{Keyword.Summon}: Draw {value} {(value == 1 ? "card" : "cards")}";
     }
 
     public async Task<bool> TriggerSummon(Warrior warrior, GameManager gameManager) {
