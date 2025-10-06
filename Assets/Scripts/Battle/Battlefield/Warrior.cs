@@ -386,6 +386,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
         if (dealer && dealer != this) {
             dealer.stats.ability.cannibalism.TriggerKill(dealer);
+            dealer.stats.ability.cloak.TriggerKill(dealer);
             asyncFunctions.Add(dealer.stats.ability.carnivore.TriggerKill(dealer, this));
             asyncFunctions.Add(dealer.stats.ability.raiseDead.TriggerKill(dealer, this, warriorSummoner));
 

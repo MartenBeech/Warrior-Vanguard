@@ -112,6 +112,7 @@ public class WarriorAbility {
     public RaceDiscount raceDiscount = new();
     public MassSelfHarm massSelfHarm = new();
     public Whalecome whalecome = new();
+    public Cloak cloak = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();
