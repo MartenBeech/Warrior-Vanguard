@@ -55,6 +55,11 @@ public class MainMenu : MonoBehaviour {
         int spookyScarySkeletons = PlayerPrefs.GetInt(PlayerPrefsKeys.spookyScarySkeletons, 0);
         int poorLooter = PlayerPrefs.GetInt(PlayerPrefsKeys.poorLooter, 0);
         int theseWereEasierToFind = PlayerPrefs.GetInt(PlayerPrefsKeys.theseWereEasierToFind, 0);
+        int carefulSpender = PlayerPrefs.GetInt(PlayerPrefsKeys.carefulSpender, 0);
+        int saveEveryResource = PlayerPrefs.GetInt(PlayerPrefsKeys.saveEveryResource, 0);
+        int livingOnTheEdge = PlayerPrefs.GetInt(PlayerPrefsKeys.livingOnTheEdge, 0);
+        int flawless = PlayerPrefs.GetInt(PlayerPrefsKeys.flawless, 0);
+        int heroPowerDeactivated = PlayerPrefs.GetInt(PlayerPrefsKeys.heroPowerDeactivated, 0);
 
         PlayerPrefs.DeleteAll();
 
@@ -81,6 +86,11 @@ public class MainMenu : MonoBehaviour {
         PlayerPrefs.SetInt(PlayerPrefsKeys.spookyScarySkeletons, spookyScarySkeletons);
         PlayerPrefs.SetInt(PlayerPrefsKeys.poorLooter, poorLooter);
         PlayerPrefs.SetInt(PlayerPrefsKeys.theseWereEasierToFind, theseWereEasierToFind);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.carefulSpender, carefulSpender);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.saveEveryResource, saveEveryResource);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.livingOnTheEdge, livingOnTheEdge);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.flawless, flawless);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.heroPowerDeactivated, heroPowerDeactivated);
         PlayerPrefs.Save();
     }
 }

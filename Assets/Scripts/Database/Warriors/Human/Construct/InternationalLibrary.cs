@@ -5,12 +5,12 @@ public class InternationalLibrary {
             levelUnlocked = 1,
             cost = new int[] { 6, 6 },
             strength = new int[] { 0, 0 },
-            health = new int[] { 8, 11 },
+            health = new int[] { 8, 12 },
             speed = 0,
             range = 0,
             damageType = DamageType.Physical,
             race = Race.Construct,
-            rarity = CardRarity.Rare,
+            rarity = CardRarity.Legendary,
             genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
@@ -18,6 +18,7 @@ public class InternationalLibrary {
         }
 
         WarriorAbility ability = stats.ability;
+        ability.construct.Add();
         ability.scrollStudies.Add();
 
         return stats;

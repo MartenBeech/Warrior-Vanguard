@@ -10,6 +10,7 @@ public class RadiantProtector {
             range = 2,
             damageType = DamageType.Physical,
             race = Race.Unicorn,
+            rarity = CardRarity.Legendary,
             genre = Genre.Elves
         };
         for (int i = 0; i < 2; i++) {

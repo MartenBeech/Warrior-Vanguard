@@ -51,9 +51,16 @@ public class MapTile : MonoBehaviour {
         // GameManager.enemySummonerName = enemySummonerName;
 
         switch (tileType) {
-            case TileType.Battlefield:
-            case TileType.MiniBoss:
             case TileType.Boss:
+                PlayerPrefs.SetInt(PlayerPrefsKeys.flawless_helper, 1);
+                PlayerPrefs.SetInt(PlayerPrefsKeys.heroPowerDeactivated_helper, 1);
+                GameManager.enemySummonerName = EnemySummoner.GetWorthyEnemySummonerName(level);
+                SceneLoader.LoadScene(SceneLoader.Scene.Battlefield);
+                break;
+            case TileType.MiniBoss:
+            case TileType.Battlefield:
+                PlayerPrefs.SetInt(PlayerPrefsKeys.flawless_helper, 0);
+                PlayerPrefs.SetInt(PlayerPrefsKeys.heroPowerDeactivated_helper, 0);
                 GameManager.enemySummonerName = EnemySummoner.GetWorthyEnemySummonerName(level);
                 SceneLoader.LoadScene(SceneLoader.Scene.Battlefield);
                 break;

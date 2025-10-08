@@ -105,12 +105,12 @@ public class SummonerSelectionManager : MonoBehaviour {
 
     public void ClickStart() {
         //TEST
-        // for (int i = 0; i < 20; i++) {
-        //     card.SetStats(CardDatabase.allCards[i]);
-        //     DeckManager.AddCard(card);
-        // }
+        for (int i = 0; i < 10; i++) {
+            card.SetStats(CardDatabase.allCards[i]);
+            DeckManager.AddCard(card);
+        }
 
-        StartingDecks.SetStartingDeck(selectedSummoner.title, card);
+        // StartingDecks.SetStartingDeck(selectedSummoner.title, card);
         ItemManager.InitAvailableItems();
         SceneLoader.LoadScene(SceneLoader.Scene.Map);
     }

@@ -52,7 +52,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdateItem();
     }
 
-    public async Task TakeDamage(Warrior dealer, int damage, GridManager gridManager, DamageType damageType) {
+    public async Task TakeDamage(Warrior dealer, int damage, GridManager gridManager, DamageType damageType, GameManager gameManager = null) {
         if (dealer) {
             damage = dealer.stats.ability.stealth.TriggerStrike(dealer, damage);
             damage = stats.ability.armor.TriggerDamaged(dealer, damage, damageType);
@@ -61,31 +61,28 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (stats.alignment == Alignment.Enemy && damage == 1) {
             Underdog underdog = new GameObject().AddComponent<Underdog>();
-            foreach (var item in ItemManager.items) {
-                if (item.title == underdog.GetItem().title) {
-                    damage++;
-                }
+            Item item = ItemManager.items.Find(item => item.title == underdog.GetItem().title);
+            if (item) {
+                damage++;
             }
         }
 
         if (stats.alignment == Alignment.Enemy) {
             PeacefulPigeon peacefulPigeon = new GameObject().AddComponent<PeacefulPigeon>();
-            foreach (var item in ItemManager.items) {
-                if (item.title == peacefulPigeon.GetItem().title) {
-                    item.triggeredThisTurn = true;
-                }
+            Item item = ItemManager.items.Find(item => item.title == peacefulPigeon.GetItem().title);
+            if (item) {
+                item.triggeredThisTurn = true;
             }
         }
 
         if (stats.alignment == Alignment.Friend && damage >= 2) {
             RuneStone runeStone = new GameObject().AddComponent<RuneStone>();
-            foreach (var item in ItemManager.items) {
-                if (item.title == runeStone.GetItem().title) {
-                    if (item.triggeredThisTurn) continue;
-                    damage = 1;
-                    item.triggeredThisTurn = true;
-                }
+            Item item = ItemManager.items.Find(item => item.title == runeStone.GetItem().title);
+            if (item && !item.triggeredThisTurn) {
+                damage = 1;
+                item.triggeredThisTurn = true;
             }
+
         }
 
         int damageAfterResistances = damage;
@@ -100,6 +97,10 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 stats.health -= damageAfterResistances;
                 if (stats.alignment == Alignment.Friend) {
                     FriendlySummoner.LoseHealth(damageAfterResistances);
+
+                    //Achievement
+                    PlayerPrefs.SetInt(PlayerPrefsKeys.flawless_helper, 0);
+                    PlayerPrefs.Save();
                 }
             }
 
@@ -134,20 +135,39 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if (stats.alignment == Alignment.Friend) {
                 LevelManager.LoseLevel();
             } else {
+                //Achievement
+                if (gameManager && gameManager.friendlyDeaths == 0) {
+                    PlayerPrefs.SetInt(PlayerPrefsKeys.saveEveryResource, 1);
+                }
+
+                //Achievement
+                if (PlayerPrefs.GetInt(PlayerPrefsKeys.livingOnTheEdge_helper, 0) == 1) {
+                    PlayerPrefs.SetInt(PlayerPrefsKeys.livingOnTheEdge, 1);
+                }
+
+                //Achievement
+                if (PlayerPrefs.GetInt(PlayerPrefsKeys.flawless_helper, 0) == 1) {
+                    PlayerPrefs.SetInt(PlayerPrefsKeys.flawless, 1);
+                }
+
+                //Achievement
+                if (PlayerPrefs.GetInt(PlayerPrefsKeys.heroPowerDeactivated_helper, 0) == 1) {
+                    PlayerPrefs.SetInt(PlayerPrefsKeys.heroPowerDeactivated, 1);
+                }
+
+                PlayerPrefs.SetInt(PlayerPrefsKeys.livingOnTheEdge_helper, 0);
+                PlayerPrefs.SetInt(PlayerPrefsKeys.flawless_helper, 0);
+                PlayerPrefs.SetInt(PlayerPrefsKeys.heroPowerDeactivated_helper, 0);
+                PlayerPrefs.Save();
+
                 LevelManager.CompleteLevel();
             }
         }
 
         if (stats.alignment == Alignment.Friend && damageType == DamageType.Physical) {
             VoodooDoll voodooDoll = new GameObject().AddComponent<VoodooDoll>();
-            int voodooDollDamage = 0;
-            foreach (var item in ItemManager.items) {
-                if (item.title == voodooDoll.GetItem().title) {
-                    voodooDollDamage++;
-                }
-            }
-            if (voodooDollDamage > 0) {
-                GameManager gameManager = FindFirstObjectByType<GameManager>();
+            Item item = ItemManager.items.Find(item => item.title == voodooDoll.GetItem().title);
+            if (item) {
                 await gameManager.enemySummoner.TakeDamage(null, 1, gridManager, DamageType.Magical);
             }
         }

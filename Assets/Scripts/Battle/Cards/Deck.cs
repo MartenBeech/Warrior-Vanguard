@@ -112,6 +112,10 @@ public class Deck : MonoBehaviour {
 
         Summoner summoner = summonerObject.GetComponent<Summoner>();
         await summoner.TakeDamage(null, burnoutDamage, null, DamageType.Physical);
+
+        if (burnoutDamage >= 5 && alignment == Alignment.Friend) {
+            PlayerPrefs.SetInt(PlayerPrefsKeys.livingOnTheEdge_helper, 1);
+        }
     }
 
     public void ShuffleDeck(List<WarriorStats> deck) {

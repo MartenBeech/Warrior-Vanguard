@@ -208,7 +208,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         }
 
         for (int nAttacks = 0; nAttacks < (stats.ability.doubleStrike.GetValue(stats) ? 2 : 1); nAttacks++) {
-            await summonerTarget.TakeDamage(this, stats.GetStrength(), gridManager, stats.damageType);
+            await summonerTarget.TakeDamage(this, stats.GetStrength(), gridManager, stats.damageType, gameManager);
             await stats.ability.soulSiphon.TriggerAttack(this, deck);
         }
     }
@@ -220,6 +220,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
         damage = stats.ability.stealth.TriggerStrike(this, damage);
         damage = stats.ability.enflame.TriggerStrike(this, target, damage);
+        damage = stats.ability.demolish.TriggerStrike(this, target, damage);
 
         stats.ability.poison.TriggerStrike(this, target);
         stats.ability.frozenTouch.TriggerStrike(this, target);
@@ -268,10 +269,9 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
         if (stats.alignment == Alignment.Enemy && damage == 1) {
             Underdog underdog = new GameObject().AddComponent<Underdog>();
-            foreach (var item in ItemManager.items) {
-                if (item.title == underdog.GetItem().title) {
-                    damage++;
-                }
+            bool hasUnderdog = ItemManager.items.Find(item => item.title == underdog.GetItem().title);
+            if (hasUnderdog) {
+                damage++;
             }
         }
 
@@ -386,6 +386,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
         if (dealer && dealer != this) {
             dealer.stats.ability.cannibalism.TriggerKill(dealer);
+            dealer.stats.ability.cloak.TriggerKill(dealer);
             asyncFunctions.Add(dealer.stats.ability.carnivore.TriggerKill(dealer, this));
             asyncFunctions.Add(dealer.stats.ability.raiseDead.TriggerKill(dealer, this, warriorSummoner));
 

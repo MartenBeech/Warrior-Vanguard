@@ -10,7 +10,7 @@ public class RejuvenatingOak {
             range = 0,
             damageType = DamageType.Physical,
             race = Race.Construct,
-            rarity = CardRarity.None,
+            rarity = CardRarity.Legendary,
             genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {

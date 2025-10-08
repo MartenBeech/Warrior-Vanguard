@@ -10,6 +10,7 @@ public class MultibowNovice {
             range = 5,
             damageType = DamageType.Physical,
             race = Race.Ranger,
+            rarity = CardRarity.Common,
             genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {

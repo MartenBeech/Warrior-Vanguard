@@ -12,4 +12,14 @@ public static class PlayerPrefsKeys {
     public static string spookyScarySkeletons = "SpookyScarySkeletons";
     public static string poorLooter = "PoorLooter";
     public static string theseWereEasierToFind = "TheseWereEasierToFind";
+    public static string carefulSpender = "CarefulSpender";
+    public static string saveEveryResource = "SaveEveryResource";
+    public static string livingOnTheEdge = "LivingOnTheEdge";
+    public static string flawless = "Flawless";
+    public static string heroPowerDeactivated = "HeroPowerDeactivated";
+
+    //Achievement Helpers
+    public static string livingOnTheEdge_helper = "LivingOnTheEdge_helper"; 
+    public static string flawless_helper = "Flawless_helper";
+    public static string heroPowerDeactivated_helper = "HeroPowerDeactivated_helper";
 }

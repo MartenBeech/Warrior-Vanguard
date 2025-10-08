@@ -68,6 +68,7 @@ public class WarriorAbility {
     public SelfHarm selfHarm = new();
     public SoulSiphon soulSiphon = new();
     public Immune immune = new();
+    public Demolish demolish = new();
 
     // Unique abilities
     public HydraSplit hydraSplit = new();
@@ -111,6 +112,7 @@ public class WarriorAbility {
     public RaceDiscount raceDiscount = new();
     public MassSelfHarm massSelfHarm = new();
     public Whalecome whalecome = new();
+    public Cloak cloak = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();

@@ -10,6 +10,7 @@ public class LongbowGrandmaster {
             range = 9,
             damageType = DamageType.Physical,
             race = Race.Ranger,
+            rarity = CardRarity.Legendary,
             genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {

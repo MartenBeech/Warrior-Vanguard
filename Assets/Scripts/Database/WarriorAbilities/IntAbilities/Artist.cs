@@ -4,7 +4,8 @@ using UnityEngine;
 public class Artist {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{Keyword.Overturn}: Draw {GetValue(stats)} cards";
+        int value = GetValue(stats);
+        return $"{Keyword.Overturn}: Draw {value} {(value == 1 ? "card" : "cards")}";
     }
 
     public async Task<bool> TriggerOverturn(Warrior warrior, GameManager gameManager) {
