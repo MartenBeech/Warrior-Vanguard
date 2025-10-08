@@ -6,6 +6,7 @@ public class LuckyCoin : Item {
         title = GetType().Name;
         description = "Start each combat with 1 extra coin";
         rarity = ItemRarity.Boss;
+        genre = Genre.None;
         return this;
     }
 

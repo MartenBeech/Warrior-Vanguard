@@ -3,6 +3,7 @@ public class WoodenSword : Item {
         title = GetType().Name;
         description = "All friendly warriors gain +1 strength";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

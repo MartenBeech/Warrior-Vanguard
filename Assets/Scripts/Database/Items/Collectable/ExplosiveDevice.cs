@@ -7,6 +7,7 @@ public class ExplosiveDevice : Item {
         title = GetType().Name;
         description = "When any warriors dies, deal 2 damage to all nearby warriors";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

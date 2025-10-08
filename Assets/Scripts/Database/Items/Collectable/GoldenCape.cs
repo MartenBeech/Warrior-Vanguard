@@ -6,6 +6,7 @@ public class GoldenCape : Item {
         title = GetType().Name;
         description = "When a friend is summoned, give it Immune for 1 turn";
         rarity = ItemRarity.Boss;
+        genre = Genre.None;
         return this;
     }
 

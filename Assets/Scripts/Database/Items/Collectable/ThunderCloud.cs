@@ -6,6 +6,7 @@ public class ThunderCloud : Item {
         title = GetType().Name;
         description = $"{Keyword.Initiate}: Deal 1 magical damage to all warriors";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

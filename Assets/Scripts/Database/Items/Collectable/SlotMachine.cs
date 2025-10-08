@@ -6,6 +6,7 @@ public class SlotMachine : Item {
         title = GetType().Name;
         description = "Your cards cannot cost more than 7";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

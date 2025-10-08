@@ -6,6 +6,7 @@ public class RuneStone : Item {
         title = GetType().Name;
         description = $"The first time your summoner takes 2+ damage each turn, reduce it to 1";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

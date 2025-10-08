@@ -6,6 +6,7 @@ public class Recycle : Item {
         title = GetType().Name;
         description = "When a friend dies, gain 2 shield";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

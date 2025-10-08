@@ -7,6 +7,7 @@ public class PeacefulPigeon : Item {
         title = GetType().Name;
         description = $"{Keyword.Initiate}: If the enemy summoner took no damage last turn, give your warriors +1 health";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

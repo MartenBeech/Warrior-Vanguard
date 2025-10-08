@@ -7,6 +7,7 @@ public class WhipOfEncouragement : Item {
         title = GetType().Name;
         description = $"{Keyword.Initiate}: Deal 2 physical damage to your warriors and give them +1 strength";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

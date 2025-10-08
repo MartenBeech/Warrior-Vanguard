@@ -3,6 +3,7 @@ public class VampireRing : Item {
         title = GetType().Name;
         description = "All friendly vampires gain 2 health";
         rarity = ItemRarity.Normal;
+        genre = Genre.Undead;
         return this;
     }
 

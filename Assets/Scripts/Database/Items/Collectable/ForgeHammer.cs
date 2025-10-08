@@ -7,6 +7,7 @@ public class ForgeHammer : Item {
         title = GetType().Name;
         description = $"{Keyword.Initiate}: Give a random friend +1 strength";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

@@ -6,6 +6,7 @@ public class HolyLight : Item {
         title = GetType().Name;
         description = $"{Keyword.Initiate}: Heal a random friend by 2";
         rarity = ItemRarity.Normal;
+        genre = Genre.Human;
         return this;
     }
 

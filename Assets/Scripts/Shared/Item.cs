@@ -7,6 +7,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public string title;
     public string displayTitle;
     public string description;
+    public Genre genre = Genre.None;
     public ItemRarity rarity;
     public bool triggeredThisCombat = false;
     public bool triggeredThisTurn = false;

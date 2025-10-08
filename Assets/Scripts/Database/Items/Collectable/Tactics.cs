@@ -6,6 +6,7 @@ public class Tactics : Item {
         title = GetType().Name;
         description = "Friends have +1 deployment area";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

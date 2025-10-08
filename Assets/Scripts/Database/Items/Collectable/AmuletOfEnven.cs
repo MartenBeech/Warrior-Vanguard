@@ -6,6 +6,7 @@ public class AmuletOfEnven : Item {
         title = GetType().Name;
         description = "Your summoner gains 2 Resistance";
         rarity = ItemRarity.Normal;
+        genre = Genre.Elves;
         return this;
     }
 

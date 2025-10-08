@@ -6,6 +6,7 @@ public class MicDrop : Item {
         title = GetType().Name;
         description = "When you play a warrior with cost equal to your max coins, draw a card";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

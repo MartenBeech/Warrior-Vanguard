@@ -6,6 +6,7 @@ public class CrackedEgg : Item {
         title = GetType().Name;
         description = "When you summon a 5+ cost warrior, it summons a 1 cost warrior";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

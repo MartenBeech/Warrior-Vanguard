@@ -6,6 +6,7 @@ public class BindingShackles : Item {
         title = GetType().Name;
         description = "Enemies are stunned when summoned";
         rarity = ItemRarity.Boss;
+        genre = Genre.None;
         return this;
     }
 

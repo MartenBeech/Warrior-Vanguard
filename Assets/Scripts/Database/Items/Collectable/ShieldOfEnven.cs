@@ -6,6 +6,7 @@ public class ShieldOfEnven : Item {
         title = GetType().Name;
         description = "Your summoner gains 1 Armor";
         rarity = ItemRarity.Normal;
+        genre = Genre.Human;
         return this;
     }
 

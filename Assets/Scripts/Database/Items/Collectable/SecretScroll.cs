@@ -6,6 +6,7 @@ public class SecretScroll : Item {
         title = GetType().Name;
         description = $"Your spells cost 1 less";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

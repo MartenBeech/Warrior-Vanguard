@@ -6,6 +6,7 @@ public class HolyBook : Item {
         title = GetType().Name;
         description = "When you cast a spell on a friend, cast a copy on another friend";
         rarity = ItemRarity.Boss;
+        genre = Genre.None;
         return this;
     }
 }

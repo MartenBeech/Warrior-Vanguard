@@ -6,6 +6,7 @@ public class CopyCat : Item {
         title = GetType().Name;
         description = "When your opponent summons their first warrior, you summon a copy";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

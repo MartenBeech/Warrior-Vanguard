@@ -6,6 +6,7 @@ public class UnfinishedPuzzle : Item {
         title = GetType().Name;
         description = "When a friend is summoned, double its max health";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

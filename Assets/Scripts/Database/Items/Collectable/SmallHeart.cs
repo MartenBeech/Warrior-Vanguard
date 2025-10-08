@@ -3,6 +3,7 @@ public class SmallHeart : Item {
         title = GetType().Name;
         description = "All friendly warriors gain 1 health";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

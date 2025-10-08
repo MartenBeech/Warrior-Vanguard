@@ -6,6 +6,7 @@ public class VoodooDoll : Item {
         title = GetType().Name;
         description = $"When your summoner takes physical damage, deal 1 magical damage to the enemy summoner";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 }

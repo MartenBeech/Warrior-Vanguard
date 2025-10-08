@@ -6,6 +6,7 @@ public class DisposableGun : Item {
         title = GetType().Name;
         description = "When a friend is summoned, it strikes a random enemy";
         rarity = ItemRarity.Boss;
+        genre = Genre.None;
         return this;
     }
 

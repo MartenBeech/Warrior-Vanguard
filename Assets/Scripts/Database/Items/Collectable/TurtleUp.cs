@@ -5,6 +5,7 @@ public class TurtleUp : Item {
         title = GetType().Name;
         description = "Start combat with 10 shield";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 

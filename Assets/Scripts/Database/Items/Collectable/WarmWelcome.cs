@@ -6,6 +6,7 @@ public class WarmWelcome : Item {
         title = GetType().Name;
         description = "Apply 1 Burning to summoned enemies";
         rarity = ItemRarity.Normal;
+        genre = Genre.Underworld;
         return this;
     }
 

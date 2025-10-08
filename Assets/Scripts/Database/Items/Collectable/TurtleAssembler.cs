@@ -5,6 +5,7 @@ public class TurtleAssembler : Item {
         title = GetType().Name;
         description = $"{Keyword.Initiate}: Gain 1 shield";
         rarity = ItemRarity.Normal;
+        genre = Genre.None;
         return this;
     }
 
