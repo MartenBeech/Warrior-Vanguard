@@ -176,7 +176,17 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
                 await Task.WhenAll(asyncFunctions);
 
                 if (target.stats.GetHealthCurrent() > 0) {
-                    target.stats.ability.firewall.TriggerAttacked(this, target);
+                    if (target.stats.ability.firewall.TriggerAttacked(this, target)) {
+                        if (stats.alignment == Alignment.Friend) {
+                            BunsenBurner bunsenBurner = new GameObject().AddComponent<BunsenBurner>();
+                            foreach (var item in ItemManager.items) {
+                                if (item.title == bunsenBurner.GetItem().title) {
+                                    stats.ability.burning.Add(1);
+                                    break;
+                                }
+                            }
+                        }
+                    }
                     target.stats.ability.weakeningAura.TriggerAttacked(this, target);
                     await target.stats.ability.poisoningAura.TriggerAttacked(this, target, floatingText);
                     if (stats.ability.darkTouch.TriggerAttack(this, target)) {
@@ -219,8 +229,19 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         }
 
         damage = stats.ability.stealth.TriggerStrike(this, damage);
-        damage = stats.ability.enflame.TriggerStrike(this, target, damage);
         damage = stats.ability.demolish.TriggerStrike(this, target, damage);
+        if (stats.ability.enflame.TriggerStrike(this, target, damage)) {
+            damage = 0;
+            if (stats.alignment == Alignment.Friend) {
+                BunsenBurner bunsenBurner = new GameObject().AddComponent<BunsenBurner>();
+                foreach (var item in ItemManager.items) {
+                    if (item.title == bunsenBurner.GetItem().title) {
+                        target.stats.ability.burning.Add(1);
+                        break;
+                    }
+                }
+            }
+        }
 
         stats.ability.poison.TriggerStrike(this, target);
         stats.ability.frozenTouch.TriggerStrike(this, target);
@@ -293,7 +314,17 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         }
 
         if (dealer && dealer.stats.ability.enflame.GetValue(dealer.stats)) {
-            asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{dealer.stats.GetStrength()}", ColorEnum.White, true, Resources.Load<Sprite>("Images/Icons/Enflame")));
+            int burningValue = dealer.stats.GetStrength();
+            if (dealer.stats.alignment == Alignment.Friend) {
+                BunsenBurner bunsenBurner = new GameObject().AddComponent<BunsenBurner>();
+                foreach (var item in ItemManager.items) {
+                    if (item.title == bunsenBurner.GetItem().title) {
+                        burningValue++;
+                        break;
+                    }
+                }
+            }
+            asyncFunctions.Add(floatingText.CreateFloatingText(transform, $"{burningValue}", ColorEnum.White, true, Resources.Load<Sprite>("Images/Icons/Enflame")));
         } else {
             switch (damageSource) {
                 case DamageSource.Normal:

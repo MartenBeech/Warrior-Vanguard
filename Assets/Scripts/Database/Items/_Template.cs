@@ -6,6 +6,7 @@ public class CLASSNAME : Item {
         title = GetType().Name;
         description = "DESCRIPTION";
         rarity = ItemRarity.None;
+        genre = Genre.None;
         return this;
     }
 

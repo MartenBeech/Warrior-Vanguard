@@ -13,7 +13,17 @@ public class WarmWelcome : Item {
     public override async Task UseAfterEnemySummon(ItemTriggerParams parameters) {
         GridManager gridManager = FindFirstObjectByType<GridManager>();
         Warrior warrior = gridManager.GetCellWarrior(parameters.gridIndex);
-        warrior.stats.ability.burning.Add(1);
+        int burningAdded = 1;
+
+        BunsenBurner bunsenBurner = new GameObject().AddComponent<BunsenBurner>();
+        foreach (var item in ItemManager.items) {
+            if (item.title == bunsenBurner.GetItem().title) {
+                burningAdded++;
+                break;
+            }
+        }
+
+        warrior.stats.ability.burning.Add(burningAdded);
         await Task.Delay(0);
     }
 }

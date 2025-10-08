@@ -5,13 +5,13 @@ public class Enflame {
         return $"{Keyword.Strike}: Instead of dealing damage, apply Burning stacks";
     }
 
-    public int TriggerStrike(Warrior dealer, Warrior target, int damage) {
+    public bool TriggerStrike(Warrior dealer, Warrior target, int damage) {
         if (GetValue(dealer.stats)) {
             target.stats.ability.burning.Add(damage);
-            damage = 0;
             target.UpdateWarriorUI();
+            return true;
         }
-        return damage;
+        return false;
     }
 
     bool[] value = new bool[] { false, false };
