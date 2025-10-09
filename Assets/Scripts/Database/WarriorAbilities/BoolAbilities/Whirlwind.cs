@@ -1,15 +1,26 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class Cleave {
+public class Whirlwind {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{Keyword.Attack}: Strike all enemies in the column";
+        return $"{Keyword.Attack}: Strike all nearby enemies";
     }
 
-    public async Task<bool> TriggerAttack(Warrior dealer, Warrior target, GridManager gridManager) {
+    public bool HasNearbyEnemy(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            List<Warrior> enemies = gridManager.GetFriendsOnColumn(target);
+            List<Warrior> enemies = gridManager.GetNearbyEnemies(dealer);
+            if (enemies.Count == 0) return false;
+
+            return true;
+        }
+        return false;
+    }
+
+    public async Task<bool> TriggerAttack(Warrior dealer, GridManager gridManager) {
+        if (GetValue(dealer.stats) && HasNearbyEnemy(dealer, gridManager)) {
+
+            List<Warrior> enemies = gridManager.GetNearbyEnemies(dealer);
             List<Task> asyncFunctions = new();
             foreach (Warrior enemy in enemies) {
                 asyncFunctions.Add(dealer.Strike(enemy));

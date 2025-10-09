@@ -133,8 +133,9 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
             direction = direction == Direction.Left ? Direction.Right : Direction.Left;
         }
 
-        if (await stats.ability.backstab.Trigger(this, gridManager)) return;
-        if (await stats.ability.guard.Trigger(this, gridManager)) return;
+        if (await stats.ability.backstab.TriggerAttack(this, gridManager)) return;
+        if (await stats.ability.guard.TriggerAttack(this, gridManager)) return;
+        if (await stats.ability.whirlwind.TriggerAttack(this, gridManager)) return;
 
         for (int i = 1; i <= stats.range; i++) {
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);

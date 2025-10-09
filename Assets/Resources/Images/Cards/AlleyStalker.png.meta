@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dc6dfeb0573a6ee439682922afcc5f8e
+guid: 1712ee5d5388c624386bb9bcd1f7f168
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1148502287781111298
-    second: BunsenBurner_0
+      213: -2728340835493073548
+    second: AlleyStalker_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BunsenBurner_0
+      name: AlleyStalker_0
       rect:
         serializedVersion: 2
-        x: 117
-        y: 4
-        width: 237
-        height: 420
+        x: 0
+        y: 0
+        width: 496
+        height: 495
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 206aae6eebc40ff00800000000000000
-      internalID: 1148502287781111298
+      spriteID: 47d2e3a277cf22ad0800000000000000
+      internalID: -2728340835493073548
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      BunsenBurner_0: 1148502287781111298
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
