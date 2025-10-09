@@ -3,6 +3,14 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+<<<<<<< Updated upstream
+=======
+        new BabyHydra().GetStats(),
+        new ShadowSerpant().GetStats(),
+        new InfernalReptilian().GetStats(),
+        new FamilyTree().GetStats(),
+        new GuardingRoots().GetStats(),
+>>>>>>> Stashed changes
         new AlleyStalker().GetStats(),
         new SilentAssasin().GetStats(),
         new NightChaser().GetStats(),

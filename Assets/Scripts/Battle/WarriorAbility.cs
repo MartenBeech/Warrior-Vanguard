@@ -31,6 +31,7 @@ public class WarriorAbility {
     public BloodPact bloodPact = new();
     public CheatDeath cheatDeath = new();
     public Farming farming = new();
+    public Whirlwind whirlwind = new();
 
     // Common abilities
     public Armor armor = new();

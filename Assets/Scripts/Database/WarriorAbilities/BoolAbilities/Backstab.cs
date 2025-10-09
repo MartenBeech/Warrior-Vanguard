@@ -17,7 +17,7 @@ public class Backstab {
         return null;
     }
 
-    public async Task<bool> Trigger(Warrior dealer, GridManager gridManager) {
+    public async Task<bool> TriggerAttack(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
             Warrior neighbor = GetEnemyBehind(dealer, gridManager);
 
