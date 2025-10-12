@@ -409,6 +409,8 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
             stats.ability.hydraSplit.TriggerDeath(this, warriorSummoner),
             stats.ability.boneSpread.TriggerDeath(this, warriorSummoner),
             stats.ability.phoenixAshes.TriggerDeath(this, warriorSummoner),
+            stats.ability.deathDraw.TriggerDeath(this, gameManager),
+
         };
 
         if (stats.ability.afterlife.GetValue(stats)) {

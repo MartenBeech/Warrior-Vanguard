@@ -63,6 +63,7 @@ public class WarriorAbility {
     public Immolate immolate = new();
     public Inspire inspire = new();
     public Drawing drawing = new();
+    public DeathDraw deathDraw = new();
     public Artist artist = new();
     public FriendDiscount friendDiscount = new();
     public FamilyDiscount familyDiscount = new();

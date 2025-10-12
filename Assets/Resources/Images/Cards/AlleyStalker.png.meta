@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AlleyStalker_0: -2728340835493073548
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
