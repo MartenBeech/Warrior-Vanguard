@@ -14,7 +14,7 @@ public class SlowDown {
             "Set all enemies’ speed to 0 until your next turn",
             "Set all enemies’ speed to 0 until your next turn"
             },
-            race = Race.None,
+            race = Race.Nature,
             genre = Genre.Elves,
             cardType = CardType.Spell,
         };
