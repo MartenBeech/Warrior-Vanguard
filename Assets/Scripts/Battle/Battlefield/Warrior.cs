@@ -94,7 +94,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         if (stats.ability.guard.GetRandomNearbyEnemy(this, gridManager)) return;
 
         int stepsToMove = 0;
-        for (int i = 1; i <= stats.speed; i++) {
+        for (int i = 1; i <= stats.GetSpeed(); i++) {
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
 
             if (IsOutOfField(newGridIndex)) break;
@@ -499,8 +499,13 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         await stats.ability.artist.TriggerOverturn(this, gameManager);
         stats.ability.friendDiscount.TriggerOverturn(this, gridManager);
 
-        if (stats.tempStrength > 0) {
+        if (stats.tempStrength != 0) {
             stats.tempStrength = 0;
+            UpdateWarriorUI();
+        }
+
+        if (stats.tempSpeed != 0) {
+            stats.tempSpeed = 0;
             UpdateWarriorUI();
         }
     }

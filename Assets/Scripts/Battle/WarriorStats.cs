@@ -23,6 +23,7 @@ public class WarriorStats {
     public int range = 2;
 
     public int tempStrength = 0;
+    public int tempSpeed = 0;
     public bool attackedThisTurn = false;
 
     public WarriorAbility ability = new();
@@ -50,6 +51,7 @@ public class WarriorStats {
         range = stats.range;
 
         tempStrength = stats.tempStrength;
+        tempSpeed = stats.tempSpeed;
         ability.SetWarriorAbility(stats.ability);
     }
 
@@ -165,5 +167,14 @@ public class WarriorStats {
             health[i] *= 2;
             strength[i] *= 2;
         }
+    }
+
+    public int GetSpeed() {
+        int totalSpeed = tempSpeed == 0 ? speed : tempSpeed;
+        if (totalSpeed < 0) {
+            totalSpeed = 0;
+        }
+
+        return totalSpeed;
     }
 }

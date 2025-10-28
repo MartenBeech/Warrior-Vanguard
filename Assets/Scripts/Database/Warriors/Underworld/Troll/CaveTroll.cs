@@ -1,4 +1,4 @@
-public class ForestTroll {
+public class CaveTroll {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
@@ -11,7 +11,7 @@ public class ForestTroll {
             damageType = DamageType.Physical,
             race = Race.Troll,
             rarity = CardRarity.Rare,
-            genre = Genre.Elves
+            genre = Genre.Underworld
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];

@@ -8,6 +8,7 @@ public class Reanimate {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 4, 3 },
+            rarity = CardRarity.Common,
             spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
             "Kill a friend and resummon it",
@@ -17,7 +18,7 @@ public class Reanimate {
             genre = Genre.Undead,
             cardType = CardType.Spell,
         };
-        
+
 
         return stats;
     }

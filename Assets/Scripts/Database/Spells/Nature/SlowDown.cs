@@ -2,20 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public class UnholyStorm {
+public class SlowDown {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
-            cost = new int[] { 4, 4 },
+            cost = new int[] { 2, 1 },
             rarity = CardRarity.Legendary,
             spellTarget = SpellTarget.None,
             spellDescription = new string[] {
-            "Reduce all enemies' strength by 2",
-            "Reduce all enemies' strength by 3"
+            "Set all enemies’ speed to 0 until your next turn",
+            "Set all enemies’ speed to 0 until your next turn"
             },
-            race = Race.Dark,
-            genre = Genre.Undead,
+            race = Race.None,
+            genre = Genre.Elves,
             cardType = CardType.Spell,
         };
         
@@ -27,13 +27,7 @@ public class UnholyStorm {
         List<Warrior> enemies = parameters.gridManager.GetEnemies(GameManager.turn);
         List<Task> asyncFunctions = new();
         foreach (Warrior enemy in enemies) {
-            if (enemy.stats.GetStrength() > 0) {
-                int value = parameters.cardLevel == 0 ? 2 : 3;
-                enemy.stats.AddStrength(-value);
-
-                enemy.UpdateWarriorUI();
-                asyncFunctions.Add(parameters.floatingText.CreateFloatingText(enemy.transform, $"-{value} Strength", ColorEnum.Purple));
-            }
+            enemy.stats.tempSpeed = -1;
         }
         await Task.WhenAll(asyncFunctions);
     }

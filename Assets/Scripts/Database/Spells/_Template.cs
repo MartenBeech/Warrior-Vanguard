@@ -15,9 +15,10 @@ public class CLASSNAMESPELL {
             "UPGRADED_DESCRIPTION"
             },
             race = Race.None,
+            genre = Genre.None,
             cardType = CardType.Spell,
         };
-        
+
 
         return stats;
     }

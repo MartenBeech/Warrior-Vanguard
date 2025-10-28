@@ -8,6 +8,7 @@ public class AgingCurse {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 4, 3 },
+            rarity = CardRarity.Rare,
             spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
             "Reduce an enemy's strength, health and speed to half",
@@ -17,7 +18,7 @@ public class AgingCurse {
             genre = Genre.Undead,
             cardType = CardType.Spell,
         };
-        
+
 
         return stats;
     }

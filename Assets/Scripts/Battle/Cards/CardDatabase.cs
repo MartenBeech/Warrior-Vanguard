@@ -3,6 +3,9 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new Mario().GetStats(),
+        new ElvenTechniques().GetStats(),
+        new SlowDown().GetStats(),
         new SkeletonFetcher().GetStats(),
         new Drawbie().GetStats(),
         new BabyHydra().GetStats(),
@@ -69,7 +72,7 @@ public static class CardDatabase {
         new SuccubusSeducer().GetStats(),
         new FlameWarden().GetStats(),
         new AidFromTheSpirits().GetStats(),
-        new CatReflexes().GetStats(),
+        new CounterStrike().GetStats(),
         new Blind().GetStats(),
         new SharpSight().GetStats(),
         new Thorns().GetStats(),
@@ -149,7 +152,7 @@ public static class CardDatabase {
         new UprootedWoods().GetStats(),
         new WanderingBirch().GetStats(),
         new BranchManager().GetStats(),
-        new ForestTroll().GetStats(),
+        new CaveTroll().GetStats(),
         new TrollKing().GetStats(),
         new Grumpy().GetStats(),
         new ClubCrasher().GetStats(),

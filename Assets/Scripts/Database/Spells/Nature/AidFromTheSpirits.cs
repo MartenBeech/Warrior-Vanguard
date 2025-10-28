@@ -8,7 +8,7 @@ public class AidFromTheSpirits {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 7, 7 },
-            rarity = CardRarity.Legendary,
+            rarity = CardRarity.Rare,
             spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
             "Give a friendly warrior +8/+8",
