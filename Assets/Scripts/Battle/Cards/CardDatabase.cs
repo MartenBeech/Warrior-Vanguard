@@ -1,8 +1,13 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new IntrusiveTermite().GetStats(),
+        new Arise().GetStats(),
+        new MassResurrection().GetStats(),
+        new SwarmOfTheNature().GetStats(),
         new Mario().GetStats(),
         new ElvenTechniques().GetStats(),
         new SlowDown().GetStats(),
@@ -24,7 +29,6 @@ public static class CardDatabase {
         new CombineHarvester().GetStats(),
         new FirePortal().GetStats(),
         new SummonAid().GetStats(),
-        new Arise().GetStats(),
         new Reinforcement().GetStats(),
         new Centarcher().GetStats(),
         new MoltenBlade().GetStats(),
@@ -87,7 +91,6 @@ public static class CardDatabase {
         new Damnation().GetStats(),
         new HardshellPest().GetStats(),
         new CrispRat().GetStats(),
-        new IntrusiveTermite().GetStats(),
         new Stormseer().GetStats(),
         new MargeTheCharged().GetStats(),
         new LightningCaller().GetStats(),

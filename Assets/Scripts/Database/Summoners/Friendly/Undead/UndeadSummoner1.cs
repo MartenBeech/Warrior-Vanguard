@@ -12,10 +12,10 @@ public class UndeadSummoner1 {
             heroPowerCost = 3,
             heroPowerEffect = async parameters => {
 
-                string title = Rng.Entry(parameters.friendSummoner.stats.graveyard);
-                if (title == null) return;
+                WarriorStats warrior = Rng.Entry(parameters.friendSummoner.stats.graveyard);
+                if (warrior == null) return;
 
-                Type type = Type.GetType(title);
+                Type type = Type.GetType(warrior.title);
                 object instance = Activator.CreateInstance(type);
                 WarriorStats stats = (WarriorStats)type.GetMethod("GetStats")?.Invoke(instance, null);
 

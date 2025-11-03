@@ -388,7 +388,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         if (isDying) return;
         isDying = true;
 
-        summoner.stats.graveyard.Add(stats.title);
+        summoner.stats.graveyard.Add(stats);
         gameManager.RemoveWarrior(this);
         gridManager.RemoveWarrior(this);
 
