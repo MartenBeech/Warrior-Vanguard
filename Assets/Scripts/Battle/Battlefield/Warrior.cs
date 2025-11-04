@@ -496,6 +496,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         stats.ability.seduced.Trigger(this);
         await stats.ability.poisoned.TriggerOverturn(this);
         await stats.ability.burning.TriggerOverturn(this);
+        await stats.ability.strengthenByFireAbility.TriggerOverturn(this);
         await stats.ability.artist.TriggerOverturn(this, gameManager);
         stats.ability.friendDiscount.TriggerOverturn(this, gridManager);
 

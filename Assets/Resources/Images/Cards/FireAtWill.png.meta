@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fc1f315c55824714786ed4eaf55711fe
+guid: 8e081f5b4fdde094faaf2f2fd6b01ed2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8867643790122858889
-    second: SwarmOfTheNature_0
+      213: -2741812409588423972
+    second: FireAtWill_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SwarmOfTheNature_0
+      name: FireAtWill_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 989b8f85b03301b70800000000000000
-      internalID: 8867643790122858889
+      spriteID: cd269b5e32023f9d0800000000000000
+      internalID: -2741812409588423972
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      SwarmOfTheNature_0: 8867643790122858889
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

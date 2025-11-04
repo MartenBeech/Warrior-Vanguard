@@ -115,6 +115,7 @@ public class WarriorAbility {
     public MassSelfHarm massSelfHarm = new();
     public Whalecome whalecome = new();
     public Cloak cloak = new();
+    public StrengthenByFireAbility strengthenByFireAbility = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();
