@@ -24,10 +24,11 @@ public class SwarmOfTheNature {
     }
 
     public async Task Trigger(SpellTriggerParams parameters) {
-        List<GridCell> emptyDeploymentCells = parameters.gridManager.GetEmptyDeploys(false, GameManager.turn);
-        int cost = parameters.cardLevel == 0 ? 1 : 2;
-
         List<Task> asyncFunctions = new();
+
+        int cost = parameters.cardLevel == 0 ? 1 : 2;
+        List<GridCell> emptyDeploymentCells = parameters.gridManager.GetEmptyDeploys(false, GameManager.turn);
+        
         foreach (GridCell cell in emptyDeploymentCells) {
             WarriorStats warriorStats = CardDatabase.GetRandomWarriorWithSpecificCost(cost, GameManager.turn);
             warriorStats.SetStats(warriorStats);

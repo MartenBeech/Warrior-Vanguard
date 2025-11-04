@@ -4,6 +4,8 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new FireAtWill().GetStats(),
+        new StrengthenByFire().GetStats(),
         new IntrusiveTermite().GetStats(),
         new Arise().GetStats(),
         new MassResurrection().GetStats(),
