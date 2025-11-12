@@ -18,7 +18,7 @@ public class RadiantProtector {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.resistance.Add(1, 2);
+        ability.resistance.Add(10, 10);
         ability.massResistance.Add(1, 2);
 
         return stats;

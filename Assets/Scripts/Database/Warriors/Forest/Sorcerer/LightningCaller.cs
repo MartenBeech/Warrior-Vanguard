@@ -3,14 +3,14 @@ public class LightningCaller {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
-            cost = new int[] { 3, 3 },
-            strength = new int[] { 0, 0 },
-            health = new int[] { 2, 2 },
+            cost = new int[] { 5, 5 },
+            strength = new int[] { 2, 2 },
+            health = new int[] { 3, 3 },
             speed = 2,
             range = 4,
             damageType = DamageType.Magical,
             race = Race.Sorcerer,
-            rarity = CardRarity.Common,
+            rarity = CardRarity.Rare,
             genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
@@ -18,7 +18,8 @@ public class LightningCaller {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.lightningBolt.Add(3, 5);
+        ability.lightningBolt.Add(2, 3);
+        ability.staticEntrance.Add(2, 3);
 
         return stats;
     }

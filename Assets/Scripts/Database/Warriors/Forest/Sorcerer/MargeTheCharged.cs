@@ -3,14 +3,14 @@ public class MargeTheCharged {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
-            cost = new int[] { 5, 5 },
-            strength = new int[] { 2, 2 },
-            health = new int[] { 3, 3 },
+            cost = new int[] { 3, 3 },
+            strength = new int[] { 0, 0 },
+            health = new int[] { 2, 2 },
             speed = 2,
             range = 4,
             damageType = DamageType.Magical,
             race = Race.Sorcerer,
-            rarity = CardRarity.Rare,
+            rarity = CardRarity.Common,
             genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
@@ -18,8 +18,7 @@ public class MargeTheCharged {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.lightningBolt.Add(2, 3);
-        ability.staticEntrance.Add(2, 3);
+        ability.lightningBolt.Add(3, 5);
 
         return stats;
     }
