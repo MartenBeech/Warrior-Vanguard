@@ -71,11 +71,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
                 rangeImage.SetActive(true);
                 rangeImage.GetComponentInChildren<TMP_Text>().text = stats.range.ToString();
             }
-            if (stats.speed == 2) {
+            if (stats.GetSpeed() == 2) {
                 speedImage.SetActive(false);
             } else {
                 speedImage.SetActive(true);
-                speedImage.GetComponentInChildren<TMP_Text>().text = stats.speed.ToString();
+                speedImage.GetComponentInChildren<TMP_Text>().text = stats.GetSpeed().ToString();
             }
 
             List<string> abilityTexts = stats.ability.GetAbilityText(stats);

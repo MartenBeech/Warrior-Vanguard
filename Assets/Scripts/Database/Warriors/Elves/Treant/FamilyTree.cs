@@ -1,16 +1,16 @@
-public class Grumpy {
+public class FamilyTree {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
-            cost = new int[] { 1, 1 },
+            cost = new int[] { 6, 6 },
             strength = new int[] { 1, 1 },
-            health = new int[] { 3, 4 },
-            speed = 2,
-            range = 2,
+            health = new int[] { 8, 10 },
+            speed = 1,
+            range = 1,
             damageType = DamageType.Physical,
-            race = Race.Troll,
-            rarity = CardRarity.Common,
+            race = Race.Treant,
+            rarity = CardRarity.Rare,
             genre = Genre.Elves
         };
         for (int i = 0; i < 2; i++) {
@@ -18,8 +18,8 @@ public class Grumpy {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.stoneskin.Add();
-        ability.bash.Add();
+        ability.familiarGround.Add(4, 0);
+        ability.guard.Add();
 
         return stats;
     }

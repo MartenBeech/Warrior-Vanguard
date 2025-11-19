@@ -8,6 +8,7 @@ public class PoisonPotion {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 1, 1 },
+            rarity = CardRarity.Common,
             spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
             "Apply 2 poison to an enemy",

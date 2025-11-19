@@ -18,7 +18,7 @@ public class SummonerStats {
     public int shield = 0;
     public int difficulty = 1;
     public int skeletonBones = 0;
-    public List<string> graveyard = new();
+    public List<WarriorStats> graveyard = new();
     public WarriorAbility ability = new();
 
     public SummonerStats(string title, int health, int healthMax) {

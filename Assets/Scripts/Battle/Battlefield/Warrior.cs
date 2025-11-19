@@ -94,7 +94,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         if (stats.ability.guard.GetRandomNearbyEnemy(this, gridManager)) return;
 
         int stepsToMove = 0;
-        for (int i = 1; i <= stats.speed; i++) {
+        for (int i = 1; i <= stats.GetSpeed(); i++) {
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
 
             if (IsOutOfField(newGridIndex)) break;
@@ -133,8 +133,9 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
             direction = direction == Direction.Left ? Direction.Right : Direction.Left;
         }
 
-        if (await stats.ability.backstab.Trigger(this, gridManager)) return;
-        if (await stats.ability.guard.Trigger(this, gridManager)) return;
+        if (await stats.ability.backstab.TriggerAttack(this, gridManager)) return;
+        if (await stats.ability.guard.TriggerAttack(this, gridManager)) return;
+        if (await stats.ability.whirlwind.TriggerAttack(this, gridManager)) return;
 
         for (int i = 1; i <= stats.range; i++) {
             Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, i);
@@ -387,7 +388,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         if (isDying) return;
         isDying = true;
 
-        summoner.stats.graveyard.Add(stats.title);
+        summoner.stats.graveyard.Add(stats);
         gameManager.RemoveWarrior(this);
         gridManager.RemoveWarrior(this);
 
@@ -408,6 +409,8 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
             stats.ability.hydraSplit.TriggerDeath(this, warriorSummoner),
             stats.ability.boneSpread.TriggerDeath(this, warriorSummoner),
             stats.ability.phoenixAshes.TriggerDeath(this, warriorSummoner),
+            stats.ability.deathDraw.TriggerDeath(this, gameManager),
+
         };
 
         if (stats.ability.afterlife.GetValue(stats)) {
@@ -493,11 +496,17 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         stats.ability.seduced.Trigger(this);
         await stats.ability.poisoned.TriggerOverturn(this);
         await stats.ability.burning.TriggerOverturn(this);
+        await stats.ability.strengthenByFireAbility.TriggerOverturn(this);
         await stats.ability.artist.TriggerOverturn(this, gameManager);
         stats.ability.friendDiscount.TriggerOverturn(this, gridManager);
 
-        if (stats.tempStrength > 0) {
+        if (stats.tempStrength != 0) {
             stats.tempStrength = 0;
+            UpdateWarriorUI();
+        }
+
+        if (stats.tempSpeed != 0) {
+            stats.tempSpeed = 0;
             UpdateWarriorUI();
         }
     }

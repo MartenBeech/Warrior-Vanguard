@@ -8,6 +8,7 @@ public class SkinToBones {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 7, 6 },
+            rarity = CardRarity.Rare,
             spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
             "Kill an enemy and summon a skeleton",

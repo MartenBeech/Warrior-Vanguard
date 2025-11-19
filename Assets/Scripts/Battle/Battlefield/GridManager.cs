@@ -258,9 +258,9 @@ public class GridManager : MonoBehaviour {
 
     public List<Warrior> GetNearbyEnemies(Warrior warrior) {
         List<Warrior> nearbyWarriors = GetNearbyWarriors(warrior.gridIndex);
-        List<Warrior> nearbyFriends = nearbyWarriors.Where(a => a.stats.alignment != warrior.stats.alignment).ToList();
+        List<Warrior> nearbyEnemies = nearbyWarriors.Where(a => a.stats.alignment != warrior.stats.alignment).ToList();
 
-        return nearbyFriends;
+        return nearbyEnemies;
     }
 
     public List<Warrior> GetWarriors() {

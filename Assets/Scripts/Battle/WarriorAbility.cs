@@ -31,6 +31,7 @@ public class WarriorAbility {
     public BloodPact bloodPact = new();
     public CheatDeath cheatDeath = new();
     public Farming farming = new();
+    public Whirlwind whirlwind = new();
 
     // Common abilities
     public Armor armor = new();
@@ -62,6 +63,7 @@ public class WarriorAbility {
     public Immolate immolate = new();
     public Inspire inspire = new();
     public Drawing drawing = new();
+    public DeathDraw deathDraw = new();
     public Artist artist = new();
     public FriendDiscount friendDiscount = new();
     public FamilyDiscount familyDiscount = new();
@@ -113,6 +115,7 @@ public class WarriorAbility {
     public MassSelfHarm massSelfHarm = new();
     public Whalecome whalecome = new();
     public Cloak cloak = new();
+    public StrengthenByFireAbility strengthenByFireAbility = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();

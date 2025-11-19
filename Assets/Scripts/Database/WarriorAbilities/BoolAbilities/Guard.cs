@@ -18,7 +18,7 @@ public class Guard {
         return null;
     }
 
-    public async Task<bool> Trigger(Warrior dealer, GridManager gridManager) {
+    public async Task<bool> TriggerAttack(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
             Warrior nearbyEnemy = GetRandomNearbyEnemy(dealer, gridManager);
 

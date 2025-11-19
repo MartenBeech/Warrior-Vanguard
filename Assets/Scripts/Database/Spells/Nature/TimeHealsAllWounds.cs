@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public class CatReflexes {
+public class TimeHealsAllWounds {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
-            cost = new int[] { 3, 2 },
+            cost = new int[] { 2, 2 },
             rarity = CardRarity.Rare,
             spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
-            "Give a friendly warrior retaliate",
-            "Give a friendly warrior retaliate"
+            "Give a friendly warrior: Regeneration 1",
+            "Give a friendly warrior: Regeneration 2"
             },
             race = Race.Nature,
             genre = Genre.Elves,
@@ -24,7 +24,8 @@ public class CatReflexes {
     }
 
     public async Task Trigger(SpellTriggerParams parameters) {
-        parameters.target.stats.ability.retaliate.Add();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Cat Reflexes", ColorEnum.Green);
+        int value = parameters.cardLevel == 0 ? 1 : 2;
+        parameters.target.stats.ability.regeneration.Add(value);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Regeneration {value}", ColorEnum.Yellow);
     }
 }

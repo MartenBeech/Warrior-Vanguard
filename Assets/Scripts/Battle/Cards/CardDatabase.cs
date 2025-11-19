@@ -1,8 +1,28 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+<<<<<<< HEAD
+=======
+        new FireAtWill().GetStats(),
+        new StrengthenByFire().GetStats(),
+        new IntrusiveTermite().GetStats(),
+        new Arise().GetStats(),
+        new MassResurrection().GetStats(),
+        new SwarmOfTheNature().GetStats(),
+        new Mario().GetStats(),
+        new ElvenTechniques().GetStats(),
+        new SlowDown().GetStats(),
+        new SkeletonFetcher().GetStats(),
+        new Drawbie().GetStats(),
+        new BabyHydra().GetStats(),
+        new ShadowSerpant().GetStats(),
+        new InfernalReptilian().GetStats(),
+        new FamilyTree().GetStats(),
+        new GuardingRoots().GetStats(),
+>>>>>>> 7a961069a08068a1f93fb44371c86b86c5cad352
         new AlleyStalker().GetStats(),
         new SilentAssasin().GetStats(),
         new NightChaser().GetStats(),
@@ -14,7 +34,6 @@ public static class CardDatabase {
         new CombineHarvester().GetStats(),
         new FirePortal().GetStats(),
         new SummonAid().GetStats(),
-        new Arise().GetStats(),
         new Reinforcement().GetStats(),
         new Centarcher().GetStats(),
         new MoltenBlade().GetStats(),
@@ -62,7 +81,7 @@ public static class CardDatabase {
         new SuccubusSeducer().GetStats(),
         new FlameWarden().GetStats(),
         new AidFromTheSpirits().GetStats(),
-        new CatReflexes().GetStats(),
+        new CounterStrike().GetStats(),
         new Blind().GetStats(),
         new SharpSight().GetStats(),
         new Thorns().GetStats(),
@@ -77,7 +96,6 @@ public static class CardDatabase {
         new Damnation().GetStats(),
         new HardshellPest().GetStats(),
         new CrispRat().GetStats(),
-        new IntrusiveTermite().GetStats(),
         new Stormseer().GetStats(),
         new MargeTheCharged().GetStats(),
         new LightningCaller().GetStats(),
@@ -142,7 +160,7 @@ public static class CardDatabase {
         new UprootedWoods().GetStats(),
         new WanderingBirch().GetStats(),
         new BranchManager().GetStats(),
-        new ForestTroll().GetStats(),
+        new CaveTroll().GetStats(),
         new TrollKing().GetStats(),
         new Grumpy().GetStats(),
         new ClubCrasher().GetStats(),

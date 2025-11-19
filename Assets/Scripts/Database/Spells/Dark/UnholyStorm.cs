@@ -8,6 +8,7 @@ public class UnholyStorm {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 4, 4 },
+            rarity = CardRarity.Legendary,
             spellTarget = SpellTarget.None,
             spellDescription = new string[] {
             "Reduce all enemies' strength by 2",

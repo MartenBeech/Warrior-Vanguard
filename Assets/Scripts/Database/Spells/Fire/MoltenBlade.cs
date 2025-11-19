@@ -26,6 +26,6 @@ public class MoltenBlade {
     public async Task Trigger(SpellTriggerParams parameters) {
         parameters.target.stats.tempStrength += 5;
         parameters.target.UpdateWarriorUI();
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Molten Blade", ColorEnum.Yellow);
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, "Molten Blade", ColorEnum.Red);
     }
 }

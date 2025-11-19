@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public class TimeHealsAllWounds {
+public class CounterStrike {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
-            cost = new int[] { 2, 2 },
+            cost = new int[] { 3, 2 },
             rarity = CardRarity.Rare,
             spellTarget = SpellTarget.Friend,
             spellDescription = new string[] {
-            "Give a friendly warrior: Regeneration 1",
-            "Give a friendly warrior: Regeneration 2"
+            "Give a friendly warrior retaliate",
+            "Give a friendly warrior retaliate"
             },
             race = Race.Light,
             genre = Genre.Human,
@@ -24,8 +24,7 @@ public class TimeHealsAllWounds {
     }
 
     public async Task Trigger(SpellTriggerParams parameters) {
-        int value = parameters.cardLevel == 0 ? 1 : 2;
-        parameters.target.stats.ability.regeneration.Add(value);
-        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Regeneration {value}", ColorEnum.Yellow);
+        parameters.target.stats.ability.retaliate.Add();
+        await parameters.floatingText.CreateFloatingText(parameters.target.transform, $"Counter Strike", ColorEnum.Green);
     }
 }

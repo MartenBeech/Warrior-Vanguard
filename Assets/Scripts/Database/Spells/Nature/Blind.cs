@@ -8,7 +8,7 @@ public class Blind {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 2, 1 },
-            rarity = CardRarity.Rare,
+            rarity = CardRarity.Common,
             spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
             "Reduce enemy range to 1",

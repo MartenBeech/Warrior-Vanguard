@@ -7,6 +7,7 @@ public class Disarm {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 3, 2 },
+            rarity = CardRarity.Common,
             spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
             "Set an enemy's strength to 1",
@@ -16,7 +17,7 @@ public class Disarm {
             genre = Genre.Undead,
             cardType = CardType.Spell,
         };
-        
+
 
         return stats;
     }

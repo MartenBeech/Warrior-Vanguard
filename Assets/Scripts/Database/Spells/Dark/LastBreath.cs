@@ -8,6 +8,7 @@ public class LastBreath {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 5, 4 },
+            rarity = CardRarity.Common,
             spellTarget = SpellTarget.Enemy,
             spellDescription = new string[] {
             "Set an enemy's health to 1",

@@ -27,18 +27,18 @@ public class Arise {
     public async Task Trigger(SpellTriggerParams parameters) {
         int amount = parameters.cardLevel == 0 ? 2 : 3;
 
-        List<string> graveyard = new();
-        foreach (var title in parameters.summoner.stats.graveyard) {
-            graveyard.Add(title);
+        List<WarriorStats> graveyard = new();
+        foreach (var warrior in parameters.summoner.stats.graveyard) {
+            graveyard.Add(warrior);
         }
 
         for (int i = 0; i < amount; i++) {
-            string title = Rng.Entry(graveyard);
-            if (title == null) break;
+            WarriorStats warrior = Rng.Entry(graveyard);
+            if (warrior == null) break;
 
-            graveyard.Remove(title);
+            graveyard.Remove(warrior);
 
-            Type type = Type.GetType(title);
+            Type type = Type.GetType(warrior.title);
             object instance = Activator.CreateInstance(type);
             WarriorStats stats = (WarriorStats)type.GetMethod("GetStats")?.Invoke(instance, null);
 

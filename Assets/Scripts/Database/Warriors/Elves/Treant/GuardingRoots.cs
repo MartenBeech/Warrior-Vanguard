@@ -1,15 +1,15 @@
-public class ClubCrasher {
+public class GuardingRoots {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
-            cost = new int[] { 4, 4 },
-            strength = new int[] { 3, 4 },
-            health = new int[] { 6, 7 },
-            speed = 2,
-            range = 2,
+            cost = new int[] { 3, 3 },
+            strength = new int[] { 2, 2 },
+            health = new int[] { 3, 4 },
+            speed = 1,
+            range = 1,
             damageType = DamageType.Physical,
-            race = Race.Troll,
+            race = Race.Treant,
             rarity = CardRarity.Common,
             genre = Genre.Elves
         };
@@ -18,8 +18,8 @@ public class ClubCrasher {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.stoneskin.Add();
-        ability.bash.Add();
+        ability.rooting.Add();
+        ability.guard.Add();
 
         return stats;
     }

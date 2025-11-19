@@ -3,7 +3,7 @@ public enum Race {
     Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Nightrider, Shade, //Undead
     Pirate, Holyborn, Knight, Griffin, Sorcerer, Fencer, Librarian, Farmer, Soldier, Marksman, //Human
     Unicorn, Ranger, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Elves
-    Imp, Minotaur, Harpy, Pestilence, Cerberus, Succubus, Demon, //Underworld
+    Imp, Minotaur, Harpy, Pestilence, Cerberus, Succubus, Demon, Hydra, //Underworld
     Dark, Fire, Light, Nature //Spells
 }
 
