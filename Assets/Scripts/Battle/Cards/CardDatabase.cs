@@ -4,8 +4,6 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
-<<<<<<< HEAD
-=======
         new FireAtWill().GetStats(),
         new StrengthenByFire().GetStats(),
         new IntrusiveTermite().GetStats(),
@@ -22,7 +20,6 @@ public static class CardDatabase {
         new InfernalReptilian().GetStats(),
         new FamilyTree().GetStats(),
         new GuardingRoots().GetStats(),
->>>>>>> 7a961069a08068a1f93fb44371c86b86c5cad352
         new AlleyStalker().GetStats(),
         new SilentAssasin().GetStats(),
         new NightChaser().GetStats(),
