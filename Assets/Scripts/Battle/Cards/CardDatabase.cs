@@ -4,13 +4,17 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new Mario().GetStats(),
+        new AngelOfDeath().GetStats(),
+        new GrimReaper().GetStats(),
+        new JudgementCaller().GetStats(),
+        new Boney().GetStats(),
         new FireAtWill().GetStats(),
         new StrengthenByFire().GetStats(),
         new IntrusiveTermite().GetStats(),
         new Arise().GetStats(),
         new MassResurrection().GetStats(),
         new SwarmOfTheNature().GetStats(),
-        new Mario().GetStats(),
         new ElvenTechniques().GetStats(),
         new SlowDown().GetStats(),
         new SkeletonFetcher().GetStats(),

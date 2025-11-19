@@ -2,15 +2,13 @@ using System.Text.RegularExpressions;
 public class Incorporeal {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"Can max take 1 physical damage at a time";
+        return $"Can max take 1 damage at a time";
     }
 
-    public int TriggerDamaged(Warrior target, int damage, DamageType damageType) {
+    public int TriggerDamaged(Warrior target, int damage) {
         if (GetValue(target.stats)) {
-            if (damageType == DamageType.Physical) {
-                if (damage > 1) {
-                    damage = 1;
-                }
+            if (damage > 1) {
+                damage = 1;
             }
         }
         return damage;

@@ -190,10 +190,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
                     }
                     target.stats.ability.weakeningAura.TriggerAttacked(this, target);
                     await target.stats.ability.poisoningAura.TriggerAttacked(this, target, floatingText);
-                    if (stats.ability.darkTouch.TriggerAttack(this, target)) {
-                        await target.Die(this);
-                        return;
-                    }
+
                     await target.stats.ability.spikes.TriggerAttacked(this, target);
                     await target.stats.ability.retaliate.TriggerAttacked(this, target, gridManager);
                 }
@@ -260,6 +257,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         await stats.ability.bash.TriggerStrike(this, target, floatingText);
         await stats.ability.seduce.TriggerStrike(this, target, floatingText);
         stats.ability.rooting.TriggerStrike(this, target);
+        await stats.ability.darkTouch.TriggerStrike(this, target, floatingText);
     }
 
     public async Task<int> TakeDamage(Warrior dealer, int damage, DamageType damageType, DamageSource damageSource = DamageSource.Normal) {
@@ -281,7 +279,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         damage = stats.ability.thickSkin.TriggerDamaged(this, damage);
 
         damage = stats.ability.stoneskin.TriggerDamaged(this, damage);
-        damage = stats.ability.incorporeal.TriggerDamaged(this, damage, damageType);
+        damage = stats.ability.incorporeal.TriggerDamaged(this, damage);
 
         damage = stats.ability.immune.TriggerDamaged(this, damage);
 
@@ -493,12 +491,15 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         await stats.ability.immolate.TriggerOverturn(this, gridManager, gameManager);
         await stats.ability.bloodPact.TriggerOverturn(this, gridManager, summoner);
         await stats.ability.scrollStudies.TriggerOverturn(this, hand);
+        await stats.ability.artist.TriggerOverturn(this, gameManager);
+        stats.ability.friendDiscount.TriggerOverturn(this, gridManager);
+        await stats.ability.reckoning.TriggerOverturn(this, gridManager, floatingText);
+
+        // Debuffs should trigger last
         stats.ability.seduced.Trigger(this);
         await stats.ability.poisoned.TriggerOverturn(this);
         await stats.ability.burning.TriggerOverturn(this);
         await stats.ability.strengthenByFireAbility.TriggerOverturn(this);
-        await stats.ability.artist.TriggerOverturn(this, gameManager);
-        stats.ability.friendDiscount.TriggerOverturn(this, gridManager);
 
         if (stats.tempStrength != 0) {
             stats.tempStrength = 0;

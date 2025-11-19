@@ -5,7 +5,7 @@ public class VoidBeing {
             levelUnlocked = 1,
             cost = new int[] { 7, 7 },
             strength = new int[] { 5, 6 },
-            health = new int[] { 4, 5 },
+            health = new int[] { 5, 6 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
@@ -20,7 +20,6 @@ public class VoidBeing {
         WarriorAbility ability = stats.ability;
         ability.afterlife.Add();
         ability.incorporeal.Add();
-        ability.darkTouch.Add(5, 6);
 
         return stats;
     }

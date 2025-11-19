@@ -4,8 +4,8 @@ public class SoulStealer {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 7, 7 },
-            strength = new int[] { 0, 0 },
-            health = new int[] { 5, 7 },
+            strength = new int[] { 5, 6 },
+            health = new int[] { 10, 12 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
@@ -19,7 +19,6 @@ public class SoulStealer {
 
         WarriorAbility ability = stats.ability;
         ability.afterlife.Add();
-        ability.darkTouch.Add(5, 7);
         ability.possess.Add();
 
         return stats;

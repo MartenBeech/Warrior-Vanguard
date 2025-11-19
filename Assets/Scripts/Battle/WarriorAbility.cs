@@ -116,6 +116,7 @@ public class WarriorAbility {
     public Whalecome whalecome = new();
     public Cloak cloak = new();
     public StrengthenByFireAbility strengthenByFireAbility = new();
+    public Reckoning reckoning = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();

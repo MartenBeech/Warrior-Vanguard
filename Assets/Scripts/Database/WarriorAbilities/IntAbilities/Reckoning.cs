@@ -1,22 +1,24 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class DarkTouch {
+public class Reckoning {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{Keyword.Strike}: Instantly kill targets left with {GetValue(stats)} health or less";
+        return $"{Keyword.Overturn}: Instantly kill enemies with {GetValue(stats)} health or less";
     }
 
-    public async Task<bool> TriggerStrike(Warrior dealer, Warrior target, FloatingText floatingText) {
+    public async Task<bool> TriggerOverturn(Warrior dealer, GridManager gridManager, FloatingText floatingText) {
         if (GetValue(dealer.stats) > 0) {
-            if (target.stats.GetHealthCurrent() <= GetValue(dealer.stats)) {
-                List<Task> asyncFunctions = new() {
-                floatingText.CreateFloatingText(target.transform, "Dark Touch", ColorEnum.Red, true),
-                target.Die(target)
-            };
-                await Task.WhenAll(asyncFunctions);
-                return true;
+            List<Warrior> enemies = gridManager.GetEnemies(dealer.stats.alignment);
+            List<Task> asyncFunctions = new();
+            foreach (Warrior enemy in enemies) {
+                if (enemy.stats.GetHealthCurrent() <= GetValue(dealer.stats)) {
+                    asyncFunctions.Add(enemy.Die(dealer));
+                    asyncFunctions.Add(floatingText.CreateFloatingText(enemy.transform, "Reckoning", ColorEnum.Red, true));
+                }
             }
+            await Task.WhenAll(asyncFunctions);
+            return true;
         }
         return false;
     }

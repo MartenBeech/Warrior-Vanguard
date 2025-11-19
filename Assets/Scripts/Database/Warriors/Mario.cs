@@ -4,7 +4,7 @@ public class Mario : WarriorStats {
             title = "Mario",
             cost = new int[] { 0, 0 },
             strength = new int[] { 1, 4 },
-            health = new int[] { 5, 4 },
+            health = new int[] { 10, 4 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
@@ -16,7 +16,8 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.enflame.Add();
+        ability.darkTouch.Add(10);
+        ability.retaliate.Add();
 
         return stats;
     }

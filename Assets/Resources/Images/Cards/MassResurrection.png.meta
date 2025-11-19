@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MassResurrection_0: 6943631643291374566
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

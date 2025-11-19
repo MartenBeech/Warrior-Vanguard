@@ -41,6 +41,9 @@ public class Skeletal {
                         case "SkeletonWarrior":
                             target.stats.ability.armor.Add(1);
                             break;
+                        case "SkeletonFetcher":
+                            target.stats.ability.deathDraw.Add(1);
+                            break;
                         case "BoneDragon":
                             target.stats.ability.skeletal.Add(1);
                             break;
