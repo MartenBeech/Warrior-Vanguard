@@ -18,6 +18,7 @@ public class Mario : WarriorStats {
         WarriorAbility ability = stats.ability;
         ability.splash.Add();
         ability.bash.Add();
+        ability.reload.Add();
 
         return stats;
     }

@@ -24,6 +24,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
     private FloatingText floatingText;
     private Coin coin;
     private bool isDying = false;
+    public GameObject stunnedAnimation;
 
     public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, WarriorSummoner warriorSummoner, Transform summonerObject, Summoner summoner, HoverCard hoverCard, FloatingText floatingText, Coin coin) {
         this.gameManager = gameManager;
@@ -69,6 +70,8 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         } else {
             image.GetComponent<Image>().color = ColorPalette.AddTransparency(image.GetComponent<Image>().color, 100);
         }
+
+        stunnedAnimation.SetActive(stats.ability.stunned.GetValue(stats));
     }
 
     public void SetStats(WarriorStats warriorStats) {
