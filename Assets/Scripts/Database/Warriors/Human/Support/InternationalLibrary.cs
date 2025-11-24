@@ -1,25 +1,25 @@
-public class FamilyTree {
+public class InternationalLibrary {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 6, 6 },
-            strength = new int[] { 1, 1 },
-            health = new int[] { 8, 10 },
-            speed = 1,
-            range = 1,
+            strength = new int[] { 0, 0 },
+            health = new int[] { 8, 12 },
+            speed = 0,
+            range = 0,
             damageType = DamageType.Physical,
-            race = Race.Treant,
-            rarity = CardRarity.Rare,
-            genre = Genre.Elves
+            race = Race.Support,
+            rarity = CardRarity.Legendary,
+            genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
         }
 
         WarriorAbility ability = stats.ability;
-        ability.familiarGround.Add(4, 0);
-        ability.guard.Add();
+        ability.construct.Add();
+        ability.scrollStudies.Add();
 
         return stats;
     }

@@ -22,8 +22,6 @@ public static class CardDatabase {
         new BabyHydra().GetStats(),
         new ShadowSerpant().GetStats(),
         new InfernalReptilian().GetStats(),
-        new FamilyTree().GetStats(),
-        new GuardingRoots().GetStats(),
         new AlleyStalker().GetStats(),
         new SilentAssasin().GetStats(),
         new NightChaser().GetStats(),

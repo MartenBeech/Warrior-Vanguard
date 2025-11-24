@@ -19,6 +19,7 @@ public class BranchManager {
 
         WarriorAbility ability = stats.ability;
         ability.rooting.Add();
+        ability.guard.Add();
 
         return stats;
     }

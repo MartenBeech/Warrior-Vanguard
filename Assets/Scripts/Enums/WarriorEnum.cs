@@ -1,5 +1,5 @@
 public enum Race {
-    None, Construct, Dragon, //Common
+    None, Construct, Dragon, Support, //Common
     Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Nightrider, Shade, Reaper, //Undead
     Pirate, Holyborn, Knight, Griffin, Sorcerer, Fencer, Librarian, Farmer, Soldier, Marksman, //Human
     Unicorn, Ranger, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, //Elves
