@@ -1,14 +1,16 @@
-public class Mario : WarriorStats {
+public class LightCrossbowman {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Mario",
-            cost = new int[] { 0, 0 },
-            strength = new int[] { 1, 4 },
-            health = new int[] { 10, 4 },
+            title = GetType().Name,
+            levelUnlocked = 1,
+            cost = new int[] { 1, 1 },
+            strength = new int[] { 3, 4 },
+            health = new int[] { 2, 3 },
             speed = 2,
-            range = 2,
+            range = 4,
             damageType = DamageType.Physical,
-            race = Race.None,
+            race = Race.Marksman,
+            rarity = CardRarity.Common,
             genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
@@ -16,8 +18,7 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.splash.Add();
-        ability.bash.Add();
+        ability.reload.Add();
 
         return stats;
     }

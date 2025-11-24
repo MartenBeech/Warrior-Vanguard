@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class FloatingText : MonoBehaviour {
     public GameObject floatingTextObject;
 
-    public async Task CreateFloatingText(Transform transform, string text, ColorEnum textColor = ColorEnum.Red, bool smallText = false, Sprite backgroundImage = null) {
+    public async Task CreateFloatingText(Transform transform, string text, ColorEnum textColor = ColorEnum.Red, bool smallText = true, Sprite backgroundImage = null) {
         RectTransform rectTransform = transform as RectTransform;
         Vector2 pos = new(transform.position.x, transform.position.y + rectTransform.rect.height / 2);
         var floatingText = Instantiate(floatingTextObject, pos, Quaternion.identity, this.transform);

@@ -81,7 +81,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         transform.position = gridManager.GetCellPosition(position);
     }
 
-    public async Task MoveWarrior(Direction direction) {
+    public async Task PrepareMovement(Direction direction) {
         if (stats.GetHealthCurrent() <= 0) return;
         if (stats.ability.stunned.GetValue(stats)) return;
 
@@ -109,16 +109,20 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         }
 
         if (stepsToMove > 0) {
-            if (stats.ability.rooted.Trigger(this)) return;
-
-            Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, stepsToMove);
-            ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
-            await objectAnimation.MoveObject(transform.position, gridManager.GetCellPosition(newGridIndex), 2);
-
-            stats.ability.joust.TriggerMove(this, stepsToMove);
-            stats.ability.familiarGround.TriggerMove(this, gridIndex, newGridIndex);
-            gridIndex = newGridIndex;
+            await MoveWarrior(direction, stepsToMove);
         }
+    }
+
+    public async Task MoveWarrior(Direction direction, int nTiles) {
+        if (stats.ability.rooted.Trigger(this)) return;
+
+        Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, nTiles);
+        ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
+        await objectAnimation.MoveObject(transform.position, gridManager.GetCellPosition(newGridIndex), 2);
+
+        stats.ability.joust.TriggerMove(this, nTiles);
+        stats.ability.familiarGround.TriggerMove(this, gridIndex, newGridIndex);
+        gridIndex = newGridIndex;
     }
 
     public bool IsOutOfField(Vector2 gridIndex) {
@@ -167,13 +171,15 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
                 if (stats.GetHealthCurrent() < 0) return;
 
                 List<Task> asyncFunctions = new() {
-                stats.ability.multishot.TriggerAttack(this, target, gridManager),
-                stats.ability.splash.TriggerAttack(this, target, gridManager),
-                stats.ability.cleave.TriggerAttack(this, target, gridManager),
-                stats.ability.pierce.TriggerAttack(this, target, gridManager),
-                stats.ability.selfHarm.TriggerAttack(this),
-                Strike(target, damage)
-            };
+                    stats.ability.multishot.TriggerAttack(this, target, gridManager),
+                    stats.ability.splash.TriggerAttack(this, target, gridManager),
+                    stats.ability.cleave.TriggerAttack(this, target, gridManager),
+                    stats.ability.pierce.TriggerAttack(this, target, gridManager),
+                    stats.ability.selfHarm.TriggerAttack(this),
+                    stats.ability.knockBack.TriggerAttack(this, target, gridManager),
+                    Strike(target, damage),
+                };
+
                 await Task.WhenAll(asyncFunctions);
 
                 if (target.stats.GetHealthCurrent() > 0) {
@@ -374,7 +380,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
             dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.Green);
 
-            await floatingText.CreateFloatingText(transform, amount.ToString(), ColorEnum.Green, true);
+            await floatingText.CreateFloatingText(transform, amount.ToString(), ColorEnum.Green);
 
             dealer.image.GetComponent<Image>().color = ColorPalette.GetColor(ColorEnum.White);
         }
@@ -471,6 +477,8 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
     public async Task EndTurn() {
         if (stats.ability.stunned.Trigger(this)) return;
+
+        stats.ability.reload.TriggerOverturn(this);
 
         if (stats.attackedThisTurn) {
             stats.ability.bloodlust.TriggerOverturn(this);

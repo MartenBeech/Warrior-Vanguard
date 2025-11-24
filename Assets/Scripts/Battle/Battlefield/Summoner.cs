@@ -113,7 +113,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
             FloatingText floatingText = FindFirstObjectByType<FloatingText>();
             List<Task> asyncFunctions = new() {
-                floatingText.CreateFloatingText(transform, damage.ToString()),
+                floatingText.CreateFloatingText(transform, damage.ToString(), ColorEnum.Red, false),
                 dealer.stats.ability.selfHarm.TriggerAttack(dealer)
             };
             await Task.WhenAll(asyncFunctions);
@@ -128,7 +128,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         } else {
             FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-            await floatingText.CreateFloatingText(transform, damage.ToString());
+            await floatingText.CreateFloatingText(transform, damage.ToString(), ColorEnum.Red, false);
         }
 
         if (stats.health <= 0) {
@@ -190,7 +190,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdateSummonerUI();
 
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
-        await floatingText.CreateFloatingText(transform, $"+{amount} shield", ColorEnum.Gray);
+        await floatingText.CreateFloatingText(transform, $"+{amount} shield", ColorEnum.Gray, false);
     }
 
     public async Task EndTurn(WarriorSummoner warriorSummoner) {

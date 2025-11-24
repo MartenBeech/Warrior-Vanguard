@@ -1,15 +1,22 @@
 using System.Text.RegularExpressions;
-public class CLASSNAMEBOOL {
+using System.Threading.Tasks;
+using UnityEngine;
+public class KnockBack {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"DESCRIPTION";
+        return $"{Keyword.Attack}: Push the target 2 tiles back";
     }
 
-    public bool Trigger(Warrior dealer) {
+    public async Task<bool> TriggerAttack(Warrior dealer, Warrior target, GridManager gridManager) {
         if (GetValue(dealer.stats)) {
-            // Add trigger event here
-            dealer.UpdateWarriorUI();
-            return true;
+            for (int i = 2; i > 0; i--) {
+                int xTilesToMove = target.stats.alignment == Alignment.Friend ? -i : i;
+                Warrior obstacle = gridManager.GetCellWarrior(new Vector2(target.gridIndex.x + xTilesToMove, target.gridIndex.y));
+                if (obstacle == null) {
+                    await target.MoveWarrior(target.stats.alignment == Alignment.Friend ? Direction.Left : Direction.Right, i);
+                    return true;
+                }
+            }
         }
         return false;
     }

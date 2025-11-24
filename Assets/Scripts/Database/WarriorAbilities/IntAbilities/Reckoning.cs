@@ -14,7 +14,7 @@ public class Reckoning {
             foreach (Warrior enemy in enemies) {
                 if (enemy.stats.GetHealthCurrent() <= GetValue(dealer.stats)) {
                     asyncFunctions.Add(enemy.Die(dealer));
-                    asyncFunctions.Add(floatingText.CreateFloatingText(enemy.transform, "Reckoning", ColorEnum.Red, true));
+                    asyncFunctions.Add(floatingText.CreateFloatingText(enemy.transform, "Reckoning", ColorEnum.Red));
                 }
             }
             await Task.WhenAll(asyncFunctions);

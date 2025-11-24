@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour {
 
         List<Warrior> sortedFriends = friends.OrderByDescending(c => c.gridIndex.x).ToList();
         foreach (Warrior friend in sortedFriends) {
-            await friend.MoveWarrior(Direction.Right);
+            await friend.PrepareMovement(Direction.Right);
             await friend.StandAndAttack(Direction.Right);
             await friend.EndTurn();
         }
@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour {
     public async void EndEnemyTurn() {
         List<Warrior> sortedEnemies = enemies.OrderBy(c => c.gridIndex.x).ToList();
         foreach (Warrior enemy in sortedEnemies) {
-            await enemy.MoveWarrior(Direction.Left);
+            await enemy.PrepareMovement(Direction.Left);
             await enemy.StandAndAttack(Direction.Left);
             await enemy.EndTurn();
         }

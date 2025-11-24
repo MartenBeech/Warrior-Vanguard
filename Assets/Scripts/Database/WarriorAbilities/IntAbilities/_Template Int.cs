@@ -5,10 +5,10 @@ public class CLASSNAMEINT {
         return $"DESCRIPTION";
     }
 
-    public bool Trigger(Warrior warrior) {
-        if (GetValue(warrior.stats) > 0) {
+    public bool Trigger(Warrior dealer) {
+        if (GetValue(dealer.stats) > 0) {
             // Add trigger event here
-            warrior.UpdateWarriorUI();
+            dealer.UpdateWarriorUI();
             return true;
         }
         return false;

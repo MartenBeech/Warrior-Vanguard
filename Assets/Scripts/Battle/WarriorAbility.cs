@@ -32,6 +32,7 @@ public class WarriorAbility {
     public CheatDeath cheatDeath = new();
     public Farming farming = new();
     public Whirlwind whirlwind = new();
+    public Reload reload = new();
 
     // Common abilities
     public Armor armor = new();
@@ -71,6 +72,7 @@ public class WarriorAbility {
     public SoulSiphon soulSiphon = new();
     public Immune immune = new();
     public Demolish demolish = new();
+    public KnockBack knockBack = new();
 
     // Unique abilities
     public HydraSplit hydraSplit = new();

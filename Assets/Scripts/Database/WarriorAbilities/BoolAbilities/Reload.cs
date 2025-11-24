@@ -1,14 +1,16 @@
 using System.Text.RegularExpressions;
-public class CLASSNAMEBOOL {
+public class Reload {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"DESCRIPTION";
+        return $"{Keyword.Attack}: Become unable to act next turn";
     }
 
-    public bool Trigger(Warrior dealer) {
+    public bool TriggerOverturn(Warrior dealer) {
         if (GetValue(dealer.stats)) {
-            // Add trigger event here
-            dealer.UpdateWarriorUI();
+            if (dealer.stats.attackedThisTurn) {
+                dealer.stats.ability.stunned.Add();
+                dealer.UpdateWarriorUI();
+            }
             return true;
         }
         return false;

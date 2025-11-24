@@ -143,8 +143,6 @@ public static class CardDatabase {
         new YoungPriestess().GetStats(),
         new WiseMonk().GetStats(),
         new Watchtower().GetStats(),
-        new Archer().GetStats(),
-        new HoodyRobin().GetStats(),
         new KingsGuard().GetStats(),
         new AngryMob().GetStats(),
         new Peasant().GetStats(),

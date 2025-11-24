@@ -8,7 +8,7 @@ public class HitAndRun {
 
     public async Task<bool> TriggerOverturn(Warrior dealer) {
         if (GetValue(dealer.stats)) {
-            await dealer.MoveWarrior(dealer.stats.alignment == Alignment.Enemy ? Direction.Right : Direction.Left);
+            await dealer.PrepareMovement(dealer.stats.alignment == Alignment.Enemy ? Direction.Right : Direction.Left);
             return true;
         }
         return false;

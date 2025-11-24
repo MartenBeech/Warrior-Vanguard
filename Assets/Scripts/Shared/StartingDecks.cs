@@ -20,8 +20,8 @@ public static class StartingDecks {
                 AddCardToDeck(new Defender().GetStats(), card);
                 AddCardToDeck(new Defender().GetStats(), card);
                 AddCardToDeck(new Squire().GetStats(), card);
-                AddCardToDeck(new Archer().GetStats(), card);
-                AddCardToDeck(new Archer().GetStats(), card);
+                // AddCardToDeck(new Archer().GetStats(), card);
+                // AddCardToDeck(new Archer().GetStats(), card);
                 AddCardToDeck(new YoungPriestess().GetStats(), card);
                 AddCardToDeck(new HeavyRider().GetStats(), card);
                 AddCardToDeck(new DrawfulHobbyist().GetStats(), card);

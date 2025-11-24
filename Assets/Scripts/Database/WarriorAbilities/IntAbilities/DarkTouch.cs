@@ -11,7 +11,7 @@ public class DarkTouch {
         if (GetValue(dealer.stats) > 0) {
             if (target.stats.GetHealthCurrent() <= GetValue(dealer.stats)) {
                 List<Task> asyncFunctions = new() {
-                floatingText.CreateFloatingText(target.transform, "Dark Touch", ColorEnum.Red, true),
+                floatingText.CreateFloatingText(target.transform, "Dark Touch", ColorEnum.Red),
                 target.Die(target)
             };
                 await Task.WhenAll(asyncFunctions);

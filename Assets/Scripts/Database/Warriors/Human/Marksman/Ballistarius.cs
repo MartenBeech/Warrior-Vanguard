@@ -1,11 +1,11 @@
-public class HoodyRobin {
+public class Ballistarius {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 5, 5 },
-            strength = new int[] { 3, 4 },
-            health = new int[] { 3, 3 },
+            strength = new int[] { 5, 7 },
+            health = new int[] { 6, 7 },
             speed = 2,
             range = 5,
             damageType = DamageType.Physical,
@@ -18,7 +18,9 @@ public class HoodyRobin {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.multishot.Add();
+        ability.reload.Add();
+        ability.knockBack.Add();
+        ability.pierce.Add();
 
         return stats;
     }
