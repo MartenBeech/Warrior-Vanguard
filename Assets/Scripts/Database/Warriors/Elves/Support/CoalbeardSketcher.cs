@@ -10,7 +10,7 @@ public class CoalbeardSketcher {
             range = 2,
             damageType = DamageType.Physical,
             race = Race.Support,
-            rarity = CardRarity.Common,
+            rarity = CardRarity.Rare,
             genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {

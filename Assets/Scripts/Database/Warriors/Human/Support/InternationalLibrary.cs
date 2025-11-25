@@ -10,7 +10,7 @@ public class InternationalLibrary {
             range = 0,
             damageType = DamageType.Physical,
             race = Race.Support,
-            rarity = CardRarity.Legendary,
+            rarity = CardRarity.Rare,
             genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {

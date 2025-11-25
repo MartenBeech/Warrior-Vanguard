@@ -10,7 +10,7 @@ public class SketchySketcher {
             range = 4,
             damageType = DamageType.Magical,
             race = Race.Support,
-            rarity = CardRarity.Common,
+            rarity = CardRarity.Rare,
             genre = Genre.Underworld,
         };
         for (int i = 0; i < 2; i++) {
