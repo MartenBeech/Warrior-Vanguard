@@ -56,6 +56,7 @@ public class WarriorAbility {
     public Regeneration regeneration = new();
     public Bash bash = new();
     public Heal heal = new();
+    public Repair repair = new();
     public Spikes spikes = new();
     public Carnivore carnivore = new();
     public Backstab backstab = new();
@@ -99,6 +100,7 @@ public class WarriorAbility {
     public SapEnergy sapEnergy = new();
     public Looting looting = new();
     public MassHeal massHeal = new();
+    public MassRepair massRepair = new();
     public LushGrounds lushGrounds = new();
     public ForestProtection forestProtection = new();
     public Thunderstorm thunderstorm = new();
@@ -119,6 +121,8 @@ public class WarriorAbility {
     public Cloak cloak = new();
     public StrengthenByFireAbility strengthenByFireAbility = new();
     public Reckoning reckoning = new();
+    public Builder builder = new();
+    public MassBuilder massBuilder = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();

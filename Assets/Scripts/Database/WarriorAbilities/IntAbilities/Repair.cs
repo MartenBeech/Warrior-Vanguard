@@ -1,25 +1,23 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class MassHeal {
+public class Repair {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"{Keyword.Overturn}: Heal all other friends by {GetValue(stats)}";
+        return $"{Keyword.Overturn}: Heal a random friendly Contruct by {GetValue(stats)}";
     }
 
     public async Task<bool> TriggerOverturn(Warrior dealer, GridManager gridManager) {
         if (GetValue(dealer.stats) > 0) {
             List<Warrior> damagedFriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
             damagedFriends.Remove(dealer);
-            damagedFriends = damagedFriends.FindAll(friend => !friend.stats.ability.construct.GetValue(friend.stats));
+            damagedFriends = damagedFriends.FindAll(friend => friend.stats.ability.construct.GetValue(friend.stats));
 
-            List<Task> asyncFunctions = new();
+            if (damagedFriends.Count == 0) return false;
 
-            foreach (var friend in damagedFriends) {
-                asyncFunctions.Add(friend.Heal(dealer, GetValue(dealer.stats)));
-            }
+            Warrior damagedFriend = Rng.Entry(damagedFriends);
+            await damagedFriend.Heal(dealer, GetValue(dealer.stats));
 
-            await Task.WhenAll(asyncFunctions);
             return true;
         }
         return false;

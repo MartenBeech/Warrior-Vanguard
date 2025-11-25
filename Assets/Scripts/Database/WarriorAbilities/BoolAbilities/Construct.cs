@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 public class Construct {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"Has a bigger deployment area";
+        return $"Has a bigger deployment area. Immune to Heal and Life Steal";
     }
 
     bool[] value = new bool[] { false, false };

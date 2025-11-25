@@ -12,7 +12,7 @@ public class LifeInDeath {
             List<Warrior> damagedFriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
             damagedFriends.Remove(dealer);
 
-            List<Task> asyncFunctions = new() { };
+            List<Task> asyncFunctions = new();
 
             foreach (var friend in damagedFriends) {
                 asyncFunctions.Add(friend.Heal(dealer, friend.stats.GetHealthMax() - friend.stats.GetHealthCurrent()));

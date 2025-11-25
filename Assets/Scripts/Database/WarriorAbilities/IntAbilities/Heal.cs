@@ -11,6 +11,7 @@ public class Heal {
         if (GetValue(dealer.stats) > 0) {
             List<Warrior> damagedFriends = gridManager.GetDamagedFriends(dealer.stats.alignment);
             damagedFriends.Remove(dealer);
+            damagedFriends = damagedFriends.FindAll(friend => !friend.stats.ability.construct.GetValue(friend.stats));
 
             if (damagedFriends.Count == 0) return false;
 

@@ -1,14 +1,16 @@
-public class Mario : WarriorStats {
+public class HomeMechanic {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Mario",
-            cost = new int[] { 0, 0 },
-            strength = new int[] { 1, 1 },
-            health = new int[] { 10, 10 },
+            title = GetType().Name,
+            levelUnlocked = 1,
+            cost = new int[] { 2, 2 },
+            strength = new int[] { 2, 3 },
+            health = new int[] { 4, 5 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
-            race = Race.None,
+            race = Race.Engineer,
+            rarity = CardRarity.Common,
             genre = Genre.Human,
         };
         for (int i = 0; i < 2; i++) {
@@ -16,8 +18,7 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.massBuilder.Add();
-        ability.repair.Add(1);
+        ability.repair.Add(2, 3);
 
         return stats;
     }

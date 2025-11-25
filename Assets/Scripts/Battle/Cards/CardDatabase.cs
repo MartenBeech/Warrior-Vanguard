@@ -5,6 +5,14 @@ using System.Linq;
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
         new Mario().GetStats(),
+        new MrHammer().GetStats(),
+        new ExperiencedConstructor().GetStats(),
+        new DemolitionMan().GetStats(),
+        new HomeMechanic().GetStats(),
+        new BarrageCannoneer().GetStats(),
+        new Ballistarius().GetStats(),
+        new HeavyCrossbowman().GetStats(),
+        new LightCrossbowman().GetStats(),
         new AngelOfDeath().GetStats(),
         new GrimReaper().GetStats(),
         new JudgementCaller().GetStats(),

@@ -260,7 +260,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         stats.ability.vulnerability.TriggerStrike(this, target);
 
         if (damage > 0) {
-            await stats.ability.lifeSteal.TriggerStrike(this, damage);
+            await stats.ability.lifeSteal.TriggerStrike(this, target, damage);
             await stats.ability.lifeTransfer.TriggerStrike(this, damage, gridManager);
         }
         await stats.ability.bash.TriggerStrike(this, target, floatingText);
@@ -493,9 +493,11 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         await stats.ability.regeneration.TriggerOverturn(this);
         await stats.ability.sprout.TriggerOverturn(this, warriorSummoner);
         await stats.ability.sapEnergy.TriggerOverturn(this, gridManager);
-        await stats.ability.massHeal.TriggerOverturn(this, gridManager);
-        await stats.ability.lushGrounds.TriggerOverturn(this, gridManager);
         await stats.ability.heal.TriggerOverturn(this, gridManager);
+        await stats.ability.massHeal.TriggerOverturn(this, gridManager);
+        await stats.ability.repair.TriggerOverturn(this, gridManager);
+        await stats.ability.massRepair.TriggerOverturn(this, gridManager);
+        await stats.ability.lushGrounds.TriggerOverturn(this, gridManager);
         await stats.ability.faeMagic.TriggerOverturn(this, summoner);
         await stats.ability.thunderstorm.TriggerOverturn(this, gridManager);
         await stats.ability.lightningBolt.TriggerOverturn(this, gridManager);
@@ -505,6 +507,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         await stats.ability.artist.TriggerOverturn(this, gameManager);
         stats.ability.friendDiscount.TriggerOverturn(this, gridManager);
         await stats.ability.reckoning.TriggerOverturn(this, gridManager, floatingText);
+        await stats.ability.massBuilder.TriggerOverturn(this, gridManager, warriorSummoner);
 
         // Debuffs should trigger last
         stats.ability.seduced.Trigger(this);

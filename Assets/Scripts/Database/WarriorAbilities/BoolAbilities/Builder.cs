@@ -1,16 +1,23 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-public class LifeSteal {
+using UnityEngine;
+public class Builder {
     public string GetDescription(WarriorStats stats) {
         if (!GetValue(stats)) return "";
-        return $"{Keyword.Strike}: Heal equal to damage dealt";
+        return $"{Keyword.Summon}: Summon a Cannon Tower in front of this";
     }
 
-    public async Task<bool> TriggerStrike(Warrior dealer, Warrior target, int damage) {
+    public async Task<bool> TriggerSummon(Warrior dealer, GridManager gridManager, WarriorSummoner warriorSummoner) {
         if (GetValue(dealer.stats)) {
-            if (target && target.stats.ability.construct.GetValue(target.stats)) return false;
+            int xDirection = dealer.stats.alignment == Alignment.Friend ? 1 : -1;
+            Vector2 gridToSummon = new(dealer.gridIndex.x + xDirection, dealer.gridIndex.y);
 
-            await dealer.Heal(dealer, damage);
+            if (gridManager.GetCellWarrior(gridToSummon)) return false;
+
+            WarriorStats cannonTower = new CannonTower().GetStats();
+            cannonTower.alignment = dealer.stats.alignment;
+            cannonTower.level = dealer.stats.level;
+            await warriorSummoner.Summon(gridToSummon, cannonTower, dealer.transform.position);
             return true;
         }
         return false;

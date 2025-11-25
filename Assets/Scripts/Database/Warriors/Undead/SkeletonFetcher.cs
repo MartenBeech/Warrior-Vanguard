@@ -1,23 +1,25 @@
-public class Mario : WarriorStats {
+public class SkeletonFetcher {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
-            title = "Mario",
-            cost = new int[] { 0, 0 },
+            title = GetType().Name,
+            levelUnlocked = 1,
+            cost = new int[] { 2, 2 },
             strength = new int[] { 1, 1 },
-            health = new int[] { 10, 10 },
+            health = new int[] { 1, 1 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
-            race = Race.None,
-            genre = Genre.Human,
+            race = Race.Skeleton,
+            rarity = CardRarity.None,
+            genre = Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
             stats.healthMax[i] = stats.health[i];
         }
 
         WarriorAbility ability = stats.ability;
-        ability.massBuilder.Add();
-        ability.repair.Add(1);
+        ability.skeletal.Add(1, 2);
+        ability.deathDraw.Add(1, 2);
 
         return stats;
     }

@@ -123,7 +123,7 @@ public class Summoner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             dealer.image.GetComponent<Image>().color = currentColor;
 
             if (damageAfterResistances > 0) {
-                await dealer.stats.ability.lifeSteal.TriggerStrike(dealer, damageAfterResistances);
+                await dealer.stats.ability.lifeSteal.TriggerStrike(dealer, null, damageAfterResistances);
                 await dealer.stats.ability.lifeTransfer.TriggerStrike(dealer, damageAfterResistances, gridManager);
             }
         } else {

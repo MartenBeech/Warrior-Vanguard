@@ -1,4 +1,4 @@
-public class SkeletonArcher {
+public class SkeletonMage {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
@@ -8,9 +8,9 @@ public class SkeletonArcher {
             health = new int[] { 1, 1 },
             speed = 2,
             range = 4,
-            damageType = DamageType.Physical,
+            damageType = DamageType.Magical,
             race = Race.Skeleton,
-            rarity = CardRarity.Common,
+            rarity = CardRarity.None,
             genre = Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
@@ -19,7 +19,7 @@ public class SkeletonArcher {
 
         WarriorAbility ability = stats.ability;
         ability.skeletal.Add(1, 2);
-        ability.poison.Add(1, 2);
+        ability.weaken.Add(1, 2);
 
         return stats;
     }
