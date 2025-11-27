@@ -1,16 +1,16 @@
-public class Youngling {
+public class Bear {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
-            cost = new int[] { 1, 1 },
-            strength = new int[] { 1, 1 },
-            health = new int[] { 2, 3 },
-            speed = 1,
+            cost = new int[] { 0, 0 },
+            strength = new int[] { 0, 0 },
+            health = new int[] { 0, 0 },
+            speed = 2,
             range = 2,
             damageType = DamageType.Physical,
-            race = Race.Dwarf,
-            rarity = CardRarity.Common,
+            race = Race.None,
+            rarity = CardRarity.None,
             genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {
@@ -18,8 +18,6 @@ public class Youngling {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.resistance.Add(1, 2);
-        ability.armor.Add(1);
 
         return stats;
     }

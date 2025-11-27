@@ -9,8 +9,8 @@ public class GreedyDwarf {
             speed = 1,
             range = 2,
             damageType = DamageType.Physical,
-            race = Race.Dwarf,
-            rarity = CardRarity.Legendary,
+            race = Race.Support,
+            rarity = CardRarity.Rare,
             genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {
@@ -19,8 +19,8 @@ public class GreedyDwarf {
 
         WarriorAbility ability = stats.ability;
         ability.bash.Add();
-        ability.resistance.Add(2);
         ability.greedyStrike.Add(25, 50);
+        ability.drawing.Add(1);
 
         return stats;
     }

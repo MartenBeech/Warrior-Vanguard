@@ -1,16 +1,16 @@
-public class CoalbeardSketcher {
+public class Hermit {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
-            cost = new int[] { 4, 3 },
-            strength = new int[] { 1, 1 },
-            health = new int[] { 3, 3 },
-            speed = 1,
-            range = 2,
-            damageType = DamageType.Physical,
-            race = Race.Support,
-            rarity = CardRarity.Rare,
+            cost = new int[] { 2, 2 },
+            strength = new int[] { 3, 4 },
+            health = new int[] { 2, 3 },
+            speed = 2,
+            range = 4,
+            damageType = DamageType.Magical,
+            race = Race.Druid,
+            rarity = CardRarity.Common,
             genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {
@@ -18,7 +18,7 @@ public class CoalbeardSketcher {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.drawing.Add(2);
+        ability.swap.Add();
 
         return stats;
     }

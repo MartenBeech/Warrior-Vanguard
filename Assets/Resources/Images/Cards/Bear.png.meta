@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0f8e238faece9b841a97a81e8505bec7
+guid: ea7fd358f64bd7648b00bf4157ee10fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8223119136670442073
-    second: LightCrossbowman_0
+      213: 4693792977596894205
+    second: Bear_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LightCrossbowman_0
+      name: Bear_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 95265fe69436e1270800000000000000
-      internalID: 8223119136670442073
+      spriteID: dfbc2e628d3b32140800000000000000
+      internalID: 4693792977596894205
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      LightCrossbowman_0: 8223119136670442073
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

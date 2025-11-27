@@ -17,12 +17,12 @@ public class ZerugSwampwalker : SummonerStats {
     public List<WarriorStats> GetDeck() {
         SetItems();
         return new List<WarriorStats>() {
-            new Youngling().GetStats(),
-            new Youngling().GetStats(),
-            new Youngling().GetStats(),
-            new Youngling().GetStats(),
-            new Youngling().GetStats(),
-            new Youngling().GetStats(),
+            new CoalbeardSketcher().GetStats(),
+            new CoalbeardSketcher().GetStats(),
+            new CoalbeardSketcher().GetStats(),
+            new GreedyDwarf().GetStats(),
+            new GreedyDwarf().GetStats(),
+            new GreedyDwarf().GetStats(),
             new WanderingBirch().GetStats(),
             new WanderingBirch().GetStats(),
             new WanderingBirch().GetStats(),

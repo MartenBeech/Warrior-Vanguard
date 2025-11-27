@@ -44,8 +44,8 @@ public static class StartingDecks {
                 AddCardToDeck(new Luigi().GetStats(), card);
                 break;
             case "ElvenSummoner1":
-                AddCardToDeck(new Youngling().GetStats(), card);
-                AddCardToDeck(new Youngling().GetStats(), card);
+                AddCardToDeck(new CoalbeardSketcher().GetStats(), card);
+                AddCardToDeck(new CoalbeardSketcher().GetStats(), card);
                 AddCardToDeck(new Watchtower().GetStats(), card);
                 AddCardToDeck(new CentaurWarrior().GetStats(), card);
                 AddCardToDeck(new ClubCrasher().GetStats(), card);
@@ -61,8 +61,8 @@ public static class StartingDecks {
                 AddCardToDeck(new Haste().GetStats(), card);
                 break;
             case "ElvenSummoner2":
-                AddCardToDeck(new Youngling().GetStats(), card);
-                AddCardToDeck(new Youngling().GetStats(), card);
+                AddCardToDeck(new CoalbeardSketcher().GetStats(), card);
+                AddCardToDeck(new CoalbeardSketcher().GetStats(), card);
                 AddCardToDeck(new Watchtower().GetStats(), card);
                 AddCardToDeck(new CentaurWarrior().GetStats(), card);
                 AddCardToDeck(new ClubCrasher().GetStats(), card);

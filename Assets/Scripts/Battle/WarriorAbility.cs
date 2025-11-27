@@ -33,6 +33,7 @@ public class WarriorAbility {
     public Farming farming = new();
     public Whirlwind whirlwind = new();
     public Reload reload = new();
+    public Swap swap = new();
 
     // Common abilities
     public Armor armor = new();
@@ -123,6 +124,8 @@ public class WarriorAbility {
     public Reckoning reckoning = new();
     public Builder builder = new();
     public MassBuilder massBuilder = new();
+    public ForestFriend forestFriend = new();
+    public TurnSwap turnSwap = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();

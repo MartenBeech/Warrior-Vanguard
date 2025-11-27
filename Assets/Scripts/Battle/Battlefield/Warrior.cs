@@ -116,12 +116,12 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         }
     }
 
-    public async Task MoveWarrior(Direction direction, int nTiles) {
+    public async Task MoveWarrior(Direction direction, int nTiles, float durationInSec = 2) {
         if (stats.ability.rooted.Trigger(this)) return;
 
         Vector2 newGridIndex = GetFrontCellIndex(gridIndex, direction, nTiles);
         ObjectAnimation objectAnimation = GetComponent<ObjectAnimation>();
-        await objectAnimation.MoveObject(transform.position, gridManager.GetCellPosition(newGridIndex), 2);
+        await objectAnimation.MoveObject(transform.position, gridManager.GetCellPosition(newGridIndex), durationInSec);
 
         stats.ability.joust.TriggerMove(this, nTiles);
         stats.ability.familiarGround.TriggerMove(this, gridIndex, newGridIndex);
@@ -508,6 +508,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         stats.ability.friendDiscount.TriggerOverturn(this, gridManager);
         await stats.ability.reckoning.TriggerOverturn(this, gridManager, floatingText);
         await stats.ability.massBuilder.TriggerOverturn(this, gridManager, warriorSummoner);
+        await stats.ability.turnSwap.TriggerOverturn(this, gridManager, warriorSummoner);
 
         // Debuffs should trigger last
         stats.ability.seduced.Trigger(this);

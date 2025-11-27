@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BarrageCannoneer_0: -5493650794465344300
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

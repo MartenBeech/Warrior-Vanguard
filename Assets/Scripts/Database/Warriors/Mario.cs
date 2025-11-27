@@ -16,8 +16,9 @@ public class Mario : WarriorStats {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.massBuilder.Add();
-        ability.repair.Add(1);
+        ability.swap.Add();
+        ability.forestFriend.Add();
+        ability.turnSwap.Add();
 
         return stats;
     }

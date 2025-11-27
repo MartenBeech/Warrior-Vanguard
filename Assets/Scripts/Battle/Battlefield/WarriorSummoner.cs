@@ -113,6 +113,7 @@ public class WarriorSummoner : MonoBehaviour {
         stats.ability.familyDiscount.TriggerSummon(warrior, gridManager);
         stats.ability.raceDiscount.TriggerSummon(warrior, gridManager);
         await stats.ability.builder.TriggerSummon(warrior, gridManager, this);
+        await stats.ability.swap.TriggerSummon(warrior, gridManager, this);
 
         List<Warrior> enemies = gridManager.GetEnemies(stats.alignment);
         foreach (Warrior enemy in enemies) {

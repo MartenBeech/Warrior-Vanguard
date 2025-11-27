@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HeavyCrossbowman_0: -7280954080924899020
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
