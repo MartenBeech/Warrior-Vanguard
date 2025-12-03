@@ -4,7 +4,7 @@ public class MainMenu : MonoBehaviour {
     public GameObject collection;
     public GameObject achievements;
     public void StartNewGame() {
-        DeleteTemporaryPlayerPrefs();
+        DeleteStoredValues();
         SceneLoader.LoadScene(SceneLoader.Scene.SummonerSelector);
     }
 
@@ -28,6 +28,11 @@ public class MainMenu : MonoBehaviour {
 
     public void ToggleAchievements() {
         achievements.SetActive(!achievements.activeSelf);
+    }
+
+    void DeleteStoredValues() {
+        TileCompleter.currentTileIndex = null;
+        DeleteTemporaryPlayerPrefs();
     }
 
     void DeleteTemporaryPlayerPrefs() {
