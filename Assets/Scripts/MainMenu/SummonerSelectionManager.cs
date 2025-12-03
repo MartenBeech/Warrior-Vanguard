@@ -132,10 +132,10 @@ public class SummonerSelectionManager : MonoBehaviour {
     }
 
     public void AddExpClicked() {
-        ExperienceManager.AddExperience(Genre.Human, 100);
-        ExperienceManager.AddExperience(Genre.Elves, 100);
-        ExperienceManager.AddExperience(Genre.Undead, 100);
-        ExperienceManager.AddExperience(Genre.Underworld, 100);
+        ExperienceManager.AddExperience(Genre.Human, 90);
+        ExperienceManager.AddExperience(Genre.Elves, 90);
+        ExperienceManager.AddExperience(Genre.Undead, 90);
+        ExperienceManager.AddExperience(Genre.Underworld, 90);
         UpdateExpSliders(Genre.Human);
         UpdateExpSliders(Genre.Elves);
         UpdateExpSliders(Genre.Undead);

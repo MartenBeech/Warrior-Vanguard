@@ -10,12 +10,14 @@ public class GameOver : MonoBehaviour {
     public Slider expSlider;
     public TMP_Text expText;
     public GameObject levelUpPanel;
+    public Button MainMenuButton;
     public Card cardUnlocked1;
     public Card cardUnlocked2;
     public Card cardUnlocked3;
 
     private void Start() {
         levelUpPanel.SetActive(false);
+        MainMenuButton.interactable = false;
         if (LevelManager.isAlive) {
             GameOverText.text = "You Win! Good job!";
             ProgressHelper.WinGame(FriendlySummoner.summonerData.genre);
@@ -62,6 +64,7 @@ public class GameOver : MonoBehaviour {
             ShowLevelUpPanel();
         } else {
             ExperienceManager.AddExperience(genre, targetValue - startValue);
+            MainMenuButton.interactable = true;
         }
     }
 
@@ -79,8 +82,8 @@ public class GameOver : MonoBehaviour {
     public void LevelUpContinueButtonPressed() {
         levelUpPanel.SetActive(false);
         if (ExperienceManager.GetTempExperience() > 0) {
-            UpdateExpAnimation();
         }
+            UpdateExpAnimation();
     }
 
     public void LoadMainMenu() {

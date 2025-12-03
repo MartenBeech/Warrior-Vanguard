@@ -958,7 +958,7 @@ GameObject:
   - component: {fileID: 520902771}
   - component: {fileID: 520902770}
   m_Layer: 5
-  m_Name: Button
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1431,7 +1431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &702449963
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1877,6 +1877,7 @@ MonoBehaviour:
   expSlider: {fileID: 756439102}
   expText: {fileID: 154642635}
   levelUpPanel: {fileID: 702449962}
+  MainMenuButton: {fileID: 520902770}
   cardUnlocked1: {fileID: 734742069}
   cardUnlocked2: {fileID: 668641754}
   cardUnlocked3: {fileID: 251827328}
