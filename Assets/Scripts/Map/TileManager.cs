@@ -37,7 +37,10 @@ public class TileManager : MonoBehaviour {
                         mapTile.SetUnlocked(false);
                     }
 
-                    //TODO: Scroll to finished tile
+                    //Scroll to the finished tile
+                    RectTransform targetRectTransform = mapTiles[y][x].GetComponent<RectTransform>();
+                    scrollViewPanel.anchoredPosition = new Vector2(scrollViewPanel.anchoredPosition.x, scrollViewPanel.rect.height - 100 - targetRectTransform.anchoredPosition.y);
+                    
                     TileType tileType = mapTiles[y][x].tileType;
                     if ((tileType == TileType.Battlefield || tileType == TileType.MiniBoss || tileType == TileType.Boss) && PlayerPrefs.GetInt(PlayerPrefsKeys.rewardChosen, 0) == 0) {
                         rewardManager.ShowReward(mapTiles[y][x].tileType);
