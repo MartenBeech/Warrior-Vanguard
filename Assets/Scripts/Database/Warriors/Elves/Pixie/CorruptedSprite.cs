@@ -10,7 +10,7 @@ public class CorruptedSprite {
             range = 2,
             damageType = DamageType.Magical,
             race = Race.Pixie,
-            rarity = CardRarity.Legendary,
+            rarity = CardRarity.Rare,
             genre = Genre.Elves,
         };
         for (int i = 0; i < 2; i++) {

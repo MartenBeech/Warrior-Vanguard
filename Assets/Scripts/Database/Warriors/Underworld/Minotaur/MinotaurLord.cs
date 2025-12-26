@@ -4,7 +4,7 @@ public class MinotaurLord {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 4, 4 },
-            strength = new int[] { 5, 5 },
+            strength = new int[] { 6, 6 },
             health = new int[] { 6, 7 },
             speed = 2,
             range = 2,
