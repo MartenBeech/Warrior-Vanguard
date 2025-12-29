@@ -75,6 +75,9 @@ public class WarriorAbility {
     public Immune immune = new();
     public Demolish demolish = new();
     public KnockBack knockBack = new();
+    public SoulCollect soulCollect = new();
+    public SoulImbue soulImbue = new();
+    public StealEssence stealEssence = new();
 
     // Unique abilities
     public HydraSplit hydraSplit = new();
@@ -126,6 +129,8 @@ public class WarriorAbility {
     public MassBuilder massBuilder = new();
     public ForestFriend forestFriend = new();
     public TurnSwap turnSwap = new();
+    public Purge purge = new();
+    public UnstableEnergy unstableEnergy = new();
 
     // Buffs and Debuffs
     public Poisoned poisoned = new();

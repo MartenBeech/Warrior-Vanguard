@@ -10,7 +10,7 @@ public class SkeletonArcher {
             range = 4,
             damageType = DamageType.Physical,
             race = Race.Skeleton,
-            rarity = CardRarity.Common,
+            rarity = CardRarity.None,
             genre = Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {

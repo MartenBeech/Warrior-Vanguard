@@ -4,6 +4,11 @@ using System.Linq;
 
 public static class CardDatabase {
     public static List<WarriorStats> allCards = new() {
+        new ObeliskSiphoner().GetStats(),
+        new ThePunisher().GetStats(),
+        new GraveDanger().GetStats(),
+        new CemeteryKeeper().GetStats(),
+        new Shoveler().GetStats(),
         new Drawpy().GetStats(),
         new ArmoredMinotaur().GetStats(),
         new Centaudor().GetStats(),

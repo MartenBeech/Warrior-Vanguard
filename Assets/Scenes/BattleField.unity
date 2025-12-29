@@ -2596,6 +2596,8 @@ MonoBehaviour:
   hoverCard: {fileID: 1326509024}
   friendHand: {fileID: 179982829}
   enemyHand: {fileID: 799138551}
+  friendDeck: {fileID: 233183271}
+  enemyDeck: {fileID: 1651248352}
   friendSummonerObject: {fileID: 2039605223}
   enemySummonerObject: {fileID: 1267235796}
 --- !u!1001 &1265140658
@@ -4144,6 +4146,7 @@ MonoBehaviour:
   interactableButtons:
   - {fileID: 1891804511}
   - {fileID: 1685825230}
+  friendlyDeaths: 0
 --- !u!4 &2106477980
 Transform:
   m_ObjectHideFlags: 0

@@ -1,13 +1,13 @@
 using System.Text.RegularExpressions;
-public class CLASSNAMEINT {
+public class SoulCollect {
     public string GetDescription(WarriorStats stats) {
         if (GetValue(stats) == 0) return "";
-        return $"DESCRIPTION {GetValue(stats)}";
+        return $"Gain {GetValue(stats)} health when a warrior dies";
     }
 
     public bool Trigger(Warrior dealer) {
         if (GetValue(dealer.stats) > 0) {
-            // Add trigger event here
+            dealer.stats.AddHealth(GetValue(dealer.stats));
             dealer.UpdateWarriorUI();
             return true;
         }

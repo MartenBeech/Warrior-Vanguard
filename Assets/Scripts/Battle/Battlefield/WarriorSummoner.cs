@@ -13,6 +13,8 @@ public class WarriorSummoner : MonoBehaviour {
     public HoverCard hoverCard;
     public Hand friendHand;
     public Hand enemyHand;
+    public Deck friendDeck;
+    public Deck enemyDeck;
     public Transform friendSummonerObject;
     public Transform enemySummonerObject;
 
@@ -59,21 +61,24 @@ public class WarriorSummoner : MonoBehaviour {
         }
 
         Hand hand = null;
+        Deck deck = null;
         Transform summonerObject = null;
         Coin coin = null;
 
         if (stats.alignment == Alignment.Friend) {
             hand = friendHand;
+            deck = friendDeck;
             summonerObject = friendSummonerObject;
             coin = gameManager.friendCoin;
         } else if (stats.alignment == Alignment.Enemy) {
             hand = enemyHand;
+            deck = enemyDeck;
             summonerObject = enemySummonerObject;
             coin = gameManager.enemyCoin;
         }
         FloatingText floatingText = FindFirstObjectByType<FloatingText>();
         Summoner summoner = summonerObject.GetComponent<Summoner>();
-        warrior.Initiate(gameManager, gridManager, hand, this, summonerObject, summoner, hoverCard, floatingText, coin);
+        warrior.Initiate(gameManager, gridManager, hand, deck, this, summonerObject, summoner, hoverCard, floatingText, coin);
 
         warrior.gridIndex = gridIndex;
         warrior.SetStats(stats);
@@ -114,6 +119,7 @@ public class WarriorSummoner : MonoBehaviour {
         stats.ability.raceDiscount.TriggerSummon(warrior, gridManager);
         await stats.ability.builder.TriggerSummon(warrior, gridManager, this);
         await stats.ability.swap.TriggerSummon(warrior, gridManager, this);
+        await stats.ability.purge.TriggerSummon(warrior, gridManager);
 
         List<Warrior> enemies = gridManager.GetEnemies(stats.alignment);
         foreach (Warrior enemy in enemies) {

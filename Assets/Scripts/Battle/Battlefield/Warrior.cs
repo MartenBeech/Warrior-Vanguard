@@ -18,6 +18,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
     public GameObject crystal;
     private GameManager gameManager;
     private Hand hand;
+    private Deck deck;
     public WarriorSummoner warriorSummoner;
     private Transform summonerObject;
     private Summoner summoner;
@@ -26,10 +27,11 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
     private bool isDying = false;
     public GameObject stunnedAnimation;
 
-    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, WarriorSummoner warriorSummoner, Transform summonerObject, Summoner summoner, HoverCard hoverCard, FloatingText floatingText, Coin coin) {
+    public void Initiate(GameManager gameManager, GridManager gridManager, Hand hand, Deck deck, WarriorSummoner warriorSummoner, Transform summonerObject, Summoner summoner, HoverCard hoverCard, FloatingText floatingText, Coin coin) {
         this.gameManager = gameManager;
         this.gridManager = gridManager;
         this.hand = hand;
+        this.deck = deck;
         this.warriorSummoner = warriorSummoner;
         this.summonerObject = summonerObject;
         this.summoner = summoner;
@@ -439,12 +441,15 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
             List<Warrior> warriors = gridManager.GetWarriors();
             foreach (Warrior warrior in warriors) {
                 asyncFunctions.Add(warrior.stats.ability.looting.Trigger(warrior, floatingText));
+                warrior.stats.ability.soulCollect.Trigger(warrior);
+                warrior.stats.ability.soulImbue.Trigger(warrior);
             }
 
             asyncFunctions.Add(dealer.stats.ability.possess.TriggerKill(dealer, this, dealer.hand));
             asyncFunctions.Add(dealer.stats.ability.greedyStrike.TriggerKill(dealer, floatingText));
             asyncFunctions.Add(dealer.stats.ability.lifeInDeath.TriggerKill(dealer, gridManager));
             asyncFunctions.Add(dealer.stats.ability.dragonRecruiter.TriggerKill(dealer, dealer.hand));
+            asyncFunctions.Add(dealer.stats.ability.stealEssence.TriggerKill(dealer, dealer.deck));
         }
 
         gameObject.SetActive(false);
@@ -509,6 +514,7 @@ public class Warrior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
         await stats.ability.reckoning.TriggerOverturn(this, gridManager, floatingText);
         await stats.ability.massBuilder.TriggerOverturn(this, gridManager, warriorSummoner);
         await stats.ability.turnSwap.TriggerOverturn(this, gridManager, warriorSummoner);
+        await stats.ability.unstableEnergy.TriggerOverturn(this, gridManager);
 
         // Debuffs should trigger last
         stats.ability.seduced.Trigger(this);

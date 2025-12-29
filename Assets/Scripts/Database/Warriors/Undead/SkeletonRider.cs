@@ -10,7 +10,7 @@ public class SkeletonRider {
             range = 2,
             damageType = DamageType.Physical,
             race = Race.Skeleton,
-            rarity = CardRarity.Rare,
+            rarity = CardRarity.None,
             genre = Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {

@@ -1,16 +1,16 @@
-public class SkeletonFetcher {
+public class CemeteryKeeper {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
-            cost = new int[] { 2, 2 },
-            strength = new int[] { 1, 1 },
-            health = new int[] { 1, 1 },
+            cost = new int[] { 4, 4 },
+            strength = new int[] { 2, 2 },
+            health = new int[] { 8, 8 },
             speed = 2,
             range = 2,
             damageType = DamageType.Physical,
-            race = Race.Skeleton,
-            rarity = CardRarity.Rare,
+            race = Race.Gravedigger,
+            rarity = CardRarity.Common,
             genre = Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
@@ -18,8 +18,7 @@ public class SkeletonFetcher {
         }
 
         WarriorAbility ability = stats.ability;
-        ability.skeletal.Add(1, 2);
-        ability.deathDraw.Add(1, 2);
+        ability.soulImbue.Add(1, 2);
 
         return stats;
     }

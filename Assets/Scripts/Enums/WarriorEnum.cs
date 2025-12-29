@@ -1,6 +1,6 @@
 public enum Race {
     None, Construct, Dragon, Support, //Common
-    Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Nightrider, Shade, Reaper, //Undead
+    Ghoul, Lich, Skeleton, Vampire, Wraith, Zombie, Nightrider, Shade, Reaper, Gravedigger, //Undead
     Pirate, Holyborn, Knight, Griffin, Fencer, Librarian, Farmer, Soldier, Marksman, Engineer, //Human
     Unicorn, Ranger, Dwarf, Centaur, Troll, Treant, Werewolf, Pixie, Sorcerer, Druid, //Elves
     Imp, Minotaur, Harpy, Pestilence, Cerberus, Succubus, Demon, Hydra, //Underworld

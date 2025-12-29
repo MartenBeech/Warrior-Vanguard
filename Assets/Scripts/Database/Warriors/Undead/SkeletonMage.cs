@@ -1,16 +1,16 @@
-public class SkeletonWarrior {
+public class SkeletonMage {
     public WarriorStats GetStats() {
         WarriorStats stats = new() {
             title = GetType().Name,
             levelUnlocked = 1,
             cost = new int[] { 2, 2 },
-            strength = new int[] { 1, 1 },
-            health = new int[] { 3, 3 },
+            strength = new int[] { 3, 3 },
+            health = new int[] { 1, 1 },
             speed = 2,
-            range = 2,
-            damageType = DamageType.Physical,
+            range = 4,
+            damageType = DamageType.Magical,
             race = Race.Skeleton,
-            rarity = CardRarity.Common,
+            rarity = CardRarity.None,
             genre = Genre.Undead,
         };
         for (int i = 0; i < 2; i++) {
@@ -19,7 +19,7 @@ public class SkeletonWarrior {
 
         WarriorAbility ability = stats.ability;
         ability.skeletal.Add(1, 2);
-        ability.armor.Add(1, 2);
+        ability.weaken.Add(1, 2);
 
         return stats;
     }
